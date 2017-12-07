@@ -16,6 +16,7 @@ copy:
   assets:
     # all files below the assets dir
     - "assets/**/*"
+
     # exclusions:
     - "!assets/{js,scss,css}/**/*"   # js, scss and css files
     - "!assets/css{,/**}"            # css dir
@@ -81,6 +82,9 @@ javascript:
     - "node_modules/foundation-sites/dist/js/plugins/foundation.tabs.js"
     - "node_modules/foundation-sites/dist/js/plugins/foundation.tooltip.js"
     - "node_modules/foundation-sites/dist/js/plugins/foundation.zf.responsiveAccordionTabs.js"
+
+    # Open Sea Dragon
+    - "node_modules/openseadragon/build/openseadragon/openseadragon.min.js"
 
     # Paths to your own project code are here
     # All the files in this list and in the js dir are concatenated into all.js
