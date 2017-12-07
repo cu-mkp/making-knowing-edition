@@ -1,0 +1,114 @@
+browsersync:
+  notify: true
+  open:   false
+  port:   3000
+  server:
+    basedir: "_site/"
+  xip:    true
+
+clean:
+  # The jekyll build dir
+  - "_site"
+
+copy:
+  # Paths to static assets that aren't (S)CSS or JavaScript
+  # because these are completely handled by the sass and javascript tasks
+  assets:
+    # all files below the assets dir
+    - "assets/**/*"
+    # exclusions:
+    - "!assets/{js,scss,css}/**/*"   # js, scss and css files
+    - "!assets/css{,/**}"            # css dir
+    - "!assets/js{,/**}"             # js dir
+    - "!assets/scss{,/**}"           # scss dir
+    - "!assets/vendor{,/**}"         # vendor dir
+  dist: "_site/assets/"
+  notification: "Running Copy"
+
+javascript:
+  dest:
+    jekyllRoot: "assets/js/"
+    buildDir: "_site/assets/js/"
+  # filename to output
+  filename: "all.js"
+  notification: "Running JavaScript"
+  # Paths to JavaScript libraries, which are combined into one file
+  src:
+    # Libraries requried by Foundation
+    - "node_modules/jquery/dist/jquery.js"
+    - "node_modules/what-input/what-input.js"
+
+    # Core Foundation files, all Foundation components need this!
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.core.js"
+
+    # Individual Foundation components
+    # If you aren't using a component, just remove it from the list
+
+    # Foundation Utilities
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.box.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.imageLoader.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.keyboard.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.motion.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.nest.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.timer.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.touch.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.util.triggers.js"
+
+    # Foundation Plugins
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.abide.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.equalizer.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.interchange.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.toggler.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.smoothScroll.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.sticky.js"
+
+    # Foundation Components
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.accordion.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.accordionMenu.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.drilldown.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.dropdown.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.dropdownMenu.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.magellan.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.offcanvas.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.orbit.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.responsiveAccordionTabs.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.responsiveMenu.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.responsiveToggle.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.reveal.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.slider.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.tabs.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.tooltip.js"
+    - "node_modules/foundation-sites/dist/js/plugins/foundation.zf.responsiveAccordionTabs.js"
+
+    # Paths to your own project code are here
+    # All the files in this list and in the js dir are concatenated into all.js
+    - "!assets/js/all.js"
+    - "assets/js/*.js"
+
+jekyll:
+  notification: "Running jekyll"
+
+sass:
+  # Autoprefixer will make sure your CSS works with these browsers
+  compatibility:
+    - "last 2 versions"
+    - "ie >= 9"
+  dest:
+    jekyllRoot: "assets/css/"
+    buildDir: "_site/assets/css/"
+  notification: "Running Sass"
+  src: "assets/scss/*.scss"
+
+watch:
+  media:
+    - "assets/img/**/*"
+    - "assets/video/**/*"
+  javascript: "assets/js/app.js"
+  sass: "assets/scss/**/*.scss"
+  pages:
+    - "*.{md,html,yml,xml}"
+    - "{_data,_includes,_layouts,_pages,_posts}/**/*.{md,html,yml,xml}"
+    - "!_site/**/*.*"
+    - "!assets/**/*.*"
