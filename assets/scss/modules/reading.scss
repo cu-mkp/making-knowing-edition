@@ -1,0 +1,52 @@
+.reading {
+  margin: 40px;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 10px;
+  grid-template-areas: "image_viewer page";
+
+  .image-viewer {
+    grid-area: image_viewer;
+    background: black;
+  }
+
+  .page {
+    grid-area: page;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 20px;
+    grid-template-areas:
+        "p1 p2 p3"
+        "p1 p4 p3"
+        "p1 p5 p5"
+        "p1 p5 p5";
+    }
+
+.part-1 {
+    font-size: 10pt;
+    grid-area: p1;
+}
+.part-2 {
+    grid-area: p2;
+}
+.part-3 {
+    font-size: 10pt;
+    grid-area: p3;
+}
+.part-4 {
+    grid-area: p4;
+}
+.part-5 {
+    grid-area: p5;
+}
+
+.page div {
+    border: 1px solid #EFEDED;
+    padding: 10px;
+}
+
+}
