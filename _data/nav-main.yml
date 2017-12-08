@@ -1,8 +1,8 @@
 - link: Home
   url: /
 
+- link: IIIF Viewer
+  url: /iiif
+
 - link: Reading Prototype
   url: /reading
-
-- link: Kitchen Sink
-  url: /kitchen-sink
