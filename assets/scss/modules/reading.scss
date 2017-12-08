@@ -1,8 +1,12 @@
 .reading {
-  margin: 40px;
+  margin: 5px;
+
+  div {
+    font: sans-serif;
+  }
 
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 3fr 5fr;
   grid-gap: 10px;
   grid-template-areas: "image_viewer page";
 
@@ -17,13 +21,13 @@
     padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
     grid-template-areas:
-        "p1 p2 p3"
-        "p1 p4 p3"
+        "p1 p2 p4"
+        "p1 p3 p4"
         "p1 p5 p5"
-        "p1 p5 p5";
+        "p1 p6 p6";
     }
 
 .part-1 {
@@ -31,17 +35,21 @@
     grid-area: p1;
 }
 .part-2 {
+  font-size: 10pt;
     grid-area: p2;
 }
 .part-3 {
-    font-size: 10pt;
     grid-area: p3;
 }
 .part-4 {
+    font-size: 10pt;
     grid-area: p4;
 }
 .part-5 {
     grid-area: p5;
+}
+.part-6 {
+    grid-area: p6;
 }
 
 .page div {

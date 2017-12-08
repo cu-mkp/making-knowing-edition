@@ -34,11 +34,15 @@ date:   2015-01-03 21:21
      Le coral faict desmail de gueule endure la lime et le polissem{ent}<br/>
     </div>
     <div class="part-3">
+       <h4>Coral contrefaict</h4>
+       <h4 class='center'>+</h4>
+    </div>
+    <div class="part-4">
       Il se faict co{mm}e le ciment qui est plus fort mesle de verre (que de)<br/>
       pile que de brique Ainsy on y<br/>
       mesle avecq le vermeillon de lesmail de gueule qui est rouge en corps bien pile Ainsy de toutes couleurs desmailst<br/>
     </div>
-    <div class="part-4">
+    <div class="part-5">
       Il fault premierement faire les branches de boys ou<br/>
       prendre une branche despine bisarre puys fondre une<br/>
       lb. de poix resine claire de la plus belle et y mectre<br/>
@@ -49,7 +53,8 @@ date:   2015-01-03 21:21
       tes branches dedans & sil y restoit quelque filament<br/>
       tourne la branche sur la chaleur du charbont<br/>
     </div>
-    <div class="part-5">
+    <div class="part-6">
+      <h4>Gros vernis pour le plancher</h4>
       Il y a du vernis qui est long a seicher & degoute plus de deux<br/>
       moys apres quil a este aplique aulx planchers Mais<br/>
       cestuy cy ne degoute poinct comme celuy du temps passe qui estoit faict dhuile de lin daux bouillis dedans pour lestaindre &<br/>
