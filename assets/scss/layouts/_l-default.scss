@@ -3,19 +3,28 @@
 // --------------------------------------------------
 
 header {
-  @include grid-row;
+//  @include grid-row;
+  margin: 10px;
+  overflow-x: hidden;
   background-color: $light-gray;
 
+  .site-name {
+    padding: 10px;
+  }
+
   nav {
-    @include grid-column;
+    padding-top: 3px;
+    // @include grid-column;
   }
 }
 
 footer {
-  @include grid-row;
+  // @include grid-row;
+  overflow-x: hidden;
   background-color: $light-gray;
+  margin: 10px;
 
   nav {
-    @include grid-column;
+    // @include grid-column;
   }
 }

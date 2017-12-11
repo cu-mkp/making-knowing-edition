@@ -3,7 +3,9 @@
 // --------------------------------------------------
 
 main {
-  @include grid-row;
+  overflow-x: hidden;
+  margin: 10px;
+  // @include grid-row;
 
   //other elements
   //@include grid-column;
