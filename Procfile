@@ -1,1 +1,1 @@
-web: bundle exec gulp
+web: gulp
