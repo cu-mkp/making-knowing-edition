@@ -44,8 +44,5 @@ _site
 # Vendor directory
 assets/vendor/
 
-# Ruby
-Gemfile.lock
-
 # Composer
 composer.lock
