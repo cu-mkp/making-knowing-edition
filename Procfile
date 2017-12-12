@@ -1,1 +1,1 @@
-web: bundle exec yarn start 
+web: bundle exec gulp
