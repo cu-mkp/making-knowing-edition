@@ -1,14 +1,3 @@
-# config.ru
-require 'rack/contrib/try_static'
-
-use Rack::Static, :urls => [""], :root => '_site', :index =>
-'index.html'
-
-# use Rack::TryStatic,
-#   :root => "_site",
-#   :urls => %w[/],
-#   :try => ['.html', 'index.html', '/index.html']
-
-run lambda { |env|
-  return [404, {'Content-Type' => 'text/html'}, ['Not Found']]
-}
+require 'rack/jekyll'
+require 'yaml'
+run Rack::Jekyll.new

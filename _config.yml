@@ -4,12 +4,16 @@ title:                  "Making and Knowing"
 description:            "Intersections of Craft Making and Scientific Knowing"
 google-verification:    ""
 
+exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
+
 # Handling Reading
 include:
   - ".htaccess"
   - "_pages"
 
 exclude:
+  - "Procfile"
+  - "config.ru"
   - "/assets/"
   - "bower.json"
   - "composer.json"

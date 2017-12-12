@@ -1,1 +1,1 @@
-web: bundle exec jekyll serve --skip-initial-build --port $PORT
+web: bundle exec puma -t 8:32 -w 3 -p $PORT
