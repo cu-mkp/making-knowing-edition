@@ -1,0 +1,24 @@
+{
+  "name": "making-knowing",
+  "scripts": {
+    "postdeploy": "bin/gulp"
+  },
+  "env": {
+    "LANG": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
