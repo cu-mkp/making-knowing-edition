@@ -2,6 +2,7 @@
 layout: post
 title:  "Welcome to Jekyll!"
 categories: jekyll update
+date:   2015-01-03 21:21
 ---
 
 You'll find this post in your `_posts` directory.
