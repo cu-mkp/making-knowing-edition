@@ -13,10 +13,7 @@ $(document).foundation();
 // --------------------------------------------------
 
 
-// $( document ).ready(function() {
-//   var viewer = OpenSeadragon({
-//       id: "openseadragon1",
-//       prefixUrl: "../assets/img/openseadragon/",
-//       tileSources: "/path/to/my/image.dzi"
-//   });
-// });
+$( document ).ready(function() {
+  var imageView = new ImageView();
+  imageView.render();
+});
