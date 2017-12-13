@@ -1,7 +1,7 @@
 {
   "name": "making-knowing",
   "scripts": {
-    "postdeploy": "gulp build"
+    "postdeploy": "node_modules/gulp/bin/gulp build"
   },
   "env": {
     "LANG": {
