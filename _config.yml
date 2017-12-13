@@ -4,8 +4,6 @@ title:                  "Making and Knowing"
 description:            "Intersections of Craft Making and Scientific Knowing"
 google-verification:    ""
 
-exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']
-
 # Handling Reading
 include:
   - ".htaccess"
@@ -28,12 +26,13 @@ exclude:
   - "Makefile"
   - "/node_modules/"
   - "npm-debug.log"
+  - "yarn.lock"
   - "package.json"
   - "README.md"
   - "rev-manifest.json"
 
 # Plugins
-plugins:             ["jekyll-sitemap", "jekyll-paginate", "kramdown"]
+plugins:             ["jekyll-sitemap", "jekyll-paginate"]
 
 # Conversion
 incremental:      true

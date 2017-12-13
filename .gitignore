@@ -37,8 +37,8 @@ $RECYCLE.BIN/
 node_modules/**/*
 npm-debug.log
 
-# Heroku local
-.env
+# Makefile
+Makefile
 
 # Jekyll
 _site
