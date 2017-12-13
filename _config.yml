@@ -26,7 +26,7 @@ exclude:
   - "gulpfile.js"
   - "LICENSE.md"
   - "Makefile"
-  - "node_modules"
+  - "/node_modules/"
   - "npm-debug.log"
   - "package.json"
   - "README.md"
