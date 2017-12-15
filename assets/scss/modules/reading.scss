@@ -7,7 +7,6 @@
   }
 
   display: grid;
-  grid-template-columns: 3fr .05fr 5fr;
   grid-template-areas: "image_viewer divider page";
 
   #image-view-seadragon {
@@ -17,7 +16,7 @@
 
   .divider {
     grid-area: divider;
-    width: 15px;
+    width: 16px;
     background: #CCC;
   }
 

@@ -4,9 +4,10 @@ class SplitPaneView {
     this.splitPaneEl = null;
     this.dragging = false;
     this.dividerColumnFr = 0.5;
+    this.dividerWidthPx = 16;
   }
 
-  repositionDivider(leftFr, rightFr) {
+  positionDivider(leftFr, rightFr) {
     this.splitPaneEl.style.gridTemplateColumns = `${leftFr}fr ${this.dividerColumnFr}fr ${rightFr}fr`;
   }
 
@@ -18,10 +19,10 @@ class SplitPaneView {
 
   onDrag(e) {
     if( this.dragging ) {
-      var leftWidth = e.clientX;
+      var leftWidth = e.clientX + this.dividerWidthPx/2;
       var leftFr = (leftWidth/this.viewportWidth) * 10;
       var rightFr = (10.0 - leftFr);
-      this.repositionDivider(leftFr,rightFr);
+      this.positionDivider(leftFr,rightFr);
     }
   }
 
@@ -32,6 +33,7 @@ class SplitPaneView {
   render() {
     // bind to DOM
     this.splitPaneEl = $(`#${this.id}`).get(0);
+    this.positionDivider(10, 10);
 
     // attach handlers to mouse events
     var $divider = $(`#${this.id} > .divider`);
