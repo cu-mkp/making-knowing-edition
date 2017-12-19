@@ -9,6 +9,7 @@ class SplitPaneView {
 
   onStartDrag(e) {
     this.dragging = true;
+    $('body').css( 'cursor', 'ew-resize' );
   }
 
   onDrag(e) {
@@ -23,6 +24,7 @@ class SplitPaneView {
 
   onEndDrag(e) {
     this.dragging = false;
+    $('body').css( 'cursor', 'auto' );
   }
 
   positionDivider() {
