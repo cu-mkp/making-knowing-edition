@@ -31,14 +31,17 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
-    grid-template-areas:
-        "p1 p2 p4"
-        "p1 p3 p4"
-        "p1 p5 p5"
-        "p1 p6 p6";
+
+    @media(min-width: 960px) {
+      display: grid;
+      grid-template-columns: minmax(315px,1fr) minmax(315px,1fr) minmax(315px,1fr);
+      grid-gap: 5px;
+      grid-template-areas:
+          "p1 p2 p4"
+          "p1 p3 p4"
+          "p1 p5 p5"
+          "p1 p6 p6";
+    }
   }
 
   .part-1 {
