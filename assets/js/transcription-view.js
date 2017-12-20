@@ -1,11 +1,12 @@
 class TranscriptionView {
   constructor(id) {
     this.id = id;
-    this.gridBreakPoint = 960;
+    this.gridBreakPoint = 640; // two column widths
   }
 
   onResize() {
-    var viewWidth = this.$el.innerWidth()
+    var viewWidth = this.$el.innerWidth();
+    // console.log(`width: ${viewWidth}`);
 
     if( viewWidth < this.gridBreakPoint ) {
       this.$el.removeClass('grid-mode');

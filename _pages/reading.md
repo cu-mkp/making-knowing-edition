@@ -11,39 +11,6 @@ date:   2015-01-03 21:21
   </div>
   <div class="divider"></div>
   <div id="transcription-view" class="transcription">
-    <div class="part-1">
-      La colophonie nest aultre chose que <br/>
-      rousine recuite Pour bien la faire<br/>
-      Ayes un pot plombe & fais fondre la <br/>
-      resine & bouillir sur brasier une bonne <br/>
-      heure & jusques a ce quelle ne demonstre<br/>
-      estre poinct espesse ains<br/>
-      claire & liquide co{mm}e<br/>
-      eau & que facillement<br/>
-      elle coule & file au bout<br/>
-      d’un baston avecq lequel tu la broyes & en fais<br/>
-      lessay Lors coule la<br/>
-      par quelque gros caneva<br/>
-      ou estamine bien claire<br/>
-      de sorte quen coulant<br/>
-      elle tombe dans du<br/>
-      vinaigre le plus fort<br/>
-      que tu pourras Car le vinaigre luy donne<br/>
-      force & lempesche destre<br/>
-      si frangible Reitere<br/>
-      cela deulx ou trois<br/>
-      fois & elle sera belle<br/>
-      & bien purifiee pour contrefaire ton coral<br/>
-      Tu peulx mesler la<br/>
-      quarte partie de mastic parmy ta rousine purifiee<br/>
-      pour la rendre plus ferme<br/>
-      et plus belle & si tu prenois<br/>
-      la seule larme du mastic<br/>
-      tant mieulx seroit mais<br/>
-      il seroit trop long<br/>
-      soufre & vermeillon<br/>
-      faict le mesme effect<br/>
-    </div>
     <div class="part-2">
      Le coral faict desmail de gueule endure la lime et le polissem{ent}<br/>
     </div>
@@ -78,6 +45,39 @@ date:   2015-01-03 21:21
       cestuy cy ne degoute poinct comme celuy du temps passe qui estoit<br/> faict dhuile de lin daux bouillis dedans pour lestaindre &<br/>
       degraisser & avecq du bled Et cestuy cy jaulnissoict & rendoit<br/> verdastre la couleur bleue des tableaulx Cestuy se faict<br/>
       comme laultre horsmis quon mect grosse tourmentine commune<br/>
+    </div>
+    <div class="part-1">
+      La colophonie nest aultre chose que <br/>
+      rousine recuite Pour bien la faire<br/>
+      Ayes un pot plombe & fais fondre la <br/>
+      resine & bouillir sur brasier une bonne <br/>
+      heure & jusques a ce quelle ne demonstre<br/>
+      estre poinct espesse ains<br/>
+      claire & liquide co{mm}e<br/>
+      eau & que facillement<br/>
+      elle coule & file au bout<br/>
+      d’un baston avecq lequel tu la broyes & en fais<br/>
+      lessay Lors coule la<br/>
+      par quelque gros caneva<br/>
+      ou estamine bien claire<br/>
+      de sorte quen coulant<br/>
+      elle tombe dans du<br/>
+      vinaigre le plus fort<br/>
+      que tu pourras Car le vinaigre luy donne<br/>
+      force & lempesche destre<br/>
+      si frangible Reitere<br/>
+      cela deulx ou trois<br/>
+      fois & elle sera belle<br/>
+      & bien purifiee pour contrefaire ton coral<br/>
+      Tu peulx mesler la<br/>
+      quarte partie de mastic parmy ta rousine purifiee<br/>
+      pour la rendre plus ferme<br/>
+      et plus belle & si tu prenois<br/>
+      la seule larme du mastic<br/>
+      tant mieulx seroit mais<br/>
+      il seroit trop long<br/>
+      soufre & vermeillon<br/>
+      faict le mesme effect<br/>
     </div>
   </div>
 </div>
