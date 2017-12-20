@@ -10,7 +10,7 @@ date:   2015-01-03 21:21
     <div id="image-view-seadragon" ></div>
   </div>
   <div class="divider"></div>
-  <div class="page">
+  <div id="transcription-view" class="transcription">
     <div class="part-1">
       La colophonie nest aultre chose que <br/>
       rousine recuite Pour bien la faire<br/>

@@ -1,10 +1,11 @@
 class SplitPaneView {
-  constructor(id) {
+  constructor(id, resizeListener) {
     this.id = id;
     this.splitPaneEl = null;
     this.dragging = false;
     this.dividerWidth = 16;
     this.splitFraction = 0.5;
+    this.resizeListener = resizeListener;
   }
 
   onStartDrag(e) {
@@ -31,6 +32,7 @@ class SplitPaneView {
     var left = this.splitFraction;
     var right = 1.0 - left;
     this.splitPaneEl.style.gridTemplateColumns = `${left}fr ${this.dividerWidth}px ${right}fr`;
+    this.resizeListener();
   }
 
   render() {

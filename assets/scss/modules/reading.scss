@@ -7,7 +7,7 @@
   }
 
   display: grid;
-  grid-template-areas: "image_viewer divider page";
+  grid-template-areas: "image_viewer divider transcription";
 
   #image-view-seadragon {
     width: 100%;
@@ -26,22 +26,23 @@
     background: black;
   }
 
-  .page {
-    grid-area: page;
+  .transcription {
+    grid-area: transcription;
     margin: 0;
     padding: 0;
     list-style: none;
+  }
 
-    @media(min-width: 960px) {
-      display: grid;
-      grid-template-columns: minmax(315px,1fr) minmax(315px,1fr) minmax(315px,1fr);
-      grid-gap: 5px;
-      grid-template-areas:
-          "p1 p2 p4"
-          "p1 p3 p4"
-          "p1 p5 p5"
-          "p1 p6 p6";
-    }
+  .grid-mode {
+    display: grid;
+    // grid-template-columns: minmax(315px,1fr) minmax(315px,1fr) minmax(315px,1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    grid-template-areas:
+        "p1 p2 p4"
+        "p1 p3 p4"
+        "p1 p5 p5"
+        "p1 p6 p6";
   }
 
   .part-1 {
@@ -66,7 +67,7 @@
       grid-area: p6;
   }
 
-  .page div {
+  .transcription div {
       border: 1px solid #EFEDED;
       padding: 10px;
   }
