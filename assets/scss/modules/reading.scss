@@ -31,11 +31,12 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 750px;
+    overflow: scroll;
   }
 
   .grid-mode {
     display: grid;
-    // grid-template-columns: minmax(315px,1fr) minmax(315px,1fr) minmax(315px,1fr);
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
     grid-template-areas:
