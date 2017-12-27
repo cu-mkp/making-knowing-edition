@@ -5,7 +5,7 @@ title:  Reading Prototype
 date:   2015-01-03 21:21
 ---
 
-<div id="reading-pane" class="reading">
+<div id="main-view" class="diplo-matic" >
   <div class="image-viewer">
     <div id="image-view-seadragon" ></div>
   </div>
