@@ -4,15 +4,14 @@ class MainView {
   }
 
   render() {
-    this.imageView = new ImageView();
-    this.imageView.render();
-
+    // default viewports
+    this.imageView = new ImageView('image-view');
     this.transcriptionView = new TranscriptionView('transcription-view');
-    this.transcriptionView.render();
 
     this.splitPaneView = new SplitPaneView(
       this.id,
-      this.transcriptionView.onResize.bind(this.transcriptionView)
+      this.imageView,
+      this.transcriptionView
     );
     this.splitPaneView.render();
   }

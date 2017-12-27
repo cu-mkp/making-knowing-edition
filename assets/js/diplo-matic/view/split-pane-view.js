@@ -1,11 +1,14 @@
 class SplitPaneView {
-  constructor(id, resizeListener) {
+  constructor(id, leftViewport, rightViewport) {
     this.id = id;
     this.splitPaneEl = null;
     this.dragging = false;
     this.dividerWidth = 16;
     this.splitFraction = 0.5;
-    this.resizeListener = resizeListener;
+    this.leftViewport = leftViewport;
+    this.rightViewport = rightViewport;
+    // TODO refactor
+    this.resizeListener = rightViewport.onResize.bind(rightViewport);
   }
 
   onStartDrag(e) {
@@ -38,6 +41,10 @@ class SplitPaneView {
   }
 
   render() {
+
+    this.leftViewport.render();
+    this.rightViewport.render();
+
     // bind to DOM
     this.splitPaneEl = $(`#${this.id}`).get(0);
     this.positionDivider();

@@ -6,7 +6,7 @@ date:   2015-01-03 21:21
 ---
 
 <div id="main-view" class="diplo-matic" >
-  <div class="image-viewer">
+  <div id="image-view" class="image-viewer">
     <div id="image-view-seadragon" ></div>
   </div>
   <div class="divider"></div>

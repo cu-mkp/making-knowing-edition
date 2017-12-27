@@ -89,10 +89,10 @@ javascript:
     # Paths to your own project code are here
     # All the files in this list and in the js dir are concatenated into all.js
     - "!assets/js/all.js"
-    - "assets/js/*.js"
-    - "assets/js/diplo-matic/*.js"
     - "assets/js/diplo-matic/model/*.js"
     - "assets/js/diplo-matic/view/*.js"
+    - "assets/js/diplo-matic/*.js"
+    - "assets/js/*.js"
 
 jekyll:
   notification: "Running jekyll"

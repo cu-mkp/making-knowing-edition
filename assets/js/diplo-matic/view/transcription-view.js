@@ -1,6 +1,6 @@
-class TranscriptionView {
+class TranscriptionView extends SplitPaneViewport {
   constructor(id) {
-    this.id = id;
+    super(id);
     this.gridBreakPoint = 640; // two column widths
   }
 
@@ -16,6 +16,8 @@ class TranscriptionView {
   }
 
   render() {
+    super.render();
+
     // bind to DOM
     this.$el = $(`#${this.id}`);
   }
