@@ -1,13 +1,16 @@
-# Making and Knowing Website
+# Making and Knowing Edition Website
 
-This package is meant to build your Site on your local machine.
-
-It provides a [Gulp.js](http://gulpjs.com/) workflow with
+This application is meant to build the Making and Knowing Edition Website on your local machine. It provides a [Gulp.js](http://gulpjs.com/) workflow with:
 
 - Browsersync (live reload and synchronised browser testing)
 - Concatenation and minification of CSS and JavaScript files
-- Asset management is done by Bower (and Composer if you need serverside libraries)  
+- Asset management is done by Yarn
 - Deployment with rsync
+
+Main technologies include Node.js, Jekyll, and BabelJS.
+
+The final product is a completely static website with no technical dependencies
+except outbound links to servers hosting the IIIF images, video, and photography.
 
 ## System Preparation
 
