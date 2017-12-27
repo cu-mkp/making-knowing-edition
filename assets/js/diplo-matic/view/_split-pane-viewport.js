@@ -4,11 +4,12 @@ class SplitPaneViewport {
   }
 
   onResize() {
-
+    // blank, implement this in derived classes
   }
 
   render() {
-
+    // bind to DOM
+    this.$el = $(`#${this.id}`);
   }
 
 }

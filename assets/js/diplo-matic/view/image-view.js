@@ -1,8 +1,7 @@
-// import SplitPaneViewport from 'view/split-pane-viewport'
 
 class ImageView extends SplitPaneViewport {
-  constructor(id) {
-    super(id);
+  constructor() {
+    super('image-view');
 
     // load folio 3r
     this.tileSourceURL = "http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/f11/info.json";
@@ -15,6 +14,10 @@ class ImageView extends SplitPaneViewport {
       success: function( obj ) {
         callback( new OpenSeadragon.IIIFTileSource(obj) );
     }});
+  }
+
+  onResize() {
+    // TODO
   }
 
   render() {

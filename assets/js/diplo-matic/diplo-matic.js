@@ -1,7 +1,3 @@
-// // Declare global singleton
-// var DiploMatic = {};
-// export DiploMatic;
-// import MainView from './diplo-matic/view/main-view';
 
 var main = function main() { $( document ).ready(function() {
   // locate the top level div, if it exists, instantiate

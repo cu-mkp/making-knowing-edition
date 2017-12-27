@@ -5,8 +5,8 @@ class MainView {
 
   render() {
     // default viewports
-    this.imageView = new ImageView('image-view');
-    this.transcriptionView = new TranscriptionView('transcription-view');
+    this.imageView = new ImageView();
+    this.transcriptionView = new TranscriptionView();
 
     this.splitPaneView = new SplitPaneView(
       this.id,

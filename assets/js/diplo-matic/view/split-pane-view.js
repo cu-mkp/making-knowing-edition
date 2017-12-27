@@ -7,8 +7,10 @@ class SplitPaneView {
     this.splitFraction = 0.5;
     this.leftViewport = leftViewport;
     this.rightViewport = rightViewport;
-    // TODO refactor
-    this.resizeListener = rightViewport.onResize.bind(rightViewport);
+    this.resizeListener = function() {
+      leftViewport.onResize();
+      rightViewport.onResize();
+    }
   }
 
   onStartDrag(e) {
