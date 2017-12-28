@@ -18,11 +18,11 @@ class ImageView extends SplitPaneViewport {
   }
 
   onEnterDrawerMode() {
-    // TODO
+    // TODO display thumb strip
   }
 
   onLeaveDrawerMode() {
-    // TODO
+    // TODO return to grid/zoom modes
   }
 
   render() {

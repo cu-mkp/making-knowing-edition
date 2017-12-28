@@ -39,6 +39,15 @@ class SplitPaneView {
     }
   }
 
+  onResize(e) {
+    var left = this.viewports['left'].$el.width();
+    var right = this.viewports['right'].$el.width();
+
+    this.updateDrawerMode(this.viewports['left'], left);
+    this.updateDrawerMode(this.viewports['right'], right);
+    this.positionDivider();
+  }
+
   updateDrawerMode( viewport, extent ) {
     // check for exiting drawer mode
     if( viewport.drawerMode && extent > viewport.drawerWidth ) {
@@ -130,7 +139,7 @@ class SplitPaneView {
     $('.drawer-button').on('click', this.onDrawerButton.bind(this));
     $(window).on('mousemove', this.onDrag.bind(this));
     $(window).on('mouseup', this.onEndDrag.bind(this));
-    $(window).on('resize', this.positionDivider.bind(this));
+    $(window).on('resize', this.onResize.bind(this));
   }
 
 }
