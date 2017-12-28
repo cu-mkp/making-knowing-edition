@@ -19,6 +19,11 @@
     width: 16px;
     background: #CCC;
     cursor:ew-resize;
+
+    .drawer-button {
+      display: none;
+      align: center;
+    }
   }
 
   .image-viewer {

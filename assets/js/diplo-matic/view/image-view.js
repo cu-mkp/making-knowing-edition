@@ -5,6 +5,7 @@ class ImageView extends SplitPaneViewport {
 
     // load folio 3r
     this.tileSourceURL = "http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/f11/info.json";
+    this.drawerWidth = 300;
   }
 
   getTileSource( url, callback ) {
@@ -16,7 +17,11 @@ class ImageView extends SplitPaneViewport {
     }});
   }
 
-  onResize() {
+  onEnterDrawerMode() {
+    // TODO
+  }
+
+  onLeaveDrawerMode() {
     // TODO
   }
 

@@ -9,7 +9,9 @@ date:   2015-01-03 21:21
   <div id="image-view" class="image-viewer">
     <div id="image-view-seadragon" ></div>
   </div>
-  <div class="divider"></div>
+  <div class="divider">
+    <i class="drawer-button fas fa-caret-left fa-3x"></i>
+  </div>
   <div id="transcription-view" class="transcription">
     <div class="part-2">
      Le coral faict desmail de gueule endure la lime et le polissem{ent}<br/>
