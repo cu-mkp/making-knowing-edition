@@ -19,6 +19,12 @@ class SplitPaneView {
   }
 
   onStartDrag(e) {
+    var drawer = this.getDrawerViewport();
+    if( drawer && drawer.drawerMode && !drawer.drawerOpen ) {
+      // if drawer is closed, do nothing
+      return;
+    }
+
     this.dragging = true;
     $('body').css( 'cursor', 'ew-resize' );
     $('body').css( 'user-select', 'none' );
@@ -65,7 +71,6 @@ class SplitPaneView {
   }
 
   enterDrawerMode( viewport ) {
-    // TODO display the drawer button and point it the right way
     $('.drawer-button').show();
     viewport.drawerMode = true;
     viewport.drawerOpen = true;
@@ -89,33 +94,47 @@ class SplitPaneView {
     }
   }
 
-  onDrawerButton() {
-    var drawerViewport = this.getDrawerViewport();
+  openDrawer(drawer) {
+    drawer.drawerOpen = true;
+    var drawerIcon$ = $('.drawer-icon');
+    drawerIcon$.addClass('fa-caret-left');
+    drawerIcon$.removeClass('fa-caret-right');
+    this.positionDivider();
+  }
 
-    if( drawerViewport ) {
-      drawerViewport.drawerOpen = !drawerViewport.drawerOpen;
-      this.positionDivider();
+  closeDrawer(drawer) {
+    this.dragging = false;
+    drawer.drawerOpen = false;
+    var drawerIcon$ = $('.drawer-icon');
+    if( drawer.viewportName == 'left') {
+      drawerIcon$.addClass('fa-caret-right');
+      drawerIcon$.removeClass('fa-caret-left');
+      this.splitPaneEl.style.gridTemplateColumns = `0px ${this.dividerWidth}px 1fr`;
+    } else {
+      this.splitPaneEl.style.gridTemplateColumns = `1fr ${this.dividerWidth}px 0px`;
+    }
+  }
+
+  onDrawerButton() {
+    var drawer = this.getDrawerViewport();
+
+    if( drawer.drawerOpen ) {
+      this.closeDrawer(drawer);
+    } else {
+      this.openDrawer(drawer);
     }
   }
 
   positionDivider() {
     var drawer = this.getDrawerViewport();
 
-    if( drawer ) {
-        if( drawer.viewportName == 'left') {
-          if( drawer.drawerOpen ) {
-            this.splitPaneEl.style.gridTemplateColumns = `${drawer.drawerWidth}px ${this.dividerWidth}px 1fr`;
-          } else {
-            this.splitPaneEl.style.gridTemplateColumns = `0px ${this.dividerWidth}px 1fr`;
-          }
-        } else {
-          // right drawer
-          if( drawer.drawerOpen ) {
-            this.splitPaneEl.style.gridTemplateColumns = `1fr ${this.dividerWidth}px ${drawer.drawerWidth}px`;
-          } else {
-            this.splitPaneEl.style.gridTemplateColumns = `1fr ${this.dividerWidth}px 0px`;
-          }
-        }
+    if( drawer && drawer.drawerOpen ) {
+      if( drawer.viewportName == 'left') {
+        this.splitPaneEl.style.gridTemplateColumns = `${drawer.drawerWidth}px ${this.dividerWidth}px 1fr`;
+      } else {
+        // right drawer
+        this.splitPaneEl.style.gridTemplateColumns = `1fr ${this.dividerWidth}px ${drawer.drawerWidth}px`;
+      }
     } else {
       // no drawers open, resize normally
       var left = this.splitFraction;

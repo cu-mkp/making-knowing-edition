@@ -10,7 +10,7 @@ date:   2015-01-03 21:21
     <div id="image-view-seadragon" ></div>
   </div>
   <div class="divider">
-    <i class="drawer-button fas fa-caret-left fa-3x"></i>
+    <div class="drawer-button"> <i class="drawer-icon fas fa-caret-left fa-2x"></i></div>
   </div>
   <div id="transcription-view" class="transcription">
     <div class="part-2">

@@ -19,11 +19,17 @@
     width: 16px;
     background: #CCC;
     cursor:ew-resize;
+    display: flex;
 
     .drawer-button {
+      align-self: center;
       display: none;
       align: center;
       cursor: auto;
+    }
+
+    .drawer-button:hover {
+      color: white;
     }
   }
 
