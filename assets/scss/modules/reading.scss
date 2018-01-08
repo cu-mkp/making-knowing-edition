@@ -7,16 +7,21 @@
   }
 
   display: grid;
-  grid-template-columns: 3fr 5fr;
-  grid-gap: 10px;
-  grid-template-areas: "image_viewer page";
+  grid-template-areas: "image_viewer divider page";
 
   #image-view-seadragon {
     width: 100%;
     height: 100%;
   }
 
-  .image-viewer {  
+  .divider {
+    grid-area: divider;
+    width: 16px;
+    background: #CCC;
+    cursor:ew-resize;
+  }
+
+  .image-viewer {
     grid-area: image_viewer;
     background: black;
   }

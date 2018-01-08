@@ -5,10 +5,11 @@ title:  Reading Prototype
 date:   2015-01-03 21:21
 ---
 
-<div class="reading">
+<div id="reading-pane" class="reading">
   <div class="image-viewer">
     <div id="image-view-seadragon" ></div>
   </div>
+  <div class="divider"></div>
   <div class="page">
     <div class="part-1">
       La colophonie nest aultre chose que <br/>

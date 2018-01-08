@@ -3,7 +3,6 @@
 // --------------------------------------------------
 
 header {
-//  @include grid-row;
   margin: 10px;
   overflow-x: hidden;
   background-color: $light-gray;
@@ -14,17 +13,17 @@ header {
 
   nav {
     padding-top: 3px;
-    // @include grid-column;
+    float: right;
   }
 }
 
 footer {
-  // @include grid-row;
   overflow-x: hidden;
   background-color: $light-gray;
   margin: 10px;
 
   nav {
-    // @include grid-column;
+    float: right;
   }
+
 }
