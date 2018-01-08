@@ -5,6 +5,7 @@ class SplitPaneView {
     this.dragging = false;
     this.dividerWidth = 32;
     this.splitFraction = 0.5;
+    this.minWindowSize = 768;
     this.viewports = {
       left: leftViewport,
       right: rightViewport
@@ -46,17 +47,30 @@ class SplitPaneView {
   }
 
   onResize(e) {
-    var left = this.viewports['left'].$el.width();
-    var right = this.viewports['right'].$el.width();
+    var leftViewport = this.viewports['left'];
+    var rightViewport = this.viewports['right'];
+    var left = leftViewport.$el.width();
+    var right = rightViewport.$el.width();
+    var drawer = this.getDrawerViewport();
 
-    this.updateDrawerMode(this.viewports['left'], left);
-    this.updateDrawerMode(this.viewports['right'], right);
-    this.positionDivider();
+    // close left viewport
+    if( leftViewport.drawerOpen || !leftViewport.drawerMode ) {
+      // if the window gets too small, collapse the left viewport
+      if( window.innerWidth < this.minWindowSize ) {
+        this.enterDrawerMode(leftViewport);
+        this.closeDrawer(leftViewport);
+      } else {
+        this.updateDrawerMode(leftViewport, left);
+        this.updateDrawerMode(rightViewport, right);
+        this.positionDivider();
+      }
+    }
+    
   }
 
   updateDrawerMode( viewport, extent ) {
     // check for exiting drawer mode
-    if( viewport.drawerMode && extent > viewport.drawerWidth ) {
+    if( viewport.drawerMode && viewport.drawerOpen && extent > viewport.drawerWidth ) {
         this.leaveDrawerMode(viewport);
     // check for entering drawer mode and don't shrink past drawer width
     } else if( !viewport.drawerMode && extent <= viewport.drawerWidth ) {
@@ -128,7 +142,7 @@ class SplitPaneView {
   positionDivider() {
     var drawer = this.getDrawerViewport();
 
-    if( drawer && drawer.drawerOpen ) {
+    if( drawer ) {
       if( drawer.viewportName == 'left') {
         this.splitPaneEl.style.gridTemplateColumns = `${drawer.drawerWidth}px ${this.dividerWidth}px 1fr`;
       } else {
@@ -150,7 +164,14 @@ class SplitPaneView {
 
     // bind to DOM
     this.splitPaneEl = $(`#${this.id}`).get(0);
-    this.positionDivider();
+
+    // if initial window size is too small, collapse left viewport
+    if( window.innerWidth < this.minWindowSize) {
+      this.enterDrawerMode(leftViewport);
+      this.closeDrawer(leftViewport);
+    } else {
+      this.positionDivider();
+    }
 
     // attach handlers to mouse events
     var $divider = $(`#${this.id} > .divider`);
