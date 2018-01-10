@@ -12,6 +12,13 @@ Main technologies include Node.js, Jekyll, and BabelJS.
 The final product is a completely static website with no technical dependencies
 except outbound links to servers hosting the IIIF images, video, and photography.
 
+In the browser, we are currently utilizing: 
+
+* OpenSeaDragon
+* ReactJS
+* CommonJS
+* Foundation 6
+
 ## System Preparation
 
 To use this starter project, you'll need the following things installed on your machine.
