@@ -1,4 +1,4 @@
-.reading {
+.diplo-matic {
   margin: 5px;
   width: 100%;
 
@@ -7,7 +7,7 @@
   }
 
   display: grid;
-  grid-template-areas: "image_viewer divider page";
+  grid-template-areas: "image_viewer divider transcription";
 
   #image-view-seadragon {
     width: 100%;
@@ -19,6 +19,18 @@
     width: 16px;
     background: #CCC;
     cursor:ew-resize;
+    display: flex;
+
+    .drawer-button {
+      align-self: center;
+      display: none;
+      align: center;
+      cursor: auto;
+    }
+
+    .drawer-button:hover {
+      color: white;
+    }
   }
 
   .image-viewer {
@@ -26,14 +38,19 @@
     background: black;
   }
 
-  .page {
-    grid-area: page;
+  .transcription {
+    grid-area: transcription;
     margin: 0;
     padding: 0;
     list-style: none;
+    height: 750px;
+    overflow: scroll;
+  }
+
+  .grid-mode {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 5px;
     grid-template-areas:
         "p1 p2 p4"
         "p1 p3 p4"
@@ -63,7 +80,7 @@
       grid-area: p6;
   }
 
-  .page div {
+  .transcription div {
       border: 1px solid #EFEDED;
       padding: 10px;
   }

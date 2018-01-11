@@ -1,7 +1,11 @@
-class ImageView {
+
+class ImageView extends SplitPaneViewport {
   constructor() {
+    super('image-view');
+
     // load folio 3r
     this.tileSourceURL = "http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/f11/info.json";
+    this.drawerWidth = 300;
   }
 
   getTileSource( url, callback ) {
@@ -13,7 +17,16 @@ class ImageView {
     }});
   }
 
+  onEnterDrawerMode() {
+    // TODO display thumb strip
+  }
+
+  onLeaveDrawerMode() {
+    // TODO return to grid/zoom modes
+  }
+
   render() {
+    super.render();
 
     this.viewer = OpenSeadragon({
         id: "image-view-seadragon",
