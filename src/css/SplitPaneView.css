@@ -1,0 +1,28 @@
+.split-pane-view {
+  margin: 5px;
+  width: 100%;
+  display: grid;
+  grid-template-areas: "image_viewer divider transcription";
+}
+
+.divider {
+    grid-area: divider;
+    width: 16px;
+    background: #CCC;
+    cursor:ew-resize;
+    display: flex;
+}
+
+.drawer-button {
+  align-self: center;
+  align: center;
+  cursor: auto;
+}
+
+.drawer-button:hover {
+  color: white;
+}
+
+.hidden {
+  display: none;
+}

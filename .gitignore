@@ -1,51 +1,21 @@
-# Stylesheet
-assets/css/app.css
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# JavaScript
-assets/js/all.js
-rev-manifest.json
+# dependencies
+/node_modules
 
-# Cache
-.sass-cache/
-*.sassc
-*.scssc
+# testing
+/coverage
 
-# Mac OSX
+# production
+/build
+
+# misc
 .DS_Store
-Icon
-*.swp~
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Windows
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# gulp.js
-.gulp/
-node_modules/**/*
-npm-debug.log
-
-# Makefile
-Makefile
-
-# Jekyll
-_site
-.jekyll-metadata
-
-# Vendor directory
-assets/vendor/
-
-# Composer
-composer.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

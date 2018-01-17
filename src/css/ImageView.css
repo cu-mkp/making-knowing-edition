@@ -1,0 +1,6 @@
+#image-view-seadragon {
+  width: 100%;
+  height: 100%;
+  grid-area: image_viewer;
+  background: black;
+}
