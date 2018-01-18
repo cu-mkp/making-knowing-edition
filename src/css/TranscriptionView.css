@@ -6,6 +6,7 @@
   list-style: none;
   height: 750px;
   overflow: scroll;
+  font-family: 'Ovo', serif;
 }
 
 .grid-mode {

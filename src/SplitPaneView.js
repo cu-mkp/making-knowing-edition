@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/SplitPaneView.css';
 import ImageView from './ImageView';
+import ImageGridView from './ImageGridView';
 import copyObject from './copyObject';
 import TranscriptionView from './TranscriptionView';
 
@@ -17,7 +18,7 @@ class SplitPaneView extends Component {
     this.viewports = {
       left: {
         viewportName: 'left',
-        drawerWidth: 300,
+        drawerWidth: 200,
         drawerMode: false,
         drawerOpen: false
       },
@@ -218,9 +219,13 @@ class SplitPaneView extends Component {
     let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
     let drawerButtonClass = this.state.drawerButtonVisible ? 'drawer-button' : 'drawer-button hidden';
 
+    // <ImageView
+    //   viewWidth={this.state.leftViewWidth}
+    // />
+
     return (
       <div className="split-pane-view" style={this.state.style} >
-        <ImageView
+        <ImageGridView
           viewWidth={this.state.leftViewWidth}
         />
         <div className="divider" onMouseDown={this.onStartDrag} >

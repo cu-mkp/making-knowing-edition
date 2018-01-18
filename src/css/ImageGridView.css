@@ -1,0 +1,24 @@
+#image-grid-view {
+  grid-area: image_viewer;
+  background: black;
+}
+
+#image-grid-view ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.thumbnail {
+  padding: 5px;
+}
+
+.thumbnail figure {
+  margin: 5px;
+  margin-top: 20px;
+}
+
+.thumbnail-caption {
+  text-align: center;
+  color: white;
+}
