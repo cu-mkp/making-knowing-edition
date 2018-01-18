@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './css/SplitPaneView.css';
-import ImageView from './ImageView';
-import ImageGridView from './ImageGridView';
 import copyObject from './copyObject';
-import TranscriptionView from './TranscriptionView';
+
+import './css/SplitPaneView.css';
+
+import SplitPaneViewport from './SplitPaneViewport';
+
 
 class SplitPaneView extends Component {
 
@@ -18,12 +19,14 @@ class SplitPaneView extends Component {
     this.viewports = {
       left: {
         viewportName: 'left',
+        viewType: 'ImageGridView',
         drawerWidth: 200,
         drawerMode: false,
         drawerOpen: false
       },
       right: {
         viewportName: 'right',
+        viewType: 'TranscriptionView',
         drawerWidth: 0,
         drawerMode: false,
         drawerOpen: false
@@ -219,22 +222,24 @@ class SplitPaneView extends Component {
     let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
     let drawerButtonClass = this.state.drawerButtonVisible ? 'drawer-button' : 'drawer-button hidden';
 
-    // <ImageView
-    //   viewWidth={this.state.leftViewWidth}
-    // />
-
     return (
       <div className="split-pane-view" style={this.state.style} >
-        <ImageGridView
-          viewWidth={this.state.leftViewWidth}
+        <SplitPaneViewport
+          viewType={this.viewports['left'].viewType}
+          viewWidth={this.viewports['left'].viewWidth}
+          drawerMode={this.viewports['left'].drawerMode}
+          drawerOpen={this.viewports['left'].drawerOpen}
         />
         <div className="divider" onMouseDown={this.onStartDrag} >
           <div className={drawerButtonClass} onClick={this.onDrawerButton} >
             <i className={drawerIconClass}></i>
           </div>
         </div>
-        <TranscriptionView
-          viewWidth={this.state.rightViewWidth}
+        <SplitPaneViewport
+          viewType={this.viewports['right'].viewType}
+          viewWidth={this.viewports['right'].viewWidth}
+          drawerMode={this.viewports['right'].drawerMode}
+          drawerOpen={this.viewports['right'].drawerOpen}
         />
       </div>
     );
