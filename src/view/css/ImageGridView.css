@@ -3,22 +3,22 @@
   background: black;
 }
 
-#image-grid-view ul {
+#image-grid-view > ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
 }
 
-.thumbnail {
+#image-grid-view > .thumbnail {
   padding: 5px;
 }
 
-.thumbnail figure {
+#image-grid-view > .thumbnail figure {
   margin: 10px;
   margin-top: 20px;
 }
 
-.thumbnail-caption {
+#image-grid-view > .thumbnail-caption {
   text-align: center;
   color: white;
 }

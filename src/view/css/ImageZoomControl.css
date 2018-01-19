@@ -1,0 +1,14 @@
+.ImageZoomControl {
+  position: relative;
+  z-index: 1;
+  float: left;
+  top: -705px;
+  left: -30px;
+  color: white;
+  width: 30px;
+  list-style: none;
+}
+
+.ImageZoomControl > li {
+  margin: 5px;
+}

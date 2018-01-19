@@ -13,7 +13,7 @@ class DiploMatic extends Component {
 
     this.splitPaneDefaults = {
       document: doc,
-      leftViewType: 'ImageGridView',
+      leftViewType: 'ImageView',
       leftFolio: doc.folios[0],
       rightViewType: 'TranscriptionView',
       rightFolio: doc.folios[0]

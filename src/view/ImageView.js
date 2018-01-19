@@ -2,6 +2,8 @@ import OpenSeadragon from 'openseadragon';
 import axios from 'axios';
 import React, { Component } from 'react';
 
+import ImageZoomControl from './ImageZoomControl.js';
+
 import './css/ImageView.css';
 
 class ImageView extends Component {
@@ -37,9 +39,19 @@ class ImageView extends Component {
   	});
   }
 
+  onZoomGrid() {
+    alert('click')
+
+  }
+
   render() {
     return (
-      <div id="image-view-seadragon" ></div>
+      <div>
+        <div id="image-view-seadragon" ></div>
+        <ImageZoomControl
+          onZoomGrid={this.onZoomGrid}
+        />
+      </div>
     );
   }
 }
