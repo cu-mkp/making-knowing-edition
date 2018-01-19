@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import copyObject from './copyObject';
+import copyObject from '../lib/copyObject';
 import './css/SplitPaneView.css';
 import SplitPaneViewport from './SplitPaneViewport';
 
 
 class SplitPaneView extends Component {
 
-  constructor() {
+  constructor(props) {
     super();
 
     this.splitFraction = 0.5;
@@ -21,7 +21,8 @@ class SplitPaneView extends Component {
       viewports: {
         left: {
           viewportName: 'left',
-          viewType: 'ImageGridView',
+          viewType: props.leftViewType,
+          folio: props.leftFolio,
           viewWidth: 0,
           drawerWidth: 200,
           drawerMode: false,
@@ -29,7 +30,8 @@ class SplitPaneView extends Component {
         },
         right: {
           viewportName: 'right',
-          viewType: 'TranscriptionView',
+          viewType: props.rightViewType,
+          folio: props.rightFolio,
           viewWidth: 0,
           drawerWidth: 0,
           drawerMode: false,
@@ -236,6 +238,8 @@ class SplitPaneView extends Component {
       <div className="split-pane-view" style={this.state.style} >
         <SplitPaneViewport
           viewType={leftViewport.viewType}
+          folio={leftViewport.folio}
+          document={this.props.document}
           viewWidth={leftViewport.viewWidth}
           drawerMode={leftViewport.drawerMode}
           drawerOpen={leftViewport.drawerOpen}
@@ -247,6 +251,8 @@ class SplitPaneView extends Component {
         </div>
         <SplitPaneViewport
           viewType={rightViewport.viewType}
+          folio={leftViewport.folio}
+          document={this.props.document}
           viewWidth={rightViewport.viewWidth}
           drawerMode={rightViewport.drawerMode}
           drawerOpen={rightViewport.drawerOpen}

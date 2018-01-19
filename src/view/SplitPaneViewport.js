@@ -7,6 +7,7 @@ function SplitPaneViewport(props) {
   if( props.viewType === 'ImageView') {
     return (
       <ImageView
+        folio={props.folio}
         viewWidth={props.viewWidth}
         drawerMode={props.drawerMode}
         drawerOpen={props.drawerOpen}
@@ -15,6 +16,7 @@ function SplitPaneViewport(props) {
   } else if( props.viewType === 'TranscriptionView' ) {
     return(
       <TranscriptionView
+        folio={props.folio}
         viewWidth={props.viewWidth}
         drawerMode={props.drawerMode}
         drawerOpen={props.drawerOpen}
@@ -23,6 +25,7 @@ function SplitPaneViewport(props) {
   } else if( props.viewType === 'ImageGridView' ) {
     return (
       <ImageGridView
+        document={props.document}
         viewWidth={props.viewWidth}
         drawerMode={props.drawerMode}
         drawerOpen={props.drawerOpen}
