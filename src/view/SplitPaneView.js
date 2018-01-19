@@ -21,8 +21,6 @@ class SplitPaneView extends Component {
       viewports: {
         left: {
           viewportName: 'left',
-          viewType: props.leftViewType,
-          folio: props.leftFolio,
           viewWidth: 0,
           drawerWidth: 200,
           drawerMode: false,
@@ -30,8 +28,6 @@ class SplitPaneView extends Component {
         },
         right: {
           viewportName: 'right',
-          viewType: props.rightViewType,
-          folio: props.rightFolio,
           viewWidth: 0,
           drawerWidth: 0,
           drawerMode: false,
@@ -237,8 +233,8 @@ class SplitPaneView extends Component {
     return (
       <div className="split-pane-view" style={this.state.style} >
         <SplitPaneViewport
-          viewType={leftViewport.viewType}
-          folio={leftViewport.folio}
+          initialViewType={this.props.leftViewType}
+          initialFolio={this.props.leftFolio}
           document={this.props.document}
           viewWidth={leftViewport.viewWidth}
           drawerMode={leftViewport.drawerMode}
@@ -250,8 +246,8 @@ class SplitPaneView extends Component {
           </div>
         </div>
         <SplitPaneViewport
-          viewType={rightViewport.viewType}
-          folio={leftViewport.folio}
+          initialViewType={this.props.rightViewType}
+          initialFolio={this.props.rightFolio}
           document={this.props.document}
           viewWidth={rightViewport.viewWidth}
           drawerMode={rightViewport.drawerMode}

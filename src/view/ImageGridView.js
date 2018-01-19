@@ -4,7 +4,7 @@ import './css/ImageGridView.css';
 class ImageGridView extends Component {
 
   onClickThumb(id, e) {
-    alert('click '+id);
+    this.props.viewport.openFolio(id, 'ImageView');
   }
 
   render() {

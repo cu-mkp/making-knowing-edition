@@ -11,7 +11,7 @@ class DiploMatic extends Component {
 
     let doc = new Document();
 
-    this.state = {
+    this.splitPaneDefaults = {
       document: doc,
       leftViewType: 'ImageGridView',
       leftFolio: doc.folios[0],
@@ -25,11 +25,11 @@ class DiploMatic extends Component {
       <MuiThemeProvider>
         <div className="DiploMatic">
           <SplitPaneView
-            document={this.state.document}
-            leftViewType={this.state.leftViewType}
-            leftFolio={this.state.leftFolio}
-            rightViewType={this.state.rightViewType}
-            rightFolio={this.state.rightFolio}
+            document={this.splitPaneDefaults.document}
+            leftViewType={this.splitPaneDefaults.leftViewType}
+            leftFolio={this.splitPaneDefaults.leftFolio}
+            rightViewType={this.splitPaneDefaults.rightViewType}
+            rightFolio={this.splitPaneDefaults.rightFolio}
           />
         </div>
       </MuiThemeProvider>
