@@ -30,7 +30,7 @@ function SplitPaneViewport(props) {
     );
   } else {
     return (
-      <div>ERROR: Undefined split pane viewport type.</div>
+      <div>ERROR: Undefined split pane type.</div>
     );
   }
 };

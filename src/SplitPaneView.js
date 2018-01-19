@@ -21,7 +21,7 @@ class SplitPaneView extends Component {
       viewports: {
         left: {
           viewportName: 'left',
-          viewType: 'ImageView',
+          viewType: 'ImageGridView',
           viewWidth: 0,
           drawerWidth: 200,
           drawerMode: false,
