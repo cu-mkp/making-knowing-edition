@@ -55,7 +55,7 @@ class SplitPaneViewport extends Component {
     } else if( this.state.viewType === 'ImageGridView' ) {
       return (
         <ImageGridView
-          document={this.state.document}
+          document={this.props.document}
           viewWidth={this.state.viewWidth}
           drawerMode={this.state.drawerMode}
           drawerOpen={this.state.drawerOpen}
