@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import copyObject from './copyObject';
-
 import './css/SplitPaneView.css';
-
 import SplitPaneViewport from './SplitPaneViewport';
 
 
@@ -16,29 +14,28 @@ class SplitPaneView extends Component {
     this.minWindowSize = 768;
     this.dragging = false;
 
-    this.viewports = {
-      left: {
-        viewportName: 'left',
-        viewType: 'ImageGridView',
-        drawerWidth: 200,
-        drawerMode: false,
-        drawerOpen: false
-      },
-      right: {
-        viewportName: 'right',
-        viewType: 'TranscriptionView',
-        drawerWidth: 0,
-        drawerMode: false,
-        drawerOpen: false
-      }
-    };
-
     this.state = {
+      style: {},
       drawerButtonVisible: false,
       drawerIconClass: 'fa-caret-left',
-      leftViewWidth: 0,
-      rightViewWidth: 0,
-      style: {}
+      viewports: {
+        left: {
+          viewportName: 'left',
+          viewType: 'ImageView',
+          viewWidth: 0,
+          drawerWidth: 200,
+          drawerMode: false,
+          drawerOpen: false
+        },
+        right: {
+          viewportName: 'right',
+          viewType: 'TranscriptionView',
+          viewWidth: 0,
+          drawerWidth: 0,
+          drawerMode: false,
+          drawerOpen: false
+        }
+      }
     };
 
     // event handlers
@@ -66,27 +63,22 @@ class SplitPaneView extends Component {
     if( this.dragging ) {
       // calculate the size of the left and right panes based on viewport width.
       let whole = window.innerWidth - this.dividerWidth;
-      let left = e.clientX - this.dividerWidth/2;
-      let right = whole - left;
+      let leftViewport = copyObject(this.state.viewports['left']);
+      let rightViewport = copyObject(this.state.viewports['right']);
+      leftViewport.viewWidth = e.clientX - this.dividerWidth/2;
+      rightViewport.viewWidth =  whole - leftViewport.viewWidth;
 
-      this.updateDrawerMode(this.viewports['left'], left);
-      this.updateDrawerMode(this.viewports['right'], right);
+      this.updateDrawerMode(leftViewport);
+      this.updateDrawerMode(rightViewport);
 
-      this.setState({
-        leftViewWidth: left,
-        rightViewWidth: right
-      });
-
-      this.splitFraction = (whole === 0) ? 0.0 : left / whole;
+      this.splitFraction = (whole === 0) ? 0.0 : leftViewport.viewWidth / whole;
       this.positionDivider();
     }
   }
 
   onResize = (e) => {
-    let leftViewport = this.viewports['left'];
-    let rightViewport = this.viewports['right'];
-    let left = this.state.leftViewWidth;
-    let right = this.state.rightViewWidth;
+    let leftViewport = copyObject(this.state.viewports['left']);
+    let rightViewport = copyObject(this.state.viewports['right']);
 
     // close left viewport
     if( leftViewport.drawerOpen || !leftViewport.drawerMode ) {
@@ -94,23 +86,26 @@ class SplitPaneView extends Component {
       if( window.innerWidth < this.minWindowSize ) {
         this.enterDrawerMode(leftViewport);
         this.closeDrawer(leftViewport);
+        this.updateViewport(leftViewport);
       } else {
-        this.updateDrawerMode(leftViewport, left);
-        this.updateDrawerMode(rightViewport, right);
+        this.updateDrawerMode(leftViewport);
+        this.updateDrawerMode(rightViewport);
         this.positionDivider();
       }
     }
 
   }
 
-  updateDrawerMode( viewport, extent ) {
+  updateDrawerMode( viewport ) {
     // check for exiting drawer mode
-    if( viewport.drawerMode && viewport.drawerOpen && extent > viewport.drawerWidth ) {
+    if( viewport.drawerMode && viewport.drawerOpen && viewport.viewWidth > viewport.drawerWidth ) {
         this.leaveDrawerMode(viewport);
     // check for entering drawer mode and don't shrink past drawer width
-    } else if( !viewport.drawerMode && extent <= viewport.drawerWidth ) {
+    } else if( !viewport.drawerMode && viewport.viewWidth <= viewport.drawerWidth ) {
         this.enterDrawerMode(viewport);
     }
+
+    this.updateViewport(viewport);
   }
 
   onEndDrag = (e) => {
@@ -135,13 +130,23 @@ class SplitPaneView extends Component {
   getDrawerViewport() {
 
     // favors the left side, if both could be open
-    if(this.viewports['left'].drawerMode) {
-      return this.viewports['left'];
-    } else if( this.viewports['right'].drawerMode ) {
-      return this.viewports['right'];
+    if(this.state.viewports['left'].drawerMode) {
+      return copyObject(this.state.viewports['left']);
+    } else if( this.state.viewports['right'].drawerMode ) {
+      return copyObject(this.state.viewports['right']);
     } else {
       return null;
     }
+  }
+
+  updateViewport(viewport) {
+    var viewState = {
+      viewports: this.state.viewports
+    };
+
+    viewState.viewports[viewport.viewportName] = viewport;
+
+    this.setState( viewState );
   }
 
   openDrawer(drawer) {
@@ -173,6 +178,8 @@ class SplitPaneView extends Component {
     } else {
       this.openDrawer(drawer);
     }
+
+    this.updateViewport(drawer);
   }
 
   positionDivider() {
@@ -199,9 +206,10 @@ class SplitPaneView extends Component {
   componentDidMount() {
     // if initial window size is too small, collapse left viewport
     if( window.innerWidth < this.minWindowSize) {
-      let leftViewport = this.viewports['left'];
+      let leftViewport = copyObject(this.viewports['left']);
       this.enterDrawerMode(leftViewport);
       this.closeDrawer(leftViewport);
+      this.updateViewport(leftViewport);
     } else {
       this.positionDivider();
     }
@@ -221,14 +229,16 @@ class SplitPaneView extends Component {
 
     let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
     let drawerButtonClass = this.state.drawerButtonVisible ? 'drawer-button' : 'drawer-button hidden';
+    let leftViewport = this.state.viewports['left'];
+    let rightViewport = this.state.viewports['right'];
 
     return (
       <div className="split-pane-view" style={this.state.style} >
         <SplitPaneViewport
-          viewType={this.viewports['left'].viewType}
-          viewWidth={this.viewports['left'].viewWidth}
-          drawerMode={this.viewports['left'].drawerMode}
-          drawerOpen={this.viewports['left'].drawerOpen}
+          viewType={leftViewport.viewType}
+          viewWidth={leftViewport.viewWidth}
+          drawerMode={leftViewport.drawerMode}
+          drawerOpen={leftViewport.drawerOpen}
         />
         <div className="divider" onMouseDown={this.onStartDrag} >
           <div className={drawerButtonClass} onClick={this.onDrawerButton} >
@@ -236,10 +246,10 @@ class SplitPaneView extends Component {
           </div>
         </div>
         <SplitPaneViewport
-          viewType={this.viewports['right'].viewType}
-          viewWidth={this.viewports['right'].viewWidth}
-          drawerMode={this.viewports['right'].drawerMode}
-          drawerOpen={this.viewports['right'].drawerOpen}
+          viewType={rightViewport.viewType}
+          viewWidth={rightViewport.viewWidth}
+          drawerMode={rightViewport.drawerMode}
+          drawerOpen={rightViewport.drawerOpen}
         />
       </div>
     );

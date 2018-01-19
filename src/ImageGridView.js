@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './css/ImageGridView.css';
 
 class ImageGridView extends Component {
