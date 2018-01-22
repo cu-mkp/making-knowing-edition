@@ -39,9 +39,8 @@ class ImageView extends Component {
   	});
   }
 
-  onZoomGrid() {
-    alert('click')
-
+  onZoomGrid = (e) => {
+    this.props.viewport.openFolio(this,'ImageGridView');
   }
 
   render() {

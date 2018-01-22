@@ -41,6 +41,7 @@ class SplitPaneViewport extends Component {
           viewWidth={this.state.viewWidth}
           drawerMode={this.state.drawerMode}
           drawerOpen={this.state.drawerOpen}
+          viewport={this}
         />
       );
     } else if( this.state.viewType === 'TranscriptionView' ) {
@@ -50,6 +51,7 @@ class SplitPaneViewport extends Component {
           viewWidth={this.state.viewWidth}
           drawerMode={this.state.drawerMode}
           drawerOpen={this.state.drawerOpen}
+          viewport={this}
         />
       );
     } else if( this.state.viewType === 'ImageGridView' ) {
