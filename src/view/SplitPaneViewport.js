@@ -9,8 +9,8 @@ class SplitPaneViewport extends Component {
     super();
 
     this.state = {
-      folio: props.initialFolio,
-      viewType: props.initialViewType,
+      folio: props.folio,
+      viewType: props.viewType,
       viewWidth: props.viewWidth,
       drawerMode: props.drawerMode,
       drawerOpen: props.drawerOpen
@@ -19,49 +19,47 @@ class SplitPaneViewport extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
+      folio: nextProps.folio,
+      viewType: nextProps.viewType,
       viewWidth: nextProps.viewWidth,
       drawerMode: nextProps.drawerMode,
       drawerOpen: nextProps.drawerOpen
     });
   }
 
-  openFolio(folioID, viewType) {
-    let folios = this.props.document.folios;
-    this.setState({
-      folio: folios[folioID],
-      viewType: viewType
-    });
-  }
-
   render() {
+
     if( this.state.viewType === 'ImageView') {
       return (
         <ImageView
+          side={this.props.side}
           folio={this.state.folio}
           viewWidth={this.state.viewWidth}
           drawerMode={this.state.drawerMode}
           drawerOpen={this.state.drawerOpen}
-          viewport={this}
+          splitPaneView={this.props.splitPaneView}
         />
       );
     } else if( this.state.viewType === 'TranscriptionView' ) {
       return(
         <TranscriptionView
+          side={this.props.side}
           folio={this.state.folio}
           viewWidth={this.state.viewWidth}
           drawerMode={this.state.drawerMode}
           drawerOpen={this.state.drawerOpen}
-          viewport={this}
+          splitPaneView={this.props.splitPaneView}
         />
       );
     } else if( this.state.viewType === 'ImageGridView' ) {
       return (
         <ImageGridView
+          side={this.props.side}
           document={this.props.document}
           viewWidth={this.state.viewWidth}
           drawerMode={this.state.drawerMode}
           drawerOpen={this.state.drawerOpen}
-          viewport={this}
+          splitPaneView={this.props.splitPaneView}
         />
       );
     } else {

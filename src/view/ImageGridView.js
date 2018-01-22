@@ -3,8 +3,8 @@ import './css/ImageGridView.css';
 
 class ImageGridView extends Component {
 
-  onClickThumb(id, e) {
-    this.props.viewport.openFolio(id, 'ImageView');
+  onClickThumb = (id, e) => {
+    this.props.splitPaneView.openFolio(this.props.side, id, 'ImageView');
   }
 
   render() {

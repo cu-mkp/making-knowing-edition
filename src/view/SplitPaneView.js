@@ -20,6 +20,8 @@ class SplitPaneView extends Component {
       drawerIconClass: 'fa-caret-left',
       viewports: {
         left: {
+          viewType: 'ImageView',
+          folio: props.document.folios[0],
           viewportName: 'left',
           viewWidth: 0,
           drawerWidth: 200,
@@ -27,6 +29,8 @@ class SplitPaneView extends Component {
           drawerOpen: false
         },
         right: {
+          viewType: 'TranscriptionView',
+          folio: props.document.folios[0],
           viewportName: 'right',
           viewWidth: 0,
           drawerWidth: 0,
@@ -116,6 +120,12 @@ class SplitPaneView extends Component {
 
   enterDrawerMode( viewport ) {
     this.setState( { drawerButtonVisible: true } );
+
+    // transition to grid mode if display a single image
+    if( viewport.viewType === "ImageView" ) {
+      viewport.viewType = "ImageGridView";
+    }
+
     viewport.drawerMode = true;
     viewport.drawerOpen = true;
   }
@@ -223,6 +233,14 @@ class SplitPaneView extends Component {
     window.removeEventListener("resize", this.onResize);
   }
 
+  openFolio(side, folioID, viewType) {
+    let viewport = copyObject( this.state.viewports[side] );
+    let folios = this.props.document.folios;
+    viewport.folio = folios[folioID];
+    viewport.viewType = viewType;
+    this.updateViewport(viewport);
+  }
+
   render() {
 
     let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
@@ -233,12 +251,14 @@ class SplitPaneView extends Component {
     return (
       <div className="split-pane-view" style={this.state.style} >
         <SplitPaneViewport
-          initialViewType={this.props.leftViewType}
-          initialFolio={this.props.leftFolio}
+          side='left'
+          viewType={leftViewport.viewType}
+          folio={leftViewport.folio}
           document={this.props.document}
           viewWidth={leftViewport.viewWidth}
           drawerMode={leftViewport.drawerMode}
           drawerOpen={leftViewport.drawerOpen}
+          splitPaneView={this}
         />
         <div className="divider" onMouseDown={this.onStartDrag} >
           <div className={drawerButtonClass} onClick={this.onDrawerButton} >
@@ -246,12 +266,14 @@ class SplitPaneView extends Component {
           </div>
         </div>
         <SplitPaneViewport
-          initialViewType={this.props.rightViewType}
-          initialFolio={this.props.rightFolio}
+          side='right'
+          viewType={rightViewport.viewType}
+          folio={rightViewport.folio}
           document={this.props.document}
           viewWidth={rightViewport.viewWidth}
           drawerMode={rightViewport.drawerMode}
           drawerOpen={rightViewport.drawerOpen}
+          splitPaneView={this}
         />
       </div>
     );

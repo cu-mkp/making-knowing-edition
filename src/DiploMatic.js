@@ -8,16 +8,7 @@ class DiploMatic extends Component {
 
   constructor() {
     super();
-
-    let doc = new Document();
-
-    this.splitPaneDefaults = {
-      document: doc,
-      leftViewType: 'ImageView',
-      leftFolio: doc.folios[0],
-      rightViewType: 'TranscriptionView',
-      rightFolio: doc.folios[0]
-    }
+    this.document = new Document();
   }
 
   render() {
@@ -25,11 +16,7 @@ class DiploMatic extends Component {
       <MuiThemeProvider>
         <div className="DiploMatic">
           <SplitPaneView
-            document={this.splitPaneDefaults.document}
-            leftViewType={this.splitPaneDefaults.leftViewType}
-            leftFolio={this.splitPaneDefaults.leftFolio}
-            rightViewType={this.splitPaneDefaults.rightViewType}
-            rightFolio={this.splitPaneDefaults.rightFolio}
+            document={this.document}
           />
         </div>
       </MuiThemeProvider>

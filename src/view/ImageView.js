@@ -40,7 +40,7 @@ class ImageView extends Component {
   }
 
   onZoomGrid = (e) => {
-    this.props.viewport.openFolio(this,'ImageGridView');
+    this.props.splitPaneView.openFolio(this.props.side, this,'ImageGridView');
   }
 
   render() {
