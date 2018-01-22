@@ -29,6 +29,8 @@ class ImageView extends Component {
   componentDidMount() {
     this.viewer = OpenSeadragon({
       id: "image-view-seadragon",
+      zoomInButton:   "os-zoom-in",
+      zoomOutButton:  "os-zoom-out",
       prefixUrl: "./img/openseadragon/"
     });
 
