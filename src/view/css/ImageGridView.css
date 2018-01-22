@@ -7,18 +7,19 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  padding-left: 0px;
 }
 
-#image-grid-view > .thumbnail {
+#image-grid-view > ul > li > .thumbnail {
   padding: 5px;
 }
 
-#image-grid-view > .thumbnail figure {
+#image-grid-view > ul > li > .thumbnail figure {
   margin: 10px;
   margin-top: 20px;
 }
 
-#image-grid-view > .thumbnail-caption {
+#image-grid-view > ul > li > .thumbnail-caption {
   text-align: center;
   color: white;
 }
