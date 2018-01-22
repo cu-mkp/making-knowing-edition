@@ -23,3 +23,7 @@
   text-align: center;
   color: white;
 }
+
+.hidden {
+  display: none;
+}
