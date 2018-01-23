@@ -148,6 +148,7 @@ class SplitPaneView extends Component {
   }
 
   updateViewport(viewport) {
+
     var viewState = {
       viewports: this.state.viewports
     };
@@ -247,9 +248,11 @@ class SplitPaneView extends Component {
     let drawerButtonClass = this.state.drawerButtonVisible ? 'drawer-button' : 'drawer-button hidden';
     let leftViewport = this.state.viewports['left'];
     let rightViewport = this.state.viewports['right'];
+    let style = copyObject(this.state.style);
+    style.height = window.innerHeight;
 
     return (
-      <div className="split-pane-view" style={this.state.style} >
+      <div className="split-pane-view" style={style} >
         <SplitPaneViewport
           side='left'
           viewType={leftViewport.viewType}

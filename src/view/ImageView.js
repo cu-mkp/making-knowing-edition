@@ -40,11 +40,11 @@ class ImageView extends Component {
 
   render() {
     return (
-      <div>
-        <div id="image-view-seadragon" ></div>
+      <div className="image-view">
         <ImageZoomControl
           onZoomGrid={this.onZoomGrid}
         />
+        <div id="image-view-seadragon" ></div>
       </div>
     );
   }

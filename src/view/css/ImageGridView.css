@@ -1,6 +1,8 @@
 #image-grid-view {
   grid-area: image_viewer;
   background: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10pt;
 }
 
 #image-grid-view > ul {
@@ -10,13 +12,12 @@
   padding-left: 0px;
 }
 
-#image-grid-view > ul > li > .thumbnail {
-  padding: 5px;
+#image-grid-view > ul > li {
+  margin-bottom: 20px;
 }
 
-#image-grid-view > ul > li > .thumbnail figure {
-  margin: 10px;
-  margin-top: 20px;
+#image-grid-view > ul > li > figure {
+  margin-bottom: 2px;
 }
 
 #image-grid-view > ul > li > .thumbnail-caption {

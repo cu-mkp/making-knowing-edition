@@ -1,5 +1,5 @@
 .split-pane-view {
-  margin: 5px;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-areas: "image_viewer divider transcription";
