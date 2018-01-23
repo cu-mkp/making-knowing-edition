@@ -249,7 +249,7 @@ class SplitPaneView extends Component {
     let leftViewport = this.state.viewports['left'];
     let rightViewport = this.state.viewports['right'];
     let style = copyObject(this.state.style);
-    style.height = window.innerHeight;
+    style.height = window.innerHeight - 60;
 
     return (
       <div className="split-pane-view" style={style} >
