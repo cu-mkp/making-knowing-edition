@@ -10,9 +10,10 @@ class ImageGridView extends Component {
   render() {
     let thumbs = this.props.document.folios;
     let hidden = ( this.props.drawerMode && !this.props.drawerOpen ) ? "hidden" : "";
+    let style = { height: this.props.viewHeight, overflow: 'scroll' };
 
     return (
-      <div id='image-grid-view' className={hidden}>
+      <div id='image-grid-view' className={hidden} style={style}>
         <ul>
         {
           thumbs.map((thumb,i) => (

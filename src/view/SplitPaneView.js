@@ -259,6 +259,7 @@ class SplitPaneView extends Component {
           folio={leftViewport.folio}
           document={this.props.document}
           viewWidth={leftViewport.viewWidth}
+          viewHeight={style.height}
           drawerMode={leftViewport.drawerMode}
           drawerOpen={leftViewport.drawerOpen}
           splitPaneView={this}
@@ -274,6 +275,7 @@ class SplitPaneView extends Component {
           folio={rightViewport.folio}
           document={this.props.document}
           viewWidth={rightViewport.viewWidth}
+          viewHeight={style.height}
           drawerMode={rightViewport.drawerMode}
           drawerOpen={rightViewport.drawerOpen}
           splitPaneView={this}

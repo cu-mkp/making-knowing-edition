@@ -11,9 +11,10 @@ class TranscriptionView extends Component {
   render() {
 
     let transcriptionClass = ( this.props.viewWidth >= this.gridBreakPoint ) ? "transcription grid-mode" : "transcription";
+    let style = { height: this.props.viewHeight, overflow: 'scroll' };
 
     return (
-      <div className={transcriptionClass}>
+      <div className={transcriptionClass} style={style}>
         <div className="part-2">
           Le coral faict desmail de gueule endure la lime et le polissem<br/>
         </div>
