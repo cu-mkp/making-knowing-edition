@@ -8,13 +8,6 @@ import './css/ImageView.css';
 
 class ImageView extends Component {
 
-  constructor() {
-    super();
-
-    // load folio 3r
-    this.tileSourceURL = "http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/f11/info.json";
-  }
-
   getTileSource( url, callback ) {
 
     axios.get(url).then(
@@ -34,7 +27,7 @@ class ImageView extends Component {
       prefixUrl: "./img/openseadragon/"
     });
 
-    this.getTileSource( this.tileSourceURL, (tileSource) => {
+    this.getTileSource( this.props.folio.image_zoom_url, (tileSource) => {
   		this.viewer.addTiledImage({
   			tileSource: tileSource
   		});

@@ -17,7 +17,7 @@ class ImageGridView extends Component {
         {
           thumbs.map((thumb,i) => (
             <li className="thumbnail" key={"thumb-"+i}>
-              <figure><a id={i} onClick={this.onClickThumb.bind(this,i)}><img src={thumb.url} alt={thumb.name}/></a></figure>
+              <figure><a id={i} onClick={this.onClickThumb.bind(this,i)}><img src={thumb.image_thumbnail_url} alt={thumb.name}/></a></figure>
               <figcaption className="thumbnail-caption">{thumb.name}</figcaption>
             </li>
           ))
