@@ -17,7 +17,12 @@
 }
 
 #image-grid-view > ul > li > figure {
-  margin-bottom: 2px;
+  margin: 8px;
+}
+
+#image-grid-view > ul > li > figure:hover {
+  border: 2px #eee solid;
+  margin: 6px;
 }
 
 #image-grid-view > ul > li > .thumbnail-caption {
