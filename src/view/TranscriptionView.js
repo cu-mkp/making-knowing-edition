@@ -9,9 +9,15 @@ class TranscriptionView extends Component {
 
     this.state = {};
 
-    props.folio.load().then( (folio) => {
-      this.setState( { content: folio.transcription } );
-    });
+    props.folio.load().then(
+      (folio) => {
+        this.setState( { content: folio.transcription } );
+      },
+      (error) => {
+        // TODO update UI
+        console.log('Unable to load transcription.');
+      }
+    );
   }
 
   render() {

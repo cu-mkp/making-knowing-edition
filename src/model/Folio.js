@@ -16,7 +16,7 @@ class Folio {
 
   load( callback ) {
     if( this.loaded ) {
-      // promise to return immediately
+      // promise to resolve this immediately
       return new Promise(function(resolve, reject) {
         resolve(this);
       }.bind(this));

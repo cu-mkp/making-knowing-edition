@@ -15,11 +15,18 @@ class ImageView extends Component {
       prefixUrl: "./img/openseadragon/"
     });
 
-    this.props.folio.load().then( (folio) => {
-      this.viewer.addTiledImage({
-        tileSource: folio.tileSource
-      });
-    });
+    this.props.folio.load().then(
+      (folio) => {
+        this.viewer.addTiledImage({
+          tileSource: folio.tileSource
+        });
+      },
+      (error) => {
+        // TODO update UI
+        console.log('Unable to load image.');
+      }
+    );
+
   }
 
   onZoomGrid = (e) => {
