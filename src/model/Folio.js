@@ -29,7 +29,7 @@ class Folio {
         ])
         .then( axios.spread( function( imageServerResponse, transcriptionResponse ) {
           this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
-          this.parseTranscription(transcriptionResponse.data);
+          this.transcription = this.parseTranscription(transcriptionResponse.data);
           this.loaded = true;
           resolve(this);
         }.bind(this)))
@@ -41,9 +41,12 @@ class Folio {
   }
 
   parseTranscription( html ) {
-    // TODO
-    this.transcription = "<h3>Loaded transcription.</h3>";
-    console.log('receieved HTML: '+html);
+    let folioTag = "<folio>";
+    let openDivIndex = html.indexOf(folioTag);
+    let start = html.indexOf(">", openDivIndex) + 1;
+    let end = html.lastIndexOf("</folio>");
+    let transcription = html.slice(start, end);
+    return transcription;
   }
 
 }

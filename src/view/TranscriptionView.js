@@ -25,8 +25,7 @@ class TranscriptionView extends Component {
     let style = { height: this.props.viewHeight, overflow: 'scroll' };
 
     return (
-      <div className={transcriptionClass} style={style}>
-        {this.state.content}
+      <div className={transcriptionClass} style={style} dangerouslySetInnerHTML={ { __html: this.state.content } } >
       </div>
     );
   }
