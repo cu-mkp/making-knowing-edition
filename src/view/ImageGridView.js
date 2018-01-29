@@ -4,7 +4,11 @@ import './css/ImageGridView.css';
 class ImageGridView extends Component {
 
   onClickThumb = (id, e) => {
-    this.props.splitPaneView.openFolio(this.props.side, id, 'ImageView');
+    let splitPaneView = this.props.splitPaneView;
+    let side = this.props.side;
+    let otherSide = splitPaneView.otherSide(side);
+    splitPaneView.openFolio(side, id, 'ImageView');
+    splitPaneView.openFolio(otherSide, id, 'TranscriptionView');
   }
 
   render() {
@@ -16,9 +20,9 @@ class ImageGridView extends Component {
       <div id='image-grid-view' className={hidden} style={style}>
         <ul>
         {
-          thumbs.map((thumb,i) => (
-            <li className="thumbnail" key={"thumb-"+i}>
-              <figure><a id={i} onClick={this.onClickThumb.bind(this,i)}><img src={thumb.image_thumbnail_url} alt={thumb.name}/></a></figure>
+          thumbs.map((thumb) => (
+            <li className="thumbnail" key={thumb.id}>
+              <figure><a id={thumb.id} onClick={this.onClickThumb.bind(this,thumb.id)}><img src={thumb.image_thumbnail_url} alt={thumb.name}/></a></figure>
               <figcaption className="thumbnail-caption">{thumb.name}</figcaption>
             </li>
           ))

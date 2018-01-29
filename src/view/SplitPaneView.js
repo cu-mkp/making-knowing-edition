@@ -14,6 +14,8 @@ class SplitPaneView extends Component {
     this.minWindowSize = 768;
     this.dragging = false;
 
+    let firstFolio = props.document.folios[0];
+
     this.state = {
       style: {},
       drawerButtonVisible: false,
@@ -21,7 +23,7 @@ class SplitPaneView extends Component {
       viewports: {
         left: {
           viewType: 'ImageView',
-          folio: props.document.folios[0],
+          folio: firstFolio,
           viewportName: 'left',
           viewWidth: 0,
           drawerWidth: 200,
@@ -30,7 +32,7 @@ class SplitPaneView extends Component {
         },
         right: {
           viewType: 'TranscriptionView',
-          folio: props.document.folios[0],
+          folio: firstFolio,
           viewportName: 'right',
           viewWidth: 0,
           drawerWidth: 0,
@@ -236,10 +238,13 @@ class SplitPaneView extends Component {
 
   openFolio(side, folioID, viewType) {
     let viewport = copyObject( this.state.viewports[side] );
-    let folios = this.props.document.folios;
-    viewport.folio = folios[folioID];
+    viewport.folio = this.props.document.getFolio(folioID);
     viewport.viewType = viewType;
     this.updateViewport(viewport);
+  }
+
+  otherSide( side ) {
+    return ( side === 'left' ) ? 'right' : 'left';
   }
 
   render() {

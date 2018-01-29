@@ -74,6 +74,13 @@ class Document {
     ];
   }
 
+  getFolio( folioID ) {
+    return this.folios.find( (folio) => {
+        return (folio.id === folioID);
+    });
+  }
+
+
 }
 
 export default Document;
