@@ -247,6 +247,14 @@ class SplitPaneView extends Component {
     return ( side === 'left' ) ? 'right' : 'left';
   }
 
+  viewKey( viewport, side ) {
+    if( viewport.viewType === 'ImageGridView' ) {
+      return `${side}-${viewport.viewType}`;
+    } else {
+      return `${side}-${viewport.viewType}-${viewport.folio.id}`;
+    }
+  }
+
   render() {
 
     let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
@@ -260,6 +268,7 @@ class SplitPaneView extends Component {
       <div className="split-pane-view" style={style} >
         <SplitPaneViewport
           side='left'
+          key={ this.viewKey(leftViewport, 'left') }
           viewType={leftViewport.viewType}
           folio={leftViewport.folio}
           document={this.props.document}
@@ -276,6 +285,7 @@ class SplitPaneView extends Component {
         </div>
         <SplitPaneViewport
           side='right'
+          key={ this.viewKey(rightViewport, 'right') }
           viewType={rightViewport.viewType}
           folio={rightViewport.folio}
           document={this.props.document}
