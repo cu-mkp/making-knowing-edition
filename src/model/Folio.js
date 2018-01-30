@@ -41,10 +41,10 @@ class Folio {
   }
 
   parseTranscription( html ) {
-    let folioTag = "<folio>";
+    let folioTag = "<surface>";
     let openDivIndex = html.indexOf(folioTag);
     let start = html.indexOf(">", openDivIndex) + 1;
-    let end = html.lastIndexOf("</folio>");
+    let end = html.lastIndexOf("</surface>");
     let transcription = html.slice(start, end);
     return transcription;
   }
