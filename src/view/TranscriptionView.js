@@ -6,6 +6,7 @@ class TranscriptionView extends Component {
   constructor(props) {
     super();
     this.gridBreakPoint = 640; // two column widths
+    this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
 
     this.state = {};
 
@@ -20,40 +21,44 @@ class TranscriptionView extends Component {
     );
   }
 
+  rowCodeToIndex( rowCode ) {
+    return this.ROW_CODES.indexOf(rowCode.toLowerCase());
+  }
+
   layoutGrid( folio ) {
     // load the surface into a DOM element to retrieve the grid data
     let zoneDiv = document.createElement("div");
     zoneDiv.innerHTML = folio.transcription;
     let zones = zoneDiv.children;
 
-    let zoneGrid = new Map();
+    let zoneGrid = [];
     for (let zone of zones) {
       // for each zone, take its grid data and populate the grid, throw an error on any dupes
       let gridData = zone.dataset.grid;
       let gridDataList = gridData.split(' ');
       for( let gridDatum of gridDataList ) {
-        var letter = gridDatum[0];
-        var number = parseInt(gridDatum[1],10) - 1;
-        if( zoneGrid[letter] === undefined ) zoneGrid[letter] = [ '.', '.', '.' ];
-        if( zoneGrid[letter][number] === '.' ) {
-          zoneGrid[letter][number] = zone.id;
+        let rowIndex = this.rowCodeToIndex(gridDatum[0]);
+        let columnIndex = parseInt(gridDatum[1],10) - 1;
+        if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
+        if( zoneGrid[rowIndex][columnIndex] === '.' ) {
+          zoneGrid[rowIndex][columnIndex] = zone.id;
         } else {
-          console.log(`ERROR: Grid location ${letter}${number} already assigned to ${zoneGrid[letter][number]}.`);
+          console.log(`ERROR: Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`);
         }
       }
     }
 
     // WIP transform zone grid into the grid layout string
     let gridLayout = '';
-    zoneGrid.forEach( function(row) {
+    for (let row of zoneGrid) {
       let rowString = row.join(' ');
       gridLayout += ` '${rowString}'`;
-    });
+    }
 
     // set the grid-template-areas
     this.setState({
       content: folio.transcription,
-      layout: gridLayout // "'z1 z2 z4' 'z1 z3 z4' 'z1 z5 z5' 'z1 z6 z6'"
+      layout: gridLayout
     });
   }
 
