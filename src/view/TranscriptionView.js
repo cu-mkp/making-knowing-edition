@@ -25,6 +25,10 @@ class TranscriptionView extends Component {
     return this.ROW_CODES.indexOf(rowCode.toLowerCase());
   }
 
+  columnCodeToIndex( columnCode ) {
+    return parseInt(columnCode,10) - 1;
+  }
+
   layoutGrid( folio ) {
     // load the surface into a DOM element to retrieve the grid data
     let zoneDiv = document.createElement("div");
@@ -38,7 +42,7 @@ class TranscriptionView extends Component {
       let gridDataList = gridData.split(' ');
       for( let gridDatum of gridDataList ) {
         let rowIndex = this.rowCodeToIndex(gridDatum[0]);
-        let columnIndex = parseInt(gridDatum[1],10) - 1;
+        let columnIndex = this.columnCodeToIndex(gridDatum[1]);
         if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
         if( zoneGrid[rowIndex][columnIndex] === '.' ) {
           zoneGrid[rowIndex][columnIndex] = zone.id;
