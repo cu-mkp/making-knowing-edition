@@ -7,6 +7,7 @@ import Folio from './Folio';
 // 46v (normal)
 // 75r (normal, but in scribe’s hand)
 // 101r (annotated image in margins)
+
 // 115v (marginal images)
 // 123v (crossed out text and marginal notes)
 // 124v
