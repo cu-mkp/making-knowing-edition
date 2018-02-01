@@ -23,7 +23,7 @@ class ImageView extends Component {
       },
       (error) => {
         // TODO update UI
-        console.log('Unable to load image.');
+        console.log('Unable to load image: '+error);
       }
     );
 

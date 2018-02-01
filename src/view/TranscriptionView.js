@@ -16,7 +16,7 @@ class TranscriptionView extends Component {
       },
       (error) => {
         // TODO update UI
-        console.log('Unable to load transcription.');
+        console.log('Unable to load transcription: '+error);
       }
     );
   }
@@ -38,21 +38,27 @@ class TranscriptionView extends Component {
     let zoneGrid = [];
     for (let zone of zones) {
       // for each zone, take its grid data and populate the grid, throw an error on any dupes
-      let gridData = zone.dataset.grid;
-      let gridDataList = gridData.split(' ');
-      for( let gridDatum of gridDataList ) {
-        let rowIndex = this.rowCodeToIndex(gridDatum[0]);
-        let columnIndex = this.columnCodeToIndex(gridDatum[1]);
-        if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
-        if( zoneGrid[rowIndex][columnIndex] === '.' ) {
-          zoneGrid[rowIndex][columnIndex] = zone.id;
-        } else {
-          console.log(`ERROR: Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`);
+      try {
+        let gridData = zone.dataset.grid;
+        if( typeof gridData !== "string" ) throw new Error(`Grid data not found for zone: ${zone}`);
+        let gridDataList = gridData.split(' ');
+        for( let gridDatum of gridDataList ) {
+          let rowIndex = this.rowCodeToIndex(gridDatum[0]);
+          let columnIndex = this.columnCodeToIndex(gridDatum[1]);
+          if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
+          if( zoneGrid[rowIndex][columnIndex] === '.' ) {
+            zoneGrid[rowIndex][columnIndex] = zone.id;
+          } else {
+            throw new Error(`Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`)
+          }
         }
+      }
+      catch(error) {
+        console.log(error);
       }
     }
 
-    // WIP transform zone grid into the grid layout string
+    // transform zone grid into the grid layout string
     let gridLayout = '';
     for (let row of zoneGrid) {
       let rowString = row.join(' ');

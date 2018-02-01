@@ -30,8 +30,12 @@ class Folio {
         .then( axios.spread( function( imageServerResponse, transcriptionResponse ) {
           this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
           this.transcription = this.parseTranscription(transcriptionResponse.data);
-          this.loaded = true;
-          resolve(this);
+          if( this.transcription === null ) {
+            reject(new Error("Unable to parse surface element in transcription file."));
+          } else {
+            this.loaded = true;
+            resolve(this);
+          }
         }.bind(this)))
         .catch( (error) => {
           reject(error);
@@ -40,11 +44,15 @@ class Folio {
     }
   }
 
+  // returns transcription or null if unable to parse
   parseTranscription( html ) {
     let folioTag = "<surface>";
     let openDivIndex = html.indexOf(folioTag);
+    if( openDivIndex === -1 ) return null;
     let start = html.indexOf(">", openDivIndex) + 1;
     let end = html.lastIndexOf("</surface>");
+    if( end === -1 ) return null;
+    if( start >= end ) return null;
     let transcription = html.slice(start, end);
     return transcription;
   }
