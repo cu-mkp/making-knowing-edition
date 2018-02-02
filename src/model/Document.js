@@ -73,6 +73,69 @@ class Document {
         image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p101r_HD.tif/info.json',
         image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f207.thumbnail/full/native.jpg',
         transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p101r.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '115v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p115v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f236.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p115v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '123v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p123v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f252.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p123v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '124v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p124v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f254.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p124v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '129v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p129v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f264.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p129v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '139v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p139v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f284.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p139v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '164r',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p164r_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f333.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p164r.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '165v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p165v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f336.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p165v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '168v',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p168v_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f342.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p168v.html'
+      } ),
+      new Folio( {
+        id: `folio${i++}`,
+        name: '169r',
+        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p169r_HD.tif/info.json',
+        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f343.thumbnail/full/native.jpg',
+        transcription_url: 'http://localhost:4000/bnf-ms-fr-640/tc_p169r.html'
       } )
     ];
   }
