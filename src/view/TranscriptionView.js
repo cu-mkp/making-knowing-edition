@@ -22,11 +22,16 @@ class TranscriptionView extends Component {
   }
 
   rowCodeToIndex( rowCode ) {
-    return this.ROW_CODES.indexOf(rowCode.toLowerCase());
+    if( typeof rowCode !== "string" || rowCode.length > 1 ) throw new Error('Invalid row code, must be a single letter.');
+    let index = this.ROW_CODES.indexOf(rowCode.toLowerCase());
+    if( index === -1 ) throw new Error('Invalid row code must be a letter a-j.');
+    return index;
   }
 
   columnCodeToIndex( columnCode ) {
-    return parseInt(columnCode,10) - 1;
+    if( typeof columnCode !== "string" ) throw new Error('Invalid column code, must be a single digit.')
+    let index = parseInt(columnCode,10) - 1;
+    return index;
   }
 
   layoutGrid( folio ) {
@@ -36,9 +41,11 @@ class TranscriptionView extends Component {
     let zones = zoneDiv.children;
 
     let zoneGrid = [];
-    for (let zone of zones) {
-      // for each zone, take its grid data and populate the grid, throw an error on any dupes
-      try {
+    let index = 0;
+    // for each zone, take its grid data and populate the grid, throw an error on any dupes
+    try {
+      for (let zone of zones) {
+        zone.id = `z${index++}`;
         let gridData = zone.dataset.grid;
         if( typeof gridData !== "string" ) throw new Error(`Grid data not found for zone: ${zone}`);
         let gridDataList = gridData.split(' ');
@@ -53,9 +60,9 @@ class TranscriptionView extends Component {
           }
         }
       }
-      catch(error) {
-        console.log(error);
-      }
+    }
+    catch(error) {
+      console.log(error);
     }
 
     // transform zone grid into the grid layout string
@@ -67,7 +74,7 @@ class TranscriptionView extends Component {
 
     // set the grid-template-areas
     this.setState({
-      content: folio.transcription,
+      content: zoneDiv.innerHTML,
       layout: gridLayout
     });
   }
