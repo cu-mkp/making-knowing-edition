@@ -23,8 +23,7 @@ import Folio from './Folio';
 class Document {
 
   constructor() {
-    // let domain = 'http://localhost:4000';
-    let domain = 'http://159.203.130.30';
+    let domain = process.env.REACT_APP_DOCUMENT_DOMAIN;
 
     let i = 0;
     this.folios = [
