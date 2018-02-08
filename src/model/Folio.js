@@ -46,15 +46,23 @@ class Folio {
 
   // returns transcription or null if unable to parse
   parseTranscription( html ) {
-    let folioTag = "<surface>";
+    let folioTag = "<folio";
     let openDivIndex = html.indexOf(folioTag);
     if( openDivIndex === -1 ) return null;
     let start = html.indexOf(">", openDivIndex) + 1;
-    let end = html.lastIndexOf("</surface>");
+    let end = html.lastIndexOf("</folio>");
     if( end === -1 ) return null;
     if( start >= end ) return null;
+
+    // detect folio mode
+    let folioAttribs = html.slice(openDivIndex+folioTag.length, start-1);
+    let layoutAttr = "layout=";
+    let layoutAttrIndex = folioAttribs.indexOf(layoutAttr)
+    if( layoutAttrIndex === -1 ) return null;
+    let layoutAttrStart = layoutAttrIndex+layoutAttr.length+1;
+    let layoutType = folioAttribs.slice(layoutAttrStart, folioAttribs.indexOf('"',layoutAttrStart));
     let transcription = html.slice(start, end);
-    return transcription;
+    return { layout: layoutType, html: transcription };
   }
 
 }
