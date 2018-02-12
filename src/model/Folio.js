@@ -31,7 +31,7 @@ class Folio {
           this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
           this.transcription = this.parseTranscription(transcriptionResponse.data);
           if( this.transcription === null ) {
-            reject(new Error("Unable to parse surface element in transcription file."));
+            reject(new Error("Unable to parse folio element in transcription file."));
           } else {
             this.loaded = true;
             resolve(this);

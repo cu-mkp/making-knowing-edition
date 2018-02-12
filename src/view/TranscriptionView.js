@@ -45,6 +45,15 @@ class TranscriptionView extends Component {
     return gridLayout;
   }
 
+  renderBlock( blockID, block ) {
+    let classStr = "";
+    for( let i=0; i < block.classList.length; i++ ) {
+      classStr = classStr + " " + block.classList.item(i);
+    }
+
+    return `<div id="${blockID}" class="${classStr}">${block.innerHTML}</div>`;
+  }
+
   layoutMargin( html ) {
 
     // load the surface into a DOM element to retrieve the grid data
@@ -58,10 +67,8 @@ class TranscriptionView extends Component {
       [ '.', '.', '.' ]
     ];
 
-    // move blocks into the gridDiv as they are identified.
-    let gridDiv = document.createElement("div");
-
     let zoneGrid = [];
+    let gridContent = "";
     let zoneIndex = 0;
     let rowIndex = 0;
     // for each zone, take its margin data and populate the grid
@@ -72,46 +79,46 @@ class TranscriptionView extends Component {
         let blocks = zone.children;
 
         for( let block of blocks ) {
-          block.id = `z${zoneIndex++}`;
-          gridDiv.appendChild(block);
+          let blockID = `z${zoneIndex++}`;
+          gridContent = gridContent.concat( this.renderBlock(blockID, block) );
           let layoutCode = block.dataset.layout;
           let height = block.dataset.height;
           switch(layoutCode) {
             case 'top':
-              zoneFrame[0][1] = block.id;
+              zoneFrame[0][1] = blockID;
               break;
             case 'left':
-              zoneFrame[1][0] = block.id;
+              zoneFrame[1][0] = blockID;
               if( height === 'tall')
-                zoneFrame[2][0] = block.id;
+                zoneFrame[2][0] = blockID;
               break;
             case 'right':
-              zoneFrame[1][2] = block.id;
+              zoneFrame[1][2] = blockID;
               if( height === 'tall')
-                zoneFrame[2][2] = block.id;
+                zoneFrame[2][2] = blockID;
               break;
             case 'bottom':
-              zoneFrame[2][1] = block.id;
+              zoneFrame[2][1] = blockID;
               break;
             case 'left-top':
-              zoneFrame[0][0] = block.id;
+              zoneFrame[0][0] = blockID;
               if( height === 'tall')
-                zoneFrame[1][0] = block.id;
+                zoneFrame[1][0] = blockID;
               break;
             case 'right-top':
-              zoneFrame[0][2] = block.id;
+              zoneFrame[0][2] = blockID;
               if( height === 'tall')
-                zoneFrame[1][2] = block.id;
+                zoneFrame[1][2] = blockID;
               break;
             case 'left-bottom':
-              zoneFrame[2][0] = block.id;
+              zoneFrame[2][0] = blockID;
               break;
             case 'right-bottom':
-              zoneFrame[2][2] = block.id;
+              zoneFrame[2][2] = blockID;
               break;
             default:
-              zoneFrame[1][1] = block.id;
-              zoneFrame[1][2] = block.id;
+              zoneFrame[1][1] = blockID;
+              zoneFrame[1][2] = blockID;
           }
         }
 
@@ -130,7 +137,7 @@ class TranscriptionView extends Component {
 
     // set the grid-template-areas
     return {
-      content: gridDiv.innerHTML,
+      content: gridContent,
       layout: gridLayout
     };
   }
@@ -158,23 +165,30 @@ class TranscriptionView extends Component {
     zoneDiv.innerHTML = html;
     let zones = zoneDiv.children;
 
+    // move blocks into the gridContent as they are identified.
+    let gridContent = "";
+
     let zoneGrid = [];
     let index = 0;
     // for each zone, take its grid data and populate the grid, throw an error on any dupes
     try {
       for (let zone of zones) {
-        zone.id = `z${index++}`;
-        let gridData = zone.dataset.layout;
-        if( typeof gridData !== "string" ) throw new Error(`Grid data not found for zone: ${zone}`);
-        let gridDataList = gridData.split(' ');
-        for( let gridDatum of gridDataList ) {
-          let rowIndex = this.rowCodeToIndex(gridDatum[0]);
-          let columnIndex = this.columnCodeToIndex(gridDatum[1]);
-          if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
-          if( zoneGrid[rowIndex][columnIndex] === '.' ) {
-            zoneGrid[rowIndex][columnIndex] = zone.id;
-          } else {
-            throw new Error(`Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`)
+        let blocks = zone.children;
+        for(let block of blocks) {
+          let blockID = `z${index++}`;
+          gridContent = gridContent.concat( this.renderBlock(blockID, block) );
+          let gridData = block.dataset.layout;
+          if( typeof gridData !== "string" ) throw new Error(`Grid data not found for zone: ${block}`);
+          let gridDataList = gridData.split(' ');
+          for( let gridDatum of gridDataList ) {
+            let rowIndex = this.rowCodeToIndex(gridDatum[0]);
+            let columnIndex = this.columnCodeToIndex(gridDatum[1]);
+            if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
+            if( zoneGrid[rowIndex][columnIndex] === '.' ) {
+              zoneGrid[rowIndex][columnIndex] = blockID;
+            } else {
+              throw new Error(`Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`)
+            }
           }
         }
       }
@@ -187,7 +201,7 @@ class TranscriptionView extends Component {
 
     // set the grid-template-areas
     return {
-      content: zoneDiv.innerHTML,
+      content: gridContent,
       layout: gridLayout
     };
   }
