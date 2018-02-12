@@ -82,19 +82,19 @@ class TranscriptionView extends Component {
           let blockID = `z${zoneIndex++}`;
           gridContent = gridContent.concat( this.renderBlock(blockID, block) );
           let layoutCode = block.dataset.layout;
-          let height = block.dataset.height;
+          let hint = block.dataset.layoutHint;
           switch(layoutCode) {
             case 'top':
               zoneFrame[0][1] = blockID;
               break;
-            case 'left':
+            case 'left-middle':
               zoneFrame[1][0] = blockID;
-              if( height === 'tall')
+              if( hint === 'tall')
                 zoneFrame[2][0] = blockID;
               break;
-            case 'right':
+            case 'right-middle':
               zoneFrame[1][2] = blockID;
-              if( height === 'tall')
+              if( hint === 'tall')
                 zoneFrame[2][2] = blockID;
               break;
             case 'bottom':
@@ -102,12 +102,12 @@ class TranscriptionView extends Component {
               break;
             case 'left-top':
               zoneFrame[0][0] = blockID;
-              if( height === 'tall')
+              if( hint === 'tall')
                 zoneFrame[1][0] = blockID;
               break;
             case 'right-top':
               zoneFrame[0][2] = blockID;
-              if( height === 'tall')
+              if( hint === 'tall')
                 zoneFrame[1][2] = blockID;
               break;
             case 'left-bottom':
