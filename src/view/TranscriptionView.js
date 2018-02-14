@@ -45,13 +45,21 @@ class TranscriptionView extends Component {
     return gridLayout;
   }
 
-  renderBlock( blockID, block ) {
+  renderBlockSet( blockSet ) {
+    // use ID and class from the first block in the set
+    let firstBlock = blockSet[0];
+    let divID = firstBlock.id;
     let classStr = "";
-    for( let i=0; i < block.classList.length; i++ ) {
-      classStr = classStr + " " + block.classList.item(i);
+    for( let i=0; i < firstBlock.classList.length; i++ ) {
+      classStr = classStr + " " + firstBlock.classList.item(i);
     }
 
-    return `<div id="${blockID}" class="${classStr}">${block.innerHTML}</div>`;
+    // concat all the blocks together into a single div
+    let div = `<div id="${divID}" class="${classStr}">`;
+    for( let block of blockSet ) {
+      div = div.concat(`${block.innerHTML} <br/>`);
+    }
+    return div.concat("</div>");
   }
 
   layoutMargin( html ) {
@@ -67,6 +75,26 @@ class TranscriptionView extends Component {
       [ '.', '.', '.' ]
     ];
 
+    const emptyMarginFrame = {
+      'middle': false,
+      'top': false,
+      'left-middle': false,
+      'right-middle': false,
+      'bottom': false,
+      'left-top': false,
+      'right-top': false,
+      'left-bottom': false,
+      'right-bottom': false
+    };
+
+    let validLayoutCode = function( layoutCode ) {
+      if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
+        return layoutCode;
+      } else {
+        return 'middle';
+      }
+    };
+
     let zoneGrid = [];
     let gridContent = "";
     let zoneIndex = 0;
@@ -76,49 +104,66 @@ class TranscriptionView extends Component {
       for (let zone of zones) {
         // create a rolling frame that is ORed on to grid with each step
         let zoneFrame = copyObject( emptyZoneFrame );
+        let marginFrame = copyObject( emptyMarginFrame );
         let blocks = zone.children;
 
         for( let block of blocks ) {
-          let blockID = `z${zoneIndex++}`;
-          gridContent = gridContent.concat( this.renderBlock(blockID, block) );
-          let layoutCode = block.dataset.layout;
+          let layoutCode = validLayoutCode(block.dataset.layout);
           let hint = block.dataset.layoutHint;
+
+          // group all the blocks together that share a layout code
+          if( marginFrame[layoutCode] ) {
+            block.id = marginFrame[layoutCode][0].id;
+            marginFrame[layoutCode].push(block);
+          } else {
+            zoneIndex++;
+            block.id = `z${zoneIndex}`;
+            marginFrame[layoutCode] = [block];
+          }
+
+          // decode the layout
           switch(layoutCode) {
             case 'top':
-              zoneFrame[0][1] = blockID;
+              zoneFrame[0][1] = block.id;
               break;
             case 'left-middle':
-              zoneFrame[1][0] = blockID;
+              zoneFrame[1][0] = block.id;
               if( hint === 'tall')
-                zoneFrame[2][0] = blockID;
+                zoneFrame[2][0] = block.id;
               break;
             case 'right-middle':
-              zoneFrame[1][2] = blockID;
+              zoneFrame[1][2] = block.id;
               if( hint === 'tall')
-                zoneFrame[2][2] = blockID;
+                zoneFrame[2][2] = block.id;
               break;
             case 'bottom':
-              zoneFrame[2][1] = blockID;
+              zoneFrame[2][1] = block.id;
               break;
             case 'left-top':
-              zoneFrame[0][0] = blockID;
+              zoneFrame[0][0] = block.id;
               if( hint === 'tall')
-                zoneFrame[1][0] = blockID;
+                zoneFrame[1][0] = block.id;
               break;
             case 'right-top':
-              zoneFrame[0][2] = blockID;
+              zoneFrame[0][2] = block.id;
               if( hint === 'tall')
-                zoneFrame[1][2] = blockID;
+                zoneFrame[1][2] = block.id;
               break;
             case 'left-bottom':
-              zoneFrame[2][0] = blockID;
+              zoneFrame[2][0] = block.id;
               break;
             case 'right-bottom':
-              zoneFrame[2][2] = blockID;
+              zoneFrame[2][2] = block.id;
               break;
             default:
-              zoneFrame[1][1] = blockID;
-              zoneFrame[1][2] = blockID;
+              zoneFrame[1][1] = block.id;
+              zoneFrame[1][2] = block.id;
+          }
+        }
+
+        for( let blockSet of Object.values(marginFrame) ) {
+          if( blockSet ) {
+            gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
           }
         }
 
