@@ -9,9 +9,11 @@ class DiploMatic extends Component {
   constructor() {
     super();
     this.document = new Document();
+
   }
 
   render() {
+
     return (
       <MuiThemeProvider>
         <div className="DiploMatic">

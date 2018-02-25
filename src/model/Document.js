@@ -22,98 +22,120 @@ import Folio from './Folio';
 
 class Document {
 
-  constructor() {
-    let domain = process.env.REACT_APP_DOCUMENT_DOMAIN;
+	constructor() {
+		this.folios = [];
 
-    let i = 0;
-    this.folios = [
-      new Folio( {
-        id: `folio${i++}`,
-        name: '3r',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p003r_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f11.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p003r.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '6v',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p006v_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f18.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p006v.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '10r',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p010r_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f25.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p010r.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '16r',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p016r_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f37.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p016r.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '46v',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p046v_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f98.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p046v.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '75r',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p075r_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f155.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p075r.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '101r',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p101r_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f207.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p101r.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '115v',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p115v_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f236.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p115v.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '123v',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p123v_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f252.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p123v.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '124v',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p124v_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f254.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p124v.html`
-      } ),
-      new Folio( {
-        id: `folio${i++}`,
-        name: '129v',
-        image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p129v_HD.tif/info.json',
-        image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f264.thumbnail/full/native.jpg',
-        transcription_url: `${domain}/bnf-ms-fr-640/tc_p129v.html`
-      } )
-    ];
-  }
+		// FIXME: Sync request
+		var request = new XMLHttpRequest();
+		request.open('GET', 'http://159.65.186.2/folio/manifest.json', false);  // `false` makes the request synchronous
+		request.send(null);
+		if (request.status === 200) {
+		  var availableFolios = {};
+		  availableFolios = JSON.parse(request.responseText);
+		  var idx=0;
+		  var self=this;
+		  for (var key in availableFolios) {
+			  if (availableFolios.hasOwnProperty(key)) {
+				  var externalID=key;
+				  //console.log(key + " -> " + availableFolios[key]);
+				  // externalIDs are always in the form pXXXY, 5 chars, p followed by three digit number and finally a letter
+				  //var externalID = 'p' + pad(parseInt(names[idx], 10), 3) + names[idx].replace(/[0-9]/g, '');
+				  var newFolio = new Folio({
+					  id: `folio${idx}`,
+					  name: availableFolios[key].folio,
+					  image_zoom_url: image_zoom_url(externalID),
+					  image_thumbnail_url: image_thumbnail_url(externalID),
+					  transcription_url: transcription_url(externalID, 'tc')
+				  });
+				  this.folios.push(newFolio);
+				  idx++;
+			  }
+		  }
+		}
 
-  getFolio( folioID ) {
-    return this.folios.find( (folio) => {
-        return (folio.id === folioID);
-    });
-  }
+		/*
+		loadJSONFromURL('http://159.65.186.2/folio/manifest.json', function(response) {
 
+			var availableFolios = {};
+			availableFolios = JSON.parse(response);
+			var idx=0;
+			var self=this;
+			for (var key in availableFolios) {
+				if (availableFolios.hasOwnProperty(key)) {
+					var externalID=key;
+					//console.log(key + " -> " + availableFolios[key]);
+					// externalIDs are always in the form pXXXY, 5 chars, p followed by three digit number and finally a letter
+					//var externalID = 'p' + pad(parseInt(names[idx], 10), 3) + names[idx].replace(/[0-9]/g, '');
+					var newFolio = new Folio({
+						id: `folio${idx}`,
+						name: availableFolios[key].folio,
+						image_zoom_url: image_zoom_url(externalID),
+						image_thumbnail_url: image_thumbnail_url(externalID),
+						transcription_url: transcription_url(externalID, 'tc')
+					});
+					self.folios.push(newFolio);
+					idx++;
+				}
+			}
+			self.isReady=true;
+		});
+		*/
+	}
 
+	getFolio(folioID) {
+		return this.folios.find((folio) => {
+			return (folio.id === folioID);
+		});
+	}
 }
 
+// Internal helper methods
+
+// Return the IIIF url
+function image_zoom_url(externalID) {
+	return 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p003r_HD.tif/info.json';
+	//return `https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/${externalID}_HD.tif/info.json`;
+}
+/*
+new Folio( {
+  id: `folio${i++}`,
+  name: '3r',
+  image_zoom_url: 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p003r_HD.tif/info.json',
+  image_thumbnail_url: 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f11.thumbnail/full/native.jpg',
+  transcription_url: `${domain}/bnf-ms-fr-640/tc_p003r.html`
+} ),
+*/
+
+// Return the IIIF thumbnail url
+function image_thumbnail_url(externalID) {
+	return 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f11.thumbnail/full/native.jpg';
+}
+
+// Return the transcription url
+function transcription_url(id, type) {
+	// http://159.65.186.2/folio/p160v/tcn/
+	let transcriptionServer = 'http://159.65.186.2/'
+	return `${transcriptionServer}/folio/${id}/${type}`
+}
+
+// Helper: pad an integer
+function pad(n, width, z) {
+	z = z || '0';
+	n = n + '';
+	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+// Load JSON asynchronously, accept callback
+function loadJSONFromURL(url, callback) {
+	var xobj = new XMLHttpRequest();
+	xobj.overrideMimeType("application/json");
+	xobj.open('GET', url, true); // Replace 'my_data' with the path to your file
+	xobj.onreadystatechange = function() {
+		if (xobj.readyState == 4 && xobj.status == "200") {
+			// Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+			callback(xobj.responseText);
+		}
+	};
+	xobj.send(null);
+}
 export default Document;
