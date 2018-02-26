@@ -93,8 +93,10 @@ class Document {
 
 // Return the IIIF url
 function image_zoom_url(externalID) {
+	var IIFUrl = `https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/${externalID}_HD.tif/info.json`;
+	console.log(IIFUrl);
 	return 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p003r_HD.tif/info.json';
-	//return `https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/${externalID}_HD.tif/info.json`;
+
 }
 /*
 new Folio( {
