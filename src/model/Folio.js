@@ -8,7 +8,6 @@ class Folio {
     this.name = props.name;
     this.image_zoom_url = props.image_zoom_url;
     this.image_thumbnail_url = props.image_thumbnail_url;
-    this.transcription_url = props.transcription_url;
     this.annotationListURL = props.annotationListURL;
     this.tileSource = null;
     this.transcription = null;
@@ -24,25 +23,54 @@ class Folio {
     } else {
       // promise to load all the data for this folio
       return new Promise(function(resolve, reject) {
-        axios.all([
-          axios.get(this.image_zoom_url) //,
-          // axios.get(this.transcription_url)
-        ])
-        .then( axios.spread( function( imageServerResponse ) { //, transcriptionResponse ) {
-          this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
-          // this.transcription = this.parseTranscription(transcriptionResponse.data);
-          // if( this.transcription === null ) {
-          //   reject(new Error("Unable to parse folio element in transcription file."));
-          // } else {
+        if( this.annotationListURL ) {
+          axios.all([
+            axios.get(this.image_zoom_url),
+            axios.get(this.annotationListURL)
+          ])
+          .then( axios.spread( function( imageServerResponse, annotationListResponse ) {
+            this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
+            this.transcription = this.loadTranscriptions(annotationListResponse.data);
+
+            if( this.transcription === null ) {
+              reject(new Error("Unable to parse folio element in transcription file."));
+            } else {
+              this.loaded = true;
+              resolve(this);
+            }
+          }.bind(this) ))
+          .catch( (error) => {
+            reject(error);
+          });
+        // if there is no annotatation list, just load the image and provide a blank transcription
+        } else {
+          axios.all([
+            axios.get(this.image_zoom_url)
+          ])
+          .then( function( imageServerResponse ) {
+            this.transcription = { layout: "grid", html: "" };
+            this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
             this.loaded = true;
             resolve(this);
-          // }
-        }.bind(this)))
-        .catch( (error) => {
-          reject(error);
-        })
+          }.bind(this) )
+          .catch( (error) => {
+            reject(error);
+          });
+        }
       }.bind(this));
     }
+  }
+
+  loadTranscriptions( annotationList ) {
+    // hardcode to just get first transcription
+    let transcriptionURL = annotationList["resources"][0]["resource"]["@id"];
+    //
+    // axios.get(transcriptionURL).then( function( transcriptionResponse ) {
+    //   this.parseTranscription(transcriptionResponse.data);
+    // }.bind(this) );
+
+    return { layout: "grid", html: transcriptionURL };
+
   }
 
   // returns transcription or null if unable to parse
