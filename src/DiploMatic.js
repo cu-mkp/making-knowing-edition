@@ -9,20 +9,44 @@ class DiploMatic extends Component {
   constructor() {
     super();
     this.document = new Document();
+    this.state = {
+      ready: false
+    }
+  }
 
+  componentDidMount() {
+    this.document.load().then(
+      (folio) => {
+        this.setState({ ready: true });
+        console.log('Manifest loaded.');
+      },
+      (error) => {
+        // TODO update UI
+        console.log('Unable to load manifest: '+error);
+      }
+    );
   }
 
   render() {
-
-    return (
-      <MuiThemeProvider>
-        <div className="DiploMatic">
-          <SplitPaneView
-            document={this.document}
-          />
-        </div>
-      </MuiThemeProvider>
-    );
+    if( this.state.ready ) {
+      return (
+        <MuiThemeProvider>
+          <div className="DiploMatic">
+            <SplitPaneView
+              document={this.document}
+            />
+          </div>
+        </MuiThemeProvider>
+      );
+    } else {
+      return (
+        <MuiThemeProvider>
+          <div className="DiploMatic">
+            <h1>Loading...</h1>
+          </div>
+        </MuiThemeProvider>
+      );
+    }
   }
 }
 

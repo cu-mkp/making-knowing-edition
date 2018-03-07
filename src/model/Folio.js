@@ -9,12 +9,13 @@ class Folio {
     this.image_zoom_url = props.image_zoom_url;
     this.image_thumbnail_url = props.image_thumbnail_url;
     this.transcription_url = props.transcription_url;
+    this.annotationListURL = props.annotationListURL;
     this.tileSource = null;
     this.transcription = null;
     this.loaded = false;
   }
 
-  load( callback ) {
+  load() {
     if( this.loaded ) {
       // promise to resolve this immediately
       return new Promise(function(resolve, reject) {
@@ -24,18 +25,18 @@ class Folio {
       // promise to load all the data for this folio
       return new Promise(function(resolve, reject) {
         axios.all([
-          axios.get(this.image_zoom_url),
-          axios.get(this.transcription_url)
+          axios.get(this.image_zoom_url) //,
+          // axios.get(this.transcription_url)
         ])
-        .then( axios.spread( function( imageServerResponse, transcriptionResponse ) {
+        .then( axios.spread( function( imageServerResponse ) { //, transcriptionResponse ) {
           this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
-          this.transcription = this.parseTranscription(transcriptionResponse.data);
-          if( this.transcription === null ) {
-            reject(new Error("Unable to parse folio element in transcription file."));
-          } else {
+          // this.transcription = this.parseTranscription(transcriptionResponse.data);
+          // if( this.transcription === null ) {
+          //   reject(new Error("Unable to parse folio element in transcription file."));
+          // } else {
             this.loaded = true;
             resolve(this);
-          }
+          // }
         }.bind(this)))
         .catch( (error) => {
           reject(error);

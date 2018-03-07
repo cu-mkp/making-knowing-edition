@@ -1,5 +1,6 @@
 import Folio from './Folio';
 import axios from 'axios';
+
 // 3r
 // 6v
 // 10r
@@ -23,37 +24,35 @@ import axios from 'axios';
 class Document {
 
 	constructor() {
+    this.manifestURL = process.env.REACT_APP_IIIF_MANIFEST;
 		this.folios = [];
 		this.loaded = false;
-		this.isReady = false;
-
-		// If ready, just resolve right away
-		if( this.isReady ) {
-		  return new Promise(function(resolve, reject) {
-			resolve(this);
-		  }.bind(this));
-
-		// Not ready, go out and get the manifest
-		} else {
-		  return new Promise(function(resolve, reject) {
-			axios.all([
-			  axios.get('http://159.65.186.2/folio/manifest.json')
-			])
-			.then( axios.spread( function( manifest_response) {
-			  this.folios = this.parseManifest(manifest_response);
-			  if( this.folios === null ) {
-				reject(new Error("Unable to parse folio manifest"));
-			  } else {
-				this.isReady = true;
-				resolve(this);
-			  }
-			}.bind(this)))
-			.catch( (error) => {
-			  reject(error);
-			})
-		  }.bind(this));
-		}
 	}
+
+  load() {
+    if( this.loaded ) {
+      // promise to resolve this immediately
+      return new Promise(function(resolve, reject) {
+        resolve(this);
+      }.bind(this));
+    } else {
+      // promise to load all the data for this folio
+      return new Promise(function(resolve, reject) {
+        axios.get(this.manifestURL)
+          .then( function( manifestResponse ) {
+            if( this.parseManifest(manifestResponse.data) ) {
+              this.loaded = true;
+              resolve(this);
+            } else {
+              reject(new Error("Unable to parse folio element in transcription file."));
+            }
+        }.bind(this))
+        .catch( (error) => {
+          reject(error);
+        })
+      }.bind(this));
+    }
+  }
 
 	getFolio(folioID) {
 		return this.folios.find((folio) => {
@@ -61,47 +60,34 @@ class Document {
 		});
 	}
 
-	parseManifest(response){
-		var availableFolios = {};
-		availableFolios = JSON.parse(response);
-		var idx=0;
-		var self=this;
-		for (var key in availableFolios) {
-			if (availableFolios.hasOwnProperty(key)) {
-				var externalID=key;
-				var newFolio = new Folio({
-					id: `folio${idx}`,
-					name: availableFolios[key].folio,
-					image_zoom_url: image_zoom_url(externalID),
-					image_thumbnail_url: image_thumbnail_url(externalID),
-					transcription_url: transcription_url(externalID, 'tc')
-				});
-				availableFolios.push(newFolio);
-				idx++;
-			}
-		}
-		return availableFolios;
-	}
-}
+	parseManifest(manifest) {
+    let canvases = manifest["sequences"][0]["canvases"];
 
-// Generate the IIIF url
-function image_zoom_url(externalID) {
-	var IIFUrl = `https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/${externalID}_HD.tif/info.json`;
-	console.log(IIFUrl);
-	return 'https://iip.textlab.org/?IIIF=octoroon/bnf_ms_fr_640/p003r_HD.tif/info.json';
+    for( let canvas of canvases ) {
+      let canvasID = canvas["@id"];
+      let canvasLabel = canvas["label"];
+      let imageURL = canvas["images"][0].resource.service["@id"] + '/info.json';
+      let thumbnailURL = canvas["thumbnail"]["@id"] + '/full/native.jpg';
+      let annotationListURL = null;
 
-}
+      if( canvas["otherContent"] ) {
+        annotationListURL = canvas["otherContent"][0]["@id"];
+      }
 
-// Generate the IIIF thumbnail url
-function image_thumbnail_url(externalID) {
-	return 'http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f11.thumbnail/full/native.jpg';
-}
+      var folio = new Folio({
+  			id: canvasID,
+  			name: canvasLabel,
+  			image_zoom_url: imageURL,
+  			image_thumbnail_url: thumbnailURL,
+  			annotationListURL: annotationListURL
+  		});
 
-// Generate the transcription url
-function transcription_url(id, type) {
-	// http://159.65.186.2/folio/p160v/tcn/
-	let transcriptionServer = 'http://159.65.186.2/'
-	return `${transcriptionServer}/folio/${id}/${type}`
+      this.folios.push(folio);
+    }
+
+    return true;
+  }
+
 }
 
 export default Document;
