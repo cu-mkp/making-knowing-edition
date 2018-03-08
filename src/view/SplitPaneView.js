@@ -14,7 +14,7 @@ class SplitPaneView extends Component {
     this.minWindowSize = 768;
     this.dragging = false;
 
-    let firstFolio = props.document.folios[0];
+    let firstFolio = props.document.folios[10];
 
     this.state = {
       style: {},

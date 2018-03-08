@@ -30,23 +30,26 @@ class Folio {
           ])
           .then( axios.spread( function( imageServerResponse, annotationListResponse ) {
             this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
-            this.transcription = this.loadTranscriptions(annotationListResponse.data);
-
-            if( this.transcription === null ) {
-              reject(new Error("Unable to parse folio element in transcription file."));
-            } else {
-              this.loaded = true;
-              resolve(this);
-            }
+            // TODO for now, just do the first one.
+            let transcriptionURL = annotationListResponse.data["resources"][0]["resource"]["@id"];
+            axios.get(transcriptionURL).then(
+              (transcriptionResponse) => {
+                this.transcription = this.parseTranscription( transcriptionResponse.data );
+                if( this.transcription === null ) {
+                  reject(new Error(`Unable to parse <folio> element in ${transcriptionURL}`));
+                } else {
+                  this.loaded = true;
+                  resolve(this);
+                }
+              }
+            );
           }.bind(this) ))
           .catch( (error) => {
             reject(error);
           });
         // if there is no annotatation list, just load the image and provide a blank transcription
         } else {
-          axios.all([
-            axios.get(this.image_zoom_url)
-          ])
+          axios.get(this.image_zoom_url)
           .then( function( imageServerResponse ) {
             this.transcription = { layout: "grid", html: "" };
             this.tileSource = new OpenSeadragon.IIIFTileSource(imageServerResponse.data);
@@ -59,18 +62,6 @@ class Folio {
         }
       }.bind(this));
     }
-  }
-
-  loadTranscriptions( annotationList ) {
-    // hardcode to just get first transcription
-    let transcriptionURL = annotationList["resources"][0]["resource"]["@id"];
-    //
-    // axios.get(transcriptionURL).then( function( transcriptionResponse ) {
-    //   this.parseTranscription(transcriptionResponse.data);
-    // }.bind(this) );
-
-    return { layout: "grid", html: transcriptionURL };
-
   }
 
   // returns transcription or null if unable to parse
