@@ -1,0 +1,37 @@
+{
+   "@context": "http://iiif.io/api/presentation/2/context.json",
+   "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p085r.json",
+   "@type": "sc:AnnotationList",
+   "resources": [
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p085r/tc",
+            "@type": "dctypes:Text",
+            "format": "text/html"
+         },
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p085r.json"
+      },
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p085r/tcn",
+            "@type": "dctypes:Text",
+            "format": "text/html"
+         },
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p085r.json"
+      },
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p085r/tl",
+            "@type": "dctypes:Text",
+            "format": "text/html"
+         },
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p085r.json"
+      }
+   ]
+}

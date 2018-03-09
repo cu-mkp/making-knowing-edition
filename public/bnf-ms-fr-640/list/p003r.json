@@ -1,38 +1,37 @@
 {
-  "@context": "http://iiif.io/api/presentation/2/context.json",
-  "@id": "http://localhost:4000/bnf-ms-fr-640/list/p003r.json",
-  "@type": "sc:AnnotationList",
-
-  "resources": [
-    {
-      "@type": "oa:Annotation",
-      "motivation": "sc:painting",
-      "resource":{
-        "@id": "http://159.65.186.2/folio/p003r/tc",
-        "@type": "dctypes:Text",
-        "format": "text/html"
+   "@context": "http://iiif.io/api/presentation/2/context.json",
+   "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p003r.json",
+   "@type": "sc:AnnotationList",
+   "resources": [
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p003r/tc",
+            "@type": "dctypes:Text",
+            "format": "text/html"
+         },
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p003r.json"
       },
-      "on": "http://localhost:4000/bnf-ms-fr-640/list/p003r.json"
-    },
-    {
-      "@type": "oa:Annotation",
-      "motivation": "sc:painting",
-      "resource":{
-        "@id": "http://159.65.186.2/folio/p003r/tcn",
-        "@type": "dctypes:Text",
-        "format": "text/html"
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p003r/tcn",
+            "@type": "dctypes:Text",
+            "format": "text/html"
+         },
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p003r.json"
       },
-      "on": "http://localhost:4000/bnf-ms-fr-640/list/p003r.json"
-    },
-    {
-      "@type": "oa:Annotation",
-      "motivation": "sc:painting",
-      "resource":{
-        "@id": "http://159.65.186.2/folio/p003r/tl",
-        "@type": "dctypes:Text",
-        "format": "text/html"
-      },
-      "on": "http://localhost:4000/bnf-ms-fr-640/list/p003r.json"
-    }
-  ]
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p003r/tl",
+            "@type": "dctypes:Text",
+            "format": "text/html"
+         },
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p003r.json"
+      }
+   ]
 }
