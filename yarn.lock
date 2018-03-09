@@ -5235,6 +5235,10 @@ react-event-listener@^0.5.1:
     prop-types "^15.6.0"
     warning "^3.0.0"
 
+react-infinite-scroll-component@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-infinite-scroll-component/-/react-infinite-scroll-component-3.0.2.tgz#cc391d3e6e2daef14ee874d857a410d006143da9"
+
 react-scripts@1.0.17:
   version "1.0.17"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-1.0.17.tgz#c30029123b561a060227af4d7797d50a222d3fbf"
