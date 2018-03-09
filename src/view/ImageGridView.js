@@ -13,7 +13,7 @@ class ImageGridView extends Component {
 
   render() {
     let folios = this.props.document.folios;
-    let thumbs = folios.slice(0,20); // TODO load based on scrolling
+    let thumbs = folios; //.slice(0,20); // TODO load based on scrolling
     let hidden = ( this.props.drawerMode && !this.props.drawerOpen ) ? "hidden" : "";
     let style = { height: this.props.viewHeight, overflow: 'scroll' };
 
