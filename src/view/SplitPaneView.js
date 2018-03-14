@@ -14,7 +14,7 @@ class SplitPaneView extends Component {
     this.minWindowSize = 768;
     this.dragging = false;
 
-    let firstFolio = props.document.folios[10];
+    let firstFolio = props.document.folios[0];
 
     this.state = {
       style: {},
@@ -22,7 +22,7 @@ class SplitPaneView extends Component {
       drawerIconClass: 'fa-caret-left',
       viewports: {
         left: {
-          viewType: 'ImageView',
+          viewType: 'ImageGridView',
           folio: firstFolio,
           viewportName: 'left',
           viewWidth: 0,

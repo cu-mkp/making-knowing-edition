@@ -3,6 +3,7 @@
   background: black;
   font-family: 'Roboto', sans-serif;
   font-size: 10pt;
+  margin-left: 10px
 }
 
 #image-grid-view > ul {
@@ -14,6 +15,8 @@
 
 #image-grid-view > ul > li {
   margin-bottom: 20px;
+  width: 150px;
+  height: 220px;
 }
 
 #image-grid-view > ul > li > figure {
