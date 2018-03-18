@@ -38,6 +38,7 @@ class Document {
     } else {
       // promise to load all the data for this folio
       return new Promise(function(resolve, reject) {
+		  console.log("Manifest: "+this.manifestURL);
         axios.get(this.manifestURL)
           .then( function( manifestResponse ) {
             if( this.parseManifest(manifestResponse.data) ) {
