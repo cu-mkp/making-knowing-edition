@@ -1,0 +1,2 @@
+#!/bin/bash
+sass --watch ./index.scss:../../public/css/index.css 

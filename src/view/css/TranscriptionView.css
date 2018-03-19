@@ -5,7 +5,6 @@
   padding: 0px;
   list-style: none;
   overflow: scroll;
-  font-family: 'Roboto', sans-serif;
 }
 
 .grid-mode {
@@ -19,7 +18,7 @@
 }
 
 .surface > div {
-    border: 1px solid #EFEDED;
+    border: 0px solid #EFEDED;
     padding: 10px;
 }
 

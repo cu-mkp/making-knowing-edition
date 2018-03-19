@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/* Normalize first */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");
+
+/*  Google fonts */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+
+/* FontAwesome icon font http://fontawesome.io/ */
+@import url("https://use.fontawesome.com/releases/v5.0.8/css/all.css");
+
+/* Globals */
+$z-index-ui: 10;
+$z-index-map: 5;
+
+$color-main: rgba(255,255,255, 0.7);
+$color-highlight: rgb(104, 153, 201);
+$color-hover: rgba(104, 201, 201, 0.5);
+
+@import "base";
+@import "_split-pane";

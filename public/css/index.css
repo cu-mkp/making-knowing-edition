@@ -1,24 +1,184 @@
-
-
+@charset "UTF-8";
+/* Normalize first */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");
+/*  Google fonts */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+/* FontAwesome icon font http://fontawesome.io/ */
+@import url("https://use.fontawesome.com/releases/v5.0.8/css/all.css");
+/* Globals */
 #header {
-  height: 50px;
-  padding: 5px;
-  overflow-x: hidden;
-  background-color: #CCC;
-  font-family: 'Roboto', sans-serif;
+  z-index: 10;
+  position: fixed;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  color: white;
+  height: 4rem;
+  background-color: #656565;
+  font-family: 'OpenSans', sans-serif;
   grid-area: header;
-}
+  padding: 0.4rem 0 0 1rem;
+  white-space: nowrap; }
 
-#header > .site-name {
-  padding-top: 3px;
-  padding-left: 10px;
-  margin: 0px;
-}
+#header .title {
+  font-size: 2rem;
+  font-weight: 700; }
+
+#header .tagline {
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 0.3rem 0 0 0.3rem; }
+
+#diplo-matic {
+  padding: 4rem 0 0;
+  margin: 0 0 0 -.6rem;
+  /* This compensates for something inline that should be removed */
+  width: 100vw;
+  height: calc(100vh-$header-height);
+  font-family: 'OpenSans', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.2rem; }
+
+h1, h2, h3, h4 {
+  color: #000000b8;
+  font-family: 'OpenSans', sans-serif;
+  font-weight: 700;
+  padding: 0;
+  margin: 0 0 0.3rem;
+  width: 23rem;
+  text-align: center; }
 
 #footer {
-}
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  color: white;
+  height: 1.5rem;
+  background-color: #656565;
+  font-family: 'OpenSans', sans-serif;
+  grid-area: header;
+  padding: 0.4rem 0 0 1rem;
+  white-space: nowrap; }
 
-body {
-  margin: 0px;
-  padding: 0px;
-}
+#footer .copyright {
+  font-weight: 300;
+  font-size: 0.8rem;
+  padding: 0.1rem 0 0 0.3rem; }
+
+m {
+  color: #90a9c5; }
+
+/*!
+
+Split Pane v0.9.4
+
+Copyright (c) 2014 - 2016 Simon Hagström
+
+Released under the MIT license
+https://raw.github.com/shagstrom/split-pane/master/LICENSE
+
+*/
+.split-pane {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0; }
+
+.split-pane.fixed-bottom > .split-pane-component,
+.split-pane.fixed-top > .split-pane-component,
+.split-pane.horizontal-percent > .split-pane-component {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+  top: auto;
+  bottom: 0;
+  z-index: 1; }
+
+.split-pane.fixed-bottom > .split-pane-component:first-child,
+.split-pane.fixed-top > .split-pane-component:first-child,
+.split-pane.horizontal-percent > .split-pane-component:first-child {
+  top: 0;
+  bottom: auto; }
+
+.split-pane.fixed-bottom > .split-pane-divider,
+.split-pane.fixed-top > .split-pane-divider,
+.split-pane.horizontal-percent > .split-pane-divider {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  cursor: row-resize;
+  z-index: 2; }
+
+.split-pane.fixed-bottom > .split-pane-divider > .split-pane-divider-inner,
+.split-pane.fixed-top > .split-pane-divider > .split-pane-divider-inner,
+.split-pane.horizontal-percent > .split-pane-divider > .split-pane-divider-inner {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  padding: 5px 0; }
+
+.split-pane.fixed-left > .split-pane-component,
+.split-pane.fixed-right > .split-pane-component,
+.split-pane.vertical-percent > .split-pane-component {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow: auto;
+  left: auto;
+  right: 0;
+  z-index: 1; }
+
+.split-pane.fixed-left > .split-pane-component:first-child,
+.split-pane.fixed-right > .split-pane-component:first-child,
+.split-pane.vertical-percent > .split-pane-component:first-child {
+  left: 0;
+  right: auto; }
+
+.split-pane.fixed-left > .split-pane-divider,
+.split-pane.fixed-right > .split-pane-divider,
+.split-pane.vertical-percent > .split-pane-divider {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  cursor: col-resize;
+  z-index: 2; }
+
+.split-pane.fixed-left > .split-pane-divider > .split-pane-divider-inner,
+.split-pane.fixed-right > .split-pane-divider > .split-pane-divider-inner,
+.split-pane.vertical-percent > .split-pane-divider > .split-pane-divider-inner {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  padding: 0 5px; }
+
+.split-pane-resize-shim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  display: none; }
+
+.split-pane.fixed-left > .split-pane-resize-shim,
+.split-pane.fixed-right > .split-pane-resize-shim,
+.split-pane.vertical-percent > .split-pane-resize-shim {
+  cursor: col-resize; }
+
+.split-pane.fixed-bottom > .split-pane-resize-shim,
+.split-pane.fixed-top > .split-pane-resize-shim,
+.split-pane.horizontal-percent > .split-pane-resize-shim {
+  cursor: row-resize; }
+
+/*# sourceMappingURL=index.css.map */
