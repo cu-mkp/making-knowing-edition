@@ -13,6 +13,7 @@ $header-height: 4rem;
 	grid-area: header;
 	padding: 0.4rem 0 0 1rem;
 	white-space: nowrap;
+	border-radius: 0 0 0 0.3rem;
 }
 
 #header .title {
@@ -24,6 +25,7 @@ $header-height: 4rem;
 	font-weight: 300;
 	font-size: 0.8rem;
 	padding: 0.3rem 0 0 0.3rem;
+
 }
 
 #diplo-matic {

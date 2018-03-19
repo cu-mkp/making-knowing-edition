@@ -18,7 +18,8 @@
   font-family: 'OpenSans', sans-serif;
   grid-area: header;
   padding: 0.4rem 0 0 1rem;
-  white-space: nowrap; }
+  white-space: nowrap;
+  border-radius: 0 0 0 0.3rem; }
 
 #header .title {
   font-size: 2rem;
