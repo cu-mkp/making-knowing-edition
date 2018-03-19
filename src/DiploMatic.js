@@ -29,6 +29,7 @@ class DiploMatic extends Component {
 
   render() {
     if( this.state.ready ) {
+	window.loadingModal_stop();
       return (
         <MuiThemeProvider>
           <div className="DiploMatic">
@@ -41,9 +42,7 @@ class DiploMatic extends Component {
     } else {
       return (
         <MuiThemeProvider>
-          <div className="DiploMatic">
-            <h1>Loading...</h1>
-          </div>
+          <div className="DiploMatic"></div>
         </MuiThemeProvider>
       );
     }

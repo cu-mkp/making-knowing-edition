@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<title>Making and Knowing</title>
+	<!--
 		manifest.json provides metadata used when your web app is added to the
 		homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
 
@@ -17,28 +18,37 @@
 		Learn how to configure a non-root public URL by running `npm run build`.
     -->
 	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="%PUBLIC_URL%/js/loadingModal.js"></script>
 
-	<!-- This is the end result of a sass build, I haven't bothered to integrate it into create-react-app yet, just run "build" in src --->
-    <link href="css/index.css" rel="stylesheet">
+	<!-- FIXME: This is the end result of a sass build, I haven't bothered to integrate it into create-react-app yet, just run "build" in src --->
+	<link href="css/index.css" rel="stylesheet">
+</head>
 
-    <title>Making and Knowing</title>
-  </head>
-  <body>
-    <noscript>
+<body>
+	<div id="loadingStateModal">
+		<div class="spinner">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+	</div>
+	<noscript>
       <h1>You need to enable JavaScript to run this app.</h1>
     </noscript>
-    <div id="main">
-      <div id="header">
-        <div class="title">The Making and Knowing Project</div>
-		<div class="tagline">Intersections of Craft Making and Scientific Knowing</div>
-      </div>
-      <div id="content"></div>
-        <div id="diplo-matic"></div>
-      </div>
-	  <div id="footer">
+	<div id="main">
+		<div id="header">
+			<div class="title">The Making and Knowing Project</div>
+			<div class="tagline">Intersections of Craft Making and Scientific Knowing</div>
+		</div>
+		<div id="content"></div>
+		<div id="diplo-matic"></div>
+	</div>
+	<div id="footer">
 		<div class="copyright">&copy; The Making and Knowing Project</div>
-	  </div>
-    </div>
-  </body>
+	</div>
+	</div>
+</body>
+
 </html>
