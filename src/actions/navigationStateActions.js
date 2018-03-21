@@ -6,3 +6,6 @@ export function changeTranscriptionType(transcriptionType) {
 export function changeCurrentFolio(payload) {
     return {type: allActions.CHANGE_CURRENT_FOLIO, payload: payload};
 }
+export function updateFolioIndex(payload){
+	return {type: allActions.UPDATE_FOLIO_INDEX, payload: payload};
+}

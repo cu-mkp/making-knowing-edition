@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import './css/ImageGridView.css';
+import * as navigationStateActions from '../actions/navigationStateActions';
 
 class ImageGridView extends React.Component {
 
@@ -13,12 +14,19 @@ class ImageGridView extends React.Component {
     let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement : thumbs.length;
     let visibleThumbs = thumbs.slice(0,thumbCount);
     this.state = { thumbs: thumbs, visibleThumbs: visibleThumbs };
+	this.navigationStateActions=navigationStateActions;
+
+	// Store an ordered array of folio ids, used for navigation purposes later
+	let folioIndex = [];
 	for(let idx=0;idx<props.document.folios.length;idx++){
-		console.log(props.document.folios[idx].id);
+		let idOnly=props.document.folios[idx].id.substr(props.document.folios[idx].id.lastIndexOf('/')+1);
+		folioIndex.push(idOnly);
 	}
+	this.props.dispatch(this.navigationStateActions.updateFolioIndex(folioIndex));
   }
 
   onClickThumb = (id, e) => {
+	  console.log(id);
     let splitPaneView = this.props.splitPaneView;
     let side = this.props.side;
     let otherSide = splitPaneView.otherSide(side);

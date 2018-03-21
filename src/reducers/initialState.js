@@ -3,7 +3,10 @@ export default {
 
   currentFolioName:'',
   currentFolioID: '',
-  isPrevious:false,
-  isNext:false,
-  folioList:[]
+  currentFolioShortID: '',
+  hasPrevious:false,
+  hasNext:false,
+  nextFolioShortID:'',
+  previousFolioShortID:'',
+  folioIndex:[]
 };
