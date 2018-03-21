@@ -1,3 +1,4 @@
 export default {
-  transcriptionType: ['english']
+  transcriptionType: 'tc',
+  currentFolioID: ''
 };

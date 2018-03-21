@@ -18,7 +18,6 @@ class DiploMatic extends Component {
     this.document.load().then(
       (folio) => {
         this.setState({ ready: true });
-        console.log('Manifest loaded.');
       },
       (error) => {
         // TODO update UI

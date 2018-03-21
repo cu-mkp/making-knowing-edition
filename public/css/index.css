@@ -72,6 +72,14 @@ h1, h2, h3, h4 {
 m {
   color: #90a9c5; }
 
+#navigation {
+  position: Fixed;
+  top: 0;
+  right: 0;
+  background-color: blue;
+  width: 40rem;
+  height: 4.4rem; }
+
 /*!
 
 Split Pane v0.9.4
@@ -227,5 +235,17 @@ https://raw.github.com/shagstrom/split-pane/master/LICENSE
   40% {
     -webkit-transform: scale(1);
     transform: scale(1); } }
+figure {
+  padding: 0.3rem 0 0;
+  border-radius: 0.2rem;
+  margin: 0;
+  text-align: center; }
+
+figure.current {
+  background-color: rgba(7, 122, 255, 0.831); }
+
+.thumbnail-caption.current {
+  color: rgba(7, 122, 255, 0.831) !important;
+  font-weight: 900; }
 
 /*# sourceMappingURL=index.css.map */

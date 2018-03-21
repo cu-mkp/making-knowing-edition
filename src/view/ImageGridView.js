@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import './css/ImageGridView.css';
 
-class ImageGridView extends Component {
+class ImageGridView extends React.Component {
 
-  constructor (props) {
-    super();
+  constructor(props,context){
+	super(props,context);
+	this.generateThumbs = this.generateThumbs.bind(this);
     this.loadIncrement = 10;
     let thumbs = this.generateThumbs(props.document.folios);
     let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement : thumbs.length;
@@ -22,10 +24,13 @@ class ImageGridView extends Component {
   }
 
   generateThumbs (folios) {
+
     let thumbs = folios.map( (folio,index) => (
-      <li key={`thumb-${index}`} className="thumbnail" >
-        <figure><a id={folio.id} onClick={this.onClickThumb.bind(this,folio.id)}><img src={folio.image_thumbnail_url} alt={folio.name}/></a></figure>
-        <figcaption className="thumbnail-caption">{folio.name}</figcaption>
+      <li key={`thumb-${index}`} className="thumbnail">
+        <figure className={(folio.name===this.props.navigationState.currentFolio)?"current":""}><a id={folio.id} onClick={this.onClickThumb.bind(this,folio.id)}><img src={folio.image_thumbnail_url} alt={folio.name}/></a></figure>
+        <figcaption className={(folio.name===this.props.navigationState.currentFolio)?"thumbnail-caption current":"thumbnail-caption"}>
+			{(folio.name===this.props.navigationState.currentFolio)?("*"+folio.name):folio.name}
+		</figcaption>
       </li>
     ));
 
@@ -68,4 +73,11 @@ class ImageGridView extends Component {
   }
 }
 
-export default ImageGridView;
+
+function mapStateToProps(state) {
+	return {
+        navigationState: state.navigationState
+    };
+}
+
+export default connect(mapStateToProps)(ImageGridView);

@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import stuff from './stuffReducer';
+import navigationState from './navigationStateReducer';
 
 const rootReducer = combineReducers({
-  stuff
+  navigationState
 });
 
 export default rootReducer;

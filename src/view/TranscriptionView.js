@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import * as navigationStateActions from '../actions/navigationStateActions';
 import './css/TranscriptionView.css';
 import copyObject from '../lib/copyObject';
 
@@ -8,12 +10,14 @@ class TranscriptionView extends Component {
     super();
     this.gridBreakPoint = 640; // two column widths
     this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
-
     this.state = {};
-
+	this.isFolioLoaded=false;
+	this.navigationStateActions=navigationStateActions;
     props.folio.load().then(
       (folio) => {
-        this.layoutFolio(folio);
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio(folio.name));
+        this.isFolioLoaded=true;
+		this.forceUpdate();
       },
       (error) => {
         // TODO update UI
@@ -251,41 +255,55 @@ class TranscriptionView extends Component {
     };
   }
 
-  layoutFolio( folio ) {
-    let transcriptionData = {};
-    if( folio.transcription.layout === 'grid' ) {
-      transcriptionData = this.layoutGrid(folio.transcription.html);
-    } else if( folio.transcription.layout === 'margin' ) {
-      transcriptionData = this.layoutMargin(folio.transcription.html);
-    } else {
-      // no mode specified, pass on without any layout
-      transcriptionData = {
-        content: folio.transcription.html,
-        layout: ""
-      };
-    }
 
-    this.setState(transcriptionData);
-  }
 
-  render() {
-    let surfaceClass = "surface";
-    let style = {
-      height: this.props.viewHeight,
-      overflow: 'scroll'
-    };
+	// RENDER
+	render() {
 
-    // if there's enough horizontal space, enable grid mode
-    if( this.props.viewWidth >= this.gridBreakPoint ) {
-      surfaceClass += " grid-mode";
-      style.gridTemplateAreas = this.state.layout;
-    }
+		// Retrofit - we need to make sure the folio is fully cached before we try and render anything
+		if(!this.isFolioLoaded){
+			window.loadingModal_start();
+			return null;
+		}else{
+			window.loadingModal_stop();
+			// Transcription data depends on the type we're looking at
+			let thisTranscription=this.props.folio.transcription[this.props.navigationState.transcriptionType];
+			let transcriptionData = {};
+			if( thisTranscription.layout === 'grid' ) {
+			  transcriptionData = this.layoutGrid(thisTranscription.html);
+			} else if( thisTranscription.layout === 'margin' ) {
+			  transcriptionData = this.layoutMargin(thisTranscription.html);
+			} else {
+			  // no mode specified, pass on without any layout
+			  transcriptionData = {
+				content: thisTranscription.html,
+				layout: ""
+			  };
+			}
 
-    return (
-      <div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: this.state.content } } >
-      </div>
-    );
-  }
+			let surfaceClass = "surface";
+			let style = {
+				height: this.props.viewHeight,
+				overflow: 'scroll'
+			};
+
+			// if there's enough horizontal space, enable grid mode
+			if( this.props.viewWidth >= this.gridBreakPoint ) {
+				surfaceClass += " grid-mode";
+				style.gridTemplateAreas = transcriptionData.layout;
+			}
+			return (
+				<div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } >
+				</div>
+			);
+		}
+	}
 }
 
-export default TranscriptionView;
+function mapStateToProps(state) {
+	return {
+        navigationState: state.navigationState
+    };
+}
+
+export default connect(mapStateToProps)(TranscriptionView);
