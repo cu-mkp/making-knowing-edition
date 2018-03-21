@@ -15,7 +15,8 @@ class TranscriptionView extends Component {
 	this.navigationStateActions=navigationStateActions;
     props.folio.load().then(
       (folio) => {
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio(folio.name));
+		let payload = {id:folio.id,name:folio.name};
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio(payload));
         this.isFolioLoaded=true;
 		this.forceUpdate();
       },

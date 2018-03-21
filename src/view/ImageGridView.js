@@ -13,6 +13,9 @@ class ImageGridView extends React.Component {
     let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement : thumbs.length;
     let visibleThumbs = thumbs.slice(0,thumbCount);
     this.state = { thumbs: thumbs, visibleThumbs: visibleThumbs };
+	for(let idx=0;idx<props.document.folios.length;idx++){
+		console.log(props.document.folios[idx].id);
+	}
   }
 
   onClickThumb = (id, e) => {
@@ -27,9 +30,9 @@ class ImageGridView extends React.Component {
 
     let thumbs = folios.map( (folio,index) => (
       <li key={`thumb-${index}`} className="thumbnail">
-        <figure className={(folio.name===this.props.navigationState.currentFolio)?"current":""}><a id={folio.id} onClick={this.onClickThumb.bind(this,folio.id)}><img src={folio.image_thumbnail_url} alt={folio.name}/></a></figure>
-        <figcaption className={(folio.name===this.props.navigationState.currentFolio)?"thumbnail-caption current":"thumbnail-caption"}>
-			{(folio.name===this.props.navigationState.currentFolio)?("*"+folio.name):folio.name}
+        <figure className={(folio.id===this.props.navigationState.currentFolioID)?"current":""}><a id={folio.id} onClick={this.onClickThumb.bind(this,folio.id)}><img src={folio.image_thumbnail_url} alt={folio.name}/></a></figure>
+        <figcaption className={(folio.id===this.props.navigationState.currentFolioID)?"thumbnail-caption current":"thumbnail-caption"}>
+			{(folio.id===this.props.navigationState.currentFolioID)?("*"+folio.name):folio.name}
 		</figcaption>
       </li>
     ));

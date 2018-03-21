@@ -14,7 +14,8 @@ export default function navigationState(state = initialState, action) {
 
 		case CHANGE_CURRENT_FOLIO:
 			return Object.assign({}, state, {
-				currentFolio: action.payload
+				currentFolioID: action.payload.id,
+				currentFolioName: action.payload.name
 			})
 		default:
 			return state;

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as navigationStateActions from './actions/navigationStateActions';
-//import PropTypes from 'prop-types';
 
 class navigation extends React.Component {
 
@@ -15,11 +14,6 @@ class navigation extends React.Component {
 	changeType = function (event) {
 		this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
 	}
-
-
-    componentWillMount() {
-        //this.props.navigationStateActions.fetchtranscription();
-    }
 
     renderData(item) {
         return <div key={item.id}>{item.name}</div>;
@@ -44,7 +38,7 @@ class navigation extends React.Component {
 						<span data-id='tcn' onClick={this.changeType}>French (Standard)</span>
 	                </div>
 					<div>
-						<span>BnF Ms. Fr. 640 / Folios / {this.props.navigationState.currentFolio}</span>
+						<span>BnF Ms. Fr. 640 / Folios / {this.props.navigationState.currentFolioName}</span>
 						|| <span>(prev)</span><span>(next)</span>
 					</div>
 				</div>
@@ -52,12 +46,7 @@ class navigation extends React.Component {
         }
     }
 }
-/*
-navigation.propTypes = {
-    navigationStateActions: PropTypes.object,
-    transcription: PropTypes.array
-};
-*/
+
 function mapStateToProps(state) {
 	return {
         navigationState: state.navigationState

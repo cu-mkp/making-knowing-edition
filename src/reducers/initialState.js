@@ -1,4 +1,9 @@
 export default {
   transcriptionType: 'tc',
-  currentFolioID: ''
+
+  currentFolioName:'',
+  currentFolioID: '',
+  isPrevious:false,
+  isNext:false,
+  folioList:[]
 };
