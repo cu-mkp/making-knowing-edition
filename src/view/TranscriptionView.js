@@ -3,28 +3,34 @@ import {connect} from 'react-redux';
 import * as navigationStateActions from '../actions/navigationStateActions';
 import './css/TranscriptionView.css';
 import copyObject from '../lib/copyObject';
-
+import Navigation from '../Navigation';
 class TranscriptionView extends Component {
 
   constructor(props) {
     super();
     this.gridBreakPoint = 640; // two column widths
     this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
-    this.state = {};
-	this.isFolioLoaded=false;
+    this.state = {folio:[], isLoaded:false};
 	this.navigationStateActions=navigationStateActions;
-    props.folio.load().then(
-      (folio) => {
-		let payload = {id:folio.id,name:folio.name};
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio(payload));
-        this.isFolioLoaded=true;
-		this.forceUpdate();
-      },
-      (error) => {
-        // TODO update UI
-        console.log('Unable to load transcription: '+error);
-      }
-    );
+	window.loadingModal_stop();
+  }
+
+  // Refresh the content if there is an incoming change
+  componentWillReceiveProps(nextProps) {
+	  if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
+		  //console.log("Updating:"+nextProps.navigationState.currentFolioID);
+		  let newFolio = this.props.document.getFolio(nextProps.navigationState.currentFolioID);
+		  newFolio.load().then(
+	        (folio) => {
+				this.setState({folio:newFolio,isLoaded:true});
+	        },
+	        (error) => {
+	          // TODO update UI
+	          console.log('Unable to load transcription: '+error);
+			  this.forceUpdate();
+	        }
+	      );
+	  }
   }
 
   rowCodeToIndex( rowCode ) {
@@ -262,13 +268,19 @@ class TranscriptionView extends Component {
 	render() {
 
 		// Retrofit - we need to make sure the folio is fully cached before we try and render anything
-		if(!this.isFolioLoaded){
-			window.loadingModal_start();
-			return null;
+		if(!this.state.isLoaded){
+			return (
+				<div className="watermark">
+					<div className="watermark_contents"/>
+				</div>
+			);
 		}else{
-			window.loadingModal_stop();
+
+			//console.log("Rendering:" + this.state.folio.id);
+			//window.loadingModal_stop();
+
 			// Transcription data depends on the type we're looking at
-			let thisTranscription=this.props.folio.transcription[this.props.navigationState.transcriptionType];
+			let thisTranscription=this.state.folio.transcription[this.props.navigationState.transcriptionType];
 			let transcriptionData = {};
 			if( thisTranscription.layout === 'grid' ) {
 			  transcriptionData = this.layoutGrid(thisTranscription.html);
@@ -294,7 +306,10 @@ class TranscriptionView extends Component {
 				style.gridTemplateAreas = transcriptionData.layout;
 			}
 			return (
+				<div>
+				<Navigation/>
 				<div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } >
+				</div>
 				</div>
 			);
 		}

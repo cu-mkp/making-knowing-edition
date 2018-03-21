@@ -22,8 +22,9 @@ class navigation extends React.Component {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
-		console.log("Moving us to:"+event.currentTarget.dataset.id);
-		//this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
+
+		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:longID}));
 	}
 
     renderData(item) {

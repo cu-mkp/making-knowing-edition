@@ -237,7 +237,9 @@ class SplitPaneView extends Component {
   }
 
   openFolio(side, folioID, viewType) {
+	  console.log("Getting folio:"+folioID);
     let viewport = copyObject( this.state.viewports[side] );
+	viewport.document=this.props.document;
     viewport.folio = this.props.document.getFolio(folioID);
     viewport.viewType = viewType;
     this.updateViewport(viewport);

@@ -35,7 +35,7 @@ export default function navigationState(state = initialState, action) {
 			return Object.assign({}, state, {
 				currentFolioID: action.payload.id,
 				currentFolioShortID: shortID,
-				currentFolioName: action.payload.name,
+				currentFolioName: shortID,
 
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,

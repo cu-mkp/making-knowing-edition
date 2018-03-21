@@ -18,6 +18,7 @@ $color-highlight: rgb(104, 153, 201);
 $color-hover: rgba(104, 201, 201, 0.5);
 
 @import "base";
-@import "_split-pane";
+@import "split-pane";
 @import "spinner";
 @import "thumbnails";
+@import "watermark";

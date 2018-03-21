@@ -32,6 +32,7 @@ class SplitPaneViewport extends Component {
     if( this.state.viewType === 'ImageView') {
       return (
         <ImageView
+		  document={this.props.document}
           side={this.props.side}
           folio={this.state.folio}
           viewWidth={this.state.viewWidth}
@@ -44,6 +45,7 @@ class SplitPaneViewport extends Component {
     } else if( this.state.viewType === 'TranscriptionView' ) {
       return(
         <TranscriptionView
+		  document={this.props.document}
           side={this.props.side}
           folio={this.state.folio}
           viewWidth={this.state.viewWidth}
