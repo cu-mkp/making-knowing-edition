@@ -306,8 +306,8 @@ class TranscriptionView extends Component {
 				style.gridTemplateAreas = transcriptionData.layout;
 			}
 			return (
-				<div>
-					<Navigation/>
+				<div className="transcriptionViewComponent">
+					<Navigation context="transcription-view"/>
 					<div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } >
 				</div>
 				</div>

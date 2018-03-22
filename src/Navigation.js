@@ -39,23 +39,56 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-            return (
-				<div>
-	                <div className="">
 
-						<span data-id='tl' onClick={this.changeType}>English</span>
-						|
-						<span data-id='tc' onClick={this.changeType}>French (Original)</span>
-						|
-						<span data-id='tcn' onClick={this.changeType}>French (Standard)</span>
-	                </div>
-					<div>
-						<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/></span>
-						<span>BnF Ms. Fr. 640 / Folios / {this.props.navigationState.currentFolioName}</span>
-						<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}><Icon.ArrowCircleRight/></span>
-					</div>
-				</div>
-            )
+			switch (this.props.context) {
+
+				// Image view navigation
+				case 'image-view':
+					return (
+						<div className="navigationComponent">
+							<div>
+								<div className="breadcrumbs">
+									{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
+									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+								</div>
+								<div className="dropdown">
+									<button className="dropbtn">
+										Facsimile <span className="fa fa-caret-down"></span>
+									</button>
+								</div>
+							</div>
+						</div>
+					)
+
+				// Transcript view navigation
+				case 'transcription-view':
+				default:
+					return (
+						<div className="navigationComponent">
+							<div>
+								<div className="breadcrumbs">{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span></div>
+								<div className="dropdown">
+									<button className="dropbtn">
+										{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+									</button>
+									<div className="dropdown-content">
+										<span data-id='tl' onClick={this.changeType}>English Translation</span>
+										<span data-id='tc' onClick={this.changeType}>French Original</span>
+										<span data-id='tcn' onClick={this.changeType}>French Standard</span>
+									</div>
+								</div>
+							</div>
+							<div className="pageNavigation">
+								<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
+								<span className="folioName">Folio {this.props.navigationState.currentFolioName}</span>
+								<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							</div>
+						</div>
+					)
+
+			}
+
         }
     }
 }

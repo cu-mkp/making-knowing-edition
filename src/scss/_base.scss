@@ -1,5 +1,28 @@
 $header-height: 4rem;
 
+body {
+	overflow: hidden;
+}
+
+.transcriptionViewComponent {
+	position: relative;
+	top: 0.4rem;
+	left: -1rem;
+	margin: 0;
+	width: 100%;
+	overflow: scroll;
+	padding: 0 0 3rem;
+}
+
+.imageViewComponent {
+	position: relative;
+	top: 0.4rem;
+	left: 0.6rem;
+	margin: 0;
+	width: 100%;
+	padding: 0 0 3rem;
+}
+
 #header {
 	z-index: $z-index-ui;
 	position: fixed;
@@ -25,7 +48,6 @@ $header-height: 4rem;
 	font-weight: 300;
 	font-size: 0.8rem;
 	padding: 0.3rem 0 0 0.3rem;
-
 }
 
 #diplo-matic {
@@ -39,7 +61,10 @@ $header-height: 4rem;
 	line-height: 1.2rem;
 }
 
-h1,h2,h3,h4 {
+h1,
+h2,
+h3,
+h4 {
 	color: #000000b8;
 	font-family: 'OpenSans', sans-serif;
 	font-weight: 700;
@@ -55,9 +80,8 @@ h1,h2,h3,h4 {
 	bottom: 0;
 	width: 100vw;
 	margin: 0;
-	padding: 0;
 	color: white;
-	height: 1.5rem;
+	height: 3rem;
 	background-color: #656565;
 	font-family: 'OpenSans', sans-serif;
 	grid-area: header;
@@ -65,25 +89,31 @@ h1,h2,h3,h4 {
 	white-space: nowrap;
 }
 
+#footer .logos {
+	position: fixed;
+	right: 1rem;
+	bottom: 0.6rem;
+}
+
 #footer .copyright {
 	font-weight: 300;
 	font-size: 0.8rem;
-	padding: 0.1rem 0 0 0.3rem;
+	padding: 0.8rem 0 0 0.3rem;
 }
 
 m {
 	color: #90a9c5;
 }
 
-#navigation{
-  position:Fixed;
-  top:0;
-  right:0;
-  background-color:blue;
-  width:40rem;
-  height:4.4rem;
+#navigation {
+	position: Fixed;
+	top: 0;
+	right: 0;
+	background-color: blue;
+	width: 40rem;
+	height: 4.4rem;
 }
 
-.arrow.disabled{
-  opacity:0.5;
+.arrow.disabled {
+	opacity: 0.5;
 }

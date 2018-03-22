@@ -15,11 +15,14 @@ class ImageGridView extends React.Component {
 
 		// Store an ordered array of folio ids, used for next/prev navigation purposes later
 		let folioIndex = [];
+		let nameByID = {};
 		for(let idx=0;idx<props.document.folios.length;idx++){
 			let idOnly=props.document.folios[idx].id.substr(props.document.folios[idx].id.lastIndexOf('/')+1);
 			folioIndex.push(idOnly);
+			nameByID[idOnly]=props.document.folios[idx].name;
 		}
 		this.props.dispatch(this.navigationStateActions.updateFolioIndex(folioIndex));
+		this.props.dispatch(this.navigationStateActions.updateFolioNameIndex(nameByID));
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:props.document.folios[0].id}));
 	}
 
