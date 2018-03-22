@@ -7,35 +7,39 @@ import * as navigationStateActions from '../actions/navigationStateActions';
 class ImageGridView extends React.Component {
 
 	constructor(props,context){
+
 		super(props,context);
 		this.generateThumbs = this.generateThumbs.bind(this);
 		this.loadIncrement = 10;
 		this.state={thumbs:'',visibleThumbs:[]};
 		this.navigationStateActions=navigationStateActions;
 
+
+
 		// Store an ordered array of folio ids, used for next/prev navigation purposes later
-		let folioIndex = [];
-		let nameByID = {};
-		for(let idx=0;idx<props.document.folios.length;idx++){
-			let idOnly=props.document.folios[idx].id.substr(props.document.folios[idx].id.lastIndexOf('/')+1);
-			folioIndex.push(idOnly);
-			nameByID[idOnly]=props.document.folios[idx].name;
+		if(this.props.navigationState.folioIndex.length ===0){
+			console.log("Building index...");
+			let folioIndex = [];
+			let nameByID = {};
+			for(let idx=0;idx<props.document.folios.length;idx++){
+				let idOnly=props.document.folios[idx].id.substr(props.document.folios[idx].id.lastIndexOf('/')+1);
+				folioIndex.push(idOnly);
+				nameByID[idOnly]=props.document.folios[idx].name;
+			}
+			this.props.dispatch(this.navigationStateActions.updateFolioIndex(folioIndex));
+			this.props.dispatch(this.navigationStateActions.updateFolioNameIndex(nameByID));
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:props.document.folios[0].id}));
 		}
-		this.props.dispatch(this.navigationStateActions.updateFolioIndex(folioIndex));
-		this.props.dispatch(this.navigationStateActions.updateFolioNameIndex(nameByID));
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:props.document.folios[0].id}));
+
 	}
 
-
-	// Refresh the thumbnails if there is an incoming change
-	componentWillReceiveProps(nextProps) {
-		if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
-			let thumbs = this.generateThumbs(nextProps.navigationState.currentFolioID, nextProps.document.folios);
-			let thumbCount = (this.state.thumbs.length > this.loadIncrement) ? this.loadIncrement : this.state.thumbs.length;
-			let visibleThumbs = this.state.thumbs.slice(0,thumbCount);
-			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
-		}
+	componentWillMount(){
+		let thumbs = this.generateThumbs(this.props.navigationState.currentFolioID, this.props.document.folios);
+		let thumbCount = (this.state.thumbs.length > this.loadIncrement) ? this.loadIncrement : this.state.thumbs.length;
+		let visibleThumbs = this.state.thumbs.slice(0,thumbCount);
+		this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
 	}
+
 
   onClickThumb = (id, e) => {
   	this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:id}));
