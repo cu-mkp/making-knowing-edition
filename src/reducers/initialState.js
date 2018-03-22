@@ -1,7 +1,6 @@
 export default {
   transcriptionType: 'tc',
-
-
+  drawerMode:false,
   currentFolioName:'',
   currentFolioID: '',
   currentFolioShortID: '',

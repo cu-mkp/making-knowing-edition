@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import configureStore from './store/configureStore';
 
 import DiploMatic from './DiploMatic';
-import Navigation from './Navigation';
 
 // Store
 const store = configureStore();

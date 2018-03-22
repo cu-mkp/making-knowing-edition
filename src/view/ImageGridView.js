@@ -27,32 +27,23 @@ class ImageGridView extends React.Component {
 	// Refresh the thumbnails if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
-			//console.log("Now:"+nextProps.navigationState.currentFolioID);
 			let thumbs = this.generateThumbs(nextProps.navigationState.currentFolioID, nextProps.document.folios);
 			let thumbCount = (this.state.thumbs.length > this.loadIncrement) ? this.loadIncrement : this.state.thumbs.length;
 			let visibleThumbs = this.state.thumbs.slice(0,thumbCount);
 			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
-
-			/*
-			let splitPaneView = this.props.splitPaneView;
-			let side = this.props.side;
-			let otherSide = splitPaneView.otherSide(side);
-			splitPaneView.openFolio(side, nextProps.navigationState.currentFolioID, 'ImageView');
-			splitPaneView.openFolio(otherSide, nextProps.navigationState.currentFolioID, 'TranscriptionView');
-			*/
 		}
 	}
 
   onClickThumb = (id, e) => {
   	this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:id}));
-	/*
-	  console.log(id);
-    let splitPaneView = this.props.splitPaneView;
-    let side = this.props.side;
-    let otherSide = splitPaneView.otherSide(side);
-    splitPaneView.openFolio(side, id, 'ImageView');
-    splitPaneView.openFolio(otherSide, id, 'TranscriptionView');
-	*/
+
+	// If we're NOT in drawermode, replace this pane with imageView
+	if(!this.props.navigationState.drawerMode){
+		let splitPaneView = this.props.splitPaneView;
+	    let side = this.props.side;
+	    splitPaneView.openFolio(side, id, 'ImageView');
+
+	}
   }
 
   generateThumbs (currentID, folios) {
@@ -87,7 +78,7 @@ class ImageGridView extends React.Component {
   }
 
   render() {
-    let hidden = ( this.props.drawerMode && !this.props.drawerOpen ) ? "hidden" : "";
+    let hidden = ( this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "hidden" : "";
     let style = { height: this.props.viewHeight, overflow: 'scroll' };
 	let visibleThumbs=this.state.visibleThumbs;
 	if(visibleThumbs.constructor.toString().indexOf("Array") === -1){

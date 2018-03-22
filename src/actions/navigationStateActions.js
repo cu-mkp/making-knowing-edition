@@ -9,3 +9,6 @@ export function changeCurrentFolio(payload) {
 export function updateFolioIndex(payload){
 	return {type: allActions.UPDATE_FOLIO_INDEX, payload: payload};
 }
+export function setDrawerMode(payload){
+	return {type: allActions.SET_DRAWER_MODE, payload:payload};
+}

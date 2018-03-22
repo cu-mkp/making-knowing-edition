@@ -42,7 +42,7 @@ class navigation extends React.Component {
             return (
 				<div>
 	                <div className="">
-						<i>{this.props.navigationState.transcriptionType}</i><br/>
+
 						<span data-id='tl' onClick={this.changeType}>English</span>
 						|
 						<span data-id='tc' onClick={this.changeType}>French (Original)</span>

@@ -2,7 +2,8 @@ import initialState from './initialState';
 import {
 	CHANGE_TRANSCRIPTION_TYPE,
 	CHANGE_CURRENT_FOLIO,
-	UPDATE_FOLIO_INDEX
+	UPDATE_FOLIO_INDEX,
+	SET_DRAWER_MODE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
@@ -47,6 +48,11 @@ export default function navigationState(state = initialState, action) {
 		case UPDATE_FOLIO_INDEX:
 			return Object.assign({}, state, {
 				folioIndex: action.payload
+			})
+
+		case SET_DRAWER_MODE:
+			return Object.assign({}, state, {
+				drawerMode: action.payload
 			})
 
 		default:

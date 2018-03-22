@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
 import TranscriptionView from './TranscriptionView';
@@ -37,7 +38,7 @@ class SplitPaneViewport extends Component {
           folio={this.state.folio}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
-          drawerMode={this.state.drawerMode}
+          drawerMode={this.props.navigationState.drawerMode}
           drawerOpen={this.state.drawerOpen}
           splitPaneView={this.props.splitPaneView}
         />
@@ -50,7 +51,7 @@ class SplitPaneViewport extends Component {
           folio={this.state.folio}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
-          drawerMode={this.state.drawerMode}
+          drawerMode={this.props.navigationState.drawerMode}
           drawerOpen={this.state.drawerOpen}
           splitPaneView={this.props.splitPaneView}
         />
@@ -75,4 +76,9 @@ class SplitPaneViewport extends Component {
   }
 }
 
-export default SplitPaneViewport;
+function mapStateToProps(state) {
+	return {
+        navigationState: state.navigationState
+    };
+}
+export default connect(mapStateToProps)(SplitPaneViewport);
