@@ -7,13 +7,11 @@ import * as navigationStateActions from '../actions/navigationStateActions';
 class ImageGridView extends React.Component {
 
 	constructor(props,context){
-
 		super(props,context);
 		this.generateThumbs = this.generateThumbs.bind(this);
 		this.loadIncrement = 10;
 		this.state={thumbs:'',visibleThumbs:[]};
 		this.navigationStateActions=navigationStateActions;
-
 
 
 		// Store an ordered array of folio ids, used for next/prev navigation purposes later
@@ -34,24 +32,31 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-  	  if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
-		let thumbs = this.generateThumbs(nextProps.navigationState.currentFolioID, nextProps.document.folios);
+		if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
+			let thumbs = this.generateThumbs(nextProps.navigationState.currentFolioID, nextProps.document.folios);
+			let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
+			let visibleThumbs = thumbs.slice(0,thumbCount);
+			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
+		}
+	}
+
+	componentWillMount(){
+		let thumbs = this.generateThumbs(this.props.navigationState.currentFolioID, this.props.document.folios);
 		let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 		let visibleThumbs = thumbs.slice(0,thumbCount);
 		this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
 	}
-}
 
+	onClickThumb = (id, e) => {
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:id}));
 
-  onClickThumb = (id, e) => {
-  	this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:id}));
-	// If we're NOT in drawermode, replace this pane with imageView
-	if(!this.props.navigationState.drawerMode){
-		let splitPaneView = this.props.splitPaneView;
-	    let side = this.props.side;
-	    splitPaneView.openFolio(side, id, 'ImageView');
+		// If we're NOT in drawermode, replace this pane with imageView
+		if(!this.props.navigationState.drawerMode){
+			let splitPaneView = this.props.splitPaneView;
+			let side = this.props.side;
+			splitPaneView.openFolio(side, id, 'ImageView');
+		}
 	}
-  }
 
   generateThumbs (currentID, folios) {
     let thumbs = folios.map( (folio,index) => (

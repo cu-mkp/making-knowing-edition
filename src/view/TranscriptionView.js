@@ -308,8 +308,7 @@ class TranscriptionView extends Component {
 			return (
 				<div className="transcriptionViewComponent">
 					<Navigation context="transcription-view"/>
-					<div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } >
-				</div>
+					{/* <div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>*/}
 				</div>
 			);
 		}
