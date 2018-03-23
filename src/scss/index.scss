@@ -17,8 +17,13 @@ $z-index-ui: 10;
 
 @import "base";
 @import "globalNavigation";
-@import "split-pane";
+
 @import "spinner";
 @import "thumbnails";
 @import "watermark";
 @import "navigation";
+
+@import "imageGridView";
+@import "splitPaneView";
+@import "imageView";
+@import "imageZoomControl";

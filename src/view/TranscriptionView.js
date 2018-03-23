@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as navigationStateActions from '../actions/navigationStateActions';
-import './css/TranscriptionView.css';
 import copyObject from '../lib/copyObject';
 import Navigation from '../Navigation';
 class TranscriptionView extends Component {
@@ -308,7 +307,7 @@ class TranscriptionView extends Component {
 			return (
 				<div className="transcriptionViewComponent">
 					<Navigation context="transcription-view"/>
-					{/* <div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>*/}
+					<div className="transcriptContent"><div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div></div>
 				</div>
 			);
 		}

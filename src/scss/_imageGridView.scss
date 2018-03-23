@@ -1,9 +1,9 @@
 #image-grid-view {
   grid-area: image_viewer;
-  background: black;
-  font-family: 'Roboto', sans-serif;
-  font-size: 10pt;
-  margin-left: 10px
+  background-color: #000000;
+  font-size: .8rem;
+  overflow:scroll;
+  height:100vh;
 }
 
 #image-grid-view > ul {
@@ -11,6 +11,8 @@
   flex-wrap: wrap;
   list-style: none;
   padding-left: 0px;
+    margin:1.5rem 0 8rem 1.5rem;
+
 }
 
 #image-grid-view > ul > li {

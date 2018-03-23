@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import React, { Component } from 'react';
 import Navigation from '../Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
-import './css/ImageView.css';
 class ImageView extends Component {
 
 	// Refresh the content if there is an incoming change

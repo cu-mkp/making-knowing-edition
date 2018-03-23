@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* Normalize first */
 @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css");
 /*  Google fonts */
@@ -10,24 +9,31 @@
 @import url("https://use.fontawesome.com/releases/v5.0.8/css/all.css");
 /* Globals */
 body {
+  padding: 0;
+  margin: 0;
   overflow: hidden; }
+
+::-webkit-scrollbar {
+  width: 0px;
+  /* remove scrollbar space */
+  background: transparent;
+  /* optional: just make scrollbar invisible */ }
 
 .transcriptionViewComponent {
   position: relative;
-  top: 0.4rem;
-  left: -1rem;
+  top: 0rem;
+  left: 0;
   margin: 0;
-  width: 100%;
-  overflow: scroll;
-  padding: 0 0 3rem; }
+  width: calc(100% + 1.8rem);
+  /*This is really weird, but something (splitpane?) is injecting a margin)*/
+  padding: 0 1rem 3rem; }
 
 .imageViewComponent {
   position: relative;
-  top: 0.4rem;
-  left: 0.6rem;
+  padding: 0;
   margin: 0;
   width: 100%;
-  padding: 0 0 3rem; }
+  height: 100vh; }
 
 #header {
   z-index: 10;
@@ -53,15 +59,16 @@ body {
   font-size: 0.8rem;
   padding: 0.3rem 0 0 0.3rem; }
 
-#diplo-matic {
-  padding: 4rem 0 0;
-  margin: 0 0 0 -.6rem;
-  /* This compensates for something inline that should be removed */
+#app {
+  position: fixed;
+  padding: 0;
+  top: 4.4rem;
   width: 100vw;
-  height: calc(100vh-$header-height);
+  height: calc(100vh - $chrome-height);
   font-family: 'OpenSans', sans-serif;
   font-size: 0.8rem;
-  line-height: 1.2rem; }
+  line-height: 1.2rem;
+  overflow: hidden; }
 
 h1,
 h2,
@@ -76,7 +83,7 @@ h4 {
   text-align: center; }
 
 #footer {
-  z-index: 10;
+  z-index: 9000;
   position: fixed;
   bottom: 0;
   width: 100vw;
@@ -113,6 +120,9 @@ m {
 .arrow.disabled {
   opacity: 0.5; }
 
+.transcriptContent {
+  margin: 7rem 0 0 0; }
+
 #globalNavigation {
   font-size: 0.9rem;
   font-weight: 600;
@@ -134,116 +144,6 @@ m {
   border: 1px solid #00000063;
   color: #756c6c;
   background-color: #D8D8D8; }
-
-/*!
-
-Split Pane v0.9.4
-
-Copyright (c) 2014 - 2016 Simon Hagström
-
-Released under the MIT license
-https://raw.github.com/shagstrom/split-pane/master/LICENSE
-
-*/
-.split-pane {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  z-index: 0; }
-
-.split-pane.fixed-bottom > .split-pane-component,
-.split-pane.fixed-top > .split-pane-component,
-.split-pane.horizontal-percent > .split-pane-component {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  overflow: auto;
-  top: auto;
-  bottom: 0;
-  z-index: 1; }
-
-.split-pane.fixed-bottom > .split-pane-component:first-child,
-.split-pane.fixed-top > .split-pane-component:first-child,
-.split-pane.horizontal-percent > .split-pane-component:first-child {
-  top: 0;
-  bottom: auto; }
-
-.split-pane.fixed-bottom > .split-pane-divider,
-.split-pane.fixed-top > .split-pane-divider,
-.split-pane.horizontal-percent > .split-pane-divider {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  cursor: row-resize;
-  z-index: 2; }
-
-.split-pane.fixed-bottom > .split-pane-divider > .split-pane-divider-inner,
-.split-pane.fixed-top > .split-pane-divider > .split-pane-divider-inner,
-.split-pane.horizontal-percent > .split-pane-divider > .split-pane-divider-inner {
-  position: absolute;
-  top: -5px;
-  left: 0;
-  box-sizing: content-box;
-  width: 100%;
-  height: 100%;
-  padding: 5px 0; }
-
-.split-pane.fixed-left > .split-pane-component,
-.split-pane.fixed-right > .split-pane-component,
-.split-pane.vertical-percent > .split-pane-component {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  overflow: auto;
-  left: auto;
-  right: 0;
-  z-index: 1; }
-
-.split-pane.fixed-left > .split-pane-component:first-child,
-.split-pane.fixed-right > .split-pane-component:first-child,
-.split-pane.vertical-percent > .split-pane-component:first-child {
-  left: 0;
-  right: auto; }
-
-.split-pane.fixed-left > .split-pane-divider,
-.split-pane.fixed-right > .split-pane-divider,
-.split-pane.vertical-percent > .split-pane-divider {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  cursor: col-resize;
-  z-index: 2; }
-
-.split-pane.fixed-left > .split-pane-divider > .split-pane-divider-inner,
-.split-pane.fixed-right > .split-pane-divider > .split-pane-divider-inner,
-.split-pane.vertical-percent > .split-pane-divider > .split-pane-divider-inner {
-  position: absolute;
-  top: 0;
-  left: -5px;
-  box-sizing: content-box;
-  width: 100%;
-  height: 100%;
-  padding: 0 5px; }
-
-.split-pane-resize-shim {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  display: none; }
-
-.split-pane.fixed-left > .split-pane-resize-shim,
-.split-pane.fixed-right > .split-pane-resize-shim,
-.split-pane.vertical-percent > .split-pane-resize-shim {
-  cursor: col-resize; }
-
-.split-pane.fixed-bottom > .split-pane-resize-shim,
-.split-pane.fixed-top > .split-pane-resize-shim,
-.split-pane.horizontal-percent > .split-pane-resize-shim {
-  cursor: row-resize; }
 
 #loadingStateModal {
   position: fixed;
@@ -317,24 +217,29 @@ figure.current {
   background-repeat: no-repeat;
   margin: auto auto auto auto; }
 
-/* NAVIGATION */
 .navigationComponent {
-  position: relative;
-  min-width: 50rem;
+  z-index: 900;
+  position: absolute;
   width: 100%;
+  min-width: 35rem;
+  white-space: nowrap;
   height: 5rem;
-  padding: 0.3rem 0 1rem;
-  text-align: center;
-  margin: 0; }
+  padding: 0.3rem 1rem 1rem;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .imageViewComponent .navigationComponent {
-  background-color: black;
   color: white;
   height: 2rem; }
 
 .transcriptionViewComponent .navigationComponent {
-  background-color: white;
-  color: #4A4A4A; }
+  z-index: 9000;
+  left: -1.8rem;
+  color: #4A4A4A;
+  width: calc(100% - 2.5rem); }
 
 .breadcrumbs {
   position: relative;
@@ -348,23 +253,31 @@ figure.current {
 .breadcrumbs .folioName {
   font-weight: 900; }
 
-.pageNavigation {
-  width: 100%;
-  white-space: nowrap;
+.pageNavigation_container {
   position: relative;
+  width: calc(100% - 1.7rem);
+  text-align: center;
   top: 3rem;
   font-size: 1.2rem;
   font-weight: 700; }
 
-.pageNavigation .folioName {
-  position: relative;
-  top: -.2rem;
-  color: #4A4A4A; }
+/*# sourceMappingURL=index.css.map */
+.pageNavigation {
+  padding: 0;
+  margin: 0 auto 0 auto;
+  display: inline-block;
+  top: 10rem;
+  left: 0; }
 
 .pageNavigation .arrow {
   font-size: 1.8rem;
   color: #4A4A4A;
   margin: 1rem 1rem 0; }
+
+.pageNavigation .folioName {
+  position: relative;
+  top: -.2rem;
+  color: #4A4A4A; }
 
 /* The dropdown container */
 .dropdown {
@@ -379,13 +292,14 @@ figure.current {
   font-weight: 900;
   border: none;
   outline: none;
-  padding: 14px 16px;
+  padding: 14px 16px 14px 16px;
   background-color: inherit;
   font-family: inherit;
-  margin: 0; }
+  margin: 0 1.2rem 0 0; }
 
 .imageViewComponent .dropbtn {
-  color: white; }
+  color: white;
+  height: 2rem; }
 
 .dropdown:hover .dropbtn,
 .navbar a:hover {
@@ -418,5 +332,108 @@ figure.current {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block; }
+
+#image-grid-view {
+  grid-area: image_viewer;
+  background-color: #000000;
+  font-size: .8rem;
+  overflow: scroll;
+  height: 100vh; }
+
+#image-grid-view > ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0px;
+  margin: 1.5rem 0 8rem 1.5rem; }
+
+#image-grid-view > ul > li {
+  margin-bottom: 20px;
+  width: 150px;
+  height: 220px; }
+
+#image-grid-view > ul > li > figure {
+  margin: 8px; }
+
+#image-grid-view > ul > li > figure:hover {
+  border: 2px #eee solid;
+  margin: 6px; }
+
+#image-grid-view > ul > li > .thumbnail-caption {
+  text-align: center;
+  color: white; }
+
+.hidden {
+  display: none; }
+
+.split-pane-view {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-areas: "image_viewer divider transcription"; }
+
+.split-pane-view > .divider {
+  grid-area: divider;
+  width: .2rem;
+  background: #BBB;
+  cursor: ew-resize;
+  display: flex; }
+
+.split-pane-view > .divider > .drawer-button {
+  align-self: center;
+  align: center;
+  cursor: auto; }
+
+.split-pane-view > .divider > .drawer-button:hover {
+  color: white; }
+
+.split-pane-view > .divider > .hidden {
+  display: none; }
+
+#image-view-seadragon {
+  width: 100%;
+  height: 100%;
+  grid-area: image_viewer;
+  background: black; }
+
+.ImageZoomControl {
+  position: absolute;
+  z-index: 1;
+  top: 4rem;
+  left: 2rem;
+  color: white;
+  width: 1rem;
+  list-style: none;
+  background: #4A4A4A;
+  opacity: 0.8;
+  margin: 0;
+  padding: .4rem 1rem 1rem .5rem;
+  border-radius: 0.3rem; }
+
+.ImageZoomControl > li {
+  color: #E0E0E0; }
+
+.ImageZoomControl > li > .zoom-in {
+  margin-top: 8px; }
+
+.ImageZoomControl > li:hover {
+  color: white; }
+
+.ImageZoomControl > li > .zoom-3 {
+  margin-top: 8px; }
+
+.ImageZoomControl > li > .zoom-2 {
+  margin-top: 8px;
+  margin-left: 5px; }
+
+.ImageZoomControl > li > .zoom-1 {
+  margin-top: 8px;
+  margin-left: 7px; }
+
+.ImageZoomControl > li > .zoom-out {
+  margin-top: 8px; }
+
+.ImageZoomControl > li > .zoom-grid {
+  margin-top: 30px; }
 
 /*# sourceMappingURL=index.css.map */

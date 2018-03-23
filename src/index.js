@@ -8,4 +8,4 @@ import DiploMatic from './DiploMatic';
 // Store
 const store = configureStore();
 
-ReactDOM.render(<Provider store={store}><DiploMatic /></Provider>, document.getElementById('diplo-matic'));
+ReactDOM.render(<Provider store={store}><DiploMatic /></Provider>, document.getElementById('app'));

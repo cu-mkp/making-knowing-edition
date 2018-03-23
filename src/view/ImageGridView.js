@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import './css/ImageGridView.css';
 import * as navigationStateActions from '../actions/navigationStateActions';
 
 class ImageGridView extends React.Component {
@@ -91,13 +90,12 @@ class ImageGridView extends React.Component {
 
   render() {
     let hidden = ( this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "hidden" : "";
-    let style = { height: this.props.viewHeight, overflow: 'scroll' };
 	let visibleThumbs=this.state.visibleThumbs;
 	if(visibleThumbs.constructor.toString().indexOf("Array") === -1){
 		visibleThumbs=[];
 	}
     return (
-      <div id='image-grid-view' className={hidden} style={style}>
+      <div id='image-grid-view' className={hidden}>
         <InfiniteScroll
           element = 'ul'
           loadMore={this.moreThumbs}

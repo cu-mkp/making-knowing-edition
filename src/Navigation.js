@@ -13,6 +13,7 @@ class navigation extends React.Component {
 		this.navigationStateActions=navigationStateActions;
 	}
 
+
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
@@ -32,6 +33,7 @@ class navigation extends React.Component {
     }
 
     render() {
+
         if(!this.props.navigationState){
             return (
                 <div>
@@ -79,10 +81,12 @@ class navigation extends React.Component {
 									</div>
 								</div>
 							</div>
-							<div className="pageNavigation">
-								<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
-								<span className="folioName">Folio {this.props.navigationState.currentFolioName}</span>
-								<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							<div className="pageNavigation_container">
+								<div className="pageNavigation">
+									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
+									<span className="folioName">Folio {this.props.navigationState.currentFolioName}</span>
+									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+								</div>
 							</div>
 						</div>
 					)

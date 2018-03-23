@@ -9,10 +9,14 @@
 
 	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
 	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+
+	<!-- Jquery: used by splitpane -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+	<!-- Global loading-modal, exists here so it can be invoked prior to SPA build -->
 	<script src="%PUBLIC_URL%/js/loadingModal.js"></script>
 
-	<!-- FIXME: This is the end result of a sass build, I haven't bothered to integrate it into create-react-app yet, just run "build" in src --->
+	<!-- FIXME: This is the end result of a sass build, I haven't bothered to integrate it into create-react-app yet, to update run "build" in src --->
 	<link href="css/index.css" rel="stylesheet">
 </head>
 
@@ -30,7 +34,7 @@
       <h1>You need to enable JavaScript to run this app.</h1>
     </noscript>
 
-	<!-- Static header -->
+	<!-- Static header-->
 	<div id="header">
 		<div class="title">The Making and Knowing Project</div>
 		<div class="tagline">Intersections of Craft Making and Scientific Knowing</div>
@@ -45,17 +49,16 @@
 		</div>
 	</div>
 
-	<!-- HERE: This is the mountpoint for the react app -->
-	<div id="diplo-matic"></div>
+	<!-- SPA: This is the mountpoint for the react app -->
+	<div id="app"></div>
 
-	<!-- Static footer -->
+	<!-- Static footer-->
 	<div id="footer">
 		<div class="copyright">&copy; The Making and Knowing Project</div>
 		<div class="logos">
 			<img src="img/logo_columbia.png">
 			<img src="img/logo_center.png">
 		</div>
-	</div>
 	</div>
 </body>
 
