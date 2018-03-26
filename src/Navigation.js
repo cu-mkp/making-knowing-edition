@@ -9,6 +9,7 @@ class navigation extends React.Component {
 	constructor(props,context){
 		super(props,context);
 		this.changeType = this.changeType.bind(this);
+		this.changeLockmode = this.changeLockmode.bind(this);
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
 		this.navigationStateActions=navigationStateActions;
 	}
@@ -17,6 +18,10 @@ class navigation extends React.Component {
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
+	}
+
+	changeLockmode = function(event){
+		this.props.dispatch(this.navigationStateActions.setLinkedMode(!this.props.navigationState.linkedMode));
 	}
 
 	changeCurrentFolio = function(event){
@@ -50,14 +55,21 @@ class navigation extends React.Component {
 						<div className="navigationComponent">
 							<div>
 								<div className="breadcrumbs">
+									<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>&nbsp;
 									{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
 									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
 									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 								</div>
 								<div className="dropdown">
 									<button className="dropbtn">
-										Facsimile <span className="fa fa-caret-down"></span>
+										{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
 									</button>
+									<div className="dropdown-content">
+										<span data-id='tl' onClick={this.changeType}>English Translation</span>
+										<span data-id='tc' onClick={this.changeType}>French Original</span>
+										<span data-id='tcn' onClick={this.changeType}>French Standard</span>
+										<span data-id='fascimile' onClick={this.changeType}>Facsimile</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -69,7 +81,10 @@ class navigation extends React.Component {
 					return (
 						<div className="navigationComponent">
 							<div>
-								<div className="breadcrumbs">{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span></div>
+								<div className="breadcrumbs">
+									<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>&nbsp;
+									{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
+								</div>
 								<div className="dropdown">
 									<button className="dropbtn">
 										{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
@@ -78,6 +93,7 @@ class navigation extends React.Component {
 										<span data-id='tl' onClick={this.changeType}>English Translation</span>
 										<span data-id='tc' onClick={this.changeType}>French Original</span>
 										<span data-id='tcn' onClick={this.changeType}>French Standard</span>
+										<span data-id='fascimile' onClick={this.changeType}>Facsimile</span>
 									</div>
 								</div>
 							</div>

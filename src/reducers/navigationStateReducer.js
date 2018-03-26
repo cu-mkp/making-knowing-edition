@@ -4,7 +4,8 @@ import {
 	CHANGE_CURRENT_FOLIO,
 	UPDATE_FOLIO_INDEX,
 	UPDATE_FOLIO_NAME_INDEX,
-	SET_DRAWER_MODE
+	SET_DRAWER_MODE,
+	SET_LINKED_MODE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
@@ -70,6 +71,11 @@ export default function navigationState(state = initialState, action) {
 		case SET_DRAWER_MODE:
 			return Object.assign({}, state, {
 				drawerMode: action.payload
+			})
+
+		case SET_LINKED_MODE:
+			return Object.assign({}, state, {
+				linkedMode: action.payload
 			})
 
 		default:

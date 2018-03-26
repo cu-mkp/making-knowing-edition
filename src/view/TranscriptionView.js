@@ -6,7 +6,7 @@ import Navigation from '../Navigation';
 class TranscriptionView extends Component {
 
   constructor(props) {
-    super();
+    super(props);
     this.gridBreakPoint = 640; // two column widths
     this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
     this.state = {folio:[], isLoaded:false};
@@ -279,35 +279,43 @@ class TranscriptionView extends Component {
 			//window.loadingModal_stop();
 
 			// Transcription data depends on the type we're looking at
-			let thisTranscription=this.state.folio.transcription[this.props.navigationState.transcriptionType];
 			let transcriptionData = {};
+			let thisTranscription=this.state.folio.transcription[this.props.navigationState.transcriptionType];
+
+			// Grid layout
 			if( thisTranscription.layout === 'grid' ) {
-			  transcriptionData = this.layoutGrid(thisTranscription.html);
+				transcriptionData = this.layoutGrid(thisTranscription.html);
+
+			// Margin layout
 			} else if( thisTranscription.layout === 'margin' ) {
-			  transcriptionData = this.layoutMargin(thisTranscription.html);
+				transcriptionData = this.layoutMargin(thisTranscription.html);
+
+			// None specified, pass on without any layout
 			} else {
-			  // no mode specified, pass on without any layout
-			  transcriptionData = {
-				content: thisTranscription.html,
-				layout: ""
-			  };
+				transcriptionData = {
+					content: thisTranscription.html,
+					layout: ""
+				};
 			}
 
 			let surfaceClass = "surface";
 			let style = {
-				height: this.props.viewHeight,
-				overflow: 'scroll'
-			};
+		      height: this.props.viewHeight,
+		      overflow: 'scroll'
+		    };
 
 			// if there's enough horizontal space, enable grid mode
-			if( this.props.viewWidth >= this.gridBreakPoint ) {
+			if(this.props.viewWidth >= this.gridBreakPoint) {
 				surfaceClass += " grid-mode";
 				style.gridTemplateAreas = transcriptionData.layout;
 			}
+
 			return (
 				<div className="transcriptionViewComponent">
 					<Navigation context="transcription-view"/>
-					<div className="transcriptContent"><div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div></div>
+					<div className="transcriptContent">
+						<div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
+					</div>
 				</div>
 			);
 		}

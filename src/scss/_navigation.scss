@@ -1,7 +1,7 @@
 .navigationComponent {
 	z-index: 900;
 	position: absolute;
-	width:100%;
+	width: 100%;
 	min-width: 35rem;
 	white-space: nowrap;
 	height: 5rem;
@@ -20,9 +20,10 @@
 
 .transcriptionViewComponent .navigationComponent {
 	z-index: 9000;
-	left: -1.8rem;
+	left: -1rem;
 	color: #4A4A4A;
-	width: calc(100% - 2.5rem);
+	width: calc(100% - 5rem);
+	border: 1px solid blue;
 }
 
 .breadcrumbs {
@@ -38,23 +39,22 @@
 .breadcrumbs .folioName {
 	font-weight: 900;
 }
-.pageNavigation_container{
-	position:relative;
-  width: calc(100% - 1.7rem);
 
-  text-align:center;
-  	top: 3rem;
+.pageNavigation_container {
+	position: relative;
+	width: calc(100% - 1.7rem);
+	text-align: center;
+	top: 3rem;
 	font-size: 1.2rem;
 	font-weight: 700;
- }
+}
 
-/*# sourceMappingURL=index.css.map */
-.pageNavigation{
-  padding:0;
-  margin:0 auto 0 auto;
-  display:inline-block;
-  top:10rem;
-  left:0;
+.pageNavigation {
+	padding: 0;
+	margin: 0 auto;
+	display: inline-block;
+	top: 10rem;
+	left: 0;
 }
 
 .pageNavigation .arrow {
@@ -68,8 +68,6 @@
 	top: -.2rem;
 	color: #4A4A4A;
 }
-
-
 /* The dropdown container */
 .dropdown {
 	float: right;
@@ -83,7 +81,7 @@
 	font-weight: 900;
 	border: none;
 	outline: none;
-	padding: 14px 16px 14px 16px;
+	padding: 14px 16px;
 	background-color: inherit;
 	font-family: inherit;
 	margin: 0 1.2rem 0 0;
@@ -91,7 +89,7 @@
 
 .imageViewComponent .dropbtn {
 	color: white;
-	height:2rem;
+	height: 2rem;
 }
 
 .dropdown:hover .dropbtn,

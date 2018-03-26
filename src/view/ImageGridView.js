@@ -15,7 +15,6 @@ class ImageGridView extends React.Component {
 
 		// Store an ordered array of folio ids, used for next/prev navigation purposes later
 		if(this.props.navigationState.folioIndex.length ===0){
-			console.log("Building index...");
 			let folioIndex = [];
 			let nameByID = {};
 			for(let idx=0;idx<props.document.folios.length;idx++){

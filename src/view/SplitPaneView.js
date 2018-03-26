@@ -12,6 +12,8 @@ class SplitPaneView extends Component {
 
 		this.navigationStateActions = navigationStateActions;
 
+		this.righPaneMinWidth=200;
+
 		this.splitFraction = 0.5;
 		this.dividerWidth = 32;
 		this.minWindowSize = 768;
@@ -68,22 +70,34 @@ class SplitPaneView extends Component {
 		this.dragging = true;
 	}
 
+
+
 	onDrag = (e) => {
 		if (this.dragging) {
-			// calculate the size of the left and right panes based on viewport width.
-			let whole = window.innerWidth - this.dividerWidth;
-			let leftViewport = copyObject(this.state.viewports['left']);
-			let rightViewport = copyObject(this.state.viewports['right']);
-			leftViewport.viewWidth = e.clientX - this.dividerWidth / 2;
-			rightViewport.viewWidth = whole - leftViewport.viewWidth;
+			this.updateSizes(e.clientX);
+		}
+	}
+	updateSizes(clientX) {
 
+		// calculate the size of the left and right panes based on viewport width.
+		let whole = window.innerWidth - this.dividerWidth;
+		let leftViewport = copyObject(this.state.viewports['left']);
+		let rightViewport = copyObject(this.state.viewports['right']);
+		leftViewport.viewWidth = clientX - this.dividerWidth / 2;
+		rightViewport.viewWidth = whole - leftViewport.viewWidth;
+
+		// Actually make the updates
+		if(rightViewport.viewWidth > this.righPaneMinWidth){
+			console.log(rightViewport.viewWidth);
 			this.updateDrawerMode(leftViewport);
 			this.updateDrawerMode(rightViewport);
-
 			this.splitFraction = (whole === 0) ? 0.0 : leftViewport.viewWidth / whole;
 			this.positionDivider();
 		}
 	}
+
+
+
 
 	onResize = (e) => {
 		let leftViewport = copyObject(this.state.viewports['left']);
@@ -216,9 +230,11 @@ class SplitPaneView extends Component {
 	}
 
 	positionDivider() {
+
 		let drawer = this.getDrawerViewport();
 		let style = copyObject(this.state.style);
 
+	
 		if (drawer) {
 			if (drawer.viewportName === 'left') {
 				style.gridTemplateColumns = `${drawer.drawerWidth}px ${this.dividerWidth}px 1fr`;
@@ -232,11 +248,13 @@ class SplitPaneView extends Component {
 			var right = 1.0 - left;
 			style.gridTemplateColumns = `${left}fr ${this.dividerWidth}px ${right}fr`;
 		}
-
+		console.log("Left:" +left);
 		this.setState({
 			style: style
 		});
 	}
+
+
 
 	componentDidMount() {
 		// if initial window size is too small, collapse left viewport
@@ -279,9 +297,11 @@ class SplitPaneView extends Component {
 			return `${side}-${viewport.viewType}-${viewport.folio.id}`;
 		}
 	}
+	componentWillMount(){
+		this.updateSizes((window.innerWidth/2));
+	}
 
 	render() {
-
 		let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
 		let drawerButtonClass = this.state.drawerButtonVisible ? 'drawer-button' : 'drawer-button hidden';
 		let leftViewport = this.state.viewports['left'];

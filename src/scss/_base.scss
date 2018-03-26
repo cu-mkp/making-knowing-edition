@@ -13,14 +13,7 @@ body {
     background: transparent;  /* optional: just make scrollbar invisible */
 }
 
-.transcriptionViewComponent {
-	position: relative;
-	top: 0rem;
-	left:0;
-	margin: 0;
-	width: calc(100% + 1.8rem); /*This is really weird, but something (splitpane?) is injecting a margin)*/
-	padding: 0 1rem 3rem;
-}
+
 
 .imageViewComponent {
 	position: relative;
@@ -42,7 +35,6 @@ body {
 	grid-area: header;
 	padding: 0.4rem 0 0 1rem;
 	white-space: nowrap;
-	border-radius: 0 0 0 0.3rem;
 }
 
 #header .title {
@@ -78,7 +70,6 @@ h4 {
 	padding: 0;
 	margin: 0 0 0.3rem;
 	width: 23rem;
-	text-align: center;
 }
 
 #footer {
@@ -123,9 +114,4 @@ m {
 
 .arrow.disabled {
 	opacity: 0.5;
-}
-
-
-.transcriptContent{
-  margin:7rem 0 0 0;
 }

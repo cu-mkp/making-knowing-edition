@@ -15,3 +15,6 @@ export function updateFolioNameIndex(payload){
 export function setDrawerMode(payload){
 	return {type: allActions.SET_DRAWER_MODE, payload:payload};
 }
+export function setLinkedMode(payload){
+	return {type: allActions.SET_LINKED_MODE, payload:payload};
+}
