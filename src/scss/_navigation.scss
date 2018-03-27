@@ -1,104 +1,68 @@
+
 .navigationComponent {
-	// z-index: 900;
-	// position: absolute;
-	width: 100%;
-	// min-width: 35rem;
+	position: absolute;
+	height: 2rem;
 	white-space: nowrap;
-	height: 5rem;
+	z-index: 900;
+	white-space: nowrap;
 	padding: 0.3rem 1rem 1rem;
 	margin: 0;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	border: 1px green dotted;
 }
 
 .imageViewComponent .navigationComponent {
 	color: white;
-	height: 2rem;
+}
+.transcriptionViewComponent .navigationComponent{
+  background-color:#ffffff;
 }
 
-// .navigationComponent {
-// 	z-index: 9000;
-// 	left: -1rem;
-// 	color: #4A4A4A;
-// 	width: calc(100% - 5rem);
-// 	border: 1px solid blue;
-// }
-
 .breadcrumbs {
-	position: relative;
-	top: 0.8rem;
-	height: 2rem;
+	padding: 0.8rem 0 0;
 	float: left;
-	font-size: 0.8rem;
-	padding: 0 0 0 2rem;
-	margin: auto;
 }
 
 .breadcrumbs .folioName {
 	font-weight: 900;
 }
-
-.pageNavigation_container {
-	position: relative;
-	width: calc(100% - 1.7rem);
-	text-align: center;
-	top: 3rem;
-	font-size: 1.2rem;
-	font-weight: 700;
-}
-
-.pageNavigation {
-	padding: 0;
-	margin: 0 auto;
-	display: inline-block;
-	top: 10rem;
-	left: 0;
-}
-
-.pageNavigation .arrow {
-	font-size: 1.8rem;
-	color: #4A4A4A;
-	margin: 1rem 1rem 0;
-}
-
-.pageNavigation .folioName {
-	position: relative;
-	top: -.2rem;
-	color: #4A4A4A;
-}
 /* The dropdown container */
 .dropdown {
-	float: right;
 	overflow: hidden;
 }
 /* Dropdown button */
 .dropdown .dropbtn {
+	float:right;
+	height: 2.5rem;
+	position: relative;
+	top: 0.1rem;
 	width: 12rem;
-	color: #4A4A4A;
 	font-size: 0.8rem;
 	font-weight: 900;
-	border: none;
 	outline: none;
-	padding: 14px 16px;
+	padding: 0;
 	background-color: inherit;
 	font-family: inherit;
-	margin: 0 1.2rem 0 0;
+	margin: 0 0 0 1rem;
+	border: 0;
+	text-align: center;
+	color: black;
 }
 
 .imageViewComponent .dropbtn {
 	color: white;
-	height: 2rem;
 }
 
-.dropdown:hover .dropbtn,
-.navbar a:hover {
-	color: white;
-	background-color: #4A4A4A;
+.dropbtn:hover {
+	background-color: #9E9E9E;
+	color: black;
 }
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+	margin: 0 0 0 1rem;
 	width: 12rem;
 	display: none;
 	position: absolute;

@@ -1,40 +1,39 @@
 #image-grid-view {
-  grid-area: image_viewer;
-  background-color: #000000;
-  font-size: .8rem;
-  overflow:scroll;
-  height:100vh;
+	grid-area: image_viewer;
+	background-color: #000000;
+	font-size: 0.8rem;
+	overflow: scroll;
+	height: 100vh;
 }
 
 #image-grid-view > ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left: 0px;
-    margin:1.5rem 0 8rem 1.5rem;
-
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	padding-left: 0;
+	margin: 1.5rem 0 8rem 1.5rem;
 }
 
 #image-grid-view > ul > li {
-  margin-bottom: 20px;
-  width: 150px;
-  height: 220px;
+	margin-bottom: 20px;
+	width: 150px;
+	height: 220px;
 }
 
 #image-grid-view > ul > li > figure {
-  margin: 8px;
+	margin: 8px;
 }
 
 #image-grid-view > ul > li > figure:hover {
-  border: 2px #eee solid;
-  margin: 6px;
+	border: 2px #eee solid;
+	margin: 6px;
 }
 
 #image-grid-view > ul > li > .thumbnail-caption {
-  text-align: center;
-  color: white;
+	text-align: center;
+	color: white;
 }
 
 .hidden {
-  display: none;
+	display: none;
 }

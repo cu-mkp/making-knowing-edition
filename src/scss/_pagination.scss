@@ -1,0 +1,33 @@
+.paginationComponent {
+	white-space: nowrap;
+	position: relative;
+	width: calc(100% - 1.7rem);
+	text-align: center;
+	top: 3rem;
+	font-size: 1.2rem;
+	font-weight: 700;
+	top: -.3rem;
+}
+.paginationComponent:nth-of-type(3){
+  padding:1rem 0 0 0;
+}
+
+.paginationControl {
+	padding: 0;
+	margin: 0 auto;
+	display: inline-block;
+	top: 10rem;
+	left: 0;
+}
+
+.paginationControl .arrow {
+	font-size: 1.8rem;
+	color: #4A4A4A;
+	margin: 1rem 1rem 0;
+}
+
+.paginationControl .folioName {
+	position: relative;
+	top: -.2rem;
+	color: #4A4A4A;
+}
