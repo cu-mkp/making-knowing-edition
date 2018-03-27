@@ -310,13 +310,23 @@ class TranscriptionView extends Component {
 				style.gridTemplateAreas = transcriptionData.layout;
 			}
 
+      // original:
+      // <div className="transcriptionViewComponent">
+      //   <Navigation context="transcription-view"/>
+      //   <div className="transcriptContent">
+      //     <div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
+      //   </div>
+      // </div>
+
 			return (
-				<div className="transcriptionViewComponent">
-					<Navigation context="transcription-view"/>
-					<div className="transcriptContent">
-						<div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
-					</div>
-				</div>
+        <div className={surfaceClass} style={style} >
+          <div className="transcriptionViewComponent">
+            <Navigation context="transcription-view"/>
+            <div className="transcriptContent">
+              <div dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
+            </div>
+          </div>
+        </div>
 			);
 		}
 	}
