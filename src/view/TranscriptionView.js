@@ -298,36 +298,27 @@ class TranscriptionView extends Component {
 				};
 			}
 
-			let surfaceClass = "surface";
-			let style = {
-		      height: this.props.viewHeight,
-		      overflow: 'scroll'
-		    };
+      // dynamicall update the height of the view
+			let viewStyle = {
+		      height: this.props.viewHeight
+		  };
+
+      let surfaceStyle = { };
 
 			// if there's enough horizontal space, enable grid mode
+      let surfaceClass = "surface";
 			if(this.props.viewWidth >= this.gridBreakPoint) {
 				surfaceClass += " grid-mode";
-				style.gridTemplateAreas = transcriptionData.layout;
+				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
 
-      // original:
-      // <div className="transcriptionViewComponent">
-      //   <Navigation context="transcription-view"/>
-      //   <div className="transcriptContent">
-      //     <div className={surfaceClass} style={style} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
-      //   </div>
-      // </div>
-
 			return (
-        <div className={surfaceClass} style={style} >
-          <div className="transcriptionViewComponent">
-            <Navigation context="transcription-view"/>
-            <div className="transcriptContent">
-              <div dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
-            </div>
-          </div>
+        <div className="transcriptionViewComponent" style={viewStyle} >
+          <Navigation context="transcription-view"/>
+          <div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
         </div>
 			);
+
 		}
 	}
 }

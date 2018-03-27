@@ -207,10 +207,7 @@ figure.current {
   margin: auto auto auto auto; }
 
 .navigationComponent {
-  z-index: 900;
-  position: absolute;
   width: 100%;
-  min-width: 35rem;
   white-space: nowrap;
   height: 5rem;
   padding: 0.3rem 1rem 1rem;
@@ -223,13 +220,6 @@ figure.current {
 .imageViewComponent .navigationComponent {
   color: white;
   height: 2rem; }
-
-.transcriptionViewComponent .navigationComponent {
-  z-index: 9000;
-  left: -1rem;
-  color: #4A4A4A;
-  width: calc(100% - 5rem);
-}
 
 .breadcrumbs {
   position: relative;
@@ -425,33 +415,19 @@ figure.current {
 .ImageZoomControl > li > .zoom-grid {
   margin-top: 30px; }
 
-.transcriptionViewComponent {
-  position: relative;
-  top: 0rem;
-  left: 0;
-  margin: 0;
-  width: calc(100% + 1.8rem);
-  /*This is really weird, but something (splitpane?) is injecting a margin)*/
-  padding: 0 1rem 3rem; }
-
-.transcriptContent {
-  margin: 7rem 0 0 -1.8rem;
-  width: calc(100% - 1.2rem);
-  height: 70vh;
-  overflow: scroll !important;
-  padding: 0 0 100rem 0; }
-
 /*
 .transcriptContent div{
   border:1px solid blue !important;
 }
 */
+.transcriptionViewComponent {
+  overflow: scroll; }
+
 .surface {
   grid-area: transcription;
   margin: 0px;
   padding: 0px;
-  list-style: none;
-  overflow: scroll; }
+  list-style: none; }
 
 .grid-mode {
   display: grid;
