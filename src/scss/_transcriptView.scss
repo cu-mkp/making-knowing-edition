@@ -1,20 +1,20 @@
-.transcriptionViewComponent {
-	position: relative;
-	top: 0rem;
-	left:0;
-	margin: 0;
-	width: calc(100% + 1.8rem); /*This is really weird, but something (splitpane?) is injecting a margin)*/
-	padding: 0 1rem 3rem;
-}
-
-.transcriptContent{
-  margin:7rem 0 0 -1.8rem;
-  width:calc(100% - 1.2rem);
-  height:70vh;
-  overflow:scroll !important;
-  padding:0 0 100rem 0;
-
-}
+// .transcriptionViewComponent {
+// 	position: relative;
+// 	top: 0rem;
+// 	left:0;
+// 	margin: 0;
+// 	width: calc(100% + 1.8rem); /*This is really weird, but something (splitpane?) is injecting a margin)*/
+// 	padding: 0 1rem 3rem;
+// }
+//
+// .transcriptContent{
+//   margin:7rem 0 0 -1.8rem;
+//   width:calc(100% - 1.2rem);
+//   height:70vh;
+//   overflow:scroll !important;
+//   padding:0 0 100rem 0;
+//
+// }
 
 /*
 .transcriptContent div{
@@ -22,13 +22,15 @@
 }
 */
 
+.transcriptionViewComponent {
+	overflow: scroll;
+}
+
 .surface {
   grid-area: transcription;
   margin: 0px;
   padding: 0px;
   list-style: none;
-  overflow: scroll;
-
 }
 
 .grid-mode {

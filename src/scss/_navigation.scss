@@ -1,8 +1,8 @@
 .navigationComponent {
-	z-index: 900;
-	position: absolute;
+	// z-index: 900;
+	// position: absolute;
 	width: 100%;
-	min-width: 35rem;
+	// min-width: 35rem;
 	white-space: nowrap;
 	height: 5rem;
 	padding: 0.3rem 1rem 1rem;
@@ -18,13 +18,13 @@
 	height: 2rem;
 }
 
-.transcriptionViewComponent .navigationComponent {
-	z-index: 9000;
-	left: -1rem;
-	color: #4A4A4A;
-	width: calc(100% - 5rem);
-	border: 1px solid blue;
-}
+// .navigationComponent {
+// 	z-index: 9000;
+// 	left: -1rem;
+// 	color: #4A4A4A;
+// 	width: calc(100% - 5rem);
+// 	border: 1px solid blue;
+// }
 
 .breadcrumbs {
 	position: relative;
