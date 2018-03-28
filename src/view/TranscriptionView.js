@@ -6,73 +6,72 @@ import Navigation from '../Navigation';
 import Pagination from '../Pagination';
 class TranscriptionView extends Component {
 
-  constructor(props) {
-    super(props);
-    this.gridBreakPoint = 640; // two column widths
-    this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
-    this.state = {folio:[], isLoaded:false};
-	this.navigationStateActions=navigationStateActions;
-	window.loadingModal_stop();
-  }
+	constructor(props) {
+		super(props);
+		this.gridBreakPoint = 640; // two column widths
+		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
+		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
+		this.navigationStateActions=navigationStateActions;
 
-  // Refresh the content if there is an incoming change
-  componentWillReceiveProps(nextProps) {
-	  if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
-		  //console.log("Updating:"+nextProps.navigationState.currentFolioID);
-		  let newFolio = this.props.document.getFolio(nextProps.navigationState.currentFolioID);
-		  newFolio.load().then(
-	        (folio) => {
-				this.setState({folio:newFolio,isLoaded:true});
-				this.forceUpdate();
-	        },
-	        (error) => {
-	          // TODO update UI
-	          console.log('Unable to load transcription: '+error);
-			  this.forceUpdate();
-	        }
-	      );
-	  }
-  }
+		window.loadingModal_stop();
+	}
 
-  rowCodeToIndex( rowCode ) {
-    if( typeof rowCode !== "string" || rowCode.length > 1 ) throw new Error('Invalid row code, must be a single letter.');
-    let index = this.ROW_CODES.indexOf(rowCode.toLowerCase());
-    if( index === -1 ) throw new Error('Invalid row code must be a letter a-j.');
-    return index;
-  }
 
-  columnCodeToIndex( columnCode ) {
-    if( typeof columnCode !== "string" ) throw new Error('Invalid column code, must be a single digit.')
-    let index = parseInt(columnCode,10) - 1;
-    return index;
-  }
+	loadFolio(folio){
+		if(typeof folio === 'undefined'){
+			console.log("TranscriptView: Folio is undefined when you called loadFolio()!");
+			return;
+		}
+		folio.load().then(
+			(folio) => {
+				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.navigationState[this.props.side].currentFolioID});
+				//this.forceUpdate();
+			},(error) => {
+				console.log('Unable to load transcription: '+error);
+				//this.forceUpdate();
+			}
+		);
+	}
 
-  // transform zone grid into the grid layout string
-  zoneGridToLayout( zoneGrid ) {
-    let gridLayout = '';
-    for (let row of zoneGrid) {
-      let rowString = row.join(' ');
-      gridLayout += ` '${rowString}'`;
-    }
-    return gridLayout;
-  }
+	rowCodeToIndex( rowCode ) {
+		if( typeof rowCode !== "string" || rowCode.length > 1 ) throw new Error('Invalid row code, must be a single letter.');
+		let index = this.ROW_CODES.indexOf(rowCode.toLowerCase());
+		if( index === -1 ) throw new Error('Invalid row code must be a letter a-j.');
+		return index;
+	}
 
-  renderBlockSet( blockSet ) {
-    // use ID and class from the first block in the set
-    let firstBlock = blockSet[0];
-    let divID = firstBlock.id;
-    let classStr = "";
-    for( let i=0; i < firstBlock.classList.length; i++ ) {
-      classStr = classStr + " " + firstBlock.classList.item(i);
-    }
+	columnCodeToIndex( columnCode ) {
+		if( typeof columnCode !== "string" ) throw new Error('Invalid column code, must be a single digit.')
+		let index = parseInt(columnCode,10) - 1;
+		return index;
+	}
 
-    // concat all the blocks together into a single div
-    let div = `<div id="${divID}" class="${classStr}">`;
-    for( let block of blockSet ) {
-      div = div.concat(`${block.innerHTML} <br/>`);
-    }
-    return div.concat("</div>");
-  }
+	// transform zone grid into the grid layout string
+	zoneGridToLayout( zoneGrid ) {
+		let gridLayout = '';
+		for (let row of zoneGrid) {
+	  		let rowString = row.join(' ');
+	  		gridLayout += ` '${rowString}'`;
+		}
+		return gridLayout;
+	}
+
+	renderBlockSet( blockSet ) {
+		// use ID and class from the first block in the set
+		let firstBlock = blockSet[0];
+		let divID = firstBlock.id;
+		let classStr = "";
+		for( let i=0; i < firstBlock.classList.length; i++ ) {
+	  		classStr = classStr + " " + firstBlock.classList.item(i);
+		}
+
+		// concat all the blocks together into a single div
+		let div = `<div id="${divID}" class="${classStr}">`;
+		for( let block of blockSet ) {
+	  		div = div.concat(`${block.innerHTML} <br/>`);
+		}
+		return div.concat("</div>");
+	}
 
   layoutMargin( html ) {
 
@@ -263,13 +262,20 @@ class TranscriptionView extends Component {
     };
   }
 
+  	// Refresh the content if there is an incoming change
+	componentWillReceiveProps(nextProps) {
+  		if(this.state.currentlyLoaded !== nextProps.navigationState[this.props.side].currentFolioID){
+			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
+	  	}
+	}
 
 
 	// RENDER
 	render() {
 
-		// Retrofit - we need to make sure the folio is fully cached before we try and render anything
+		// Retrofit - the folios are loaded asynchronously
 		if(!this.state.isLoaded){
+			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
 			return (
 				<div className="watermark">
 					<div className="watermark_contents"/>
@@ -277,13 +283,21 @@ class TranscriptionView extends Component {
 			);
 		}else{
 
-			//console.log("Rendering:" + this.state.folio.id);
+			//console.log(this.props.side+" rendering:" + this.state.folio.id);
 			//window.loadingModal_stop();
 
 			// Transcription data depends on the type we're looking at
 			let transcriptionData = {};
-			let thisTranscription=this.state.folio.transcription[this.props.navigationState.transcriptionType];
+			let thisTranscription=this.state.folio.transcription[this.props.navigationState[this.props.side].transcriptionType];
 
+			if(typeof thisTranscription === 'undefined'){
+				console.log("Undefined transcription for side: "+this.props.side);
+				return (
+					<div className="watermark">
+						<div className="watermark_contents"/>
+					</div>
+				);
+			}
 			// Grid layout
 			if( thisTranscription.layout === 'grid' ) {
 				transcriptionData = this.layoutGrid(thisTranscription.html);
@@ -304,13 +318,30 @@ class TranscriptionView extends Component {
 			// if there's enough horizontal space, enable grid mode
       		let surfaceClass = "surface";
 	  		let surfaceStyle = {};
+			let thisClass = "transcriptionViewComponent "+this.props.side;
 			if(this.props.viewWidth >= this.gridBreakPoint) {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
 
+			// Empty content
+			if(transcriptionData.content.length === 0){
+				return (
+					<div className={thisClass}>
+						<Navigation side={this.props.side}/>
+						<div className="transcriptContent">
+							<Pagination side={this.props.side} className="pagination_upper"/>
+							<div className="watermark">
+								<div className="watermark_contents"/>
+							</div>
+						</div>
+					</div>
+				);
+			}
+
+			// We have content
 			return (
-		        <div className="transcriptionViewComponent">
+		        <div className={thisClass}>
 		          <Navigation side={this.props.side}/>
 				  <div className="transcriptContent">
 				  	<Pagination side={this.props.side} className="pagination_upper"/>

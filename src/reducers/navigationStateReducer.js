@@ -7,8 +7,7 @@ import {
 	SET_DRAWER_MODE,
 	SET_LINKED_MODE,
 	SET_PANE_SIZES,
-	SET_LEFT_PANE_VIEWTYPE,
-	SET_RIGHT_PANE_VIEWTYPE
+	SET_PANE_VIEWTYPE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
@@ -17,18 +16,33 @@ export default function navigationState(state = initialState, action) {
 		case CHANGE_TRANSCRIPTION_TYPE:
 
 			let label = 'Unknown';
-			if (action.payload === 'tl') {
+			if (action.payload.transcriptionType === 'tl') {
 				label = 'English Translation';
-			} else if (action.payload === 'tc') {
+			} else if (action.payload.transcriptionType === 'tc') {
 				label = 'French Original';
-			} else if (action.payload === 'tcn') {
+			} else if (action.payload.transcriptionType === 'tcn') {
 				label = 'French Standard';
 			}
 
-			return Object.assign({}, state, {
-				transcriptionType: action.payload,
-				transcriptionTypeLabel: label
-			})
+			if(action.payload.side === 'left'){
+				return {
+                	...state,
+					left:{
+						...state.left,
+						transcriptionType: action.payload.transcriptionType,
+						transcriptionTypeLabel: label
+					}
+            	};
+			}else{
+				return {
+                	...state,
+					right:{
+						...state.left,
+						transcriptionType: action.payload.transcriptionType,
+						transcriptionTypeLabel: label
+					}
+            	};
+			}
 
 		case CHANGE_CURRENT_FOLIO:
 
@@ -47,29 +61,75 @@ export default function navigationState(state = initialState, action) {
 				prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
 			}
 
-			//console.log(current_hasPrev +"-"+ prevID +"-("+ shortID +")-"+ nextID +"-"+ current_hasNext);
+			if(state.linkedMode){
+				return {
+					...state,
+					left:{
+						...state.left,
+						currentFolioID: action.payload.id,
+						currentFolioShortID: shortID,
+						currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+						hasPrevious: current_hasPrev,
+						hasNext: current_hasNext,
+						previousFolioShortID: prevID,
+						nextFolioShortID: nextID
+					},
+					right:{
+						...state.right,
+						currentFolioID: action.payload.id,
+						currentFolioShortID: shortID,
+						currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+						hasPrevious: current_hasPrev,
+						hasNext: current_hasNext,
+						previousFolioShortID: prevID,
+						nextFolioShortID: nextID
+					}
+				};
+			}else{
+				if(action.payload.side === 'left'){
+					return {
+	                	...state,
+						left:{
+							...state.left,
+							currentFolioID: action.payload.id,
+							currentFolioShortID: shortID,
+							currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+							hasPrevious: current_hasPrev,
+							hasNext: current_hasNext,
+							previousFolioShortID: prevID,
+							nextFolioShortID: nextID
+						}
+	            	};
 
-			return Object.assign({}, state, {
-				currentFolioID: action.payload.id,
-				currentFolioShortID: shortID,
-				currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+				}else{
+					return {
+	                	...state,
+						right:{
+							...state.right,
+							currentFolioID: action.payload.id,
+							currentFolioShortID: shortID,
+							currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+							hasPrevious: current_hasPrev,
+							hasNext: current_hasNext,
+							previousFolioShortID: prevID,
+							nextFolioShortID: nextID
+						}
+	            	};
+				}
+			}
 
-				hasPrevious: current_hasPrev,
-				hasNext: current_hasNext,
-				previousFolioShortID: prevID,
-				nextFolioShortID: nextID
-
-			})
 
 		case UPDATE_FOLIO_INDEX:
 			return Object.assign({}, state, {
-				folioIndex: action.payload
+				folioIndex: action.payload.folioIndex
 			})
+
 
 		case UPDATE_FOLIO_NAME_INDEX:
 			return Object.assign({}, state, {
-				folioNameIndex: action.payload
+				folioNameIndex: action.payload.folioNameIndex
 			})
+
 
 		case SET_DRAWER_MODE:
 			return Object.assign({}, state, {
@@ -82,20 +142,36 @@ export default function navigationState(state = initialState, action) {
 			})
 
 		case SET_PANE_SIZES:
-			return Object.assign({}, state, {
-				left_pane_size: action.payload.left,
-				right_pane_size: action.payload.right
-			})
+			return {
+				...state,
+				left:{...state.left,width: action.payload.left},
+				right:{...state.right,width: action.payload.right}
+			};
 
-		case SET_LEFT_PANE_VIEWTYPE:
-			return Object.assign({}, state, {
-				left_pane_viewType: action.payload
-			})
+		case SET_PANE_VIEWTYPE:
+			let typelabel = (action.payload.viewType === 'ImageView')?"Facsimile":state[action.payload.side].transcriptionTypeLabel;
+			if(action.payload.side === 'left'){
+				return {
+					...state,
+					left:{
+						...state.left,
+						viewType: action.payload.viewType,
+						transcriptionTypeLabel: typelabel
+					}
+				};
+			}else{
+				return {
+					...state,
+					right:{
+						...state.right,
+						viewType: action.payload.viewType,
+						transcriptionTypeLabel: typelabel
+					}
+				};
+			}
 
-		case SET_RIGHT_PANE_VIEWTYPE:
-			return Object.assign({}, state, {
-				right_pane_viewType: action.payload
-			})
+
+
 
 		default:
 			return state;

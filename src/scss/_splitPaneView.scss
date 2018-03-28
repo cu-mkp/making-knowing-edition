@@ -6,6 +6,7 @@
 }
 
 .split-pane-view > .divider {
+	z-index:$z-index-ui;
     grid-area: divider;
     width: 1rem;
     background: #BBB;

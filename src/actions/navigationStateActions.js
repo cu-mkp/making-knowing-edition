@@ -1,7 +1,7 @@
 import * as allActions from './allActions';
 
-export function changeTranscriptionType(transcriptionType) {
-    return {type: allActions.CHANGE_TRANSCRIPTION_TYPE, payload: transcriptionType};
+export function changeTranscriptionType(payload) {
+    return {type: allActions.CHANGE_TRANSCRIPTION_TYPE, payload: payload};
 }
 export function changeCurrentFolio(payload) {
     return {type: allActions.CHANGE_CURRENT_FOLIO, payload: payload};
@@ -18,12 +18,9 @@ export function setDrawerMode(payload){
 export function setLinkedMode(payload){
 	return {type: allActions.SET_LINKED_MODE, payload:payload};
 }
-export function setPaneSizes(payload){
+export function setwidths(payload){
 	return {type: allActions.SET_PANE_SIZES, payload:payload};
 }
-export function setLeftPaneContent(payload){
-	return {type: allActions.SET_LEFT_PANE_VIEWTYPE, payload:payload};
-}
-export function setRightPaneContent(payload){
-	return {type: allActions.SET_RIGHT_PANE_VIEWTYPE, payload:payload};
+export function setPaneViewtype(payload){
+	return {type: allActions.SET_PANE_VIEWTYPE, payload:payload};
 }

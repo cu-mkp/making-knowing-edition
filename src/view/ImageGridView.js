@@ -22,16 +22,20 @@ class ImageGridView extends React.Component {
 				folioIndex.push(idOnly);
 				nameByID[idOnly]=props.document.folios[idx].name;
 			}
-			this.props.dispatch(this.navigationStateActions.updateFolioIndex(folioIndex));
-			this.props.dispatch(this.navigationStateActions.updateFolioNameIndex(nameByID));
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:props.document.folios[0].id}));
+			this.props.dispatch(this.navigationStateActions.updateFolioIndex({side:this.props.side,folioIndex:folioIndex}));
+			this.props.dispatch(this.navigationStateActions.updateFolioNameIndex({folioNameIndex:nameByID}));
+
+			// Set initial defaults
+			//console.log("Setting defaults...");
+			//this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:"left",id:props.document.folios[0].id}));
+			//this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:"right",id:props.document.folios[0].id}));
 		}
 
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
-			let thumbs = this.generateThumbs(nextProps.navigationState.currentFolioID, nextProps.document.folios);
+		if(this.props.navigationState[this.props.side].currentFolioID !== nextProps.navigationState[this.props.side].currentFolioID){
+			let thumbs = this.generateThumbs(nextProps.navigationState[this.props.side].currentFolioID, nextProps.document.folios);
 			let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 			let visibleThumbs = thumbs.slice(0,thumbCount);
 			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
@@ -39,21 +43,18 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillMount(){
-		let thumbs = this.generateThumbs(this.props.navigationState.currentFolioID, this.props.document.folios);
+		let thumbs = this.generateThumbs(this.props.navigationState[this.props.side].currentFolioID, this.props.document.folios);
 		let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 		let visibleThumbs = thumbs.slice(0,thumbCount);
 		this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
 	}
 
 	onClickThumb = (id, e) => {
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:id}));
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:id}));
 
 		// If we're NOT in drawermode, replace this pane with imageView
 		if(!this.props.navigationState.drawerMode){
-			this.props.dispatch(this.navigationStateActions.setLeftPaneContent('ImageView'));
-			//let splitPaneView = this.props.splitPaneView;
-			//let side = this.props.side;
-			//splitPaneView.openFolio(side, id, 'ImageView');
+			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
 		}
 	}
 
@@ -89,13 +90,12 @@ class ImageGridView extends React.Component {
   }
 
   render() {
-    let hidden = ( this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "hidden" : "";
 	let visibleThumbs=this.state.visibleThumbs;
 	if(visibleThumbs.constructor.toString().indexOf("Array") === -1){
 		visibleThumbs=[];
 	}
     return (
-      <div id='image-grid-view' className={hidden}>
+      <div className={(this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent"}>
         <InfiniteScroll
           element = 'ul'
           loadMore={this.moreThumbs}

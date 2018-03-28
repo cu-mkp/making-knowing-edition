@@ -18,24 +18,27 @@ class navigation extends React.Component {
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		if(event.currentTarget.dataset.id === 'facsimile'){
-			if(this.props.side === 'left'){
-				this.props.dispatch(this.navigationStateActions.setLeftPaneContent('ImageView'));
-			}else{
-				this.props.dispatch(this.navigationStateActions.setRightPaneContent('ImageView'));
-			}
+			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
 		}else{
-			if(this.props.side === 'left'){
-				this.props.dispatch(this.navigationStateActions.setLeftPaneContent('TranscriptionView'));
-			}else{
-				this.props.dispatch(this.navigationStateActions.setRightPaneContent('TranscriptionView'));
-			}
-			this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
+			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'TranscriptionView'}));
+			this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
 		}
 
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:this.props.navigationState.currentFolioID}));
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:this.props.navigationState[this.props.side].currentFolioID}));
 	}
 
 	changeLockmode = function(event){
+
+		// If we are transitioning from unlocked to locked, synch up the panes
+		if(!this.props.navigationState.linkedMode === true){
+			if(this.props.side === 'left'){
+				this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:this.props.navigationState.left.currentFolioID}));
+			}else{
+				this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.right.currentFolioID}));
+			}
+		}
+
+		// Set lock
 		this.props.dispatch(this.navigationStateActions.setLinkedMode(!this.props.navigationState.linkedMode));
 	}
 
@@ -44,7 +47,7 @@ class navigation extends React.Component {
 			return;
 		}
 		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:longID}));
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID}));
 	}
 
     renderData(item) {
@@ -60,20 +63,21 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-			let thisStyle = {width:"100rem"};
+			let thisStyle = {width:(this.props.navigationState[this.props.side].width-50)};
+			let thisClass = "navigationComponent "+this.props.side;
 			return (
-				<div className="navigationComponent" style={thisStyle}>
+				<div className={thisClass} style={thisStyle}>
 						<div className="breadcrumbs">
 							<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>
 							&nbsp;
-							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
-							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].previousFolioShortID} className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].nextFolioShortID} className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
-							{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
+							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</span>
 						</div>
 						<div className="dropdown">
 							<button className="dropbtn">
-								{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+								{this.props.navigationState[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
 							</button>
 							<div className="dropdown-content">
 								<span data-id='tl' onClick={this.changeType}>English Translation</span>

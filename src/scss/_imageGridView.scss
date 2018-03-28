@@ -1,4 +1,4 @@
-#image-grid-view {
+.imageGridComponent {
 	grid-area: image_viewer;
 	background-color: #000000;
 	font-size: 0.8rem;
@@ -6,7 +6,7 @@
 	height: 100vh;
 }
 
-#image-grid-view > ul {
+.imageGridComponent > ul {
 	display: flex;
 	flex-wrap: wrap;
 	list-style: none;
@@ -14,22 +14,22 @@
 	margin: 1.5rem 0 8rem 1.5rem;
 }
 
-#image-grid-view > ul > li {
+.imageGridComponent > ul > li {
 	margin-bottom: 20px;
 	width: 150px;
 	height: 220px;
 }
 
-#image-grid-view > ul > li > figure {
+.imageGridComponent > ul > li > figure {
 	margin: 8px;
 }
 
-#image-grid-view > ul > li > figure:hover {
+.imageGridComponent > ul > li > figure:hover {
 	border: 2px #eee solid;
 	margin: 6px;
 }
 
-#image-grid-view > ul > li > .thumbnail-caption {
+.imageGridComponent > ul > li > .thumbnail-caption {
 	text-align: center;
 	color: white;
 }

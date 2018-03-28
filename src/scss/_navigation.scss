@@ -1,6 +1,7 @@
 
 .navigationComponent {
-	position: absolute;
+	min-width:30rem;
+	position: fixed;
 	height: 2rem;
 	white-space: nowrap;
 	z-index: 900;
@@ -11,12 +12,16 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	border: 1px green dotted;
 }
-
 .imageViewComponent .navigationComponent {
 	color: white;
+	margin:0 0 0 1rem;
 }
+
+.imageViewComponent.right{
+  z-index:9000;
+}
+
 .transcriptionViewComponent .navigationComponent{
   background-color:#ffffff;
 }
@@ -32,6 +37,7 @@
 /* The dropdown container */
 .dropdown {
 	overflow: hidden;
+	float:right;
 }
 /* Dropdown button */
 .dropdown .dropbtn {

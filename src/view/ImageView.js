@@ -1,14 +1,19 @@
 import OpenSeadragon from 'openseadragon';
 import {connect} from 'react-redux';
+import * as navigationStateActions from '../actions/navigationStateActions';
 import React, { Component } from 'react';
 import Navigation from '../Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
 class ImageView extends Component {
 
+	constructor(props,context){
+		super(props,context);
+		this.navigationStateActions=navigationStateActions;
+	}
 	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-	 	if(this.props.navigationState.currentFolioID !== nextProps.navigationState.currentFolioID){
-			let newFolio = this.props.document.getFolio(nextProps.navigationState.currentFolioID);
+	 	if(this.props.navigationState[this.props.side].currentFolioID !== nextProps.navigationState[this.props.side].currentFolioID){
+			let newFolio = this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID);
   		  	newFolio.load().then(
 		        (folio) => {
 					this.viewer.addTiledImage({
@@ -44,12 +49,15 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		this.props.splitPaneView.openFolio(this.props.side, this, 'ImageGridView');
+		console.log("Setting "+this.props.side+" to grid view");
+		this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
+		//this.props.splitPaneView.openFolio(this.props.side, this, 'ImageGridView');
 	}
 
 	render() {
+		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
-				<div className="image-view imageViewComponent">
+				<div className={thisClass}>
 				<Navigation side={this.props.side}/>
 					<ImageZoomControl onZoomGrid={this.onZoomGrid}/>
 					<div id="image-view-seadragon" ></div>

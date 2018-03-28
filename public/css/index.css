@@ -27,7 +27,7 @@ body {
   height: 100vh; }
 
 #header {
-  z-index: 10;
+  z-index: 900;
   position: fixed;
   width: 100vw;
   margin: 0;
@@ -68,8 +68,7 @@ h4 {
   font-family: 'OpenSans', sans-serif;
   font-weight: 700;
   padding: 0;
-  margin: 0 0 0.3rem;
-  width: 23rem; }
+  margin: 0 0 0.3rem; }
 
 #footer {
   z-index: 9000;
@@ -201,6 +200,9 @@ figure.current {
   height: 100%;
   margin: calc(50vh - (10rem/2)) auto 0 auto; }
 
+.transcriptContent .watermark {
+  margin: calc(50vh - (25rem/2)) auto 0 auto; }
+
 .watermark_contents {
   width: 10rem;
   height: 10rem;
@@ -210,7 +212,8 @@ figure.current {
   margin: auto auto auto auto; }
 
 .navigationComponent {
-  position: absolute;
+  min-width: 30rem;
+  position: fixed;
   height: 2rem;
   white-space: nowrap;
   z-index: 900;
@@ -220,11 +223,14 @@ figure.current {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
-  border: 1px green dotted; }
+  user-select: none; }
 
 .imageViewComponent .navigationComponent {
-  color: white; }
+  color: white;
+  margin: 0 0 0 1rem; }
+
+.imageViewComponent.right {
+  z-index: 9000; }
 
 .transcriptionViewComponent .navigationComponent {
   background-color: #ffffff; }
@@ -238,7 +244,8 @@ figure.current {
 
 /* The dropdown container */
 .dropdown {
-  overflow: hidden; }
+  overflow: hidden;
+  float: right; }
 
 /* Dropdown button */
 .dropdown .dropbtn {
@@ -323,33 +330,33 @@ figure.current {
   top: -.2rem;
   color: #4A4A4A; }
 
-#image-grid-view {
+.imageGridComponent {
   grid-area: image_viewer;
   background-color: #000000;
   font-size: 0.8rem;
   overflow: scroll;
   height: 100vh; }
 
-#image-grid-view > ul {
+.imageGridComponent > ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
   margin: 1.5rem 0 8rem 1.5rem; }
 
-#image-grid-view > ul > li {
+.imageGridComponent > ul > li {
   margin-bottom: 20px;
   width: 150px;
   height: 220px; }
 
-#image-grid-view > ul > li > figure {
+.imageGridComponent > ul > li > figure {
   margin: 8px; }
 
-#image-grid-view > ul > li > figure:hover {
+.imageGridComponent > ul > li > figure:hover {
   border: 2px #eee solid;
   margin: 6px; }
 
-#image-grid-view > ul > li > .thumbnail-caption {
+.imageGridComponent > ul > li > .thumbnail-caption {
   text-align: center;
   color: white; }
 
@@ -363,6 +370,7 @@ figure.current {
   grid-template-areas: "image_viewer divider transcription"; }
 
 .split-pane-view > .divider {
+  z-index: 900;
   grid-area: divider;
   width: 1rem;
   background: #BBB;
@@ -433,7 +441,8 @@ figure.current {
   height: calc(100vh + 30rem); }
 
 .transcriptionViewComponent {
-  overflow: scroll; }
+  overflow: scroll;
+  margin: 0 0 0 1rem; }
 
 .surface {
   grid-area: transcription;
