@@ -18,3 +18,12 @@ export function setDrawerMode(payload){
 export function setLinkedMode(payload){
 	return {type: allActions.SET_LINKED_MODE, payload:payload};
 }
+export function setPaneSizes(payload){
+	return {type: allActions.SET_PANE_SIZES, payload:payload};
+}
+export function setLeftPaneContent(payload){
+	return {type: allActions.SET_LEFT_PANE_VIEWTYPE, payload:payload};
+}
+export function setRightPaneContent(payload){
+	return {type: allActions.SET_RIGHT_PANE_VIEWTYPE, payload:payload};
+}

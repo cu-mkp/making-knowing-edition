@@ -133,6 +133,9 @@ m {
 
 @media only screen and (max-width: 1260px) {
   #globalNavigation {
+    display: none; }
+
+  #footer .logos {
     display: none; } }
 #loadingStateModal {
   position: fixed;
@@ -207,86 +210,64 @@ figure.current {
   margin: auto auto auto auto; }
 
 .navigationComponent {
-  width: 100%;
+  position: absolute;
+  height: 2rem;
   white-space: nowrap;
-  height: 5rem;
+  z-index: 900;
+  white-space: nowrap;
   padding: 0.3rem 1rem 1rem;
   margin: 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  border: 1px green dotted; }
 
 .imageViewComponent .navigationComponent {
-  color: white;
-  height: 2rem; }
+  color: white; }
+
+.transcriptionViewComponent .navigationComponent {
+  background-color: #ffffff; }
 
 .breadcrumbs {
-  position: relative;
-  top: 0.8rem;
-  height: 2rem;
-  float: left;
-  font-size: 0.8rem;
-  padding: 0 0 0 2rem;
-  margin: auto; }
+  padding: 0.8rem 0 0;
+  float: left; }
 
 .breadcrumbs .folioName {
   font-weight: 900; }
 
-.pageNavigation_container {
-  position: relative;
-  width: calc(100% - 1.7rem);
-  text-align: center;
-  top: 3rem;
-  font-size: 1.2rem;
-  font-weight: 700; }
-
-.pageNavigation {
-  padding: 0;
-  margin: 0 auto;
-  display: inline-block;
-  top: 10rem;
-  left: 0; }
-
-.pageNavigation .arrow {
-  font-size: 1.8rem;
-  color: #4A4A4A;
-  margin: 1rem 1rem 0; }
-
-.pageNavigation .folioName {
-  position: relative;
-  top: -.2rem;
-  color: #4A4A4A; }
-
 /* The dropdown container */
 .dropdown {
-  float: right;
   overflow: hidden; }
 
 /* Dropdown button */
 .dropdown .dropbtn {
+  float: right;
+  height: 2.5rem;
+  position: relative;
+  top: 0.1rem;
   width: 12rem;
-  color: #4A4A4A;
   font-size: 0.8rem;
   font-weight: 900;
-  border: none;
   outline: none;
-  padding: 14px 16px;
+  padding: 0;
   background-color: inherit;
   font-family: inherit;
-  margin: 0 1.2rem 0 0; }
+  margin: 0 0 0 1rem;
+  border: 0;
+  text-align: center;
+  color: black; }
 
 .imageViewComponent .dropbtn {
-  color: white;
-  height: 2rem; }
+  color: white; }
 
-.dropdown:hover .dropbtn,
-.navbar a:hover {
-  color: white;
-  background-color: #4A4A4A; }
+.dropbtn:hover {
+  background-color: #9E9E9E;
+  color: black; }
 
 /* Dropdown content (hidden by default) */
 .dropdown-content {
+  margin: 0 0 0 1rem;
   width: 12rem;
   display: none;
   position: absolute;
@@ -312,10 +293,40 @@ figure.current {
 .dropdown:hover .dropdown-content {
   display: block; }
 
+.paginationComponent {
+  white-space: nowrap;
+  position: relative;
+  width: calc(100% - 1.7rem);
+  text-align: center;
+  top: 3rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  top: -.3rem; }
+
+.paginationComponent:nth-of-type(3) {
+  padding: 1rem 0 0 0; }
+
+.paginationControl {
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+  top: 10rem;
+  left: 0; }
+
+.paginationControl .arrow {
+  font-size: 1.8rem;
+  color: #4A4A4A;
+  margin: 1rem 1rem 0; }
+
+.paginationControl .folioName {
+  position: relative;
+  top: -.2rem;
+  color: #4A4A4A; }
+
 #image-grid-view {
   grid-area: image_viewer;
   background-color: #000000;
-  font-size: .8rem;
+  font-size: 0.8rem;
   overflow: scroll;
   height: 100vh; }
 
@@ -323,7 +334,7 @@ figure.current {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  padding-left: 0px;
+  padding-left: 0;
   margin: 1.5rem 0 8rem 1.5rem; }
 
 #image-grid-view > ul > li {
@@ -415,18 +426,19 @@ figure.current {
 .ImageZoomControl > li > .zoom-grid {
   margin-top: 30px; }
 
-/*
-.transcriptContent div{
-  border:1px solid blue !important;
-}
-*/
+.transcriptContent {
+  padding: 0;
+  margin: 4.5rem 0 0;
+  width: calc(100% - 1.2rem);
+  height: calc(100vh + 30rem); }
+
 .transcriptionViewComponent {
   overflow: scroll; }
 
 .surface {
   grid-area: transcription;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   list-style: none; }
 
 .grid-mode {

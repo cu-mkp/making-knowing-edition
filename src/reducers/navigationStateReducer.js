@@ -5,7 +5,10 @@ import {
 	UPDATE_FOLIO_INDEX,
 	UPDATE_FOLIO_NAME_INDEX,
 	SET_DRAWER_MODE,
-	SET_LINKED_MODE
+	SET_LINKED_MODE,
+	SET_PANE_SIZES,
+	SET_LEFT_PANE_VIEWTYPE,
+	SET_RIGHT_PANE_VIEWTYPE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
@@ -76,6 +79,22 @@ export default function navigationState(state = initialState, action) {
 		case SET_LINKED_MODE:
 			return Object.assign({}, state, {
 				linkedMode: action.payload
+			})
+
+		case SET_PANE_SIZES:
+			return Object.assign({}, state, {
+				left_pane_size: action.payload.left,
+				right_pane_size: action.payload.right
+			})
+
+		case SET_LEFT_PANE_VIEWTYPE:
+			return Object.assign({}, state, {
+				left_pane_viewType: action.payload
+			})
+
+		case SET_RIGHT_PANE_VIEWTYPE:
+			return Object.assign({}, state, {
+				right_pane_viewType: action.payload
 			})
 
 		default:

@@ -50,9 +50,10 @@ class ImageGridView extends React.Component {
 
 		// If we're NOT in drawermode, replace this pane with imageView
 		if(!this.props.navigationState.drawerMode){
-			let splitPaneView = this.props.splitPaneView;
-			let side = this.props.side;
-			splitPaneView.openFolio(side, id, 'ImageView');
+			this.props.dispatch(this.navigationStateActions.setLeftPaneContent('ImageView'));
+			//let splitPaneView = this.props.splitPaneView;
+			//let side = this.props.side;
+			//splitPaneView.openFolio(side, id, 'ImageView');
 		}
 	}
 

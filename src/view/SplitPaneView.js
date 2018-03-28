@@ -1,7 +1,11 @@
-import React, {Component} from 'react';
+import React, {
+	Component
+} from 'react';
 import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
-import {connect} from 'react-redux';
+import {
+	connect
+} from 'react-redux';
 import * as navigationStateActions from '../actions/navigationStateActions';
 
 
@@ -9,43 +13,16 @@ class SplitPaneView extends Component {
 
 	constructor(props) {
 		super();
-
+		this.firstFolio = props.document.folios[0];
 		this.navigationStateActions = navigationStateActions;
 
-		this.righPaneMinWidth=200;
+		this.righPaneMinWidth = 200;
 
 		this.splitFraction = 0.5;
 		this.dividerWidth = 32;
 		this.minWindowSize = 768;
 		this.dragging = false;
 
-		let firstFolio = props.document.folios[0];
-
-		this.state = {
-			style: {},
-			drawerButtonVisible: false,
-			drawerIconClass: 'fa-caret-left',
-			viewports: {
-				left: {
-					viewType: 'ImageGridView',
-					folio: firstFolio,
-					viewportName: 'left',
-					viewWidth: 0,
-					drawerWidth: 200,
-					drawerMode: false,
-					drawerOpen: false
-				},
-				right: {
-					viewType: 'TranscriptionView',
-					folio: firstFolio,
-					viewportName: 'right',
-					viewWidth: 0,
-					drawerWidth: 0,
-					drawerMode: false,
-					drawerOpen: false
-				}
-			}
-		};
 
 		// event handlers
 		this.onDrag = this.onDrag.bind(this);
@@ -71,7 +48,6 @@ class SplitPaneView extends Component {
 	}
 
 
-
 	onDrag = (e) => {
 		if (this.dragging) {
 			this.updateSizes(e.clientX);
@@ -87,8 +63,7 @@ class SplitPaneView extends Component {
 		rightViewport.viewWidth = whole - leftViewport.viewWidth;
 
 		// Actually make the updates
-		if(rightViewport.viewWidth > this.righPaneMinWidth){
-			console.log(rightViewport.viewWidth);
+		if (rightViewport.viewWidth > this.righPaneMinWidth) {
 			this.updateDrawerMode(leftViewport);
 			this.updateDrawerMode(rightViewport);
 			this.splitFraction = (whole === 0) ? 0.0 : leftViewport.viewWidth / whole;
@@ -96,27 +71,8 @@ class SplitPaneView extends Component {
 		}
 	}
 
-
-
-
 	onResize = (e) => {
-		let leftViewport = copyObject(this.state.viewports['left']);
-		let rightViewport = copyObject(this.state.viewports['right']);
-
-		// close left viewport
-		if (leftViewport.drawerOpen || !leftViewport.drawerMode) {
-			// if the window gets too small, collapse the left viewport
-			if (window.innerWidth < this.minWindowSize) {
-				this.enterDrawerMode(leftViewport);
-				this.closeDrawer(leftViewport);
-				this.updateViewport(leftViewport);
-			} else {
-				this.updateDrawerMode(leftViewport);
-				this.updateDrawerMode(rightViewport);
-				this.positionDivider();
-			}
-		}
-
+		this.positionDivider();
 	}
 
 	updateDrawerMode(viewport) {
@@ -234,7 +190,9 @@ class SplitPaneView extends Component {
 		let drawer = this.getDrawerViewport();
 		let style = copyObject(this.state.style);
 
-	
+		// no drawers open, resize normally
+		var left = this.splitFraction;
+		var right = 1.0 - left;
 		if (drawer) {
 			if (drawer.viewportName === 'left') {
 				style.gridTemplateColumns = `${drawer.drawerWidth}px ${this.dividerWidth}px 1fr`;
@@ -243,30 +201,25 @@ class SplitPaneView extends Component {
 				style.gridTemplateColumns = `1fr ${this.dividerWidth}px ${drawer.drawerWidth}px`;
 			}
 		} else {
-			// no drawers open, resize normally
-			var left = this.splitFraction;
-			var right = 1.0 - left;
 			style.gridTemplateColumns = `${left}fr ${this.dividerWidth}px ${right}fr`;
 		}
-		console.log("Left:" +left);
-		this.setState({
-			style: style
-		});
+
+		this.setState({style: style});
+
+		/*
+		// Keep track of the sizes in the global state
+		let left_px = Math.abs(window.innerWidth * left);
+		let right_px = window.innerWidth * right;
+		console.log((left_px + right_px) + ": " + left_px + " | " + right_px);
+		//this.props.dispatch(this.navigationStateActions.setPaneSizes({right:right_px, left:left_px}));
+		*/
+
 	}
 
 
 
 	componentDidMount() {
-		// if initial window size is too small, collapse left viewport
-		if (window.innerWidth < this.minWindowSize) {
-			let leftViewport = copyObject(this.viewports['left']);
-			this.enterDrawerMode(leftViewport);
-			this.closeDrawer(leftViewport);
-			this.updateViewport(leftViewport);
-		} else {
-			this.positionDivider();
-		}
-
+		//this.positionDivider();
 		window.addEventListener("mousemove", this.onDrag);
 		window.addEventListener("mouseup", this.onEndDrag);
 		window.addEventListener("resize", this.onResize);
@@ -284,6 +237,7 @@ class SplitPaneView extends Component {
 		viewport.folio = this.props.document.getFolio(folioID);
 		viewport.viewType = viewType;
 		this.updateViewport(viewport);
+		this.positionDivider();
 	}
 
 	otherSide(side) {
@@ -297,8 +251,74 @@ class SplitPaneView extends Component {
 			return `${side}-${viewport.viewType}-${viewport.folio.id}`;
 		}
 	}
-	componentWillMount(){
-		this.updateSizes((window.innerWidth/2));
+
+	componentWillReceiveProps(newProps){
+		debugger
+		let newState = {
+			style: {},
+			drawerButtonVisible: false,
+			drawerIconClass: 'fa-caret-left',
+			viewports: {
+				left: {
+					viewType: newProps.navigationState.left_pane_viewType,
+					folio: this.firstFolio,
+					viewportName: 'left',
+					viewWidth: 0,
+					drawerWidth: 200,
+					drawerMode: false,
+					drawerOpen: false
+				},
+				right: {
+					viewType: newProps.navigationState.right_pane_viewType,
+					folio: this.firstFolio,
+					viewportName: 'right',
+					viewWidth: 0,
+					drawerWidth: 0,
+					drawerMode: false,
+					drawerOpen: false
+				}
+			}
+		};
+		this.setState(newState);
+		if(newProps.navigationState.left_pane_viewType === 'ImageView'){
+			this.openFolio('left', newProps.navigationState.currentFolioID, 'ImageView');
+		}else{
+			//this.openFolio('left', newProps.navigationState.currentFolioID, 'TranscriptionView');
+		}
+		if(newProps.navigationState.right_pane_viewType === 'ImageView'){
+			this.openFolio('right', newProps.navigationState.currentFolioID, 'ImageView');
+		}else{
+			//this.openFolio('right', newProps.navigationState.currentFolioID, 'TranscriptionView');
+		}
+	}
+
+	componentWillMount() {
+		let newState = {
+			style: {},
+			drawerButtonVisible: false,
+			drawerIconClass: 'fa-caret-left',
+			viewports: {
+				left: {
+					viewType: this.props.navigationState.left_pane_viewType,
+					folio: this.firstFolio,
+					viewportName: 'left',
+					viewWidth: 0,
+					drawerWidth: 200,
+					drawerMode: false,
+					drawerOpen: false
+				},
+				right: {
+					viewType: this.props.navigationState.right_pane_viewType,
+					folio: this.firstFolio,
+					viewportName: 'right',
+					viewWidth: 0,
+					drawerWidth: 0,
+					drawerMode: false,
+					drawerOpen: false
+				}
+			}
+		};
+		this.setState(newState);
 	}
 
 	render() {
@@ -308,45 +328,40 @@ class SplitPaneView extends Component {
 		let rightViewport = this.state.viewports['right'];
 		let style = copyObject(this.state.style);
 		style.height = window.innerHeight - 60;
-
-		return (
-			<div className="split-pane-view" style={style} >
-	          <SplitPaneViewport
-	            side='left'
-	            key={ this.viewKey(leftViewport, 'left') }
-	            viewType={leftViewport.viewType}
-	            folio={leftViewport.folio}
-	            document={this.props.document}
-	            viewWidth={leftViewport.viewWidth}
-	            viewHeight={style.height}
-	            drawerMode={leftViewport.drawerMode}
-	            drawerOpen={leftViewport.drawerOpen}
-	            splitPaneView={this}
-	          />
-	          <div className="divider" onMouseDown={this.onStartDrag} >
-	            <div className={drawerButtonClass} onClick={this.onDrawerButton} >
-	              <i className={drawerIconClass}></i>
-	            </div>
-	          </div>
-	          <SplitPaneViewport
-	            side='right'
-	            key={ this.viewKey(rightViewport, 'right') }
-	            viewType={rightViewport.viewType}
-	            folio={rightViewport.folio}
-	            document={this.props.document}
-	            viewWidth={rightViewport.viewWidth}
-	            viewHeight={style.height}
-	            drawerMode={rightViewport.drawerMode}
-	            drawerOpen={rightViewport.drawerOpen}
-	            splitPaneView={this}
-	          />
-	        </div>
+		return ( <div className = "split-pane-view" style = {style} >
+			<SplitPaneViewport 	side = 'left'
+								key = {this.viewKey(leftViewport, 'left')}
+								viewType={leftViewport.viewType}
+								folio={leftViewport.folio}
+								document = {this.props.document}
+								viewWidth = {leftViewport.viewWidth}
+								viewHeight = {style.height}
+								drawerMode = {leftViewport.drawerMode}
+								drawerOpen = {leftViewport.drawerOpen}
+								splitPaneView = {this}/>
+			<div className = "divider" onMouseDown = {this.onStartDrag}>
+				<div className = {drawerButtonClass} onClick = {this.onDrawerButton} >
+					<i className = {drawerIconClass} > </i>
+				</div>
+			</div>
+			<SplitPaneViewport side = 'right'
+								key = {this.viewKey(rightViewport, 'right')}
+								viewType={rightViewport.viewType}
+								folio = {rightViewport.folio}
+								document = {this.props.document}
+								viewWidth = {rightViewport.viewWidth}
+								viewHeight = {style.height}
+								drawerMode = {rightViewport.drawerMode}
+								drawerOpen = {rightViewport.drawerOpen}
+								splitPaneView = {this}/>
+			</div>
 		);
 	}
 }
+
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
-    };
+		navigationState: state.navigationState
+	};
 }
 export default connect(mapStateToProps)(SplitPaneView);

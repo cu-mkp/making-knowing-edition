@@ -11,5 +11,9 @@ export default {
   hasNext:false,
   nextFolioShortID:'',
   previousFolioShortID:'',
-  folioIndex:[]
+  folioIndex:[],
+  left_pane_size:0,
+  right_pane_size:0,
+  left_pane_viewType:'ImageGridView',
+  right_pane_viewType:'TranscriptionView'
 };

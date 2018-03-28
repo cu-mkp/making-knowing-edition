@@ -50,10 +50,8 @@ class ImageView extends Component {
 	render() {
 		return (
 				<div className="image-view imageViewComponent">
-				<Navigation context="image-view"/>
-					<ImageZoomControl
-					  onZoomGrid={this.onZoomGrid}
-					/>
+				<Navigation side={this.props.side}/>
+					<ImageZoomControl onZoomGrid={this.onZoomGrid}/>
 					<div id="image-view-seadragon" ></div>
 				</div>
 		);

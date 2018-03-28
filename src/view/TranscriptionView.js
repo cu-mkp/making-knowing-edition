@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as navigationStateActions from '../actions/navigationStateActions';
 import copyObject from '../lib/copyObject';
 import Navigation from '../Navigation';
+import Pagination from '../Pagination';
 class TranscriptionView extends Component {
 
   constructor(props) {
@@ -22,6 +23,7 @@ class TranscriptionView extends Component {
 		  newFolio.load().then(
 	        (folio) => {
 				this.setState({folio:newFolio,isLoaded:true});
+				this.forceUpdate();
 	        },
 	        (error) => {
 	          // TODO update UI
@@ -298,25 +300,24 @@ class TranscriptionView extends Component {
 				};
 			}
 
-      // dynamicall update the height of the view
-			let viewStyle = {
-		      height: this.props.viewHeight
-		  };
-
-      let surfaceStyle = { };
 
 			// if there's enough horizontal space, enable grid mode
-      let surfaceClass = "surface";
+      		let surfaceClass = "surface";
+	  		let surfaceStyle = {};
 			if(this.props.viewWidth >= this.gridBreakPoint) {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
 
 			return (
-        <div className="transcriptionViewComponent" style={viewStyle} >
-          <Navigation context="transcription-view"/>
-          <div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
-        </div>
+		        <div className="transcriptionViewComponent">
+		          <Navigation side={this.props.side}/>
+				  <div className="transcriptContent">
+				  	<Pagination side={this.props.side} className="pagination_upper"/>
+		          	<div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
+					<Pagination side={this.props.side} className="pagination_lower"/>
+				  </div>
+		        </div>
 			);
 
 		}

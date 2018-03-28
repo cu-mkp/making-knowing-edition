@@ -17,7 +17,22 @@ class navigation extends React.Component {
 
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
-		this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
+		if(event.currentTarget.dataset.id === 'facsimile'){
+			if(this.props.side === 'left'){
+				this.props.dispatch(this.navigationStateActions.setLeftPaneContent('ImageView'));
+			}else{
+				this.props.dispatch(this.navigationStateActions.setRightPaneContent('ImageView'));
+			}
+		}else{
+			if(this.props.side === 'left'){
+				this.props.dispatch(this.navigationStateActions.setLeftPaneContent('TranscriptionView'));
+			}else{
+				this.props.dispatch(this.navigationStateActions.setRightPaneContent('TranscriptionView'));
+			}
+			this.props.dispatch(this.navigationStateActions.changeTranscriptionType(event.currentTarget.dataset.id));
+		}
+
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:this.props.navigationState.currentFolioID}));
 	}
 
 	changeLockmode = function(event){
@@ -28,7 +43,6 @@ class navigation extends React.Component {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
-
 		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({id:longID}));
 	}
@@ -46,68 +60,30 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-
-			switch (this.props.context) {
-
-				// Image view navigation
-				case 'image-view':
-					return (
-						<div className="navigationComponent">
-							<div>
-								<div className="breadcrumbs">
-									<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>&nbsp;
-									{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
-									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
-									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
-								</div>
-								<div className="dropdown">
-									<button className="dropbtn">
-										{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-									</button>
-									<div className="dropdown-content">
-										<span data-id='tl' onClick={this.changeType}>English Translation</span>
-										<span data-id='tc' onClick={this.changeType}>French Original</span>
-										<span data-id='tcn' onClick={this.changeType}>French Standard</span>
-										<span data-id='fascimile' onClick={this.changeType}>Facsimile</span>
-									</div>
-								</div>
+			let thisStyle = {width:"100rem"};
+			return (
+				<div className="navigationComponent" style={thisStyle}>
+						<div className="breadcrumbs">
+							<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>
+							&nbsp;
+							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							&nbsp;&nbsp;
+							{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
+						</div>
+						<div className="dropdown">
+							<button className="dropbtn">
+								{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+							</button>
+							<div className="dropdown-content">
+								<span data-id='tl' onClick={this.changeType}>English Translation</span>
+								<span data-id='tc' onClick={this.changeType}>French Original</span>
+								<span data-id='tcn' onClick={this.changeType}>French Standard</span>
+								<span data-id='facsimile' onClick={this.changeType}>Facsimile</span>
 							</div>
 						</div>
-					)
-
-				// Transcript view navigation
-				case 'transcription-view':
-				default:
-					return (
-						<div className="navigationComponent">
-							<div>
-								<div className="breadcrumbs">
-									<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>&nbsp;
-									{this.props.navigationState.currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState.currentFolioName}</span>
-								</div>
-								<div className="dropdown">
-									<button className="dropbtn">
-										{this.props.navigationState.transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-									</button>
-									<div className="dropdown-content">
-										<span data-id='tl' onClick={this.changeType}>English Translation</span>
-										<span data-id='tc' onClick={this.changeType}>French Original</span>
-										<span data-id='tcn' onClick={this.changeType}>French Standard</span>
-										<span data-id='fascimile' onClick={this.changeType}>Facsimile</span>
-									</div>
-								</div>
-							</div>
-							<div className="pageNavigation_container">
-								<div className="pageNavigation">
-									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.previousFolioShortID} className={(this.props.navigationState.hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
-									<span className="folioName">Folio {this.props.navigationState.currentFolioName}</span>
-									<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState.nextFolioShortID} className={(this.props.navigationState.hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
-								</div>
-							</div>
-						</div>
-					)
-
-			}
+				</div>
+			)
 
         }
     }
