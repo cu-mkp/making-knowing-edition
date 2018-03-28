@@ -16,7 +16,8 @@ class SplitPaneView extends Component {
 		this.firstFolio = props.document.folios[0];
 		this.navigationStateActions = navigationStateActions;
 
-		this.righPaneMinWidth = 200;
+		this.rightPaneMinWidth = 200;
+		this.leftPaneMinWidth = 200;
 
 		this.splitFraction = 0.5;
 		this.dividerWidth = 16;
@@ -65,7 +66,7 @@ class SplitPaneView extends Component {
 		rightViewport.viewWidth = whole - leftViewport.viewWidth;
 
 		// Actually make the updates
-		if (rightViewport.viewWidth > this.righPaneMinWidth) {
+		if (rightViewport.viewWidth > this.rightPaneMinWidth) {
 			this.updateDrawerMode(leftViewport);
 			this.updateDrawerMode(rightViewport);
 			this.splitFraction = (whole === 0) ? 0.0 : leftViewport.viewWidth / whole;
@@ -191,6 +192,7 @@ class SplitPaneView extends Component {
 	}
 
 	positionDivider() {
+
 		if(typeof this.state === 'undefined'){
 			console.log("Missing state");
 			return;
@@ -201,6 +203,15 @@ class SplitPaneView extends Component {
 		// no drawers open, resize normally
 		var left = this.splitFraction;
 		var right = 1.0 - left;
+
+		let left_px = Math.floor(Math.abs(window.innerWidth * left));
+		let right_px = Math.floor(window.innerWidth * right);
+
+		// Some hard limits on resize
+		if(left_px<=this.leftPaneMinWidth || right_px<=this.rightPaneMinWidth){
+			return;
+		}
+
 		if (drawer) {
 			if (drawer.viewportName === 'left') {
 				style.gridTemplateColumns = `${drawer.drawerWidth}px ${this.dividerWidth}px 1fr`;
@@ -215,10 +226,7 @@ class SplitPaneView extends Component {
 		this.setState({style: style});
 
 		// Keep track of the sizes in the global state
-		let left_px = Math.floor(Math.abs(window.innerWidth * left));
-		let right_px = Math.floor(window.innerWidth * right);
-
-		if(right_px !== this.props.navigationState.right.width){
+		if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
 			console.log((left_px + right_px) + ": " + left_px + " | " + right_px);
 			this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
 		}
