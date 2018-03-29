@@ -30,8 +30,9 @@ class ImageView extends Component {
 	}
 
 	componentDidMount() {
+		let thisID =  "image-view-seadragon-"+this.props.side;
 		this.viewer = OpenSeadragon({
-			id: "image-view-seadragon",
+			id: thisID,
 			zoomInButton: "os-zoom-in",
 			zoomOutButton: "os-zoom-out",
 			prefixUrl: "./img/openseadragon/"
@@ -55,12 +56,13 @@ class ImageView extends Component {
 	}
 
 	render() {
+		let thisID =  "image-view-seadragon-"+this.props.side;
 		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
 				<div className={thisClass}>
 				<Navigation side={this.props.side}/>
 					<ImageZoomControl onZoomGrid={this.onZoomGrid}/>
-					<div id="image-view-seadragon" ></div>
+					<div id={thisID}></div>
 				</div>
 		);
 	}

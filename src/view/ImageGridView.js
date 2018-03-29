@@ -90,12 +90,14 @@ class ImageGridView extends React.Component {
   }
 
   render() {
+	let thisClass = (this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
+	thisClass = thisClass+" "+this.props.side;
 	let visibleThumbs=this.state.visibleThumbs;
 	if(visibleThumbs.constructor.toString().indexOf("Array") === -1){
 		visibleThumbs=[];
 	}
     return (
-      <div className={(this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent"}>
+      <div className={thisClass}>
         <InfiniteScroll
           element = 'ul'
           loadMore={this.moreThumbs}
