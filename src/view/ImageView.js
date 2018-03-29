@@ -10,31 +10,38 @@ class ImageView extends Component {
 		super(props,context);
 		this.navigationStateActions=navigationStateActions;
 		this.isLoaded = false;
+		this.currentFolioID="";
+		this.elementID =  "image-view-seadragon-"+this.props.side;
 	}
-	// Refresh the content if there is an incoming change
+	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-		console.log("New props, loading folio...");
-		this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
-
+		if(nextProps.navigationState[this.props.side].currentFolioID !== this.currentFolioID){
+			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
+		}
 	}
 
 	componentDidMount() {
-		console.log("Did Mount, loading folio...");
-		this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
+		if(this.props.navigationState[this.props.side].currentFolioID !== this.currentFolioID){
+			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
+		}
 	}
 
 	loadFolio(thisFolio){
 		//window.loadingModal_start();
-		//console.log("Loading folio:"+thisFolio.id);
-		let thisID =  "image-view-seadragon-"+this.props.side;
+		console.log("Loading folio into "+this.elementID+" :"+thisFolio.id);
+		this.currentFolioID=thisFolio.id;
+		if(typeof this.viewer !== 'undefined'){
+			this.viewer.destroy();
+		}
 		this.viewer = OpenSeadragon({
-			id: thisID,
+			id: this.elementID,
 			zoomInButton: "os-zoom-in",
 			zoomOutButton: "os-zoom-out",
 			prefixUrl: "./img/openseadragon/"
 		});
 		thisFolio.load().then(
 			(folio) => {
+				console.log(folio.name);
 				this.viewer.addTiledImage({
 					tileSource: folio.tileSource
 				});
@@ -54,14 +61,14 @@ class ImageView extends Component {
 	}
 
 	render() {
-		//console.log("ImageView Render: "+this.props.side+": "+this.props.navigationState[this.props.side].currentFolioID);
-		let thisID =  "image-view-seadragon-"+this.props.side;
+		console.log("ImageView Render: "+this.props.side+": "+this.props.navigationState[this.props.side].currentFolioID);
+
 		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
 				<div className={thisClass}>
 					<Navigation side={this.props.side}/>
 					<ImageZoomControl onZoomGrid={this.onZoomGrid}/>
-					<div id={thisID}></div>
+					<div id={this.elementID}></div>
 				</div>
 		);
 	}

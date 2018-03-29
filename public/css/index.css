@@ -308,7 +308,11 @@ figure.current {
   top: 3rem;
   font-size: 1.2rem;
   font-weight: 700;
-  top: -.3rem; }
+  top: -.3rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .paginationComponent:nth-of-type(3) {
   padding: 1rem 0 0 0; }
@@ -334,7 +338,11 @@ figure.current {
   background-color: #000000;
   font-size: 0.8rem;
   overflow: scroll;
-  height: 100vh; }
+  height: 100vh;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 .imageGridComponent > ul {
   display: flex;
@@ -437,12 +445,12 @@ figure.current {
 .transcriptContent {
   padding: 0;
   margin: 4.5rem 0 0;
-  width: calc(100% - 1.2rem);
-  height: calc(100% + 90rem); }
+  width: calc(100% - 1.2rem); }
 
 .transcriptionViewComponent {
   overflow: scroll;
-  margin: 0 0 0 1rem; }
+  margin: 0 0 0 1rem;
+  height: calc(100vh - 7rem); }
 
 .surface {
   grid-area: transcription;

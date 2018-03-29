@@ -13,7 +13,6 @@ class ImageGridView extends React.Component {
 		this.state={thumbs:'',visibleThumbs:[]};
 		this.navigationStateActions=navigationStateActions;
 
-
 		// Store an ordered array of folio ids, used for next/prev navigation purposes later
 		if(this.props.navigationState.folioIndex.length ===0){
 			let folioIndex = [];
@@ -25,13 +24,7 @@ class ImageGridView extends React.Component {
 			}
 			this.props.dispatch(this.navigationStateActions.updateFolioIndex({side:this.props.side,folioIndex:folioIndex}));
 			this.props.dispatch(this.navigationStateActions.updateFolioNameIndex({folioNameIndex:nameByID}));
-
-			// Set initial defaults
-			//console.log("Setting defaults...");
-			//this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:"left",id:props.document.folios[0].id}));
-			//this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:"right",id:props.document.folios[0].id}));
 		}
-
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -51,7 +44,6 @@ class ImageGridView extends React.Component {
 	}
 
 	onClickThumb = (id, e) => {
-		
 		// Set the folio for this side
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:id}));
 
@@ -59,60 +51,58 @@ class ImageGridView extends React.Component {
 		if(this.props.navigationState[this.props.side].width >= this.thumbnailNavigationModeSize){
 			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
 		}
-
 	}
 
-  generateThumbs (currentID, folios) {
-    let thumbs = folios.map( (folio,index) => (
-      <li key={`thumb-${index}`} className="thumbnail">
-        <figure className={(folio.id===currentID)?"current":""}><a id={folio.id} onClick={this.onClickThumb.bind(this,folio.id)}><img src={folio.image_thumbnail_url} alt={folio.name}/></a></figure>
-        <figcaption className={(folio.id===currentID)?"thumbnail-caption current":"thumbnail-caption"}>
-			{(folio.id===currentID)?("*"+folio.name):folio.name}
-		</figcaption>
-      </li>
-    ));
-
-    return thumbs;
-  }
-
-  moreThumbs = () => {
-    let thumbs = this.state.thumbs;
-    let visibleThumbs = this.state.visibleThumbs;
-    let thumbCount = visibleThumbs.length + this.loadIncrement;
-
-    if( thumbs.length >= thumbCount ) {
-      visibleThumbs = thumbs.slice(0,thumbCount);
-    } else {
-      visibleThumbs = thumbs;
-    }
-
-    this.setState({ visibleThumbs: visibleThumbs });
-  }
-
-  hasMore() {
-    return (this.state.visibleThumbs.length !== this.state.thumbs.length);
-  }
-
-  render() {
-	//let thisClass = (this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
-	let thisClass= "imageGridComponent";
-	thisClass = thisClass+" "+this.props.side;
-	let visibleThumbs=this.state.visibleThumbs;
-	if(visibleThumbs.constructor.toString().indexOf("Array") === -1){
-		visibleThumbs=[];
+	generateThumbs (currentID, folios) {
+		let thumbs = folios.map( (folio,index) => (
+			<li key={`thumb-${index}`} className="thumbnail">
+				<figure className={(folio.id===currentID)?"current":""}><a id={folio.id} onClick={this.onClickThumb.bind(this,folio.id)}><img src={folio.image_thumbnail_url} alt={folio.name}/></a></figure>
+				<figcaption className={(folio.id===currentID)?"thumbnail-caption current":"thumbnail-caption"}>
+					{(folio.id===currentID)?("*"+folio.name):folio.name}
+				</figcaption>
+			</li>
+		));
+		return thumbs;
 	}
-    return (
-      <div className={thisClass}>
-        <InfiniteScroll
-          element = 'ul'
-          loadMore={this.moreThumbs}
-          hasMore={this.hasMore()}
-          useWindow={false}>
-          {visibleThumbs}
-        </InfiniteScroll>
-      </div>
-    );
-  }
+
+	moreThumbs = () => {
+		let thumbs = this.state.thumbs;
+		let visibleThumbs = this.state.visibleThumbs;
+		let thumbCount = visibleThumbs.length + this.loadIncrement;
+
+		if( thumbs.length >= thumbCount ) {
+		  visibleThumbs = thumbs.slice(0,thumbCount);
+		} else {
+		  visibleThumbs = thumbs;
+		}
+
+		this.setState({ visibleThumbs: visibleThumbs });
+	}
+
+	hasMore() {
+		return (this.state.visibleThumbs.length !== this.state.thumbs.length);
+	}
+
+	render() {
+		//let thisClass = (this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
+		let thisClass= "imageGridComponent";
+		thisClass = thisClass+" "+this.props.side;
+		let visibleThumbs=this.state.visibleThumbs;
+		if(visibleThumbs.constructor.toString().indexOf("Array") === -1){
+			visibleThumbs=[];
+		}
+		return (
+			<div className={thisClass}>
+				<InfiniteScroll
+					element = 'ul'
+					loadMore={this.moreThumbs}
+					hasMore={this.hasMore()}
+					useWindow={false}>
+						{visibleThumbs}
+				</InfiniteScroll>
+			</div>
+		);
+	}
 }
 
 
