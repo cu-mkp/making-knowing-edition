@@ -9,27 +9,22 @@ class ImageView extends Component {
 	constructor(props,context){
 		super(props,context);
 		this.navigationStateActions=navigationStateActions;
+		this.isLoaded = false;
 	}
 	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-	 	if(this.props.navigationState[this.props.side].currentFolioID !== nextProps.navigationState[this.props.side].currentFolioID){
-			let newFolio = this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID);
-  		  	newFolio.load().then(
-		        (folio) => {
-					this.viewer.addTiledImage({
-						tileSource: folio.tileSource
-					});
-		        },
-		        (error) => {
-		          // TODO update UI
-		          console.log('Unable to load transcription: '+error);
-				  this.forceUpdate();
-		        }
-  	      );
-		}
+		console.log("New props, loading folio...");
+		this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
+
 	}
 
 	componentDidMount() {
+		console.log("Did Mount, loading folio...");
+		this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
+	}
+
+	loadFolio(thisFolio){
+		console.log("Loading folio:"+thisFolio.id);
 		let thisID =  "image-view-seadragon-"+this.props.side;
 		this.viewer = OpenSeadragon({
 			id: thisID,
@@ -37,11 +32,12 @@ class ImageView extends Component {
 			zoomOutButton: "os-zoom-out",
 			prefixUrl: "./img/openseadragon/"
 		});
-		this.props.folio.load().then(
+		thisFolio.load().then(
 			(folio) => {
 				this.viewer.addTiledImage({
 					tileSource: folio.tileSource
 				});
+				this.isLoaded=true;
 			},
 			(error) => {
 				// TODO update UI
@@ -50,17 +46,18 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		console.log("Setting "+this.props.side+" to grid view");
+		//console.log("Setting "+this.props.side+" to grid view");
 		this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
 		//this.props.splitPaneView.openFolio(this.props.side, this, 'ImageGridView');
 	}
 
 	render() {
+		//console.log("ImageView Render: "+this.props.side+": "+this.props.navigationState[this.props.side].currentFolioID);
 		let thisID =  "image-view-seadragon-"+this.props.side;
 		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
 				<div className={thisClass}>
-				<Navigation side={this.props.side}/>
+					<Navigation side={this.props.side}/>
 					<ImageZoomControl onZoomGrid={this.onZoomGrid}/>
 					<div id={thisID}></div>
 				</div>

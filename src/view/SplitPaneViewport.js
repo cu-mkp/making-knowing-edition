@@ -35,7 +35,6 @@ class SplitPaneViewport extends Component {
         <ImageView
 		  document={this.props.document}
           side={this.props.side}
-          folio={this.state.folio}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
           drawerMode={this.props.navigationState.drawerMode}
@@ -48,7 +47,6 @@ class SplitPaneViewport extends Component {
         <TranscriptionView
 		  document={this.props.document}
           side={this.props.side}
-          folio={this.state.folio}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
           drawerMode={this.props.navigationState.drawerMode}

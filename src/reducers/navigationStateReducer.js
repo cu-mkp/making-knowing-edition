@@ -14,14 +14,17 @@ export default function navigationState(state = initialState, action) {
 	switch (action.type) {
 
 		case CHANGE_TRANSCRIPTION_TYPE:
-
 			let label = 'Unknown';
+			let viewType = 'TranscriptionView';
 			if (action.payload.transcriptionType === 'tl') {
 				label = 'English Translation';
 			} else if (action.payload.transcriptionType === 'tc') {
 				label = 'French Original';
 			} else if (action.payload.transcriptionType === 'tcn') {
 				label = 'French Standard';
+			}else if (action.payload.transcriptionType === 'facsimile'){
+				label = 'Facsimile';
+				viewType = 'ImageView';
 			}
 
 			if(action.payload.side === 'left'){
@@ -30,7 +33,8 @@ export default function navigationState(state = initialState, action) {
 					left:{
 						...state.left,
 						transcriptionType: action.payload.transcriptionType,
-						transcriptionTypeLabel: label
+						transcriptionTypeLabel: label,
+						viewType:viewType
 					}
             	};
 			}else{
@@ -39,7 +43,8 @@ export default function navigationState(state = initialState, action) {
 					right:{
 						...state.left,
 						transcriptionType: action.payload.transcriptionType,
-						transcriptionTypeLabel: label
+						transcriptionTypeLabel: label,
+						viewType:viewType
 					}
             	};
 			}

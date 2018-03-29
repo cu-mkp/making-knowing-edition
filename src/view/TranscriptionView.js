@@ -19,7 +19,7 @@ class TranscriptionView extends Component {
 
 	loadFolio(folio){
 		if(typeof folio === 'undefined'){
-			console.log("TranscriptView: Folio is undefined when you called loadFolio()!");
+			//console.log("TranscriptView: Folio is undefined when you called loadFolio()!");
 			return;
 		}
 		folio.load().then(

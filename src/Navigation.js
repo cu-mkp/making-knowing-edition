@@ -17,13 +17,10 @@ class navigation extends React.Component {
 
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
-		if(event.currentTarget.dataset.id === 'facsimile'){
-			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
-		}else{
-			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'TranscriptionView'}));
-			this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
-		}
+		// Change viewtype
+		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
 
+		// Force reload
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:this.props.navigationState[this.props.side].currentFolioID}));
 	}
 
