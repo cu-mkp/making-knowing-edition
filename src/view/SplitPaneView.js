@@ -67,8 +67,8 @@ class SplitPaneView extends Component {
 
 		// Actually make the updates
 		if (rightViewport.viewWidth > this.rightPaneMinWidth) {
-			this.updateDrawerMode(leftViewport);
-			this.updateDrawerMode(rightViewport);
+			//this.updateDrawerMode(leftViewport);
+			//this.updateDrawerMode(rightViewport);
 			this.splitFraction = (whole === 0) ? 0.0 : leftViewport.viewWidth / whole;
 			this.positionDivider();
 		}

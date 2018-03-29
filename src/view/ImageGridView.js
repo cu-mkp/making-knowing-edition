@@ -9,6 +9,7 @@ class ImageGridView extends React.Component {
 		super(props,context);
 		this.generateThumbs = this.generateThumbs.bind(this);
 		this.loadIncrement = 10;
+		this.thumbnailNavigationModeSize=312;
 		this.state={thumbs:'',visibleThumbs:[]};
 		this.navigationStateActions=navigationStateActions;
 
@@ -50,12 +51,15 @@ class ImageGridView extends React.Component {
 	}
 
 	onClickThumb = (id, e) => {
+		
+		// Set the folio for this side
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:id}));
 
-		// If we're NOT in drawermode, replace this pane with imageView
-		if(!this.props.navigationState.drawerMode){
+		// Replace this pane with imageView if the pane is big enough
+		if(this.props.navigationState[this.props.side].width >= this.thumbnailNavigationModeSize){
 			this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
 		}
+
 	}
 
   generateThumbs (currentID, folios) {
@@ -90,7 +94,8 @@ class ImageGridView extends React.Component {
   }
 
   render() {
-	let thisClass = (this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
+	//let thisClass = (this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
+	let thisClass= "imageGridComponent";
 	thisClass = thisClass+" "+this.props.side;
 	let visibleThumbs=this.state.visibleThumbs;
 	if(visibleThumbs.constructor.toString().indexOf("Array") === -1){

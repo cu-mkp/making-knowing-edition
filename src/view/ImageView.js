@@ -24,7 +24,8 @@ class ImageView extends Component {
 	}
 
 	loadFolio(thisFolio){
-		console.log("Loading folio:"+thisFolio.id);
+		//window.loadingModal_start();
+		//console.log("Loading folio:"+thisFolio.id);
 		let thisID =  "image-view-seadragon-"+this.props.side;
 		this.viewer = OpenSeadragon({
 			id: thisID,
@@ -38,6 +39,7 @@ class ImageView extends Component {
 					tileSource: folio.tileSource
 				});
 				this.isLoaded=true;
+				//window.loadingModal_stop();
 			},
 			(error) => {
 				// TODO update UI
