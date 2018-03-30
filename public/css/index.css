@@ -13,12 +13,14 @@ body {
   margin: 0;
   overflow: hidden; }
 
-::-webkit-scrollbar {
-  width: 0px;
-  /* remove scrollbar space */
-  background: transparent;
-  /* optional: just make scrollbar invisible */ }
+/*
+Disables visible scrollbar
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+*/
 .imageViewComponent {
   position: relative;
   padding: 0;
