@@ -6,6 +6,7 @@ import {
 	UPDATE_FOLIO_NAME_INDEX,
 	SET_DRAWER_MODE,
 	SET_LINKED_MODE,
+	SET_BOOK_MODE,
 	SET_PANE_SIZES,
 	SET_PANE_VIEWTYPE
 } from '../actions/allActions';
@@ -53,6 +54,52 @@ export default function navigationState(state = initialState, action) {
 
 			// Lookup prev/next
 			let shortID = action.payload.id.substr(action.payload.id.lastIndexOf('/') + 1);
+
+			// Book mode? (recto/verso)
+			if(state.bookMode){
+				let rectoID=findNearestRectoTo(state, shortID);
+				let current_idx = state.folioIndex.indexOf(rectoID);
+				let nextID = '';
+				let prevID = '';
+				let nextNextID='';
+				let current_hasPrev = false;
+				let current_hasNext = false;
+				let current_hasNextNext = false;
+				if (current_idx > -1) {
+					current_hasNext = (current_idx < (state.folioIndex.length - 1));
+					nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
+					current_hasNextNext = (current_idx < (state.folioIndex.length - 2));
+					nextNextID = current_hasNextNext ? state.folioIndex[current_idx + 2] : '';
+					current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
+					prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+				}
+				return {
+					...state,
+					bookMode: action.payload,
+					left:{
+						...state.left,
+						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+rectoID,
+						currentFolioShortID: rectoID,
+						currentFolioName: state.folioNameIndex[rectoID].padStart(4, "0"),
+						hasPrevious: current_hasPrev,
+						hasNext: current_hasNextNext,
+						previousFolioShortID: prevID,
+						nextFolioShortID: nextNextID
+					},
+					right:{
+						...state.right,
+						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+nextID,
+						currentFolioShortID: nextID,
+						currentFolioName: state.folioNameIndex[nextID].padStart(4, "0"),
+						hasPrevious: current_hasPrev,
+						hasNext: current_hasNextNext,
+						previousFolioShortID: prevID,
+						nextFolioShortID: nextNextID
+					}
+				};
+			}
+
+			// Not book mode
 			let current_idx = state.folioIndex.indexOf(shortID);
 			let nextID = '';
 			let prevID = '';
@@ -65,8 +112,9 @@ export default function navigationState(state = initialState, action) {
 				current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
 				prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
 			}
-
 			if(state.linkedMode){
+
+
 				return {
 					...state,
 					left:{
@@ -146,6 +194,59 @@ export default function navigationState(state = initialState, action) {
 				linkedMode: action.payload
 			})
 
+		case SET_BOOK_MODE:
+
+			// Exiting bookmode
+			if(!action.payload){
+				return {
+					...state,
+					bookMode: action.payload
+				}
+
+			// Entering bookmode
+			}else{
+				let rectoID=findNearestRectoTo(state, state.left.currentFolioID.substr(state.left.currentFolioID.lastIndexOf('/') + 1));
+				let current_idx = state.folioIndex.indexOf(rectoID);
+				let nextID = '';
+				let prevID = '';
+				let nextNextID='';
+				let current_hasPrev = false;
+				let current_hasNext = false;
+				let current_hasNextNext = false;
+				if (current_idx > -1) {
+					current_hasNext = (current_idx < (state.folioIndex.length - 1));
+					nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
+					current_hasNextNext = (current_idx < (state.folioIndex.length - 2));
+					nextNextID = current_hasNextNext ? state.folioIndex[current_idx + 2] : '';
+					current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
+					prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+				}
+				return {
+					...state,
+					bookMode: action.payload,
+					left:{
+						...state.left,
+						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+rectoID,
+						currentFolioShortID: rectoID,
+						currentFolioName: state.folioNameIndex[rectoID].padStart(4, "0"),
+						hasPrevious: current_hasPrev,
+						hasNext: current_hasNextNext,
+						previousFolioShortID: prevID,
+						nextFolioShortID: nextNextID
+					},
+					right:{
+						...state.right,
+						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+nextID,
+						currentFolioShortID: nextID,
+						currentFolioName: state.folioNameIndex[nextID].padStart(4, "0"),
+						hasPrevious: current_hasPrev,
+						hasNext: current_hasNextNext,
+						previousFolioShortID: prevID,
+						nextFolioShortID: nextNextID
+					}
+				};
+			}
+
 		case SET_PANE_SIZES:
 			return {
 				...state,
@@ -181,4 +282,34 @@ export default function navigationState(state = initialState, action) {
 		default:
 			return state;
 	}
+}
+
+function findNearestRectoTo(state, id){
+	let found=false;
+	let rectoID=id;
+	let lookLeft=true;
+
+	while(!found){
+		// Look to see if this name is "recto" or ends in "r"
+		let rectoName = state.folioNameIndex[rectoID];
+		if(rectoName.endsWith("r") || rectoName.endsWith("recto")){
+			//console.log("Nearest recto:"+rectoName);
+			found=true;
+
+		// No, so keep looking
+		}else{
+			if(lookLeft && state.folioIndex.indexOf(rectoID) > 0){
+				rectoID=state.folioIndex[state.folioIndex.indexOf(rectoID) - 1];
+			}else{
+				lookLeft=false;
+				if(state.folioIndex.indexOf(rectoID) < state.folioIndex.length){
+					rectoID=state.folioIndex[state.folioIndex.indexOf(rectoID) + 1];
+				}else{
+					console.log("ERROR: Couldn't find a single recto page!");
+					return null;
+				}
+			}
+		}
+	}
+	return rectoID;
 }

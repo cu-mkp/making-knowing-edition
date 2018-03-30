@@ -2,6 +2,7 @@ export default {
   currentDocumentName:'BnF Ms. Fr. 640',
   drawerMode:false,
   linkedMode:true,
+  bookMode:false,
   folioIndex:[],
   left:{
 	  transcriptionType: 'tc',

@@ -17,6 +17,29 @@ Disables visible scrollbar
 }
 */
 
+.fa{
+
+  width:1.5rem;
+  padding:.2rem .1rem .1rem .1rem;
+  text-align:center;
+}
+.fa.active {
+
+  background-color: #9e9e9e0a;
+  border: .2rem solid #FF9800;
+ }
+.fa-book.active{
+
+   border-radius: 0rem 2rem 2rem 0rem;
+}
+.fa:not(.active){
+	color: grey;
+}
+.fa.fa-lock-open, .fa.fa-lock{
+   border-radius: 2rem 0rem 0rem 2rem;
+}
+
+
 .imageViewComponent {
 	position: relative;
 	padding: 0;

@@ -9,7 +9,8 @@ class navigation extends React.Component {
 	constructor(props,context){
 		super(props,context);
 		this.changeType = this.changeType.bind(this);
-		this.changeLockmode = this.changeLockmode.bind(this);
+		this.toggleLockmode = this.toggleLockmode.bind(this);
+		this.toggleBookmode = this.toggleBookmode.bind(this);
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
 		this.navigationStateActions=navigationStateActions;
 	}
@@ -24,7 +25,28 @@ class navigation extends React.Component {
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:this.props.navigationState[this.props.side].currentFolioID}));
 	}
 
-	changeLockmode = function(event){
+	toggleBookmode = function(event){
+
+		// If we are transitioning into bookmode, synch up the panes
+		if(!this.props.navigationState.bookMode === true){
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.left.currentFolioID}));
+
+			let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+this.props.navigationState.right.nextFolioShortID;
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID}));
+
+		}
+
+		// Set lock
+		this.props.dispatch(this.navigationStateActions.setBookMode(!this.props.navigationState.bookMode));
+	}
+
+	toggleLockmode = function(event){
+
+		// If we are currently in bookmode, we toggle that instead
+		if(this.props.navigationState.bookMode){
+			this.toggleBookmode();
+			return;
+		}
 
 		// If we are transitioning from unlocked to locked, synch up the panes
 		if(!this.props.navigationState.linkedMode === true){
@@ -62,12 +84,18 @@ class navigation extends React.Component {
         }else{
 			let thisStyle = {width:(this.props.navigationState[this.props.side].width-35)};
 			let thisClass = "navigationComponent "+this.props.side;
+
+			let lockIconClass = (this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open';
+			if(!this.props.navigationState.bookMode){
+				lockIconClass +=" active";
+			}
+			let bookIconClass = (this.props.navigationState.bookMode)?'fa fa-book active':'fa fa-book';
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className="breadcrumbs">
-							<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>
+							<span onClick={this.toggleLockmode} className={lockIconClass}></span>
 							&nbsp;
-							<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-book':'fa fa-lock-open'}></span>
+							<span onClick={this.toggleBookmode} className={bookIconClass}></span>
 							&nbsp;
 							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].previousFolioShortID} className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
 							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].nextFolioShortID} className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>

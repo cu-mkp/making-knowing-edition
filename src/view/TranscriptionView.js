@@ -314,7 +314,7 @@ class TranscriptionView extends Component {
 				};
 			}
 
-
+			let thisClass = "transcriptionViewComponent "+this.props.side;
 
 
 			// Empty content
@@ -336,7 +336,7 @@ class TranscriptionView extends Component {
 			// if there's enough horizontal space, enable grid mode
 			let surfaceClass = "surface";
 			let surfaceStyle = {};
-			let thisClass = "transcriptionViewComponent "+this.props.side;
+
 			if(this.props.navigationState[this.props.side].width >= this.gridBreakPoint) {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;

@@ -21,6 +21,24 @@ Disables visible scrollbar
     background: transparent;
 }
 */
+.fa {
+  width: 1.5rem;
+  padding: .2rem .1rem .1rem .1rem;
+  text-align: center; }
+
+.fa.active {
+  background-color: #9e9e9e0a;
+  border: .2rem solid #FF9800; }
+
+.fa-book.active {
+  border-radius: 0rem 2rem 2rem 0rem; }
+
+.fa:not(.active) {
+  color: grey; }
+
+.fa.fa-lock-open, .fa.fa-lock {
+  border-radius: 2rem 0rem 0rem 2rem; }
+
 .imageViewComponent {
   position: relative;
   padding: 0;
@@ -221,7 +239,6 @@ figure.current {
   z-index: 900;
   white-space: nowrap;
   padding: 0.3rem 1rem 1rem 1rem;
-  margin: 0 0 0 -1rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -447,7 +464,8 @@ figure.current {
 .transcriptContent {
   padding: 0;
   margin: 4.5rem 0 0;
-  width: calc(100% - 1.2rem); }
+  width: calc(100% - 1.2rem);
+  min-height: 100vh; }
 
 .transcriptionViewComponent {
   overflow: scroll;

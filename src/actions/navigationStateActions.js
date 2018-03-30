@@ -18,6 +18,9 @@ export function setDrawerMode(payload){
 export function setLinkedMode(payload){
 	return {type: allActions.SET_LINKED_MODE, payload:payload};
 }
+export function setBookMode(payload){
+	return {type: allActions.SET_BOOK_MODE, payload:payload};
+}
 export function setwidths(payload){
 	return {type: allActions.SET_PANE_SIZES, payload:payload};
 }
