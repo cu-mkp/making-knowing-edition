@@ -67,6 +67,8 @@ class navigation extends React.Component {
 						<div className="breadcrumbs">
 							<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open'}></span>
 							&nbsp;
+							<span onClick={this.changeLockmode} className={(this.props.navigationState.linkedMode)?'fa fa-book':'fa fa-lock-open'}></span>
+							&nbsp;
 							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].previousFolioShortID} className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
 							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].nextFolioShortID} className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
