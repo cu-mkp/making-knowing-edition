@@ -218,8 +218,8 @@ figure.current {
   white-space: nowrap;
   z-index: 900;
   white-space: nowrap;
-  padding: 0.3rem 1rem 1rem;
-  margin: 0;
+  padding: 0.3rem 1rem 1rem 1rem;
+  margin: 0 0 0 -1rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -227,7 +227,7 @@ figure.current {
 
 .imageViewComponent .navigationComponent {
   color: white;
-  margin: 0 0 0 1rem; }
+  margin: 0 0 0 .2rem; }
 
 .imageViewComponent.right {
   z-index: 9000; }

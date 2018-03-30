@@ -1,29 +1,30 @@
-
 .navigationComponent {
-	min-width:30rem;
-	position: fixed;
-	height: 2rem;
-	white-space: nowrap;
-	z-index: 900;
-	white-space: nowrap;
-	padding: 0.3rem 1rem 1rem;
-	margin: 0;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	
+    min-width: 30rem;
+    position: fixed;
+    height: 2rem;
+    white-space: nowrap;
+    z-index: 900;
+    white-space: nowrap;
+    padding: 0.3rem 1rem 1rem 1rem;
+    margin: 0 0 0 -1rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
 .imageViewComponent .navigationComponent {
 	color: white;
-	margin:0 0 0 1rem;
+	margin: 0 0 0 .2rem;
 }
 
-.imageViewComponent.right{
-  z-index:9000;
+.imageViewComponent.right {
+	z-index: 9000;
 }
 
-.transcriptionViewComponent .navigationComponent{
-  background-color:#ffffff;
+.transcriptionViewComponent .navigationComponent {
+	background-color: #ffffff;
 }
 
 .breadcrumbs {
@@ -37,11 +38,11 @@
 /* The dropdown container */
 .dropdown {
 	overflow: hidden;
-	float:right;
+	float: right;
 }
 /* Dropdown button */
 .dropdown .dropbtn {
-	float:right;
+	float: right;
 	height: 2.5rem;
 	position: relative;
 	top: 0.1rem;

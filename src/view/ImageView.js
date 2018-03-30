@@ -28,7 +28,6 @@ class ImageView extends Component {
 
 	loadFolio(thisFolio){
 		//window.loadingModal_start();
-		console.log("Loading folio into "+this.elementID+" :"+thisFolio.id);
 		this.currentFolioID=thisFolio.id;
 		if(typeof this.viewer !== 'undefined'){
 			this.viewer.destroy();
@@ -41,7 +40,6 @@ class ImageView extends Component {
 		});
 		thisFolio.load().then(
 			(folio) => {
-				console.log(folio.name);
 				this.viewer.addTiledImage({
 					tileSource: folio.tileSource
 				});
@@ -55,14 +53,10 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		//console.log("Setting "+this.props.side+" to grid view");
 		this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
-		//this.props.splitPaneView.openFolio(this.props.side, this, 'ImageGridView');
 	}
 
 	render() {
-		console.log("ImageView Render: "+this.props.side+": "+this.props.navigationState[this.props.side].currentFolioID);
-
 		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
 				<div className={thisClass}>

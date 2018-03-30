@@ -60,7 +60,7 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-			let thisStyle = {width:(this.props.navigationState[this.props.side].width-50)};
+			let thisStyle = {width:(this.props.navigationState[this.props.side].width-35)};
 			let thisClass = "navigationComponent "+this.props.side;
 			return (
 				<div className={thisClass} style={thisStyle}>
