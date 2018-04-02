@@ -22,17 +22,17 @@ class navigation extends React.Component {
 		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
 
 		// Force reload
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:this.props.navigationState[this.props.side].currentFolioID}));
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:this.props.navigationState[this.props.side].currentFolioID,direction:event.currentTarget.dataset.direction}));
 	}
 
 	toggleBookmode = function(event){
 
 		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.navigationState.bookMode === true){
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.left.currentFolioID}));
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
 
 			let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+this.props.navigationState.right.nextFolioShortID;
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID}));
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID,direction:event.currentTarget.dataset.direction}));
 
 		}
 
@@ -51,9 +51,9 @@ class navigation extends React.Component {
 		// If we are transitioning from unlocked to locked, synch up the panes
 		if(!this.props.navigationState.linkedMode === true){
 			if(this.props.side === 'left'){
-				this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:this.props.navigationState.left.currentFolioID}));
+				this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
 			}else{
-				this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.right.currentFolioID}));
+				this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.right.currentFolioID,direction:event.currentTarget.dataset.direction}));
 			}
 		}
 
@@ -66,7 +66,7 @@ class navigation extends React.Component {
 			return;
 		}
 		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID}));
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
 	}
 
     renderData(item) {
@@ -97,8 +97,15 @@ class navigation extends React.Component {
 							&nbsp;
 							<span onClick={this.toggleBookmode} className={bookIconClass}></span>
 							&nbsp;
-							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].previousFolioShortID} className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
-							<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].nextFolioShortID} className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							<span 	onClick={this.changeCurrentFolio}
+									data-id={this.props.navigationState[this.props.side].previousFolioShortID}
+									data-direction="back"
+									className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+
+							<span 	onClick={this.changeCurrentFolio}
+									data-id={this.props.navigationState[this.props.side].nextFolioShortID}
+									data-direction="forward"
+									className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
 							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</span>
 						</div>

@@ -18,7 +18,7 @@ class navigation extends React.Component {
 		}
 
 		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID}));
+		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
 	}
 
 
@@ -26,9 +26,18 @@ class navigation extends React.Component {
 		return (
 			<div className="paginationComponent">
 				<div className="paginationControl">
-					<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].previousFolioShortID} className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
+
+					<span	onClick={this.changeCurrentFolio}
+							data-direction="back"
+							data-id={this.props.navigationState[this.props.side].previousFolioShortID}
+							className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
+
 					<span className="folioName">Folio {this.props.navigationState[this.props.side].currentFolioName}</span>
-					<span onClick={this.changeCurrentFolio} data-id={this.props.navigationState[this.props.side].nextFolioShortID} className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+
+					<span 	onClick={this.changeCurrentFolio}
+							data-direction="forward"
+							data-id={this.props.navigationState[this.props.side].nextFolioShortID}
+							className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 				</div>
 			</div>
 		)

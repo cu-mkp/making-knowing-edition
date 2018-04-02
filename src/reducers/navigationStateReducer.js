@@ -54,10 +54,9 @@ export default function navigationState(state = initialState, action) {
 
 			// Lookup prev/next
 			let shortID = action.payload.id.substr(action.payload.id.lastIndexOf('/') + 1);
-
 			// Book mode? (recto/verso)
 			if(state.bookMode){
-				let versoID=findNearestVerso(state, shortID);
+				let versoID=findNearestVerso(state, shortID, action.payload.direction);
 				let current_idx = state.folioIndex.indexOf(versoID);
 				let nextID = '';
 				let prevID = '';
@@ -205,6 +204,7 @@ export default function navigationState(state = initialState, action) {
 
 			// Entering bookmode
 			}else{
+
 				let versoID=findNearestVerso(state, state.left.currentFolioShortID);
 				let current_idx = state.folioIndex.indexOf(versoID);
 				let nextID = '';
@@ -284,15 +284,16 @@ export default function navigationState(state = initialState, action) {
 	}
 }
 
-function findNearestVerso(state, id){
+function findNearestVerso(state, id, direction){
+
 	let found=false;
 	let versoID=id;
-	let lookLeft=true;
+	let lookLeft=(typeof direction==undefined || direction === 'back');
 
 	while(!found){
-		// Look to see if this name is "verso" or ends in "v"
+		// Look to see if this name ends in "v"
 		let candidateName = state.folioNameIndex[versoID];
-		if(candidateName.endsWith("v") || candidateName.endsWith("verso")){
+		if(candidateName.endsWith("v")){
 			found=true;
 
 		// No, so keep looking

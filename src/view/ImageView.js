@@ -32,10 +32,12 @@ class ImageView extends Component {
 		if(typeof this.viewer !== 'undefined'){
 			this.viewer.destroy();
 		}
+		let in_id="os-zoom-in "+this.props.side;
+		let out_id="os-zoom-out "+this.props.side;
 		this.viewer = OpenSeadragon({
 			id: this.elementID,
-			zoomInButton: "os-zoom-in",
-			zoomOutButton: "os-zoom-out",
+			zoomInButton: in_id,
+			zoomOutButton: out_id,
 			prefixUrl: "./img/openseadragon/"
 		});
 		thisFolio.load().then(
@@ -61,7 +63,7 @@ class ImageView extends Component {
 		return (
 				<div className={thisClass}>
 					<Navigation side={this.props.side}/>
-					<ImageZoomControl onZoomGrid={this.onZoomGrid}/>
+					<ImageZoomControl side={this.props.side} onZoomGrid={this.onZoomGrid}/>
 					<div id={this.elementID}></div>
 				</div>
 		);
