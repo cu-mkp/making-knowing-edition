@@ -57,8 +57,8 @@ export default function navigationState(state = initialState, action) {
 
 			// Book mode? (recto/verso)
 			if(state.bookMode){
-				let rectoID=findNearestRectoTo(state, shortID);
-				let current_idx = state.folioIndex.indexOf(rectoID);
+				let versoID=findNearestVerso(state, shortID);
+				let current_idx = state.folioIndex.indexOf(versoID);
 				let nextID = '';
 				let prevID = '';
 				let nextNextID='';
@@ -78,9 +78,9 @@ export default function navigationState(state = initialState, action) {
 					bookMode: action.payload,
 					left:{
 						...state.left,
-						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+rectoID,
-						currentFolioShortID: rectoID,
-						currentFolioName: state.folioNameIndex[rectoID].padStart(4, "0"),
+						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+versoID,
+						currentFolioShortID: versoID,
+						currentFolioName: state.folioNameIndex[versoID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
@@ -205,8 +205,8 @@ export default function navigationState(state = initialState, action) {
 
 			// Entering bookmode
 			}else{
-				let rectoID=findNearestRectoTo(state, state.left.currentFolioID.substr(state.left.currentFolioID.lastIndexOf('/') + 1));
-				let current_idx = state.folioIndex.indexOf(rectoID);
+				let versoID=findNearestVerso(state, state.left.currentFolioShortID);
+				let current_idx = state.folioIndex.indexOf(versoID);
 				let nextID = '';
 				let prevID = '';
 				let nextNextID='';
@@ -226,9 +226,9 @@ export default function navigationState(state = initialState, action) {
 					bookMode: action.payload,
 					left:{
 						...state.left,
-						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+rectoID,
-						currentFolioShortID: rectoID,
-						currentFolioName: state.folioNameIndex[rectoID].padStart(4, "0"),
+						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+versoID,
+						currentFolioShortID: versoID,
+						currentFolioName: state.folioNameIndex[versoID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
@@ -284,32 +284,31 @@ export default function navigationState(state = initialState, action) {
 	}
 }
 
-function findNearestRectoTo(state, id){
+function findNearestVerso(state, id){
 	let found=false;
-	let rectoID=id;
+	let versoID=id;
 	let lookLeft=true;
 
 	while(!found){
-		// Look to see if this name is "recto" or ends in "r"
-		let rectoName = state.folioNameIndex[rectoID];
-		if(rectoName.endsWith("r") || rectoName.endsWith("recto")){
-			//console.log("Nearest recto:"+rectoName);
+		// Look to see if this name is "verso" or ends in "v"
+		let candidateName = state.folioNameIndex[versoID];
+		if(candidateName.endsWith("v") || candidateName.endsWith("verso")){
 			found=true;
 
 		// No, so keep looking
 		}else{
-			if(lookLeft && state.folioIndex.indexOf(rectoID) > 0){
-				rectoID=state.folioIndex[state.folioIndex.indexOf(rectoID) - 1];
+			if(lookLeft && state.folioIndex.indexOf(versoID) > 0){
+				versoID=state.folioIndex[state.folioIndex.indexOf(versoID) - 1];
 			}else{
 				lookLeft=false;
-				if(state.folioIndex.indexOf(rectoID) < state.folioIndex.length){
-					rectoID=state.folioIndex[state.folioIndex.indexOf(rectoID) + 1];
+				if(state.folioIndex.indexOf(versoID) < state.folioIndex.length){
+					versoID=state.folioIndex[state.folioIndex.indexOf(versoID) + 1];
 				}else{
-					console.log("ERROR: Couldn't find a single recto page!");
+					console.log("ERROR: Couldn't find a single verso page!");
 					return null;
 				}
 			}
 		}
 	}
-	return rectoID;
+	return versoID;
 }
