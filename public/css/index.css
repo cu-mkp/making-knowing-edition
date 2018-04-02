@@ -153,9 +153,9 @@ m {
 @media only screen and (max-width: 1260px) {
   #globalNavigation {
     display: none; }
-
   #footer .logos {
     display: none; } }
+
 #loadingStateModal {
   position: fixed;
   z-index: 9000;
@@ -188,20 +188,22 @@ m {
 
 @-webkit-keyframes sk-bouncedelay {
   0%,
-	100%,
-	80% {
+  100%,
+  80% {
     -webkit-transform: scale(0); }
   40% {
     -webkit-transform: scale(1); } }
+
 @keyframes sk-bouncedelay {
   0%,
-	100%,
-	80% {
+  100%,
+  80% {
     -webkit-transform: scale(0);
     transform: scale(0); }
   40% {
     -webkit-transform: scale(1);
     transform: scale(1); } }
+
 figure {
   padding: 0.3rem 0 0;
   border-radius: 0.2rem;
@@ -552,5 +554,3 @@ figure.current {
 
 .surface > #z20 {
   grid-area: z20; }
-
-/*# sourceMappingURL=index.css.map */
