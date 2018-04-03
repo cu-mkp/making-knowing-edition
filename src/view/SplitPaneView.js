@@ -192,7 +192,8 @@ class SplitPaneView extends Component {
 		let rightViewport = this.state.viewports['right'];
 		return (
 			<div className = "split-pane-view" style = {this.state.style} >
-				<SplitPaneViewport 	side = 'left'
+				<SplitPaneViewport 	history={this.props.history}
+									side = 'left'
 									key = {this.viewKey(leftViewport, 'left')}
 									viewType={this.props.navigationState.left.viewType}
 									document = {this.props.document}
@@ -205,7 +206,8 @@ class SplitPaneView extends Component {
 						<i className = {drawerIconClass} > </i>
 					</div>
 				</div>
-				<SplitPaneViewport  side = 'right'
+				<SplitPaneViewport  history={this.props.history}
+									side = 'right'
 									key = {this.viewKey(rightViewport, 'right')}
 									viewType={this.props.navigationState.right.viewType}
 									document = {this.props.document}

@@ -320,7 +320,7 @@ class TranscriptionView extends Component {
 			if(transcriptionData.content.length === 0){
 				return (
 					<div className={thisClass}>
-						<Navigation side={this.props.side}/>
+						<Navigation history={this.props.history} side={this.props.side}/>
 						<div className="transcriptContent">
 							<Pagination side={this.props.side} className="pagination_upper"/>
 							<div className="watermark">
@@ -342,7 +342,7 @@ class TranscriptionView extends Component {
 			}
 			return (
 		        <div className={thisClass}>
-		          <Navigation side={this.props.side}/>
+		          <Navigation history={this.props.history} side={this.props.side}/>
 				  <div className="transcriptContent">
 				  	<Pagination side={this.props.side} className="pagination_upper"/>
 		          	<div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>

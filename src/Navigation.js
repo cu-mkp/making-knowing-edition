@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import * as navigationStateActions from './actions/navigationStateActions';
 import {Icon} from "react-font-awesome-5";
 
-
 class navigation extends React.Component {
 
 	constructor(props,context){
@@ -38,6 +37,7 @@ class navigation extends React.Component {
 
 		// Set lock
 		this.props.dispatch(this.navigationStateActions.setBookMode(!this.props.navigationState.bookMode));
+
 	}
 
 	toggleLockmode = function(event){
@@ -59,6 +59,7 @@ class navigation extends React.Component {
 
 		// Set lock
 		this.props.dispatch(this.navigationStateActions.setLinkedMode(!this.props.navigationState.linkedMode));
+
 	}
 
 	changeCurrentFolio = function(event){
@@ -67,11 +68,13 @@ class navigation extends React.Component {
 		}
 		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
+
 	}
 
     renderData(item) {
         return <div key={item.id}>{item.name}</div>;
     }
+
 
     render() {
 

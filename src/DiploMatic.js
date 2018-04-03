@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import SplitPaneView from './view/SplitPaneView';
 import Document from './model/Document';
-
+import HashParser from './HashParser';
 class DiploMatic extends Component {
 
   constructor() {
@@ -32,7 +31,9 @@ class DiploMatic extends Component {
       return (
         <MuiThemeProvider>
           <div className="DiploMatic">
+		  	<HashParser history={this.props.history}/>
             <SplitPaneView
+			  history={this.props.history}
               document={this.document}
             />
           </div>
