@@ -232,7 +232,9 @@ export default function navigationState(state = initialState, action) {
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
-						nextFolioShortID: nextNextID
+						nextFolioShortID: nextNextID,
+						transcriptionTypeLabel: 'Facsimile',
+						viewType:'ImageView'
 					},
 					right:{
 						...state.right,
@@ -242,7 +244,9 @@ export default function navigationState(state = initialState, action) {
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
-						nextFolioShortID: nextNextID
+						nextFolioShortID: nextNextID,
+						transcriptionTypeLabel: 'Facsimile',
+						viewType:'ImageView'
 					}
 				};
 			}
@@ -276,9 +280,6 @@ export default function navigationState(state = initialState, action) {
 				};
 			}
 
-
-
-
 		default:
 			return state;
 	}
@@ -288,7 +289,7 @@ function findNearestVerso(state, id, direction){
 
 	let found=false;
 	let versoID=id;
-	let lookLeft=(typeof direction==undefined || direction === 'back');
+	let lookLeft=(typeof direction === undefined || direction === 'back');
 
 	while(!found){
 		// Look to see if this name ends in "v"

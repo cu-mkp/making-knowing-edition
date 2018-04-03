@@ -316,7 +316,6 @@ class TranscriptionView extends Component {
 
 			let thisClass = "transcriptionViewComponent "+this.props.side;
 
-
 			// Empty content
 			if(transcriptionData.content.length === 0){
 				return (

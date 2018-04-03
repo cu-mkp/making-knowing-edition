@@ -61,11 +61,13 @@ class ImageView extends Component {
 	render() {
 		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
+			<div>
 				<div className={thisClass}>
 					<Navigation side={this.props.side}/>
 					<ImageZoomControl side={this.props.side} onZoomGrid={this.onZoomGrid}/>
 					<div id={this.elementID}></div>
 				</div>
+			</div>
 		);
 	}
 }
