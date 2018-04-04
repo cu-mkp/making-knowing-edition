@@ -77,7 +77,7 @@ export default function navigationState(state = initialState, action) {
 					bookMode: action.payload,
 					left:{
 						...state.left,
-						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+versoID,
+						currentFolioID: state.folioIDPrefix+versoID,
 						currentFolioShortID: versoID,
 						currentFolioName: state.folioNameIndex[versoID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
@@ -87,7 +87,7 @@ export default function navigationState(state = initialState, action) {
 					},
 					right:{
 						...state.right,
-						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+nextID,
+						currentFolioID: state.folioIDPrefix+nextID,
 						currentFolioShortID: nextID,
 						currentFolioName: state.folioNameIndex[nextID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
@@ -226,7 +226,7 @@ export default function navigationState(state = initialState, action) {
 					bookMode: action.payload,
 					left:{
 						...state.left,
-						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+versoID,
+						currentFolioID: state.folioIDPrefix+versoID,
 						currentFolioShortID: versoID,
 						currentFolioName: state.folioNameIndex[versoID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
@@ -238,7 +238,7 @@ export default function navigationState(state = initialState, action) {
 					},
 					right:{
 						...state.right,
-						currentFolioID: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+nextID,
+						currentFolioID: state.folioIDPrefix+nextID,
 						currentFolioShortID: nextID,
 						currentFolioName: state.folioNameIndex[nextID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,

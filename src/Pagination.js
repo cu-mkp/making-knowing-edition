@@ -17,7 +17,7 @@ class navigation extends React.Component {
 			return;
 		}
 
-		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
+		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
 	}
 

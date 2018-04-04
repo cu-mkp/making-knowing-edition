@@ -30,12 +30,12 @@ class navigation extends React.Component {
 		if(!this.props.navigationState.bookMode === true){
 			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
 
-			let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+this.props.navigationState.right.nextFolioShortID;
+			let longID = this.props.navigationState.folioIDPrefix+this.props.navigationState.right.nextFolioShortID;
 			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID,direction:event.currentTarget.dataset.direction}));
 
 		}
 
-		// Set lock
+		// Toggle bookmode
 		this.props.dispatch(this.navigationStateActions.setBookMode(!this.props.navigationState.bookMode));
 
 	}
@@ -66,7 +66,7 @@ class navigation extends React.Component {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
-		let longID = 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/'+event.currentTarget.dataset.id;
+		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
 
 	}
