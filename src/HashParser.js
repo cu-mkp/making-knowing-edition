@@ -4,24 +4,18 @@ import * as navigationStateActions from './actions/navigationStateActions';
 
 class HashParser extends React.Component {
 
+	// Init
 	constructor(props, context) {
 		super(props, context);
 		this.hashDidChange = this.hashDidChange.bind(this);
 		this.navigationStateActions=navigationStateActions;
+		this.suppressNextUpdate=true;
 		this.initURL();
-		this.lastApplied='';
-		this.lastPushedToHistory='';
+		this.lastHashChangeInvokedStateUpdate= new Date();
 	}
 
-	// State change incoming
-	componentWillReceiveProps(nextProps) {
-		let newPath = this.createHashPath(nextProps.navigationState);
-		if (newPath !== this.lastApplied) {
-			this.setStateWithPath(newPath);
-			this.lastPushedToHistory=newPath;
-			this.props.history.push(newPath);
-		}
-	}
+	// This component doesn't render anything
+	render() {return null;}
 
 	// Add/remove listeners
 	componentDidMount() {
@@ -31,26 +25,36 @@ class HashParser extends React.Component {
 		window.removeEventListener("hashchange", this.hashDidChange, false);
 	}
 
-	// Hash listener
+	// Hash changed
 	hashDidChange(event) {
-		debugger
 		let newHashpath = event.newURL.split('#/')[1];
-		let oldHashpath = event.oldURL.split('#/')[1];
-		if (typeof newHashpath === 'undefined' || newHashpath.length === 0) {
-			this.initURL();
-		} else {
-			if(newHashpath !== oldHashpath){
-				console.log("Hash changed to: " + newHashpath + " from: "+oldHashpath);
-				this.setStateWithPath(newHashpath);
+		if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
+			this.lastHashChangeInvokedStateUpdate=new Date();
+			this.setStateWithPath(newHashpath);
+		}
+	}
+
+	// State changed
+	componentWillReceiveProps(nextProps) {
+		let now = new Date();
+	 	let secSinceLastHashChangeUpdate = (now.getTime() - this.lastHashChangeInvokedStateUpdate.getTime()) / 1000;
+
+		// Make sure the path has actually changed
+		let newPath = this.createHashPath(nextProps.navigationState);
+		let oldPath = this.createHashPath(this.props.navigationState);
+		if(newPath !== oldPath){
+
+			// This is debounced, so that we ignore props update if we've handled a hash change very recently (otherwise it loops)
+			if(secSinceLastHashChangeUpdate >= 0.1){
+				this.setStateWithPath(newPath);
+				this.props.history.push(newPath);
+			}else{
+				//console.log("Ignoring, too soon!");
 			}
 		}
 
 	}
 
-	// This component doesn't render anything
-	render() {
-		return null;
-	}
 
 	initURL() {
 		let newPath = this.createHashPath(this.props.navigationState);
@@ -85,8 +89,6 @@ class HashParser extends React.Component {
 	// Decode and update the redux store with the parsed path
 	// mode=[b|l|u] split=ratio [l|r]=[shortFolioID,transcriptType,viewType]
 	setStateWithPath(path) {
-		console.log("Applying: " + path);
-		this.lastApplied=path;
 
 		// Set defaults
 		let mode = 'x';
@@ -123,21 +125,15 @@ class HashParser extends React.Component {
 		// Apply changes to state
 		switch (mode) {
 			case 'b':
-				if(!this.props.navigationState.bookMode){
 					this.props.dispatch(this.navigationStateActions.setBookMode(true));
-				}
 				break;
 			case 'l':
-				if(!this.props.navigationState.linkedMode){
 					this.props.dispatch(this.navigationStateActions.setBookMode(false));
 					this.props.dispatch(this.navigationStateActions.setLinkedMode(true));
-				}
 				break;
 			case 'u':
-				if(this.props.navigationState.linkedMode){
 					this.props.dispatch(this.navigationStateActions.setBookMode(false));
 					this.props.dispatch(this.navigationStateActions.setLinkedMode(false));
-				}
 				break;
 		}
 
