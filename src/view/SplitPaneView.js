@@ -20,7 +20,7 @@ class SplitPaneView extends Component {
 			if(urlParams[1].split('=')[0] === 'sr'){
 				let splitRatio = urlParams[1].split('=')[1];
 				if(splitRatio > 0){
-				console.log("Set split to: "+splitRatio);
+				//console.log("Set split to: "+splitRatio);
 				split_left = splitRatio;
 				split_right = 1.0-splitRatio;
 				}

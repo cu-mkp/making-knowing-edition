@@ -15,13 +15,13 @@ class HashParser extends React.Component {
 		if(this.props.history.location.search.length === 0){
 			let newPath = this.createHashPath(this.props.navigationState);
 			if (this.props.history.location.search !== newPath) {
-				console.log("Init with default: "+newPath);
+				//console.log("Init with default: "+newPath);
 				this.props.history.push(newPath);
 			}
 
 		// Otherwise parse the incoming URL to set state
 		}else{
-			console.log("Init with user specified: "+this.props.history.location.search);
+			//console.log("Init with user specified: "+this.props.history.location.search);
 			this.setStateWithPath(this.props.history.location.search);
 			this.props.history.push(this.props.history.location.search);
 		}
@@ -99,8 +99,6 @@ class HashParser extends React.Component {
 	// mode=[b|l|u] split=ratio [l|r]=[shortFolioID,transcriptType,viewType]
 	setStateWithPath(path) {
 
-		console.log("Setting state to: "+path);
-
 		// We cannot do this if the folio index hasn't been defined yet,
 		// there's probably a slicker way to do this but let's poll, whee...
 		if(this.props.navigationState.folioIndex.length === 0){
@@ -143,7 +141,9 @@ class HashParser extends React.Component {
 		// Mode
 		switch (mode) {
 			case 'b':
-					this.props.dispatch(this.navigationStateActions.setBookMode(true));
+					if(left_currentFolioShortID !== '-1'){
+						this.props.dispatch(this.navigationStateActions.setBookModeWithFolio({shortid:left_currentFolioShortID}));
+					}
 					break;
 			case 'l':
 					this.props.dispatch(this.navigationStateActions.setBookMode(false));
