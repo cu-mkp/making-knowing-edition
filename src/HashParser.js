@@ -122,22 +122,78 @@ class HashParser extends React.Component {
 
 		}
 
-		// Apply changes to state
+		// Mode
 		switch (mode) {
 			case 'b':
 					this.props.dispatch(this.navigationStateActions.setBookMode(true));
-				break;
+					break;
 			case 'l':
 					this.props.dispatch(this.navigationStateActions.setBookMode(false));
 					this.props.dispatch(this.navigationStateActions.setLinkedMode(true));
-				break;
+					break;
 			case 'u':
 					this.props.dispatch(this.navigationStateActions.setBookMode(false));
 					this.props.dispatch(this.navigationStateActions.setLinkedMode(false));
+					break;
+			default:
+				console.log("WARNING: Hashparser: I don't understand the mode:"+mode);
+
+		}
+
+		// View type
+		switch (left_viewType) {
+			case 'g':
+				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageGridView'}));
 				break;
+
+			case 't':
+				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'TranscriptionView'}));
+				break;
+
+			case 'i':
+				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageView'}));
+				break;
+
+			default:
+				console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
+		}
+
+		switch (right_viewType) {
+			case 'g':
+				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageGridView'}));
+				break;
+
+			case 't':
+				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'TranscriptionView'}));
+				break;
+
+			case 'i':
+				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageView'}));
+				break;
+
+			default:
+				console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
 		}
 
 
+
+		// Transcription Type
+		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
+		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
+
+		/*
+		// Folios
+		if(left_currentFolioShortID !== '-1'){
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:left_currentFolioShortID}));
+		}
+
+		if(right_currentFolioShortID !== '-1'){
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:right_currentFolioShortID}));
+		}
+
+		// Handle size
+		console.log(splitRatio);
+		*/
 
 	}
 
