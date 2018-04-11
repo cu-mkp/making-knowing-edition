@@ -27,6 +27,3 @@ export function setwidths(payload){
 export function setPaneViewtype(payload){
 	return {type: allActions.SET_PANE_VIEWTYPE, payload:payload};
 }
-export function setBookModeWithFolio(payload){
-	return {type: allActions.SET_BOOK_MODE_WITH_FOLIO, payload:payload};
-}

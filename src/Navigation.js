@@ -36,7 +36,7 @@ class navigation extends React.Component {
 		}
 
 		// Toggle bookmode
-		this.props.dispatch(this.navigationStateActions.setBookMode(!this.props.navigationState.bookMode));
+		this.props.dispatch(this.navigationStateActions.setBookMode({shortid:this.props.navigationState.left.currentFolioShortID, status:!this.props.navigationState.bookMode}));
 
 	}
 

@@ -135,22 +135,24 @@ class HashParser extends React.Component {
 				right_transcriptionType = right.split(',')[1];
 				right_viewType = right.split(',')[2];
 			}
-
 		}
+		right_transcriptionType=(right_transcriptionType === 'f')?'facsimile':right_transcriptionType;
+		left_transcriptionType=(left_transcriptionType === 'f')?'facsimile':left_transcriptionType;
+
 
 		// Mode
 		switch (mode) {
 			case 'b':
 					if(left_currentFolioShortID !== '-1'){
-						this.props.dispatch(this.navigationStateActions.setBookModeWithFolio({shortid:left_currentFolioShortID}));
+						this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:true}));
 					}
 					break;
 			case 'l':
-					this.props.dispatch(this.navigationStateActions.setBookMode(false));
+					this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:false}));
 					this.props.dispatch(this.navigationStateActions.setLinkedMode(true));
 					break;
 			case 'u':
-					this.props.dispatch(this.navigationStateActions.setBookMode(false));
+					this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:false}));
 					this.props.dispatch(this.navigationStateActions.setLinkedMode(false));
 					break;
 			default:
@@ -159,49 +161,50 @@ class HashParser extends React.Component {
 		}
 
 
-		// View type
-		// Transcription Type
-		left_transcriptionType=(left_transcriptionType === 'f')?'facsimile':left_transcriptionType;
-		switch (left_viewType) {
-			case 'g':
-				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageGridView'}));
-				break;
+		// Set view type if we're NOT in bookMode
+		if(mode !== 'b'){
 
-			case 't':
-				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
-				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'TranscriptionView'}));
-				break;
+			// Left
+			switch (left_viewType) {
+				case 'g':
+					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageGridView'}));
+					break;
 
-			case 'i':
-				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
-				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageView'}));
-				break;
+				case 't':
+					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
+					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'TranscriptionView'}));
+					break;
 
-			default:
-				console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
+				case 'i':
+					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
+					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageView'}));
+					break;
+
+				default:
+					console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
+			}
+
+			// Right
+			switch (right_viewType) {
+				case 'g':
+					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageGridView'}));
+					break;
+
+				case 't':
+					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'TranscriptionView'}));
+					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
+					break;
+
+				case 'i':
+					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageView'}));
+					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
+					break;
+
+				default:
+					console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
+			}
+
 		}
-
-		right_transcriptionType=(right_transcriptionType === 'f')?'facsimile':right_transcriptionType;
-		switch (right_viewType) {
-			case 'g':
-				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageGridView'}));
-				break;
-
-			case 't':
-				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'TranscriptionView'}));
-				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
-				break;
-
-			case 'i':
-				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageView'}));
-				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
-				break;
-
-			default:
-				console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
-		}
-
-
 
 		// Set the left folio if it's defined
 		if(left_currentFolioShortID !== '-1'){

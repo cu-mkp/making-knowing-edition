@@ -207,23 +207,17 @@ export default function navigationState(state = initialState, action) {
 				return state;
 			}
 
-			// Called too soon warning
-			if(typeof state.left.currentFolioShortID === 'undefined'){
-				console.log("WARNING: SET_BOOK_MODE reducer - currentFolioShortID not defined, cannot determine next/previous, leaving state alone");
-				return state;
-			}
-
 			// Exiting bookmode
-			if(!action.payload){
+			if(!action.payload.status){
 				return {
 					...state,
-					bookMode: action.payload
+					bookMode: action.payload.status
 				}
 
 			// Entering bookmode
 			}else{
 
-				let versoID=findNearestVerso(state, state.left.currentFolioShortID);
+				let versoID=findNearestVerso(state, action.payload.shortid);
 				let current_idx = state.folioIndex.indexOf(versoID);
 				let nextID = '';
 				let prevID = '';
@@ -241,7 +235,7 @@ export default function navigationState(state = initialState, action) {
 				}
 				return {
 					...state,
-					bookMode: action.payload,
+					bookMode: action.payload.status,
 					left:{
 						...state.left,
 						currentFolioID: state.folioIDPrefix+versoID,
@@ -269,60 +263,6 @@ export default function navigationState(state = initialState, action) {
 				};
 			}
 
-			case SET_BOOK_MODE_WITH_FOLIO:
-
-				// Missing index warning
-				if(state.folioIndex.length === 0){
-					console.log("WARNING: SET_BOOK_MODE reducer - folio index not defined, cannot determine next/previous, leaving state alone");
-					return state;
-				}
-
-
-				// enter bookmode
-				let versoID2=findNearestVerso(state, action.payload.shortid);
-				let current_idx2 = state.folioIndex.indexOf(versoID2);
-				let nextID2 = '';
-				let prevID2 = '';
-				let nextNextID2='';
-				let current_hasPrev2 = false;
-				let current_hasNext2 = false;
-				let current_hasNextNext2 = false;
-				if (current_idx2 > -1) {
-					current_hasNext2 = (current_idx2 < (state.folioIndex.length - 1));
-					nextID2 = current_hasNext2 ? state.folioIndex[current_idx2 + 1] : '';
-					current_hasNextNext2 = (current_idx2 < (state.folioIndex.length - 2));
-					nextNextID2 = current_hasNextNext2 ? state.folioIndex[current_idx2 + 2] : '';
-					current_hasPrev2 = (current_idx2 > 0 && state.folioIndex.length > 1);
-					prevID2 = current_hasPrev2 ? state.folioIndex[current_idx2 - 1] : '';
-				}
-				return {
-					...state,
-					bookMode: action.payload,
-					left:{
-						...state.left,
-						currentFolioID: state.folioIDPrefix+versoID2,
-						currentFolioShortID: versoID2,
-						currentFolioName: state.folioNameIndex[versoID2].padStart(4, "0"),
-						hasPrevious: current_hasPrev2,
-						hasNext: current_hasNextNext2,
-						previousFolioShortID: prevID2,
-						nextFolioShortID: nextNextID2,
-						transcriptionTypeLabel: 'Facsimile',
-						viewType:'ImageView'
-					},
-					right:{
-						...state.right,
-						currentFolioID: state.folioIDPrefix+nextID2,
-						currentFolioShortID: nextID2,
-						currentFolioName: state.folioNameIndex[nextID2].padStart(4, "0"),
-						hasPrevious: current_hasPrev2,
-						hasNext: current_hasNextNext2,
-						previousFolioShortID: prevID2,
-						nextFolioShortID: nextNextID2,
-						transcriptionTypeLabel: 'Facsimile',
-						viewType:'ImageView'
-					}
-				};
 
 		case SET_PANE_SIZES:
 			return {
