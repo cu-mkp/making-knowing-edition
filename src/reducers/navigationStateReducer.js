@@ -52,6 +52,11 @@ export default function navigationState(state = initialState, action) {
 
 		case CHANGE_CURRENT_FOLIO:
 
+			if(state.folioIndex.length === 0){
+				console.log("WARNING: CHANGE_CURRENT_FOLIO reducer - folio index not defined, cannot change folio, leaving state alone");
+				return state;
+			}
+
 			// Lookup prev/next
 			let shortID = action.payload.id.substr(action.payload.id.lastIndexOf('/') + 1);
 			// Book mode? (recto/verso)

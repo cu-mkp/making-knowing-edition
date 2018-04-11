@@ -10,7 +10,23 @@ class HashParser extends React.Component {
 		this.hashDidChange = this.hashDidChange.bind(this);
 		this.navigationStateActions=navigationStateActions;
 		this.suppressNextUpdate=true;
-		this.initURL();
+
+		// If we're coming in with nothing, generate the URL from the default state
+		if(this.props.history.location.search.length === 0){
+			let newPath = this.createHashPath(this.props.navigationState);
+			if (this.props.history.location.search !== newPath) {
+				console.log("Init with default: "+newPath);
+				this.props.history.push(newPath);
+			}
+
+		// Otherwise parse the incoming URL to set state
+		}else{
+			console.log("Init with user specified: "+this.props.history.location.search);
+			this.setStateWithPath(this.props.history.location.search);
+			this.props.history.push(this.props.history.location.search);
+		}
+
+		// Initialize last hash change
 		this.lastHashChangeInvokedStateUpdate= new Date();
 	}
 
@@ -56,13 +72,6 @@ class HashParser extends React.Component {
 	}
 
 
-	initURL() {
-		let newPath = this.createHashPath(this.props.navigationState);
-		if (this.props.history.location.search !== newPath) {
-			console.log("Init to: "+newPath);
-			this.props.history.push(newPath);
-		}
-	}
 
 	// Create a hashpath encoding the state
 	// m=[b|l|u] sr=ratio [l|r]=[shortFolioID[-1], transcriptType[f|tl|tc|tcn], viewType[g|t|i]]
@@ -90,9 +99,19 @@ class HashParser extends React.Component {
 	// mode=[b|l|u] split=ratio [l|r]=[shortFolioID,transcriptType,viewType]
 	setStateWithPath(path) {
 
+		console.log("Setting state to: "+path);
+
+		// We cannot do this if the folio index hasn't been defined yet,
+		// there's probably a slicker way to do this but let's poll, whee...
+		if(this.props.navigationState.folioIndex.length === 0){
+				let this2 = this;
+				setTimeout(function() {
+					this2.setStateWithPath(path);
+				}, 250);
+		}
+
 		// Set defaults
 		let mode = 'x';
-		let splitRatio = 0.5;
 		let left_currentFolioShortID = -1;
 		let left_transcriptionType = 'tc';
 		let left_viewType = 'g';
@@ -104,7 +123,6 @@ class HashParser extends React.Component {
 		let urlParams = path.split('&');
 		if (urlParams.length === 4) {
 			mode = urlParams[0].split('=')[1];
-			splitRatio = urlParams[1].split('=')[1]
 			let left = urlParams[2].split('=')[1];
 			let right = urlParams[3].split('=')[1];
 
@@ -140,17 +158,22 @@ class HashParser extends React.Component {
 
 		}
 
+
 		// View type
+		// Transcription Type
+		left_transcriptionType=(left_transcriptionType === 'f')?'facsimile':left_transcriptionType;
 		switch (left_viewType) {
 			case 'g':
 				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageGridView'}));
 				break;
 
 			case 't':
+				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
 				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'TranscriptionView'}));
 				break;
 
 			case 'i':
+				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
 				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageView'}));
 				break;
 
@@ -158,6 +181,7 @@ class HashParser extends React.Component {
 				console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
 		}
 
+		right_transcriptionType=(right_transcriptionType === 'f')?'facsimile':right_transcriptionType;
 		switch (right_viewType) {
 			case 'g':
 				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageGridView'}));
@@ -165,10 +189,12 @@ class HashParser extends React.Component {
 
 			case 't':
 				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'TranscriptionView'}));
+				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
 				break;
 
 			case 'i':
 				this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageView'}));
+				this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
 				break;
 
 			default:
@@ -177,23 +203,27 @@ class HashParser extends React.Component {
 
 
 
-		// Transcription Type
-		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
-		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
-
-		/*
-		// Folios
+		// Set the left folio if it's defined
 		if(left_currentFolioShortID !== '-1'){
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:left_currentFolioShortID}));
+			let longID = this.props.navigationState.folioIDPrefix+left_currentFolioShortID;
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID}));
+
+			// If locked mode, set right to match
+			if(mode === 'l'){
+				left_currentFolioShortID = right_currentFolioShortID;
+			}
 		}
 
-		if(right_currentFolioShortID !== '-1'){
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:right_currentFolioShortID}));
+		// If we have a right folio specified and we're in unlocked mode, set it
+		if(right_currentFolioShortID !== '-1' && mode === 'u'){
+			let longID = this.props.navigationState.folioIDPrefix+right_currentFolioShortID;
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:longID}));
 		}
+
 
 		// Handle size
-		console.log(splitRatio);
-		*/
+		// THIS GOT MOVED to the constructor of SplitPaneView.js
+
 
 	}
 

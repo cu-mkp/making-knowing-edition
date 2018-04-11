@@ -12,6 +12,21 @@ class SplitPaneView extends Component {
 		this.firstFolio = props.document.folios[0];
 		this.navigationStateActions = navigationStateActions;
 
+		// Parse out the URL param if it exists
+		let split_left = 0.5;
+		let split_right = 0.5;
+		let urlParams = props.history.location.search.split('&');
+		if (urlParams.length > 2) {
+			if(urlParams[1].split('=')[0] === 'sr'){
+				let splitRatio = urlParams[1].split('=')[1];
+				if(splitRatio > 0){
+				console.log("Set split to: "+splitRatio);
+				split_left = splitRatio;
+				split_right = 1.0-splitRatio;
+				}
+			}
+		}
+
 		// Initialize the splitter
 		this.rightPaneMinWidth = 200;
 		this.leftPaneMinWidth = 200;
@@ -19,9 +34,10 @@ class SplitPaneView extends Component {
 		this.dividerWidth = 16;
 		this.state={
 			style:{
-				gridTemplateColumns:`0.5fr ${this.dividerWidth}px 0.5fr`
+				gridTemplateColumns:`${split_left}fr ${this.dividerWidth}px ${split_right}fr`
 			}
 		};
+
 
 		// event handlers
 		this.dragging = false;
