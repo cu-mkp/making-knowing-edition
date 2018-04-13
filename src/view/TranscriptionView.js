@@ -340,6 +340,7 @@ class TranscriptionView extends Component {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
+			debugger
 			return (
 		        <div className={thisClass}>
 		          <Navigation history={this.props.history} side={this.props.side}/>
