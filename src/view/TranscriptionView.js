@@ -4,6 +4,8 @@ import * as navigationStateActions from '../actions/navigationStateActions';
 import copyObject from '../lib/copyObject';
 import Navigation from '../Navigation';
 import Pagination from '../Pagination';
+import Annotation from '../Annotation';
+
 class TranscriptionView extends Component {
 
 	constructor(props) {
@@ -340,16 +342,26 @@ class TranscriptionView extends Component {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
-			debugger
+			
+			const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]\/\\])/g);
+      const safeRE = (string) => {
+        return string.replace(escapeRE, "\\$1")
+      }
+      let foo = transcriptionData.content.replace(/<m>/g, "<Annotation>$1");
+          foo = foo.replace(/<\/m>/g, "</Annotation>");
+  debugger
 			return (
-		        <div className={thisClass}>
+		      <div className={thisClass}>
+		          <Annotation/>
 		          <Navigation history={this.props.history} side={this.props.side}/>
-				  <div className="transcriptContent">
-				  	<Pagination side={this.props.side} className="pagination_upper"/>
-		          	<div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={ { __html: transcriptionData.content } } ></div>
-					<Pagination side={this.props.side} className="pagination_lower"/>
-				  </div>
-		        </div>
+      			  <div className="transcriptContent">
+      			  	<Pagination side={this.props.side} className="pagination_upper"/>
+      	          	<div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={{
+      	          	  __html: foo
+      	          	}}/>
+      				<Pagination side={this.props.side} className="pagination_lower"/>
+      			  </div>
+		      </div>
 			);
 
 		}

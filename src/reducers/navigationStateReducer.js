@@ -8,8 +8,7 @@ import {
 	SET_LINKED_MODE,
 	SET_BOOK_MODE,
 	SET_PANE_SIZES,
-	SET_PANE_VIEWTYPE,
-	SET_BOOK_MODE_WITH_FOLIO
+	SET_PANE_VIEWTYPE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {

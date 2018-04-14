@@ -61,7 +61,7 @@ class HashParser extends React.Component {
 		if(newPath !== oldPath){
 
 			// This is debounced, so that we ignore props update if we've handled a hash change very recently (otherwise it loops)
-			if(secSinceLastHashChangeUpdate >= 0.1){
+			if(secSinceLastHashChangeUpdate >= 0.25){
 				this.setStateWithPath(newPath);
 				this.props.history.push(newPath);
 			}else{

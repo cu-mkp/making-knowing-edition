@@ -5,6 +5,7 @@
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.4",
     "@fortawesome/react-fontawesome": "^0.0.17",
+    "ajv": "^6.4.0",
     "axios": "^0.17.1",
     "material-ui": "^0.20.0",
     "node-gyp": "^3.6.2",
