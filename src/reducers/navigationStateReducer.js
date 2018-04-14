@@ -4,6 +4,7 @@ import {
 	CHANGE_CURRENT_FOLIO,
 	UPDATE_FOLIO_INDEX,
 	UPDATE_FOLIO_NAME_INDEX,
+	UPDATE_GLOSSARY,
 	SET_DRAWER_MODE,
 	SET_LINKED_MODE,
 	SET_BOOK_MODE,
@@ -175,6 +176,36 @@ export default function navigationState(state = initialState, action) {
 				}
 			}
 
+		case UPDATE_GLOSSARY:
+			if(action.payload.transcriptionType === 'tc'){
+				return {
+					...state,
+					glossary:{
+						...state.glossary,
+						tc: action.payload.glossaryData
+					}
+				}
+
+			}else if(action.payload.transcriptionType === 'tl'){
+				return {
+					...state,
+					glossary:{
+						...state.glossary,
+						tl: action.payload.glossaryData
+					}
+				}
+
+			}else if(action.payload.transcriptionType === 'tcn'){
+				return {
+					...state,
+					glossary:{
+						...state.glossary,
+						tcn: action.payload.glossaryData
+					}
+				}
+			}else{
+				return state;
+			}
 
 		case UPDATE_FOLIO_INDEX:
 			return Object.assign({}, state, {

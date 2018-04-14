@@ -23,7 +23,7 @@ class DiploMatic extends Component {
 		  this.setState({ ready: true });
 
 		  // Store an ordered array of folio ids, used for next/prev navigation purposes later
-		  if(this.props.navigationState.folioIndex.length ===0){
+		  if(this.props.navigationState.folioIndex.length === 0){
 		  	let folioIndex = [];
 		  	let nameByID = {};
 		  	for(let idx=0;idx<this.document.folios.length;idx++){

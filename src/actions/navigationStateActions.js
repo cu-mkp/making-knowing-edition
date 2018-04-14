@@ -12,6 +12,9 @@ export function updateFolioIndex(payload){
 export function updateFolioNameIndex(payload){
 	return {type: allActions.UPDATE_FOLIO_NAME_INDEX, payload: payload};
 }
+export function updateGlossary(payload){
+	return {type: allActions.UPDATE_GLOSSARY, payload: payload};
+}
 export function setDrawerMode(payload){
 	return {type: allActions.SET_DRAWER_MODE, payload:payload};
 }

@@ -559,3 +559,36 @@ figure.current {
 
 .surface > #z20 {
   grid-area: z20; }
+
+#glossaryPopup {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  height: 10rem;
+  width: 10rem;
+  background: #858585;
+  border: 1px solid #c2e1f5;
+  border-radius: 0.3rem; }
+
+#glossaryPopup:after,
+#glossaryPopup:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+
+#glossaryPopup:after {
+  border-color: rgba(133, 133, 133, 0);
+  border-bottom-color: #858585;
+  border-width: 15px;
+  margin-left: -15px; }
+
+#glossaryPopup:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-bottom-color: #c2e1f5;
+  border-width: 16px;
+  margin-left: -16px; }

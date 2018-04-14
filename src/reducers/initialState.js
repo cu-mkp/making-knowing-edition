@@ -5,6 +5,11 @@ export default {
   linkedMode:true,
   bookMode:false,
   folioIndex:[],
+  glossary:{
+	  tc:{},
+	  tcn:{},
+	  tl:{}
+  },
   left:{
 	  transcriptionType: 'tc',
 	  transcriptionTypeLabel: 'French Original',

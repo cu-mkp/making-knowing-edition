@@ -4,7 +4,7 @@ import * as navigationStateActions from '../actions/navigationStateActions';
 import copyObject from '../lib/copyObject';
 import Navigation from '../Navigation';
 import Pagination from '../Pagination';
-import Annotation from '../Annotation';
+import Gloss from '../Gloss';
 import Parser from 'html-react-parser';
 
 class TranscriptionView extends Component {
@@ -344,7 +344,7 @@ class TranscriptionView extends Component {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
-
+			let side = this.props.side;
 			return (
 		      <div className={thisClass}>
 		          <Navigation history={this.props.history} side={this.props.side}/>
@@ -355,7 +355,7 @@ class TranscriptionView extends Component {
 						  Parser(transcriptionData.content, {
 							    replace: function(domNode) {
 							        if (domNode.name === 'm') {
-							            return <Annotation>{domNode.children[0].data}</Annotation>
+							            return <Gloss side={side}>{domNode.children[0].data}</Gloss>
 							        }
 							    }
 							})
@@ -375,7 +375,5 @@ function mapStateToProps(state) {
         navigationState: state.navigationState
     };
 }
-
-
 
 export default connect(mapStateToProps)(TranscriptionView);
