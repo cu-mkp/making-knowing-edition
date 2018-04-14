@@ -5,8 +5,10 @@ import copyObject from '../lib/copyObject';
 import Navigation from '../Navigation';
 import Pagination from '../Pagination';
 import Annotation from '../Annotation';
+import Parser from 'html-react-parser';
 
 class TranscriptionView extends Component {
+
 
 	constructor(props) {
 		super(props);
@@ -342,24 +344,24 @@ class TranscriptionView extends Component {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
-			
-			const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]\/\\])/g);
-      const safeRE = (string) => {
-        return string.replace(escapeRE, "\\$1")
-      }
-      let foo = transcriptionData.content.replace(/<m>/g, "<Annotation>$1");
-          foo = foo.replace(/<\/m>/g, "</Annotation>");
-  debugger
+
 			return (
 		      <div className={thisClass}>
-		          <Annotation/>
 		          <Navigation history={this.props.history} side={this.props.side}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={this.props.side} className="pagination_upper"/>
-      	          	<div className={surfaceClass} style={surfaceStyle} dangerouslySetInnerHTML={{
-      	          	  __html: foo
-      	          	}}/>
-      				<Pagination side={this.props.side} className="pagination_lower"/>
+					<div className={surfaceClass} style={surfaceStyle}>
+					  {
+						  Parser(transcriptionData.content, {
+							    replace: function(domNode) {
+							        if (domNode.name === 'm') {
+							            return <Annotation>{domNode.children[0].data}</Annotation>
+							        }
+							    }
+							})
+					  }
+					</div>
+					<Pagination side={this.props.side} className="pagination_lower"/>
       			  </div>
 		      </div>
 			);
@@ -373,5 +375,7 @@ function mapStateToProps(state) {
         navigationState: state.navigationState
     };
 }
+
+
 
 export default connect(mapStateToProps)(TranscriptionView);

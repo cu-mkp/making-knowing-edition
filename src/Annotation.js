@@ -13,7 +13,7 @@ class annotation extends React.Component {
 
     render() {
       return(
-          <div>hello</div>
+          <span style={{color:'red'}}>{this.props.children}</span>
         );
     }
 }
