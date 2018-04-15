@@ -5,6 +5,7 @@ import copyObject from '../lib/copyObject';
 import Navigation from '../Navigation';
 import Pagination from '../Pagination';
 import Gloss from '../Gloss';
+import Annotation from '../Annotation';
 import Parser from 'html-react-parser';
 
 class TranscriptionView extends Component {
@@ -345,13 +346,15 @@ class TranscriptionView extends Component {
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
 			let side = this.props.side;
-			let thisID = "transcriptionView_"+this.props.side; 
+			let thisID = "transcriptionView_"+this.props.side;
 			return (
 		      <div id={thisID} className={thisClass}>
 		          <Navigation history={this.props.history} side={this.props.side}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={this.props.side} className="pagination_upper"/>
 					<div className={surfaceClass} style={surfaceStyle}>
+						<Annotation type="fieldNotes">This is a test annotation</Annotation>
+						<div>
 					  {
 						  Parser(transcriptionData.content, {
 							    replace: function(domNode) {
@@ -361,6 +364,7 @@ class TranscriptionView extends Component {
 							    }
 							})
 					  }
+					  </div>
 					</div>
 					<Pagination side={this.props.side} className="pagination_lower"/>
       			  </div>

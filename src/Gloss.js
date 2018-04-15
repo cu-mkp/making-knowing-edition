@@ -30,7 +30,7 @@ class Gloss extends React.Component {
 		if(!(typeof gloss[term] === 'undefined')){
 			contents += "<div class='definition'>" + gloss[term] +"</div>";
 		}else{
-			contents += "<div class='definition'>" + "no ("+glossaryID+") definition" +"</div>";
+			contents += "<div class='definition'> no ("+glossaryID+") definition</div>";
 		}
 		let left = (event.clientX-160)+'px';
 		let top  = (event.clientY+20)+'px';
@@ -51,8 +51,6 @@ class Gloss extends React.Component {
 		  popup.style.display='none';
 		}
 
-
-
 		popup.style.left=left;
 		popup.style.top=top;
 		popup.innerHTML = contents;
@@ -60,11 +58,9 @@ class Gloss extends React.Component {
 		popup.focus();
 	}
 
-
-
 	render() {
 		return (
-			  <span onClick={this.displayGloss} className="annotation">{this.props.children}</span>
+			  <span onClick={this.displayGloss} className="glossaryTerm">{this.props.children}</span>
 		);
 	}
 }
@@ -73,10 +69,6 @@ function mapStateToProps(state) {
 	return {
 		navigationState: state.navigationState
 	};
-}
-
-function onFocusOutPopup(){
-	console.log("Hello");
 }
 
 export default connect(mapStateToProps)(Gloss);

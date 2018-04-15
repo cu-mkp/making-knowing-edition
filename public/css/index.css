@@ -557,7 +557,7 @@ figure.current {
 .surface > #z20 {
   grid-area: z20; }
 
-.annotation {
+.glossaryTerm {
   color: #90a9c5; }
 
 #glossaryPopup {
@@ -613,3 +613,14 @@ figure.current {
 
 #glossaryPopup:focus {
   outline: none; }
+
+.annotation {
+  border: 0 !important; }
+
+.annotation .content {
+  display: none; }
+
+.annotation .icon {
+  color: #92aac7;
+  right: 0;
+  font-size: 2rem; }
