@@ -345,8 +345,9 @@ class TranscriptionView extends Component {
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
 			let side = this.props.side;
+			let thisID = "transcriptionView_"+this.props.side; 
 			return (
-		      <div className={thisClass}>
+		      <div id={thisID} className={thisClass}>
 		          <Navigation history={this.props.history} side={this.props.side}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={this.props.side} className="pagination_upper"/>

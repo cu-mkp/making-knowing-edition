@@ -19,9 +19,6 @@ class navigation extends React.Component {
 	changeType = function (event) {
 		// Change viewtype
 		this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
-
-		// Force reload
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:this.props.navigationState[this.props.side].currentFolioID,direction:event.currentTarget.dataset.direction}));
 	}
 
 	toggleBookmode = function(event){

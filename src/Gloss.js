@@ -21,27 +21,50 @@ class Gloss extends React.Component {
 	}
 
 	displayGloss = function(event){
-		console.log(event.clientX+","+event.clientY);
+
+		let popup = document.getElementById('glossaryPopup');
 		let term = this.props.children.toLowerCase();
 		let glossaryID = this.props.navigationState[this.props.side].transcriptionType;
 		let gloss = this.props.navigationState.glossary[glossaryID];
-
-		if(typeof gloss[term] === 'undefined'){
-			console.log("Cannot find ("+glossaryID+") definition for: "+term);
-
+		let contents = "<div class='term'>"+term+"</div>";
+		if(!(typeof gloss[term] === 'undefined')){
+			contents += "<div class='definition'>" + gloss[term] +"</div>";
 		}else{
-			console.log("Definition: "+gloss[term]);
+			contents += "<div class='definition'>" + "no ("+glossaryID+") definition" +"</div>";
 		}
-		let left = (event.clientX-100)+'px';
+		let left = (event.clientX-160)+'px';
 		let top  = (event.clientY+20)+'px';
-		document.getElementById('glossaryPopup').style.left=left;
-		document.getElementById('glossaryPopup').style.top=top;
+		if(document.getElementById('transcriptionView_left')){
+			document.getElementById('transcriptionView_left').onscroll = function() {
+			  popup.style.display='none';
+			}
+		}
+		if(document.getElementById('transcriptionView_right')){
+			document.getElementById('transcriptionView_right').onscroll = function() {
+			  popup.style.display='none';
+			}
+		}
+		popup.onfocus = function() {
+		  popup.style.display='block';
+		}
+		popup.onblur = function() {
+		  popup.style.display='none';
+		}
 
+
+
+		popup.style.left=left;
+		popup.style.top=top;
+		popup.innerHTML = contents;
+		popup.style.display='block';
+		popup.focus();
 	}
+
+
 
 	render() {
 		return (
-			  <span onClick={this.displayGloss} style={{color:'red'}}>{this.props.children}</span>
+			  <span onClick={this.displayGloss} className="annotation">{this.props.children}</span>
 		);
 	}
 }
@@ -52,5 +75,8 @@ function mapStateToProps(state) {
 	};
 }
 
+function onFocusOutPopup(){
+	console.log("Hello");
+}
 
 export default connect(mapStateToProps)(Gloss);

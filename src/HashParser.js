@@ -46,7 +46,6 @@ class HashParser extends React.Component {
 		let newHashpath = event.newURL.split('#/')[1];
 		if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
 			this.lastHashChangeInvokedStateUpdate=new Date();
-			this.setStateWithPath(newHashpath);
 		}
 	}
 
@@ -62,7 +61,7 @@ class HashParser extends React.Component {
 
 			// This is debounced, so that we ignore props update if we've handled a hash change very recently (otherwise it loops)
 			if(secSinceLastHashChangeUpdate >= 0.25){
-				this.setStateWithPath(newPath);
+				//this.setStateWithPath(newPath);
 				this.props.history.push(newPath);
 			}else{
 				//console.log("Ignoring, too soon!");
@@ -98,7 +97,7 @@ class HashParser extends React.Component {
 	// Decode and update the redux store with the parsed path
 	// mode=[b|l|u] split=ratio [l|r]=[shortFolioID,transcriptType,viewType]
 	setStateWithPath(path) {
-
+		
 		// We cannot do this if the folio index hasn't been defined yet,
 		// there's probably a slicker way to do this but let's poll, whee...
 		if(this.props.navigationState.folioIndex.length === 0){
@@ -144,7 +143,9 @@ class HashParser extends React.Component {
 		switch (mode) {
 			case 'b':
 					if(left_currentFolioShortID !== '-1'){
-						this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:true}));
+						if(!this.props.navigationState.bookMode){
+							this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:true}));
+						}
 					}
 					break;
 			case 'l':
@@ -162,7 +163,7 @@ class HashParser extends React.Component {
 
 
 		// Set view type if we're NOT in bookMode
-		if(mode !== 'b'){
+		//if(mode !== 'b'){
 
 			// Left
 			switch (left_viewType) {
@@ -204,7 +205,7 @@ class HashParser extends React.Component {
 					console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
 			}
 
-		}
+		//}
 
 		// Set the left folio if it's defined
 		if(left_currentFolioShortID !== '-1'){

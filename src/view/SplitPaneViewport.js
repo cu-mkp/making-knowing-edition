@@ -29,7 +29,6 @@ class SplitPaneViewport extends Component {
   }
 
   render() {
-
     if( this.state.viewType === 'ImageView') {
       return (
         <ImageView
@@ -59,7 +58,7 @@ class SplitPaneViewport extends Component {
     } else if( this.state.viewType === 'ImageGridView' ) {
       return (
         <ImageGridView
-		  history={this.props.history}  
+		  history={this.props.history}
           side={this.props.side}
           document={this.props.document}
           viewWidth={this.state.viewWidth}
