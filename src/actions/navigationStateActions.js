@@ -30,3 +30,6 @@ export function setwidths(payload){
 export function setPaneViewtype(payload){
 	return {type: allActions.SET_PANE_VIEWTYPE, payload:payload};
 }
+export function setColumnModeForSide(payload){
+	return {type: allActions.SET_COLUMN_MODE_FOR_SIDE, payload:payload};
+}

@@ -39,14 +39,18 @@ class Annotation extends React.Component {
 				break;
 
 		}
-
-		let style = this.state.visible?{display: "block"}:{display: "none"};
+		icon += this.state.visible?' open':'';
+		let content_style = this.state.visible?{display: "block"}:{display: "none"};
 		return (
 			  <div className="annotation">
-			  	<h2>{this.props.headline}</h2>
-			  	<div onClick={this.toggleAnnotation} className={icon}/>
-			  	<div className="content" style={style}>
+			  	<div className="header">
+			  		<div className="title"><h2>{this.props.headerContent}</h2></div>
+			  		<div className={icon} onClick={this.toggleAnnotation}/>
+				</div>
+			  	<div className="content" style={content_style}>
 			  		{this.props.children}
+
+					<iframe className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
 				</div>
 			  </div>
 		);

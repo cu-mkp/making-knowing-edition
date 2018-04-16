@@ -563,18 +563,17 @@ figure.current {
 #glossaryPopup {
   display: none;
   position: absolute;
-  top: 20px;
-  left: 50px;
+  top: 10rem;
   height: 5rem;
   width: 20rem;
   background: #e7e7e7;
-  border: 1px solid #5a626666;
+  border: 1px solid rgba(90, 98, 102, 0.53);
   border-radius: 0.3rem;
-  -webkit-box-shadow: 6px 6px 5px 0 #a3a3a3;
-  -moz-box-shadow: 6px 6px 5px 0 #a3a3a3;
-  box-shadow: 6px 6px 5px 0 #a3a3a3;
+  -webkit-box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.211765);
+  -moz-box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.211765);
+  box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.211765);
   font-family: sans-serif;
-  padding: .5rem; }
+  padding: 0.5rem; }
 
 #glossaryPopup:after,
 #glossaryPopup:before {
@@ -595,32 +594,62 @@ figure.current {
 
 #glossaryPopup:before {
   border-color: rgba(194, 225, 245, 0);
-  border-bottom-color: #00000026;
+  border-bottom-color: rgba(90, 98, 102, 0.87);
   border-width: 16px;
   margin-left: -16px; }
 
 #glossaryPopup .term {
   font-weight: 900;
-  background-color: #00000012;
-  margin: 0 0 .5rem 0;
+  background-color: rgba(0, 0, 0, 0.0705882);
+  margin: 0 0 0.5rem;
   border-radius: 0.3rem;
-  padding: .2rem; }
+  padding: 0.2rem; }
 
 #glossaryPopup .definition {
   font-weight: 200;
-  font-size: .8rem;
-  margin: 0 0 0 .2rem; }
+  font-size: 0.8rem;
+  margin: 0 0 0 0.2rem;
+  overflow: scroll;
+  height: 3rem; }
 
 #glossaryPopup:focus {
   outline: none; }
 
-.annotation {
-  border: 0 !important; }
+.annotation .icon {
+  margin: -.6rem 0 0 0;
+  width: 3rem;
+  min-height: 2.5rem;
+  border-radius: 0.3rem;
+  color: #92aac7;
+  float: right;
+  font-size: 2rem;
+  background-color: #cccccc21;
+  border: 1px dashed #0000001a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.annotation .header {
+  margin: 1rem 0 0 0;
+  display: flex; }
+
+.annotation .header .title {
+  width: 100%; }
 
 .annotation .content {
-  display: none; }
+  border-radius: 0.3rem 0 0.3rem 0.3rem;
+  border: 1px dashed #0000001a;
+  background-color: #cccccc69;
+  padding: 1rem;
+  margin: 0 0 1rem 0; }
 
-.annotation .icon {
-  color: #92aac7;
-  right: 0;
-  font-size: 2rem; }
+.annotation .header .icon.open {
+  border-radius: 0.3rem 0.3rem 0 0;
+  border-bottom: none;
+  background-color: #cccccc69; }
+
+.annotation .videoEmbed {
+  border-radius: 0.3rem;
+  margin: 2rem 1rem 0 0;
+  background-color: #bfbfbf;
+  width: 100%; }

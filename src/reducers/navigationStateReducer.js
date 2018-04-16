@@ -9,7 +9,8 @@ import {
 	SET_LINKED_MODE,
 	SET_BOOK_MODE,
 	SET_PANE_SIZES,
-	SET_PANE_VIEWTYPE
+	SET_PANE_VIEWTYPE,
+	SET_COLUMN_MODE_FOR_SIDE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
@@ -43,7 +44,7 @@ export default function navigationState(state = initialState, action) {
 				return {
                 	...state,
 					right:{
-						...state.left,
+						...state.right,
 						transcriptionType: action.payload.transcriptionType,
 						transcriptionTypeLabel: label,
 						viewType:viewType
@@ -293,12 +294,32 @@ export default function navigationState(state = initialState, action) {
 				};
 			}
 
+		case SET_COLUMN_MODE_FOR_SIDE:
+			if(action.payload.side === 'left'){
+				return {
+					...state,
+					left:{
+						...state.left,
+						isGridMode: action.payload.newState
+					}
+				};
+			}else{
+				return {
+					...state,
+					right:{
+						...state.right,
+						isGridMode: action.payload.newState
+					}
+				};
+			}
 
 		case SET_PANE_SIZES:
 			return {
 				...state,
-				left:{...state.left,width: action.payload.left},
-				right:{...state.right,width: action.payload.right}
+				left:{	...state.left,
+						width: action.payload.left},
+				right:{	...state.right,
+						width: action.payload.right}
 			};
 
 		case SET_PANE_VIEWTYPE:

@@ -1,12 +1,44 @@
-
-.annotation{
-  border:0 !important;
+.annotation .icon {
+	margin: -.6rem 0 0 0;
+	width: 3rem;
+	min-height: 2.5rem;
+	border-radius: 0.3rem;
+	color: #92aac7;
+	float: right;
+	font-size: 2rem;
+	background-color: #cccccc21;
+	border: 1px dashed #0000001a;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
-.annotation .content {
-  display: none; }
 
-.annotation .icon{
-  color:#92aac7;
-  right:0;
-  font-size:2rem;
+.annotation .header {
+	margin: 1rem 0 0 0;
+	display: flex;
+}
+
+.annotation .header .title {
+	width: 100%;
+}
+
+.annotation .content {
+	border-radius: 0.3rem 0 0.3rem 0.3rem;
+	border: 1px dashed #0000001a;
+	background-color: #cccccc69;
+	padding: 1rem;
+	margin: 0 0 1rem 0;
+}
+
+.annotation .header .icon.open {
+	border-radius: 0.3rem 0.3rem 0 0;
+	border-bottom: none;
+	background-color: #cccccc69;
+}
+
+.annotation .videoEmbed {
+	border-radius: 0.3rem;
+	margin: 2rem 1rem 0 0;
+	background-color: #bfbfbf;
+	width: 100%;
 }

@@ -11,6 +11,7 @@ export default {
 	  tl:{}
   },
   left:{
+	  isGridMode: true,
 	  transcriptionType: 'tc',
 	  transcriptionTypeLabel: 'French Original',
 	  currentFolioName:'',
@@ -24,6 +25,7 @@ export default {
 	  viewType:'ImageGridView'
   },
   right:{
+	  isGridMode: false,
 	  transcriptionType: 'tc',
 	  transcriptionTypeLabel: 'French Original',
 	  currentFolioName:'',

@@ -30,10 +30,11 @@ class Gloss extends React.Component {
 		if(!(typeof gloss[term] === 'undefined')){
 			contents += "<div class='definition'>" + gloss[term] +"</div>";
 		}else{
-			contents += "<div class='definition'> no ("+glossaryID+") definition</div>";
+			contents += "<div class='definition'> no definition available ("+glossaryID+" glossary)</div>";
 		}
-		let left = (event.clientX-160)+'px';
-		let top  = (event.clientY+20)+'px';
+
+
+		// Hide on scroll
 		if(document.getElementById('transcriptionView_left')){
 			document.getElementById('transcriptionView_left').onscroll = function() {
 			  popup.style.display='none';
@@ -44,16 +45,22 @@ class Gloss extends React.Component {
 			  popup.style.display='none';
 			}
 		}
+
+		// Make visible on focus
 		popup.onfocus = function() {
 		  popup.style.display='block';
 		}
+
+		// Hide on blur
 		popup.onblur = function() {
 		  popup.style.display='none';
 		}
 
+		let left = (event.clientX-160)+'px';
+		let top  = (event.clientY+20)+'px';
 		popup.style.left=left;
 		popup.style.top=top;
-		popup.innerHTML = contents;
+		popup.innerHTML=contents;
 		popup.style.display='block';
 		popup.focus();
 	}

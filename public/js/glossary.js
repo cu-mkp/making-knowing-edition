@@ -1,5 +1,0 @@
-/*
-glossary.js
-
-Handle glossary popup
-*/

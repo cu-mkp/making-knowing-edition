@@ -3,55 +3,63 @@
 }
 
 #glossaryPopup {
-display:none;
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  height: 5rem;
-  width: 20rem;
-  background: #e7e7e7;
-  border: 1px solid #5a626666;
-  border-radius: 0.3rem;
-  -webkit-box-shadow: 6px 6px 5px 0 #a3a3a3;
-  -moz-box-shadow: 6px 6px 5px 0 #a3a3a3;
-  box-shadow: 6px 6px 5px 0 #a3a3a3;
-  font-family: sans-serif;
-  padding: .5rem; }
+	display: none;
+	position: absolute;
+	top: 10rem;
+	height: 5rem;
+	width: 20rem;
+	background: rgb(231, 231, 231);
+	border: 1px solid rgba(90, 98, 102, 0.53);
+	border-radius: 0.3rem;
+	-webkit-box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.21176470588235294);
+	-moz-box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.21176470588235294);
+	box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.21176470588235294);
+	font-family: sans-serif;
+	padding: 0.5rem;
+}
 
 #glossaryPopup:after,
 #glossaryPopup:before {
-  bottom: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none; }
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
 
 #glossaryPopup:after {
-  border-color: rgba(133, 133, 133, 0);
-  border-bottom-color: #e7e7e7;
-  border-width: 15px;
-  margin-left: -15px; }
+	border-color: rgba(133, 133, 133, 0);
+	border-bottom-color: rgb(231, 231, 231);
+	border-width: 15px;
+	margin-left: -15px;
+}
 
 #glossaryPopup:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-bottom-color: #00000026;
-  border-width: 16px;
-  margin-left: -16px; }
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: rgba(90, 98, 102, 0.87);
+	border-width: 16px;
+	margin-left: -16px;
+}
 
 #glossaryPopup .term {
-  font-weight: 900;
-  background-color: #00000012;
-  margin:0 0 .5rem 0;
-  border-radius:0.3rem;
-  padding:.2rem;
-  }
+	font-weight: 900;
+	background-color: rgba(0, 0, 0, 0.07058823529411765);
+	margin: 0 0 0.5rem;
+	border-radius: 0.3rem;
+	padding: 0.2rem;
+}
 
 #glossaryPopup .definition {
-  font-weight: 200;
-  font-size: .8rem;
-  margin:0 0 0 .2rem;
-  }
-#glossaryPopup:focus{ outline: none; }
+	font-weight: 200;
+	font-size: 0.8rem;
+	margin: 0 0 0 0.2rem;
+	overflow:scroll;
+	height:3rem;
+}
+
+#glossaryPopup:focus {
+	outline: none;
+}

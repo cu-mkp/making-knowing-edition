@@ -358,7 +358,9 @@ class TranscriptionView extends Component {
 			let surfaceClass = "surface";
 			let surfaceStyle = {};
 
-			if(this.props.navigationState[this.props.side].width >= this.gridBreakPoint) {
+			//if(this.props.navigationState[this.props.side].width >= this.gridBreakPoint) {
+			console.log(this.props.side + " : "+ this.props.navigationState[this.props.side].isGridMode);
+			if(this.props.navigationState[this.props.side].isGridMode) {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
@@ -411,13 +413,15 @@ class TranscriptionView extends Component {
 
 						case 'h2':
 							let text = this2.nodeTreeToString(domNode.children);
+							let annotationType = "fieldNotes"; // fieldNotes | annotation | video
+							let annotationContent = "This is a fieldNote annotation for: '"+text;
+							annotationContent +="' Mauris laoreet purus ut urna ullamcorper fringilla. Morbi fermentum lectus ac dictum auctor. Suspendisse suscipit quam non arcu ultrices, vel dignissim tellus gravida. Nunc vitae odio lorem. Nulla nisl erat, laoreet vitae lectus quis, pharetra semper diam. In hac habitasse platea dictumst. Nullam id felis quis metus iaculis fermentum quis quis tortor. Proin maximus urna mi, non semper mauris fringilla eu. Vivamus eget lectus malesuada, commodo ex sit amet, finibus nunc. Pellentesque non ultrices magna. Proin molestie tempus diam, ac faucibus orci vulputate in. Donec tempor faucibus enim. Pellentesque facilisis ut mi sit amet cursus. Integer sollicitudin faucibus metus iaculis faucibus. Suspendisse in velit eget orci pretium placerat. Morbi rhoncus, libero ac convallis pellentesque, enim eros elementum leo, vitae suscipit mi nibh at sem."
 							return (
-								<span>
-									<h2>{domToReact(domNode.children, parserOptions)}</h2>
-									<Annotation side={side} type="fieldNotes">
-										   <b>{text}:</b> contents of annotation
-									</Annotation>
-								</span>
+								<Annotation headerContent={domToReact(domNode.children, parserOptions)}
+											side={side}
+											type={annotationType}>
+									   		{annotationContent}
+								</Annotation>
 							);
 
 						 /* Just pass through */
@@ -428,6 +432,7 @@ class TranscriptionView extends Component {
 				 }
 			 };
 
+			// The render block, finally
 			return (
 		      <div id={thisID} className={thisClass}>
 		          <Navigation history={this.props.history} side={this.props.side}/>

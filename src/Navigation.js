@@ -10,6 +10,7 @@ class navigation extends React.Component {
 		this.changeType = this.changeType.bind(this);
 		this.toggleLockmode = this.toggleLockmode.bind(this);
 		this.toggleBookmode = this.toggleBookmode.bind(this);
+		this.toggleColumns = this.toggleColumns.bind(this);
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
 		this.navigationStateActions=navigationStateActions;
 	}
@@ -35,6 +36,11 @@ class navigation extends React.Component {
 		// Toggle bookmode
 		this.props.dispatch(this.navigationStateActions.setBookMode({shortid:this.props.navigationState.left.currentFolioShortID, status:!this.props.navigationState.bookMode}));
 
+	}
+
+	toggleColumns = function(event){
+		// Toggle toggleColumns
+		this.props.dispatch(this.navigationStateActions.setColumnModeForSide({side:this.props.side, newState:!this.props.navigationState[this.props.side].isGridMode}));
 	}
 
 	toggleLockmode = function(event){
@@ -90,12 +96,15 @@ class navigation extends React.Component {
 				lockIconClass +=" active";
 			}
 			let bookIconClass = (this.props.navigationState.bookMode)?'fa fa-book active':'fa fa-book';
+			let columnIconClass = (this.props.navigationState[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className="breadcrumbs">
 							<span onClick={this.toggleLockmode} className={lockIconClass}></span>
 							&nbsp;
 							<span onClick={this.toggleBookmode} className={bookIconClass}></span>
+							&nbsp;
+							<span onClick={this.toggleColumns} className={columnIconClass}></span>
 							&nbsp;
 							<span 	onClick={this.changeCurrentFolio}
 									data-id={this.props.navigationState[this.props.side].previousFolioShortID}
