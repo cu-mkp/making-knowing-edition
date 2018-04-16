@@ -21,9 +21,9 @@ class Gloss extends React.Component {
 	}
 
 	displayGloss = function(event){
-
 		let popup = document.getElementById('glossaryPopup');
-		let term = this.props.children.toLowerCase();
+		let term = this.props.term.toLowerCase();
+		 	term = term.replace(/\s{2,}/g,' ').trim()
 		let glossaryID = this.props.navigationState[this.props.side].transcriptionType;
 		let gloss = this.props.navigationState.glossary[glossaryID];
 		let contents = "<div class='term'>"+term+"</div>";

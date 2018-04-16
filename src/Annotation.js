@@ -43,6 +43,7 @@ class Annotation extends React.Component {
 		let style = this.state.visible?{display: "block"}:{display: "none"};
 		return (
 			  <div className="annotation">
+			  	<h2>{this.props.headline}</h2>
 			  	<div onClick={this.toggleAnnotation} className={icon}/>
 			  	<div className="content" style={style}>
 			  		{this.props.children}

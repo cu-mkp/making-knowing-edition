@@ -7,6 +7,7 @@ import Pagination from '../Pagination';
 import Gloss from '../Gloss';
 import Annotation from '../Annotation';
 import Parser from 'html-react-parser';
+import domToReact from 'html-react-parser/lib/dom-to-react';
 
 class TranscriptionView extends Component {
 
@@ -21,6 +22,18 @@ class TranscriptionView extends Component {
 		window.loadingModal_stop();
 	}
 
+	// Recursively unpack a node tree object and just return the text
+	nodeTreeToString(node) {
+		let term = '';
+		for(let x=0;x<node.length;x++){
+			if(node[x].type === 'text'){
+				term += node[x].data+" ";
+			}else if(node[x].children.length > 0){
+				term += this.nodeTreeToString(node[x].children);
+			}
+		}
+  	  return term.trim();
+    }
 
 	loadFolio(folio){
 		if(typeof folio === 'undefined'){
@@ -203,6 +216,9 @@ class TranscriptionView extends Component {
     };
   }
 
+
+
+
   mergeRow( sourceRow, targetRow ) {
     if( targetRow ) {
       let result = [];
@@ -273,6 +289,7 @@ class TranscriptionView extends Component {
 			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
 	  	}
 	}
+
 
 
 	// RENDER
@@ -347,25 +364,80 @@ class TranscriptionView extends Component {
 			}
 			let side = this.props.side;
 			let thisID = "transcriptionView_"+this.props.side;
+
+			// Parser replaces certain tags with components
+			let this2=this;
+			let parserOptions = {
+				 replace: function(domNode) {
+
+					 switch (domNode.name) {
+
+						/* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
+						case 'add':
+						case 'al':
+						case 'cn':
+						case 'env':
+						case 'exp':
+						case 'fr':
+						case 'id':
+						case 'it':
+						case 'ill':
+						case 'la':
+						case 'lb':
+						case 'ms':
+						case 'pa':
+						case 'pl':
+						case 'pro':
+						case 'tl':
+						case 'unc':
+						case 'x':
+						case 'tmp':
+							return (
+								<span unrecognized_tag={domNode.name}>
+								 	{domToReact(domNode.children, parserOptions)}
+							 	</span>
+							);
+
+
+						/* <m> gets replaced with <Gloss> */
+						case 'm':
+							let term = this2.nodeTreeToString(domNode.children);
+  							return (
+								<Gloss side={side}
+									   term={term}>
+  									   {domToReact(domNode.children, parserOptions)}
+  								</Gloss>
+							);
+
+						case 'h2':
+							let text = this2.nodeTreeToString(domNode.children);
+							return (
+								<span>
+									<h2>{domToReact(domNode.children, parserOptions)}</h2>
+									<Annotation side={side} type="fieldNotes">
+										   <b>{text}:</b> contents of annotation
+									</Annotation>
+								</span>
+							);
+
+						 /* Just pass through */
+						 default:
+							 return domNode;
+					 }
+
+				 }
+			 };
+
 			return (
 		      <div id={thisID} className={thisClass}>
 		          <Navigation history={this.props.history} side={this.props.side}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={this.props.side} className="pagination_upper"/>
+
 					<div className={surfaceClass} style={surfaceStyle}>
-						<Annotation type="fieldNotes">This is a test annotation</Annotation>
-						<div>
-					  {
-						  Parser(transcriptionData.content, {
-							    replace: function(domNode) {
-							        if (domNode.name === 'm') {
-							            return <Gloss side={side}>{domNode.children[0].data}</Gloss>
-							        }
-							    }
-							})
-					  }
-					  </div>
+						{Parser(transcriptionData.content, parserOptions)}
 					</div>
+
 					<Pagination side={this.props.side} className="pagination_lower"/>
       			  </div>
 		      </div>
@@ -374,6 +446,7 @@ class TranscriptionView extends Component {
 		}
 	}
 }
+
 
 function mapStateToProps(state) {
 	return {
