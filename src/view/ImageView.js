@@ -12,6 +12,9 @@ class ImageView extends Component {
 		this.isLoaded = false;
 		this.currentFolioID="";
 		this.elementID =  "image-view-seadragon-"+this.props.side;
+		this.onZoomFixed_1 = this.onZoomFixed_1.bind(this);
+		this.onZoomFixed_2 = this.onZoomFixed_2.bind(this);
+		this.onZoomFixed_3 = this.onZoomFixed_3.bind(this);
 	}
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
@@ -58,13 +61,29 @@ class ImageView extends Component {
 		this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
 	}
 
+	onZoomFixed_1 = (e) => {
+		this.viewer.viewport.fitVertically();
+	}
+	onZoomFixed_2 = (e) => {
+		this.viewer.viewport.zoomTo((this.viewer.viewport.getMaxZoom()/2));
+
+	}
+	onZoomFixed_3 = (e) => {
+		this.viewer.viewport.zoomTo(this.viewer.viewport.getMaxZoom());
+
+	}
+
 	render() {
 		let thisClass = "image-view imageViewComponent "+this.props.side;
 		return (
 			<div>
 				<div className={thisClass}>
 					<Navigation history={this.props.history} side={this.props.side}/>
-					<ImageZoomControl side={this.props.side} onZoomGrid={this.onZoomGrid}/>
+					<ImageZoomControl side={this.props.side}
+									  onZoomFixed_1={this.onZoomFixed_1}
+									  onZoomFixed_2={this.onZoomFixed_2}
+									  onZoomFixed_3={this.onZoomFixed_3}
+									  onZoomGrid={this.onZoomGrid}/>
 					<div id={this.elementID}></div>
 				</div>
 			</div>
