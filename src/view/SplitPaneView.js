@@ -63,6 +63,13 @@ class SplitPaneView extends Component {
 				   this.splitFraction = (whole === 0) ? 0.0 : left_viewWidth / whole;
 				   this.updateUI();
 			}
+
+			// Record state change
+			let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
+			let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
+			if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
+				this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
+			}
 		}
 	}
 
@@ -71,15 +78,9 @@ class SplitPaneView extends Component {
 		this.dragging = true
 	}
 
-	// Drag end: Record the size in the global state
+	// Drag end
 	onEndDrag = (e) => {
-		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
-		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-		if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
-			this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
-		}
 		this.dragging = false;
-		//console.log("END DRAG:"+(left_px + right_px) + ": " + left_px + " | " + right_px);
 	}
 
 	// On window resize

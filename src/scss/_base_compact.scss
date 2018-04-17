@@ -6,7 +6,7 @@
 #search {
 	display: inline;
 }
-@media only screen and (max-width: 1260px) {
+@media only screen and (max-width: 1290px) {
 	.expandedViewOnly {
 		display: none;
 	}
@@ -41,5 +41,13 @@
 
 	#header .compactTitle {
 		display: block;
+		font-size:2rem;
+		width:5rem;
+
+		margin:.6rem 0 0 0;
+	}
+		#header #search {
+		display: block;
+		margin:.5rem 1rem 0 0;
 	}
 }

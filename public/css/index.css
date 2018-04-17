@@ -141,7 +141,7 @@ h4 {
 #search {
   display: inline; }
 
-@media only screen and (max-width: 1260px) {
+@media only screen and (max-width: 1290px) {
   .expandedViewOnly {
     display: none; }
   #footer .logos {
@@ -164,7 +164,13 @@ h4 {
   #header .title {
     display: none; }
   #header .compactTitle {
-    display: block; } }
+    display: block;
+    font-size: 2rem;
+    width: 5rem;
+    margin: .6rem 0 0 0; }
+  #header #search {
+    display: block;
+    margin: .5rem 1rem 0 0; } }
 
 #globalNavigation {
   font-size: 0.9rem;
@@ -266,13 +272,16 @@ figure.current {
   margin: auto auto auto auto; }
 
 .navigationComponent {
-  min-width: 30rem;
-  position: fixed;
-  height: 2rem;
+  /*
+    min-width: 30rem;
+    position: fixed;
+    height: 2rem;
+    white-space: nowrap;
+    z-index: 900;
+
+    padding: 0.3rem 1rem 1rem 1rem;
+	*/
   white-space: nowrap;
-  z-index: 900;
-  white-space: nowrap;
-  padding: 0.3rem 1rem 1rem 1rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
