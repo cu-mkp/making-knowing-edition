@@ -97,6 +97,7 @@ class navigation extends React.Component {
 			}
 			let bookIconClass = (this.props.navigationState.bookMode)?'fa fa-book active':'fa fa-book';
 			let columnIconClass = (this.props.navigationState[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
+			 	columnIconClass += (this.props.navigationState[this.props.side].viewType === 'ImageView')?' hidden':'';
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className="breadcrumbs">
