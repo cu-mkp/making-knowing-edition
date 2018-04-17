@@ -97,7 +97,8 @@ class HashParser extends React.Component {
 	// Decode and update the redux store with the parsed path
 	// mode=[b|l|u] split=ratio [l|r]=[shortFolioID,transcriptType,viewType]
 	setStateWithPath(path) {
-		
+		console.log("HASH PARSING DISABLED");
+		return;
 		// We cannot do this if the folio index hasn't been defined yet,
 		// there's probably a slicker way to do this but let's poll, whee...
 		if(this.props.navigationState.folioIndex.length === 0){

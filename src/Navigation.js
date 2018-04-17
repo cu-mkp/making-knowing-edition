@@ -88,7 +88,7 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-			let thisStyle = {width:(this.props.navigationState[this.props.side].width-35)};
+			let thisStyle = {width:(this.props.navigationState[this.props.side].width-3)};
 			let thisClass = "navigationComponent "+this.props.side;
 
 			let lockIconClass = (this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open';
@@ -100,7 +100,18 @@ class navigation extends React.Component {
 			 	columnIconClass += (this.props.navigationState[this.props.side].viewType === 'ImageView')?' hidden':'';
 			return (
 				<div className={thisClass} style={thisStyle}>
-						<div className="breadcrumbs">
+						<div className="dropdown">
+							<button className="dropbtn">
+								{this.props.navigationState[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+							</button>
+							<div className="dropdown-content">
+								<span data-id='tl' onClick={this.changeType}>English Translation</span>
+								<span data-id='tc' onClick={this.changeType}>French Original</span>
+								<span data-id='tcn' onClick={this.changeType}>French Standard</span>
+								<span data-id='facsimile' onClick={this.changeType}>Facsimile</span>
+							</div>
+						</div>
+						<div className="breadcrumbs" style={thisStyle}>
 							<span onClick={this.toggleLockmode} className={lockIconClass}></span>
 							&nbsp;
 							<span onClick={this.toggleBookmode} className={bookIconClass}></span>
@@ -118,17 +129,6 @@ class navigation extends React.Component {
 									className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
 							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</span>
-						</div>
-						<div className="dropdown">
-							<button className="dropbtn">
-								{this.props.navigationState[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-							</button>
-							<div className="dropdown-content">
-								<span data-id='tl' onClick={this.changeType}>English Translation</span>
-								<span data-id='tc' onClick={this.changeType}>French Original</span>
-								<span data-id='tcn' onClick={this.changeType}>French Standard</span>
-								<span data-id='facsimile' onClick={this.changeType}>Facsimile</span>
-							</div>
 						</div>
 				</div>
 			)

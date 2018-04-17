@@ -132,6 +132,11 @@ class SplitPaneView extends Component {
 		window.addEventListener("mousemove", this.onDrag);
 		window.addEventListener("mouseup", this.onEndDrag);
 		window.addEventListener("resize", this.onResize);
+
+		// Set the default width on mount
+		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
+		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
+		this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
 	}
 
 	componentWillUnmount() {
