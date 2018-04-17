@@ -24,7 +24,6 @@ export default function navigationState(state = initialState, action) {
 			}
 
 			// FIXME: this should be factored out into a helper method
-			debugger
 			let current_idx = state.folioIndex.indexOf(action.payload.newState.left.folioShortID);
 			let nextID = '';
 			let prevID = '';

@@ -409,11 +409,11 @@ class TranscriptionView extends Component {
 							 	</span>
 							);
 
-						/* linebreak */
+						/* linebreak  */
 						case 'lb':
-							return (
-								<br/>
-							);
+							return (<br/>);
+
+
 
 						/* del / strikethrough */
 						case 'del':
@@ -452,6 +452,13 @@ class TranscriptionView extends Component {
 				 }
 			 };
 
+			// Strip linebreaks except for tc
+			let content = transcriptionData.content;
+			if(this.props.navigationState[this.props.side].transcriptionType !== 'tc'){
+				content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
+			}
+
+
 			// The render block, finally
 			return (
 		      <div id={thisID} className={thisClass}>
@@ -460,7 +467,7 @@ class TranscriptionView extends Component {
       			  	<Pagination side={this.props.side} className="pagination_upper"/>
 
 					<div className={surfaceClass} style={surfaceStyle}>
-						{Parser(transcriptionData.content, parserOptions)}
+						{Parser(content, parserOptions)}
 					</div>
 
 					<Pagination side={this.props.side} className="pagination_lower"/>
