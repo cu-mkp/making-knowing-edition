@@ -50,7 +50,7 @@ class Annotation extends React.Component {
 			  	<div className="content" style={content_style}>
 			  		{this.props.children}
 
-					<iframe className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+					<iframe title="x" className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
 				</div>
 			  </div>
 		);

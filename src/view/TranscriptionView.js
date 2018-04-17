@@ -359,7 +359,6 @@ class TranscriptionView extends Component {
 			let surfaceStyle = {};
 
 			//if(this.props.navigationState[this.props.side].width >= this.gridBreakPoint) {
-			console.log(this.props.side + " : "+ this.props.navigationState[this.props.side].isGridMode);
 			if(this.props.navigationState[this.props.side].isGridMode) {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
@@ -377,29 +376,50 @@ class TranscriptionView extends Component {
 						/* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
 						case 'add':
 						case 'al':
+						case 'bp':
 						case 'cn':
+						case 'corr':
+						case 'cont':
 						case 'env':
 						case 'exp':
 						case 'fr':
+						case 'gap':
+						case 'df':
+						case 'gk':
 						case 'id':
 						case 'it':
 						case 'ill':
 						case 'la':
-						case 'lb':
 						case 'ms':
+						case 'oc':
 						case 'pa':
 						case 'pl':
+						case 'pm':
+						case 'pn':
 						case 'pro':
+						case 'rub':
+						case 'sn':
 						case 'tl':
+						case 'tmp':
 						case 'unc':
 						case 'x':
-						case 'tmp':
 							return (
 								<span unrecognized_tag={domNode.name}>
 								 	{domToReact(domNode.children, parserOptions)}
 							 	</span>
 							);
 
+						/* linebreak */
+						case 'lb':
+							return (
+								<br/>
+							);
+
+						/* del / strikethrough */
+						case 'del':
+							return (
+								<s>{domToReact(domNode.children, parserOptions)}</s>
+							);
 
 						/* <m> gets replaced with <Gloss> */
 						case 'm':
