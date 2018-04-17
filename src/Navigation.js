@@ -90,8 +90,9 @@ class navigation extends React.Component {
         }else{
 			let thisStyle = {width:(this.props.navigationState[this.props.side].width-3)};
 			let thisClass = "navigationComponent "+this.props.side;
-
-			let lockIconClass = (this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open';
+			let dropdownClass  = "dropdown";
+				dropdownClass += (this.props.navigationState[this.props.side].width<460)?' hidden':'';
+ 			let lockIconClass = (this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open';
 			if(!this.props.navigationState.bookMode){
 				lockIconClass +=" active";
 			}
@@ -100,7 +101,7 @@ class navigation extends React.Component {
 			 	columnIconClass += (this.props.navigationState[this.props.side].viewType === 'ImageView')?' hidden':'';
 			return (
 				<div className={thisClass} style={thisStyle}>
-						<div className="dropdown">
+						<div className={dropdownClass}>
 							<button className="dropbtn">
 								{this.props.navigationState[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
 							</button>
