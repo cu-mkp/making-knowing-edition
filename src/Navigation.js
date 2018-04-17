@@ -106,10 +106,10 @@ class navigation extends React.Component {
 								{this.props.navigationState[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
 							</button>
 							<div className="dropdown-content">
-								<span data-id='tl' onClick={this.changeType}>English Translation</span>
-								<span data-id='tc' onClick={this.changeType}>French Original</span>
-								<span data-id='tcn' onClick={this.changeType}>French Standard</span>
-								<span data-id='facsimile' onClick={this.changeType}>Facsimile</span>
+								<span data-id='tl' onClick={this.changeType}>{this.props.navigationState.uiLabels.transcriptionType['tl']}</span>
+								<span data-id='tc' onClick={this.changeType}>{this.props.navigationState.uiLabels.transcriptionType['tc']}</span>
+								<span data-id='tcn' onClick={this.changeType}>{this.props.navigationState.uiLabels.transcriptionType['tcn']}</span>
+								<span data-id='f' onClick={this.changeType}>{this.props.navigationState.uiLabels.transcriptionType['f']}</span>
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>

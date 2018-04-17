@@ -33,3 +33,6 @@ export function setPaneViewtype(payload){
 export function setColumnModeForSide(payload){
 	return {type: allActions.SET_COLUMN_MODE_FOR_SIDE, payload:payload};
 }
+export function setStateFromHash(payload){
+	return {type: allActions.SET_STATE_FROM_HASH, payload:payload};
+}

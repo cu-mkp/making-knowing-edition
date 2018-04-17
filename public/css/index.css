@@ -320,7 +320,7 @@ figure.current {
   height: 2.5rem;
   position: relative;
   top: 0.1rem;
-  width: 11rem;
+  width: 12rem;
   font-size: 0.8rem;
   font-weight: 900;
   outline: none;
@@ -330,7 +330,8 @@ figure.current {
   margin: 0.3rem 2rem 0 1rem;
   border: 0;
   text-align: right;
-  color: black; }
+  color: black;
+  z-index: 800; }
 
 .imageViewComponent .dropbtn {
   margin: 0.3rem 1.1rem 0 1rem;
@@ -343,13 +344,13 @@ figure.current {
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   margin: 0.1rem;
-  width: 12rem;
+  width: 13rem;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  z-index: 1; }
+  z-index: 900; }
 
 /* Links inside the dropdown */
 .dropdown-content span {

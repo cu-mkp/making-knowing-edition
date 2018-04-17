@@ -23,7 +23,7 @@ class HashParser extends React.Component {
 		}else{
 			//console.log("Init with user specified: "+this.props.history.location.search);
 			this.setStateWithPath(this.props.history.location.search);
-			this.props.history.push(this.props.history.location.search);
+
 		}
 
 		// Initialize last hash change
@@ -97,137 +97,150 @@ class HashParser extends React.Component {
 	// Decode and update the redux store with the parsed path
 	// mode=[b|l|u] split=ratio [l|r]=[shortFolioID,transcriptType,viewType]
 	setStateWithPath(path) {
-		console.log("HASH PARSING DISABLED");
-		return;
-		// We cannot do this if the folio index hasn't been defined yet,
-		// there's probably a slicker way to do this but let's poll, whee...
-		if(this.props.navigationState.folioIndex.length === 0){
-				let this2 = this;
-				setTimeout(function() {
-					this2.setStateWithPath(path);
-				}, 250);
-		}
 
-		// Set defaults
-		let mode = 'x';
-		let left_currentFolioShortID = -1;
-		let left_transcriptionType = 'tc';
-		let left_viewType = 'g';
-		let right_currentFolioShortID = -1;
-		let right_transcriptionType = 'tc';
-		let right_viewType = 'f';
-
-		// Parse the URL
-		let urlParams = path.split('&');
-		if (urlParams.length === 4) {
-			mode = urlParams[0].split('=')[1];
-			let left = urlParams[2].split('=')[1];
-			let right = urlParams[3].split('=')[1];
-
-			if (left.split(',').length === 3) {
-				left_currentFolioShortID = left.split(',')[0];
-				left_transcriptionType = left.split(',')[1];
-				left_viewType = left.split(',')[2];
+			// We cannot do this if the folio index hasn't been defined yet,
+			// there's probably a slicker way to do this but let's poll, whee...
+			if(this.props.navigationState.folioNameIndex.length === 0){
+					let this2 = this;
+					setTimeout(function() {
+						this2.setStateWithPath(path);
+					}, 250);
+					return;
 			}
 
-			if (right.split(',').length === 3) {
-				right_currentFolioShortID = right.split(',')[0];
-				right_transcriptionType = right.split(',')[1];
-				right_viewType = right.split(',')[2];
+			// Default to current
+			let newState = {left:{},right:{}};
+				newState.bookMode =	this.props.navigationState.bookMode;
+				newState.linkedMode = this.props.navigationState.linkedMode;
+
+				newState.left.folioID = this.props.navigationState.left.currentFolioID;
+				newState.left.folioShortID = this.props.navigationState.left.currentFolioShortID;
+				newState.left.viewType = this.props.navigationState.left.viewType;
+				newState.left.transcriptionType = this.props.navigationState.left.transcriptionType;
+
+				newState.right.folioID = this.props.navigationState.right.currentFolioID;
+				newState.right.folioShortID = this.props.navigationState.right.currentFolioShortID;
+				newState.right.viewType = this.props.navigationState.right.viewType;
+				newState.right.transcriptionType = this.props.navigationState.right.transcriptionType;
+
+			// Parse the URL into the params we use internally
+			let urlParams = path.split('&');
+			let mode;
+			let left_currentFolioShortID,left_transcriptionType,left_viewType;
+			let right_currentFolioShortID,right_transcriptionType,right_viewType;
+			if (urlParams.length === 4) {
+				mode = urlParams[0].split('=')[1];
+				let left = urlParams[2].split('=')[1];
+				let right = urlParams[3].split('=')[1];
+
+				if (left.split(',').length === 3) {
+					left_currentFolioShortID = left.split(',')[0];
+					left_transcriptionType = left.split(',')[1];
+					left_viewType = left.split(',')[2];
+				}
+
+				if (right.split(',').length === 3) {
+					right_currentFolioShortID = right.split(',')[0];
+					right_transcriptionType = right.split(',')[1];
+					right_viewType = right.split(',')[2];
+				}
 			}
-		}
-		right_transcriptionType=(right_transcriptionType === 'f')?'facsimile':right_transcriptionType;
-		left_transcriptionType=(left_transcriptionType === 'f')?'facsimile':left_transcriptionType;
+			right_transcriptionType=(right_transcriptionType === 'f')?'facsimile':right_transcriptionType;
+			left_transcriptionType=(left_transcriptionType === 'f')?'facsimile':left_transcriptionType;
 
 
-		// Mode
-		switch (mode) {
-			case 'b':
-					if(left_currentFolioShortID !== '-1'){
-						if(!this.props.navigationState.bookMode){
-							this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:true}));
+			// Now build the new state
+
+			// Mode
+			switch (mode) {
+				case 'b':
+						if(left_currentFolioShortID !== '-1'){
+							if(!this.props.navigationState.bookMode){
+								newState.bookMode = true;
+							}
 						}
-					}
-					break;
-			case 'l':
-					this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:false}));
-					this.props.dispatch(this.navigationStateActions.setLinkedMode(true));
-					break;
-			case 'u':
-					this.props.dispatch(this.navigationStateActions.setBookMode({shortid:left_currentFolioShortID, status:false}));
-					this.props.dispatch(this.navigationStateActions.setLinkedMode(false));
-					break;
-			default:
-				console.log("WARNING: Hashparser: I don't understand the mode:"+mode);
-
-		}
-
-
-		// Set view type if we're NOT in bookMode
-		//if(mode !== 'b'){
-
-			// Left
-			switch (left_viewType) {
-				case 'g':
-					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageGridView'}));
-					break;
-
-				case 't':
-					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
-					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'TranscriptionView'}));
-					break;
-
-				case 'i':
-					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'left',transcriptionType:left_transcriptionType}));
-					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'left',viewType:'ImageView'}));
-					break;
-
+						break;
+				case 'l':
+						newState.bookMode = false;
+						newState.linkedMode = true;
+						break;
+				case 'u':
+						newState.bookMode = false;
+						newState.linkedMode = false;
+						break;
 				default:
-					console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
+					console.log("WARNING: Hashparser: I don't understand the mode:"+mode);
+
 			}
 
-			// Right
-			switch (right_viewType) {
-				case 'g':
-					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageGridView'}));
-					break;
 
-				case 't':
-					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'TranscriptionView'}));
-					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
-					break;
+			// Set view type if we're NOT in bookMode
+			//if(mode !== 'b'){
 
-				case 'i':
-					this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:'right',viewType:'ImageView'}));
-					this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:'right',transcriptionType:right_transcriptionType}));
-					break;
+				// Left
+				switch (left_viewType) {
+					case 'g':
+						newState.left.viewType='ImageGridView';
+						break;
 
-				default:
-					console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
+					case 't':
+						newState.left.transcriptType=left_transcriptionType;
+						newState.left.viewType='TranscriptionView';
+						break;
+
+					case 'i':
+						newState.left.transcriptType=left_transcriptionType;
+						newState.left.viewType='ImageView';
+						break;
+
+					default:
+						console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
+				}
+
+				// Right
+				switch (right_viewType) {
+					case 'g':
+						newState.right.viewType='ImageGridView';
+						break;
+
+					case 't':
+						newState.right.transcriptType=right_transcriptionType;
+						newState.right.viewType='TranscriptionView';
+						break;
+
+					case 'i':
+						newState.right.transcriptType=right_transcriptionType;
+						newState.right.viewType='ImageView';
+						break;
+
+					default:
+						console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
+				}
+
+			//}
+
+			// Set the left folio if it's defined
+			if(left_currentFolioShortID !== '-1'){
+				newState.left.folioID=(this.props.navigationState.folioIDPrefix+left_currentFolioShortID);
+				newState.left.folioShortID=left_currentFolioShortID;
+
+				// If locked mode, set right to match
+				if(mode === 'l'){
+					newState.right.folioID=(this.props.navigationState.folioIDPrefix+left_currentFolioShortID);
+					newState.right.folioShortID=left_currentFolioShortID;
+				}
 			}
 
-		//}
-
-		// Set the left folio if it's defined
-		if(left_currentFolioShortID !== '-1'){
-			let longID = this.props.navigationState.folioIDPrefix+left_currentFolioShortID;
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID}));
-
-			// If locked mode, set right to match
-			if(mode === 'l'){
-				left_currentFolioShortID = right_currentFolioShortID;
+			// If we have a right folio specified and we're in unlocked mode, set it
+			if(right_currentFolioShortID !== '-1' && mode === 'u'){
+				newState.right.folioID=(this.props.navigationState.folioIDPrefix+right_currentFolioShortID);
+				newState.right.folioShortID=right_currentFolioShortID;
 			}
-		}
-
-		// If we have a right folio specified and we're in unlocked mode, set it
-		if(right_currentFolioShortID !== '-1' && mode === 'u'){
-			let longID = this.props.navigationState.folioIDPrefix+right_currentFolioShortID;
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:longID}));
-		}
 
 
-		// Handle size
-		// THIS GOT MOVED to the constructor of SplitPaneView.js
+			// Finally pass the new state object to the reducer
+			this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
+
 
 
 	}

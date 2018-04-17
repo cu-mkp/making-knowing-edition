@@ -1,41 +1,50 @@
 export default {
-  currentDocumentName:'BnF Ms. Fr. 640',
-  folioIDPrefix:'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/',
-  drawerMode:false,
-  linkedMode:true,
-  bookMode:false,
-  folioIndex:[],
-  glossary:{
-	  tc:{},
-	  tcn:{},
-	  tl:{}
-  },
-  left:{
-	  isGridMode: true,
-	  transcriptionType: 'tc',
-	  transcriptionTypeLabel: 'French Original',
-	  currentFolioName:'',
-	  currentFolioID: '',
-	  currentFolioShortID: '',
-	  hasPrevious:false,
-	  hasNext:false,
-	  nextFolioShortID:'',
-	  previousFolioShortID:'',
-	  width:0,
-	  viewType:'ImageGridView'
-  },
-  right:{
-	  isGridMode: false,
-	  transcriptionType: 'tc',
-	  transcriptionTypeLabel: 'French Original',
-	  currentFolioName:'',
-	  currentFolioID: '',
-	  currentFolioShortID: '',
-	  hasPrevious:false,
-	  hasNext:false,
-	  nextFolioShortID:'',
-	  previousFolioShortID:'',
-	  width:0,
-	  viewType:'TranscriptionView'
-  }
+	currentDocumentName: 'BnF Ms. Fr. 640',
+	folioIDPrefix: 'http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/',
+	drawerMode: false,
+	linkedMode: true,
+	bookMode: false,
+	folioIndex: [],
+	folioNameIndex:[],
+	glossary: {
+		tc: {},
+		tcn: {},
+		tl: {}
+	},
+	uiLabels: {
+		transcriptionType: {
+			tc: 'Transcription',
+			tcn: 'Normalized Transcription',
+			tl: 'Translation',
+			f: 'Facsimile',
+		}
+	},
+	left: {
+		isGridMode: true,
+		transcriptionType: 'tc',
+		transcriptionTypeLabel: 'Transcription',
+		currentFolioName: '',
+		currentFolioID: '',
+		currentFolioShortID: '',
+		hasPrevious: false,
+		hasNext: false,
+		nextFolioShortID: '',
+		previousFolioShortID: '',
+		width: 0,
+		viewType: 'ImageGridView'
+	},
+	right: {
+		isGridMode: false,
+		transcriptionType: 'tc',
+		transcriptionTypeLabel: 'Transcription',
+		currentFolioName: '',
+		currentFolioID: '',
+		currentFolioShortID: '',
+		hasPrevious: false,
+		hasNext: false,
+		nextFolioShortID: '',
+		previousFolioShortID: '',
+		width: 0,
+		viewType: 'TranscriptionView'
+	}
 };

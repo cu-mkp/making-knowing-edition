@@ -10,23 +10,85 @@ import {
 	SET_BOOK_MODE,
 	SET_PANE_SIZES,
 	SET_PANE_VIEWTYPE,
-	SET_COLUMN_MODE_FOR_SIDE
+	SET_COLUMN_MODE_FOR_SIDE,
+	SET_STATE_FROM_HASH,
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
 	switch (action.type) {
 
+		case SET_STATE_FROM_HASH:
+			if(state.folioNameIndex.length === 0){
+				console.log("WARNING: SET_STATE_FROM_HASH reducer - folioNameIndex not defined, cannot change folio, leaving state alone");
+				return state;
+			}
+
+			// FIXME: this should be factored out into a helper method
+			debugger
+			let current_idx = state.folioIndex.indexOf(action.payload.newState.left.folioShortID);
+			let nextID = '';
+			let prevID = '';
+			let current_hasPrev = false;
+			let current_hasNext = false;
+			let left_current_hasNext,left_nextID,left_current_hasPrev,left_prevID;
+			if (current_idx > -1) {
+				 left_current_hasNext = (current_idx < (state.folioIndex.length - 1));
+				 left_nextID = left_current_hasNext ? state.folioIndex[current_idx + 1] : '';
+				 left_current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
+				 left_prevID = left_current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+			}
+
+			 current_idx = state.folioIndex.indexOf(action.payload.newState.right.folioShortID);
+			 nextID = '';
+			 prevID = '';
+			 current_hasPrev = false;
+			 current_hasNext = false;
+			 let right_current_hasNext,right_nextID,right_current_hasPrev,right_prevID;
+			if (current_idx > -1) {
+				 right_current_hasNext = (current_idx < (state.folioIndex.length - 1));
+				 right_nextID = right_current_hasNext ? state.folioIndex[current_idx + 1] : '';
+				 right_current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
+				 right_prevID = right_current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+			}
+
+			return {
+				...state,
+				bookMode: action.payload.newState.bookMode,
+				linkedMode: action.payload.newState.linkedMode,
+				left:{
+					...state.left,
+					currentFolioID: action.payload.newState.left.folioID,
+					currentFolioName: state.folioNameIndex[action.payload.newState.left.folioShortID].padStart(4, "0"),
+					currentFolioShortID: action.payload.newState.left.folioShortID,
+					viewType: action.payload.newState.left.viewType,
+					transcriptionType: action.payload.newState.left.transcriptType,
+			  	  	transcriptionTypeLabel: state.uiLabels.transcriptionType[action.payload.newState.left.transcriptType],
+
+					hasPrevious: left_current_hasPrev,
+					hasNext: left_current_hasNext,
+					previousFolioShortID: left_prevID,
+					nextFolioShortID: left_nextID
+				},
+				right:{
+					...state.right,
+					currentFolioID: action.payload.newState.right.folioID,
+					currentFolioName: state.folioNameIndex[action.payload.newState.right.folioShortID].padStart(4, "0"),
+					currentFolioShortID: action.payload.newState.right.folioShortID,
+					viewType: action.payload.newState.right.viewType,
+					transcriptionType: action.payload.newState.right.transcriptType,
+			  	  	transcriptionTypeLabel: state.uiLabels.transcriptionType[action.payload.newState.right.transcriptType],
+
+					hasPrevious: right_current_hasPrev,
+					hasNext: right_current_hasNext,
+					previousFolioShortID: right_prevID,
+					nextFolioShortID: right_nextID
+				}
+			};
+
 		case CHANGE_TRANSCRIPTION_TYPE:
-			let label = 'Unknown';
 			let viewType = 'TranscriptionView';
-			if (action.payload.transcriptionType === 'tl') {
-				label = 'English Translation';
-			} else if (action.payload.transcriptionType === 'tc') {
-				label = 'French Original';
-			} else if (action.payload.transcriptionType === 'tcn') {
-				label = 'French Standard';
-			}else if (action.payload.transcriptionType === 'facsimile'){
-				label = 'Facsimile';
+			let label = state.uiLabels.transcriptionType[action.payload.transcriptionType];
+			if (action.payload.transcriptionType === 'f'){
 				viewType = 'ImageView';
 			}
 
@@ -106,11 +168,11 @@ export default function navigationState(state = initialState, action) {
 			}
 
 			// Not book mode
-			let current_idx = state.folioIndex.indexOf(shortID);
-			let nextID = '';
-			let prevID = '';
-			let current_hasPrev = false;
-			let current_hasNext = false;
+			 current_idx = state.folioIndex.indexOf(shortID);
+			 nextID = '';
+			 prevID = '';
+			 current_hasPrev = false;
+			 current_hasNext = false;
 			if (current_idx > -1) {
 				current_hasNext = (current_idx < (state.folioIndex.length - 1));
 				nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
@@ -218,7 +280,6 @@ export default function navigationState(state = initialState, action) {
 			return Object.assign({}, state, {
 				folioNameIndex: action.payload.folioNameIndex
 			})
-
 
 		case SET_DRAWER_MODE:
 			return Object.assign({}, state, {

@@ -108,6 +108,11 @@ class SplitPaneView extends Component {
 	}
 
 	openFolio(side, folioID, viewType) {
+		// We don't usually get into this state except via hashload
+		if(typeof this.state.viewports === 'undefined'){
+			//console.log("WARNING: Cannot load folio until I have one to load");
+			return;
+		}
 		if(folioID.length <= 0){return;}
 		let viewport = copyObject(this.state.viewports[side]);
 		viewport.document = this.props.document;
