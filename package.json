@@ -8,6 +8,7 @@
     "ajv": "^6.4.0",
     "axios": "^0.17.1",
     "html-react-parser": "^0.4.3",
+    "lunr": "^2.1.6",
     "material-ui": "^0.20.0",
     "node-gyp": "^3.6.2",
     "node-sass-chokidar": "^1.2.2",

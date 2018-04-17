@@ -4858,6 +4858,10 @@ lru-cache@^4.1.1, lru-cache@~4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+lunr@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.1.6.tgz#671d2321c4c5bc4c522914953d1c54d612f60aa7"
+
 macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"

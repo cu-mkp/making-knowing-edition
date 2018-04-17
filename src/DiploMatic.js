@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SplitPaneView from './view/SplitPaneView';
 import Document from './model/Document';
+import SearchIndex from './model/SearchIndex';
 import HashParser from './HashParser';
 import * as navigationStateActions from './actions/navigationStateActions';
 
@@ -11,11 +12,24 @@ class DiploMatic extends Component {
   constructor(props,context) {
     super(props,context);
     this.document = new Document();
+    this.searchIndex = new SearchIndex();
 	this.navigationStateActions=navigationStateActions;
     this.state = {ready: false}
   }
 
   componentDidMount() {
+    this.searchIndex.load().then(
+      (searchIndex) => {
+        console.log("Search Index Loaded.");
+        let results = searchIndex.searchEdition('blue');
+        console.log(JSON.stringify(results));
+      },
+      (error) => {
+        // TODO update UI
+        console.log('Unable to load search index: '+error);
+      }
+    )
+
     this.document.load().then(
       (folio) => {
 
