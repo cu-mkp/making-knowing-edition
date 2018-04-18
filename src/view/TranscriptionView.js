@@ -452,12 +452,11 @@ class TranscriptionView extends Component {
 				 }
 			 };
 
-			// Strip linebreaks except for tc
+			// Strip linebreaks except for tc (happens on string before parser)
 			let content = transcriptionData.content;
 			if(this.props.navigationState[this.props.side].transcriptionType !== 'tc'){
 				content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
 			}
-
 
 			// The render block, finally
 			return (
