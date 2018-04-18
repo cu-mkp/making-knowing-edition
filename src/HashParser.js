@@ -113,11 +113,13 @@ class HashParser extends React.Component {
 				newState.bookMode =	this.props.navigationState.bookMode;
 				newState.linkedMode = this.props.navigationState.linkedMode;
 
+				newState.left.width = this.props.navigationState.left.width;
 				newState.left.folioID = this.props.navigationState.left.currentFolioID;
 				newState.left.folioShortID = this.props.navigationState.left.currentFolioShortID;
 				newState.left.viewType = this.props.navigationState.left.viewType;
 				newState.left.transcriptionType = this.props.navigationState.left.transcriptionType;
 
+				newState.right.width = this.props.navigationState.right.width;
 				newState.right.folioID = this.props.navigationState.right.currentFolioID;
 				newState.right.folioShortID = this.props.navigationState.right.currentFolioShortID;
 				newState.right.viewType = this.props.navigationState.right.viewType;
@@ -125,11 +127,12 @@ class HashParser extends React.Component {
 
 			// Parse the URL into the params we use internally
 			let urlParams = path.split('&');
-			let mode;
+			let mode,sr;
 			let left_currentFolioShortID,left_transcriptionType,left_viewType;
 			let right_currentFolioShortID,right_transcriptionType,right_viewType;
 			if (urlParams.length === 4) {
 				mode = urlParams[0].split('=')[1];
+				sr = urlParams[1].split('=')[1];
 				let left = urlParams[2].split('=')[1];
 				let right = urlParams[3].split('=')[1];
 
@@ -237,6 +240,14 @@ class HashParser extends React.Component {
 				newState.right.folioShortID=right_currentFolioShortID;
 			}
 
+			// Parse out the split if it exists
+			if(sr > 0){
+				let split_left = sr;
+				let split_right = 1.0-sr;
+				let whole = window.innerWidth;
+				newState.left.width = whole*split_left;
+				newState.right.width = whole*split_right;
+			}
 
 			// Finally pass the new state object to the reducer
 			this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));

@@ -56,6 +56,7 @@ export default function navigationState(state = initialState, action) {
 				linkedMode: action.payload.newState.linkedMode,
 				left:{
 					...state.left,
+					width: action.payload.newState.left.width,
 					currentFolioID: action.payload.newState.left.folioID,
 					currentFolioName: state.folioNameIndex[action.payload.newState.left.folioShortID].padStart(4, "0"),
 					currentFolioShortID: action.payload.newState.left.folioShortID,
@@ -70,6 +71,7 @@ export default function navigationState(state = initialState, action) {
 				},
 				right:{
 					...state.right,
+					width: action.payload.newState.right.width,
 					currentFolioID: action.payload.newState.right.folioID,
 					currentFolioName: state.folioNameIndex[action.payload.newState.right.folioShortID].padStart(4, "0"),
 					currentFolioShortID: action.payload.newState.right.folioShortID,
