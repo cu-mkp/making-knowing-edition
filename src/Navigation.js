@@ -88,10 +88,11 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-			let thisStyle = {width:(this.props.navigationState[this.props.side].width-3)};
+			let recommendedWidth=(this.props.navigationState[this.props.side].width-7);
+			let thisStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
 			let thisClass = "navigationComponent "+this.props.side;
 			let dropdownClass  = "dropdown";
-				dropdownClass += (this.props.navigationState[this.props.side].width<460)?' hidden':'';
+				dropdownClass += (this.props.navigationState[this.props.side].width<580)?' invisible':'';
  			let lockIconClass = (this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open';
 			if(!this.props.navigationState.bookMode){
 				lockIconClass +=" active";

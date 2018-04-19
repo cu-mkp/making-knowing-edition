@@ -148,8 +148,6 @@ class HashParser extends React.Component {
 					right_viewType = right.split(',')[2];
 				}
 			}
-			right_transcriptionType=(right_transcriptionType === 'f')?'facsimile':right_transcriptionType;
-			left_transcriptionType=(left_transcriptionType === 'f')?'facsimile':left_transcriptionType;
 
 
 			// Now build the new state

@@ -23,7 +23,7 @@ export default function navigationState(state = initialState, action) {
 				return state;
 			}
 
-			if(action.payload.newState.left.folioShortID.length == 0 | action.payload.newState.right.folioShortID == 0){
+			if(action.payload.newState.left.folioShortID.length === 0 | action.payload.newState.right.folioShortID.length === 0){
 				console.log("WARNING: SET_STATE_FROM_HASH reducer - cannot work without specifying both left and right pane folio IDs, leaving state alone");
 				return state;
 			}
