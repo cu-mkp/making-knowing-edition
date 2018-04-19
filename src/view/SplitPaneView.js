@@ -18,7 +18,6 @@ class SplitPaneView extends Component {
 		this.leftPaneMinWidth = 200;
 		this.splitFraction = 0.5;
 		this.dividerWidth = 16;
-		debugger
 		let whole = window.innerWidth;
 		let leftW=props.navigationState.left.width?props.navigationState.left.width:(whole/2);
 
@@ -36,7 +35,7 @@ class SplitPaneView extends Component {
 		this.onDrag = this.onDrag.bind(this);
 		this.onResize = this.onResize.bind(this);
 		this.onEndDrag = this.onEndDrag.bind(this);
-
+		this.updatePaneSize = this.updatePaneSize.bind(this);
 
 		// Update the pane content
 		this.refreshPanes(props);
@@ -56,12 +55,7 @@ class SplitPaneView extends Component {
 				   this.updateUI();
 			}
 
-			// Record state change
-			let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
-			let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-			if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
-				this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
-			}
+			this.updatePaneSize();
 		}
 	}
 
@@ -76,7 +70,9 @@ class SplitPaneView extends Component {
 	}
 
 	// On window resize
-	onResize = (e) => {}
+	onResize = (e) => {
+		this.updatePaneSize();
+	}
 
 	// Update the screen with the new split info
 	updateUI() {
@@ -91,6 +87,15 @@ class SplitPaneView extends Component {
 		});
 	}
 
+	// Update the sizes of the panes
+	updatePaneSize(){
+		// Record state change
+		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
+		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
+		if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
+			this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
+		}
+	}
 	// Update the panes content
 	refreshPanes(props){
 		//console.log("\nSplitPaneView: LEFT: "+props.navigationState['left'].viewType+" "+props.navigationState['left'].currentFolioID);
