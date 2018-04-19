@@ -232,8 +232,8 @@ class HashParser extends React.Component {
 				}
 			}
 
-			// If we have a right folio specified and we're in unlocked mode, set it
-			if(right_currentFolioShortID !== '-1' && mode === 'u'){
+			// If we have a right folio specified and we're not in locked mode, set it
+			if(right_currentFolioShortID !== '-1' && mode !== 'l'){
 				newState.right.folioID=(this.props.navigationState.folioIDPrefix+right_currentFolioShortID);
 				newState.right.folioShortID=right_currentFolioShortID;
 			}
