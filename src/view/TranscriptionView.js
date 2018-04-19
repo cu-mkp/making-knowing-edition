@@ -343,7 +343,7 @@ class TranscriptionView extends Component {
 				return (
 					<div className={thisClass}>
 						<Navigation history={this.props.history} side={this.props.side}/>
-						<div className="transcriptContent">
+						<div className="transcriptContent_{this.props.side}">
 							<Pagination side={this.props.side} className="pagination_upper"/>
 							<div className="watermark">
 								<div className="watermark_contents"/>

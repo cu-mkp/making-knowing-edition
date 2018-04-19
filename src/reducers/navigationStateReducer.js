@@ -23,6 +23,11 @@ export default function navigationState(state = initialState, action) {
 				return state;
 			}
 
+			if(action.payload.newState.left.folioShortID.length == 0 | action.payload.newState.right.folioShortID == 0){
+				console.log("WARNING: SET_STATE_FROM_HASH reducer - cannot work without specifying both left and right pane folio IDs, leaving state alone");
+				return state;
+			}
+
 			// FIXME: this should be factored out into a helper method
 			let current_idx = state.folioIndex.indexOf(action.payload.newState.left.folioShortID);
 			let nextID = '';
@@ -49,7 +54,6 @@ export default function navigationState(state = initialState, action) {
 				 right_current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
 				 right_prevID = right_current_hasPrev ? state.folioIndex[current_idx - 1] : '';
 			}
-
 			return {
 				...state,
 				bookMode: action.payload.newState.bookMode,

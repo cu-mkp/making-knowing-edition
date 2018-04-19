@@ -113,18 +113,20 @@ class navigation extends React.Component {
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
-							<span onClick={this.toggleLockmode} className={lockIconClass}></span>
+							<span title="Lock/unlock" onClick={this.toggleLockmode} className={lockIconClass}></span>
 							&nbsp;
-							<span onClick={this.toggleBookmode} className={bookIconClass}></span>
+							<span title="Toggle book mode" onClick={this.toggleBookmode} className={bookIconClass}></span>
 							&nbsp;
-							<span onClick={this.toggleColumns} className={columnIconClass}></span>
+							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={columnIconClass}></span>
 							&nbsp;
-							<span 	onClick={this.changeCurrentFolio}
+							<span 	title = "Go back"
+									onClick={this.changeCurrentFolio}
 									data-id={this.props.navigationState[this.props.side].previousFolioShortID}
 									data-direction="back"
 									className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
 
-							<span 	onClick={this.changeCurrentFolio}
+							<span 	title = "Go forward"
+									onClick={this.changeCurrentFolio}
 									data-id={this.props.navigationState[this.props.side].nextFolioShortID}
 									data-direction="forward"
 									className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>

@@ -36,6 +36,7 @@ class SplitPaneView extends Component {
 		this.onResize = this.onResize.bind(this);
 		this.onEndDrag = this.onEndDrag.bind(this);
 		this.updatePaneSize = this.updatePaneSize.bind(this);
+		this.updatePaneSize = this.updatePaneSize.bind(this);
 
 		// Update the pane content
 		this.refreshPanes(props);

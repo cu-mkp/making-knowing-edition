@@ -21,21 +21,26 @@ class Annotation extends React.Component {
 	render() {
 
 		let icon = '';
+		let tooltip = '';
 		switch (this.props.type) {
 			case 'fieldNotes':
 				icon = 'icon fa fa-flask';
+				tooltip = "Field Note";
 				break;
 
 			case 'annotation':
 				icon = 'icon fa fa-search';
+				tooltip = "Annotation";
 				break;
 
 			case 'video':
 				icon = 'icon fa fa-video';
+				tooltip = "Video Annotation";
 				break;
 
 			default:
 				icon = 'icon fa fa-question';
+				tooltip = "Question";
 				break;
 
 		}
@@ -45,7 +50,7 @@ class Annotation extends React.Component {
 			  <div className="annotation">
 			  	<div className="header">
 			  		<div className="title"><h2>{this.props.headerContent}</h2></div>
-			  		<div className={icon} onClick={this.toggleAnnotation}/>
+			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
 			  		{this.props.children}
