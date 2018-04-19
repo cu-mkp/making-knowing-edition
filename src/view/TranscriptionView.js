@@ -298,7 +298,7 @@ class TranscriptionView extends Component {
 			let selector = "transcriptionViewComponent_"+this.props.side;
 			var el = document.getElementById(selector);
 			if(el !== null){
-				console.log(selector + "scroll to top");
+				//console.log(selector + "scroll to top");
 				el.scrollTop = 0;
 			}
 		}
