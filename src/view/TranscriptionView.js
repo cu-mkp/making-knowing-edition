@@ -18,7 +18,7 @@ class TranscriptionView extends Component {
 		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
 		this.navigationStateActions=navigationStateActions;
-
+		this.contentChange=true;
 		window.loadingModal_stop();
 	}
 
@@ -285,16 +285,28 @@ class TranscriptionView extends Component {
 
   	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
+		this.contentChange=false;
   		if(this.state.currentlyLoaded !== nextProps.navigationState[this.props.side].currentFolioID){
+			this.contentChange=true;
 			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
 	  	}
 	}
 
+	componentDidUpdate(){
+		if(this.contentChange){
+			// Scroll content to top
 
+			let selector = "transcriptionViewComponent_"+this.props.side;
+			var el = document.getElementById(selector);
+			if(el !== null){
+				console.log(selector + "scroll to top");
+				el.scrollTop = 0;
+			}
+		}
+	}
 
 	// RENDER
 	render() {
-
 		// Retrofit - the folios are loaded asynchronously
 		if(!this.state.isLoaded){
 			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
@@ -337,13 +349,13 @@ class TranscriptionView extends Component {
 			}
 
 			let thisClass = "transcriptionViewComponent "+this.props.side;
-
+			let thisID = "transcriptionViewComponent_"+this.props.side;
 			// Empty content
 			if(transcriptionData.content.length === 0){
 				return (
-					<div className={thisClass}>
+					<div className={thisClass} id={thisID}>
 						<Navigation history={this.props.history} side={this.props.side}/>
-						<div className="transcriptContent_{this.props.side}">
+						<div className="transcriptContent">
 							<Pagination side={this.props.side} className="pagination_upper"/>
 							<div className="watermark">
 								<div className="watermark_contents"/>
@@ -364,7 +376,6 @@ class TranscriptionView extends Component {
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 			}
 			let side = this.props.side;
-			let thisID = "transcriptionView_"+this.props.side;
 
 			// Parser replaces certain tags with components
 			let this2=this;
