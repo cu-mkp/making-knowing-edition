@@ -295,7 +295,6 @@ class TranscriptionView extends Component {
 	componentDidUpdate(){
 		if(this.contentChange){
 			// Scroll content to top
-
 			let selector = "transcriptionViewComponent_"+this.props.side;
 			var el = document.getElementById(selector);
 			if(el !== null){

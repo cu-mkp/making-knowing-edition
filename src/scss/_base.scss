@@ -138,9 +138,6 @@ h4 {
 	height: 4.4rem;
 }
 
-.arrow.disabled {
-	opacity: 0.5;
-}
 #header .compactTitle {
 	font-weight: 700;
 	display: none;
@@ -151,5 +148,5 @@ h4 {
 }
 
 .disabled{
-  color:#ffffff4f !important;
+  opacity: 0.5;
 }

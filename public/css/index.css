@@ -127,9 +127,6 @@ h4 {
   width: 40rem;
   height: 4.4rem; }
 
-.arrow.disabled {
-  opacity: 0.5; }
-
 #header .compactTitle {
   font-weight: 700;
   display: none; }
@@ -138,7 +135,7 @@ h4 {
   opacity: 0; }
 
 .disabled {
-  color: #ffffff4f !important; }
+  opacity: 0.5; }
 
 /* Compact view */
 .expandedViewOnly {

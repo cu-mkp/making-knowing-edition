@@ -114,7 +114,7 @@ class navigation extends React.Component {
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
-							<span title="Lock/unlock" onClick={this.toggleLockmode} className={lockIconClass}></span>
+							<span title="Lock/Unlock" onClick={this.toggleLockmode} className={lockIconClass}></span>
 							&nbsp;
 							<span title="Toggle book mode" onClick={this.toggleBookmode} className={bookIconClass}></span>
 							&nbsp;
