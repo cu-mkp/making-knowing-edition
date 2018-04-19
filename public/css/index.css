@@ -302,6 +302,13 @@ figure.current {
   margin: 0 0 0 .8rem; }
 
 .breadcrumbs .folioName {
+  position: relative;
+  top: .2rem;
+  display: inline-block;
+  width: 5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: 900; }
 
 /* The dropdown container */
@@ -320,7 +327,7 @@ figure.current {
   padding: 0;
   background-color: inherit;
   font-family: inherit;
-  margin: 0.3rem 1.5rem 0 1rem;
+  margin: 0.35rem 1.5rem 0 1rem;
   border: 0;
   text-align: right;
   color: black;

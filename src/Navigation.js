@@ -92,7 +92,7 @@ class navigation extends React.Component {
 			let thisStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
 			let thisClass = "navigationComponent "+this.props.side;
 			let dropdownClass  = "dropdown";
-				dropdownClass += (this.props.navigationState[this.props.side].width<580)?' invisible':'';
+				dropdownClass += (this.props.navigationState[this.props.side].width<500)?' invisible':'';
  			let lockIconClass = (this.props.navigationState.linkedMode)?'fa fa-lock':'fa fa-lock-open';
 			if(!this.props.navigationState.bookMode){
 				lockIconClass +=" active";
@@ -132,7 +132,7 @@ class navigation extends React.Component {
 									data-direction="forward"
 									className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
-							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <span className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</span>
+							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <div className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</div>
 						</div>
 				</div>
 			)

@@ -14,7 +14,6 @@ class TranscriptionView extends Component {
 
 	constructor(props) {
 		super(props);
-		this.gridBreakPoint = 640; // two column widths
 		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
 		this.navigationStateActions=navigationStateActions;
@@ -369,7 +368,6 @@ class TranscriptionView extends Component {
 			let surfaceClass = "surface";
 			let surfaceStyle = {};
 
-			//if(this.props.navigationState[this.props.side].width >= this.gridBreakPoint) {
 			if(this.props.navigationState[this.props.side].isGridMode) {
 				surfaceClass += " grid-mode";
 				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
