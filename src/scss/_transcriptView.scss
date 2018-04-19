@@ -35,8 +35,11 @@
 }
 
 .surface > div {
-	border: 1px solid #EFEDED;
 	padding: 10px;
+}
+
+.surface.grid-mode > div{
+	border: 1px solid #EFEDED;
 }
 
 .surface > #z0 {
