@@ -43,9 +43,12 @@ class HashParser extends React.Component {
 
 	// Hash changed
 	hashDidChange(event) {
+		console.log("Hash change!");
+		return;
 		let newHashpath = event.newURL.split('#/')[1];
 		if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
 			this.lastHashChangeInvokedStateUpdate=new Date();
+			this.setStateWithPath(newHashpath);
 		}
 	}
 
@@ -132,12 +135,12 @@ class HashParser extends React.Component {
 			let left_currentFolioShortID,left_transcriptionType,left_viewType;
 			let right_currentFolioShortID,right_transcriptionType,right_viewType;
 			let left_gridMode,right_gridMode;
-			if (urlParams.length === 4) {
+			let searchTerm="";
+			if (urlParams.length >= 4) {
 				mode = urlParams[0].split('=')[1];
 				sr = urlParams[1].split('=')[1];
 				let left = urlParams[2].split('=')[1];
 				let right = urlParams[3].split('=')[1];
-
 
 				if (left.split(',').length === 4) {
 					left_currentFolioShortID = left.split(',')[0];
@@ -151,6 +154,12 @@ class HashParser extends React.Component {
 					right_transcriptionType = right.split(',')[1];
 					right_viewType = right.split(',')[2];
 					right_gridMode = right.split(',')[3];
+				}
+
+				if (urlParams.length >= 5) {
+					searchTerm = urlParams[4].split('=')[1];
+					console.log("Hashparser search term: "+searchTerm);
+					mode = "s";
 				}
 			}
 
@@ -170,7 +179,8 @@ class HashParser extends React.Component {
 						newState.bookMode = false;
 						newState.linkedMode = true;
 						break;
-				case 'u':
+
+				case 'u': case 's':
 						newState.bookMode = false;
 						newState.linkedMode = false;
 						break;
@@ -199,6 +209,11 @@ class HashParser extends React.Component {
 						newState.left.viewType='ImageView';
 						break;
 
+					case 's':
+						newState.left.transcriptType=left_transcriptionType;
+						newState.left.viewType='SearchView';
+						break;
+
 					default:
 						console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
 				}
@@ -217,6 +232,11 @@ class HashParser extends React.Component {
 					case 'i':
 						newState.right.transcriptType=right_transcriptionType;
 						newState.right.viewType='ImageView';
+						break;
+
+					case 's':
+						newState.right.transcriptType=right_transcriptionType;
+						newState.right.viewType='TranscriptionView';
 						break;
 
 					default:
@@ -243,6 +263,12 @@ class HashParser extends React.Component {
 				newState.right.folioShortID=right_currentFolioShortID;
 			}
 
+			// Search mode overrides everything
+			if(mode === 's'){
+				newState.right.folioID="";
+				newState.right.folioShortID="";
+			}
+
 			// Parse out the split if it exists
 			if(sr > 0){
 				let split_left = sr;
@@ -255,8 +281,7 @@ class HashParser extends React.Component {
 			// Gridmode
 			newState.left.gridMode = (left_gridMode === "0")?false:true;
 			newState.right.gridMode = (right_gridMode === "0")?false:true;
-			console.log(left_gridMode + " - " + newState.left.gridMode);
-			console.log(right_gridMode + " - " + newState.right.gridMode);
+
 			// Finally pass the new state object to the reducer
 			this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
 

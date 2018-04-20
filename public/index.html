@@ -13,6 +13,9 @@
 	<!-- Jquery: used by splitpane -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+	<!-- Search handler -->
+	<script src="%PUBLIC_URL%/js/search.js"></script>
+
 	<!-- Global loading-modal, exists here so it can be invoked prior to SPA build -->
 	<script src="%PUBLIC_URL%/js/loadingModal.js"></script>
 
@@ -48,7 +51,10 @@
 				<span>Support</span>
 			</div>
 			<div id="search">
-				<input value="Search">
+				<form id="search" action="" method="post">
+					<input class="searchBox" placeholder="Search">
+					<input type="submit" id="submitButton" class="hidden">
+				</form>
 			</div>
 			<div class="expandedViewOnly">
 				<span><span class="english">English</span> | <span class="francais">Français</span></span>
