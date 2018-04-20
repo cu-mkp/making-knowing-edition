@@ -85,12 +85,13 @@ class HashParser extends React.Component {
 			+
 			"&l=" + ((state.left.currentFolioShortID) ? state.left.currentFolioShortID : "-1") + "," +
 			((state.left.transcriptionType === 'facsimile') ? "f" : state.left.transcriptionType) + "," +
-			((state.left.viewType === 'ImageGridView') ? "g" : (state.left.viewType === 'TranscriptionView') ? "t" : "i")
-
+			((state.left.viewType === 'ImageGridView') ? "g" : (state.left.viewType === 'TranscriptionView') ? "t" : "i") + "," +
+			(state.left.isGridMode?"1":"0")
 			+
 			"&r=" + ((state.right.currentFolioShortID) ? state.right.currentFolioShortID : "-1") + "," +
 			((state.right.transcriptionType === 'facsimile') ? "f" : state.right.transcriptionType) + "," +
-			((state.right.viewType === 'ImageGridView') ? "g" : (state.right.viewType === 'TranscriptionView') ? "t" : "i")
+			((state.right.viewType === 'ImageGridView') ? "g" : (state.right.viewType === 'TranscriptionView') ? "t" : "i") + "," +
+			(state.right.isGridMode?"1":"0")
 		return newPath;
 	}
 
@@ -130,22 +131,26 @@ class HashParser extends React.Component {
 			let mode,sr;
 			let left_currentFolioShortID,left_transcriptionType,left_viewType;
 			let right_currentFolioShortID,right_transcriptionType,right_viewType;
+			let left_gridMode,right_gridMode;
 			if (urlParams.length === 4) {
 				mode = urlParams[0].split('=')[1];
 				sr = urlParams[1].split('=')[1];
 				let left = urlParams[2].split('=')[1];
 				let right = urlParams[3].split('=')[1];
 
-				if (left.split(',').length === 3) {
+
+				if (left.split(',').length === 4) {
 					left_currentFolioShortID = left.split(',')[0];
 					left_transcriptionType = left.split(',')[1];
 					left_viewType = left.split(',')[2];
+					left_gridMode = left.split(',')[3];
 				}
 
-				if (right.split(',').length === 3) {
+				if (right.split(',').length === 4) {
 					right_currentFolioShortID = right.split(',')[0];
 					right_transcriptionType = right.split(',')[1];
 					right_viewType = right.split(',')[2];
+					right_gridMode = right.split(',')[3];
 				}
 			}
 
@@ -247,6 +252,11 @@ class HashParser extends React.Component {
 				newState.right.width = whole*split_right;
 			}
 
+			// Gridmode
+			newState.left.gridMode = (left_gridMode === "0")?false:true;
+			newState.right.gridMode = (right_gridMode === "0")?false:true;
+			console.log(left_gridMode + " - " + newState.left.gridMode);
+			console.log(right_gridMode + " - " + newState.right.gridMode);
 			// Finally pass the new state object to the reducer
 			this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
 

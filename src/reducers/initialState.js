@@ -20,7 +20,7 @@ export default {
 		}
 	},
 	left: {
-		isGridMode: true,
+		isGridMode: false,
 		transcriptionType: 'tc',
 		transcriptionTypeLabel: 'Transcription',
 		currentFolioName: '',
