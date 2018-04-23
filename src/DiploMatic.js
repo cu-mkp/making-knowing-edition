@@ -19,7 +19,18 @@ class DiploMatic extends Component {
 		}
 	}
 
-	componentDidMount() {
+  componentDidMount() {
+    this.searchIndex.load().then(
+      (searchIndex) => {
+        console.log("Search Index Loaded.");
+        let results = searchIndex.searchEdition('rondeen','tc');
+        console.log(JSON.stringify(results));
+      },
+      (error) => {
+        // TODO update UI
+        console.log('Unable to load search index: '+error);
+      }
+    )
 
 		// Load the search index
 		let this2=this;

@@ -1,14 +1,18 @@
 import axios from 'axios';
 import lunr from 'lunr';
 
+import stemmer from 'lunr-languages/lunr.stemmer.support'
+import fr from 'lunr-languages/lunr.fr'
+
 class SearchIndex {
 
 	constructor() {
-    this.searchIndexURL = process.env.REACT_APP_ENGLISH_SEARCH_INDEX;
-    this.recipeBookURL = process.env.REACT_APP_RECIPE_BOOK;
-    this.searchIndex = null;
-    this.recipeBook = null;
+    this.searchIndexURL = process.env.REACT_APP_SEARCH_INDEX;
+    this.searchIndex = {};
+    this.recipeBook = {};
 		this.loaded = false;
+		stemmer(lunr);
+		fr(lunr)
 	}
 
 	load() {
@@ -21,12 +25,20 @@ class SearchIndex {
 			// promise to load the search index
 			return new Promise(function(resolve, reject) {
 				axios.all([
-						axios.get(this.searchIndexURL),
-						axios.get(this.recipeBookURL)
+						axios.get(`${this.searchIndexURL}/tl_search_index.js`),
+						axios.get(`${this.searchIndexURL}/tl_recipe_book.js`),
+						axios.get(`${this.searchIndexURL}/tc_search_index.js`),
+						axios.get(`${this.searchIndexURL}/tc_recipe_book.js`),
+						axios.get(`${this.searchIndexURL}/tcn_search_index.js`),
+						axios.get(`${this.searchIndexURL}/tcn_recipe_book.js`)
 					])
-					.then(axios.spread(function(searchIndexResponse, recipeBookResponse) {
-            this.searchIndex = lunr.Index.load(searchIndexResponse.data);
-            this.recipeBook = recipeBookResponse.data;
+					.then(axios.spread(function(searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
+            this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
+            this.recipeBook['tl'] = recipeTl.data;
+						this.searchIndex['tc'] = lunr.Index.load(searchTc.data);
+            this.recipeBook['tc'] = recipeTc.data;
+						this.searchIndex['tcn'] = lunr.Index.load(searchTcn.data);
+            this.recipeBook['tcn'] = recipeTcn.data;
             this.loaded = true;
             resolve(this);
 					}.bind(this)))
@@ -37,14 +49,17 @@ class SearchIndex {
 		}
 	}
 
-  searchEdition( searchTerm ) {
-    let results = this.searchIndex.search(searchTerm);
+	// transcription type can be tc, tcn, or tl.
+  searchEdition( searchTerm, transcriptionType='tl' ) {
+    let results = this.searchIndex[transcriptionType].search(searchTerm);
     let recipes = [];
 
     for( let result of results ) {
-      let recipe = this.recipeBook[ result.ref ];
-      let fragments = createFragments( result.matchData.metadata, recipe.content )
-      recipes.push( { name: recipe.name, folio: recipe.folioID, contextFragments: fragments } );
+      let recipe = this.recipeBook[transcriptionType][ result.ref ];
+			if( recipe ) {
+	      let fragments = createFragments( result.matchData.metadata, recipe.content )
+	      recipes.push( { name: recipe.name, folio: recipe.folioID, contextFragments: fragments } );
+			}
     }
 
     return recipes;
