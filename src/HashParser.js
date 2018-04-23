@@ -43,12 +43,19 @@ class HashParser extends React.Component {
 
 	// Hash changed
 	hashDidChange(event) {
-		console.log("Hash change!");
-		return;
-		let newHashpath = event.newURL.split('#/')[1];
-		if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
-			this.lastHashChangeInvokedStateUpdate=new Date();
-			this.setStateWithPath(newHashpath);
+
+		// If this gets fired manually (by search helper) or is explictly for search, we don't want to handle it
+		if (event.newURL.length === 0 || (event.newURL.split('#/')[1].split('=')[0] === '?search')) {
+			return;
+
+		// Ok go ahead...
+		}else{
+			return;
+			let newHashpath = event.newURL.split('#/')[1];
+			if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
+				this.lastHashChangeInvokedStateUpdate=new Date();
+				this.setStateWithPath(newHashpath);
+			}
 		}
 	}
 
