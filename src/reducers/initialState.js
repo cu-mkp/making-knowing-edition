@@ -6,6 +6,7 @@ export default {
 	bookMode: false,
 	folioIndex: [],
 	folioNameIndex:[],
+	searchIndex:{},
 	glossary: {
 		tc: {},
 		tcn: {},

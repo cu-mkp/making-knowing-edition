@@ -36,3 +36,6 @@ export function setColumnModeForSide(payload){
 export function setStateFromHash(payload){
 	return {type: allActions.SET_STATE_FROM_HASH, payload:payload};
 }
+export function updateSearchIndex(payload){
+	return {type: allActions.UPDATE_SEARCH_INDEX, payload: payload};
+}

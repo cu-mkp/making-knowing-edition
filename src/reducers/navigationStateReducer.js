@@ -2,6 +2,7 @@ import initialState from './initialState';
 import {
 	CHANGE_TRANSCRIPTION_TYPE,
 	CHANGE_CURRENT_FOLIO,
+	UPDATE_SEARCH_INDEX,
 	UPDATE_FOLIO_INDEX,
 	UPDATE_FOLIO_NAME_INDEX,
 	UPDATE_GLOSSARY,
@@ -282,6 +283,10 @@ export default function navigationState(state = initialState, action) {
 				folioIndex: action.payload.folioIndex
 			})
 
+		case UPDATE_SEARCH_INDEX:
+			return Object.assign({}, state, {
+				searchIndex: action.payload.searchIndex
+			})
 
 		case UPDATE_FOLIO_NAME_INDEX:
 			return Object.assign({}, state, {
