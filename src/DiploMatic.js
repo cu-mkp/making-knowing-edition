@@ -21,7 +21,7 @@ class DiploMatic extends Component {
     this.searchIndex.load().then(
       (searchIndex) => {
         console.log("Search Index Loaded.");
-        let results = searchIndex.searchEdition('blue');
+        let results = searchIndex.searchEdition('rondeen','tc');
         console.log(JSON.stringify(results));
       },
       (error) => {

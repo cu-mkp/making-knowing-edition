@@ -4858,6 +4858,10 @@ lru-cache@^4.1.1, lru-cache@~4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
+lunr-languages@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lunr-languages/-/lunr-languages-1.0.0.tgz#830bca2fe864b713ebe13ff33ed48ee06e635723"
+
 lunr@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.1.6.tgz#671d2321c4c5bc4c522914953d1c54d612f60aa7"
