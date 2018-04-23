@@ -25,10 +25,10 @@ class Search extends React.Component {
 
 		// Load the search index
 		let this2=this;
-		if(Object.keys(this.props.navigationState.searchIndex).length === 0){
+		if(Object.keys(this.props.navigationState.search.index).length === 0){
 			this2.searchIndex.load().then(
 				(searchIndex) => {
-					console.log("Search index loaded");
+					//console.log("Search index loaded");
 					this.props.dispatch(this.navigationStateActions.updateSearchIndex({searchIndex: searchIndex}));
 				},
 				(error) => {
@@ -51,7 +51,7 @@ class Search extends React.Component {
 
 		// We cannot do this if the search index hasn't been defined yet,
 		// there's probably a slicker way to do this but let's poll, whee...
-		if(Object.keys(this.props.navigationState.searchIndex).length === 0){
+		if(Object.keys(this.props.navigationState.search.index).length === 0){
 				let this2 = this;
 				setTimeout(function() {
 					this2.runSearch();
@@ -61,9 +61,18 @@ class Search extends React.Component {
 
 		let newHashpath = this.props.history.location.search.split('#/')[0];
 		if (newHashpath.split('=')[0] === '?search') {
+
+			// Enter search mode
 			let searchTerm = newHashpath.split('=')[1];
+
+			// Cache results
+			let results = {};
+				results['tc'] = this.props.navigationState.search.index.searchEdition(searchTerm,'tc');
+				results['tcn'] = this.props.navigationState.search.index.searchEdition(searchTerm,'tcn');
+				results['tl'] = this.props.navigationState.search.index.searchEdition(searchTerm,'tl');
+
+			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm, results:results}));
 			console.log("Search for: "+searchTerm);
-			let results = this.props.navigationState.searchIndex.searchEdition(searchTerm,'tc');
 			console.log(JSON.stringify(results));
 		}
 	}

@@ -39,3 +39,9 @@ export function setStateFromHash(payload){
 export function updateSearchIndex(payload){
 	return {type: allActions.UPDATE_SEARCH_INDEX, payload: payload};
 }
+export function enterSearchMode(payload){
+	return {type: allActions.ENTER_SEARCH_MODE, payload:payload};
+}
+export function cacheSearchResults(payload){
+	return {type: allActions.CACHE_SEARCH_RESULTS, payload:payload};
+}

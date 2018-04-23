@@ -6,6 +6,8 @@ import {
 	UPDATE_FOLIO_INDEX,
 	UPDATE_FOLIO_NAME_INDEX,
 	UPDATE_GLOSSARY,
+	ENTER_SEARCH_MODE,
+	CACHE_SEARCH_RESULTS,
 	SET_DRAWER_MODE,
 	SET_LINKED_MODE,
 	SET_BOOK_MODE,
@@ -20,12 +22,12 @@ export default function navigationState(state = initialState, action) {
 
 		case SET_STATE_FROM_HASH:
 			if(state.folioNameIndex.length === 0){
-				console.log("WARNING: SET_STATE_FROM_HASH reducer - folioNameIndex not defined, cannot change folio, leaving state alone");
+				//console.log("WARNING: SET_STATE_FROM_HASH reducer - folioNameIndex not defined, cannot change folio, leaving state alone");
 				return state;
 			}
 
 			if(typeof action.payload.newState.left.folioShortID === 'undefined' || typeof action.payload.newState.right.folioShortID === 'undefined'){
-				console.log("WARNING: SET_STATE_FROM_HASH reducer - cannot work without specifying both left and right pane folio IDs, leaving state alone");
+				//console.log("WARNING: SET_STATE_FROM_HASH reducer - cannot work without specifying both left and right pane folio IDs, leaving state alone");
 				return state;
 			}
 
@@ -96,6 +98,7 @@ export default function navigationState(state = initialState, action) {
 		case CHANGE_TRANSCRIPTION_TYPE:
 			let viewType = 'TranscriptionView';
 			let label = state.uiLabels.transcriptionType[action.payload.transcriptionType];
+
 			if (action.payload.transcriptionType === 'f'){
 				viewType = 'ImageView';
 			}
@@ -108,6 +111,10 @@ export default function navigationState(state = initialState, action) {
 						transcriptionType: action.payload.transcriptionType,
 						transcriptionTypeLabel: label,
 						viewType:viewType
+					},
+					search:{
+						...state.search,
+						currentTranscriptionType: action.payload.transcriptionType
 					}
             	};
 			}else{
@@ -118,6 +125,10 @@ export default function navigationState(state = initialState, action) {
 						transcriptionType: action.payload.transcriptionType,
 						transcriptionTypeLabel: label,
 						viewType:viewType
+					},
+					search:{
+						...state.search,
+						currentTranscriptionType: action.payload.transcriptionType
 					}
             	};
 			}
@@ -284,9 +295,39 @@ export default function navigationState(state = initialState, action) {
 			})
 
 		case UPDATE_SEARCH_INDEX:
-			return Object.assign({}, state, {
-				searchIndex: action.payload.searchIndex
-			})
+			return {
+				...state,
+				search:{
+					...state.search,
+					index:action.payload.searchIndex
+				}
+			}
+
+		case ENTER_SEARCH_MODE:
+			return {
+				...state,
+
+				search:{
+					...state.search,
+					term:action.payload.searchTerm,
+					inSearchMode:true,
+					results:action.payload.results
+				},
+
+				left: {
+					...state.left,
+					viewType: 'SearchResultView'
+				}
+			}
+
+		case CACHE_SEARCH_RESULTS:
+			return{
+				...state,
+				search:{
+					...state.search,
+					results:action.payload.results
+				}
+			}
 
 		case UPDATE_FOLIO_NAME_INDEX:
 			return Object.assign({}, state, {

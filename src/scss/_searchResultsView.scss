@@ -1,0 +1,18 @@
+.searchResultsComponent{
+  background-color:rgb(243, 243, 243);
+  height:100vh;
+  padding:1rem;
+}
+
+.searchResultsComponent hr{
+  padding:0;
+  margin:0 0 1.5rem 0;
+  border:solid .3px rgba(0, 0, 0, 0.0392156862745098);
+}
+
+.searchResultsComponent .resultSectionHeader{
+  font-weight:900;
+  font-size:.7rem;
+  padding:0 0 2rem 0;
+
+}

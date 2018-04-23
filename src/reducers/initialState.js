@@ -6,7 +6,13 @@ export default {
 	bookMode: false,
 	folioIndex: [],
 	folioNameIndex:[],
-	searchIndex:{},
+	search:{
+		index:{},
+		inSearchMode:false,
+		term:'',
+		transcriptionType:'tc',
+		results:''
+	},
 	glossary: {
 		tc: {},
 		tcn: {},

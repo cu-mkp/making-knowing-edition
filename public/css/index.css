@@ -702,3 +702,18 @@ figure.current {
   margin: 2rem 1rem 0 0;
   background-color: #bfbfbf;
   width: 100%; }
+
+.searchResultsComponent {
+  background-color: #f3f3f3;
+  height: 100vh;
+  padding: 1rem; }
+
+.searchResultsComponent hr {
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  border: solid 0.3px rgba(0, 0, 0, 0.0392157); }
+
+.searchResultsComponent .resultSectionHeader {
+  font-weight: 900;
+  font-size: .7rem;
+  padding: 0 0 2rem 0; }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
+import SearchResultView from './SearchResultView';
 import TranscriptionView from './TranscriptionView';
 
 class SplitPaneViewport extends Component {
@@ -68,6 +69,13 @@ class SplitPaneViewport extends Component {
           splitPaneView={this.props.splitPaneView}
         />
       );
+	} else if( this.state.viewType === 'SearchResultView' ) {
+		return(
+			<SearchResultView
+			  history={this.props.history}
+	          side={this.props.side}
+	        />
+		);
     } else {
       return (
         <div>ERROR: Undefined split pane type.</div>
