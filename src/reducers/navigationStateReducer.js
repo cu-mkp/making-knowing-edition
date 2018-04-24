@@ -1,12 +1,13 @@
 import initialState from './initialState';
+import SearchIndex from '../model/SearchIndex';
 import {
 	CHANGE_TRANSCRIPTION_TYPE,
 	CHANGE_CURRENT_FOLIO,
 	UPDATE_SEARCH_INDEX,
 	UPDATE_FOLIO_INDEX,
-	UPDATE_FOLIO_NAME_INDEX,
 	UPDATE_GLOSSARY,
 	ENTER_SEARCH_MODE,
+	EXIT_SEARCH_MODE,
 	CACHE_SEARCH_RESULTS,
 	SET_DRAWER_MODE,
 	SET_LINKED_MODE,
@@ -22,8 +23,8 @@ export default function navigationState(state = initialState, action) {
 	switch (action.type) {
 
 		case SET_STATE_FROM_HASH:
-			if(state.folioNameIndex.length === 0){
-				//console.log("WARNING: SET_STATE_FROM_HASH reducer - folioNameIndex not defined, cannot change folio, leaving state alone");
+			if(state.folioNameByIDIndex.length === 0){
+				//console.log("WARNING: SET_STATE_FROM_HASH reducer - folioNameByIDIndex not defined, cannot change folio, leaving state alone");
 				return state;
 			}
 
@@ -66,7 +67,7 @@ export default function navigationState(state = initialState, action) {
 					...state.left,
 					width: action.payload.newState.left.width,
 					currentFolioID: action.payload.newState.left.folioID,
-					currentFolioName: (typeof state.folioNameIndex[action.payload.newState.left.folioShortID] !== 'undefined')?state.folioNameIndex[action.payload.newState.left.folioShortID].padStart(4, "0"):'',
+					currentFolioName: (typeof state.folioNameByIDIndex[action.payload.newState.left.folioShortID] !== 'undefined')?state.folioNameByIDIndex[action.payload.newState.left.folioShortID].padStart(4, "0"):'',
 					currentFolioShortID: action.payload.newState.left.folioShortID,
 					viewType: action.payload.newState.left.viewType,
 					transcriptionType: action.payload.newState.left.transcriptType,
@@ -82,7 +83,7 @@ export default function navigationState(state = initialState, action) {
 					...state.right,
 					width: action.payload.newState.right.width,
 					currentFolioID: action.payload.newState.right.folioID,
-					currentFolioName: (typeof state.folioNameIndex[action.payload.newState.right.folioShortID] !== 'undefined')?state.folioNameIndex[action.payload.newState.right.folioShortID].padStart(4, "0"):'',
+					currentFolioName: (typeof state.folioNameByIDIndex[action.payload.newState.right.folioShortID] !== 'undefined')?state.folioNameByIDIndex[action.payload.newState.right.folioShortID].padStart(4, "0"):'',
 					currentFolioShortID: action.payload.newState.right.folioShortID,
 					viewType: action.payload.newState.right.viewType,
 					transcriptionType: action.payload.newState.right.transcriptType,
@@ -154,8 +155,9 @@ export default function navigationState(state = initialState, action) {
 
 			// Lookup prev/next
 			let shortID = action.payload.id.substr(action.payload.id.lastIndexOf('/') + 1);
+
 			// Book mode? (recto/verso)
-			if(state.bookMode){
+			if(state.bookMode && !state.search.inSearchMode){
 				let versoID=findNearestVerso(state, shortID, action.payload.direction);
 				let current_idx = state.folioIndex.indexOf(versoID);
 				let nextID = '';
@@ -179,7 +181,7 @@ export default function navigationState(state = initialState, action) {
 						...state.left,
 						currentFolioID: state.folioIDPrefix+versoID,
 						currentFolioShortID: versoID,
-						currentFolioName: state.folioNameIndex[versoID].padStart(4, "0"),
+						currentFolioName: state.folioNameByIDIndex[versoID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
@@ -189,7 +191,7 @@ export default function navigationState(state = initialState, action) {
 						...state.right,
 						currentFolioID: state.folioIDPrefix+nextID,
 						currentFolioShortID: nextID,
-						currentFolioName: state.folioNameIndex[nextID].padStart(4, "0"),
+						currentFolioName: state.folioNameByIDIndex[nextID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
@@ -211,7 +213,7 @@ export default function navigationState(state = initialState, action) {
 				current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
 				prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
 			}
-			if(state.linkedMode){
+			if(state.linkedMode && !state.search.inSearchMode){
 
 
 				return {
@@ -220,7 +222,7 @@ export default function navigationState(state = initialState, action) {
 						...state.left,
 						currentFolioID: action.payload.id,
 						currentFolioShortID: shortID,
-						currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+						currentFolioName: state.folioNameByIDIndex[shortID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNext,
 						previousFolioShortID: prevID,
@@ -230,7 +232,7 @@ export default function navigationState(state = initialState, action) {
 						...state.right,
 						currentFolioID: action.payload.id,
 						currentFolioShortID: shortID,
-						currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+						currentFolioName: state.folioNameByIDIndex[shortID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNext,
 						previousFolioShortID: prevID,
@@ -238,14 +240,20 @@ export default function navigationState(state = initialState, action) {
 					}
 				};
 			}else{
+				//console.log("Setting "+action.payload.side+" to: "+action.payload.id);
+				//console.log("Search:"+state.search.inSearchMode+" Type:"+action.payload.transcriptionType);
 				if(action.payload.side === 'left'){
+					let type = (typeof action.payload.transcriptionType === 'undefined')?state[action.payload.side].transcriptionType:action.payload.transcriptionType;
+
 					return {
 	                	...state,
 						left:{
 							...state.left,
 							currentFolioID: action.payload.id,
+							transcriptionType: type,
+							transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
 							currentFolioShortID: shortID,
-							currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+							currentFolioName: state.folioNameByIDIndex[shortID].padStart(4, "0"),
 							hasPrevious: current_hasPrev,
 							hasNext: current_hasNext,
 							previousFolioShortID: prevID,
@@ -254,13 +262,17 @@ export default function navigationState(state = initialState, action) {
 	            	};
 
 				}else{
+					let type = (typeof action.payload.transcriptionType === 'undefined')?state[action.payload.side].transcriptionType:action.payload.transcriptionType;
+
 					return {
 	                	...state,
 						right:{
 							...state.right,
 							currentFolioID: action.payload.id,
+							transcriptionType: type,
+							transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
 							currentFolioShortID: shortID,
-							currentFolioName: state.folioNameIndex[shortID].padStart(4, "0"),
+							currentFolioName: state.folioNameByIDIndex[shortID].padStart(4, "0"),
 							hasPrevious: current_hasPrev,
 							hasNext: current_hasNext,
 							previousFolioShortID: prevID,
@@ -302,9 +314,12 @@ export default function navigationState(state = initialState, action) {
 			}
 
 		case UPDATE_FOLIO_INDEX:
-			return Object.assign({}, state, {
-				folioIndex: action.payload.folioIndex
-			})
+			return {
+				...state,
+				folioIndex: action.payload.folioIndex,
+				folioNameByIDIndex: action.payload.folioNameByIDIndex,
+				folioIDByNameIndex: action.payload.folioIDByNameIndex
+			}
 
 		case UPDATE_SEARCH_INDEX:
 			return {
@@ -316,6 +331,12 @@ export default function navigationState(state = initialState, action) {
 			}
 
 		case ENTER_SEARCH_MODE:
+		
+			let results = {};
+			results['tc'] = state.search.index.searchEdition(action.payload.searchTerm,'tc');
+			results['tcn'] = state.search.index.searchEdition(action.payload.searchTerm,'tcn');
+			results['tl'] = state.search.index.searchEdition(action.payload.searchTerm,'tl');
+
 			return {
 				...state,
 
@@ -323,14 +344,68 @@ export default function navigationState(state = initialState, action) {
 					...state.search,
 					term:action.payload.searchTerm,
 					inSearchMode:true,
-					results:action.payload.results
+					results:results
 				},
 
 				left: {
 					...state.left,
 					viewType: 'SearchResultView'
+				},
+
+				right:{
+					...state.right,
+					isGridMode: false,
+					viewType: 'TranscriptionView',
+					transcriptionType: 'tc',
+					transcriptionTypeLabel: 'Transcription',
+					currentFolioName: '',
+					currentFolioID: '-1',
+					currentFolioShortID: '',
+					hasPrevious: false,
+					hasNext: false,
+					nextFolioShortID: '',
+					previousFolioShortID: ''
 				}
 			}
+
+		case EXIT_SEARCH_MODE:
+				return {
+					...state,
+
+					search:{
+						...state.search,
+						term:'',
+						inSearchMode:false,
+						results:''
+					},
+
+					left: {
+						...state.left,
+						viewType: 'ImageGridView',
+						currentFolioName: '',
+						currentFolioID: '',
+						currentFolioShortID: '',
+						hasPrevious: false,
+						hasNext: false,
+						nextFolioShortID: '',
+						previousFolioShortID: ''
+					},
+
+					right:{
+						...state.right,
+						isGridMode: false,
+						viewType: 'TranscriptionView',
+						transcriptionType: 'tc',
+						transcriptionTypeLabel: 'Transcription',
+						currentFolioName: '',
+						currentFolioID: '-1',
+						currentFolioShortID: '',
+						hasPrevious: false,
+						hasNext: false,
+						nextFolioShortID: '',
+						previousFolioShortID: ''
+					}
+				}
 
 		case HIDE_SEARCH_TYPE:
 			if(action.payload.type === 'tc'){
@@ -367,7 +442,7 @@ export default function navigationState(state = initialState, action) {
 					}
 				}
 			}
-
+			return state;
 
 
 		case CACHE_SEARCH_RESULTS:
@@ -378,11 +453,6 @@ export default function navigationState(state = initialState, action) {
 					results:action.payload.results
 				}
 			}
-
-		case UPDATE_FOLIO_NAME_INDEX:
-			return Object.assign({}, state, {
-				folioNameIndex: action.payload.folioNameIndex
-			})
 
 		case SET_DRAWER_MODE:
 			return Object.assign({}, state, {
@@ -435,7 +505,7 @@ export default function navigationState(state = initialState, action) {
 						...state.left,
 						currentFolioID: state.folioIDPrefix+versoID,
 						currentFolioShortID: versoID,
-						currentFolioName: state.folioNameIndex[versoID].padStart(4, "0"),
+						currentFolioName: state.folioNameByIDIndex[versoID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
@@ -447,7 +517,7 @@ export default function navigationState(state = initialState, action) {
 						...state.right,
 						currentFolioID: state.folioIDPrefix+nextID,
 						currentFolioShortID: nextID,
-						currentFolioName: state.folioNameIndex[nextID].padStart(4, "0"),
+						currentFolioName: state.folioNameByIDIndex[nextID].padStart(4, "0"),
 						hasPrevious: current_hasPrev,
 						hasNext: current_hasNextNext,
 						previousFolioShortID: prevID,
@@ -520,7 +590,7 @@ function findNearestVerso(state, id, direction){
 
 	while(!found){
 		// Look to see if this name ends in "v"
-		let candidateName = state.folioNameIndex[versoID];
+		let candidateName = state.folioNameByIDIndex[versoID];
 		if(candidateName.endsWith("v")){
 			found=true;
 

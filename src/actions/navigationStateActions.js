@@ -9,9 +9,6 @@ export function changeCurrentFolio(payload) {
 export function updateFolioIndex(payload){
 	return {type: allActions.UPDATE_FOLIO_INDEX, payload: payload};
 }
-export function updateFolioNameIndex(payload){
-	return {type: allActions.UPDATE_FOLIO_NAME_INDEX, payload: payload};
-}
 export function updateGlossary(payload){
 	return {type: allActions.UPDATE_GLOSSARY, payload: payload};
 }
@@ -41,6 +38,9 @@ export function updateSearchIndex(payload){
 }
 export function enterSearchMode(payload){
 	return {type: allActions.ENTER_SEARCH_MODE, payload:payload};
+}
+export function exitSearchMode(payload){
+	return {type: allActions.EXIT_SEARCH_MODE, payload:payload};
 }
 export function cacheSearchResults(payload){
 	return {type: allActions.CACHE_SEARCH_RESULTS, payload:payload};

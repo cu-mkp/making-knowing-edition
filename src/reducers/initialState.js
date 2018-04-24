@@ -5,7 +5,8 @@ export default {
 	linkedMode: true,
 	bookMode: false,
 	folioIndex: [],
-	folioNameIndex:[],
+	folioNameByIDIndex:[],
+	folioIDByNameIndex:[],
 	search:{
 		index:{},
 		inSearchMode:false,

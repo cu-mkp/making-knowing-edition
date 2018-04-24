@@ -65,16 +65,12 @@ class Search extends React.Component {
 			// Enter search mode
 			let searchTerm = newHashpath.split('=')[1];
 
-			// Cache results
-			let results = {};
-				results['tc'] = this.props.navigationState.search.index.searchEdition(searchTerm,'tc');
-				results['tcn'] = this.props.navigationState.search.index.searchEdition(searchTerm,'tcn');
-				results['tl'] = this.props.navigationState.search.index.searchEdition(searchTerm,'tl');
+			// Unsanitize spaces
+			searchTerm = searchTerm.replace('%20',' ');
 
-			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm, results:results}));
-			console.log("Search for: "+searchTerm);
-			console.log(JSON.stringify(results));
-		}
+			// Cache results
+			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));
+ 		}
 	}
 
 }

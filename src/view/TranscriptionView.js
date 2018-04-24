@@ -306,7 +306,13 @@ class TranscriptionView extends Component {
 	// RENDER
 	render() {
 		// Retrofit - the folios are loaded asynchronously
-		if(!this.state.isLoaded){
+		if(this.props.navigationState[this.props.side].currentFolioID === '-1'){
+			return (
+				<div className="watermark">
+					<div className="watermark_contents"/>
+				</div>
+			);
+		}else if(!this.state.isLoaded){
 			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
 			return (
 				<div className="watermark">
@@ -398,6 +404,7 @@ class TranscriptionView extends Component {
 						case 'it':
 						case 'ill':
 						case 'la':
+						case 'margin':
 						case 'ms':
 						case 'oc':
 						case 'pa':
@@ -469,6 +476,14 @@ class TranscriptionView extends Component {
 			let content = transcriptionData.content;
 			if(this.props.navigationState[this.props.side].transcriptionType !== 'tc'){
 				content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
+			}
+
+			// If in searchmode, inject <mark> around searchterms
+			if(this.props.navigationState.search.inSearchMode){
+				let taggedTerm="<mark>"+this.props.navigationState.search.term+"</mark>";
+				let reg = "(" + this.props.navigationState.search.term + ")";
+        		let regex = new RegExp(reg, "giu");
+				content = content.replace(regex,taggedTerm);
 			}
 
 			// The render block, finally

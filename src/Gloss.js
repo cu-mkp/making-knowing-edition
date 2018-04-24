@@ -35,13 +35,14 @@ class Gloss extends React.Component {
 
 
 		// Hide on scroll
-		if(document.getElementById('transcriptionView_left')){
-			document.getElementById('transcriptionView_left').onscroll = function() {
+
+		if(document.getElementById('transcriptionViewComponent_left')){
+			document.getElementById('transcriptionViewComponent_left').onscroll = function() {
 			  popup.style.display='none';
 			}
 		}
-		if(document.getElementById('transcriptionView_right')){
-			document.getElementById('transcriptionView_right').onscroll = function() {
+		if(document.getElementById('transcriptionViewComponent_right')){
+			document.getElementById('transcriptionViewComponent_right').onscroll = function() {
 			  popup.style.display='none';
 			}
 		}

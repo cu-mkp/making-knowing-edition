@@ -35,13 +35,17 @@ class DiploMatic extends Component {
 				if (this.props.navigationState.folioIndex.length === 0) {
 					let folioIndex = [];
 					let nameByID = {};
+					let idByName = {};
 					for (let idx = 0; idx < this.document.folios.length; idx++) {
-						let idOnly = this.document.folios[idx].id.substr(this.document.folios[idx].id.lastIndexOf('/') + 1);
-						folioIndex.push(idOnly);
-						nameByID[idOnly] = this.document.folios[idx].name;
+						let shortID = this.document.folios[idx].id.substr(this.document.folios[idx].id.lastIndexOf('/') + 1);
+						folioIndex.push(shortID);
+						nameByID[shortID] = this.document.folios[idx].name;
+						idByName[this.document.folios[idx].name] = shortID;
 					}
-					this.props.dispatch(this.navigationStateActions.updateFolioIndex({folioIndex: folioIndex}));
-					this.props.dispatch(this.navigationStateActions.updateFolioNameIndex({folioNameIndex: nameByID}));
+					this.props.dispatch(this.navigationStateActions.updateFolioIndex({	folioIndex: folioIndex,
+																						folioNameByIDIndex: nameByID,
+																						folioIDByNameIndex: idByName}));
+
 				}
 
 

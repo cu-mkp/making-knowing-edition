@@ -111,7 +111,7 @@ class HashParser extends React.Component {
 
 			// We cannot do this if the folio index hasn't been defined yet,
 			// there's probably a slicker way to do this but let's poll, whee...
-			if(this.props.navigationState.folioNameIndex.length === 0){
+			if(this.props.navigationState.folioNameByIDIndex.length === 0){
 					let this2 = this;
 					setTimeout(function() {
 						this2.setStateWithPath(path);
