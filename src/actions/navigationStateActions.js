@@ -45,3 +45,6 @@ export function enterSearchMode(payload){
 export function cacheSearchResults(payload){
 	return {type: allActions.CACHE_SEARCH_RESULTS, payload:payload};
 }
+export function searchTypeHidden(payload){
+	return {type: allActions.HIDE_SEARCH_TYPE, payload:payload};
+}

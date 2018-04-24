@@ -15,6 +15,7 @@ import {
 	SET_PANE_VIEWTYPE,
 	SET_COLUMN_MODE_FOR_SIDE,
 	SET_STATE_FROM_HASH,
+	HIDE_SEARCH_TYPE
 } from '../actions/allActions';
 
 export default function navigationState(state = initialState, action) {
@@ -103,6 +104,17 @@ export default function navigationState(state = initialState, action) {
 				viewType = 'ImageView';
 			}
 
+			// action.payload.transcriptionType (tc,tcn, tl)
+			let typeDisplayOrder = 'tc,tcn,tcl';
+			if(action.payload.transcriptionType === 'tc'){
+				typeDisplayOrder = 'tc,tcn,tcl';
+			}else if(action.payload.transcriptionType === 'tcn'){
+				typeDisplayOrder = 'tcn,tc,tcl';
+			}else if(action.payload.transcriptionType === 'tcl'){
+				typeDisplayOrder = 'tcl,tc,tcn';
+			}
+
+
 			if(action.payload.side === 'left'){
 				return {
                 	...state,
@@ -114,7 +126,7 @@ export default function navigationState(state = initialState, action) {
 					},
 					search:{
 						...state.search,
-						currentTranscriptionType: action.payload.transcriptionType
+						typeDisplayOrder: typeDisplayOrder
 					}
             	};
 			}else{
@@ -128,7 +140,7 @@ export default function navigationState(state = initialState, action) {
 					},
 					search:{
 						...state.search,
-						currentTranscriptionType: action.payload.transcriptionType
+						typeDisplayOrder: typeDisplayOrder
 					}
             	};
 			}
@@ -319,6 +331,44 @@ export default function navigationState(state = initialState, action) {
 					viewType: 'SearchResultView'
 				}
 			}
+
+		case HIDE_SEARCH_TYPE:
+			if(action.payload.type === 'tc'){
+				return {
+					...state,
+					search:{
+						...state.search,
+						typeHidden:{
+							...state.search.typeHidden,
+							tc:action.payload.value
+						}
+					}
+				}
+			}else if(action.payload.type === 'tcn'){
+				return {
+					...state,
+					search:{
+						...state.search,
+						typeHidden:{
+							...state.search.typeHidden,
+							tcn:action.payload.value
+						}
+					}
+				}
+			}else if(action.payload.type === 'tl'){
+				return {
+					...state,
+					search:{
+						...state.search,
+						typeHidden:{
+							...state.search.typeHidden,
+							tl:action.payload.value
+						}
+					}
+				}
+			}
+
+
 
 		case CACHE_SEARCH_RESULTS:
 			return{

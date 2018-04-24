@@ -10,7 +10,12 @@ export default {
 		index:{},
 		inSearchMode:false,
 		term:'',
-		transcriptionType:'tc',
+		typeHidden:{
+			tc: false,
+			tcn:false,
+			tl: false
+		},
+		typeDisplayOrder:'tc,tcn,tl',
 		results:''
 	},
 	glossary: {
