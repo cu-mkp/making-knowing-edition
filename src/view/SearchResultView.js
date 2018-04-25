@@ -78,6 +78,7 @@ class SearchResultView extends Component {
 
 	// RENDER
 	render() {
+		this.matchedOn=[];
 		let this2=this;
 		let parserOptions = {
 			 replace: function(domNode) {
