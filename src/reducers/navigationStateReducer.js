@@ -350,7 +350,8 @@ export default function navigationState(state = initialState, action) {
 
 			return {
 				...state,
-
+				linkedMode: false,
+				bookMode: false,
 				search:{
 					...state.search,
 					term:action.payload.searchTerm,
