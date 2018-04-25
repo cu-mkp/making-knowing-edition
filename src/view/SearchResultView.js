@@ -14,7 +14,9 @@ class SearchResultView extends Component {
 		this.handleCheck = this.handleCheck.bind(this);
 		this.exitSearch = this.exitSearch.bind(this);
 		this.resultClicked = this.resultClicked.bind(this);
+		this.matchedOn=[];
 	}
+
 
 	exitSearch(event){
 		this.props.dispatch(this.navigationStateActions.exitSearchMode());
@@ -43,7 +45,12 @@ class SearchResultView extends Component {
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
 			let longID = this.props.navigationState.folioIDPrefix+shortID;
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:longID,transcriptionType:event.currentTarget.dataset.type}));
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({
+				side:'right',
+				id:longID,
+				transcriptionType:event.currentTarget.dataset.type,
+				matched:uniq(this.matchedOn)
+			}));
 		}
 
 
@@ -71,16 +78,26 @@ class SearchResultView extends Component {
 
 	// RENDER
 	render() {
-
+		let this2=this;
 		let parserOptions = {
 			 replace: function(domNode) {
 				 switch (domNode.name) {
 					case 'span':
-						return (
-							<mark unrecognized_tag={domNode.name}>
-								{domToReact(domNode.children, parserOptions)}
-							</mark>
-						);
+						//FIXME: This should really walk the tree, but we're going to assume keyword matches are not heavily nested
+						if(typeof domNode.children[0] !== 'undefined' && domNode.children[0].type === 'text'){
+							// Make lower and strip punctuation except -
+							let matchedTerm = domNode.children[0].data;
+								matchedTerm = matchedTerm.toLowerCase();
+								matchedTerm = matchedTerm.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\|_|\+|=)/g,"");
+							this2.matchedOn.push(matchedTerm);
+
+							return (
+								<mark unrecognized_tag={domNode.name}>
+									{domToReact(domNode.children, parserOptions)}
+								</mark>
+							);
+						}
+
 					 /* Just pass through */
 					 default:
 						 return domNode;
@@ -103,7 +120,8 @@ class SearchResultView extends Component {
 							   this.props.navigationState.search.results["tcn"].length +
 							   this.props.navigationState.search.results["tl"].length;
 
-		return (
+
+		let retVal = (
 			<div className="searchResultsComponent">
 				<div className="navigation" onClick={this.exitSearch}>
 					<div className="fa fa-th"></div> exit search
@@ -146,9 +164,24 @@ class SearchResultView extends Component {
 			</div>
 		);
 
+		// Remove duplicates
+		console.log("Search matched on: "+uniq(this.matchedOn));
+
+		return(retVal);
 	}
 }
 
+function uniq(a) {
+    var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
+
+    return a.filter(function(item) {
+        var type = typeof item;
+        if(type in prims)
+            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
+        else
+            return objs.indexOf(item) >= 0 ? false : objs.push(item);
+    });
+}
 
 function mapStateToProps(state) {
 	return {

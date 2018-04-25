@@ -480,8 +480,8 @@ class TranscriptionView extends Component {
 
 			// If in searchmode, inject <mark> around searchterms
 			if(this.props.navigationState.search.inSearchMode){
-				let taggedTerm="<mark>"+this.props.navigationState.search.term+"</mark>";
-				let reg = "(" + this.props.navigationState.search.term + ")";
+				let taggedTerm="<mark>$1</mark>";
+				let reg = "(" + this.props.navigationState.search.matched.toString().replace(/,/g,"|") + ")";
         		let regex = new RegExp(reg, "giu");
 				content = content.replace(regex,taggedTerm);
 			}

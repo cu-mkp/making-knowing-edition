@@ -240,13 +240,20 @@ export default function navigationState(state = initialState, action) {
 					}
 				};
 			}else{
+				// Includes searchmode
+
 				//console.log("Setting "+action.payload.side+" to: "+action.payload.id);
 				//console.log("Search:"+state.search.inSearchMode+" Type:"+action.payload.transcriptionType);
+				let searchMatched =  (typeof action.payload.matched === 'undefined')?state.search.matched:action.payload.matched;
+
 				if(action.payload.side === 'left'){
 					let type = (typeof action.payload.transcriptionType === 'undefined')?state[action.payload.side].transcriptionType:action.payload.transcriptionType;
-
 					return {
 	                	...state,
+						search:{
+							...state.search,
+							matched:searchMatched
+						},
 						left:{
 							...state.left,
 							currentFolioID: action.payload.id,
@@ -266,6 +273,10 @@ export default function navigationState(state = initialState, action) {
 
 					return {
 	                	...state,
+						search:{
+							...state.search,
+							matched:searchMatched
+						},
 						right:{
 							...state.right,
 							currentFolioID: action.payload.id,
@@ -331,7 +342,7 @@ export default function navigationState(state = initialState, action) {
 			}
 
 		case ENTER_SEARCH_MODE:
-		
+
 			let results = {};
 			results['tc'] = state.search.index.searchEdition(action.payload.searchTerm,'tc');
 			results['tcn'] = state.search.index.searchEdition(action.payload.searchTerm,'tcn');
