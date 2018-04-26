@@ -114,11 +114,11 @@ class navigation extends React.Component {
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
-							<span title="Lock/Unlock" onClick={this.toggleLockmode} className={lockIconClass}></span>
+							<span title="Lock/Unlock" onClick={this.toggleLockmode} className={(this.props.navigationState.search.inSearchMode)?'invisible':lockIconClass}></span>
 							&nbsp;
-							<span title="Toggle book mode" onClick={this.toggleBookmode} className={bookIconClass}></span>
+							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.navigationState.search.inSearchMode)?'invisible':bookIconClass}></span>
 							&nbsp;
-							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={columnIconClass}></span>
+							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.navigationState.search.inSearchMode)?'invisible':columnIconClass}></span>
 							&nbsp;
 							<span 	title = "Go back"
 									onClick={this.changeCurrentFolio}

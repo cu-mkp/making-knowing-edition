@@ -383,7 +383,7 @@ export default function navigationState(state = initialState, action) {
 		case EXIT_SEARCH_MODE:
 				return {
 					...state,
-
+					linkedMode: true,
 					search:{
 						...state.search,
 						term:'',
@@ -405,17 +405,6 @@ export default function navigationState(state = initialState, action) {
 
 					right:{
 						...state.right,
-						isGridMode: false,
-						viewType: 'TranscriptionView',
-						transcriptionType: 'tc',
-						transcriptionTypeLabel: 'Transcription',
-						currentFolioName: '',
-						currentFolioID: '-1',
-						currentFolioShortID: '',
-						hasPrevious: false,
-						hasNext: false,
-						nextFolioShortID: '',
-						previousFolioShortID: ''
 					}
 				}
 
