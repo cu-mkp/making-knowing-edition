@@ -129,8 +129,11 @@ class SearchResultView extends Component {
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField"><input name="searchTerm" className="textField" placeholder={this.props.navigationState.search.term}/></div>
+						<div className="searchField"><input name="searchTerm"  key={this.props.navigationState.search.term} className="textField" defaultValue={decodeURI(this.props.navigationState.search.term)}/></div>
 						<div className="searchButton"><button type="submit"><span className="fa fa-search" aria-hidden="true"></span></button></div>
+					</div>
+					<div className="searchFilters">
+						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {decodeURI(this.props.navigationState.search.term)}
 					</div>
 					<div className="searchFilters">
 						<input checked={!(this.props.navigationState.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.navigationState.uiLabels.transcriptionType['tl']} ({this.props.navigationState.search.results["tl"].length})</span>
@@ -140,7 +143,7 @@ class SearchResultView extends Component {
 				</form>
 				<div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
-						No Results found for '{this.props.navigationState.search.term}'
+						No Results found for '{decodeURI(this.props.navigationState.search.term)}'
 					</div>
 
 				 	{displayOrderArray.map((type, i) =>
