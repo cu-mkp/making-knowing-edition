@@ -302,9 +302,7 @@ figure.current {
   margin: 0 0 0 .8rem; }
 
 .breadcrumbs .folioName {
-  position: relative;
-  top: .2rem;
-  display: inline-block;
+  display: inline;
   width: 5rem;
   white-space: nowrap;
   overflow: hidden;
