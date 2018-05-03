@@ -51,11 +51,11 @@ class HashParser extends React.Component {
 		// Ok go ahead...
 		}else{
 			return;
-			let newHashpath = event.newURL.split('#/')[1];
-			if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
-				this.lastHashChangeInvokedStateUpdate=new Date();
-				this.setStateWithPath(newHashpath);
-			}
+			// let newHashpath = event.newURL.split('#/')[1];
+			// if (!(typeof newHashpath === 'undefined' || newHashpath.length === 0)) {
+			// 	this.lastHashChangeInvokedStateUpdate=new Date();
+			// 	this.setStateWithPath(newHashpath);
+			// }
 		}
 	}
 

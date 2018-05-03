@@ -89,7 +89,7 @@ class SearchResultView extends Component {
 							// Make lower and strip punctuation except -
 							let matchedTerm = domNode.children[0].data;
 								matchedTerm = matchedTerm.toLowerCase();
-								matchedTerm = matchedTerm.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|\"|'|<|,|\.|>|\?|\/|\\|\|_|\+|=)/g,"");
+								matchedTerm = matchedTerm.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\|_|\+|=)/g,"");
 							this2.matchedOn.push(matchedTerm);
 
 							return (
@@ -97,7 +97,7 @@ class SearchResultView extends Component {
 									{domToReact(domNode.children, parserOptions)}
 								</mark>
 							);
-						}
+						} else return domNode;
 
 					 /* Just pass through */
 					 default:

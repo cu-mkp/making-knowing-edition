@@ -1,5 +1,4 @@
 import initialState from './initialState';
-import SearchIndex from '../model/SearchIndex';
 import {
 	CHANGE_TRANSCRIPTION_TYPE,
 	CHANGE_CURRENT_FOLIO,
