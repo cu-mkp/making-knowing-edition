@@ -4,6 +4,7 @@ import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
 import SearchResultView from './SearchResultView';
 import TranscriptionView from './TranscriptionView';
+import XMLView from './XMLView';
 
 class SplitPaneViewport extends Component {
 
@@ -46,6 +47,19 @@ class SplitPaneViewport extends Component {
     } else if( this.state.viewType === 'TranscriptionView' ) {
       return(
         <TranscriptionView
+		  history={this.props.history}
+		  document={this.props.document}
+          side={this.props.side}
+          viewWidth={this.state.viewWidth}
+          viewHeight={this.state.viewHeight}
+          drawerMode={this.props.navigationState.drawerMode}
+          drawerOpen={this.state.drawerOpen}
+          splitPaneView={this.props.splitPaneView}
+        />
+      );
+    } else if( this.state.viewType === 'XMLView' ) {
+      return(
+        <XMLView
 		  history={this.props.history}
 		  document={this.props.document}
           side={this.props.side}
