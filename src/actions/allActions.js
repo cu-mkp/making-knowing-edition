@@ -6,6 +6,7 @@ export const UPDATE_SEARCH_INDEX = 'UPDATE_SEARCH_INDEX';
 export const UPDATE_FOLIO_INDEX = 'UPDATE_FOLIO_INDEX';
 
 export const SET_DRAWER_MODE = 'SET_DRAWER_MODE';
+export const SET_XML_MODE = 'SET_XML_MODE';
 
 export const SET_LINKED_MODE = 'SET_LINKED_MODE';
 export const SET_BOOK_MODE = 'SET_BOOK_MODE';

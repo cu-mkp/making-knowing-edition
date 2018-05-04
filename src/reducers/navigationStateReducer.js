@@ -9,6 +9,7 @@ import {
 	EXIT_SEARCH_MODE,
 	CACHE_SEARCH_RESULTS,
 	SET_DRAWER_MODE,
+	SET_XML_MODE,
 	SET_LINKED_MODE,
 	SET_BOOK_MODE,
 	SET_PANE_SIZES,
@@ -463,6 +464,25 @@ export default function navigationState(state = initialState, action) {
 			return Object.assign({}, state, {
 				linkedMode: action.payload
 			})
+
+		case SET_XML_MODE:
+			if(action.payload.side === 'left'){
+				return {
+					...state,
+					left:{
+						...state.left,
+						isXMLMode: action.payload.newState
+					}
+				};
+			}else{
+				return {
+					...state,
+					right:{
+						...state.right,
+						isXMLMode: action.payload.newState
+					}
+				};
+			}
 
 		case SET_BOOK_MODE:
 

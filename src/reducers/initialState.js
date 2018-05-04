@@ -34,6 +34,7 @@ export default {
 		}
 	},
 	left: {
+		isXMLMode: false,
 		isGridMode: false,
 		transcriptionType: 'tc',
 		transcriptionTypeLabel: 'Transcription',
@@ -48,6 +49,7 @@ export default {
 		viewType: 'ImageGridView'
 	},
 	right: {
+		isXMLMode: false,
 		isGridMode: false,
 		transcriptionType: 'tc',
 		transcriptionTypeLabel: 'Transcription',
