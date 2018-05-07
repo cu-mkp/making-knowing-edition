@@ -471,6 +471,7 @@ export default function navigationState(state = initialState, action) {
 					...state,
 					left:{
 						...state.left,
+						viewType: action.payload.newState ? 'XMLView' : 'TranscriptionView',
 						isXMLMode: action.payload.newState
 					}
 				};
@@ -479,6 +480,7 @@ export default function navigationState(state = initialState, action) {
 					...state,
 					right:{
 						...state.right,
+						viewType: action.payload.newState ? 'XMLView' : 'TranscriptionView',
 						isXMLMode: action.payload.newState
 					}
 				};
