@@ -82,7 +82,7 @@ class XMLView extends Component {
 							<Pagination side={this.props.side} className="pagination_upper"/>
 
 				<div >
-					{this.state.folio.transcription.tc.html}
+					<pre>{this.state.folio.transcription.tc_xml}</pre>
 				</div>
 
 				<Pagination side={this.props.side} className="pagination_lower"/>

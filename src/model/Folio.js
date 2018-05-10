@@ -38,11 +38,18 @@ class Folio {
 							let transcriptionURL_tc =  annotationListResponse.data["resources"][0]["resource"]["@id"];
 							let transcriptionURL_tcn = annotationListResponse.data["resources"][1]["resource"]["@id"];
 							let transcriptionURL_tl =  annotationListResponse.data["resources"][2]["resource"]["@id"];
+							let transcriptionURL_tc_xml =  annotationListResponse.data["resources"][3]["resource"]["@id"];
+							let transcriptionURL_tcn_xml = annotationListResponse.data["resources"][4]["resource"]["@id"];
+							let transcriptionURL_tl_xml =  annotationListResponse.data["resources"][5]["resource"]["@id"];
 							axios.all([
 									axios.get(transcriptionURL_tc),
 									axios.get(transcriptionURL_tcn),
-									axios.get(transcriptionURL_tl)
-								]).then(axios.spread(function(tc_response, tcn_response, tl_response) {
+									axios.get(transcriptionURL_tl),
+									axios.get(transcriptionURL_tc_xml),
+									axios.get(transcriptionURL_tcn_xml),
+									axios.get(transcriptionURL_tl_xml)
+								]).then(axios.spread(function(tc_response, tcn_response, tl_response,
+																							tc_xml_response, tcn_xml_response, tl_xml_response ) {
 
 									// FIXME: This isn't very DRY, but I couldn't figure out how to easily serialize it and have all the promises work
 									// without a big rewrite, should loop back and fix later
@@ -62,6 +69,10 @@ class Folio {
 									if (this.transcription.tl.html === null) {
 										reject(new Error(`Unable to parse <folio> element in ${transcriptionURL_tl}`));
 									}
+
+									this.transcription.tc_xml = tc_xml_response.data;
+									this.transcription.tcn_xml = tcn_xml_response.data;
+									this.transcription.tl_xml = tl_xml_response.data;
 
 									this.loaded = true;
 									resolve(this);
