@@ -1,6 +1,6 @@
 {
    "@context": "http://iiif.io/api/presentation/2/context.json",
-   "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p125v.json",
+   "@id": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json",
    "@type": "sc:AnnotationList",
    "resources": [
       {
@@ -11,7 +11,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p125v.json"
+         "on": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -21,7 +21,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p125v.json"
+         "on": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -31,7 +31,37 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p125v.json"
+         "on": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json"
+      },
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p125v/tc/original.txt",
+            "@type": "dctypes:Text",
+            "format": "text/xml"
+         },
+         "on": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json"
+      },
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p125v/tcn/original.txt",
+            "@type": "dctypes:Text",
+            "format": "text/xml"
+         },
+         "on": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json"
+      },
+      {
+         "@type": "oa:Annotation",
+         "motivation": "sc:painting",
+         "resource": {
+            "@id": "http://159.65.186.2/folio/p125v/tl/original.txt",
+            "@type": "dctypes:Text",
+            "format": "text/xml"
+         },
+         "on": "http://localhost:4000/bnf-ms-fr-640/list/p125v.json"
       }
    ]
 }
