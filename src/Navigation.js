@@ -103,10 +103,11 @@ class navigation extends React.Component {
 			if(!this.props.navigationState.bookMode){
 				lockIconClass +=" active";
 			}
+			let imageViewActive = this.props.navigationState[this.props.side].viewType === 'ImageView';
 			let bookIconClass = (this.props.navigationState.bookMode)?'fa fa-book active':'fa fa-book';
 			let xmlIconClass = (this.props.navigationState[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
 			let columnIconClass = (this.props.navigationState[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
-			 	columnIconClass += (this.props.navigationState[this.props.side].viewType === 'ImageView')?' hidden':'';
+			 	columnIconClass += (imageViewActive)?' hidden':'';
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>
@@ -125,7 +126,7 @@ class navigation extends React.Component {
 							&nbsp;
 							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.navigationState.search.inSearchMode)?'invisible':bookIconClass}></span>
 							&nbsp;
-							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.navigationState.search.inSearchMode)?'invisible':xmlIconClass}></span>
+							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.navigationState.search.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
 							&nbsp;
 							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.navigationState.search.inSearchMode)?'invisible':columnIconClass}></span>
 							&nbsp;

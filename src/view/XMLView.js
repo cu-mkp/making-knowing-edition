@@ -74,6 +74,10 @@ class XMLView extends Component {
 			);
 		}else{
 
+			// get the xml for this transcription
+			let transcriptionType = this.props.navigationState[this.props.side].transcriptionType;
+			let xmlContent = this.state.folio.transcription[`${transcriptionType}_xml`];
+
 			return (
 				<div id={thisID} className={thisClass}>
 						<Navigation history={this.props.history} side={this.props.side}/>
@@ -81,7 +85,7 @@ class XMLView extends Component {
 							<Pagination side={this.props.side} className="pagination_upper"/>
 
 							<div className="xmlContentInner">
-								<pre>{this.state.folio.transcription.tc_xml}</pre>
+								{ transcriptionType === 'tl' ? xmlContent : <pre>{xmlContent}</pre> }
 							</div>
 
 						</div>

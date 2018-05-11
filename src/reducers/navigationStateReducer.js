@@ -98,11 +98,14 @@ export default function navigationState(state = initialState, action) {
 			};
 
 		case CHANGE_TRANSCRIPTION_TYPE:
-			let viewType = 'TranscriptionView';
+			let xmlMode = state[action.payload.side].isXMLMode;
+			let viewType = xmlMode ? 'XMLView' : 'TranscriptionView';
+
 			let label = state.uiLabels.transcriptionType[action.payload.transcriptionType];
 
 			if (action.payload.transcriptionType === 'f'){
 				viewType = 'ImageView';
+				xmlMode = false;
 			}
 
 			// action.payload.transcriptionType (tc,tcn, tl)
@@ -123,7 +126,8 @@ export default function navigationState(state = initialState, action) {
 						...state.left,
 						transcriptionType: action.payload.transcriptionType,
 						transcriptionTypeLabel: label,
-						viewType:viewType
+						viewType:viewType,
+						isXMLMode: xmlMode
 					},
 					search:{
 						...state.search,
@@ -137,7 +141,8 @@ export default function navigationState(state = initialState, action) {
 						...state.right,
 						transcriptionType: action.payload.transcriptionType,
 						transcriptionTypeLabel: label,
-						viewType:viewType
+						viewType:viewType,
+						isXMLMode: xmlMode
 					},
 					search:{
 						...state.search,
