@@ -296,6 +296,10 @@ figure.current {
   background-color: white;
   color: #000000; }
 
+.xmlViewComponent .navigationComponent {
+  background-color: white;
+  color: #000000; }
+
 .breadcrumbs {
   overflow: hidden;
   padding: 0.8rem 0 0;

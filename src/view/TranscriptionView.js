@@ -493,11 +493,11 @@ class TranscriptionView extends Component {
       			  <div className="transcriptContent">
       			  	<Pagination side={this.props.side} className="pagination_upper"/>
 
-					<div className={surfaceClass} style={surfaceStyle}>
-						{Parser(content, parserOptions)}
-					</div>
+								<div className={surfaceClass} style={surfaceStyle}>
+									{Parser(content, parserOptions)}
+								</div>
 
-					<Pagination side={this.props.side} className="pagination_lower"/>
+								<Pagination side={this.props.side} className="pagination_lower"/>
       			  </div>
 		      </div>
 			);
