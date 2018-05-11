@@ -6,7 +6,6 @@ import Pagination from '../Pagination';
 
 class XMLView extends Component {
 
-
 	constructor(props) {
 		super(props);
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
@@ -78,14 +77,13 @@ class XMLView extends Component {
 			return (
 				<div id={thisID} className={thisClass}>
 						<Navigation history={this.props.history} side={this.props.side}/>
-						<div className="transcriptContent">
+						<div className="xmlContent">
 							<Pagination side={this.props.side} className="pagination_upper"/>
 
-				<div >
-					<pre>{this.state.folio.transcription.tc_xml}</pre>
-				</div>
+							<div className="xmlContentInner">
+								<pre>{this.state.folio.transcription.tc_xml}</pre>
+							</div>
 
-				<Pagination side={this.props.side} className="pagination_lower"/>
 						</div>
 				</div>
 			);

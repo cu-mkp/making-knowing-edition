@@ -51,8 +51,6 @@ class Folio {
 								]).then(axios.spread(function(tc_response, tcn_response, tl_response,
 																							tc_xml_response, tcn_xml_response, tl_xml_response ) {
 
-									// FIXME: This isn't very DRY, but I couldn't figure out how to easily serialize it and have all the promises work
-									// without a big rewrite, should loop back and fix later
 									this.transcription = {};
 
 									this.transcription.tc = this.parseTranscription(tc_response.data);
