@@ -1,6 +1,6 @@
 {
    "@context": "http://iiif.io/api/presentation/2/context.json",
-   "@id": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json",
+   "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json",
    "@type": "sc:AnnotationList",
    "resources": [
       {
@@ -11,7 +11,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json"
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json"
       },
       {
          "@type": "oa:Annotation",
@@ -21,7 +21,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json"
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json"
       },
       {
          "@type": "oa:Annotation",
@@ -31,7 +31,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json"
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json"
       },
       {
          "@type": "oa:Annotation",
@@ -41,7 +41,7 @@
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
-         "on": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json"
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json"
       },
       {
          "@type": "oa:Annotation",
@@ -51,7 +51,7 @@
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
-         "on": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json"
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json"
       },
       {
          "@type": "oa:Annotation",
@@ -61,7 +61,7 @@
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
-         "on": "http://localhost:4000/bnf-ms-fr-640/list/p087r.json"
+         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json"
       }
    ]
 }

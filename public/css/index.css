@@ -296,10 +296,6 @@ figure.current {
   background-color: white;
   color: #000000; }
 
-.xmlViewComponent .navigationComponent {
-  background-color: white;
-  color: #000000; }
-
 .breadcrumbs {
   overflow: hidden;
   padding: 0.8rem 0 0;
@@ -521,35 +517,12 @@ figure.current {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
-  min-width: 10rem;
- }
+  min-width: 10rem; }
 
 .transcriptionViewComponent {
   overflow: scroll;
   margin: 0 0 0 1rem;
   height: calc(100vh - 7rem); }
-
-.xmlContent {
-  padding: 0;
-  margin: 4.5rem 0 0;
-  width: calc(100% - 1.2rem);
-  min-height: 100vh;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-  min-width: 10rem;
- }
-
-.xmlViewComponent {
-  overflow: scroll;
-  margin: 0 0 0 1rem;
-  height: calc(100vh - 7rem);
-}
-
-.xmlContentInner {
-  overflow-x: scroll;
-}
 
 .surface {
   grid-area: transcription;
@@ -633,6 +606,29 @@ figure.current {
 
 .surface > #z20 {
   grid-area: z20; }
+
+.xmlViewComponent .navigationComponent {
+  background-color: white;
+  color: #000000; }
+
+.xmlContent {
+  padding: 0;
+  margin: 4.5rem 0 0;
+  width: calc(100% - 1.2rem);
+  min-height: 100vh;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  min-width: 10rem; }
+
+.xmlViewComponent {
+  overflow: scroll;
+  margin: 0 0 0 1rem;
+  height: calc(100vh - 7rem); }
+
+.xmlContentInner {
+  overflow-x: scroll; }
 
 .glossaryTerm {
   color: #90a9c5; }
