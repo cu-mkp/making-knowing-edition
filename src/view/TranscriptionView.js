@@ -9,6 +9,37 @@ import Annotation from '../Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 
+var unrecognizedTags =[  'add',
+												 'al',
+												 'bp',
+												 'cn',
+												 'corr',
+												 'cont',
+												 'env',
+												 'exp',
+												 'fr',
+												 'gap',
+												 'df',
+												 'gk',
+												 'id',
+												 'it',
+												 'ill',
+												 'la',
+												 'margin',
+												 'ms',
+												 'oc',
+												 'pa',
+												 'pl',
+												 'pm',
+												 'pn',
+												 'pro',
+												 'rub',
+												 'sn',
+												 'tl',
+												 'tmp',
+												 'unc',
+												 'x' ];
+
 class TranscriptionView extends Component {
 
 
@@ -215,9 +246,6 @@ class TranscriptionView extends Component {
     };
   }
 
-
-
-
   mergeRow( sourceRow, targetRow ) {
     if( targetRow ) {
       let result = [];
@@ -303,205 +331,182 @@ class TranscriptionView extends Component {
 		}
 	}
 
+	watermark() {
+		return (
+			<div className="watermark">
+				<div className="watermark_contents"/>
+			</div>
+		);
+	}
+
+	htmlToReactParserOptions(side) {
+		let this2=this;
+		var parserOptions =  {
+			 replace: function(domNode) {
+
+				 /* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
+				 if( unrecognizedTags.includes(domNode.name) ) {
+					 return (
+						 <span unrecognized_tag={domNode.name}>
+							 {domToReact(domNode.children, parserOptions)}
+						 </span>
+					 );
+				 }
+
+				 switch (domNode.name) {
+
+					 /* del / strikethrough */
+ 					case 'del':
+ 						return (
+ 							<s>{domToReact(domNode.children, parserOptions)}</s>
+ 						);
+
+					case 'figure':
+						// tranform into a div containing an img tag pointing at the image.
+						return (
+							<div class='figure'>
+								<img src='/bnf-ms-fr-640/figures/p001r_1.png'/>
+							</div>
+						);
+
+					case 'h2':
+						//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
+						if(this2.props.navigationState[this2.props.side].currentFolioShortID === 'f19'){
+							let text = this2.nodeTreeToString(domNode.children);
+							let annotationType = "fieldNotes"; // fieldNotes | annotation | video
+							let annotationContent = "This is a fieldNote annotation for: '"+text;
+							annotationContent +="' Mauris laoreet purus ut urna ullamcorper fringilla. Morbi fermentum lectus ac dictum auctor. Suspendisse suscipit quam non arcu ultrices, vel dignissim tellus gravida. Nunc vitae odio lorem. Nulla nisl erat, laoreet vitae lectus quis, pharetra semper diam. In hac habitasse platea dictumst. Nullam id felis quis metus iaculis fermentum quis quis tortor. Proin maximus urna mi, non semper mauris fringilla eu. Vivamus eget lectus malesuada, commodo ex sit amet, finibus nunc. Pellentesque non ultrices magna. Proin molestie tempus diam, ac faucibus orci vulputate in. Donec tempor faucibus enim. Pellentesque facilisis ut mi sit amet cursus. Integer sollicitudin faucibus metus iaculis faucibus. Suspendisse in velit eget orci pretium placerat. Morbi rhoncus, libero ac convallis pellentesque, enim eros elementum leo, vitae suscipit mi nibh at sem."
+							return (
+								<Annotation headerContent={domToReact(domNode.children, parserOptions)}
+											side={side}
+											type={annotationType}>
+												{annotationContent}
+								</Annotation>
+							);
+						} else {
+							return domNode;
+						}
+
+					/* linebreak  */
+					case 'lb':
+						return (<br/>);
+
+					/* <m> gets replaced with <Gloss> */
+					case 'm':
+						let term = this2.nodeTreeToString(domNode.children);
+							return (
+							<Gloss side={side}
+									 term={term}>
+										 {domToReact(domNode.children, parserOptions)}
+								</Gloss>
+						);
+
+					 /* Just pass through */
+					 default:
+						 return domNode;
+				 }
+			 }
+		 };
+		 return parserOptions;
+	}
+
+	getTranscriptionData(transcription) {
+
+		if( typeof transcription === 'undefined') return null;
+
+		// Grid layout
+		if( transcription.layout === 'grid' ) {
+			return this.layoutGrid(transcription.html);
+
+		// Margin layout
+		} else if( transcription.layout === 'margin' ) {
+			return this.layoutMargin(transcription.html);
+
+		// None specified, pass on without any layout
+		} else {
+			return {
+				content: transcription.html,
+				layout: ""
+			};
+		}
+	}
+
 	// RENDER
 	render() {
 		// Retrofit - the folios are loaded asynchronously
-		if(this.props.navigationState[this.props.side].currentFolioID === '-1'){
-			return (
-				<div className="watermark">
-					<div className="watermark_contents"/>
-				</div>
-			);
-		}else if(!this.state.isLoaded){
+		if(this.props.navigationState[this.props.side].currentFolioID === '-1') {
+			return this.watermark();
+		} else if(!this.state.isLoaded){
 			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
-			return (
-				<div className="watermark">
-					<div className="watermark_contents"/>
-				</div>
-			);
-		}else{
+			return this.watermark();
+		} else {
 
-			//console.log(this.props.side+" rendering:" + this.state.folio.id);
-			//window.loadingModal_stop();
+			let transcriptionData = this.getTranscriptionData(this.state.folio.transcription[this.props.navigationState[this.props.side].transcriptionType]);
 
-			// Transcription data depends on the type we're looking at
-			let transcriptionData = {};
-			let thisTranscription=this.state.folio.transcription[this.props.navigationState[this.props.side].transcriptionType];
-
-			if(typeof thisTranscription === 'undefined'){
+			if(!transcriptionData) {
 				console.log("Undefined transcription for side: "+this.props.side);
-				return (
-					<div className="watermark">
-						<div className="watermark_contents"/>
-					</div>
-				);
-			}
-			// Grid layout
-			if( thisTranscription.layout === 'grid' ) {
-				transcriptionData = this.layoutGrid(thisTranscription.html);
-
-			// Margin layout
-			} else if( thisTranscription.layout === 'margin' ) {
-				transcriptionData = this.layoutMargin(thisTranscription.html);
-
-			// None specified, pass on without any layout
-			} else {
-				transcriptionData = {
-					content: thisTranscription.html,
-					layout: ""
-				};
+				return this.watermark();
 			}
 
+			// Determine class and id for this component
 			let thisClass = "transcriptionViewComponent "+this.props.side;
 			let thisID = "transcriptionViewComponent_"+this.props.side;
-			// Empty content
-			if(transcriptionData.content.length === 0){
+			let side = this.props.side;
+
+			if(transcriptionData.content.length !== 0){
+				let surfaceClass = "surface";
+				let surfaceStyle = {};
+
+				// Handle grid mode
+				if(this.props.navigationState[this.props.side].isGridMode) {
+					surfaceClass += " grid-mode";
+					surfaceStyle.gridTemplateAreas = transcriptionData.layout;
+				}
+
+				// Configure parser to replace certain tags with components
+				let htmlToReactParserOptions = this.htmlToReactParserOptions(side);
+
+				// Strip linebreaks except for tc (happens on string before parser)
+				let content = transcriptionData.content;
+				if(this.props.navigationState[side].transcriptionType !== 'tc'){
+					content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
+				}
+
+				// If in searchmode, inject <mark> around searchterms
+				if(this.props.navigationState.search.inSearchMode) {
+					let taggedTerm="<mark>$1</mark>";
+					let reg = "(" + this.props.navigationState.search.matched.toString().replace(/,/g,"|") + ")";
+	        		let regex = new RegExp(reg, "giu");
+					content = content.replace(regex,taggedTerm);
+				}
+
+				return (
+					// Render the transcription
+		      <div id={thisID} className={thisClass}>
+		          <Navigation history={this.props.history} side={side}/>
+      			  <div className="transcriptContent">
+      			  	<Pagination side={side} className="pagination_upper"/>
+
+								<div className={surfaceClass} style={surfaceStyle}>
+									{Parser(content, htmlToReactParserOptions)}
+								</div>
+
+								<Pagination side={side} className="pagination_lower"/>
+      			  </div>
+		      </div>
+				);
+			} else {
+				// Empty content
 				return (
 					<div className={thisClass} id={thisID}>
-						<Navigation history={this.props.history} side={this.props.side}/>
+						<Navigation history={this.props.history} side={side}/>
 						<div className="transcriptContent">
-							<Pagination side={this.props.side} className="pagination_upper"/>
-							<div className="watermark">
-								<div className="watermark_contents"/>
-							</div>
+							<Pagination side={side} className="pagination_upper"/>
+							{ this.watermark() }
 						</div>
 					</div>
 				);
 			}
-
-			// We have content
-			// if there's enough horizontal space, enable grid mode
-			let surfaceClass = "surface";
-			let surfaceStyle = {};
-
-			if(this.props.navigationState[this.props.side].isGridMode) {
-				surfaceClass += " grid-mode";
-				surfaceStyle.gridTemplateAreas = transcriptionData.layout;
-			}
-			let side = this.props.side;
-
-			// Parser replaces certain tags with components
-			let this2=this;
-			let parserOptions = {
-				 replace: function(domNode) {
-
-					 switch (domNode.name) {
-
-						/* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
-						case 'add':
-						case 'al':
-						case 'bp':
-						case 'cn':
-						case 'corr':
-						case 'cont':
-						case 'env':
-						case 'exp':
-						case 'fr':
-						case 'gap':
-						case 'df':
-						case 'gk':
-						case 'id':
-						case 'it':
-						case 'ill':
-						case 'la':
-						case 'margin':
-						case 'ms':
-						case 'oc':
-						case 'pa':
-						case 'pl':
-						case 'pm':
-						case 'pn':
-						case 'pro':
-						case 'rub':
-						case 'sn':
-						case 'tl':
-						case 'tmp':
-						case 'unc':
-						case 'x':
-							return (
-								<span unrecognized_tag={domNode.name}>
-								 	{domToReact(domNode.children, parserOptions)}
-							 	</span>
-							);
-
-						/* linebreak  */
-						case 'lb':
-							return (<br/>);
-
-
-
-						/* del / strikethrough */
-						case 'del':
-							return (
-								<s>{domToReact(domNode.children, parserOptions)}</s>
-							);
-
-						/* <m> gets replaced with <Gloss> */
-						case 'm':
-							let term = this2.nodeTreeToString(domNode.children);
-  							return (
-								<Gloss side={side}
-									   term={term}>
-  									   {domToReact(domNode.children, parserOptions)}
-  								</Gloss>
-							);
-
-						case 'h2':
-							//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
-							if(this2.props.navigationState[this2.props.side].currentFolioShortID === 'f19'){
-								let text = this2.nodeTreeToString(domNode.children);
-								let annotationType = "fieldNotes"; // fieldNotes | annotation | video
-								let annotationContent = "This is a fieldNote annotation for: '"+text;
-								annotationContent +="' Mauris laoreet purus ut urna ullamcorper fringilla. Morbi fermentum lectus ac dictum auctor. Suspendisse suscipit quam non arcu ultrices, vel dignissim tellus gravida. Nunc vitae odio lorem. Nulla nisl erat, laoreet vitae lectus quis, pharetra semper diam. In hac habitasse platea dictumst. Nullam id felis quis metus iaculis fermentum quis quis tortor. Proin maximus urna mi, non semper mauris fringilla eu. Vivamus eget lectus malesuada, commodo ex sit amet, finibus nunc. Pellentesque non ultrices magna. Proin molestie tempus diam, ac faucibus orci vulputate in. Donec tempor faucibus enim. Pellentesque facilisis ut mi sit amet cursus. Integer sollicitudin faucibus metus iaculis faucibus. Suspendisse in velit eget orci pretium placerat. Morbi rhoncus, libero ac convallis pellentesque, enim eros elementum leo, vitae suscipit mi nibh at sem."
-								return (
-									<Annotation headerContent={domToReact(domNode.children, parserOptions)}
-												side={side}
-												type={annotationType}>
-										   		{annotationContent}
-									</Annotation>
-								);
-							}else{
-								return domNode;
-							}
-
-						 /* Just pass through */
-						 default:
-							 return domNode;
-					 }
-
-				 }
-			 };
-
-			// Strip linebreaks except for tc (happens on string before parser)
-			let content = transcriptionData.content;
-			if(this.props.navigationState[this.props.side].transcriptionType !== 'tc'){
-				content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
-			}
-
-			// If in searchmode, inject <mark> around searchterms
-			if(this.props.navigationState.search.inSearchMode){
-				let taggedTerm="<mark>$1</mark>";
-				let reg = "(" + this.props.navigationState.search.matched.toString().replace(/,/g,"|") + ")";
-        		let regex = new RegExp(reg, "giu");
-				content = content.replace(regex,taggedTerm);
-			}
-
-			// The render block, finally
-			return (
-		      <div id={thisID} className={thisClass}>
-		          <Navigation history={this.props.history} side={this.props.side}/>
-      			  <div className="transcriptContent">
-      			  	<Pagination side={this.props.side} className="pagination_upper"/>
-
-								<div className={surfaceClass} style={surfaceStyle}>
-									{Parser(content, parserOptions)}
-								</div>
-
-								<Pagination side={this.props.side} className="pagination_lower"/>
-      			  </div>
-		      </div>
-			);
-
 		}
 	}
 }
