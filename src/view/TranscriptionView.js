@@ -364,6 +364,11 @@ class TranscriptionView extends Component {
 
 				 switch (domNode.name) {
 
+					case 'cont':
+						return (
+							<span><i>Continued from the previous page..</i>  {domToReact(domNode.children, parserOptions)}</span>
+						);
+
 					 /* del / strikethrough */
  					case 'del':
  						return (
