@@ -18,6 +18,12 @@
     height:calc(100vh - 7rem);
 }
 
+.inline-figure {
+	margin: 5px;
+	border: 1px solid gray;
+	width: 200px;
+}
+
 
 .surface {
 	grid-area: transcription;

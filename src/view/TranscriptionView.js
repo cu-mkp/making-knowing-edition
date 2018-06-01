@@ -105,20 +105,26 @@ class TranscriptionView extends Component {
 	}
 
 	renderBlockSet( blockSet ) {
+
 		// use ID and class from the first block in the set
 		let firstBlock = blockSet[0];
-		let divID = firstBlock.id;
+		let elementID = firstBlock.id;
 		let classStr = "";
 		for( let i=0; i < firstBlock.classList.length; i++ ) {
 	  		classStr = classStr + " " + firstBlock.classList.item(i);
 		}
 
-		// concat all the blocks together into a single div
-		let div = `<div id="${divID}" class="${classStr}">`;
+		// combine the blocks in the block set. divs are all merged into a single div
+		// other element types become children of the single div.
+		let el = `<div id="${elementID}" class="${classStr}">`;
 		for( let block of blockSet ) {
-	  		div = div.concat(`${block.innerHTML} <br/>`);
+			if( block.name === 'div' ) {
+				el = el.concat(`${block.innerHTML} <br/>`);
+			} else {
+				el = el.concat(`${block.outerHTML}`);
+			}
 		}
-		return div.concat("</div>");
+		return el.concat(`</div>`);
 	}
 
   layoutMargin( html ) {
@@ -339,19 +345,22 @@ class TranscriptionView extends Component {
 		);
 	}
 
+	determineFigureURL(domNode) {
+		// Note: this is domNode from the parser, not an HTML DOM node
+		let figureID = (domNode.children[0]) ? (domNode.children[0].children) ? (domNode.children[0].children[0]) ? domNode.children[0].children[0].data : null : null : null;
+
+		if( figureID ) {
+			// chop of fig_ in fig_p006v_1
+			return `/bnf-ms-fr-640/figures/${figureID.substr(4)}.png`;
+		} else {
+			return null;
+		}
+	}
+
 	htmlToReactParserOptions(side) {
 		let this2=this;
 		var parserOptions =  {
 			 replace: function(domNode) {
-
-				 /* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
-				 if( unrecognizedTags.includes(domNode.name) ) {
-					 return (
-						 <span unrecognized_tag={domNode.name}>
-							 {domToReact(domNode.children, parserOptions)}
-						 </span>
-					 );
-				 }
 
 				 switch (domNode.name) {
 
@@ -362,12 +371,18 @@ class TranscriptionView extends Component {
  						);
 
 					case 'figure':
-						// tranform into a div containing an img tag pointing at the image.
-						return (
-							<div class='figure'>
-								<img src='/bnf-ms-fr-640/figures/p001r_1.png'/>
-							</div>
-						);
+						let figureURL = this2.determineFigureURL(domNode);
+
+						if( figureURL ) {
+							return (
+								<img alt='' className='inline-figure' src={figureURL}/>
+							);
+						}
+						else {
+							return (
+								<br/>
+							);
+						}
 
 					case 'h2':
 						//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
@@ -401,8 +416,16 @@ class TranscriptionView extends Component {
 								</Gloss>
 						);
 
-					 /* Just pass through */
 					 default:
+						 /* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
+						 if( unrecognizedTags.includes(domNode.name) ) {
+							 return (
+								 <span unrecognized_tag={domNode.name}>
+									 {domToReact(domNode.children, parserOptions)}
+								 </span>
+							 );
+						 }
+						 /* Otherwise, Just pass through */
 						 return domNode;
 				 }
 			 }

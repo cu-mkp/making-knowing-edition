@@ -524,6 +524,11 @@ figure.current {
   margin: 0 0 0 1rem;
   height: calc(100vh - 7rem); }
 
+.inline-figure {
+  margin: 5px;
+  border: 1px solid gray;
+  width: 200px; }
+
 .surface {
   grid-area: transcription;
   margin: 0;
