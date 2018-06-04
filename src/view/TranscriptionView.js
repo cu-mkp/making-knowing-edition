@@ -73,10 +73,8 @@ class TranscriptionView extends Component {
 		folio.load().then(
 			(folio) => {
 				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.navigationState[this.props.side].currentFolioID});
-				//this.forceUpdate();
 			},(error) => {
 				console.log('Unable to load transcription: '+error);
-				//this.forceUpdate();
 			}
 		);
 	}
@@ -384,6 +382,7 @@ class TranscriptionView extends Component {
 							);
 						}
 						else {
+							// TODO no figure URL found
 							return (
 								<br/>
 							);
