@@ -378,7 +378,7 @@ class TranscriptionView extends Component {
 
 						if( figureURL ) {
 							return (
-								<img alt='' className='inline-figure' src={figureURL}/>
+								<span><img alt='' className='inline-figure' src={figureURL}/><br/></span>
 							);
 						}
 						else {
