@@ -72,7 +72,7 @@ export default function navigationState(state = initialState, action) {
 					viewType: action.payload.newState.left.viewType,
 					transcriptionType: action.payload.newState.left.transcriptType,
 			  	  	transcriptionTypeLabel: state.uiLabels.transcriptionType[action.payload.newState.left.transcriptType],
-					isGridMode: action.payload.newState.left.gridMode,
+					isGridMode: action.payload.newState.left.isGridMode,
 
 					hasPrevious: left_current_hasPrev,
 					hasNext: left_current_hasNext,
@@ -88,7 +88,7 @@ export default function navigationState(state = initialState, action) {
 					viewType: action.payload.newState.right.viewType,
 					transcriptionType: action.payload.newState.right.transcriptType,
 			  	  	transcriptionTypeLabel: state.uiLabels.transcriptionType[action.payload.newState.right.transcriptType],
-					isGridMode: action.payload.newState.right.gridMode,
+					isGridMode: action.payload.newState.right.isGridMode,
 
 					hasPrevious: right_current_hasPrev,
 					hasNext: right_current_hasNext,

@@ -40,13 +40,12 @@ class navigation extends React.Component {
 	}
 
 	toggleXMLMode = function(event){
-		// Toggle toggleColumns
 		this.props.dispatch(this.navigationStateActions.setXMLMode({side:this.props.side, newState:!this.props.navigationState[this.props.side].isXMLMode}));
 	}
 
+	// aka gridMode
 	toggleColumns = function(event){
-		// Toggle toggleColumns
-		this.props.dispatch(this.navigationStateActions.setColumnModeForSide({side:this.props.side, newState:!this.props.navigationState[this.props.side].isXMLMode}));
+		this.props.dispatch(this.navigationStateActions.setColumnModeForSide({side:this.props.side, newState:!this.props.navigationState[this.props.side].isGridMode}));
 	}
 
 	toggleLockmode = function(event){
