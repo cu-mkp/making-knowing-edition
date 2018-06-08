@@ -9,37 +9,6 @@ import Annotation from '../Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 
-var unrecognizedTags =[  'add',
-												 'al',
-												 'bp',
-												 'cn',
-												 'corr',
-												 'cont',
-												 'env',
-												 'exp',
-												 'fr',
-												 'gap',
-												 'df',
-												 'gk',
-												 'id',
-												 'it',
-												 'ill',
-												 'la',
-												 'margin',
-												 'ms',
-												 'oc',
-												 'pa',
-												 'pl',
-												 'pm',
-												 'pn',
-												 'pro',
-												 'rub',
-												 'sn',
-												 'tl',
-												 'tmp',
-												 'unc',
-												 'x' ];
-
 class TranscriptionView extends Component {
 
 
@@ -343,50 +312,12 @@ class TranscriptionView extends Component {
 		);
 	}
 
-	determineFigureURL(domNode) {
-		// Note: this is domNode from the parser, not an HTML DOM node
-		let figureID = (domNode.children[0]) ? (domNode.children[0].children) ? (domNode.children[0].children[0]) ? domNode.children[0].children[0].data : null : null : null;
-
-		if( figureID ) {
-			// chop of fig_ in fig_p006v_1
-			return `/bnf-ms-fr-640/figures/${figureID.substr(4)}.png`;
-		} else {
-			return null;
-		}
-	}
-
 	htmlToReactParserOptions(side) {
 		let this2=this;
 		var parserOptions =  {
 			 replace: function(domNode) {
 
 				 switch (domNode.name) {
-
-					case 'cont':
-						return (
-							<span><i>Continued from the previous page..</i>  {domToReact(domNode.children, parserOptions)}</span>
-						);
-
-					 /* del / strikethrough */
- 					case 'del':
- 						return (
- 							<s>{domToReact(domNode.children, parserOptions)}</s>
- 						);
-
-					case 'figure':
-						let figureURL = this2.determineFigureURL(domNode);
-
-						if( figureURL ) {
-							return (
-								<span><img alt='' className='inline-figure' src={figureURL}/><br/></span>
-							);
-						}
-						else {
-							// TODO no figure URL found
-							return (
-								<br/>
-							);
-						}
 
 					case 'h2':
 						//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
@@ -406,11 +337,6 @@ class TranscriptionView extends Component {
 							return domNode;
 						}
 
-					/* linebreak  */
-					case 'lb':
-						return (<br/>);
-
-					/* <m> gets replaced with <Gloss> */
 					case 'm':
 						let term = this2.nodeTreeToString(domNode.children);
 							return (
@@ -421,14 +347,6 @@ class TranscriptionView extends Component {
 						);
 
 					 default:
-						 /* These are non-html, non-react tags that come from the XML, for now just replace with plain span */
-						 if( unrecognizedTags.includes(domNode.name) ) {
-							 return (
-								 <span unrecognized_tag={domNode.name}>
-									 {domToReact(domNode.children, parserOptions)}
-								 </span>
-							 );
-						 }
 						 /* Otherwise, Just pass through */
 						 return domNode;
 				 }
@@ -515,7 +433,7 @@ class TranscriptionView extends Component {
       			  	<Pagination side={side} className="pagination_upper"/>
 
 								<div className={surfaceClass} style={surfaceStyle}>
-									{Parser(content, htmlToReactParserOptions)}
+									{Parser(content,htmlToReactParserOptions)}
 								</div>
 
 								<Pagination side={side} className="pagination_lower"/>
