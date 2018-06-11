@@ -1,6 +1,6 @@
 {
    "@context": "http://iiif.io/api/presentation/2/context.json",
-   "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json",
+   "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json",
    "@type": "sc:AnnotationList",
    "resources": [
       {
@@ -11,7 +11,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
+         "on": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -21,7 +21,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
+         "on": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -31,7 +31,7 @@
             "@type": "dctypes:Text",
             "format": "text/html"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
+         "on": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -41,7 +41,7 @@
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
+         "on": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -51,7 +51,7 @@
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
+         "on": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
       },
       {
          "@type": "oa:Annotation",
@@ -61,7 +61,7 @@
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
-         "on": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
+         "on": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json"
       }
    ]
 }

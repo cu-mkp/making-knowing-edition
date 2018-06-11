@@ -275,7 +275,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p001r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p001r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -310,7 +310,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p001v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p001v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -345,7 +345,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p002r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p002r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -380,7 +380,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p002v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p002v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -411,7 +411,7 @@
                ],
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p003r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p003r.json",
                      "@type": "sc:AnnotationList"
                   }
                ],
@@ -450,7 +450,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p003v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p003v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -485,7 +485,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p004r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p004r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -520,7 +520,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p004v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p004v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -555,7 +555,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p005r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p005r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -590,7 +590,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p005v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p005v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -625,7 +625,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p006r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p006r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -660,7 +660,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p006v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p006v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -695,7 +695,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p007r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p007r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -730,7 +730,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p007v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p007v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -765,7 +765,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p008r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p008r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -800,7 +800,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p008v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p008v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -835,7 +835,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p009r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p009r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -870,7 +870,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p009v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p009v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -905,7 +905,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p010r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p010r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -940,7 +940,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p010v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p010v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -975,7 +975,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p011r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p011r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1010,7 +1010,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p011v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p011v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1045,7 +1045,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p012r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p012r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1080,7 +1080,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p012v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p012v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1115,7 +1115,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p013r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p013r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1150,7 +1150,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p013v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p013v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1185,14 +1185,14 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p014r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p014r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
             },
             {
                "@id": "http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f34",
-               "label": "NP",
+               "label": "14v",
                "height": 5366,
                "width": 3324,
                "images": [
@@ -1217,7 +1217,13 @@
                "thumbnail": {
                   "@id": "http://gallica.bnf.fr/ark:/12148/btv1b10500001g/f34.thumbnail"
                },
-               "@type": "sc:Canvas"
+               "@type": "sc:Canvas",
+               "otherContent": [
+                  {
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p014v.json",
+                     "@type": "sc:AnnotationList"
+                  }
+               ]
             },
             {
                "@id": "http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f35",
@@ -1249,7 +1255,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p015r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p015r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1284,7 +1290,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p015v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p015v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1319,7 +1325,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p016r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p016r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1354,7 +1360,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p016v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p016v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1389,7 +1395,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p017r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p017r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1424,7 +1430,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p017v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p017v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1459,7 +1465,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p018r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p018r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1494,7 +1500,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p018v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p018v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1529,7 +1535,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p019r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p019r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1564,7 +1570,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p019v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p019v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1599,7 +1605,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p020r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p020r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1634,7 +1640,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p020v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p020v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1669,7 +1675,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p021r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p021r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1704,7 +1710,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p021v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p021v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1739,7 +1745,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p022r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p022r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1774,7 +1780,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p022v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p022v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1809,7 +1815,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p023r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p023r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1844,7 +1850,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p023v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p023v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1879,7 +1885,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p024r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p024r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1914,7 +1920,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p024v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p024v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1949,7 +1955,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p025r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p025r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -1984,7 +1990,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p025v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p025v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2019,7 +2025,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p026r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p026r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2054,7 +2060,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p026v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p026v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2089,7 +2095,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p027r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p027r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2124,7 +2130,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p027v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p027v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2159,7 +2165,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p028r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p028r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2194,7 +2200,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p028v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p028v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2229,7 +2235,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p029r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p029r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2264,7 +2270,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p029v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p029v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2299,7 +2305,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p030r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p030r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2334,7 +2340,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p030v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p030v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2369,7 +2375,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p031r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p031r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2404,7 +2410,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p031v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p031v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2439,7 +2445,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p032r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p032r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2474,7 +2480,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p032v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p032v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2509,7 +2515,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p033r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p033r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2544,7 +2550,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p033v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p033v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2579,7 +2585,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p034r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p034r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2614,7 +2620,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p034v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p034v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2649,7 +2655,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p035r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p035r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2684,7 +2690,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p035v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p035v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2719,7 +2725,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p036r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p036r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2754,7 +2760,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p036v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p036v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2789,7 +2795,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p037r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p037r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2824,7 +2830,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p037v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p037v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2859,7 +2865,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p038r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p038r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2894,7 +2900,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p038v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p038v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2929,7 +2935,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p039r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p039r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2964,7 +2970,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p039v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p039v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -2999,7 +3005,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p040r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p040r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3034,7 +3040,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p040v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p040v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3069,7 +3075,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p041r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p041r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3104,7 +3110,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p041v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p041v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3139,7 +3145,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p042r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p042r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3174,7 +3180,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p042v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p042v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3209,7 +3215,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p043r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p043r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3244,7 +3250,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p043v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p043v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3279,7 +3285,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p044r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p044r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3314,7 +3320,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p044v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p044v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3349,7 +3355,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p045r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p045r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3384,7 +3390,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p045v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p045v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3419,7 +3425,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p046r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p046r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3454,7 +3460,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p046v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p046v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3489,7 +3495,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p047r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p047r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3524,7 +3530,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p047v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p047v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3559,7 +3565,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p048r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p048r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3594,7 +3600,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p048v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p048v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3629,7 +3635,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p049r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p049r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3664,7 +3670,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p049v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p049v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3699,7 +3705,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p050r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p050r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3734,7 +3740,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p050v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p050v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3769,7 +3775,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p051r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p051r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3804,7 +3810,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p051v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p051v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3839,7 +3845,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p052r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p052r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3874,7 +3880,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p052v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p052v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3909,7 +3915,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p053r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p053r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3944,7 +3950,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p053v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p053v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -3979,7 +3985,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p054r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p054r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4014,7 +4020,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p054v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p054v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4049,7 +4055,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p055r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p055r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4084,7 +4090,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p055v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p055v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4119,7 +4125,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p056r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p056r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4154,7 +4160,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p056v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p056v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4189,7 +4195,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p057r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p057r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4224,7 +4230,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p057v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p057v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4259,7 +4265,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p058r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p058r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4294,7 +4300,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p058v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p058v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4329,7 +4335,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p059r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p059r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4364,7 +4370,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p059v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p059v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4399,7 +4405,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p060r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p060r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4434,7 +4440,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p060v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p060v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4469,7 +4475,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p061r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p061r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4504,7 +4510,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p061v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p061v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4539,7 +4545,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p062r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p062r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4574,7 +4580,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p062v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p062v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4609,7 +4615,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p063r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p063r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4644,7 +4650,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p063v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p063v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4679,7 +4685,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p064r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p064r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4714,7 +4720,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p064v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p064v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4749,7 +4755,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p065r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p065r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4784,7 +4790,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p065v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p065v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4819,7 +4825,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p066r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p066r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4854,7 +4860,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p066v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p066v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4889,7 +4895,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p067r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p067r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4924,7 +4930,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p067v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p067v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4959,7 +4965,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p068r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p068r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -4994,7 +5000,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p068v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p068v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5029,7 +5035,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p069r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p069r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5064,7 +5070,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p069v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p069v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5099,7 +5105,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p070r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p070r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5134,7 +5140,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p070v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p070v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5169,7 +5175,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p071r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p071r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5204,7 +5210,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p071v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p071v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5239,7 +5245,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p072r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p072r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5274,7 +5280,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p072v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p072v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5309,7 +5315,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p073r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p073r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5344,7 +5350,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p073v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p073v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5379,7 +5385,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p074r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p074r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5414,7 +5420,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p074v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p074v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5449,7 +5455,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p075r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p075r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5484,7 +5490,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p075v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p075v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5519,7 +5525,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p076r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p076r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5554,7 +5560,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p076v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p076v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5589,7 +5595,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p077r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p077r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5624,7 +5630,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p077v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p077v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5659,7 +5665,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p078r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p078r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5694,7 +5700,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p078v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p078v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5729,7 +5735,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p079r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p079r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5764,7 +5770,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p079v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p079v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5799,7 +5805,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p080r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p080r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5834,7 +5840,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p080v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p080v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5869,7 +5875,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p081r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p081r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5904,7 +5910,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p081v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p081v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5939,7 +5945,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p082r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p082r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -5974,7 +5980,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p082v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p082v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6009,7 +6015,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p083r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p083r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6044,7 +6050,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p083v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p083v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6079,7 +6085,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p084r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p084r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6114,7 +6120,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p084v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p084v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6149,7 +6155,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p085r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p085r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6184,7 +6190,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p085v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p085v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6219,7 +6225,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p086r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p086r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6254,7 +6260,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p086v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p086v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6289,7 +6295,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p087r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6324,7 +6330,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p087v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p087v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6359,7 +6365,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p088r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p088r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6394,7 +6400,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p088v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p088v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6429,7 +6435,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p089r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p089r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6464,7 +6470,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p089v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p089v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6499,7 +6505,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p090r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p090r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6534,7 +6540,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p090v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p090v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6569,7 +6575,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p091r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p091r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6604,7 +6610,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p091v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p091v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6639,7 +6645,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p092r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p092r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6674,7 +6680,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p092v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p092v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6709,7 +6715,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p093r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p093r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6744,7 +6750,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p093v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p093v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6779,7 +6785,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p094r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p094r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6814,7 +6820,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p094v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p094v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6849,7 +6855,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p095r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p095r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6884,7 +6890,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p095v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p095v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6919,7 +6925,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p096r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p096r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6954,7 +6960,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p096v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p096v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -6989,7 +6995,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p097r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p097r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7024,7 +7030,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p097v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p097v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7059,7 +7065,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p098r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p098r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7094,7 +7100,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p098v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p098v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7129,7 +7135,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p099r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p099r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7164,7 +7170,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p099v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p099v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7199,7 +7205,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p100r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p100r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7234,7 +7240,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p100v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p100v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7269,7 +7275,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p101r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p101r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7304,7 +7310,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p101v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p101v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7339,7 +7345,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p102r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p102r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7374,7 +7380,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p102v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p102v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7409,7 +7415,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p103r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p103r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7444,7 +7450,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p130v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p130v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7479,7 +7485,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p104r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p104r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7514,7 +7520,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p104v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p104v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7549,7 +7555,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p105r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p105r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7584,7 +7590,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p105v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p105v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7619,7 +7625,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p106r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p106r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7654,7 +7660,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p106v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p106v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7689,7 +7695,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p107r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p107r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7724,7 +7730,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p107v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p107v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7759,7 +7765,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p108r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p108r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7794,7 +7800,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p108v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p108v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7829,7 +7835,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p109r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p109r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7864,7 +7870,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p109v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p109v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7899,7 +7905,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p110r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p110r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7934,7 +7940,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p110v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p110v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -7969,7 +7975,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p111r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p111r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8004,7 +8010,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p111v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p111v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8039,7 +8045,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p112r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p112r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8074,7 +8080,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p112v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p112v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8109,7 +8115,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p113r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p113r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8144,7 +8150,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p113v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p113v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8179,7 +8185,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p114r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p114r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8214,7 +8220,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p114v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p114v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8249,7 +8255,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p115r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p115r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8284,7 +8290,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p115v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p115v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8319,7 +8325,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p116r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p116r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8354,7 +8360,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p116v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p116v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8389,7 +8395,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p117r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p117r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8424,7 +8430,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p117v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p117v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8459,7 +8465,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p118r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p118r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8494,7 +8500,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p118v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p118v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8529,7 +8535,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p119r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p119r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8564,7 +8570,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p119v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p119v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8599,7 +8605,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p120r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p120r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8634,7 +8640,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p120v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p120v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8669,7 +8675,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p121r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p121r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8704,7 +8710,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p121v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p121v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8739,7 +8745,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p122r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p122r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8774,7 +8780,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p122v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p122v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8809,7 +8815,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p123r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p123r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8844,7 +8850,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p123v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p123v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8879,7 +8885,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p124r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p124r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8914,7 +8920,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p124v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p124v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8949,7 +8955,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p125r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p125r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -8984,7 +8990,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p125v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p125v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9019,7 +9025,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p126r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p126r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9054,7 +9060,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p126v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p126v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9089,7 +9095,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p127r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p127r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9124,7 +9130,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p127v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p127v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9159,7 +9165,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p128r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p128r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9194,7 +9200,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p128v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p128v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9229,7 +9235,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p129r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p129r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9264,7 +9270,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p129v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p129v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9299,7 +9305,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p130r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p130r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9334,7 +9340,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p130v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p130v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9369,7 +9375,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p131r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p131r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9404,7 +9410,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p131v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p131v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9439,7 +9445,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p132r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p132r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9474,7 +9480,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p132v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p132v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9509,7 +9515,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p133r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p133r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9544,7 +9550,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p133v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p133v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9579,7 +9585,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p134r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p134r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9614,7 +9620,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p134v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p134v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9649,7 +9655,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p135r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p135r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9684,7 +9690,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p135v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p135v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9719,7 +9725,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p136r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p136r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9754,7 +9760,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p136v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p136v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9789,7 +9795,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p137r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p137r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9824,7 +9830,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p137v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p137v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9859,7 +9865,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p138r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p138r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9894,7 +9900,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p138v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p138v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9929,7 +9935,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p139r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p139r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9964,7 +9970,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p139v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p139v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -9999,7 +10005,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p140r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p140r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10034,7 +10040,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p140v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p140v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10069,7 +10075,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p141r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p141r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10104,7 +10110,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p141v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p141v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10139,7 +10145,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p142r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p142r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10174,7 +10180,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p142v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p142v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10209,7 +10215,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p143r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p143r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10244,7 +10250,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p143v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p143v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10279,7 +10285,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p144r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p144r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10314,7 +10320,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p144v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p144v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10349,7 +10355,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p145r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p145r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10384,7 +10390,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p145v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p145v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10419,7 +10425,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p146r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p146r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10454,7 +10460,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p146v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p146v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10489,7 +10495,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p147r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p147r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10524,7 +10530,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p147v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p147v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10559,7 +10565,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p148r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p148r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10594,7 +10600,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p148v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p148v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10629,7 +10635,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p149r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p149r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10664,7 +10670,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p149v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p149v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10699,7 +10705,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p150r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p150r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10734,7 +10740,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p150v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p150v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10769,7 +10775,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p151r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p151r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10804,7 +10810,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p151v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p151v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10839,7 +10845,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p152r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p152r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10874,7 +10880,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p152v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p152v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10909,7 +10915,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p153r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p153r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10944,7 +10950,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p153v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p153v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -10979,7 +10985,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p154r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p154r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11014,7 +11020,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p154v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p154v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11049,7 +11055,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p155r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p155r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11084,7 +11090,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p155v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p155v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11119,7 +11125,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p156r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p156r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11154,7 +11160,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p156v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p156v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11189,7 +11195,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p157r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p157r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11224,7 +11230,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p157v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p157v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11259,7 +11265,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p158r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p158r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11294,7 +11300,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p158v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p158v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11329,7 +11335,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p159r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p159r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11364,7 +11370,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p159v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p159v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11399,7 +11405,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p160r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p160r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11434,7 +11440,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p160v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p160v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11469,7 +11475,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p161r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p161r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11504,7 +11510,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p161v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p161v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11539,7 +11545,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p162r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p162r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11574,7 +11580,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p162v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p162v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11609,7 +11615,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p163r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p163r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11644,7 +11650,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p163v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p163v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11679,7 +11685,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p164r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p164r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11714,7 +11720,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p164v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p164v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11749,7 +11755,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11784,7 +11790,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p165v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p165v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11819,7 +11825,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p166r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p166r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11854,7 +11860,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p166v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p166v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11889,7 +11895,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p167r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p167r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11924,7 +11930,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p167v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p167v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11959,7 +11965,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p168r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p168r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -11994,7 +12000,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p168v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p168v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -12029,7 +12035,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p169r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p169r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -12064,7 +12070,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p169v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p169v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -12099,7 +12105,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p170r.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p170r.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
@@ -12134,7 +12140,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/list/p170v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p170v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
