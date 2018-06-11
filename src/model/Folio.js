@@ -116,21 +116,28 @@ class Folio {
 		}
 	}
 
-	// returns transcription or null if unable to parse
+	errorMessage(message) {
+		return { 
+			layout: "margin", 
+			html: `<div id="error"><div data-layout="middle">${message}</div></div>` 
+		};
+	}
+
+	// returns transcription or error message if unable to parse
 	parseTranscription(html) {
 		let folioTag = "<folio";
 		let openDivIndex = html.indexOf(folioTag);
-		if (openDivIndex === -1) return null;
+		if (openDivIndex === -1) return this.errorMessage('Folio element not found.');
 		let start = html.indexOf(">", openDivIndex) + 1;
 		let end = html.lastIndexOf("</folio>");
-		if (end === -1) return null;
-		if (start >= end) return null;
+		if (end === -1) return this.errorMessage('Folio element closing tag not found.');
+		if (start > end) return this.errorMessage('Unable to parse folio element.');
 
 		// detect folio mode
 		let folioAttribs = html.slice(openDivIndex + folioTag.length, start - 1);
 		let layoutAttr = "layout=";
 		let layoutAttrIndex = folioAttribs.indexOf(layoutAttr)
-		if (layoutAttrIndex === -1) return null;
+		if (layoutAttrIndex === -1) return this.errorMessage('Unable to parse layout attribute in folio element.');
 		let layoutAttrStart = layoutAttrIndex + layoutAttr.length + 1;
 		let layoutType = folioAttribs.slice(layoutAttrStart, folioAttribs.indexOf('"', layoutAttrStart));
 		let transcription = html.slice(start, end);
