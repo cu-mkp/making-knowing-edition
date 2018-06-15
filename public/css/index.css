@@ -310,7 +310,8 @@ figure.current {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 900; }
+  font-weight: 900;
+  text-decoration: underline; }
 
 /* The dropdown container */
 .dropdown {
