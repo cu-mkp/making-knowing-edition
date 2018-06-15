@@ -27,6 +27,8 @@ class SearchResultView extends Component {
 		const data = new FormData(event.target);
 
 		let searchTerm = data.get("searchTerm");
+
+		
 		if(searchTerm.length > 0 ){
 			console.log("Search:"+searchTerm);
 			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));

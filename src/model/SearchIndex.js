@@ -141,10 +141,12 @@ function createFragments( resultMetadata, fullText ) {
 
   for( let keyword of Object.keys(resultMetadata) ) {
     let keywordData = resultMetadata[keyword];
-    for( let highlightPosition of keywordData.content.position ) {
-      let fragment = createFragment( fullText, highlightPosition );
-      highlightedFragments.push(fragment);
-    }
+	if(typeof keywordData.content !== 'undefined'){
+    	for( let highlightPosition of keywordData.content.position ) {
+      		let fragment = createFragment( fullText, highlightPosition );
+      		highlightedFragments.push(fragment);
+    	}
+	}
   }
 
   return highlightedFragments;

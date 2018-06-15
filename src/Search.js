@@ -61,12 +61,21 @@ class Search extends React.Component {
 
 		let newHashpath = this.props.history.location.search.split('#/')[0];
 		if (newHashpath.split('=')[0] === '?search') {
-
 			// Enter search mode
 			let searchTerm = newHashpath.split('=')[1];
 
 			// Unsanitize spaces
 			searchTerm = searchTerm.replace('%20',' ');
+
+			// Check for special directives
+			if(searchTerm.split(":").length > 1){
+				let allowedDirectives=['folioid','name','content'];
+				let directive = searchTerm.split(":")[0];
+				if(!allowedDirectives.includes(directive)){
+					searchTerm=searchTerm.split(":").slice(1).join(" ");
+				}
+			}
+
 
 			// Cache results
 			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));

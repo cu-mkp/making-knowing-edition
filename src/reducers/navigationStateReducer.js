@@ -386,17 +386,11 @@ export default function navigationState(state = initialState, action) {
 			}
 
 		case EXIT_SEARCH_MODE:
-				return {
-					...state,
-					linkedMode: true,
-					search:{
-						...state.search,
-						term:'',
-						inSearchMode:false,
-						results:''
-					},
-
-					left: {
+			// If we have a folio selected in search results, match the left pane
+			// otherwise just clear and gridview
+			let leftState;
+			if(parseInt(state.right.currentFolioID,10) === -1){
+					leftState = {
 						...state.left,
 						viewType: 'ImageGridView',
 						currentFolioName: '',
@@ -406,12 +400,30 @@ export default function navigationState(state = initialState, action) {
 						hasNext: false,
 						nextFolioShortID: '',
 						previousFolioShortID: ''
-					},
-
-					right:{
+					};
+				}else{
+					leftState = {
 						...state.right,
-					}
+						viewType: 'ImageView'
+					};
+			}
+			
+			return {
+				...state,
+				linkedMode: true,
+				search:{
+					...state.search,
+					term:'',
+					inSearchMode:false,
+					results:''
+				},
+
+				left: leftState,
+
+				right:{
+					...state.right,
 				}
+			}
 
 		case HIDE_SEARCH_TYPE:
 			if(action.payload.type === 'tc'){
