@@ -4,7 +4,6 @@ import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
 import * as navigationStateActions from '../actions/navigationStateActions';
 
-
 class SplitPaneView extends Component {
 
 	constructor(props) {
