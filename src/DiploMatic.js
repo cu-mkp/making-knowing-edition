@@ -63,7 +63,7 @@ class DiploMatic extends Component {
 		return (
 			<Provider store={this.props.store}>
 				<MuiThemeProvider>
-					<div className="DiploMatic">
+					<div id="diplomatic">
 						{ this.renderHeader() }
 						{ this.renderContent() }
 						{ this.renderFooter() }

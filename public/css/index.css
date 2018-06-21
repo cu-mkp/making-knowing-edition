@@ -17,14 +17,6 @@ body {
   -ms-user-select: none;
   user-select: none; }
 
-/*
-Disables visible scrollbar
-
-::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-}
-*/
 .warning {
   color: yellow; }
 
@@ -47,47 +39,6 @@ Disables visible scrollbar
 .fa.fa-lock-open {
   border-radius: 2rem 0 0 2rem; }
 
-.imageViewComponent {
-  position: relative;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100vh; }
-
-#header {
-  z-index: 900;
-  position: fixed;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  color: white;
-  height: 4rem;
-  background-color: #656565;
-  font-family: 'OpenSans', sans-serif;
-  grid-area: header;
-  padding: 0.4rem 0 0 1rem;
-  white-space: nowrap; }
-
-#header .title {
-  font-size: 2rem;
-  font-weight: 700; }
-
-#header .tagline {
-  font-weight: 300;
-  font-size: 0.8rem;
-  padding: 0.3rem 0 0 0.3rem; }
-
-#app {
-  position: fixed;
-  padding: 0;
-  top: 4.4rem;
-  width: 100vw;
-  height: calc(100vh - $chrome-height);
-  font-family: 'OpenSans', sans-serif;
-  font-size: 0.8rem;
-  line-height: 1.2rem;
-  overflow: hidden; }
-
 h1,
 h2,
 h3,
@@ -97,42 +48,6 @@ h4 {
   font-weight: 700;
   padding: 0;
   margin: 0 0 0.3rem; }
-
-#footer {
-  z-index: 9000;
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  margin: 0;
-  color: white;
-  height: 3rem;
-  background-color: #656565;
-  font-family: 'OpenSans', sans-serif;
-  grid-area: header;
-  padding: 0.4rem 0 0 1rem;
-  white-space: nowrap; }
-
-#footer .logos {
-  position: fixed;
-  right: 1rem;
-  bottom: 0.6rem; }
-
-#footer .copyright {
-  font-weight: 300;
-  font-size: 0.8rem;
-  padding: 0.8rem 0 0 0.3rem; }
-
-#navigation {
-  position: Fixed;
-  top: 0;
-  right: 0;
-  background-color: blue;
-  width: 40rem;
-  height: 4.4rem; }
-
-#header .compactTitle {
-  font-weight: 700;
-  display: none; }
 
 .invisible {
   opacity: 0; }
@@ -403,6 +318,74 @@ figure.current {
   position: relative;
   top: -.2rem;
   color: #4A4A4A; }
+
+#diplomatic {
+  position: fixed;
+  padding: 0;
+  top: 4.4rem;
+  width: 100vw;
+  height: calc(100vh - $chrome-height);
+  font-family: 'OpenSans', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  overflow: hidden; }
+  #diplomatic .imageViewComponent {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh; }
+  #diplomatic #header {
+    z-index: 900;
+    position: fixed;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    color: white;
+    height: 4rem;
+    background-color: #656565;
+    font-family: 'OpenSans', sans-serif;
+    grid-area: header;
+    padding: 0.4rem 0 0 1rem;
+    white-space: nowrap; }
+    #diplomatic #header .title {
+      font-size: 2rem;
+      font-weight: 700; }
+    #diplomatic #header .tagline {
+      font-weight: 300;
+      font-size: 0.8rem;
+      padding: 0.3rem 0 0 0.3rem; }
+    #diplomatic #header .compactTitle {
+      font-weight: 700;
+      display: none; }
+  #diplomatic #navigation {
+    position: Fixed;
+    top: 0;
+    right: 0;
+    background-color: blue;
+    width: 40rem;
+    height: 4.4rem; }
+  #diplomatic #footer {
+    z-index: 9000;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    margin: 0;
+    color: white;
+    height: 3rem;
+    background-color: #656565;
+    font-family: 'OpenSans', sans-serif;
+    grid-area: header;
+    padding: 0.4rem 0 0 1rem;
+    white-space: nowrap; }
+    #diplomatic #footer .logos {
+      position: fixed;
+      right: 1rem;
+      bottom: 0.6rem; }
+    #diplomatic #footer .copyright {
+      font-weight: 300;
+      font-size: 0.8rem;
+      padding: 0.8rem 0 0 0.3rem; }
 
 .imageGridComponent {
   background-color: #000000;
