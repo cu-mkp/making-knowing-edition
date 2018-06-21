@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import SplitPaneView from './SplitPaneView';
 import Document from '../model/Document';
 import Search from '../Search';
 import HashParser from '../HashParser';
+import * as navigationStateActions from '../actions/navigationStateActions';
 
 class DocumentView extends Component {
 
@@ -12,7 +14,8 @@ class DocumentView extends Component {
         this.document = new Document();
         this.state = {
             ready: false
-        }
+		}
+		this.navigationStateActions = navigationStateActions;
     }
 
     componentDidMount() {
@@ -20,12 +23,6 @@ class DocumentView extends Component {
 		// Load the document
 		this.document.load().then(
 			(folio) => {
-
-				// Mark everything loaded (do this first so we don't thrash when we dispatch redux update below)
-				this.setState({
-					ready: true
-				});
-
 				// Store an ordered array of folio ids, used for next/prev navigation purposes later
 				if (this.props.navigationState.folioIndex.length === 0) {
 					let folioIndex = [];
@@ -41,6 +38,11 @@ class DocumentView extends Component {
 																						folioNameByIDIndex: nameByID,
 																						folioIDByNameIndex: idByName}));
 				}
+
+				// Mark everything loaded (do this first so we don't thrash when we dispatch redux update below)
+				this.setState({
+					ready: true
+				});				
 			},
 			(error) => {
 				// TODO update UI

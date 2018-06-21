@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DocumentView from './view/DocumentView';
-import PropTypes from 'prop-types'
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 import { HashRouter, Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import DocumentView from './view/DocumentView';
 
 class DiploMatic extends Component {
 
