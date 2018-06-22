@@ -192,7 +192,7 @@ class HashParser extends React.Component {
 						newState.linkedMode = false;
 						break;
 				default:
-					console.log("WARNING: Hashparser: I don't understand the mode:"+mode);
+					//console.log("WARNING: Hashparser: I don't understand the mode:"+mode);
 
 			}
 
@@ -222,7 +222,7 @@ class HashParser extends React.Component {
 						break;
 
 					default:
-						console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
+						//console.log("WARNING: Hashparser: I don't understand the left_viewtype:"+left_viewType);
 				}
 
 				// Right
@@ -247,7 +247,7 @@ class HashParser extends React.Component {
 						break;
 
 					default:
-						console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
+						//console.log("WARNING: Hashparser: I don't understand the right_viewtype:"+right_viewType);
 				}
 
 			//}

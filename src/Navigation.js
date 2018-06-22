@@ -2,20 +2,30 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as navigationStateActions from './actions/navigationStateActions';
 import {Icon} from "react-font-awesome-5";
-
+import JumpToFolio from './JumpToFolio.js';
 class navigation extends React.Component {
 
 	constructor(props,context){
 		super(props,context);
 		this.changeType = this.changeType.bind(this);
+		this.revealJumpBox = this.revealJumpBox.bind(this);
+		this.onJumpBoxBlur = this.onJumpBoxBlur.bind(this);
 		this.toggleLockmode = this.toggleLockmode.bind(this);
 		this.toggleBookmode = this.toggleBookmode.bind(this);
 		this.toggleXMLMode = this.toggleXMLMode.bind(this);
 		this.toggleColumns = this.toggleColumns.bind(this);
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
 		this.navigationStateActions=navigationStateActions;
-	}
 
+		this.state={
+			popoverVisible:false,
+			popoverX:-1,
+			popoverY:-1
+		}
+	}
+	onJumpBoxBlur = function(event){
+		this.setState({popoverVisible:false})
+	}
 
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
@@ -74,15 +84,33 @@ class navigation extends React.Component {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
+		console.log(event.currentTarget.dataset.id);
 		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
 		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
-
 	}
 
-    renderData(item) {
+	// Display the jump navigation
+	revealJumpBox = function(event){
+		this.setState({
+			popoverVisible:true,
+			popoverX:event.clientX,
+			popoverY:event.clientY
+		});
+	}
+
+	// User has requested a jump
+	jumpToFolio(folioName){
+		// Convert folioName to ID (and confirm it exists)
+		let folioID = this.props.navigationState.folioIDByNameIndex[folioName];
+		if(typeof folioID !== 'undefined'){
+			let longID = this.props.navigationState.folioIDPrefix+folioID;
+			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID}));
+		}
+	}
+
+	renderData(item) {
         return <div key={item.id}>{item.name}</div>;
     }
-
 
     render() {
 
@@ -141,14 +169,21 @@ class navigation extends React.Component {
 									data-direction="forward"
 									className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
-							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <div className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</div>
+							{this.props.navigationState[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{this.props.navigationState[this.props.side].currentFolioName}</div>
 						</div>
+						<JumpToFolio side={this.props.side}
+									 isVisible={this.state.popoverVisible}
+									 positionX={this.state.popoverX}
+									 positionY={this.state.popoverY}
+									 submitHandler={this.jumpToFolio.bind(this)}
+									 blurHandler={this.onJumpBoxBlur}/>
 				</div>
 			)
 
         }
     }
 }
+
 
 function mapStateToProps(state) {
 	return {

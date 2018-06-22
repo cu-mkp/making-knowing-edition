@@ -32,15 +32,17 @@ class SearchIndex {
 						axios.get(`${this.searchIndexURL}/tcn_search_index.js`),
 						axios.get(`${this.searchIndexURL}/tcn_recipe_book.js`)
 					])
+
 					.then(axios.spread(function(searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
-            this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
-            this.recipeBook['tl'] = recipeTl.data;
+			            this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
+			            this.recipeBook['tl'] = recipeTl.data;
 						this.searchIndex['tc'] = lunr.Index.load(searchTc.data);
-            this.recipeBook['tc'] = recipeTc.data;
+			            this.recipeBook['tc'] = recipeTc.data;
 						this.searchIndex['tcn'] = lunr.Index.load(searchTcn.data);
-            this.recipeBook['tcn'] = recipeTcn.data;
-            this.loaded = true;
-            resolve(this);
+			            this.recipeBook['tcn'] = recipeTcn.data;
+			            this.loaded = true;
+			            resolve(this);
+
 					}.bind(this)))
 					.catch((error) => {
 						reject(error);
@@ -50,16 +52,16 @@ class SearchIndex {
 	}
 
 	// transcription type can be tc, tcn, or tl.
-  searchEdition( searchTerm, transcriptionType='tl' ) {
+  searchEdition( searchTerm, transcriptionType) {
     let results = this.searchIndex[transcriptionType].search(searchTerm);
     let recipes = [];
 
     for( let result of results ) {
-      let recipe = this.recipeBook[transcriptionType][ result.ref ];
-			if( recipe ) {
+      	let recipe = this.recipeBook[transcriptionType][ result.ref ];
+		if( recipe ) {
 	      let fragments = createFragments( result.matchData.metadata, recipe.content )
 	      recipes.push( { name: recipe.name, folio: recipe.folioID, contextFragments: fragments } );
-			}
+		}
     }
 
     return recipes;
@@ -141,10 +143,14 @@ function createFragments( resultMetadata, fullText ) {
 
   for( let keyword of Object.keys(resultMetadata) ) {
     let keywordData = resultMetadata[keyword];
-    for( let highlightPosition of keywordData.content.position ) {
-      let fragment = createFragment( fullText, highlightPosition );
-      highlightedFragments.push(fragment);
-    }
+	if(typeof keywordData.content !== 'undefined'){
+    	for( let highlightPosition of keywordData.content.position ) {
+      		let fragment = createFragment( fullText, highlightPosition );
+      		highlightedFragments.push(fragment);
+    	}
+	}else{
+		console.error("WARNING: ResultMetaData does not contan content for keyword:"+keyword);
+	}
   }
 
   return highlightedFragments;

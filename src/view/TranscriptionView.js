@@ -419,10 +419,29 @@ class TranscriptionView extends Component {
 
 				// If in searchmode, inject <mark> around searchterms
 				if(this.props.navigationState.search.inSearchMode) {
-					let taggedTerm="<mark>$1</mark>";
-					let reg = "(" + this.props.navigationState.search.matched.toString().replace(/,/g,"|") + ")";
-	        		let regex = new RegExp(reg, "giu");
-					content = content.replace(regex,taggedTerm);
+					//for(let y=0;y<this.props.navigationState.search.matched.length;y++){
+
+						// The first matched term is the word we searched for, but we match a lot more things...
+						let y = 0;
+						let matchedTerm = this.props.navigationState.search.matched[y];
+						matchedTerm = matchedTerm.replace(/[^a-zA-Z ]/g, "").trim();
+						console.log(matchedTerm);
+						let contentAsArray = content.split(">");
+						let aggregator="";
+						for(let x=0;x<contentAsArray.length;x++){
+							let part1 = contentAsArray[x].split("<")[0];
+
+							let taggedTerm="<mark>$1</mark>";
+							let reg = "(" + matchedTerm.toString().replace(/,/g,"|") + ")";
+			        		let regex = new RegExp(reg, "giu");
+								part1 = part1.replace(regex,taggedTerm);
+
+							let part2 = contentAsArray[x].split("<")[1];
+							let thisLine = part1 + "<" + part2;
+							aggregator+=thisLine+">"
+						}
+						content=aggregator;
+					//}
 				}
 
 				return (

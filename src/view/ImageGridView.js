@@ -12,7 +12,6 @@ class ImageGridView extends React.Component {
 		this.thumbnailNavigationModeSize=312;
 		this.state={thumbs:'',visibleThumbs:[]};
 		this.navigationStateActions=navigationStateActions;
-
 	}
 
 	componentWillReceiveProps(nextProps) {

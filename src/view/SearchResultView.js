@@ -27,8 +27,18 @@ class SearchResultView extends Component {
 		const data = new FormData(event.target);
 
 		let searchTerm = data.get("searchTerm");
+
+		// Check for special directives
+		if(searchTerm.split(":").length > 1){
+			let allowedDirectives=['folioid','name','content'];
+			let directive = searchTerm.split(":")[0];
+			if(!allowedDirectives.includes(directive)){
+				searchTerm=searchTerm.split(":").slice(1).join(" ");
+			}
+		}
+
 		if(searchTerm.length > 0 ){
-			console.log("Search:"+searchTerm);
+			//console.log("Search:"+searchTerm);
 			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));
 		}
   	}
@@ -86,12 +96,12 @@ class SearchResultView extends Component {
 					case 'span':
 						//FIXME: This should really walk the tree, but we're going to assume keyword matches are not heavily nested
 						if(typeof domNode.children[0] !== 'undefined' && domNode.children[0].type === 'text'){
+
 							// Make lower and strip punctuation except -
 							let matchedTerm = domNode.children[0].data;
 								matchedTerm = matchedTerm.toLowerCase();
 								matchedTerm = matchedTerm.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\|_|\+|=)/g,"");
 							this2.matchedOn.push(matchedTerm);
-
 							return (
 								<mark unrecognized_tag={domNode.name}>
 									{domToReact(domNode.children, parserOptions)}
@@ -167,9 +177,6 @@ class SearchResultView extends Component {
 				</div>
 			</div>
 		);
-
-		// Remove duplicates
-		console.log("Search matched on: "+uniq(this.matchedOn));
 
 		return(retVal);
 	}
