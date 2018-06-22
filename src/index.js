@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import DiploMatic from './DiploMatic';
 import configureStore from './store/configureStore';
 
-// Store
 const store = configureStore();
 
 ReactDOM.render(

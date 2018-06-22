@@ -8,6 +8,37 @@ import DocumentView from './view/DocumentView';
 
 class DiploMatic extends Component {
 
+	// TODO: move spinner code to a spinner component.
+	renderSpinner() {
+		return (
+			<div id="loadingStateModal">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+			</div>
+		);
+	}
+
+	loadingModal_start(){
+		// Cancel any pending stops
+		if(window.spinnerTimer){
+			clearTimeout(window.spinnerTimer);
+			window.spinnerTimer = 0;
+		}
+		// Make sure loading is visible
+		// $("#loadingStateModal").fadeIn("fast");
+	}
+	
+	// Stop the spinner
+	loadingModal_stop(){
+		// Request a stop
+		window.spinnerTimer = setTimeout(function(){
+				// $("#loadingStateModal").fadeOut("fast");
+		}, 200);
+	}
+	
 	renderHeader() {
 		return (
 			<div id="header">

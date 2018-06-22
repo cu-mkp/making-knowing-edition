@@ -18,7 +18,7 @@ class TranscriptionView extends Component {
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
 		this.navigationStateActions=navigationStateActions;
 		this.contentChange=true;
-		window.loadingModal_stop();
+		// window.loadingModal_stop();
 	}
 
 	// Recursively unpack a node tree object and just return the text

@@ -16,7 +16,6 @@
 $z-index-ui: 900;
 
 @import "base";
-@import "base_compact";
 @import "globalNavigation";
 
 @import "spinner";
@@ -26,6 +25,7 @@ $z-index-ui: 900;
 @import "pagination";
 
 @import "diplomatic";
+@import "diplomatic_compact";
 @import "imageGridView";
 @import "splitPaneView";
 @import "imageView";

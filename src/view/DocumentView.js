@@ -53,7 +53,7 @@ class DocumentView extends Component {
 
     render() {
         if( !this.state.ready ) { return null; }
-		window.loadingModal_stop();
+		// window.loadingModal_stop();
 
         return (
             <div>

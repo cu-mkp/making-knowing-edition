@@ -55,44 +55,6 @@ h4 {
 .disabled {
   opacity: 0.5; }
 
-/* Compact view */
-.expandedViewOnly {
-  display: inline; }
-
-#search {
-  display: inline; }
-
-@media only screen and (max-width: 1290px) {
-  .expandedViewOnly {
-    display: none; }
-  #footer .logos {
-    display: none; }
-  #header .title {
-    display: block;
-    padding: 0.8rem 0 0;
-    font-size: 1rem; }
-  #header .tagline {
-    display: block;
-    margin: 0;
-    padding: 0.10rem 0 0 0.1rem;
-    font-size: 0.5rem; }
-  #search {
-    display: block;
-    margin: 0.8rem; } }
-
-@media only screen and (max-width: 500px) {
-  #header .tagline,
-  #header .title {
-    display: none; }
-  #header .compactTitle {
-    display: block;
-    font-size: 2rem;
-    width: 5rem;
-    margin: .6rem 0 0 0; }
-  #header #search {
-    display: block;
-    margin: .5rem 1rem 0 0; } }
-
 #globalNavigation {
   font-size: 0.9rem;
   font-weight: 600;
@@ -322,31 +284,23 @@ figure.current {
 #diplomatic {
   position: fixed;
   padding: 0;
-  top: 4.4rem;
   width: 100vw;
   height: calc(100vh - $chrome-height);
   font-family: 'OpenSans', sans-serif;
   font-size: 0.8rem;
   line-height: 1.2rem;
   overflow: hidden; }
-  #diplomatic .imageViewComponent {
-    position: relative;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100vh; }
   #diplomatic #header {
     z-index: 900;
     position: fixed;
     width: 100vw;
     margin: 0;
-    padding: 0;
     color: white;
     height: 4rem;
     background-color: #656565;
     font-family: 'OpenSans', sans-serif;
     grid-area: header;
-    padding: 0.4rem 0 0 1rem;
+    padding: 1rem 0 0 1rem;
     white-space: nowrap; }
     #diplomatic #header .title {
       font-size: 2rem;
@@ -358,6 +312,8 @@ figure.current {
     #diplomatic #header .compactTitle {
       font-weight: 700;
       display: none; }
+  #diplomatic #content {
+    margin-top: 5rem; }
   #diplomatic #navigation {
     position: Fixed;
     top: 0;
@@ -386,6 +342,42 @@ figure.current {
       font-weight: 300;
       font-size: 0.8rem;
       padding: 0.8rem 0 0 0.3rem; }
+
+#diplomatic {
+  /* Compact view */ }
+  #diplomatic .expandedViewOnly {
+    display: inline; }
+  #diplomatic #search {
+    display: inline; }
+  @media only screen and (max-width: 1290px) {
+    #diplomatic .expandedViewOnly {
+      display: none; }
+    #diplomatic #search {
+      display: block;
+      margin: 0.8rem; }
+    #diplomatic #header .title {
+      display: block;
+      padding: 0.8rem 0 0;
+      font-size: 1rem; }
+    #diplomatic #header .tagline {
+      display: block;
+      margin: 0;
+      padding: 0.10rem 0 0 0.1rem;
+      font-size: 0.5rem; }
+    #diplomatic #footer .logos {
+      display: none; } }
+  @media only screen and (max-width: 500px) {
+    #diplomatic #header .tagline,
+    #diplomatic #header .title {
+      display: none; }
+    #diplomatic #header .compactTitle {
+      display: block;
+      font-size: 2rem;
+      width: 5rem;
+      margin: .6rem 0 0 0; }
+    #diplomatic #header #search {
+      display: block;
+      margin: .5rem 1rem 0 0; } }
 
 .imageGridComponent {
   background-color: #000000;
@@ -450,6 +442,13 @@ figure.current {
   height: 100%;
   grid-area: image_viewer;
   background: black; }
+
+.imageViewComponent {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100vh; }
 
 .ImageZoomControl {
   position: absolute;

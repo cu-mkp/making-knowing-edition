@@ -10,29 +10,11 @@
 	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
 	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
-	<!-- Jquery: used by splitpane -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-	<!-- Search handler -->
-	<script src="%PUBLIC_URL%/js/search_helper.js"></script>
-
-	<!-- Global loading-modal, exists here so it can be invoked prior to SPA build -->
-	<script src="%PUBLIC_URL%/js/loadingModal_helper.js"></script>
-
 	<!-- This is the end result of a sass build -->
 	<link href="css/index.css" rel="stylesheet">
 </head>
 
 <body  ondragstart="return false;" ondrop="return false;">
-
-	<!-- This exists globally because we're showing a loading modal for the entire react app -->
-	<div id="loadingStateModal">
-		<div class="spinner">
-			<div class="bounce1"></div>
-			<div class="bounce2"></div>
-			<div class="bounce3"></div>
-		</div>
-	</div>
 	<noscript>
       <h1>You need to enable JavaScript to run this app.</h1>
     </noscript>
