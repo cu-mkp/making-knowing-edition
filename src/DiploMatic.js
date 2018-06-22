@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { Provider, connect } from 'react-redux'
-import { HashRouter, Route } from 'react-router-dom'
+import { HashRouter, Route, Switch, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DocumentView from './view/DocumentView';
+import ContentView from './view/ContentView';
 
 class DiploMatic extends Component {
 
@@ -42,7 +43,7 @@ class DiploMatic extends Component {
 	renderHeader() {
 		return (
 			<div id="header">
-				<div className="title">The Making and Knowing Project <span className='warning'>(BETA)</span></div>
+				<div className="title"><Link to='/' className='home-link'>The Making and Knowing Project</Link> <span className='warning'>(BETA)</span></div>
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">Intersections of Craft Making and Scientific Knowing</div>
 				<div id="globalNavigation">
@@ -70,9 +71,10 @@ class DiploMatic extends Component {
 	renderContent() {
 		return (
 			<div id="content">
-				<HashRouter>
-					<Route path="/:filter?" component={DocumentView}/>
-				</HashRouter>
+				<Switch>
+					<Route path="/" component={ContentView} exact/>
+					<Route path="/folios" component={DocumentView}/>
+				</Switch>
 			</div>
 		);
 	}
@@ -93,12 +95,14 @@ class DiploMatic extends Component {
 		return (
 			<Provider store={this.props.store}>
 				<MuiThemeProvider>
-					<div id="diplomatic">
-						{ this.renderHeader() }
-						{ this.renderContent() }
-						{ this.renderFooter() }
-						<div id="glossaryPopup" tabIndex="1"></div>
-					</div>
+					<HashRouter>
+						<div id="diplomatic">
+							{ this.renderHeader() }
+							{ this.renderContent() }
+							{ this.renderFooter() }
+							<div id="glossaryPopup" tabIndex="1"></div>
+						</div>	
+					</HashRouter>
 				</MuiThemeProvider>
 			</Provider>
 		);

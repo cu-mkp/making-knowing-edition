@@ -281,6 +281,10 @@ figure.current {
   top: -.2rem;
   color: #4A4A4A; }
 
+#content-view {
+  margin: 20px;
+  padding-top: 40px; }
+
 #diplomatic {
   position: fixed;
   padding: 0;
@@ -305,6 +309,9 @@ figure.current {
     #diplomatic #header .title {
       font-size: 2rem;
       font-weight: 700; }
+      #diplomatic #header .title .home-link {
+        color: white;
+        text-decoration: none; }
     #diplomatic #header .tagline {
       font-weight: 300;
       font-size: 0.8rem;
