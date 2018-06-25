@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DocumentView from './view/DocumentView';
 import ContentView from './view/ContentView';
+import Search from './Search';
 
 class DiploMatic extends Component {
 
@@ -54,12 +55,7 @@ class DiploMatic extends Component {
 						<span>About<span className="fa fa-caret-down"></span></span>
 						<span>Support</span>
 					</div>
-					<div id="search">
-						<form id="search" action="" method="post">
-							<input className="searchBox" placeholder="Search"/>
-							<input type="submit" id="submitButton" className="hidden"/>
-						</form>
-					</div>
+					<Search/>
 					<div className="expandedViewOnly">
 						<span><span className="english">English</span> | <span className="francais">Français</span></span>
 					</div>

@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import SplitPaneView from './SplitPaneView';
 import Document from '../model/Document';
-import Search from '../Search';
 import HashParser from '../HashParser';
 import * as navigationStateActions from '../actions/navigationStateActions';
 
@@ -58,7 +57,6 @@ class DocumentView extends Component {
         return (
             <div>
                 <HashParser history={this.props.history}/>
-                <Search history={this.props.history}/>
                 <SplitPaneView 
                     history={this.props.history}
                     document={this.document} 
