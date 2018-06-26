@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import DiploMatic from './component/DiploMatic';
-import configureStore from './store/configureStore';
+import configureStore from './model/ReduxStore';
 
 const store = configureStore();
 

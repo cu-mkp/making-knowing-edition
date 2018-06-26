@@ -9,3 +9,14 @@ export default function configureStore() {
     applyMiddleware(thunk)
   );
 }
+
+// export default function actionMessage( action, params... ) {
+//   return function(state) {
+//    return action(state, params);
+//   }
+//  }
+ 
+//  export default function reducer( state, actionMessage ) {
+//    return actionMessage( state );
+//  }
+ 

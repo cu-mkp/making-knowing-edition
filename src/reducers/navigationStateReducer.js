@@ -1,4 +1,4 @@
-import initialState from './initialState';
+import initialState from '../action/initialState';
 import {
 	CHANGE_TRANSCRIPTION_TYPE,
 	CHANGE_CURRENT_FOLIO,
