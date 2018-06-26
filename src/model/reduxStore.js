@@ -1,22 +1,27 @@
 import {createStore, applyMiddleware} from 'redux';
-import rootReducer from '../reducers/allReducers';
 import thunk from 'redux-thunk';
+import createRootReducer from '../action/rootReducer';
 
-export default function reduxStore() {
+var ReduxStore = {};
+
+// Call this once to create a new redux store that is properly configured.
+ReduxStore.createStore = function() {
   return createStore(
-    rootReducer,
+    createRootReducer(),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(thunk)
   );
-}
+};
 
-// export default function actionMessage( action, params... ) {
-//   return function(state) {
-//    return action(state, params);
-//   }
-//  }
- 
-//  export default function reducer( state, actionMessage ) {
-//    return actionMessage( state );
-//  }
- 
+// Create a dispatchable action message from an action function and its parameters.
+ReduxStore.actionMessage = function( action, ...params ) {
+  return { type: action, payload: params };
+};
+
+// This reducer takes the actionMessage created using ReduxStore.actionMessage()
+// and calls it with the current redux state. It returns a new redux state as a result of the action.
+ReduxStore.reducer = function( state=null, action ) {
+  return { ...state }; //action.type( state, action.payload );
+};
+
+export default ReduxStore;

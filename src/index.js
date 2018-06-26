@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import DiploMatic from './component/DiploMatic';
-import reduxStore from './model/reduxStore';
+import ReduxStore from './model/ReduxStore';
 
 ReactDOM.render(
-  <DiploMatic store={reduxStore()} />,
+  <DiploMatic store={ReduxStore.createStore()} />,
   document.getElementById('app')
 )
