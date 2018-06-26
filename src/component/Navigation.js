@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as navigationStateActions from '../action/navigationStateActions';
+import TranscriptionViewActions from '../action/transcriptionViewActions';
+import ReduxStore from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
 import JumpToFolio from './JumpToFolio.js';
 class navigation extends React.Component {
@@ -50,7 +52,13 @@ class navigation extends React.Component {
 	}
 
 	toggleXMLMode = function(event){
-		this.props.dispatch(this.navigationStateActions.setXMLMode({side:this.props.side, newState:!this.props.navigationState[this.props.side].isXMLMode}));
+//		this.props.dispatch(this.navigationStateActions.setXMLMode({side:this.props.side, newState:!this.props.navigationState[this.props.side].isXMLMode}));
+		ReduxStore.dispatchAction( 
+			this.props, 
+			TranscriptionViewActions.setXMLMode, 
+			this.props.side, 
+			!this.props.navigationState[this.props.side].isXMLMode
+		)
 	}
 
 	// aka gridMode

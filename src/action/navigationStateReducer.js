@@ -1,22 +1,32 @@
 import initialState from '../action/initialState';
 import {
+
+	// transcriptionview
 	CHANGE_TRANSCRIPTION_TYPE,
 	CHANGE_CURRENT_FOLIO,
-	UPDATE_SEARCH_INDEX,
 	UPDATE_FOLIO_INDEX,
-	UPDATE_GLOSSARY,
+	SET_XML_MODE,
+	SET_COLUMN_MODE_FOR_SIDE,
+
+	// search
+	UPDATE_SEARCH_INDEX,
 	ENTER_SEARCH_MODE,
 	EXIT_SEARCH_MODE,
 	CACHE_SEARCH_RESULTS,
+	HIDE_SEARCH_TYPE,
+
+	//glossary
+	UPDATE_GLOSSARY,
+
+	// split pane
 	SET_DRAWER_MODE,
-	SET_XML_MODE,
 	SET_LINKED_MODE,
 	SET_BOOK_MODE,
 	SET_PANE_SIZES,
 	SET_PANE_VIEWTYPE,
-	SET_COLUMN_MODE_FOR_SIDE,
-	SET_STATE_FROM_HASH,
-	HIDE_SEARCH_TYPE
+
+	// hash
+	SET_STATE_FROM_HASH
 } from '../action/allActions';
 
 export default function navigationState(state = initialState, action) {

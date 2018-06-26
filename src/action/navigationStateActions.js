@@ -15,9 +15,9 @@ export function updateGlossary(payload){
 export function setDrawerMode(payload){
 	return {type: allActions.SET_DRAWER_MODE, payload:payload};
 }
-export function setXMLMode(payload){
-	return {type: allActions.SET_XML_MODE, payload:payload};
-}
+// export function setXMLMode(payload){
+// 	return {type: allActions.SET_XML_MODE, payload:payload};
+// }
 export function setLinkedMode(payload){
 	return {type: allActions.SET_LINKED_MODE, payload:payload};
 }
