@@ -1,7 +1,7 @@
 var TranscriptionViewActions = {};
 
 // SET_XML_MODE 
-TranscriptionViewActions.setXMLMode = function( state, side, newState ) {
+TranscriptionViewActions.setXMLMode = function setXMLMode( state, side, newState ) {
 	if(side === 'left'){
 		return {
 			...state,

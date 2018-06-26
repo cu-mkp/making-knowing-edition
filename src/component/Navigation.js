@@ -5,6 +5,8 @@ import TranscriptionViewActions from '../action/transcriptionViewActions';
 import ReduxStore from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
 import JumpToFolio from './JumpToFolio.js';
+
+
 class navigation extends React.Component {
 
 	constructor(props,context){

@@ -22,11 +22,23 @@ ReduxStore.dispatchAction = function( props, action, ...params ) {
 
 // Take the action and call it with the current redux state. 
 ReduxStore.reducer = function( state=initialState, action ) {
-  if( action.payload && action.payload.newReducer ) {
-    return action.type( state, ...action.payload.params );
-  } else {
-    return { ...state }; 
-  }
+  return action.type( state, ...action.payload.params );
 };
+
+// Create a reducer that only services actions in the action set.
+ReduxStore.createReducer = function( actionSet ) {
+  var actionNames = Object.keys(actionSet);
+
+  function scopedReducer(state,action) {
+    if( action.payload && action.payload.newReducer ) {
+      console.log(action.type.name);
+      return ReduxStore.reducer( state, action );
+    } else {
+      return { ...state }; 
+    }
+  };
+  
+  return scopedReducer;
+}
 
 export default ReduxStore;
