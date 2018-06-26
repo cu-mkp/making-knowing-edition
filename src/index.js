@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import DiploMatic from './DiploMatic';
+import DiploMatic from './component/DiploMatic';
 import configureStore from './store/configureStore';
 
 const store = configureStore();

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import SearchIndex from './model/SearchIndex';
-import {updateSearchIndex, enterSearchMode} from './actions/navigationStateActions';
+import SearchIndex from '../model/SearchIndex';
+import {updateSearchIndex, enterSearchMode} from '../action/navigationStateActions';
 
 const allowedDirectives=['folioid','name','content'];
 

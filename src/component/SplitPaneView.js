@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../actions/navigationStateActions';
+import * as navigationStateActions from '../action/navigationStateActions';
 
 class SplitPaneView extends Component {
 

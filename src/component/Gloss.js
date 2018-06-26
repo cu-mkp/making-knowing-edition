@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from './actions/navigationStateActions';
-import thisGlossary_tc from './data/bnf-ms-fr-640/glossary/tc.json';
-import thisGlossary_tcn from './data/bnf-ms-fr-640/glossary/tcn.json';
-import thisGlossary_tl from './data/bnf-ms-fr-640/glossary/tl.json';
+import * as navigationStateActions from '../action/navigationStateActions';
+import thisGlossary_tc from '../data/bnf-ms-fr-640/glossary/tc.json';
+import thisGlossary_tcn from '../data/bnf-ms-fr-640/glossary/tcn.json';
+import thisGlossary_tl from '../data/bnf-ms-fr-640/glossary/tl.json';
 
 class Gloss extends React.Component {
 

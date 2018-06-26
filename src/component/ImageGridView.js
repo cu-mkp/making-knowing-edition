@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import * as navigationStateActions from '../actions/navigationStateActions';
+import * as navigationStateActions from '../action/navigationStateActions';
 
 class ImageGridView extends React.Component {
 

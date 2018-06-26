@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../actions/navigationStateActions';
+import * as navigationStateActions from '../action/navigationStateActions';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 

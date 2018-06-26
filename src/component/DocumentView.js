@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 
 import SplitPaneView from './SplitPaneView';
 import Document from '../model/Document';
-import HashParser from '../HashParser';
-import * as navigationStateActions from '../actions/navigationStateActions';
+import HashParser from '../component/HashParser';
+import * as navigationStateActions from '../action/navigationStateActions';
 
 class DocumentView extends Component {
 

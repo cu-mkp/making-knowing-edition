@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../actions/navigationStateActions';
+import * as navigationStateActions from '../action/navigationStateActions';
 import copyObject from '../lib/copyObject';
-import Navigation from '../Navigation';
-import Pagination from '../Pagination';
-import Gloss from '../Gloss';
-import Annotation from '../Annotation';
+import Navigation from '../component/Navigation';
+import Pagination from '../component/Pagination';
+import Gloss from '../component/Gloss';
+import Annotation from '../component/Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 

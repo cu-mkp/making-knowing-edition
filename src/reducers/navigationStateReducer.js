@@ -17,7 +17,7 @@ import {
 	SET_COLUMN_MODE_FOR_SIDE,
 	SET_STATE_FROM_HASH,
 	HIDE_SEARCH_TYPE
-} from '../actions/allActions';
+} from '../action/allActions';
 
 export default function navigationState(state = initialState, action) {
 	switch (action.type) {

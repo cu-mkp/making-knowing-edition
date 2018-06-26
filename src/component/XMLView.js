@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../actions/navigationStateActions';
-import Navigation from '../Navigation';
-import Pagination from '../Pagination';
+import * as navigationStateActions from '../action/navigationStateActions';
+import Navigation from '../component/Navigation';
+import Pagination from '../component/Pagination';
 
 class XMLView extends Component {
 

@@ -1,8 +1,8 @@
 import OpenSeadragon from 'openseadragon';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../actions/navigationStateActions';
+import * as navigationStateActions from '../action/navigationStateActions';
 import React, { Component } from 'react';
-import Navigation from '../Navigation';
+import Navigation from '../component/Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
 class ImageView extends Component {
 

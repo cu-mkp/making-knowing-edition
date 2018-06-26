@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from './actions/navigationStateActions';
+import * as navigationStateActions from '../action/navigationStateActions';
 
 
 class Annotation extends React.Component {

@@ -4,8 +4,8 @@ import { HashRouter, Route, Switch, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import DocumentView from './view/DocumentView';
-import ContentView from './view/ContentView';
+import DocumentView from './DocumentView';
+import ContentView from './ContentView';
 import Search from './Search';
 
 class DiploMatic extends Component {
