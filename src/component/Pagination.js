@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
 import {Icon} from "react-font-awesome-5";
-
+import ReduxStore from '../model/ReduxStore';
+import DocumentViewActions from '../action/documentViewActions';
 
 class navigation extends React.Component {
 
 	constructor(props,context){
 		super(props,context);
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
-		this.navigationStateActions=navigationStateActions;
 	}
 
 	changeCurrentFolio = function(event){
@@ -18,7 +17,15 @@ class navigation extends React.Component {
 		}
 
 		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
-		this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
+		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
+		ReduxStore.dispatchAction(
+			this.props,
+			DocumentViewActions.changeCurrentFolio,
+			longID,
+			this.props.side,
+			this.props.navigationState[this.props.side].transcriptionType,
+			event.currentTarget.dataset.direction			
+		);
 	}
 
 

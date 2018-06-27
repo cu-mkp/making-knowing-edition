@@ -11,7 +11,6 @@ class XMLView extends Component {
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
 		this.navigationStateActions=navigationStateActions;
 		this.contentChange=true;
-		window.loadingModal_stop();
 	}
 
 	loadFolio(folio){

@@ -1,14 +1,17 @@
 import OpenSeadragon from 'openseadragon';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
 import React, { Component } from 'react';
+
 import Navigation from '../component/Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
+import ReduxStore from '../model/ReduxStore';
+import DocumentViewActions from '../action/documentViewActions';
+
+
 class ImageView extends Component {
 
 	constructor(props,context){
 		super(props,context);
-		this.navigationStateActions=navigationStateActions;
 		this.isLoaded = false;
 		this.currentFolioID="";
 		this.elementID =  "image-view-seadragon-"+this.props.side;
@@ -58,7 +61,13 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
+		// this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
+		ReduxStore.dispatchAction(
+			this.props,
+			DocumentViewActions.setPaneViewtype,
+			this.props.side,
+			'ImageGridView'
+		);
 	}
 
 	onZoomFixed_1 = (e) => {

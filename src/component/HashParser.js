@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
+import ReduxStore from '../model/ReduxStore';
+import DocumentViewActions from '../action/documentViewActions';
 
 class HashParser extends React.Component {
 
@@ -8,7 +9,6 @@ class HashParser extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 		this.hashDidChange = this.hashDidChange.bind(this);
-		this.navigationStateActions=navigationStateActions;
 		this.suppressNextUpdate=true;
 
 		// If we're coming in with nothing, generate the URL from the default state
@@ -290,9 +290,12 @@ class HashParser extends React.Component {
 			newState.right.isGridMode = (right_gridMode === "0")?false:true;
 
 			// Finally pass the new state object to the reducer
-			this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
-
-
+			// this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
+			ReduxStore.dispatchAction(
+				this.props,
+				DocumentViewActions.setStateFromHash,
+				newState
+			);
 
 	}
 

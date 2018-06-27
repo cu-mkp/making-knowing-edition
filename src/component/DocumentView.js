@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import SplitPaneView from './SplitPaneView';
 import Document from '../model/Document';
 import HashParser from '../component/HashParser';
-import * as navigationStateActions from '../action/navigationStateActions';
+import ReduxStore from '../model/ReduxStore';
+import DocumentViewActions from '../action/documentViewActions';
 
 class DocumentView extends Component {
 
@@ -14,7 +15,6 @@ class DocumentView extends Component {
         this.state = {
             ready: false
 		}
-		this.navigationStateActions = navigationStateActions;
     }
 
     componentDidMount() {
@@ -33,9 +33,16 @@ class DocumentView extends Component {
 						nameByID[shortID] = this.document.folios[idx].name;
 						idByName[this.document.folios[idx].name] = shortID;
 					}
-					this.props.dispatch(this.navigationStateActions.updateFolioIndex({	folioIndex: folioIndex,
-																						folioNameByIDIndex: nameByID,
-																						folioIDByNameIndex: idByName}));
+					// this.props.dispatch(this.navigationStateActions.updateFolioIndex({	folioIndex: folioIndex,
+					// 																	folioNameByIDIndex: nameByID,
+					// 																	folioIDByNameIndex: idByName}));
+					ReduxStore.dispatchAction(
+						this.props,
+						DocumentViewActions.updateFolioIndex,
+						folioIndex,
+						nameByID,
+						idByName
+					);
 				}
 
 				// Mark everything loaded (do this first so we don't thrash when we dispatch redux update below)

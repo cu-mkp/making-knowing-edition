@@ -2,15 +2,14 @@ import React, {Component} from 'react';
 import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
+import ReduxStore from '../model/ReduxStore';
+import DocumentViewActions from '../action/documentViewActions';
 
 class SplitPaneView extends Component {
 
 	constructor(props) {
 		super();
 		this.firstFolio = props.document.folios[0];
-		this.navigationStateActions = navigationStateActions;
-
 
 		// Initialize the splitter
 		this.rightPaneMinWidth = 200;
@@ -96,7 +95,13 @@ class SplitPaneView extends Component {
 		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
 		if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
-			this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
+			// this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
+			ReduxStore.dispatchAction(
+				this.props,
+				DocumentViewActions.setwidths,
+				left_px,
+				right_px 
+			);
 		}
 	}
 	// Update the panes content
@@ -141,7 +146,13 @@ class SplitPaneView extends Component {
 		// Set the default width on mount
 		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-		this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
+		// this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
+		ReduxStore.dispatchAction(
+			this.props,
+			DocumentViewActions.setwidths,
+			left_px,
+			right_px 
+		);
 	}
 
 	componentWillUnmount() {
