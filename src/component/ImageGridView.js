@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import ReduxStore from '../model/ReduxStore';
-import DocumentViewActions from '../action/documentViewActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 
 class ImageGridView extends React.Component {
 

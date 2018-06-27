@@ -3,7 +3,7 @@ import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
 import ReduxStore from '../model/ReduxStore';
-import DocumentViewActions from '../action/documentViewActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 
 class SplitPaneView extends Component {
 

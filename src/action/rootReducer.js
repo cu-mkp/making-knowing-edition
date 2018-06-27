@@ -1,12 +1,12 @@
-import ReduxStore from '../model/ReduxStore';
-// import navigationStateReducer from './navigationStateReducer';
-import DocumentViewActions from './documentViewActions';
 import { combineReducers } from 'redux';
+
+import ReduxStore from '../model/ReduxStore';
+import DocumentViewActions from './DocumentViewActions';
+import SearchActions from './SearchActions';
 
 export default function createRootReducer() {
     return combineReducers({
-        // navigationState: navigationStateReducer,
-        // documentView: ReduxStore.createReducer( documentViewActions )
+        search: ReduxStore.createReducer( SearchActions ),
         navigationState: ReduxStore.createReducer( DocumentViewActions )
     });    
 };

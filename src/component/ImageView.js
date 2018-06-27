@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import Navigation from '../component/Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
 import ReduxStore from '../model/ReduxStore';
-import DocumentViewActions from '../action/documentViewActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 
 
 class ImageView extends Component {

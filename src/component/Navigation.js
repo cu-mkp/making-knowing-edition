@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import DocumentViewActions from '../action/documentViewActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 import ReduxStore from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
 import JumpToFolio from './JumpToFolio.js';

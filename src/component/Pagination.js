@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
 import ReduxStore from '../model/ReduxStore';
-import DocumentViewActions from '../action/documentViewActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 
 class navigation extends React.Component {
 
