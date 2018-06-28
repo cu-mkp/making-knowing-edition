@@ -250,17 +250,7 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 		viewType = 'ImageView';
 		xmlMode = false;
 	}
-
-	// transcriptionType (tc,tcn, tl)
-	let typeDisplayOrder = 'tc,tcn,tcl';
-	if(transcriptionType === 'tc'){
-		typeDisplayOrder = 'tc,tcn,tcl';
-	}else if(transcriptionType === 'tcn'){
-		typeDisplayOrder = 'tcn,tc,tcl';
-	}else if(transcriptionType === 'tcl'){
-		typeDisplayOrder = 'tcl,tc,tcn';
-	}
-
+	
 	if(side === 'left'){
 		return {
 			...state,
@@ -270,10 +260,6 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 				transcriptionTypeLabel: label,
 				viewType:viewType,
 				isXMLMode: xmlMode
-			},
-			search:{
-				...state.search,
-				typeDisplayOrder: typeDisplayOrder
 			}
 		};
 	}else{
@@ -285,10 +271,6 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 				transcriptionTypeLabel: label,
 				viewType:viewType,
 				isXMLMode: xmlMode
-			},
-			search:{
-				...state.search,
-				typeDisplayOrder: typeDisplayOrder
 			}
 		};
 	}

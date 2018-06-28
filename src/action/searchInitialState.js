@@ -8,6 +8,5 @@ export default {
         tcn:false,
         tl: false
     },
-    typeDisplayOrder:'tc,tcn,tl',
     results:''
 }
