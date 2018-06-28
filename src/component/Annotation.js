@@ -1,13 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
-
 
 class Annotation extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);
-		this.navigationStateActions = navigationStateActions;
 		this.toggleAnnotation = this.toggleAnnotation.bind(this);
 		this.state = {visible: false};
 	}
@@ -15,8 +12,6 @@ class Annotation extends React.Component {
 	toggleAnnotation = function(event){
 		this.setState({visible: !this.state.visible});
 	}
-
-
 
 	render() {
 

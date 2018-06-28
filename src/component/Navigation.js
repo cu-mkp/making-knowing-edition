@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import DocumentViewActions from '../action/DocumentViewActions';
-import ReduxStore from '../model/ReduxStore';
+import {dispatchAction} from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
 import JumpToFolio from './JumpToFolio.js';
 
@@ -33,7 +33,7 @@ class navigation extends React.Component {
 	changeType = function (event) {
 		// Change viewtype
 		// this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
-		ReduxStore.dispatchAction( 
+		dispatchAction( 
 			this.props,
 			DocumentViewActions.changeTranscriptionType,
 			this.props.side,
@@ -47,7 +47,7 @@ class navigation extends React.Component {
 		if(!this.props.navigationState.bookMode === true){
 			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
 			// id, side, transcriptionType, direction, matched
-			ReduxStore.dispatchAction(
+			dispatchAction(
 				this.props,
 				DocumentViewActions.changeCurrentFolio,
 				this.props.navigationState.left.currentFolioID,
@@ -57,7 +57,7 @@ class navigation extends React.Component {
 
 			let longID = this.props.navigationState.folioIDPrefix+this.props.navigationState.right.nextFolioShortID;
 			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID,direction:event.currentTarget.dataset.direction}));
-			ReduxStore.dispatchAction(
+			dispatchAction(
 				this.props,
 				DocumentViewActions.changeCurrentFolio,
 				longID,
@@ -68,7 +68,7 @@ class navigation extends React.Component {
 
 		// Toggle bookmode
 		// this.props.dispatch(this.navigationStateActions.setBookMode({shortid:this.props.navigationState.left.currentFolioShortID, status:!this.props.navigationState.bookMode}));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.setBookMode,
 			this.props.navigationState.left.currentFolioShortID, 
@@ -78,7 +78,7 @@ class navigation extends React.Component {
 
 	toggleXMLMode = function(event){
 //		this.props.dispatch(this.navigationStateActions.setXMLMode({side:this.props.side, newState:!this.props.navigationState[this.props.side].isXMLMode}));
-		ReduxStore.dispatchAction( 
+		dispatchAction( 
 			this.props, 
 			DocumentViewActions.setXMLMode, 
 			this.props.side, 
@@ -89,7 +89,7 @@ class navigation extends React.Component {
 	// aka gridMode
 	toggleColumns = function(event){
 		// this.props.dispatch(this.navigationStateActions.setColumnModeForSide({side:this.props.side, newState:!this.props.navigationState[this.props.side].isGridMode}));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.setColumnModeForSide,
 			this.props.side, 
@@ -110,7 +110,7 @@ class navigation extends React.Component {
 			if(this.props.side === 'left'){
 				// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
 				// id, side, transcriptionType, direction, matched
-				ReduxStore.dispatchAction( 
+				dispatchAction( 
 					this.props,
 					DocumentViewActions.changeCurrentFolio,
 					this.props.navigationState.left.currentFolioID,
@@ -120,7 +120,7 @@ class navigation extends React.Component {
 				);
 			}else{
 				// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.right.currentFolioID,direction:event.currentTarget.dataset.direction}));
-				ReduxStore.dispatchAction(
+				dispatchAction(
 					this.props,
 					DocumentViewActions.changeCurrentFolio,
 					this.props.navigationState.right.currentFolioID,
@@ -133,7 +133,7 @@ class navigation extends React.Component {
 
 		// Set lock
 		// this.props.dispatch(this.navigationStateActions.setLinkedMode(!this.props.navigationState.linkedMode));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.setLinkedMode,
 			!this.props.navigationState.linkedMode
@@ -147,7 +147,7 @@ class navigation extends React.Component {
 		console.log(event.currentTarget.dataset.id);
 		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
 		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.changeCurrentFolio,
 			longID,
@@ -173,7 +173,7 @@ class navigation extends React.Component {
 		if(typeof folioID !== 'undefined'){
 			let longID = this.props.navigationState.folioIDPrefix+folioID;
 			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID}));
-			ReduxStore.dispatchAction(
+			dispatchAction(
 				this.props,
 				DocumentViewActions.changeCurrentFolio,
 				longID,

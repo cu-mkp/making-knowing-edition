@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ReduxStore from '../model/ReduxStore';
+import {dispatchAction} from '../model/ReduxStore';
 import DocumentViewActions from '../action/DocumentViewActions';
 
 class HashParser extends React.Component {
@@ -291,7 +291,7 @@ class HashParser extends React.Component {
 
 			// Finally pass the new state object to the reducer
 			// this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
-			ReduxStore.dispatchAction(
+			dispatchAction(
 				this.props,
 				DocumentViewActions.setStateFromHash,
 				newState

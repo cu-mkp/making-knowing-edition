@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
-import ReduxStore from '../model/ReduxStore';
+import {dispatchAction} from '../model/ReduxStore';
 import DocumentViewActions from '../action/DocumentViewActions';
 
 class navigation extends React.Component {
@@ -18,7 +18,7 @@ class navigation extends React.Component {
 
 		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
 		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.changeCurrentFolio,
 			longID,

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
+import {dispatchAction} from '../model/ReduxStore';
+import GlossaryActions from '../action/GlossaryActions';
 import thisGlossary_tc from '../data/bnf-ms-fr-640/glossary/tc.json';
 import thisGlossary_tcn from '../data/bnf-ms-fr-640/glossary/tcn.json';
 import thisGlossary_tl from '../data/bnf-ms-fr-640/glossary/tl.json';
@@ -9,7 +10,6 @@ class Gloss extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);
-		this.navigationStateActions = navigationStateActions;
 		this.displayGloss = this.displayGloss.bind(this);
 
 		// Cache glossaries if we haven't yet

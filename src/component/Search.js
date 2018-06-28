@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import SearchIndex from '../model/SearchIndex';
-import {updateSearchIndex, enterSearchMode} from '../action/navigationStateActions';
+import {dispatchAction} from '../model/ReduxStore';
+import SearchActions from '../action/SearchActions';
 
 const allowedDirectives=['folioid','name','content'];
 
@@ -14,12 +15,17 @@ class Search extends React.Component {
 
 	componentDidMount() {
 		// If we don't have a search index, load it.
-		if(Object.keys(this.props.navigationState.search.index).length === 0){
+		if(Object.keys(this.props.search.index).length === 0){
 			let searchIndex = new SearchIndex();
 			searchIndex.load().then(
 				(searchIndex) => {
 					console.log("Search index loaded.")
-					this.props.dispatch(updateSearchIndex({searchIndex: searchIndex}));
+					// this.props.dispatch(updateSearchIndex({searchIndex: searchIndex}));
+					dispatchAction(
+						this.props,
+						SearchActions.updateSearchIndex,
+						searchIndex
+					);
 				},
 				(error) => {
 					// TODO update UI - disable the search field w/message
@@ -37,7 +43,7 @@ class Search extends React.Component {
 
 		// We cannot do this if the search index hasn't been defined yet,
 		// there's probably a slicker way to do this but let's poll, whee...
-		if(Object.keys(this.props.navigationState.search.index).length === 0){
+		if(Object.keys(this.props.search.index).length === 0){
 			setTimeout(() => {
 				this.onSubmit();
 			}, 250);
@@ -45,7 +51,12 @@ class Search extends React.Component {
 		}
 
 		let parsedSearchTerm = this.parseSearchTerm(this.state.searchTerm);
-		this.props.dispatch(enterSearchMode({searchTerm: parsedSearchTerm}));
+		// this.props.dispatch(enterSearchMode({searchTerm: parsedSearchTerm}));
+		dispatchAction(
+			this.props,
+			SearchActions.enterSearchMode,
+			parsedSearchTerm
+		)
 		event.preventDefault();
 	}
 
@@ -86,7 +97,7 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState
+		search: state.search
 	};
 }
 

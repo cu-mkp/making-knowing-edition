@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import SplitPaneView from './SplitPaneView';
 import Document from '../model/Document';
 import HashParser from '../component/HashParser';
-import ReduxStore from '../model/ReduxStore';
+import {dispatchAction} from '../model/ReduxStore';
 import DocumentViewActions from '../action/DocumentViewActions';
 
 class DocumentView extends Component {
@@ -36,7 +36,7 @@ class DocumentView extends Component {
 					// this.props.dispatch(this.navigationStateActions.updateFolioIndex({	folioIndex: folioIndex,
 					// 																	folioNameByIDIndex: nameByID,
 					// 																	folioIDByNameIndex: idByName}));
-					ReduxStore.dispatchAction(
+					dispatchAction(
 						this.props,
 						DocumentViewActions.updateFolioIndex,
 						folioIndex,

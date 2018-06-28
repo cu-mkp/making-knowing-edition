@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
-import ReduxStore from '../model/ReduxStore';
+import {dispatchAction} from '../model/ReduxStore';
 import DocumentViewActions from '../action/DocumentViewActions';
 
 class SplitPaneView extends Component {
@@ -96,7 +96,7 @@ class SplitPaneView extends Component {
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
 		if(right_px !== this.props.navigationState.right.width && (left_px>=this.leftPaneMinWidth)){
 			// this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
-			ReduxStore.dispatchAction(
+			dispatchAction(
 				this.props,
 				DocumentViewActions.setwidths,
 				left_px,
@@ -147,7 +147,7 @@ class SplitPaneView extends Component {
 		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
 		// this.props.dispatch(this.navigationStateActions.setwidths({right:right_px, left:left_px}));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.setwidths,
 			left_px,

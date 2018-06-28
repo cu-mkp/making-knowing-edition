@@ -7,24 +7,6 @@ export default {
 	folioIndex: [],
 	folioNameByIDIndex:[],
 	folioIDByNameIndex:[],
-	search:{
-		index:{},
-		inSearchMode:false,
-		term:'',
-		matched:[],
-		typeHidden:{
-			tc: false,
-			tcn:false,
-			tl: false
-		},
-		typeDisplayOrder:'tc,tcn,tl',
-		results:''
-	},
-	glossary: {
-		tc: {},
-		tcn: {},
-		tl: {}
-	},
 	uiLabels: {
 		transcriptionType: {
 			tc: 'Transcription',

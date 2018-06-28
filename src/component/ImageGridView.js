@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import ReduxStore from '../model/ReduxStore';
+import {dispatchAction} from '../model/ReduxStore';
 import DocumentViewActions from '../action/DocumentViewActions';
 
 class ImageGridView extends React.Component {
@@ -33,7 +33,7 @@ class ImageGridView extends React.Component {
 	onClickThumb = (id, e) => {
 		// Set the folio for this side
 		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:id}));
-		ReduxStore.dispatchAction(
+		dispatchAction(
 			this.props,
 			DocumentViewActions.changeCurrentFolio,
 			id,
@@ -43,7 +43,7 @@ class ImageGridView extends React.Component {
 		// Replace this pane with imageView if the pane is big enough
 		if(this.props.navigationState[this.props.side].width >= this.thumbnailNavigationModeSize){
 			// this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
-			ReduxStore.dispatchAction(
+			dispatchAction(
 				this.props,
 				DocumentViewActions.setPaneViewtype,
 				this.props.side,

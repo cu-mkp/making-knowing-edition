@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
+
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
+
+import {dispatchAction} from '../model/ReduxStore';
+import SearchActions from '../action/SearchActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 
 class SearchResultView extends Component {
 
 
 	constructor(props) {
 		super(props);
-		this.navigationStateActions=navigationStateActions;
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleCheck = this.handleCheck.bind(this);
 		this.exitSearch = this.exitSearch.bind(this);
@@ -19,7 +22,11 @@ class SearchResultView extends Component {
 
 
 	exitSearch(event){
-		this.props.dispatch(this.navigationStateActions.exitSearchMode());
+		// this.props.dispatch(this.navigationStateActions.exitSearchMode());
+		dispatchAction(
+			this.props,
+			SearchActions.exitSearchMode
+		)
 	}
 
 	handleSubmit(event) {
@@ -39,7 +46,12 @@ class SearchResultView extends Component {
 
 		if(searchTerm.length > 0 ){
 			//console.log("Search:"+searchTerm);
-			this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));
+			// this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));
+			dispatchAction(
+				this.props,
+				SearchActions.enterSearchMode,
+				searchTerm
+			)
 		}
   	}
 
@@ -55,12 +67,21 @@ class SearchResultView extends Component {
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
 			let longID = this.props.navigationState.folioIDPrefix+shortID;
-			this.props.dispatch(this.navigationStateActions.changeCurrentFolio({
-				side:'right',
-				id:longID,
-				transcriptionType:event.currentTarget.dataset.type,
-				matched:uniq(this.matchedOn)
-			}));
+			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({
+			// 	side:'right',
+			// 	id:longID,
+			// 	transcriptionType:event.currentTarget.dataset.type,
+			// 	matched:uniq(this.matchedOn)
+			// }));
+			dispatchAction(
+				this.props,
+				DocumentViewActions.changeCurrentFolio,
+				longID,
+				'right',
+				event.currentTarget.dataset.type,
+
+				uniq(this.matchedOn)
+			);
 		}
 
 
@@ -69,9 +90,9 @@ class SearchResultView extends Component {
 	handleCheck(event){
 		let type = event.currentTarget.dataset.id;
 		let resultingDisplayCount = 0;
-		for (var key in this.props.navigationState.search.typeHidden){
+		for (var key in this.props.search.typeHidden){
 			if(key !== type){
-				if(!this.props.navigationState.search.typeHidden[key]){
+				if(!this.props.search.typeHidden[key]){
 					resultingDisplayCount++;
 				}
 			}
@@ -79,7 +100,13 @@ class SearchResultView extends Component {
 
 		// As long as we have at least one option checked, flip the value
 		if(resultingDisplayCount >= 1){
-			this.props.dispatch(this.navigationStateActions.searchTypeHidden({type: type, value:!this.props.navigationState.search.typeHidden[type]}));
+			// this.props.dispatch(this.navigationStateActions.searchTypeHidden({type: type, value:!this.props.navigationState.search.typeHidden[type]}));
+			dispatchAction(
+				this.props,
+				SearchActions.searchTypeHidden,
+				type, 
+				!this.props.search.typeHidden[type]
+			)
 		}
 	}
 
@@ -118,8 +145,8 @@ class SearchResultView extends Component {
 
 		// Display order
 		let displayOrderArray = [];
-		for (var key in this.props.navigationState.search.typeHidden){
-			if(!this.props.navigationState.search.typeHidden[key]){
+		for (var key in this.props.search.typeHidden){
+			if(!this.props.search.typeHidden[key]){
 				displayOrderArray.push(key);
 			}
 		}
@@ -127,9 +154,9 @@ class SearchResultView extends Component {
 
 
 		// Total results
-		let totalResultCount = this.props.navigationState.search.results["tc"].length +
-							   this.props.navigationState.search.results["tcn"].length +
-							   this.props.navigationState.search.results["tl"].length;
+		let totalResultCount = this.props.search.results["tc"].length +
+							   this.props.search.results["tcn"].length +
+							   this.props.search.results["tl"].length;
 
 
 		let retVal = (
@@ -139,29 +166,29 @@ class SearchResultView extends Component {
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField"><input name="searchTerm"  key={this.props.navigationState.search.term} className="textField" defaultValue={decodeURI(this.props.navigationState.search.term)}/></div>
+						<div className="searchField"><input name="searchTerm"  key={this.props.search.term} className="textField" defaultValue={decodeURI(this.props.search.term)}/></div>
 						<div className="searchButton"><button type="submit"><span className="fa fa-search" aria-hidden="true"></span></button></div>
 					</div>
 					<div className="searchFilters">
-						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {decodeURI(this.props.navigationState.search.term)}
+						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {decodeURI(this.props.search.term)}
 					</div>
 					<div className="searchFilters">
-						<input checked={!(this.props.navigationState.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.navigationState.uiLabels.transcriptionType['tl']} ({this.props.navigationState.search.results["tl"].length})</span>
-						<input checked={!(this.props.navigationState.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{this.props.navigationState.uiLabels.transcriptionType['tc']} ({this.props.navigationState.search.results["tc"].length})</span>
-						<input checked={!(this.props.navigationState.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{this.props.navigationState.uiLabels.transcriptionType['tcn']} ({this.props.navigationState.search.results["tcn"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.navigationState.uiLabels.transcriptionType['tl']} ({this.props.search.results["tl"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{this.props.navigationState.uiLabels.transcriptionType['tc']} ({this.props.search.results["tc"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{this.props.navigationState.uiLabels.transcriptionType['tcn']} ({this.props.search.results["tcn"].length})</span>
 					</div>
 				</form>
 				<div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
-						No Results found for '{decodeURI(this.props.navigationState.search.term)}'
+						No Results found for '{decodeURI(this.props.search.term)}'
 					</div>
 
 				 	{displayOrderArray.map((type, i) =>
-						<div key={type} className={(this.props.navigationState.search.results[type].length===0)?"resultSection hidden":"resultSection"}>
-							<div className={(this.props.navigationState.search.typeHidden[type])?"resultSectionHeader hidden":"resultSectionHeader"}>
-								{this.props.navigationState.uiLabels.transcriptionType[type]} ({this.props.navigationState.search.results[type].length} {this.props.navigationState.search.results[type].length === 1?"match":"matches"})
+						<div key={type} className={(this.props.search.results[type].length===0)?"resultSection hidden":"resultSection"}>
+							<div className={(this.props.search.typeHidden[type])?"resultSectionHeader hidden":"resultSectionHeader"}>
+								{this.props.navigationState.uiLabels.transcriptionType[type]} ({this.props.search.results[type].length} {this.props.search.results[type].length === 1?"match":"matches"})
 							</div>
-							{this.props.navigationState.search.results[type].map((result, idx) =>
+							{this.props.search.results[type].map((result, idx) =>
 								<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.resultClicked}>
 									<div className="fa fa-file-alt icon"></div>
 									<div className="title">
@@ -196,6 +223,7 @@ function uniq(a) {
 
 function mapStateToProps(state) {
 	return {
+		search: state.search,
         navigationState: state.navigationState
     };
 }
