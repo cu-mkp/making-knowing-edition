@@ -4,93 +4,38 @@ var SearchActions = {};
 SearchActions.updateSearchIndex = function updateSearchIndex( state, searchIndex ) {
     return {
         ...state,
-        search:{
-            ...state.search,
-            index:searchIndex
-        }
+        index:searchIndex
     }
 };
 
-// case ENTER_SEARCH_MODE:
-SearchActions.enterSearchMode = function enterSearchMode( state, searchTerm ) {
+SearchActions.searchMatched = function searchMatched( state, matched ) {
+    return {
+        ...state,
+        matched
+    }
+};
+
+SearchActions.beginSearch = function beginSearch( state, searchTerm ) {
     let results = {};
-    results['tc'] = state.search.index.searchEdition(searchTerm,'tc');
-    results['tcn'] = state.search.index.searchEdition(searchTerm,'tcn');
-    results['tl'] = state.search.index.searchEdition(searchTerm,'tl');
+    results['tc'] = state.index.searchEdition(searchTerm,'tc');
+    results['tcn'] = state.index.searchEdition(searchTerm,'tcn');
+    results['tl'] = state.index.searchEdition(searchTerm,'tl');
     
     return {
         ...state,
-        linkedMode: false,
-        bookMode: false,
-        search:{
-            ...state.search,
-            term:searchTerm,
-            inSearchMode:true,
-            results:results
-        },
-    
-        left: {
-            ...state.left,
-            viewType: 'SearchResultView'
-        },
-    
-        right:{
-            ...state.right,
-            isGridMode: false,
-            viewType: 'TranscriptionView',
-            transcriptionType: 'tc',
-            transcriptionTypeLabel: 'Transcription',
-            currentFolioName: '',
-            currentFolioID: '-1',
-            currentFolioShortID: '',
-            hasPrevious: false,
-            hasNext: false,
-            nextFolioShortID: '',
-            previousFolioShortID: ''
-        }
-    }
+        term:searchTerm,
+        inSearchMode:true,
+        results:results
+    };
 };
 
-// case EXIT_SEARCH_MODE:
-SearchActions.exitSearchMode = function exitSearchMode( state ) {
-    // If we have a folio selected in search results, match the left pane
-    // otherwise just clear and gridview
-    let leftState;
-    if(parseInt(state.right.currentFolioID,10) === -1){
-            leftState = {
-                ...state.left,
-                viewType: 'ImageGridView',
-                currentFolioName: '',
-                currentFolioID: '',
-                currentFolioShortID: '',
-                hasPrevious: false,
-                hasNext: false,
-                nextFolioShortID: '',
-                previousFolioShortID: ''
-            };
-        }else{
-            leftState = {
-                ...state.right,
-                viewType: 'ImageView'
-            };
-    }
-
+SearchActions.clearSearch = function clearSearch( state ) {
     return {
         ...state,
-        linkedMode: true,
-        search:{
-            ...state.search,
-            term:'',
-            inSearchMode:false,
-            results:''
-        },
-
-        left: leftState,
-
-        right:{
-            ...state.right,
-        }
-    }
+        term:'',
+        inSearchMode:false,
+        results:''
+    };
 };
 
 // case HIDE_SEARCH_TYPE:
@@ -98,34 +43,25 @@ SearchActions.searchTypeHidden = function searchTypeHidden( state, type, value )
     if(type === 'tc'){
         return {
             ...state,
-            search:{
-                ...state.search,
-                typeHidden:{
-                    ...state.search.typeHidden,
-                    tc:value
-                }
+            typeHidden:{
+                ...state.typeHidden,
+                tc:value
             }
         }
     }else if(type === 'tcn'){
         return {
             ...state,
-            search:{
-                ...state.search,
-                typeHidden:{
-                    ...state.search.typeHidden,
-                    tcn:value
-                }
+            typeHidden:{
+                ...state.typeHidden,
+                tcn:value
             }
         }
     }else if(type === 'tl'){
         return {
             ...state,
-            search:{
-                ...state.search,
-                typeHidden:{
-                    ...state.search.typeHidden,
-                    tl:value
-                }
+            typeHidden:{
+                ...state.typeHidden,
+                tl:value
             }
         }
     }
@@ -136,10 +72,7 @@ SearchActions.searchTypeHidden = function searchTypeHidden( state, type, value )
 SearchActions.cacheSearchResults = function cacheSearchResults( state, results ) {
     return{
         ...state,
-        search:{
-            ...state.search,
-            results:results
-        }
+        results:results
     }
 };
 

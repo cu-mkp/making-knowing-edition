@@ -23,10 +23,8 @@ class SearchResultView extends Component {
 
 	exitSearch(event){
 		// this.props.dispatch(this.navigationStateActions.exitSearchMode());
-		dispatchAction(
-			this.props,
-			SearchActions.exitSearchMode
-		)
+		dispatchAction( this.props, DocumentViewActions.exitSearchMode );
+		dispatchAction( this.props, SearchActions.clearSearch );
 	}
 
 	handleSubmit(event) {
@@ -49,9 +47,10 @@ class SearchResultView extends Component {
 			// this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));
 			dispatchAction(
 				this.props,
-				SearchActions.enterSearchMode,
+				SearchActions.beginSearch,
 				searchTerm
 			)
+			dispatchAction( this.props, DocumentViewActions.enterSearchMode );
 		}
   	}
 
@@ -78,8 +77,11 @@ class SearchResultView extends Component {
 				DocumentViewActions.changeCurrentFolio,
 				longID,
 				'right',
-				event.currentTarget.dataset.type,
-
+				event.currentTarget.dataset.type
+			);
+			dispatchAction(
+				this.props,
+				SearchActions.searchMatched,
 				uniq(this.matchedOn)
 			);
 		}

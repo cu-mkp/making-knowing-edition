@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
 import Navigation from '../component/Navigation';
 import Pagination from '../component/Pagination';
 
@@ -9,7 +8,6 @@ class XMLView extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
-		this.navigationStateActions=navigationStateActions;
 		this.contentChange=true;
 	}
 

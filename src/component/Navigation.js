@@ -223,13 +223,13 @@ class navigation extends React.Component {
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
-							<span title="Lock/Unlock" onClick={this.toggleLockmode} className={(this.props.navigationState.search.inSearchMode)?'invisible':lockIconClass}></span>
+							<span title="Lock/Unlock" onClick={this.toggleLockmode} className={(this.props.search.inSearchMode)?'invisible':lockIconClass}></span>
 							&nbsp;
-							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.navigationState.search.inSearchMode)?'invisible':bookIconClass}></span>
+							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.search.inSearchMode)?'invisible':bookIconClass}></span>
 							&nbsp;
-							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.navigationState.search.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
+							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.search.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
 							&nbsp;
-							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.navigationState.search.inSearchMode)?'invisible':columnIconClass}></span>
+							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.search.inSearchMode)?'invisible':columnIconClass}></span>
 							&nbsp;
 							<span 	title = "Go back"
 									onClick={this.changeCurrentFolio}
@@ -261,7 +261,8 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+		navigationState: state.navigationState,
+		search: state.search
     };
 }
 

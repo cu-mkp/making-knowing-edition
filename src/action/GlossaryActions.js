@@ -1,30 +1,26 @@
-// case UPDATE_GLOSSARY:
-// if(action.payload.transcriptionType === 'tc'){
-//     return {
-//         ...state,
-//         glossary:{
-//             ...state.glossary,
-//             tc: action.payload.glossaryData
-//         }
-//     }
+var GlossaryActions = {};
 
-// }else if(action.payload.transcriptionType === 'tl'){
-//     return {
-//         ...state,
-//         glossary:{
-//             ...state.glossary,
-//             tl: action.payload.glossaryData
-//         }
-//     }
+GlossaryActions.updateGlossary = function updateGlossary( state, transcriptionType, glossaryData ) {
+    if(transcriptionType === 'tc'){
+        return {
+            ...state,
+            tc: glossaryData
+        }
 
-// }else if(action.payload.transcriptionType === 'tcn'){
-//     return {
-//         ...state,
-//         glossary:{
-//             ...state.glossary,
-//             tcn: action.payload.glossaryData
-//         }
-//     }
-// }else{
-//     return state;
-// }
+    }else if(transcriptionType === 'tl'){
+        return {
+            ...state,
+            tl: glossaryData
+        }
+
+    }else if(transcriptionType === 'tcn'){
+        return {
+            ...state,
+            tcn: glossaryData
+        }
+    }else{
+        return state;
+    }
+};
+
+export default GlossaryActions;

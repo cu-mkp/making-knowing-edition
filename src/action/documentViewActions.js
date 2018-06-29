@@ -250,7 +250,7 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 		viewType = 'ImageView';
 		xmlMode = false;
 	}
-	
+
 	if(side === 'left'){
 		return {
 			...state,
@@ -277,9 +277,9 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 };
 		
 // CHANGE_CURRENT_FOLIO
-DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id, side, transcriptionType, direction, matched ) {
+DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id, side, transcriptionType, direction ) {
 	if(state.folioIndex.length === 0){
-		console.log("WARNING: CHANGE_CURRENT_FOLIO reducer - folio index not defined, cannot change folio, leaving state alone");
+		console.log("WARNING: DocumentViewActions.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
 		return state;
 	}
 
@@ -287,7 +287,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 	let shortID = id.substr(id.lastIndexOf('/') + 1);
 
 	// Book mode? (recto/verso)
-	if(state.bookMode && !state.search.inSearchMode){
+	if(state.bookMode ){
 		let versoID=findNearestVerso(state, shortID, direction);
 		let current_idx = state.folioIndex.indexOf(versoID);
 		let nextID = '';
@@ -330,11 +330,11 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 	}
 
 	// Not book mode
-		let current_idx = state.folioIndex.indexOf(shortID);
-		let nextID = '';
-		let prevID = '';
-		let current_hasPrev = false;
-		let current_hasNext = false;
+	let current_idx = state.folioIndex.indexOf(shortID);
+	let nextID = '';
+	let prevID = '';
+	let current_hasPrev = false;
+	let current_hasNext = false;
 	if (current_idx > -1) {
 		current_hasNext = (current_idx < (state.folioIndex.length - 1));
 		nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
@@ -342,7 +342,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 		current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
 		prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
 	}
-	if(state.linkedMode && !state.search.inSearchMode){
+	if(state.linkedMode){
 		return {
 			...state,
 			left:{
@@ -366,57 +366,10 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 				nextFolioShortID: nextID
 			}
 		};
-	}else{
-		// Includes searchmode
-
-		let searchMatched =  (typeof matched === 'undefined')?state.search.matched:matched;
-
-		if(side === 'left'){
-			let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
-			return {
-				...state,
-				search:{
-					...state.search,
-					matched:searchMatched
-				},
-				left:{
-					...state.left,
-					currentFolioID: id,
-					transcriptionType: type,
-					transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
-					currentFolioShortID: shortID,
-					currentFolioName: state.folioNameByIDIndex[shortID],
-					hasPrevious: current_hasPrev,
-					hasNext: current_hasNext,
-					previousFolioShortID: prevID,
-					nextFolioShortID: nextID
-				}
-			};
-
-		}else{
-			let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
-
-			return {
-				...state,
-				search:{
-					...state.search,
-					matched:searchMatched
-				},
-				right:{
-					...state.right,
-					currentFolioID: id,
-					transcriptionType: type,
-					transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
-					currentFolioShortID: shortID,
-					currentFolioName: state.folioNameByIDIndex[shortID],
-					hasPrevious: current_hasPrev,
-					hasNext: current_hasNext,
-					previousFolioShortID: prevID,
-					nextFolioShortID: nextID
-				}
-			};
-		}
 	}
+
+	console.log("WARNING: DocumentViewActions.changeCurrentFolio called to no effect.");
+	return state;
 };
 
 
@@ -448,5 +401,68 @@ function findNearestVerso(state, id, direction){
 	}
 	return versoID;
 }
+
+// case ENTER_SEARCH_MODE:
+DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {    
+    return {
+        ...state,
+        linkedMode: false,
+        bookMode: false,
+    
+        left: {
+            ...state.left,
+            viewType: 'SearchResultView'
+        },
+    
+        right:{
+            ...state.right,
+            isGridMode: false,
+            viewType: 'TranscriptionView',
+            transcriptionType: 'tc',
+            transcriptionTypeLabel: 'Transcription',
+            currentFolioName: '',
+            currentFolioID: '-1',
+            currentFolioShortID: '',
+            hasPrevious: false,
+            hasNext: false,
+            nextFolioShortID: '',
+            previousFolioShortID: ''
+        }
+    }
+};
+
+// case EXIT_SEARCH_MODE:
+DocumentViewActions.exitSearchMode = function exitSearchMode( state ) {
+    // If we have a folio selected in search results, match the left pane
+    // otherwise just clear and gridview
+    let leftState;
+    if(parseInt(state.right.currentFolioID,10) === -1){
+        leftState = {
+            ...state.left,
+            viewType: 'ImageGridView',
+            currentFolioName: '',
+            currentFolioID: '',
+            currentFolioShortID: '',
+            hasPrevious: false,
+            hasNext: false,
+            nextFolioShortID: '',
+            previousFolioShortID: ''
+        };
+    }else{
+        leftState = {
+            ...state.right,
+            viewType: 'ImageView'
+        };
+    }
+
+    return {
+        ...state,
+        linkedMode: true,
+        left: leftState,
+        right:{
+            ...state.right,
+        }
+    }
+};
 
 export default DocumentViewActions;

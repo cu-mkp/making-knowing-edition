@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import * as navigationStateActions from '../action/navigationStateActions';
 import copyObject from '../lib/copyObject';
 import Navigation from '../component/Navigation';
 import Pagination from '../component/Pagination';
@@ -16,7 +15,6 @@ class TranscriptionView extends Component {
 		super(props);
 		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
-		this.navigationStateActions=navigationStateActions;
 		this.contentChange=true;
 		// window.loadingModal_stop();
 	}
@@ -418,7 +416,7 @@ class TranscriptionView extends Component {
 				}
 
 				// If in searchmode, inject <mark> around searchterms
-				if(this.props.navigationState.search.inSearchMode) {
+				if(this.props.search.inSearchMode) {
 					//for(let y=0;y<this.props.navigationState.search.matched.length;y++){
 
 						// The first matched term is the word we searched for, but we match a lot more things...
@@ -478,7 +476,8 @@ class TranscriptionView extends Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+				navigationState: state.navigationState,
+				search: state.search
     };
 }
 

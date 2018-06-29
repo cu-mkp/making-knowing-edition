@@ -13,10 +13,31 @@ class Gloss extends React.Component {
 		this.displayGloss = this.displayGloss.bind(this);
 
 		// Cache glossaries if we haven't yet
-	    if(Object.keys(this.props.navigationState.glossary["tc"]).length === 0){
-			this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tc', glossaryData:thisGlossary_tc}));
-			this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tcn', glossaryData:thisGlossary_tcn}));
-			this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tl', glossaryData:thisGlossary_tl}));
+	    if(Object.keys(this.props.glossary["tc"]).length === 0){
+			// this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tc', glossaryData:thisGlossary_tc}));
+			// this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tcn', glossaryData:thisGlossary_tcn}));
+			// this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tl', glossaryData:thisGlossary_tl}));
+			
+			dispatchAction( 
+				this.props,
+				GlossaryActions.updateGlossary,
+				'tc', 
+				thisGlossary_tc
+			);
+
+			dispatchAction( 
+				this.props,
+				GlossaryActions.updateGlossary,
+				'tcn', 
+				thisGlossary_tcn
+			);
+
+			dispatchAction( 
+				this.props,
+				GlossaryActions.updateGlossary,
+				'tl', 
+				thisGlossary_tl
+			);
 		}
 	}
 
@@ -25,7 +46,7 @@ class Gloss extends React.Component {
 		let term = this.props.term.toLowerCase();
 		 	term = term.replace(/\s{2,}/g,' ').trim()
 		let glossaryID = this.props.navigationState[this.props.side].transcriptionType;
-		let gloss = this.props.navigationState.glossary[glossaryID];
+		let gloss = this.props.glossary[glossaryID];
 		let contents = "<div class='term'>"+term+"</div>";
 		if(!(typeof gloss[term] === 'undefined')){
 			contents += "<div class='definition'>" + gloss[term] +"</div>";
@@ -75,7 +96,8 @@ class Gloss extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState
+		navigationState: state.navigationState,
+		glossary: state.glossary
 	};
 }
 
