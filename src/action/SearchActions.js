@@ -24,7 +24,6 @@ SearchActions.beginSearch = function beginSearch( state, searchTerm ) {
     return {
         ...state,
         term:searchTerm,
-        inSearchMode:true,
         results:results
     };
 };
@@ -33,7 +32,6 @@ SearchActions.clearSearch = function clearSearch( state ) {
     return {
         ...state,
         term:'',
-        inSearchMode:false,
         results:''
     };
 };

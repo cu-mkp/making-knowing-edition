@@ -407,7 +407,8 @@ DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {
     return {
         ...state,
         linkedMode: false,
-        bookMode: false,
+		bookMode: false,
+		inSearchMode: true,
     
         left: {
             ...state.left,
@@ -458,6 +459,7 @@ DocumentViewActions.exitSearchMode = function exitSearchMode( state ) {
     return {
         ...state,
         linkedMode: true,
+		inSearchMode: false,
         left: leftState,
         right:{
             ...state.right,

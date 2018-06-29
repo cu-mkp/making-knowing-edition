@@ -1,6 +1,5 @@
 export default {
     index:{},
-    inSearchMode:false,
     term:'',
     matched:[],
     typeHidden:{

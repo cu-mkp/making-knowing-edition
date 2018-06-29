@@ -4,6 +4,7 @@ export default {
 	drawerMode: false,
 	linkedMode: true,
 	bookMode: false,
+	inSearchMode:false,
 	folioIndex: [],
 	folioNameByIDIndex:[],
 	folioIDByNameIndex:[],
