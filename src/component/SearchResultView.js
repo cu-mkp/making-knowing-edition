@@ -10,7 +10,6 @@ import DocumentViewActions from '../action/DocumentViewActions';
 
 class SearchResultView extends Component {
 
-
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,8 +17,8 @@ class SearchResultView extends Component {
 		this.exitSearch = this.exitSearch.bind(this);
 		this.resultClicked = this.resultClicked.bind(this);
 		this.matchedOn=[];
+		this.fragmentParserOptions = this.generateFragmentParserOptions();
 	}
-
 
 	exitSearch(event){
 		// this.props.dispatch(this.navigationStateActions.exitSearchMode());
@@ -30,27 +29,11 @@ class SearchResultView extends Component {
 	handleSubmit(event) {
 		event.preventDefault(); // avoid to execute the actual submit of the form.
 		const data = new FormData(event.target);
-
 		let searchTerm = data.get("searchTerm");
 
-		// Check for special directives
-		if(searchTerm.split(":").length > 1){
-			let allowedDirectives=['folioid','name','content'];
-			let directive = searchTerm.split(":")[0];
-			if(!allowedDirectives.includes(directive)){
-				searchTerm=searchTerm.split(":").slice(1).join(" ");
-			}
-		}
-
 		if(searchTerm.length > 0 ){
-			//console.log("Search:"+searchTerm);
-			// this.props.dispatch(this.navigationStateActions.enterSearchMode({searchTerm: searchTerm}));
-			dispatchAction(
-				this.props,
-				SearchActions.beginSearch,
-				searchTerm
-			)
-			dispatchAction( this.props, DocumentViewActions.enterSearchMode );
+			dispatchAction( this.props, SearchActions.changeSearchTerm, searchTerm );
+			dispatchAction( this.props, SearchActions.beginSearch );
 		}
   	}
 
@@ -112,11 +95,7 @@ class SearchResultView extends Component {
 		}
 	}
 
-
-
-
-	// RENDER
-	render() {
+	generateFragmentParserOptions() {
 		this.matchedOn=[];
 		let this2=this;
 		let parserOptions = {
@@ -145,6 +124,12 @@ class SearchResultView extends Component {
 			 }
 		 };
 
+		return parserOptions;
+	}
+
+	// RENDER
+	render() {
+
 		// Display order
 		let displayOrderArray = [];
 		for (var key in this.props.search.typeHidden){
@@ -154,25 +139,23 @@ class SearchResultView extends Component {
 		}
 		/*{(i === 1) && <hr/>}*/
 
-
 		// Total results
 		let totalResultCount = this.props.search.results["tc"].length +
 							   this.props.search.results["tcn"].length +
 							   this.props.search.results["tl"].length;
 
-
-		let retVal = (
+		return (
 			<div className="searchResultsComponent">
 				<div className="navigation" onClick={this.exitSearch}>
 					<div className="fa fa-th"></div> exit search
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField"><input name="searchTerm"  key={this.props.search.term} className="textField" defaultValue={decodeURI(this.props.search.term)}/></div>
+						<div className="searchField"><input name="searchTerm"  key={this.props.search.term} className="textField" defaultValue={this.props.search.rawSearchTerm}/></div>
 						<div className="searchButton"><button type="submit"><span className="fa fa-search" aria-hidden="true"></span></button></div>
 					</div>
 					<div className="searchFilters">
-						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {decodeURI(this.props.search.term)}
+						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {this.props.search.term}
 					</div>
 					<div className="searchFilters">
 						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.navigationState.uiLabels.transcriptionType['tl']} ({this.props.search.results["tl"].length})</span>
@@ -182,7 +165,7 @@ class SearchResultView extends Component {
 				</form>
 				<div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
-						No Results found for '{decodeURI(this.props.search.term)}'
+						No Results found for '{this.props.search.rawSearchTerm}'
 					</div>
 
 				 	{displayOrderArray.map((type, i) =>
@@ -197,7 +180,7 @@ class SearchResultView extends Component {
 										<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
 									</div>
 									<div className="contextFragments">
-										{Parser(result.contextFragments.toString(), parserOptions)}
+										{Parser(result.contextFragments.toString(), this.fragmentParserOptions)}
 									</div>
 								</div>
 							)}
@@ -206,8 +189,6 @@ class SearchResultView extends Component {
 				</div>
 			</div>
 		);
-
-		return(retVal);
 	}
 }
 
