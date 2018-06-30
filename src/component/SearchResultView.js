@@ -12,21 +12,17 @@ class SearchResultView extends Component {
 
 	constructor(props) {
 		super(props);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleCheck = this.handleCheck.bind(this);
-		this.exitSearch = this.exitSearch.bind(this);
-		this.resultClicked = this.resultClicked.bind(this);
 		this.matchedOn=[];
 		this.fragmentParserOptions = this.generateFragmentParserOptions();
 	}
 
-	exitSearch(event){
+	exitSearch = (event) => {
 		// this.props.dispatch(this.navigationStateActions.exitSearchMode());
 		dispatchAction( this.props, DocumentViewActions.exitSearchMode );
 		dispatchAction( this.props, SearchActions.clearSearch );
 	}
 
-	handleSubmit(event) {
+	handleSubmit = (event) => {
 		event.preventDefault(); // avoid to execute the actual submit of the form.
 		const data = new FormData(event.target);
 		let searchTerm = data.get("searchTerm");
@@ -37,7 +33,7 @@ class SearchResultView extends Component {
 		}
   	}
 
-	resultClicked(event){
+	resultClicked = (event) => {
 
 		// remove p and strip leading zeros
 		let folioname = event.currentTarget.dataset.folioname.slice(1);
@@ -72,7 +68,7 @@ class SearchResultView extends Component {
 
 	}
 
-	handleCheck(event){
+	handleCheck = (event) => {
 		let type = event.currentTarget.dataset.id;
 		let resultingDisplayCount = 0;
 		for (var key in this.props.search.typeHidden){
