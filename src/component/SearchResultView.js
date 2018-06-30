@@ -74,7 +74,7 @@ class SearchResultView extends Component {
 			// }));
 			dispatchAction(
 				this.props,
-				DocumentViewActions.changeCurrentFolio,
+				DocumentViewActions.gotoSearchResult,
 				longID,
 				'right',
 				event.currentTarget.dataset.type

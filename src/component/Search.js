@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import SearchIndex from '../model/SearchIndex';
 import {dispatchAction} from '../model/ReduxStore';
 import SearchActions from '../action/SearchActions';
+import DocumentViewActions from '../action/DocumentViewActions';
 
 const allowedDirectives=['folioid','name','content'];
 
@@ -54,9 +55,10 @@ class Search extends React.Component {
 		// this.props.dispatch(enterSearchMode({searchTerm: parsedSearchTerm}));
 		dispatchAction(
 			this.props,
-			SearchActions.enterSearchMode,
+			SearchActions.beginSearch,
 			parsedSearchTerm
 		)
+		dispatchAction( this.props, DocumentViewActions.enterSearchMode );
 		event.preventDefault();
 	}
 
@@ -97,6 +99,7 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
 	return {
+		navigationState: state.navigationState,
 		search: state.search
 	};
 }

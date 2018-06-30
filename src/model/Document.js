@@ -1,26 +1,6 @@
 import Folio from './Folio';
 import axios from 'axios';
 
-// 3r
-// 6v
-// 10r
-// 16r (image into text), 120r (cross outs)
-// 46v (normal)
-// 75r (normal, but in scribe’s hand)
-// 101r (annotated image in margins)
-
-// 115v (marginal images)
-// 123v (crossed out text and marginal notes)
-// 124v
-// 129v (marginal notes into the title area, images in the margins, marginal notes across and into body of the text)
-// 139v (marginal notes)
-// 164r (normal)
-// 165v (margins going into text and header with picture)
-// 168v
-// 169r (images and an image key)
-
-// http://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/f207/info.json
-
 class Document {
 
 	constructor() {

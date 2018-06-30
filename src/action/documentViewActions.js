@@ -372,6 +372,51 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 	return state;
 };
 
+DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, id, side, transcriptionType ) {
+	let nextID = '';
+	let prevID = '';
+	let current_hasPrev = false;
+	let current_hasNext = false;
+	let shortID = id.substr(id.lastIndexOf('/') + 1);
+
+	if(side === 'left'){
+		let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+		return {
+			...state,
+			left:{
+				...state.left,
+				currentFolioID: id,
+				transcriptionType: type,
+				transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
+				currentFolioShortID: shortID,
+				currentFolioName: state.folioNameByIDIndex[shortID],
+				hasPrevious: current_hasPrev,
+				hasNext: current_hasNext,
+				previousFolioShortID: prevID,
+				nextFolioShortID: nextID
+			}
+		};
+
+	}else{
+		let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+
+		return {
+			...state,
+			right:{
+				...state.right,
+				currentFolioID: id,
+				transcriptionType: type,
+				transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
+				currentFolioShortID: shortID,
+				currentFolioName: state.folioNameByIDIndex[shortID],
+				hasPrevious: current_hasPrev,
+				hasNext: current_hasNext,
+				previousFolioShortID: prevID,
+				nextFolioShortID: nextID
+			}
+		};
+	}
+};
 
 function findNearestVerso(state, id, direction){
 	let found=false;
