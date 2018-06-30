@@ -1,5 +1,6 @@
 export default {
     index:{},
+    rawSearchTerm: '',
     term:'',
     matched:[],
     typeHidden:{

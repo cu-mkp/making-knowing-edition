@@ -5,14 +5,7 @@ import {dispatchAction} from '../model/ReduxStore';
 import SearchActions from '../action/SearchActions';
 import DocumentViewActions from '../action/DocumentViewActions';
 
-const allowedDirectives=['folioid','name','content'];
-
 class Search extends React.Component {
-
-	constructor(props, context) {
-		super(props, context);
-		this.state = { searchTerm: "" };
-	}
 
 	componentDidMount() {
 		// If we don't have a search index, load it.
@@ -37,7 +30,8 @@ class Search extends React.Component {
 	}
 
 	onSearchTermChange = (event) => {
-		this.setState({ ...this.state, searchTerm: event.target.value });
+		let searchTerm = event.target.value;
+		dispatchAction( this.props, SearchActions.changeSearchTerm, searchTerm);
 	}
 
 	onSubmit = (event) => {
@@ -51,32 +45,10 @@ class Search extends React.Component {
 			return;
 		}
 
-		let parsedSearchTerm = this.parseSearchTerm(this.state.searchTerm);
 		// this.props.dispatch(enterSearchMode({searchTerm: parsedSearchTerm}));
-		dispatchAction(
-			this.props,
-			SearchActions.beginSearch,
-			parsedSearchTerm
-		)
+		dispatchAction( this.props, SearchActions.beginSearch );
 		dispatchAction( this.props, DocumentViewActions.enterSearchMode );
 		event.preventDefault();
-	}
-
-	parseSearchTerm(rawSearchTerm) {
-		let searchTerm = rawSearchTerm;
-
-		// Unsanitize spaces
-		searchTerm = searchTerm.replace('%20',' ');
-
-		// Check for special directives
-		if(searchTerm.split(":").length > 1){
-			let directive = searchTerm.split(":")[0];
-			if(!allowedDirectives.includes(directive)){
-				searchTerm=searchTerm.split(":").slice(1).join(" ");
-			}
-		}
-
-		return searchTerm;
 	}
 
 	render() {
@@ -87,7 +59,7 @@ class Search extends React.Component {
 						className="searchBox" 
 						placeholder="Search the Edition"
 						onChange={this.onSearchTermChange}
-						value={this.state.searchTerm}
+						value={this.props.search.rawSearchTerm}
 						/>
 				</form>
 			</div>
@@ -96,13 +68,11 @@ class Search extends React.Component {
 
 }
 
-
 function mapStateToProps(state) {
 	return {
 		navigationState: state.navigationState,
 		search: state.search
 	};
 }
-
 
 export default connect(mapStateToProps)(Search);

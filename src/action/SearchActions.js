@@ -1,5 +1,7 @@
 var SearchActions = {};
 
+const allowedDirectives=['folioid','name','content'];
+
 // case UPDATE_SEARCH_INDEX:
 SearchActions.updateSearchIndex = function updateSearchIndex( state, searchIndex ) {
     return {
@@ -15,7 +17,17 @@ SearchActions.searchMatched = function searchMatched( state, matched ) {
     }
 };
 
-SearchActions.beginSearch = function beginSearch( state, searchTerm ) {
+SearchActions.changeSearchTerm = function changeSearchTerm( state, rawSearchTerm ) {
+    return {
+        ...state,
+        rawSearchTerm
+    }
+}
+
+SearchActions.beginSearch = function beginSearch( state ) {
+
+    let searchTerm = parseSearchTerm(state.rawSearchTerm);
+
     let results = {};
     results['tc'] = state.index.searchEdition(searchTerm,'tc');
     results['tcn'] = state.index.searchEdition(searchTerm,'tcn');
@@ -32,6 +44,7 @@ SearchActions.clearSearch = function clearSearch( state ) {
     return {
         ...state,
         term:'',
+        rawSearchTerm:'',
         results:''
     };
 };
@@ -73,5 +86,22 @@ SearchActions.cacheSearchResults = function cacheSearchResults( state, results )
         results:results
     }
 };
+
+function parseSearchTerm(rawSearchTerm) {
+    let searchTerm = rawSearchTerm;
+
+    // Unsanitize spaces
+    searchTerm = searchTerm.replace('%20',' ');
+
+    // Check for special directives
+    if(searchTerm.split(":").length > 1){
+        let directive = searchTerm.split(":")[0];
+        if(!allowedDirectives.includes(directive)){
+            searchTerm=searchTerm.split(":").slice(1).join(" ");
+        }
+    }
+
+    return searchTerm;
+}
 
 export default SearchActions;
