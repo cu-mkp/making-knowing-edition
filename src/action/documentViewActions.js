@@ -366,56 +366,80 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 				nextFolioShortID: nextID
 			}
 		};
+	} else {
+		if(side === 'left'){
+			let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+			return {
+				...state,
+				left:{
+					...state.left,
+					currentFolioID: id,
+					transcriptionType: type,
+					transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
+					currentFolioShortID: shortID,
+					currentFolioName: state.folioNameByIDIndex[shortID],
+					hasPrevious: current_hasPrev,
+					hasNext: current_hasNext,
+					previousFolioShortID: prevID,
+					nextFolioShortID: nextID
+				}
+			};
+	
+		}else{
+			let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+	
+			return {
+				...state,
+				right:{
+					...state.right,
+					currentFolioID: id,
+					transcriptionType: type,
+					transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
+					currentFolioShortID: shortID,
+					currentFolioName: state.folioNameByIDIndex[shortID],
+					hasPrevious: current_hasPrev,
+					hasNext: current_hasNext,
+					previousFolioShortID: prevID,
+					nextFolioShortID: nextID
+				}
+			};
+		}
 	}
-
-	console.log("WARNING: DocumentViewActions.changeCurrentFolio called to no effect.");
-	return state;
 };
 
 DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, id, side, transcriptionType ) {
+
+	let shortID = id.substr(id.lastIndexOf('/') + 1);
+	let current_idx = state.folioIndex.indexOf(shortID);
 	let nextID = '';
 	let prevID = '';
 	let current_hasPrev = false;
 	let current_hasNext = false;
-	let shortID = id.substr(id.lastIndexOf('/') + 1);
+	if (current_idx > -1) {
+		current_hasNext = (current_idx < (state.folioIndex.length - 1));
+		nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
 
-	if(side === 'left'){
-		let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
-		return {
-			...state,
-			left:{
-				...state.left,
-				currentFolioID: id,
-				transcriptionType: type,
-				transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
-				currentFolioShortID: shortID,
-				currentFolioName: state.folioNameByIDIndex[shortID],
-				hasPrevious: current_hasPrev,
-				hasNext: current_hasNext,
-				previousFolioShortID: prevID,
-				nextFolioShortID: nextID
-			}
-		};
-
-	}else{
-		let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
-
-		return {
-			...state,
-			right:{
-				...state.right,
-				currentFolioID: id,
-				transcriptionType: type,
-				transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
-				currentFolioShortID: shortID,
-				currentFolioName: state.folioNameByIDIndex[shortID],
-				hasPrevious: current_hasPrev,
-				hasNext: current_hasNext,
-				previousFolioShortID: prevID,
-				nextFolioShortID: nextID
-			}
-		};
+		current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
+		prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
 	}
+
+	let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+
+	return {
+		...state,
+		right:{
+			...state.right,
+			currentFolioID: id,
+			transcriptionType: type,
+			transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
+			currentFolioShortID: shortID,
+			currentFolioName: state.folioNameByIDIndex[shortID],
+			hasPrevious: current_hasPrev,
+			hasNext: current_hasNext,
+			previousFolioShortID: prevID,
+			nextFolioShortID: nextID
+		}
+	};
 };
 
 function findNearestVerso(state, id, direction){
@@ -469,8 +493,8 @@ DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {
             currentFolioName: '',
             currentFolioID: '-1',
             currentFolioShortID: '',
-            hasPrevious: false,
-            hasNext: false,
+            // hasPrevious: false,
+            // hasNext: false,
             nextFolioShortID: '',
             previousFolioShortID: ''
         }
@@ -489,8 +513,8 @@ DocumentViewActions.exitSearchMode = function exitSearchMode( state ) {
             currentFolioName: '',
             currentFolioID: '',
             currentFolioShortID: '',
-            hasPrevious: false,
-            hasNext: false,
+            // hasPrevious: false,
+            // hasNext: false,
             nextFolioShortID: '',
             previousFolioShortID: ''
         };

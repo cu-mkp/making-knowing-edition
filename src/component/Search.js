@@ -35,20 +35,23 @@ class Search extends React.Component {
 	}
 
 	onSubmit = (event) => {
+		event.preventDefault();
+
+		let doSearch = () => {
+			dispatchAction( this.props, SearchActions.beginSearch );
+			dispatchAction( this.props, DocumentViewActions.enterSearchMode );	
+		}
 
 		// We cannot do this if the search index hasn't been defined yet,
 		// there's probably a slicker way to do this but let's poll, whee...
 		if(Object.keys(this.props.search.index).length === 0){
 			setTimeout(() => {
-				this.onSubmit();
+				doSearch();
 			}, 250);
 			return;
 		}
 
-		// this.props.dispatch(enterSearchMode({searchTerm: parsedSearchTerm}));
-		dispatchAction( this.props, SearchActions.beginSearch );
-		dispatchAction( this.props, DocumentViewActions.enterSearchMode );
-		event.preventDefault();
+		doSearch();
 	}
 
 	render() {
