@@ -1,11 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { withRouter } from 'react-router-dom'
+
 import SearchIndex from '../model/SearchIndex';
 import {dispatchAction} from '../model/ReduxStore';
 import SearchActions from '../action/SearchActions';
 import DocumentViewActions from '../action/DocumentViewActions';
+  
 
 class Search extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.onSubmit = this.onSubmit.bind(this);
+	}
 
 	componentDidMount() {
 		// If we don't have a search index, load it.
@@ -33,10 +41,11 @@ class Search extends React.Component {
 		dispatchAction( this.props, SearchActions.changeSearchTerm, searchTerm);
 	}
 
-	onSubmit = (event) => {
+	onSubmit(event) {
 		event.preventDefault();
 
 		let doSearch = () => {
+			this.props.history.push('/folios');
 			dispatchAction( this.props, SearchActions.beginSearch );
 			dispatchAction( this.props, DocumentViewActions.enterSearchMode );	
 		}
@@ -77,4 +86,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps)(withRouter(Search));
