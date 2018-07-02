@@ -32,7 +32,6 @@ class navigation extends React.Component {
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		// Change viewtype
-		// this.props.dispatch(this.navigationStateActions.changeTranscriptionType({side:this.props.side,transcriptionType:event.currentTarget.dataset.id}));
 		dispatchAction( 
 			this.props,
 			DocumentViewActions.changeTranscriptionType,
@@ -45,8 +44,6 @@ class navigation extends React.Component {
 
 		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.navigationState.bookMode === true){
-			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
-			// id, side, transcriptionType, direction, matched
 			dispatchAction(
 				this.props,
 				DocumentViewActions.changeCurrentFolio,
@@ -56,7 +53,6 @@ class navigation extends React.Component {
 			)
 
 			let longID = this.props.navigationState.folioIDPrefix+this.props.navigationState.right.nextFolioShortID;
-			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:longID,direction:event.currentTarget.dataset.direction}));
 			dispatchAction(
 				this.props,
 				DocumentViewActions.changeCurrentFolio,
@@ -67,7 +63,6 @@ class navigation extends React.Component {
 		}
 
 		// Toggle bookmode
-		// this.props.dispatch(this.navigationStateActions.setBookMode({shortid:this.props.navigationState.left.currentFolioShortID, status:!this.props.navigationState.bookMode}));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.setBookMode,
@@ -77,7 +72,6 @@ class navigation extends React.Component {
 	}
 
 	toggleXMLMode = function(event){
-//		this.props.dispatch(this.navigationStateActions.setXMLMode({side:this.props.side, newState:!this.props.navigationState[this.props.side].isXMLMode}));
 		dispatchAction( 
 			this.props, 
 			DocumentViewActions.setXMLMode, 
@@ -88,7 +82,6 @@ class navigation extends React.Component {
 
 	// aka gridMode
 	toggleColumns = function(event){
-		// this.props.dispatch(this.navigationStateActions.setColumnModeForSide({side:this.props.side, newState:!this.props.navigationState[this.props.side].isGridMode}));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.setColumnModeForSide,
@@ -108,8 +101,6 @@ class navigation extends React.Component {
 		// If we are transitioning from unlocked to locked, synch up the panes
 		if(!this.props.navigationState.linkedMode === true){
 			if(this.props.side === 'left'){
-				// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'right',id:this.props.navigationState.left.currentFolioID,direction:event.currentTarget.dataset.direction}));
-				// id, side, transcriptionType, direction, matched
 				dispatchAction( 
 					this.props,
 					DocumentViewActions.changeCurrentFolio,
@@ -119,7 +110,6 @@ class navigation extends React.Component {
 					event.currentTarget.dataset.direction					
 				);
 			}else{
-				// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:'left',id:this.props.navigationState.right.currentFolioID,direction:event.currentTarget.dataset.direction}));
 				dispatchAction(
 					this.props,
 					DocumentViewActions.changeCurrentFolio,
@@ -132,7 +122,6 @@ class navigation extends React.Component {
 		}
 
 		// Set lock
-		// this.props.dispatch(this.navigationStateActions.setLinkedMode(!this.props.navigationState.linkedMode));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.setLinkedMode,
@@ -146,7 +135,6 @@ class navigation extends React.Component {
 		}
 		console.log(event.currentTarget.dataset.id);
 		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
-		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.changeCurrentFolio,
@@ -172,7 +160,6 @@ class navigation extends React.Component {
 		let folioID = this.props.navigationState.folioIDByNameIndex[folioName];
 		if(typeof folioID !== 'undefined'){
 			let longID = this.props.navigationState.folioIDPrefix+folioID;
-			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID}));
 			dispatchAction(
 				this.props,
 				DocumentViewActions.changeCurrentFolio,

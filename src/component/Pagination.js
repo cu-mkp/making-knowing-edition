@@ -17,7 +17,6 @@ class navigation extends React.Component {
 		}
 
 		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
-		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:longID,direction:event.currentTarget.dataset.direction}));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.changeCurrentFolio,

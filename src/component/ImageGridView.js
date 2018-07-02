@@ -32,7 +32,6 @@ class ImageGridView extends React.Component {
 
 	onClickThumb = (id, e) => {
 		// Set the folio for this side
-		// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({side:this.props.side,id:id}));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.changeCurrentFolio,
@@ -42,7 +41,6 @@ class ImageGridView extends React.Component {
 
 		// Replace this pane with imageView if the pane is big enough
 		if(this.props.navigationState[this.props.side].width >= this.thumbnailNavigationModeSize){
-			// this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageView'}));
 			dispatchAction(
 				this.props,
 				DocumentViewActions.setPaneViewtype,

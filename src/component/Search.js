@@ -14,7 +14,6 @@ class Search extends React.Component {
 			searchIndex.load().then(
 				(searchIndex) => {
 					console.log("Search index loaded.")
-					// this.props.dispatch(updateSearchIndex({searchIndex: searchIndex}));
 					dispatchAction(
 						this.props,
 						SearchActions.updateSearchIndex,

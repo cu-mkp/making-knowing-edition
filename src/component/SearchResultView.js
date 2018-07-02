@@ -21,7 +21,6 @@ class SearchResultView extends Component {
 	}
 
 	exitSearch(event) {
-		// this.props.dispatch(this.navigationStateActions.exitSearchMode());
 		dispatchAction( this.props, DocumentViewActions.exitSearchMode );
 		dispatchAction( this.props, SearchActions.clearSearch );
 	}
@@ -49,12 +48,6 @@ class SearchResultView extends Component {
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
 			let longID = this.props.navigationState.folioIDPrefix+shortID;
-			// this.props.dispatch(this.navigationStateActions.changeCurrentFolio({
-			// 	side:'right',
-			// 	id:longID,
-			// 	transcriptionType:event.currentTarget.dataset.type,
-			// 	matched:uniq(this.matchedOn)
-			// }));
 			dispatchAction(
 				this.props,
 				SearchActions.searchMatched,
@@ -85,7 +78,6 @@ class SearchResultView extends Component {
 
 		// As long as we have at least one option checked, flip the value
 		if(resultingDisplayCount >= 1){
-			// this.props.dispatch(this.navigationStateActions.searchTypeHidden({type: type, value:!this.props.navigationState.search.typeHidden[type]}));
 			dispatchAction(
 				this.props,
 				SearchActions.searchTypeHidden,

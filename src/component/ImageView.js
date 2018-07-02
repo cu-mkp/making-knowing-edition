@@ -61,7 +61,6 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		// this.props.dispatch(this.navigationStateActions.setPaneViewtype({side:this.props.side,viewType:'ImageGridView'}));
 		dispatchAction(
 			this.props,
 			DocumentViewActions.setPaneViewtype,

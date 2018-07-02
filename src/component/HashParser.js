@@ -290,7 +290,6 @@ class HashParser extends React.Component {
 			newState.right.isGridMode = (right_gridMode === "0")?false:true;
 
 			// Finally pass the new state object to the reducer
-			// this.props.dispatch(this.navigationStateActions.setStateFromHash({newState:newState}));
 			dispatchAction(
 				this.props,
 				DocumentViewActions.setStateFromHash,

@@ -33,9 +33,6 @@ class DocumentView extends Component {
 						nameByID[shortID] = this.document.folios[idx].name;
 						idByName[this.document.folios[idx].name] = shortID;
 					}
-					// this.props.dispatch(this.navigationStateActions.updateFolioIndex({	folioIndex: folioIndex,
-					// 																	folioNameByIDIndex: nameByID,
-					// 																	folioIDByNameIndex: idByName}));
 					dispatchAction(
 						this.props,
 						DocumentViewActions.updateFolioIndex,

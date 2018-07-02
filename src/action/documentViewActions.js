@@ -493,8 +493,6 @@ DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {
             currentFolioName: '',
             currentFolioID: '-1',
             currentFolioShortID: '',
-            // hasPrevious: false,
-            // hasNext: false,
             nextFolioShortID: '',
             previousFolioShortID: ''
         }
