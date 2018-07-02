@@ -14,15 +14,19 @@ class SearchResultView extends Component {
 		super(props);
 		this.matchedOn=[];
 		this.fragmentParserOptions = this.generateFragmentParserOptions();
+		this.exitSearch = this.exitSearch.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.resultClicked = this.resultClicked.bind(this);
+		this.handleCheck = this.handleCheck.bind(this);
 	}
 
-	exitSearch = (event) => {
+	exitSearch(event) {
 		// this.props.dispatch(this.navigationStateActions.exitSearchMode());
 		dispatchAction( this.props, DocumentViewActions.exitSearchMode );
 		dispatchAction( this.props, SearchActions.clearSearch );
 	}
 
-	handleSubmit = (event) => {
+	handleSubmit(event) {
 		event.preventDefault(); // avoid to execute the actual submit of the form.
 		const data = new FormData(event.target);
 		let searchTerm = data.get("searchTerm");
@@ -33,7 +37,7 @@ class SearchResultView extends Component {
 		}
   	}
 
-	resultClicked = (event) => {
+	resultClicked(event) {
 
 		// remove p and strip leading zeros
 		let folioname = event.currentTarget.dataset.folioname.slice(1);
@@ -53,22 +57,22 @@ class SearchResultView extends Component {
 			// }));
 			dispatchAction(
 				this.props,
+				SearchActions.searchMatched,
+				uniq(this.matchedOn)
+			);
+			dispatchAction(
+				this.props,
 				DocumentViewActions.gotoSearchResult,
 				longID,
 				'right',
 				event.currentTarget.dataset.type
-			);
-			dispatchAction(
-				this.props,
-				SearchActions.searchMatched,
-				uniq(this.matchedOn)
 			);
 		}
 
 
 	}
 
-	handleCheck = (event) => {
+	handleCheck(event) {
 		let type = event.currentTarget.dataset.id;
 		let resultingDisplayCount = 0;
 		for (var key in this.props.search.typeHidden){
@@ -92,7 +96,6 @@ class SearchResultView extends Component {
 	}
 
 	generateFragmentParserOptions() {
-		this.matchedOn=[];
 		let this2=this;
 		let parserOptions = {
 			 replace: function(domNode) {
@@ -125,6 +128,9 @@ class SearchResultView extends Component {
 
 	// RENDER
 	render() {
+
+		// This is populated each time by the fragment parser.
+		this.matchedOn=[];
 
 		// Display order
 		let displayOrderArray = [];

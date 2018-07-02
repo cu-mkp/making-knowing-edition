@@ -416,12 +416,12 @@ class TranscriptionView extends Component {
 				}
 
 				// If in searchmode, inject <mark> around searchterms
-				if(this.props.search.inSearchMode) {
+				if(this.props.navigationState.inSearchMode) {
 					//for(let y=0;y<this.props.navigationState.search.matched.length;y++){
 
 						// The first matched term is the word we searched for, but we match a lot more things...
 						let y = 0;
-						let matchedTerm = this.props.navigationState.search.matched[y];
+						let matchedTerm = this.props.search.matched[y];
 						matchedTerm = matchedTerm.replace(/[^a-zA-Z ]/g, "").trim();
 						console.log(matchedTerm);
 						let contentAsArray = content.split(">");
