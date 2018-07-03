@@ -3,10 +3,7 @@ import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
 import SearchIndex from '../model/SearchIndex';
-import {dispatchAction} from '../model/ReduxStore';
-import SearchActions from '../action/SearchActions';
-import DocumentViewActions from '../action/DocumentViewActions';
-  
+import {dispatchAction} from '../model/ReduxStore';  
 
 class Search extends React.Component {
 
@@ -24,7 +21,7 @@ class Search extends React.Component {
 					console.log("Search index loaded.")
 					dispatchAction(
 						this.props,
-						SearchActions.updateSearchIndex,
+						'SearchActions.updateSearchIndex',
 						searchIndex
 					);
 				},
@@ -38,7 +35,7 @@ class Search extends React.Component {
 
 	onSearchTermChange = (event) => {
 		let searchTerm = event.target.value;
-		dispatchAction( this.props, SearchActions.changeSearchTerm, searchTerm);
+		dispatchAction( this.props, 'SearchActions.changeSearchTerm', searchTerm);
 	}
 
 	onSubmit(event) {
@@ -46,8 +43,8 @@ class Search extends React.Component {
 
 		let doSearch = () => {
 			this.props.history.push('/folios');
-			dispatchAction( this.props, SearchActions.beginSearch );
-			dispatchAction( this.props, DocumentViewActions.enterSearchMode );	
+			dispatchAction( this.props, 'SearchActions.beginSearch' );
+			dispatchAction( this.props, 'DocumentViewActions.enterSearchMode' );	
 		}
 
 		// We cannot do this if the search index hasn't been defined yet,

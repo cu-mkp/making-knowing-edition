@@ -5,8 +5,6 @@ import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 
 import {dispatchAction} from '../model/ReduxStore';
-import SearchActions from '../action/SearchActions';
-import DocumentViewActions from '../action/DocumentViewActions';
 
 class SearchResultView extends Component {
 
@@ -21,8 +19,8 @@ class SearchResultView extends Component {
 	}
 
 	exitSearch(event) {
-		dispatchAction( this.props, DocumentViewActions.exitSearchMode );
-		dispatchAction( this.props, SearchActions.clearSearch );
+		dispatchAction( this.props, 'DocumentViewActions.exitSearchMode' );
+		dispatchAction( this.props, 'SearchActions.clearSearch' );
 	}
 
 	handleSubmit(event) {
@@ -31,8 +29,8 @@ class SearchResultView extends Component {
 		let searchTerm = data.get("searchTerm");
 
 		if(searchTerm.length > 0 ){
-			dispatchAction( this.props, SearchActions.changeSearchTerm, searchTerm );
-			dispatchAction( this.props, SearchActions.beginSearch );
+			dispatchAction( this.props, 'SearchActions.changeSearchTerm', searchTerm );
+			dispatchAction( this.props, 'SearchActions.beginSearch' );
 		}
   	}
 
@@ -50,12 +48,12 @@ class SearchResultView extends Component {
 			let longID = this.props.navigationState.folioIDPrefix+shortID;
 			dispatchAction(
 				this.props,
-				SearchActions.searchMatched,
+				'SearchActions.searchMatched',
 				uniq(this.matchedOn)
 			);
 			dispatchAction(
 				this.props,
-				DocumentViewActions.gotoSearchResult,
+				'DocumentViewActions.gotoSearchResult',
 				longID,
 				'right',
 				event.currentTarget.dataset.type
@@ -80,7 +78,7 @@ class SearchResultView extends Component {
 		if(resultingDisplayCount >= 1){
 			dispatchAction(
 				this.props,
-				SearchActions.searchTypeHidden,
+				'SearchActions.searchTypeHidden',
 				type, 
 				!this.props.search.typeHidden[type]
 			)

@@ -5,7 +5,6 @@ import SplitPaneView from './SplitPaneView';
 import Document from '../model/Document';
 import HashParser from '../component/HashParser';
 import {dispatchAction} from '../model/ReduxStore';
-import DocumentViewActions from '../action/DocumentViewActions';
 
 class DocumentView extends Component {
 
@@ -35,7 +34,7 @@ class DocumentView extends Component {
 					}
 					dispatchAction(
 						this.props,
-						DocumentViewActions.updateFolioIndex,
+						'DocumentViewActions.updateFolioIndex',
 						folioIndex,
 						nameByID,
 						idByName

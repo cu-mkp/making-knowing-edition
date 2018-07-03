@@ -11,8 +11,8 @@ import glossaryInitialState from './initialState/glossaryInitialState';
 
 export default function rootReducer() {
     return combineReducers({
-        navigationState: createReducer( DocumentViewActions, navigationInitialState ),
-        search: createReducer( SearchActions, searchInitialState ),
-        glossary: createReducer( GlossaryActions, glossaryInitialState )
+        navigationState: createReducer( 'DocumentViewActions', DocumentViewActions, navigationInitialState ),
+        search: createReducer( 'SearchActions', SearchActions, searchInitialState ),
+        glossary: createReducer( 'GlossaryActions', GlossaryActions, glossaryInitialState )
     });    
 };

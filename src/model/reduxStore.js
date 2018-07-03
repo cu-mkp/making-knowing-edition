@@ -18,18 +18,28 @@ export function dispatchAction( props, action, ...params ) {
 };
 
 // Take the action and call it with the current redux state. 
-function reducer( state, action ) {
+function reducer( state, actionFn, action ) {
   let params = (action.payload && action.payload.params) ? action.payload.params : [];
-  return action.type( state, ...params );
+  return actionFn( state, ...params );
 };
 
-// Create a reducer that only services actions in the action set.
-export function createReducer( actionSet, initialState ) {
-  var actionNames = Object.keys(actionSet);
+function getActionFn( action, actionModule ) {
+  let parts = action.split('.')
+  return actionModule[parts[1]];
+}
 
-  function scopedReducer(state=initialState, action, validActions=actionNames) {
-    if( validActions.includes(action.type.name) ) {
-      return reducer( state, action );
+// Create a reducer that only services actions in the action set.
+export function createReducer( actionModuleName, actionModule, initialState ) {
+
+  // get the function keys from the module itself
+  var actionNames = [];
+  for( let action of Object.keys(actionModule) ) {
+    actionNames.push(`${actionModuleName}.${action}`);
+  }
+
+  function scopedReducer(state=initialState, action, validActions=actionNames, mod=actionModule) {
+    if( validActions.includes(action.type) ) {
+      return reducer( state, getActionFn(action.type, mod), action );
     } else {
       return { ...state }; 
     }

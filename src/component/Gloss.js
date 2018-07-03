@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
-import GlossaryActions from '../action/GlossaryActions';
 import thisGlossary_tc from '../data/bnf-ms-fr-640/glossary/tc.json';
 import thisGlossary_tcn from '../data/bnf-ms-fr-640/glossary/tcn.json';
 import thisGlossary_tl from '../data/bnf-ms-fr-640/glossary/tl.json';
@@ -20,21 +19,21 @@ class Gloss extends React.Component {
 			
 			dispatchAction( 
 				this.props,
-				GlossaryActions.updateGlossary,
+				'GlossaryActions.updateGlossary',
 				'tc', 
 				thisGlossary_tc
 			);
 
 			dispatchAction( 
 				this.props,
-				GlossaryActions.updateGlossary,
+				'GlossaryActions.updateGlossary',
 				'tcn', 
 				thisGlossary_tcn
 			);
 
 			dispatchAction( 
 				this.props,
-				GlossaryActions.updateGlossary,
+				'GlossaryActions.updateGlossary',
 				'tl', 
 				thisGlossary_tl
 			);
