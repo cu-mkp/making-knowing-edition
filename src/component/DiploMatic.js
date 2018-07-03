@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DocumentView from './DocumentView';
 import ContentView from './ContentView';
+import AnnotationView from './AnnotationView';
 import Search from './Search';
 
 class DiploMatic extends Component {
@@ -44,16 +45,16 @@ class DiploMatic extends Component {
 	renderHeader() {
 		return (
 			<div id="header">
-				<div className="title"><Link to='/' className='home-link'>The Making and Knowing Project</Link> <span className='warning'>(BETA)</span></div>
+				<div className="title"><Link to='/' className='home-link'>BnF Ms. Fr. 640</Link> <span className='warning'>(BETA)</span></div>
 				<div className="compactTitle">M&amp;K</div>
-				<div className="tagline">Intersections of Craft Making and Scientific Knowing</div>
+				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
 					<div className="expandedViewOnly">
-						<span>BnF Ms. Fr. 640<span className="fa fa-caret-down"></span></span>
-						<span>Lab<span className="fa fa-caret-down"></span></span>
-						<span>Press</span>
-						<span>About<span className="fa fa-caret-down"></span></span>
-						<span>Support</span>
+						{/* <Link to='/annotations'>Annotations</Link> */}
+						<span>Annotations</span>
+						<span>Entries</span>
+						<Link to='/folios'>Folios</Link>
+						<span>About</span>
 					</div>
 					<Search/>
 					<div className="expandedViewOnly">
@@ -69,6 +70,7 @@ class DiploMatic extends Component {
 			<div id="content">
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
+					<Route path="/annotations" component={AnnotationView}/>
 					<Route path="/folios" component={DocumentView}/>
 				</Switch>
 			</div>
