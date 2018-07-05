@@ -10,12 +10,7 @@
 /* Globals */
 body {
   padding: 0;
-  margin: 0;
-  overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none; }
+  margin: 0; }
 
 .warning {
   color: yellow; }
@@ -283,14 +278,78 @@ figure.current {
   color: #4A4A4A; }
 
 #annotation-view {
-  margin: 20px;
+  margin: 80px;
   padding-top: 40px; }
 
 #content-view {
   margin: 20px;
   padding-top: 40px; }
 
-#diplomatic {
+#diplomatic #header {
+  width: 100vw;
+  margin: 0;
+  color: white;
+  height: 4rem;
+  background-color: #656565;
+  font-family: 'OpenSans', sans-serif;
+  grid-area: header;
+  padding: 1rem 0 0 1rem;
+  white-space: nowrap; }
+  #diplomatic #header .title {
+    font-size: 2rem;
+    font-weight: 700; }
+    #diplomatic #header .title .home-link {
+      color: white;
+      text-decoration: none; }
+  #diplomatic #header .tagline {
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding: 0.3rem 0 0 0.3rem; }
+  #diplomatic #header .compactTitle {
+    font-weight: 700;
+    display: none; }
+
+#diplomatic #header.fixed {
+  z-index: 900;
+  position: fixed; }
+
+#diplomatic #content {
+  margin-top: 5rem; }
+
+#diplomatic #navigation {
+  background-color: blue;
+  height: 4.4rem; }
+  #diplomatic #navigation .fixed-position {
+    width: 40rem;
+    top: 0;
+    right: 0;
+    position: Fixed; }
+
+#diplomatic #footer {
+  width: 100vw;
+  margin: 0;
+  color: white;
+  height: 3rem;
+  background-color: #656565;
+  font-family: 'OpenSans', sans-serif;
+  grid-area: header;
+  padding: 0.4rem 0 0 1rem;
+  white-space: nowrap; }
+  #diplomatic #footer .copyright {
+    font-weight: 300;
+    font-size: 0.8rem;
+    padding: 0.8rem 0 0 0.3rem; }
+
+#diplomatic #footer.fixed {
+  z-index: 9000;
+  position: fixed;
+  bottom: 0; }
+  #diplomatic #footer.fixed .logos {
+    position: fixed;
+    right: 1rem;
+    bottom: 0.6rem; }
+
+#diplomatic.fixed {
   position: fixed;
   padding: 0;
   width: 100vw;
@@ -298,62 +357,11 @@ figure.current {
   font-family: 'OpenSans', sans-serif;
   font-size: 0.8rem;
   line-height: 1.2rem;
-  overflow: hidden; }
-  #diplomatic #header {
-    z-index: 900;
-    position: fixed;
-    width: 100vw;
-    margin: 0;
-    color: white;
-    height: 4rem;
-    background-color: #656565;
-    font-family: 'OpenSans', sans-serif;
-    grid-area: header;
-    padding: 1rem 0 0 1rem;
-    white-space: nowrap; }
-    #diplomatic #header .title {
-      font-size: 2rem;
-      font-weight: 700; }
-      #diplomatic #header .title .home-link {
-        color: white;
-        text-decoration: none; }
-    #diplomatic #header .tagline {
-      font-weight: 300;
-      font-size: 0.8rem;
-      padding: 0.3rem 0 0 0.3rem; }
-    #diplomatic #header .compactTitle {
-      font-weight: 700;
-      display: none; }
-  #diplomatic #content {
-    margin-top: 5rem; }
-  #diplomatic #navigation {
-    position: Fixed;
-    top: 0;
-    right: 0;
-    background-color: blue;
-    width: 40rem;
-    height: 4.4rem; }
-  #diplomatic #footer {
-    z-index: 9000;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    margin: 0;
-    color: white;
-    height: 3rem;
-    background-color: #656565;
-    font-family: 'OpenSans', sans-serif;
-    grid-area: header;
-    padding: 0.4rem 0 0 1rem;
-    white-space: nowrap; }
-    #diplomatic #footer .logos {
-      position: fixed;
-      right: 1rem;
-      bottom: 0.6rem; }
-    #diplomatic #footer .copyright {
-      font-weight: 300;
-      font-size: 0.8rem;
-      padding: 0.8rem 0 0 0.3rem; }
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
 
 #diplomatic {
   /* Compact view */ }

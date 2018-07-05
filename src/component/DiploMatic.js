@@ -44,7 +44,7 @@ class DiploMatic extends Component {
 	
 	renderHeader() {
 		return (
-			<div id="header">
+			<div id="header" className="fixed">
 				<div className="title"><Link to='/' className='home-link'>BnF Ms. Fr. 640</Link> <span className='warning'>(BETA)</span></div>
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">A Digital Critical Edition</div>
@@ -78,7 +78,7 @@ class DiploMatic extends Component {
 
 	renderFooter() {
 		return (
-			<div id="footer">
+			<div id="footer" className="fixed">
 				<div className="copyright">&copy; The Making and Knowing Project - <span className='warning'>Please note: This is site is still being developed and not yet ready for scholarly use.</span></div>
 				<div className="logos">
 					<img alt="Columbia Logo" src="img/logo_columbia.png"/>
@@ -93,7 +93,7 @@ class DiploMatic extends Component {
 			<Provider store={this.props.store}>
 				<MuiThemeProvider>
 					<HashRouter>
-						<div id="diplomatic">
+						<div id="diplomatic" className="fixed">
 							{ this.renderHeader() }
 							{ this.renderContent() }
 							{ this.renderFooter() }
