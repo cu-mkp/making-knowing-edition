@@ -20,14 +20,14 @@ class ImageView extends Component {
 	}
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.navigationState[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
+		if(nextProps.documentView[this.props.side].currentFolioID !== this.currentFolioID){
+			this.loadFolio(this.props.document.getFolio(nextProps.documentView[this.props.side].currentFolioID));
 		}
 	}
 
 	componentDidMount() {
-		if(this.props.navigationState[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
+		if(this.props.documentView[this.props.side].currentFolioID !== this.currentFolioID){
+			this.loadFolio(this.props.document.getFolio(this.props.documentView[this.props.side].currentFolioID));
 		}
 	}
 
@@ -100,7 +100,7 @@ class ImageView extends Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+        documentView: state.documentView
     };
 }
 

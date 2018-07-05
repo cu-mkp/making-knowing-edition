@@ -18,10 +18,10 @@ class Document {
     } else {
       // promise to load all the data for this folio
       return new Promise(function(resolve, reject) {
-		//console.log("Manifest: "+this.manifestURL);
-		if(typeof this.manifestURL === 'undefined'){
-			alert("FATAL: Cannot load manifest, is env.REACT_APP_IIIF_MANIFEST defined?");
-		}
+        //console.log("Manifest: "+this.manifestURL);
+        if(typeof this.manifestURL === 'undefined'){
+          alert("FATAL: Cannot load manifest, is env.REACT_APP_IIIF_MANIFEST defined?");
+        }
         axios.get(this.manifestURL)
           .then( function( manifestResponse ) {
             if( this.parseManifest(manifestResponse.data) ) {

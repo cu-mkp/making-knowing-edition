@@ -12,7 +12,7 @@ class HashParser extends React.Component {
 
 		// If we're coming in with nothing, generate the URL from the default state
 		if(this.props.history.location.search.length === 0){
-			let newPath = this.createHashPath(this.props.navigationState);
+			let newPath = this.createHashPath(this.props.documentView);
 			if (this.props.history.location.search !== newPath) {
 				//console.log("Init with default: "+newPath);
 				this.props.history.push(newPath);
@@ -64,8 +64,8 @@ class HashParser extends React.Component {
 	 	let secSinceLastHashChangeUpdate = (now.getTime() - this.lastHashChangeInvokedStateUpdate.getTime()) / 1000;
 
 		// Make sure the path has actually changed
-		let newPath = this.createHashPath(nextProps.navigationState);
-		let oldPath = this.createHashPath(this.props.navigationState);
+		let newPath = this.createHashPath(nextProps.documentView);
+		let oldPath = this.createHashPath(this.props.documentView);
 		if(newPath !== oldPath){
 
 			// This is debounced, so that we ignore props update if we've handled a hash change very recently (otherwise it loops)
@@ -110,7 +110,7 @@ class HashParser extends React.Component {
 
 			// We cannot do this if the folio index hasn't been defined yet,
 			// there's probably a slicker way to do this but let's poll, whee...
-			if(this.props.navigationState.folioNameByIDIndex.length === 0){
+			if(this.props.documentView.folioNameByIDIndex.length === 0){
 					let this2 = this;
 					setTimeout(function() {
 						this2.setStateWithPath(path);
@@ -120,20 +120,20 @@ class HashParser extends React.Component {
 
 			// Default to current
 			let newState = {left:{},right:{}};
-				newState.bookMode =	this.props.navigationState.bookMode;
-				newState.linkedMode = this.props.navigationState.linkedMode;
+				newState.bookMode =	this.props.documentView.bookMode;
+				newState.linkedMode = this.props.documentView.linkedMode;
 
-				newState.left.width = this.props.navigationState.left.width;
-				newState.left.folioID = this.props.navigationState.left.currentFolioID;
-				newState.left.folioShortID = this.props.navigationState.left.currentFolioShortID;
-				newState.left.viewType = this.props.navigationState.left.viewType;
-				newState.left.transcriptionType = this.props.navigationState.left.transcriptionType;
+				newState.left.width = this.props.documentView.left.width;
+				newState.left.folioID = this.props.documentView.left.currentFolioID;
+				newState.left.folioShortID = this.props.documentView.left.currentFolioShortID;
+				newState.left.viewType = this.props.documentView.left.viewType;
+				newState.left.transcriptionType = this.props.documentView.left.transcriptionType;
 
-				newState.right.width = this.props.navigationState.right.width;
-				newState.right.folioID = this.props.navigationState.right.currentFolioID;
-				newState.right.folioShortID = this.props.navigationState.right.currentFolioShortID;
-				newState.right.viewType = this.props.navigationState.right.viewType;
-				newState.right.transcriptionType = this.props.navigationState.right.transcriptionType;
+				newState.right.width = this.props.documentView.right.width;
+				newState.right.folioID = this.props.documentView.right.currentFolioID;
+				newState.right.folioShortID = this.props.documentView.right.currentFolioShortID;
+				newState.right.viewType = this.props.documentView.right.viewType;
+				newState.right.transcriptionType = this.props.documentView.right.transcriptionType;
 
 			// Parse the URL into the params we use internally
 			let urlParams = path.split('&');
@@ -176,7 +176,7 @@ class HashParser extends React.Component {
 			switch (mode) {
 				case 'b':
 						if(left_currentFolioShortID !== '-1'){
-							if(!this.props.navigationState.bookMode){
+							if(!this.props.documentView.bookMode){
 								newState.bookMode = true;
 							}
 						}
@@ -253,19 +253,19 @@ class HashParser extends React.Component {
 
 			// Set the left folio if it's defined
 			if(left_currentFolioShortID !== '-1'){
-				newState.left.folioID=(this.props.navigationState.folioIDPrefix+left_currentFolioShortID);
+				newState.left.folioID=(this.props.documentView.folioIDPrefix+left_currentFolioShortID);
 				newState.left.folioShortID=left_currentFolioShortID;
 
 				// If locked mode, set right to match
 				if(mode === 'l'){
-					newState.right.folioID=(this.props.navigationState.folioIDPrefix+left_currentFolioShortID);
+					newState.right.folioID=(this.props.documentView.folioIDPrefix+left_currentFolioShortID);
 					newState.right.folioShortID=left_currentFolioShortID;
 				}
 			}
 
 			// If we have a right folio specified and we're not in locked mode, set it
 			if(right_currentFolioShortID !== '-1' && mode !== 'l'){
-				newState.right.folioID=(this.props.navigationState.folioIDPrefix+right_currentFolioShortID);
+				newState.right.folioID=(this.props.documentView.folioIDPrefix+right_currentFolioShortID);
 				newState.right.folioShortID=right_currentFolioShortID;
 			}
 
@@ -302,7 +302,7 @@ class HashParser extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState
+		documentView: state.documentView
 	};
 }
 

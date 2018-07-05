@@ -22,7 +22,7 @@ class DocumentView extends Component {
 		this.document.load().then(
 			(folio) => {
 				// Store an ordered array of folio ids, used for next/prev navigation purposes later
-				if (this.props.navigationState.folioIndex.length === 0) {
+				if (this.props.documentView.folioIndex.length === 0) {
 					let folioIndex = [];
 					let nameByID = {};
 					let idByName = {};
@@ -72,7 +72,7 @@ class DocumentView extends Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState
+		documentView: state.documentView
 	};
 }
 

@@ -39,7 +39,7 @@ class TranscriptionView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.navigationState[this.props.side].currentFolioID});
+				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.documentView[this.props.side].currentFolioID});
 			},(error) => {
 				console.log('Unable to load transcription: '+error);
 			}
@@ -284,9 +284,9 @@ class TranscriptionView extends Component {
   	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-  		if(this.state.currentlyLoaded !== nextProps.navigationState[this.props.side].currentFolioID){
+  		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
 			this.contentChange=true;
-			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
+			this.loadFolio(this.props.document.getFolio(nextProps.documentView[this.props.side].currentFolioID));
 	  	}
 	}
 
@@ -319,7 +319,7 @@ class TranscriptionView extends Component {
 
 					case 'h2':
 						//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
-						if(this2.props.navigationState[this2.props.side].currentFolioShortID === 'f19'){
+						if(this2.props.documentView[this2.props.side].currentFolioShortID === 'f19'){
 							let text = this2.nodeTreeToString(domNode.children);
 							let annotationType = "fieldNotes"; // fieldNotes | annotation | video
 							let annotationContent = "This is a fieldNote annotation for: '"+text;
@@ -377,14 +377,14 @@ class TranscriptionView extends Component {
 	// RENDER
 	render() {
 		// Retrofit - the folios are loaded asynchronously
-		if(this.props.navigationState[this.props.side].currentFolioID === '-1') {
+		if(this.props.documentView[this.props.side].currentFolioID === '-1') {
 			return this.watermark();
 		} else if(!this.state.isLoaded){
-			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
+			this.loadFolio(this.props.document.getFolio(this.props.documentView[this.props.side].currentFolioID));
 			return this.watermark();
 		} else {
 
-			let transcriptionData = this.getTranscriptionData(this.state.folio.transcription[this.props.navigationState[this.props.side].transcriptionType]);
+			let transcriptionData = this.getTranscriptionData(this.state.folio.transcription[this.props.documentView[this.props.side].transcriptionType]);
 
 			if(!transcriptionData) {
 				console.log("Undefined transcription for side: "+this.props.side);
@@ -401,7 +401,7 @@ class TranscriptionView extends Component {
 				let surfaceStyle = {};
 
 				// Handle grid mode
-				if(this.props.navigationState[this.props.side].isGridMode) {
+				if(this.props.documentView[this.props.side].isGridMode) {
 					surfaceClass += " grid-mode";
 					surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 				}
@@ -411,13 +411,13 @@ class TranscriptionView extends Component {
 
 				// Strip linebreaks except for tc (happens on string before parser)
 				let content = transcriptionData.content;
-				if(this.props.navigationState[side].transcriptionType !== 'tc'){
+				if(this.props.documentView[side].transcriptionType !== 'tc'){
 					content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
 				}
 
 				// If in searchmode, inject <mark> around searchterms
-				if(this.props.navigationState.inSearchMode) {
-					//for(let y=0;y<this.props.navigationState.search.matched.length;y++){
+				if(this.props.documentView.inSearchMode) {
+					//for(let y=0;y<this.props.documentView.search.matched.length;y++){
 
 						// The first matched term is the word we searched for, but we match a lot more things...
 						let y = 0;
@@ -476,7 +476,7 @@ class TranscriptionView extends Component {
 
 function mapStateToProps(state) {
 	return {
-				navigationState: state.navigationState,
+				documentView: state.documentView,
 				search: state.search
     };
 }

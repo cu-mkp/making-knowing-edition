@@ -13,9 +13,9 @@ class Gloss extends React.Component {
 
 		// Cache glossaries if we haven't yet
 	    if(Object.keys(this.props.glossary["tc"]).length === 0){
-			// this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tc', glossaryData:thisGlossary_tc}));
-			// this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tcn', glossaryData:thisGlossary_tcn}));
-			// this.props.dispatch(this.navigationStateActions.updateGlossary({transcriptionType:'tl', glossaryData:thisGlossary_tl}));
+			// this.props.dispatch(this.documentViewActions.updateGlossary({transcriptionType:'tc', glossaryData:thisGlossary_tc}));
+			// this.props.dispatch(this.documentViewActions.updateGlossary({transcriptionType:'tcn', glossaryData:thisGlossary_tcn}));
+			// this.props.dispatch(this.documentViewActions.updateGlossary({transcriptionType:'tl', glossaryData:thisGlossary_tl}));
 			
 			dispatchAction( 
 				this.props,
@@ -44,7 +44,7 @@ class Gloss extends React.Component {
 		let popup = document.getElementById('glossaryPopup');
 		let term = this.props.term.toLowerCase();
 		 	term = term.replace(/\s{2,}/g,' ').trim()
-		let glossaryID = this.props.navigationState[this.props.side].transcriptionType;
+		let glossaryID = this.props.documentView[this.props.side].transcriptionType;
 		let gloss = this.props.glossary[glossaryID];
 		let contents = "<div class='term'>"+term+"</div>";
 		if(!(typeof gloss[term] === 'undefined')){
@@ -95,7 +95,7 @@ class Gloss extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState,
+		documentView: state.documentView,
 		glossary: state.glossary
 	};
 }

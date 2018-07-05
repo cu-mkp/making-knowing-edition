@@ -78,7 +78,7 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState,
+		documentView: state.documentView,
 		search: state.search
 	};
 }

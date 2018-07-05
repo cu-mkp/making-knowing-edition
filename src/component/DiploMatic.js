@@ -112,7 +112,7 @@ DiploMatic.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState
+		documentView: state.documentView
 	};
 }
 

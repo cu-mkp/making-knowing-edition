@@ -59,7 +59,7 @@ class Annotation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		navigationState: state.navigationState
+		documentView: state.documentView
 	};
 }
 

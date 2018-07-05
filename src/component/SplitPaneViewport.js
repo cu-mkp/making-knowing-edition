@@ -39,7 +39,7 @@ class SplitPaneViewport extends Component {
           side={this.props.side}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
-          drawerMode={this.props.navigationState.drawerMode}
+          drawerMode={this.props.documentView.drawerMode}
           drawerOpen={this.state.drawerOpen}
           splitPaneView={this.props.splitPaneView}
         />
@@ -52,7 +52,7 @@ class SplitPaneViewport extends Component {
           side={this.props.side}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
-          drawerMode={this.props.navigationState.drawerMode}
+          drawerMode={this.props.documentView.drawerMode}
           drawerOpen={this.state.drawerOpen}
           splitPaneView={this.props.splitPaneView}
         />
@@ -65,7 +65,7 @@ class SplitPaneViewport extends Component {
           side={this.props.side}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
-          drawerMode={this.props.navigationState.drawerMode}
+          drawerMode={this.props.documentView.drawerMode}
           drawerOpen={this.state.drawerOpen}
           splitPaneView={this.props.splitPaneView}
         />
@@ -100,7 +100,7 @@ class SplitPaneViewport extends Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+        documentView: state.documentView
     };
 }
 export default connect(mapStateToProps)(SplitPaneViewport);

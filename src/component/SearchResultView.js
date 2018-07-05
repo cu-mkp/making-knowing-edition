@@ -41,11 +41,11 @@ class SearchResultView extends Component {
 			folioname = folioname.replace(/^[0|\D]*/,'');
 
 		// Convert to shortID
-		let shortID = this.props.navigationState.folioIDByNameIndex[folioname];
+		let shortID = this.props.documentView.folioIDByNameIndex[folioname];
 		if(typeof shortID === 'undefined'){
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
-			let longID = this.props.navigationState.folioIDPrefix+shortID;
+			let longID = this.props.documentView.folioIDPrefix+shortID;
 			dispatchAction(
 				this.props,
 				'SearchActions.searchMatched',
@@ -150,9 +150,9 @@ class SearchResultView extends Component {
 						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {this.props.search.term}
 					</div>
 					<div className="searchFilters">
-						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.navigationState.uiLabels.transcriptionType['tl']} ({this.props.search.results["tl"].length})</span>
-						<input checked={!(this.props.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{this.props.navigationState.uiLabels.transcriptionType['tc']} ({this.props.search.results["tc"].length})</span>
-						<input checked={!(this.props.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{this.props.navigationState.uiLabels.transcriptionType['tcn']} ({this.props.search.results["tcn"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.documentView.uiLabels.transcriptionType['tl']} ({this.props.search.results["tl"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{this.props.documentView.uiLabels.transcriptionType['tc']} ({this.props.search.results["tc"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{this.props.documentView.uiLabels.transcriptionType['tcn']} ({this.props.search.results["tcn"].length})</span>
 					</div>
 				</form>
 				<div className="searchResults">
@@ -163,7 +163,7 @@ class SearchResultView extends Component {
 				 	{displayOrderArray.map((type, i) =>
 						<div key={type} className={(this.props.search.results[type].length===0)?"resultSection hidden":"resultSection"}>
 							<div className={(this.props.search.typeHidden[type])?"resultSectionHeader hidden":"resultSectionHeader"}>
-								{this.props.navigationState.uiLabels.transcriptionType[type]} ({this.props.search.results[type].length} {this.props.search.results[type].length === 1?"match":"matches"})
+								{this.props.documentView.uiLabels.transcriptionType[type]} ({this.props.search.results[type].length} {this.props.search.results[type].length === 1?"match":"matches"})
 							</div>
 							{this.props.search.results[type].map((result, idx) =>
 								<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.resultClicked}>
@@ -199,7 +199,7 @@ function uniq(a) {
 function mapStateToProps(state) {
 	return {
 		search: state.search,
-        navigationState: state.navigationState
+        documentView: state.documentView
     };
 }
 

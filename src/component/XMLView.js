@@ -18,7 +18,7 @@ class XMLView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.navigationState[this.props.side].currentFolioID});
+				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.documentView[this.props.side].currentFolioID});
 				//this.forceUpdate();
 			},(error) => {
 				console.log('Unable to load transcription: '+error);
@@ -30,9 +30,9 @@ class XMLView extends Component {
   // Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-		if(this.state.currentlyLoaded !== nextProps.navigationState[this.props.side].currentFolioID){
+		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
 			this.contentChange=true;
-			this.loadFolio(this.props.document.getFolio(nextProps.navigationState[this.props.side].currentFolioID));
+			this.loadFolio(this.props.document.getFolio(nextProps.documentView[this.props.side].currentFolioID));
   	}
 	}
 
@@ -56,14 +56,14 @@ class XMLView extends Component {
 		let thisID = "xmlViewComponent_"+this.props.side;
 
 		// Retrofit - the folios are loaded asynchronously
-		if(this.props.navigationState[this.props.side].currentFolioID === '-1'){
+		if(this.props.documentView[this.props.side].currentFolioID === '-1'){
 			return (
 				<div className="watermark">
 					<div className="watermark_contents"/>
 				</div>
 			);
 		}else if(!this.state.isLoaded){
-			this.loadFolio(this.props.document.getFolio(this.props.navigationState[this.props.side].currentFolioID));
+			this.loadFolio(this.props.document.getFolio(this.props.documentView[this.props.side].currentFolioID));
 			return (
 				<div className="watermark">
 					<div className="watermark_contents"/>
@@ -72,7 +72,7 @@ class XMLView extends Component {
 		}else{
 
 			// get the xml for this transcription
-			let transcriptionType = this.props.navigationState[this.props.side].transcriptionType;
+			let transcriptionType = this.props.documentView[this.props.side].transcriptionType;
 			let xmlContent = this.state.folio.transcription[`${transcriptionType}_xml`];
 
 			return (
@@ -96,7 +96,7 @@ class XMLView extends Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+        documentView: state.documentView
     };
 }
 

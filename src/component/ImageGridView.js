@@ -14,8 +14,8 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props.navigationState[this.props.side].currentFolioID !== nextProps.navigationState[this.props.side].currentFolioID){
-			let thumbs = this.generateThumbs(nextProps.navigationState[this.props.side].currentFolioID, nextProps.document.folios);
+		if(this.props.documentView[this.props.side].currentFolioID !== nextProps.documentView[this.props.side].currentFolioID){
+			let thumbs = this.generateThumbs(nextProps.documentView[this.props.side].currentFolioID, nextProps.document.folios);
 			let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 			let visibleThumbs = thumbs.slice(0,thumbCount);
 			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
@@ -23,7 +23,7 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillMount(){
-		let thumbs = this.generateThumbs(this.props.navigationState[this.props.side].currentFolioID, this.props.document.folios);
+		let thumbs = this.generateThumbs(this.props.documentView[this.props.side].currentFolioID, this.props.document.folios);
 		let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 		let visibleThumbs = thumbs.slice(0,thumbCount);
 		this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
@@ -39,7 +39,7 @@ class ImageGridView extends React.Component {
 		);
 
 		// Replace this pane with imageView if the pane is big enough
-		if(this.props.navigationState[this.props.side].width >= this.thumbnailNavigationModeSize){
+		if(this.props.documentView[this.props.side].width >= this.thumbnailNavigationModeSize){
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.setPaneViewtype',
@@ -80,7 +80,7 @@ class ImageGridView extends React.Component {
 	}
 
 	render() {
-		//let thisClass = (this.props.navigationState.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
+		//let thisClass = (this.props.documentView.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
 		let thisClass= "imageGridComponent";
 		thisClass = thisClass+" "+this.props.side;
 		let visibleThumbs=this.state.visibleThumbs;
@@ -104,7 +104,7 @@ class ImageGridView extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+        documentView: state.documentView
     };
 }
 

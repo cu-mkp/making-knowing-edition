@@ -15,13 +15,13 @@ class navigation extends React.Component {
 			return;
 		}
 
-		let longID = this.props.navigationState.folioIDPrefix+event.currentTarget.dataset.id;
+		let longID = this.props.documentView.folioIDPrefix+event.currentTarget.dataset.id;
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
 			longID,
 			this.props.side,
-			this.props.navigationState[this.props.side].transcriptionType,
+			this.props.documentView[this.props.side].transcriptionType,
 			event.currentTarget.dataset.direction			
 		);
 	}
@@ -35,16 +35,16 @@ class navigation extends React.Component {
 					<span	title = "Go back"
 							onClick={this.changeCurrentFolio}
 							data-direction="back"
-							data-id={this.props.navigationState[this.props.side].previousFolioShortID}
-							className={(this.props.navigationState[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
+							data-id={this.props.documentView[this.props.side].previousFolioShortID}
+							className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
 
-					<span className="folioName">Folio {this.props.navigationState[this.props.side].currentFolioName}</span>
+					<span className="folioName">Folio {this.props.documentView[this.props.side].currentFolioName}</span>
 
 					<span 	title = "Go forward"
 							onClick={this.changeCurrentFolio}
 							data-direction="forward"
-							data-id={this.props.navigationState[this.props.side].nextFolioShortID}
-							className={(this.props.navigationState[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							data-id={this.props.documentView[this.props.side].nextFolioShortID}
+							className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 				</div>
 			</div>
 		)
@@ -53,7 +53,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-        navigationState: state.navigationState
+        documentView: state.documentView
     };
 }
 
