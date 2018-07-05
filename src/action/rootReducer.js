@@ -6,7 +6,9 @@ import SearchActions from './SearchActions';
 import GlossaryActions from './GlossaryActions';
 import AnnotationActions from './AnnotationActions';
 import DocumentActions from './DocumentActions';
+import DiplomaticActions from './DiplomaticActions';
 
+import diplomaticInitialState from './initialState/diplomaticInitialState';
 import documentViewInitialState from './initialState/documentViewInitialState';
 import searchInitialState from './initialState/searchInitialState';
 import glossaryInitialState from './initialState/glossaryInitialState';
@@ -15,6 +17,7 @@ import documentInitialState from './initialState/documentInitialState';
 
 export default function rootReducer() {
     return combineReducers({
+        diplomatic: createReducer( 'DiplomaticActions', DiplomaticActions, diplomaticInitialState ),
         document: createReducer( 'DocumentActions', DocumentActions, documentInitialState ),
         documentView: createReducer( 'DocumentViewActions', DocumentViewActions, documentViewInitialState ),
         search: createReducer( 'SearchActions', SearchActions, searchInitialState ),

@@ -7,6 +7,10 @@ import { dispatchAction } from '../model/ReduxStore';
 
 class AnnotationView extends Component {
 
+    componentWillMount() {
+        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+    }
+
     componentDidMount() {
         dispatchAction( this.props, 'AnnotationActions.loadAnnotation' );
     }

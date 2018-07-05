@@ -42,9 +42,9 @@ class DiploMatic extends Component {
 		}, 200);
 	}
 	
-	renderHeader() {
+	renderHeader(fixedFrameModeClass) {
 		return (
-			<div id="header" className="fixed">
+			<div id="header" className={fixedFrameModeClass}>
 				<div className="title"><Link to='/' className='home-link'>BnF Ms. Fr. 640</Link> <span className='warning'>(BETA)</span></div>
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">A Digital Critical Edition</div>
@@ -76,9 +76,9 @@ class DiploMatic extends Component {
 		);
 	}
 
-	renderFooter() {
+	renderFooter(fixedFrameModeClass) {
 		return (
-			<div id="footer" className="fixed">
+			<div id="footer" className={fixedFrameModeClass}>
 				<div className="copyright">&copy; The Making and Knowing Project - <span className='warning'>Please note: This is site is still being developed and not yet ready for scholarly use.</span></div>
 				<div className="logos">
 					<img alt="Columbia Logo" src="img/logo_columbia.png"/>
@@ -89,14 +89,16 @@ class DiploMatic extends Component {
 	}
 
 	render() {
+		let fixedFrameModeClass = this.props.diplomatic.fixedFrameMode ? 'fixed' : '';
+
 		return (
 			<Provider store={this.props.store}>
 				<MuiThemeProvider>
 					<HashRouter>
-						<div id="diplomatic" className="fixed">
-							{ this.renderHeader() }
-							{ this.renderContent() }
-							{ this.renderFooter() }
+						<div id="diplomatic" className={fixedFrameModeClass}>
+							{ this.renderHeader(fixedFrameModeClass) }
+							{ this.renderContent(fixedFrameModeClass) }
+							{ this.renderFooter(fixedFrameModeClass) }
 							<div id="glossaryPopup" tabIndex="1"></div>
 						</div>	
 					</HashRouter>
@@ -112,6 +114,7 @@ DiploMatic.propTypes = {
 
 function mapStateToProps(state) {
 	return {
+		diplomatic: state.diplomatic,
 		documentView: state.documentView
 	};
 }
