@@ -50,8 +50,7 @@ class DiploMatic extends Component {
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
 					<div className="expandedViewOnly">
-						{/* <Link to='/annotations'>Annotations</Link> */}
-						<span>Annotations</span>
+						<Link to='/annotations'>Annotations</Link>
 						<span>Entries</span>
 						<Link to='/folios'>Folios</Link>
 						<span>About</span>

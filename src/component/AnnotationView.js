@@ -1,25 +1,50 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
+import Parser from 'html-react-parser';
+
+import { dispatchAction } from '../model/ReduxStore';
 
 class AnnotationView extends Component {
 
+    componentDidMount() {
+        dispatchAction( this.props, 'AnnotationActions.loadAnnotation' );
+    }
+
+    // Configure parser to replace certain tags with components
+    htmlToReactParserOptions() {
+		var parserOptions =  {
+			 replace: function(domNode) {
+
+				 switch (domNode.name) {
+
+					 default:
+						 /* Otherwise, Just pass through */
+						 return domNode;
+				 }
+			 }
+		 };
+		 return parserOptions;
+    }
+    
 	render() {
-        return (
-            <div id="annotation-view">
-                <h1>Annotations</h1>
-                This is a list of the annotations.
-                <ul>
-                    <li><Link to='/annotations/1'>Annotation One</Link></li>
-                </ul>                
-            </div>
-        );
+        if( this.props.annotations.annotation && this.props.annotations.annotation.loaded ) {
+            let htmlToReactParserOptions = this.htmlToReactParserOptions();
+
+            return (
+                <div id="annotation-view">
+                    {Parser(this.props.annotations.annotation.content,htmlToReactParserOptions)}
+                </div>
+            );
+        } else {
+            return null;
+        }
 	}
 }
 
 function mapStateToProps(state) {
     return {
-        // TODO
+        annotations: state.annotations
     };
 }
 
