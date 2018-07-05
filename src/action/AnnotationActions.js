@@ -1,14 +1,19 @@
-import Annotation from '../model/Annotation';
+import axios from 'axios';
 
 var AnnotationActions = {};
 
 AnnotationActions.loadAnnotation = function loadAnnotation( state ) {
-    let annotation = new Annotation();
-    annotation.load();
-    return {
-        ...state,
-        annotation: annotation
-    };
+
+    axios.get(state.annotationURL)
+        .then(function(annotationResponse) {
+            state.content = annotationResponse.data;
+            state.loaded = true;
+        })
+        .catch((error) => {
+            console.log('error')
+        });
+
+    return state;
 };
 
 export default AnnotationActions;

@@ -28,12 +28,12 @@ class AnnotationView extends Component {
     }
     
 	render() {
-        if( this.props.annotations.annotation && this.props.annotations.annotation.loaded ) {
+        if( this.props.annotations && this.props.annotations.loaded ) {
             let htmlToReactParserOptions = this.htmlToReactParserOptions();
 
             return (
                 <div id="annotation-view">
-                    {Parser(this.props.annotations.annotation.content,htmlToReactParserOptions)}
+                    {Parser(this.props.annotations.content,htmlToReactParserOptions)}
                 </div>
             );
         } else {
