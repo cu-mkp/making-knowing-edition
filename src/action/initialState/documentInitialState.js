@@ -1,3 +1,5 @@
 export default {
-    ready: false
+    manifestURL: null,
+    folios: [],
+    loaded: false
 }	

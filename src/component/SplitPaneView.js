@@ -3,6 +3,7 @@ import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
+import DocumentHelper from '../model/DocumentHelper';
 
 class SplitPaneView extends Component {
 
@@ -120,7 +121,7 @@ class SplitPaneView extends Component {
 		if(folioID.length <= 0){return;}
 		let viewport = copyObject(this.state.viewports[side]);
 		viewport.document = this.props.document;
-		viewport.folio = this.props.document.getFolio(folioID);
+		viewport.folio = DocumentHelper.getFolio(this.props.document, folioID);
 		viewport.viewType = viewType;
 	}
 

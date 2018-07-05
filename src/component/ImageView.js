@@ -6,6 +6,7 @@ import Navigation from '../component/Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
 import {dispatchAction} from '../model/ReduxStore';
 
+import DocumentHelper from '../model/DocumentHelper';
 
 class ImageView extends Component {
 
@@ -21,13 +22,13 @@ class ImageView extends Component {
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.documentView[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(this.props.document.getFolio(nextProps.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextProps.documentView[this.props.side].currentFolioID));
 		}
 	}
 
 	componentDidMount() {
 		if(this.props.documentView[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(this.props.document.getFolio(this.props.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio(this.props.document, this.props.documentView[this.props.side].currentFolioID));
 		}
 	}
 

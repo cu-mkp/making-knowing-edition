@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Navigation from '../component/Navigation';
 import Pagination from '../component/Pagination';
+import DocumentHelper from '../model/DocumentHelper';
 
 class XMLView extends Component {
 
@@ -32,7 +33,7 @@ class XMLView extends Component {
 		this.contentChange=false;
 		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
 			this.contentChange=true;
-			this.loadFolio(this.props.document.getFolio(nextProps.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, nextProps.documentView[this.props.side].currentFolioID));
   	}
 	}
 
@@ -63,7 +64,7 @@ class XMLView extends Component {
 				</div>
 			);
 		}else if(!this.state.isLoaded){
-			this.loadFolio(this.props.document.getFolio(this.props.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, this.props.documentView[this.props.side].currentFolioID));
 			return (
 				<div className="watermark">
 					<div className="watermark_contents"/>

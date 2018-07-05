@@ -7,6 +7,7 @@ import Gloss from '../component/Gloss';
 import Annotation from '../component/Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
+import DocumentHelper from '../model/DocumentHelper';
 
 class TranscriptionView extends Component {
 
@@ -286,7 +287,7 @@ class TranscriptionView extends Component {
 		this.contentChange=false;
   		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
 			this.contentChange=true;
-			this.loadFolio(this.props.document.getFolio(nextProps.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, nextProps.documentView[this.props.side].currentFolioID));
 	  	}
 	}
 
@@ -380,7 +381,7 @@ class TranscriptionView extends Component {
 		if(this.props.documentView[this.props.side].currentFolioID === '-1') {
 			return this.watermark();
 		} else if(!this.state.isLoaded){
-			this.loadFolio(this.props.document.getFolio(this.props.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, this.props.documentView[this.props.side].currentFolioID));
 			return this.watermark();
 		} else {
 
