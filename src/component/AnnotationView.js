@@ -12,7 +12,7 @@ class AnnotationView extends Component {
     }
 
     componentDidMount() {
-        dispatchAction( this.props, 'AnnotationActions.loadAnnotation' );
+        dispatchAction( this.props, 'AnnotationActions.requestAnnotation' );
     }
 
     // Configure parser to replace certain tags with components
@@ -32,17 +32,15 @@ class AnnotationView extends Component {
     }
     
 	render() {
-        if( this.props.annotations && this.props.annotations.loaded ) {
-            let htmlToReactParserOptions = this.htmlToReactParserOptions();
+        if( !this.props.annotations.loaded ) return null;
+        
+        let htmlToReactParserOptions = this.htmlToReactParserOptions();
 
-            return (
-                <div id="annotation-view">
-                    {Parser(this.props.annotations.content,htmlToReactParserOptions)}
-                </div>
-            );
-        } else {
-            return null;
-        }
+        return (
+            <div id="annotation-view">
+                {Parser(this.props.annotations.content,htmlToReactParserOptions)}
+            </div>
+        );
 	}
 }
 

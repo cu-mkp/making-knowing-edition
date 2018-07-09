@@ -5,7 +5,7 @@ import {dispatchAction} from '../model/ReduxStore';
 class ContentView extends Component {
 
     componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
     }
 
 	render() {
