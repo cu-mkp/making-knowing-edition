@@ -27,7 +27,7 @@ DocumentViewActions.setXMLMode = function setXMLMode( state, side, newState ) {
 DocumentViewActions.setStateFromHash = function setStateFromHash( state, newState ) {
 
 	if(state.folioNameByIDIndex.length === 0){
-		//console.log("WARNING: SET_STATE_FROM_HASH reducer - folioNameByIDIndex not defined, cannot change folio, leaving state alone");
+		//console.log("WARNING: SET_STATE_FROM_HASH reducer - state.folioNameByIDIndex not defined, cannot change folio, leaving state alone");
 		return state;
 	}
 
@@ -126,7 +126,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, shortid, status )
 	// Entering bookmode
 	}else{
 
-		let versoID=findNearestVerso(state, shortid);
+		let versoID=findNearestVerso(shortid, state.folioNameByIDIndex, state.folioIndex);
 		let current_idx = state.folioIndex.indexOf(versoID);
 		let nextID = '';
 		let prevID = '';
@@ -229,16 +229,6 @@ DocumentViewActions.setColumnModeForSide = function setColumnModeForSide( state,
 	}
 };
 
-// UPDATE_FOLIO_INDEX
-DocumentViewActions.updateFolioIndex = function updateFolioIndex( state, folioIndex, folioNameByIDIndex, folioIDByNameIndex ) {
-	return {
-		...state,
-		folioIndex,
-		folioNameByIDIndex,
-		folioIDByNameIndex
-	}
-};
-
 // CHANGE_TRANSCRIPTION_TYPE
 DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( state, side, transcriptionType ) {
 	let xmlMode = state[side].isXMLMode;
@@ -275,6 +265,15 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 		};
 	}
 };
+
+DocumentViewActions.updateFolioIndex = function updateFolioIndex(state,folioIndex,nameByID,idByName ) {
+	return {
+		...state,
+		folioIndex: folioIndex,
+		folioNameByIDIndex: nameByID,
+		folioIDByNameIndex: idByName
+	};	
+};
 		
 // CHANGE_CURRENT_FOLIO
 DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id, side, transcriptionType, direction ) {
@@ -288,7 +287,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 
 	// Book mode? (recto/verso)
 	if(state.bookMode ){
-		let versoID=findNearestVerso(state, shortID, direction);
+		let versoID=findNearestVerso(shortID, state.folioNameByIDIndex, state.folioIndex, direction);
 		let current_idx = state.folioIndex.indexOf(versoID);
 		let nextID = '';
 		let prevID = '';
@@ -442,25 +441,25 @@ DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, id, sid
 	};
 };
 
-function findNearestVerso(state, id, direction){
+function findNearestVerso(id, folioNameByIDIndex, folioIndex, direction){
 	let found=false;
 	let versoID=id;
 	let lookLeft=(typeof direction === undefined || direction === 'back');
 
 	while(!found){
 		// Look to see if this name ends in "v"
-		let candidateName = state.folioNameByIDIndex[versoID];
+		let candidateName = folioNameByIDIndex[versoID];
 		if(candidateName.endsWith("v")){
 			found=true;
 
 		// No, so keep looking
 		}else{
-			if(lookLeft && state.folioIndex.indexOf(versoID) > 0){
-				versoID=state.folioIndex[state.folioIndex.indexOf(versoID) - 1];
+			if(lookLeft && folioIndex.indexOf(versoID) > 0){
+				versoID=folioIndex[folioIndex.indexOf(versoID) - 1];
 			}else{
 				lookLeft=false;
-				if(state.folioIndex.indexOf(versoID) < state.folioIndex.length){
-					versoID=state.folioIndex[state.folioIndex.indexOf(versoID) + 1];
+				if(folioIndex.indexOf(versoID) < folioIndex.length){
+					versoID=folioIndex[folioIndex.indexOf(versoID) + 1];
 				}else{
 					console.log("ERROR: Couldn't find a single verso page!");
 					return null;

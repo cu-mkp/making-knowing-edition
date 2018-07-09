@@ -5,9 +5,9 @@ export default {
 	linkedMode: true,
 	bookMode: false,
 	inSearchMode:false,
-	folioIndex: [],
-	folioNameByIDIndex:[],
-	folioIDByNameIndex:[],
+    folioIndex: [],
+	folioNameByIDIndex:{},
+	folioIDByNameIndex:{},
 	uiLabels: {
 		transcriptionType: {
 			tc: 'Transcription',

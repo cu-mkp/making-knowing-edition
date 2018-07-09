@@ -1,5 +1,8 @@
 export default {
     manifestURL: null,
     folios: [],
-    loaded: false
+    loaded: false,
+    folioIndex: [],
+	folioNameByIDIndex:{},
+	folioIDByNameIndex:{}
 }	

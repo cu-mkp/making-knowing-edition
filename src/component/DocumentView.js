@@ -12,40 +12,19 @@ class DocumentView extends Component {
     }
 	
 	componentDidMount() {
-        dispatchAction( this.props, 'DocumentActions.loadDocument', process.env.REACT_APP_IIIF_MANIFEST );
+        dispatchAction( this.props, 'DocumentActions.requestDocument', process.env.REACT_APP_IIIF_MANIFEST );
     }
-
-    updateFolioIndex() {
-        // Store an ordered array of folio ids, used for next/prev navigation purposes later
-        if (this.props.documentView.folioIndex.length === 0) {
-            let folioIndex = [];
-            let nameByID = {};
-            let idByName = {};
-            for (let idx = 0; idx < this.props.document.folios.length; idx++) {
-                let shortID = this.props.document.folios[idx].id.substr(this.props.document.folios[idx].id.lastIndexOf('/') + 1);
-                folioIndex.push(shortID);
-                nameByID[shortID] = this.props.document.folios[idx].name;
-                idByName[this.props.document.folios[idx].name] = shortID;
-            }
-            dispatchAction(
-                this.props,
-                'DocumentViewActions.updateFolioIndex',
-                folioIndex,
-                nameByID,
-                idByName
-            );
-        }
-    }
-
+      
     render() {
         if( !this.props.document.loaded ) { return null; }
-		// window.loadingModal_stop();
-
-        // updateFolioIndex();
-
+        // window.loadingModal_stop();
+        
         return (
             <div>
-                <HashParser history={this.props.history}/>
+                <HashParser 
+                    history={this.props.history} 
+                    document={this.props.document}
+                />
                 <SplitPaneView 
                     history={this.props.history}
                     document={this.props.document} 

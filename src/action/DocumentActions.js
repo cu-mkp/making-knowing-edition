@@ -1,22 +1,51 @@
 import Folio from '../model/Folio';
 import axios from 'axios';
+import { dispatchAction } from '../model/ReduxStore';
 
 var DocumentActions = {};
 
-DocumentActions.loadDocument = function loadDocument( state, manifestURL ) {
-	state.manifestURL = manifestURL;
-
-	axios.get(state.manifestURL).then( function( manifestResponse ) {
-    	state.loaded = parseManifest(state.folios, manifestResponse.data);
+DocumentActions.requestDocument = function loadDocument( state, manifestURL, dispatcher ) {
+	axios.get(manifestURL).then( function( manifestResponse ) {
+		dispatchAction( dispatcher, 'DocumentActions.loadDocument', manifestResponse.data );
 	})
 	.catch( (error) => {
 		console.log(error)
 	})
 
-	return state;
+	return { 
+		...state,
+		manifestURL
+	}
 };
 
-function parseManifest(folios, manifest) {
+DocumentActions.loadDocument = function loadDocument( state, manifestData ) {
+	let folios = parseManifest(manifestData);
+	let { folioIndex, nameByID, idByName } = createFolioIndex(folios);
+	return {
+		...state,
+		loaded: true,
+		folios, folioIndex,
+		folioNameByIDIndex: nameByID, 
+		folioIDByNameIndex: idByName
+	};
+};
+
+function createFolioIndex(folios) {
+	// Store an ordered array of folio ids, used for next/prev navigation purposes later
+	let folioIndex = [];
+	let nameByID = {};
+	let idByName = {};
+	for (let idx = 0; idx < folios.length; idx++) {
+		let shortID = folios[idx].id.substr(folios[idx].id.lastIndexOf('/') + 1);
+		folioIndex.push(shortID);
+		nameByID[shortID] = folios[idx].name;
+		idByName[folios[idx].name] = shortID;
+	}
+	return { folioIndex, nameByID, idByName };
+}
+
+function parseManifest(manifest) {
+	let folios = [];
 	let canvases = manifest["sequences"][0]["canvases"];
 
 	for( let canvas of canvases ) {
@@ -41,7 +70,7 @@ function parseManifest(folios, manifest) {
 		folios.push(folio);
 	}
 
-	return true;
+	return folios;
 }
 
 export default DocumentActions;

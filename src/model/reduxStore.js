@@ -14,13 +14,13 @@ export function createReduxStore() {
 
 // Dispatch the action with the given parameters.
 export function dispatchAction( props, action, ...params ) {
-  props.dispatch( { type: action, payload: { params: params } } );
+  props.dispatch( { type: action, payload: { params: params, dispatcher: { dispatch: props.dispatch } } } );
 };
 
 // Take the action and call it with the current redux state. 
 function reducer( state, actionFn, action ) {
   let params = (action.payload && action.payload.params) ? action.payload.params : [];
-  return actionFn( state, ...params );
+  return actionFn( state, ...params, action.payload.dispatcher );
 };
 
 function getActionFn( action, actionModule ) {

@@ -28,6 +28,19 @@ class navigation extends React.Component {
 		this.setState({popoverVisible:false})
 	}
 
+	componentWillMount() {
+		// copy the folio index over to the document view
+		if( this.props.document.folioIndex.length > 0 && this.props.documentView.folioIndex.length === 0 ) {
+			dispatchAction( 
+				this.props,
+				'DocumentViewActions.updateFolioIndex',
+				this.props.document.folioIndex,
+				this.props.document.folioNameByIDIndex,
+				this.props.document.folioIDByNameIndex 
+			);          
+		}
+	}
+
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		// Change viewtype
@@ -247,6 +260,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
+		document: state.document,
 		documentView: state.documentView
     };
 }
