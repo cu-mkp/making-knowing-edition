@@ -1,18 +1,28 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom'
 import Parser from 'html-react-parser';
 
 import { dispatchAction } from '../model/ReduxStore';
 
 class AnnotationView extends Component {
 
+    constructor(props,context) {
+        super(props,context);
+
+        this.state = { 
+            annoID: props.match.params.annoID
+        };
+    }
+
     componentWillMount() {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
     componentDidMount() {
-        dispatchAction( this.props, 'AnnotationActions.requestAnnotation' );
+        let anno = this.getAnnotation();
+        if( !annotationLoaded(anno) ) {
+            dispatchAction( this.props, 'AnnotationActions.requestAnnotation', anno.id );
+        }
     }
 
     // Configure parser to replace certain tags with components
@@ -30,18 +40,27 @@ class AnnotationView extends Component {
 		 };
 		 return parserOptions;
     }
+
+    getAnnotation() {
+        return this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
+    }
     
 	render() {
-        if( !this.props.annotations.loaded ) return null;
+        let anno = this.getAnnotation();
+        if( !annotationLoaded(anno) ) return null;
         
         let htmlToReactParserOptions = this.htmlToReactParserOptions();
 
         return (
             <div id="annotation-view">
-                {Parser(this.props.annotations.content,htmlToReactParserOptions)}
+                {Parser(anno.content,htmlToReactParserOptions)}
             </div>
         );
 	}
+}
+
+function annotationLoaded(anno) {
+    return ( anno && anno.loaded );
 }
 
 function mapStateToProps(state) {

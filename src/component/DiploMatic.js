@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DocumentView from './DocumentView';
 import ContentView from './ContentView';
 import AnnotationView from './AnnotationView';
+import AnnotationListView from './AnnotationListView';
 import Search from './Search';
 
 class DiploMatic extends Component {
@@ -69,7 +70,8 @@ class DiploMatic extends Component {
 			<div id="content">
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
-					<Route path="/annotations" component={AnnotationView}/>
+					<Route path="/annotations" component={AnnotationListView} exact/>
+					<Route path="/annotations/:annoID" component={AnnotationView}/>
 					<Route path="/folios" component={DocumentView}/>
 				</Switch>
 			</div>

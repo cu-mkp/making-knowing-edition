@@ -279,7 +279,11 @@ figure.current {
 
 #annotation-view {
   margin: 80px;
-  padding-top: 40px; }
+  max-width: 600px; }
+
+#annotation-list-view {
+  margin: 80px;
+  max-width: 600px; }
 
 #content-view {
   margin: 20px;
