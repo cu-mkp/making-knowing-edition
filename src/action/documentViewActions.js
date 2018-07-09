@@ -147,7 +147,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			bookMode: status,
 			left:{
 				...state.left,
-				currentFolioID: state.folioIDPrefix+versoID,
+				currentFolioID: doc.folioIDPrefix+versoID,
 				currentFolioShortID: versoID,
 				currentFolioName: doc.folioNameByIDIndex[versoID],
 				hasPrevious: current_hasPrev,
@@ -159,7 +159,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			},
 			right:{
 				...state.right,
-				currentFolioID: state.folioIDPrefix+nextID,
+				currentFolioID: doc.folioIDPrefix+nextID,
 				currentFolioShortID: nextID,
 				currentFolioName: doc.folioNameByIDIndex[nextID],
 				hasPrevious: current_hasPrev,
@@ -298,7 +298,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			...state,
 			left:{
 				...state.left,
-				currentFolioID: state.folioIDPrefix+versoID,
+				currentFolioID: doc.folioIDPrefix+versoID,
 				currentFolioShortID: versoID,
 				currentFolioName: doc.folioNameByIDIndex[versoID],
 				hasPrevious: current_hasPrev,
@@ -308,7 +308,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			},
 			right:{
 				...state.right,
-				currentFolioID: state.folioIDPrefix+nextID,
+				currentFolioID: doc.folioIDPrefix+nextID,
 				currentFolioShortID: nextID,
 				currentFolioName: doc.folioNameByIDIndex[nextID],
 				hasPrevious: current_hasPrev,

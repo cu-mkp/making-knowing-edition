@@ -52,7 +52,7 @@ class navigation extends React.Component {
 				event.currentTarget.dataset.direction				
 			)
 
-			let longID = this.props.documentView.folioIDPrefix+this.props.documentView.right.nextFolioShortID;
+			let longID = this.props.document.folioIDPrefix+this.props.documentView.right.nextFolioShortID;
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
@@ -138,7 +138,7 @@ class navigation extends React.Component {
 			return;
 		}
 		console.log(event.currentTarget.dataset.id);
-		let longID = this.props.documentView.folioIDPrefix+event.currentTarget.dataset.id;
+		let longID = this.props.document.folioIDPrefix+event.currentTarget.dataset.id;
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
@@ -164,7 +164,7 @@ class navigation extends React.Component {
 		// Convert folioName to ID (and confirm it exists)
 		let folioID = this.props.document.folioIDByNameIndex[folioName];
 		if(typeof folioID !== 'undefined'){
-			let longID = this.props.documentView.folioIDPrefix+folioID;
+			let longID = this.props.document.folioIDPrefix+folioID;
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',

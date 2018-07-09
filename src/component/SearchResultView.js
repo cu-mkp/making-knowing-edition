@@ -45,7 +45,7 @@ class SearchResultView extends Component {
 		if(typeof shortID === 'undefined'){
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
-			let longID = this.props.documentView.folioIDPrefix+shortID;
+			let longID = this.props.document.folioIDPrefix+shortID;
 			dispatchAction(
 				this.props,
 				'SearchActions.searchMatched',

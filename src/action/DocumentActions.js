@@ -4,7 +4,7 @@ import { dispatchAction } from '../model/ReduxStore';
 
 var DocumentActions = {};
 
-DocumentActions.requestDocument = function loadDocument( state, manifestURL, dispatcher ) {
+DocumentActions.requestDocument = function loadDocument( state, currentDocumentName, folioIDPrefix, manifestURL, dispatcher ) {
 	axios.get(manifestURL).then( function( manifestResponse ) {
 		dispatchAction( dispatcher, 'DocumentActions.loadDocument', manifestResponse.data );
 	})
@@ -14,7 +14,7 @@ DocumentActions.requestDocument = function loadDocument( state, manifestURL, dis
 
 	return { 
 		...state,
-		manifestURL
+		currentDocumentName, folioIDPrefix, manifestURL
 	}
 };
 

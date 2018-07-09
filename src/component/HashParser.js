@@ -253,19 +253,19 @@ class HashParser extends React.Component {
 
 			// Set the left folio if it's defined
 			if(left_currentFolioShortID !== '-1'){
-				newState.left.folioID=(this.props.documentView.folioIDPrefix+left_currentFolioShortID);
+				newState.left.folioID=(this.props.document.folioIDPrefix+left_currentFolioShortID);
 				newState.left.folioShortID=left_currentFolioShortID;
 
 				// If locked mode, set right to match
 				if(mode === 'l'){
-					newState.right.folioID=(this.props.documentView.folioIDPrefix+left_currentFolioShortID);
+					newState.right.folioID=(this.props.document.folioIDPrefix+left_currentFolioShortID);
 					newState.right.folioShortID=left_currentFolioShortID;
 				}
 			}
 
 			// If we have a right folio specified and we're not in locked mode, set it
 			if(right_currentFolioShortID !== '-1' && mode !== 'l'){
-				newState.right.folioID=(this.props.documentView.folioIDPrefix+right_currentFolioShortID);
+				newState.right.folioID=(this.props.document.folioIDPrefix+right_currentFolioShortID);
 				newState.right.folioShortID=right_currentFolioShortID;
 			}
 

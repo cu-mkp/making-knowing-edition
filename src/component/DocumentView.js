@@ -12,7 +12,13 @@ class DocumentView extends Component {
     }
 	
 	componentDidMount() {
-        dispatchAction( this.props, 'DocumentActions.requestDocument', process.env.REACT_APP_IIIF_MANIFEST );
+        dispatchAction( 
+            this.props, 
+            'DocumentActions.requestDocument', 
+            'BnF Ms. Fr. 640',
+            'https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/',
+            process.env.REACT_APP_IIIF_MANIFEST 
+        );
     }
       
     render() {
@@ -21,12 +27,8 @@ class DocumentView extends Component {
         
         return (
             <div>
-                <HashParser 
-                    history={this.props.history} 
-                />
-                <SplitPaneView 
-                    history={this.props.history}
-                />
+                <HashParser history={this.props.history} />
+                <SplitPaneView history={this.props.history} />
             </div>
         );
     }
@@ -35,8 +37,7 @@ class DocumentView extends Component {
 
 function mapStateToProps(state) {
 	return {
-        document: state.document,
-        documentView: state.documentView
+        document: state.document
 	};
 }
 
