@@ -54,6 +54,7 @@ class SearchResultView extends Component {
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.gotoSearchResult',
+				document,
 				longID,
 				'right',
 				event.currentTarget.dataset.type
@@ -199,6 +200,7 @@ function uniq(a) {
 function mapStateToProps(state) {
 	return {
 		search: state.search,
+		document: state.document,
         documentView: state.documentView
     };
 }

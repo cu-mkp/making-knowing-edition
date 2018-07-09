@@ -292,7 +292,8 @@ class HashParser extends React.Component {
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.setStateFromHash',
-				newState
+				newState,
+				this.props.document
 			);
 
 	}
@@ -302,6 +303,7 @@ class HashParser extends React.Component {
 
 function mapStateToProps(state) {
 	return {
+		document: state.document,
 		documentView: state.documentView
 	};
 }

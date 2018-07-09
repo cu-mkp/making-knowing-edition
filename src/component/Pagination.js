@@ -19,6 +19,7 @@ class navigation extends React.Component {
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
+			this.props.document,
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,
@@ -53,6 +54,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
+		document: state.document,
         documentView: state.documentView
     };
 }

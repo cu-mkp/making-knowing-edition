@@ -477,6 +477,7 @@ class TranscriptionView extends Component {
 
 function mapStateToProps(state) {
 	return {
+				document: state.document,
 				documentView: state.documentView,
 				search: state.search
     };

@@ -35,7 +35,6 @@ class SplitPaneViewport extends Component {
       return (
         <ImageView
 		  history={this.props.history}
-		  document={this.props.document}
           side={this.props.side}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
@@ -48,7 +47,6 @@ class SplitPaneViewport extends Component {
       return(
         <TranscriptionView
 		  history={this.props.history}
-		  document={this.props.document}
           side={this.props.side}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
@@ -61,7 +59,6 @@ class SplitPaneViewport extends Component {
       return(
         <XMLView
 		  history={this.props.history}
-		  document={this.props.document}
           side={this.props.side}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
@@ -75,7 +72,6 @@ class SplitPaneViewport extends Component {
         <ImageGridView
 		  history={this.props.history}
           side={this.props.side}
-          document={this.props.document}
           viewWidth={this.state.viewWidth}
           viewHeight={this.state.viewHeight}
           drawerMode={this.state.drawerMode}

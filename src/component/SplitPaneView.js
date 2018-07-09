@@ -233,7 +233,6 @@ class SplitPaneView extends Component {
 									side = 'left'
 									key = {this.viewKey(leftViewport, 'left')}
 									viewType={this.props.documentView.left.viewType}
-									document = {this.props.document}
 									viewWidth = {leftViewport.viewWidth}
 									drawerMode = {leftViewport.drawerMode}
 									drawerOpen = {leftViewport.drawerOpen}
@@ -247,7 +246,6 @@ class SplitPaneView extends Component {
 									side = 'right'
 									key = {this.viewKey(rightViewport, 'right')}
 									viewType={this.props.documentView.right.viewType}
-									document = {this.props.document}
 									viewWidth = {rightViewport.viewWidth}
 									drawerMode = {rightViewport.drawerMode}
 									drawerOpen = {rightViewport.drawerOpen}
@@ -259,6 +257,7 @@ class SplitPaneView extends Component {
 
 function mapStateToProps(state) {
 	return {
+		document: state.document,
 		documentView: state.documentView
 	};
 }

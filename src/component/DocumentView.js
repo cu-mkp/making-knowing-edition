@@ -23,11 +23,9 @@ class DocumentView extends Component {
             <div>
                 <HashParser 
                     history={this.props.history} 
-                    document={this.props.document}
                 />
                 <SplitPaneView 
                     history={this.props.history}
-                    document={this.props.document} 
                 />
             </div>
         );

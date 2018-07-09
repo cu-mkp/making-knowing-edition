@@ -24,10 +24,10 @@ DocumentViewActions.setXMLMode = function setXMLMode( state, side, newState ) {
 };
 
 // case SET_STATE_FROM_HASH:
-DocumentViewActions.setStateFromHash = function setStateFromHash( state, newState ) {
+DocumentViewActions.setStateFromHash = function setStateFromHash( state, newState, doc ) {
 
-	if(state.folioNameByIDIndex.length === 0){
-		//console.log("WARNING: SET_STATE_FROM_HASH reducer - state.folioNameByIDIndex not defined, cannot change folio, leaving state alone");
+	if(doc.folioNameByIDIndex.length === 0){
+		//console.log("WARNING: SET_STATE_FROM_HASH reducer - doc.folioNameByIDIndex not defined, cannot change folio, leaving state alone");
 		return state;
 	}
 
@@ -37,23 +37,23 @@ DocumentViewActions.setStateFromHash = function setStateFromHash( state, newStat
 	}
 
 	// FIXME: this should be factored out into a helper method
-	let current_idx = state.folioIndex.indexOf(newState.left.folioShortID);
+	let current_idx = doc.folioIndex.indexOf(newState.left.folioShortID);
 	let left_current_hasNext,left_nextID,left_current_hasPrev,left_prevID;
 	if (current_idx > -1) {
-		 left_current_hasNext = (current_idx < (state.folioIndex.length - 1));
-		 left_nextID = left_current_hasNext ? state.folioIndex[current_idx + 1] : '';
-		 left_current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
-		 left_prevID = left_current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+		 left_current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+		 left_nextID = left_current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+		 left_current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+		 left_prevID = left_current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
 	}
 
-	 current_idx = state.folioIndex.indexOf(newState.right.folioShortID);
+	 current_idx = doc.folioIndex.indexOf(newState.right.folioShortID);
 
 	 let right_current_hasNext,right_nextID,right_current_hasPrev,right_prevID;
 	if (current_idx > -1) {
-		 right_current_hasNext = (current_idx < (state.folioIndex.length - 1));
-		 right_nextID = right_current_hasNext ? state.folioIndex[current_idx + 1] : '';
-		 right_current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
-		 right_prevID = right_current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+		 right_current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+		 right_nextID = right_current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+		 right_current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+		 right_prevID = right_current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
 	}
 	return {
 		...state,
@@ -63,7 +63,7 @@ DocumentViewActions.setStateFromHash = function setStateFromHash( state, newStat
 			...state.left,
 			width: newState.left.width,
 			currentFolioID: newState.left.folioID,
-			currentFolioName: (typeof state.folioNameByIDIndex[newState.left.folioShortID] !== 'undefined')?state.folioNameByIDIndex[newState.left.folioShortID] :'',
+			currentFolioName: (typeof doc.folioNameByIDIndex[newState.left.folioShortID] !== 'undefined')?doc.folioNameByIDIndex[newState.left.folioShortID] :'',
 			currentFolioShortID: newState.left.folioShortID,
 			viewType: newState.left.viewType,
 			transcriptionType: newState.left.transcriptType,
@@ -79,7 +79,7 @@ DocumentViewActions.setStateFromHash = function setStateFromHash( state, newStat
 			...state.right,
 			width: newState.right.width,
 			currentFolioID: newState.right.folioID,
-			currentFolioName: (typeof state.folioNameByIDIndex[newState.right.folioShortID] !== 'undefined')?state.folioNameByIDIndex[newState.right.folioShortID] :'',
+			currentFolioName: (typeof doc.folioNameByIDIndex[newState.right.folioShortID] !== 'undefined')?doc.folioNameByIDIndex[newState.right.folioShortID] :'',
 			currentFolioShortID: newState.right.folioShortID,
 			viewType: newState.right.viewType,
 			transcriptionType: newState.right.transcriptType,
@@ -109,9 +109,9 @@ DocumentViewActions.setLinkedMode = function setLinkedMode( state, linkedMode ) 
 };
 
 // SET_BOOK_MODE
-DocumentViewActions.setBookMode = function setBookMode( state, shortid, status ) {
+DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, status ) {
 	// Missing index warning
-	if(state.folioIndex.length === 0){
+	if(doc.folioIndex.length === 0){
 		console.log("WARNING: SET_BOOK_MODE reducer - folio index not defined, cannot determine next/previous, leaving state alone");
 		return state;
 	}
@@ -126,8 +126,8 @@ DocumentViewActions.setBookMode = function setBookMode( state, shortid, status )
 	// Entering bookmode
 	}else{
 
-		let versoID=findNearestVerso(shortid, state.folioNameByIDIndex, state.folioIndex);
-		let current_idx = state.folioIndex.indexOf(versoID);
+		let versoID=findNearestVerso(shortid, doc.folioNameByIDIndex, doc.folioIndex);
+		let current_idx = doc.folioIndex.indexOf(versoID);
 		let nextID = '';
 		let prevID = '';
 		let nextNextID='';
@@ -135,12 +135,12 @@ DocumentViewActions.setBookMode = function setBookMode( state, shortid, status )
 		let current_hasNext = false;
 		let current_hasNextNext = false;
 		if (current_idx > -1) {
-			current_hasNext = (current_idx < (state.folioIndex.length - 1));
-			nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
-			current_hasNextNext = (current_idx < (state.folioIndex.length - 2));
-			nextNextID = current_hasNextNext ? state.folioIndex[current_idx + 2] : '';
-			current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
-			prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+			current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+			nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+			current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
+			nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
+			current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+			prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
 		}
 		return {
 			...state,
@@ -149,7 +149,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, shortid, status )
 				...state.left,
 				currentFolioID: state.folioIDPrefix+versoID,
 				currentFolioShortID: versoID,
-				currentFolioName: state.folioNameByIDIndex[versoID],
+				currentFolioName: doc.folioNameByIDIndex[versoID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -161,7 +161,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, shortid, status )
 				...state.right,
 				currentFolioID: state.folioIDPrefix+nextID,
 				currentFolioShortID: nextID,
-				currentFolioName: state.folioNameByIDIndex[nextID],
+				currentFolioName: doc.folioNameByIDIndex[nextID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -265,19 +265,10 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 		};
 	}
 };
-
-DocumentViewActions.updateFolioIndex = function updateFolioIndex(state,folioIndex,nameByID,idByName ) {
-	return {
-		...state,
-		folioIndex: folioIndex,
-		folioNameByIDIndex: nameByID,
-		folioIDByNameIndex: idByName
-	};	
-};
 		
 // CHANGE_CURRENT_FOLIO
-DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id, side, transcriptionType, direction ) {
-	if(state.folioIndex.length === 0){
+DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc, id, side, transcriptionType, direction ) {
+	if(doc.folioIndex.length === 0){
 		console.log("WARNING: DocumentViewActions.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
 		return state;
 	}
@@ -287,8 +278,8 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 
 	// Book mode? (recto/verso)
 	if(state.bookMode ){
-		let versoID=findNearestVerso(shortID, state.folioNameByIDIndex, state.folioIndex, direction);
-		let current_idx = state.folioIndex.indexOf(versoID);
+		let versoID=findNearestVerso(shortID, doc.folioNameByIDIndex, doc.folioIndex, direction);
+		let current_idx = doc.folioIndex.indexOf(versoID);
 		let nextID = '';
 		let prevID = '';
 		let nextNextID='';
@@ -296,12 +287,12 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 		let current_hasNext = false;
 		let current_hasNextNext = false;
 		if (current_idx > -1) {
-			current_hasNext = (current_idx < (state.folioIndex.length - 1));
-			nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
-			current_hasNextNext = (current_idx < (state.folioIndex.length - 2));
-			nextNextID = current_hasNextNext ? state.folioIndex[current_idx + 2] : '';
-			current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
-			prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+			current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+			nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+			current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
+			nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
+			current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+			prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
 		}
 		return {
 			...state,
@@ -309,7 +300,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 				...state.left,
 				currentFolioID: state.folioIDPrefix+versoID,
 				currentFolioShortID: versoID,
-				currentFolioName: state.folioNameByIDIndex[versoID],
+				currentFolioName: doc.folioNameByIDIndex[versoID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -319,7 +310,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 				...state.right,
 				currentFolioID: state.folioIDPrefix+nextID,
 				currentFolioShortID: nextID,
-				currentFolioName: state.folioNameByIDIndex[nextID],
+				currentFolioName: doc.folioNameByIDIndex[nextID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -329,17 +320,17 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 	}
 
 	// Not book mode
-	let current_idx = state.folioIndex.indexOf(shortID);
+	let current_idx = doc.folioIndex.indexOf(shortID);
 	let nextID = '';
 	let prevID = '';
 	let current_hasPrev = false;
 	let current_hasNext = false;
 	if (current_idx > -1) {
-		current_hasNext = (current_idx < (state.folioIndex.length - 1));
-		nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
+		current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+		nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
 
-		current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
-		prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+		current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+		prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
 	}
 	if(state.linkedMode){
 		return {
@@ -348,7 +339,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 				...state.left,
 				currentFolioID: id,
 				currentFolioShortID: shortID,
-				currentFolioName: state.folioNameByIDIndex[shortID],
+				currentFolioName: doc.folioNameByIDIndex[shortID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
 				previousFolioShortID: prevID,
@@ -358,7 +349,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 				...state.right,
 				currentFolioID: id,
 				currentFolioShortID: shortID,
-				currentFolioName: state.folioNameByIDIndex[shortID],
+				currentFolioName: doc.folioNameByIDIndex[shortID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
 				previousFolioShortID: prevID,
@@ -376,7 +367,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 					transcriptionType: type,
 					transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
 					currentFolioShortID: shortID,
-					currentFolioName: state.folioNameByIDIndex[shortID],
+					currentFolioName: doc.folioNameByIDIndex[shortID],
 					hasPrevious: current_hasPrev,
 					hasNext: current_hasNext,
 					previousFolioShortID: prevID,
@@ -395,7 +386,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 					transcriptionType: type,
 					transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
 					currentFolioShortID: shortID,
-					currentFolioName: state.folioNameByIDIndex[shortID],
+					currentFolioName: doc.folioNameByIDIndex[shortID],
 					hasPrevious: current_hasPrev,
 					hasNext: current_hasNext,
 					previousFolioShortID: prevID,
@@ -406,20 +397,20 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, id,
 	}
 };
 
-DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, id, side, transcriptionType ) {
+DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, doc, id, side, transcriptionType ) {
 
 	let shortID = id.substr(id.lastIndexOf('/') + 1);
-	let current_idx = state.folioIndex.indexOf(shortID);
+	let current_idx = doc.folioIndex.indexOf(shortID);
 	let nextID = '';
 	let prevID = '';
 	let current_hasPrev = false;
 	let current_hasNext = false;
 	if (current_idx > -1) {
-		current_hasNext = (current_idx < (state.folioIndex.length - 1));
-		nextID = current_hasNext ? state.folioIndex[current_idx + 1] : '';
+		current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+		nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
 
-		current_hasPrev = (current_idx > 0 && state.folioIndex.length > 1);
-		prevID = current_hasPrev ? state.folioIndex[current_idx - 1] : '';
+		current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+		prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
 	}
 
 	let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
@@ -432,7 +423,7 @@ DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, id, sid
 			transcriptionType: type,
 			transcriptionTypeLabel: state.uiLabels.transcriptionType[type],
 			currentFolioShortID: shortID,
-			currentFolioName: state.folioNameByIDIndex[shortID],
+			currentFolioName: doc.folioNameByIDIndex[shortID],
 			hasPrevious: current_hasPrev,
 			hasNext: current_hasNext,
 			previousFolioShortID: prevID,

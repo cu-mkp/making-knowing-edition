@@ -28,19 +28,6 @@ class navigation extends React.Component {
 		this.setState({popoverVisible:false})
 	}
 
-	componentWillMount() {
-		// copy the folio index over to the document view
-		if( this.props.document.folioIndex.length > 0 && this.props.documentView.folioIndex.length === 0 ) {
-			dispatchAction( 
-				this.props,
-				'DocumentViewActions.updateFolioIndex',
-				this.props.document.folioIndex,
-				this.props.document.folioNameByIDIndex,
-				this.props.document.folioIDByNameIndex 
-			);          
-		}
-	}
-
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		// Change viewtype
@@ -59,6 +46,7 @@ class navigation extends React.Component {
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
+				this.props.document,
 				this.props.documentView.left.currentFolioID,
 				'left',
 				event.currentTarget.dataset.direction				
@@ -68,6 +56,7 @@ class navigation extends React.Component {
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
+				this.props.document,
 				longID,
 				'left',
 				event.currentTarget.dataset.direction
@@ -78,6 +67,7 @@ class navigation extends React.Component {
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.setBookMode',
+			this.props.document,
 			this.props.documentView.left.currentFolioShortID, 
 			!this.props.documentView.bookMode
 		);
@@ -116,6 +106,7 @@ class navigation extends React.Component {
 				dispatchAction( 
 					this.props,
 					'DocumentViewActions.changeCurrentFolio',
+					this.props.document,
 					this.props.documentView.left.currentFolioID,
 					'right',
 					this.props.documentView.left.transcriptionType,
@@ -125,6 +116,7 @@ class navigation extends React.Component {
 				dispatchAction(
 					this.props,
 					'DocumentViewActions.changeCurrentFolio',
+					this.props.document,
 					this.props.documentView.right.currentFolioID,
 					'left',
 					this.props.documentView.right.transcriptionType,
@@ -150,6 +142,7 @@ class navigation extends React.Component {
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
+			this.props.document,
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,
@@ -169,12 +162,13 @@ class navigation extends React.Component {
 	// User has requested a jump
 	jumpToFolio(folioName){
 		// Convert folioName to ID (and confirm it exists)
-		let folioID = this.props.documentView.folioIDByNameIndex[folioName];
+		let folioID = this.props.document.folioIDByNameIndex[folioName];
 		if(typeof folioID !== 'undefined'){
 			let longID = this.props.documentView.folioIDPrefix+folioID;
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
+				this.props.document,
 				longID,
 				this.props.side
 			);

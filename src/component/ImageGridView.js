@@ -34,6 +34,7 @@ class ImageGridView extends React.Component {
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
+			this.props.document,
 			id,
 			this.props.side
 		);
@@ -104,6 +105,7 @@ class ImageGridView extends React.Component {
 
 function mapStateToProps(state) {
 	return {
+		document: state.document,
         documentView: state.documentView
     };
 }
