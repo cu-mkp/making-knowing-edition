@@ -21,7 +21,7 @@ class AnnotationView extends Component {
     componentDidMount() {
         let anno = this.getAnnotation();
         if( !annotationLoaded(anno) ) {
-            dispatchAction( this.props, 'AnnotationActions.requestAnnotation', anno.id );
+            dispatchAction( this.props, 'AnnotationActions.requestAnnotation', this.state.annoID );
         }
     }
 

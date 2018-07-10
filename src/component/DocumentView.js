@@ -12,13 +12,15 @@ class DocumentView extends Component {
     }
 	
 	componentDidMount() {
-        dispatchAction( 
-            this.props, 
-            'DocumentActions.requestDocument', 
-            'BnF Ms. Fr. 640',
-            'https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/',
-            process.env.REACT_APP_IIIF_MANIFEST 
-        );
+        if( !this.props.document.loaded ) {
+            dispatchAction( 
+                this.props, 
+                'DocumentActions.requestDocument', 
+                'BnF Ms. Fr. 640',
+                'https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/',
+                process.env.REACT_APP_IIIF_MANIFEST 
+            );    
+        }
     }
       
     render() {

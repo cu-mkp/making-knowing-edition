@@ -11,7 +11,9 @@ class AnnotationListView extends Component {
     }
 
     componentDidMount() {
-        dispatchAction( this.props, 'AnnotationActions.requestAnnotationManifest', 'http://localhost:4000/bnf-ms-fr-640/annotations/annotations.json' );
+        if( !this.props.annotations.loaded ) {
+            dispatchAction( this.props, 'AnnotationActions.requestAnnotationManifest', 'http://localhost:4000/bnf-ms-fr-640/annotations/annotations.json' );
+        }
     }
 
 	render() {
