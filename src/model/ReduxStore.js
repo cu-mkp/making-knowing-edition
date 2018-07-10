@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-
+ 
 import rootReducer from '../action/rootReducer';
 
 // Call this once to create a new redux store that is properly configured.
@@ -17,7 +17,7 @@ export function dispatchAction( props, action, ...params ) {
   props.dispatch( { type: action, payload: { params: params, dispatcher: { dispatch: props.dispatch } } } );
 };
 
-// Take the action and call it with the current redux state. 
+// Take the action and call it with the current redux state.
 function reducer( state, actionFn, action ) {
   let params = (action.payload && action.payload.params) ? action.payload.params : [];
   return actionFn( state, ...params, action.payload.dispatcher );
@@ -41,9 +41,9 @@ export function createReducer( actionModuleName, actionModule, initialState ) {
     if( validActions.includes(action.type) ) {
       return reducer( state, getActionFn(action.type, mod), action );
     } else {
-      return { ...state }; 
+      return { ...state };
     }
   };
-  
+
   return scopedReducer;
 }
