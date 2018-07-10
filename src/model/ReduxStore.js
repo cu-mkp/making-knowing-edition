@@ -1,15 +1,19 @@
 import {createStore, applyMiddleware} from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga'
  
 import rootReducer from '../action/rootReducer';
+import rootSaga from '../action/sagas/rootSaga';
 
 // Call this once to create a new redux store that is properly configured.
 export function createReduxStore() {
-  return createStore(
+  let sagaMiddleware = createSagaMiddleware()
+  let store = createStore(
     rootReducer(),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+    applyMiddleware(sagaMiddleware)
   );
+  sagaMiddleware.run(rootSaga)
+  return store;
 };
 
 // Dispatch the action with the given parameters.

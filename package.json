@@ -28,6 +28,7 @@
     "react-simple-popover": "^0.2.4",
     "react-string-replace": "^0.4.1",
     "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
