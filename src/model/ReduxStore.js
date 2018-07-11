@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga'
- 
+import { put } from 'redux-saga/effects'
+
 import rootReducer from '../action/rootReducer';
 import rootSaga from '../action/sagas/rootSaga';
 
@@ -19,6 +20,11 @@ export function createReduxStore() {
 // Dispatch the action with the given parameters.
 export function dispatchAction( props, action, ...params ) {
   props.dispatch( { type: action, payload: { params: params, dispatcher: { dispatch: props.dispatch } } } );
+};
+
+// Dispatch the action via Redux Saga.
+export function *putAction( action, ...params ) {
+  return yield put( { type: action, payload: { params: params } } );
 };
 
 // Take the action and call it with the current redux state.

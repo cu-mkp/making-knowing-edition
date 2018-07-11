@@ -9,6 +9,7 @@ import ContentView from './ContentView';
 import AnnotationView from './AnnotationView';
 import AnnotationListView from './AnnotationListView';
 import Search from './Search';
+import RouteListener from './RouteListener';
 
 class DiploMatic extends Component {
 
@@ -98,6 +99,7 @@ class DiploMatic extends Component {
 				<MuiThemeProvider>
 					<HashRouter>
 						<div id="diplomatic" className={fixedFrameModeClass}>
+							<RouteListener/>
 							{ this.renderHeader(fixedFrameModeClass) }
 							{ this.renderContent(fixedFrameModeClass) }
 							{ this.renderFooter(fixedFrameModeClass) }

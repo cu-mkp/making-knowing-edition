@@ -3,20 +3,9 @@ import { dispatchAction } from '../model/ReduxStore';
 
 var AnnotationActions = {};
 
-AnnotationActions.requestAnnotationManifest = function requestAnnotationManifest( state, annotationManifestURL, dispatcher ) {
-    axios.get(annotationManifestURL)
-        .then(function(response) {
-            dispatchAction( dispatcher, 'AnnotationActions.loadAnnotationManifest', response.data );
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-
-    return {
-        ...state,
-        annotationManifestURL    
-    };
-};
+AnnotationActions.getAnnotationStatus = function getAnnotationStatus( state ) {
+    return state;
+}
 
 AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( state, annotationManifestData ) {
     let annotations = {};
@@ -39,7 +28,7 @@ AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( stat
 AnnotationActions.requestAnnotation = function requestAnnotation( state, annotationID, dispatcher ) {
     axios.get(state.annotations[annotationID].contentURL)
         .then(function(response) {
-            dispatchAction( dispatcher, 'AnnotationActions.loadAnnotation', response.data );
+            // dispatchAction( dispatcher, 'AnnotationActions.loadAnnotation', response.data );
         })
         .catch((error) => {
             console.log(error)
