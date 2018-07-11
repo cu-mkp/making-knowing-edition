@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga'
 import { put } from 'redux-saga/effects'
 
 import rootReducer from '../action/rootReducer';
-import rootSaga from '../action/sagas/rootSaga';
+import rootSaga from '../saga/rootSaga';
 
 // Call this once to create a new redux store that is properly configured.
 export function createReduxStore() {

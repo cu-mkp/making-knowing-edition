@@ -18,13 +18,6 @@ class AnnotationView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
-    componentDidMount() {
-        let anno = this.getAnnotation();
-        if( !annotationLoaded(anno) ) {
-            dispatchAction( this.props, 'AnnotationActions.requestAnnotation', this.state.annoID );
-        }
-    }
-
     // Configure parser to replace certain tags with components
     htmlToReactParserOptions() {
 		var parserOptions =  {
@@ -40,14 +33,10 @@ class AnnotationView extends Component {
 		 };
 		 return parserOptions;
     }
-
-    getAnnotation() {
-        return this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
-    }
     
 	render() {
-        let anno = this.getAnnotation();
-        if( !annotationLoaded(anno) ) return null;
+        let anno = this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
+        if( !anno || !anno.loaded ) return null;
         
         let htmlToReactParserOptions = this.htmlToReactParserOptions();
 

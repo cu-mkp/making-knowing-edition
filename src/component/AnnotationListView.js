@@ -10,12 +10,6 @@ class AnnotationListView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
     }
 
-    componentDidMount() {
-        if( !this.props.annotations.loaded ) {
-            // dispatchAction( this.props, 'AnnotationActions.requestAnnotationManifest', 'http://localhost:4000/bnf-ms-fr-640/annotations/annotations.json' );
-        }
-    }
-
 	render() {
         if( !this.props.annotations.loaded ) return null;
         
