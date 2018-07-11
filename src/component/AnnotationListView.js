@@ -10,12 +10,33 @@ class AnnotationListView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
     }
 
+    renderAnnotation(annotation) {
+      return (
+        <li key={`anno-${annotation.id}`}>
+            <Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link>
+        </li>
+      );
+    }
+
+    renderAnnotationList() {
+        let annoList = [];
+        for( let annotation of Object.values(this.props.annotations.annotations) ) {
+            annoList.push( this.renderAnnotation(annotation) );
+        }
+
+        return (
+            <ul>
+                { annoList }
+            </ul>
+        );
+    }
+
 	render() {
         if( !this.props.annotations.loaded ) return null;
-        
+    
         return (
             <div id="annotation-list-view">
-                <Link to="/annotations/anno1">anno1</Link>
+                { this.renderAnnotationList() }
             </div>
         );
 	}
