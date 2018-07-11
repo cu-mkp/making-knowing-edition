@@ -27,6 +27,11 @@ export function *putAction( action, ...params ) {
   return yield put( { type: action, payload: { params: params } } );
 };
 
+// Dispatch the action via Redux Saga.
+export function *putResolveAction( action, ...params ) {
+  return yield put.resolve( { type: action, payload: { params: params } } );
+};
+
 // Take the action and call it with the current redux state.
 function reducer( state, actionFn, action ) {
   let params = (action.payload && action.payload.params) ? action.payload.params : [];

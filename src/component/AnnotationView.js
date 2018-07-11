@@ -48,10 +48,6 @@ class AnnotationView extends Component {
 	}
 }
 
-function annotationLoaded(anno) {
-    return ( anno && anno.loaded );
-}
-
 function mapStateToProps(state) {
     return {
         annotations: state.annotations

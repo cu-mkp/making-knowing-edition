@@ -1,32 +1,45 @@
 import axios from 'axios';
 import { takeEvery, select } from 'redux-saga/effects'
 
-import { putAction } from '../model/ReduxStore';
+import { putResolveAction } from '../model/ReduxStore';
 
 const justAnnotations = state => state.annotations
 
 function *userNavigation(action) {
-    let pathname = action.payload.params[0].pathname;
+    const pathname = action.payload.params[0].pathname;
+    const pathSegments = pathname.split('/');
 
-    // Based on the route, load the required resources.
-    switch(pathname) {
-        case '/':
-            break;
-        case '/folios':
-            // let existing code handle this for now
-            break;
-        case '/annotations':
-            yield handleAnnotations();
-            break;
-        default:
+    if( pathSegments.length > 1 ) {
+        switch(pathSegments[1]) {
+            case 'folios':
+                // TODO refactor existing code to go here.
+                break;
+            case 'annotations':
+                yield resolveAnnotationManifest();
+                if( pathSegments.length > 2 ) {
+                    let annotationID = pathSegments[2];
+                    yield resolveAnnotation(annotationID);
+                }
+                break;
+            default:
+        }    
     }
 }
 
-function *handleAnnotations() {
+function *resolveAnnotationManifest() {
     const annotations = yield select(justAnnotations)
     if( !annotations.loaded ) {
-        let response = yield axios.get(annotations.annotationManifestURL);
-        yield putAction( 'AnnotationActions.loadAnnotationManifest', response.data );    
+        const response = yield axios.get(annotations.annotationManifestURL);
+        yield putResolveAction( 'AnnotationActions.loadAnnotationManifest', response.data );    
+    }
+}
+
+function *resolveAnnotation(annotationID) {
+    const annotations = yield select(justAnnotations)
+    const annotation = annotations.annotations[annotationID];
+    if( !annotation.loaded ) {
+        const response = yield axios.get(annotation.contentURL);
+        yield putResolveAction( 'AnnotationActions.loadAnnotation', annotationID, response.data );        
     }
 }
 
