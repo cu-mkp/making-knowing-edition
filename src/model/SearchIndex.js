@@ -57,11 +57,13 @@ class SearchIndex {
     let recipes = [];
 
     for( let result of results ) {
+      if( result.score > 0 ) {
       	let recipe = this.recipeBook[transcriptionType][ result.ref ];
-		if( recipe ) {
-	      let fragments = createFragments( result.matchData.metadata, recipe.content )
-	      recipes.push( { name: recipe.name, folio: recipe.folioID, contextFragments: fragments } );
-		}
+        if( recipe ) {
+            let fragments = createFragments( result.matchData.metadata, recipe.content )
+            recipes.push( { name: recipe.name, folio: recipe.folioID, contextFragments: fragments } );
+        }
+      }
     }
 
     return recipes;
