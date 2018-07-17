@@ -317,37 +317,63 @@ class TranscriptionView extends Component {
 			 replace: function(domNode) {
 
 				 switch (domNode.name) {
-
-					case 'h2':
-						//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
-						if(this2.props.documentView[this2.props.side].currentFolioShortID === 'f19'){
-							let text = this2.nodeTreeToString(domNode.children);
-							let annotationType = "fieldNotes"; // fieldNotes | annotation | video
-							let annotationContent = "This is a fieldNote annotation for: '"+text;
-							annotationContent +="' Mauris laoreet purus ut urna ullamcorper fringilla. Morbi fermentum lectus ac dictum auctor. Suspendisse suscipit quam non arcu ultrices, vel dignissim tellus gravida. Nunc vitae odio lorem. Nulla nisl erat, laoreet vitae lectus quis, pharetra semper diam. In hac habitasse platea dictumst. Nullam id felis quis metus iaculis fermentum quis quis tortor. Proin maximus urna mi, non semper mauris fringilla eu. Vivamus eget lectus malesuada, commodo ex sit amet, finibus nunc. Pellentesque non ultrices magna. Proin molestie tempus diam, ac faucibus orci vulputate in. Donec tempor faucibus enim. Pellentesque facilisis ut mi sit amet cursus. Integer sollicitudin faucibus metus iaculis faucibus. Suspendisse in velit eget orci pretium placerat. Morbi rhoncus, libero ac convallis pellentesque, enim eros elementum leo, vitae suscipit mi nibh at sem."
+						case 'add':
 							return (
-								<Annotation headerContent={domToReact(domNode.children, parserOptions)}
-											side={side}
-											type={annotationType}>
-												{annotationContent}
-								</Annotation>
+								<b>
+									{domToReact(domNode.children, parserOptions)}
+								</b>
 							);
-						} else {
-							return domNode;
-						}
 
-					case 'm':
-						let term = this2.nodeTreeToString(domNode.children);
+						case 'corr':
 							return (
-							<Gloss side={side}
-									 term={term}>
-										 {domToReact(domNode.children, parserOptions)}
-								</Gloss>
-						);
+								<b>
+									{domToReact(domNode.children, parserOptions)}
+								</b>
+							);
 
-					 default:
-						 /* Otherwise, Just pass through */
-						 return domNode;
+						case 'exp':
+							return (
+								<b>
+									{domToReact(domNode.children, parserOptions)}
+								</b>
+							);
+							
+						case 'h2':
+							//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
+							if(this2.props.documentView[this2.props.side].currentFolioShortID === 'f19'){
+								let text = this2.nodeTreeToString(domNode.children);
+								let annotationType = "fieldNotes"; // fieldNotes | annotation | video
+								let annotationContent = "This is a fieldNote annotation for: '"+text;
+								annotationContent +="' Mauris laoreet purus ut urna ullamcorper fringilla. Morbi fermentum lectus ac dictum auctor. Suspendisse suscipit quam non arcu ultrices, vel dignissim tellus gravida. Nunc vitae odio lorem. Nulla nisl erat, laoreet vitae lectus quis, pharetra semper diam. In hac habitasse platea dictumst. Nullam id felis quis metus iaculis fermentum quis quis tortor. Proin maximus urna mi, non semper mauris fringilla eu. Vivamus eget lectus malesuada, commodo ex sit amet, finibus nunc. Pellentesque non ultrices magna. Proin molestie tempus diam, ac faucibus orci vulputate in. Donec tempor faucibus enim. Pellentesque facilisis ut mi sit amet cursus. Integer sollicitudin faucibus metus iaculis faucibus. Suspendisse in velit eget orci pretium placerat. Morbi rhoncus, libero ac convallis pellentesque, enim eros elementum leo, vitae suscipit mi nibh at sem."
+								return (
+									<Annotation headerContent={domToReact(domNode.children, parserOptions)}
+												side={side}
+												type={annotationType}>
+													{annotationContent}
+									</Annotation>
+								);
+							} else {
+								return domNode;
+							}
+
+						case 'm':
+							let term = this2.nodeTreeToString(domNode.children);
+								return (
+								<Gloss side={side}
+										term={term}>
+											{domToReact(domNode.children, parserOptions)}
+									</Gloss>
+							);
+
+						case 'rub':
+						return (
+							<b>
+								{domToReact(domNode.children, parserOptions)}
+							</b>
+						);
+						default:
+							/* Otherwise, Just pass through */
+							return domNode;
 				 }
 			 }
 		 };
