@@ -41,7 +41,7 @@ class SearchResultView extends Component {
 			folioname = folioname.replace(/^[0|\D]*/,'');
 
 		// Convert to shortID
-		let shortID = this.props.documentView.folioIDByNameIndex[folioname];
+		let shortID = this.props.document.folioIDByNameIndex[folioname];
 		if(typeof shortID === 'undefined'){
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
@@ -54,7 +54,7 @@ class SearchResultView extends Component {
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.gotoSearchResult',
-				document,
+				this.props.document,
 				longID,
 				'right',
 				event.currentTarget.dataset.type

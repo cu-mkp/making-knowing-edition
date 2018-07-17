@@ -49,6 +49,7 @@ class navigation extends React.Component {
 				this.props.document,
 				this.props.documentView.left.currentFolioID,
 				'left',
+				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction				
 			)
 
@@ -59,6 +60,7 @@ class navigation extends React.Component {
 				this.props.document,
 				longID,
 				'left',
+				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction
 			);
 		}
