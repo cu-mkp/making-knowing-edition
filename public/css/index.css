@@ -530,6 +530,11 @@ figure.current {
   margin: 0 0 0 1rem;
   height: calc(100vh - 7rem); }
 
+.add {
+  color: blue;
+  vertical-align: super;
+  font-size: 8pt; }
+
 .inline-figure {
   margin: 5px;
   border: 1px solid gray;

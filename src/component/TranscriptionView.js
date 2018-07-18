@@ -319,23 +319,23 @@ class TranscriptionView extends Component {
 				 switch (domNode.name) {
 						case 'add':
 							return (
-								<b>
+								<span class='add'>
 									{domToReact(domNode.children, parserOptions)}
-								</b>
+								</span>
 							);
 
 						case 'corr':
 							return (
-								<b>
-									{domToReact(domNode.children, parserOptions)}
-								</b>
+								<span class='corr'>
+									{`{${domToReact(domNode.children, parserOptions)}}`}
+								</span>
 							);
 
 						case 'exp':
 							return (
-								<b>
-									{domToReact(domNode.children, parserOptions)}
-								</b>
+								<span class='exp'>
+									{`{${domToReact(domNode.children, parserOptions)}}`}
+								</span>
 							);
 							
 						case 'h2':
@@ -365,12 +365,27 @@ class TranscriptionView extends Component {
 									</Gloss>
 							);
 
+						case 'man':
+							return (
+								<b>
+									{`{${domToReact(domNode.children, parserOptions)}}`}
+								</b>
+							);
+
 						case 'rub':
 						return (
 							<b>
 								{domToReact(domNode.children, parserOptions)}
 							</b>
 						);
+
+						case 'sup':
+							return (
+								<b>
+									{domToReact(domNode.children, parserOptions)}
+								</b>
+							);
+							
 						default:
 							/* Otherwise, Just pass through */
 							return domNode;
