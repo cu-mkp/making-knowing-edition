@@ -327,14 +327,14 @@ class TranscriptionView extends Component {
 						case 'corr':
 							return (
 								<span class='corr'>
-									{`{${domToReact(domNode.children, parserOptions)}}`}
+									&#123;{domToReact(domNode.children, parserOptions)}&#125;
 								</span>
 							);
 
 						case 'exp':
 							return (
 								<span class='exp'>
-									{`{${domToReact(domNode.children, parserOptions)}}`}
+									&#123;{domToReact(domNode.children, parserOptions)}&#125;
 								</span>
 							);
 							
@@ -368,7 +368,7 @@ class TranscriptionView extends Component {
 						case 'man':
 							return (
 								<b>
-									{`{${domToReact(domNode.children, parserOptions)}}`}
+									{domToReact(domNode.children, parserOptions)}
 								</b>
 							);
 
