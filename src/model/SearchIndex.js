@@ -51,16 +51,22 @@ class SearchIndex {
 		}
 	}
 
+  parseIDs( docID ) {
+    const parts = docID.split('-');
+    return { recipeID: parts[0], folioID: parts[1] };
+  }
+
 	// transcription type can be tc, tcn, or tl.
   searchEdition( searchTerm, transcriptionType) {
     let results = this.searchIndex[transcriptionType].search(searchTerm);
     let recipes = [];
 
     for( let result of results ) {
-      let recipe = this.recipeBook[transcriptionType][ result.ref ];
+      const { recipeID, folioID } = this.parseIDs( result.ref );
+      let recipe = this.recipeBook[transcriptionType][ recipeID ];
       if( recipe ) {
-          let fragments = createFragments( result.matchData.metadata, recipe.content )
-          recipes.push( { name: recipe.name, folio: recipe.folioID, contextFragments: fragments } );
+        let fragments = createFragments( result.matchData.metadata, recipe.passages[folioID] )
+        recipes.push( { name: recipe.name, folio: folioID, contextFragments: fragments } );
       }
     }
 
