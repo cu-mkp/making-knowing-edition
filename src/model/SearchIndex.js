@@ -107,7 +107,7 @@ function isPunctuation( character ) {
 
 function createFragment( fullText, highlightPosition ) {
   let contextFragment, checkEllipses;
-  let fragment = fullText.replace('\n', ' ').split(' ');
+  let fragment = fullText.replace(/\n/g, ' ').split(' ');
   let termIndex = offsetToWordIndex( fragment, highlightPosition[0] );
 
   // clip the fragment if the full text is too long too display
