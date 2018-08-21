@@ -7,7 +7,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://159.65.186.2/folio/p078r/tc",
+            "@id": "http://209.97.145.244/folio/p078r/tc",
             "@type": "dctypes:Text",
             "format": "text/html"
          },
@@ -17,7 +17,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://159.65.186.2/folio/p078r/tcn",
+            "@id": "http://209.97.145.244/folio/p078r/tcn",
             "@type": "dctypes:Text",
             "format": "text/html"
          },
@@ -27,7 +27,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://159.65.186.2/folio/p078r/tl",
+            "@id": "http://209.97.145.244/folio/p078r/tl",
             "@type": "dctypes:Text",
             "format": "text/html"
          },
@@ -37,7 +37,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://159.65.186.2/folio/p078r/tc/original.txt",
+            "@id": "http://209.97.145.244/folio/p078r/tc/original.txt",
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
@@ -47,7 +47,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://159.65.186.2/folio/p078r/tcn/original.txt",
+            "@id": "http://209.97.145.244/folio/p078r/tcn/original.txt",
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
@@ -57,7 +57,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://159.65.186.2/folio/p078r/tl/original.txt",
+            "@id": "http://209.97.145.244/folio/p078r/tl/original.txt",
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
