@@ -7409,7 +7409,7 @@
             },
             {
                "@id": "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f212",
-               "label": "130v",
+               "label": "103v",
                "height": 5357,
                "width": 3249,
                "images": [
@@ -7437,7 +7437,7 @@
                "@type": "sc:Canvas",
                "otherContent": [
                   {
-                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p130v.json",
+                     "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/list/p103v.json",
                      "@type": "sc:AnnotationList"
                   }
                ]
