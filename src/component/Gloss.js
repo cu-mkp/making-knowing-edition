@@ -46,11 +46,11 @@ class Gloss extends React.Component {
 		 	term = term.replace(/\s{2,}/g,' ').trim()
 		let glossaryID = this.props.documentView[this.props.side].transcriptionType;
 		let gloss = this.props.glossary[glossaryID];
-		let contents = "<div class='term'>"+term+"</div>";
+		let contents = "<div className='term'>"+term+"</div>";
 		if(!(typeof gloss[term] === 'undefined')){
-			contents += "<div class='definition'>" + gloss[term] +"</div>";
+			contents += "<div className='definition'>" + gloss[term] +"</div>";
 		}else{
-			contents += "<div class='definition'> no definition available ("+glossaryID+" glossary)</div>";
+			contents += "<div clasName='definition'> no definition available ("+glossaryID+" glossary)</div>";
 		}
 
 

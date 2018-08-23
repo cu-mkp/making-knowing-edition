@@ -82,8 +82,9 @@ class TranscriptionView extends Component {
 
 		// combine the blocks in the block set. divs are all merged into a single div
 		// other element types become children of the single div.
-		let el = `<div id="${elementID}" class="${classStr}">`;
+		let el = `<div id="${elementID}" className="${classStr}">`;
 		for( let block of blockSet ) {
+			block.setAttribute("className", "block");
 			if( block.name === 'div' ) {
 				el = el.concat(`${block.innerHTML} <br/>`);
 			} else {
@@ -319,21 +320,21 @@ class TranscriptionView extends Component {
 				 switch (domNode.name) {
 						case 'add':
 							return (
-								<span class='add'>
+								<span className='add'>
 									{domToReact(domNode.children, parserOptions)}
 								</span>
 							);
 
 						case 'corr':
 							return (
-								<span class='corr'>
+								<span className='corr'>
 									&#123;{domToReact(domNode.children, parserOptions)}&#125;
 								</span>
 							);
 
 						case 'exp':
 							return (
-								<span class='exp'>
+								<span className='exp'>
 									&#123;{domToReact(domNode.children, parserOptions)}&#125;
 								</span>
 							);
