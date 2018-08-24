@@ -45,7 +45,8 @@
 .grid-mode {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 5px;
+	grid-auto-rows: minmax(min-content, 0fr);
+	grid-gap: 2px;
 }
 
 .surface > .small-font {
@@ -57,7 +58,7 @@
 }
 
 .surface.grid-mode > div{
-	border: 1px solid #EFEDED;
+	// border: 1px solid #EFEDED;
 }
 
 .surface > #z0 {

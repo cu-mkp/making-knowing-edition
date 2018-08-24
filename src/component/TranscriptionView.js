@@ -62,8 +62,15 @@ class TranscriptionView extends Component {
 
 	// transform zone grid into the grid layout string
 	zoneGridToLayout( zoneGrid ) {
+		let zoneGridFinal = [ ...zoneGrid ];
+
+		// ignore the first row if there are no block sets in it
+		if( zoneGrid[0][0] === '.' && zoneGrid[0][1] === '.' & zoneGrid[0][1] === '.') {
+			zoneGridFinal.shift();
+		}
+
 		let gridLayout = '';
-		for (let row of zoneGrid) {
+		for (let row of zoneGridFinal) {
 	  		let rowString = row.join(' ');
 	  		gridLayout += ` '${rowString}'`;
 		}
@@ -117,7 +124,14 @@ class TranscriptionView extends Component {
       'right-top': false,
       'left-bottom': false,
       'right-bottom': false
-    };
+		};
+		
+		const hintCodes = [
+			'tall',
+			'extra-tall',
+			'wide',
+			'extra-wide'
+		];
 
     let validLayoutCode = function( layoutCode ) {
       if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
@@ -125,7 +139,15 @@ class TranscriptionView extends Component {
       } else {
         return 'middle';
       }
-    };
+		};
+		
+		function validLayoutHint( layoutHint ) {
+			if( hintCodes.includes(layoutHint) ) {
+				return layoutHint;
+			} else {
+				return null;
+			}
+		}
 
     let zoneGrid = [];
     let gridContent = "";
@@ -141,7 +163,7 @@ class TranscriptionView extends Component {
 
         for( let block of blocks ) {
           let layoutCode = validLayoutCode(block.dataset.layout);
-          let hint = block.dataset.layoutHint;
+          let hint = validLayoutHint(block.dataset.layoutHint);
 
           // group all the blocks together that share a layout code
           if( marginFrame[layoutCode] ) {

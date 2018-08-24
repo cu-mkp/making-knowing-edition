@@ -262,7 +262,7 @@ figure.current {
 
 .paginationControl {
   padding: 0;
-  margin: 0 auto;
+  margin: 0 0 20px 0;
   display: inline-block;
   top: 10rem;
   left: 0; }
@@ -359,7 +359,7 @@ figure.current {
   width: 100vw;
   height: calc(100vh - $chrome-height);
   font-family: 'OpenSans', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.2rem;
   overflow: hidden;
   -webkit-user-select: none;
@@ -552,16 +552,14 @@ figure.current {
 .grid-mode {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 5px; }
+  grid-auto-rows: minmax(min-content, 0fr);
+  grid-gap: 2px; }
 
 .surface > .small-font {
   font-size: 10pt; }
 
 .surface > div {
   padding: 10px; }
-
-.surface.grid-mode > div {
-  border: 1px solid #EFEDED; }
 
 .surface > #z0 {
   grid-area: z0; }
@@ -650,7 +648,7 @@ figure.current {
   overflow-x: scroll; }
 
 .glossaryTerm {
-  color: #90a9c5; }
+  color: #52759d; }
 
 #glossaryPopup {
   display: none;
