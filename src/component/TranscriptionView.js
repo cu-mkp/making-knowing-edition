@@ -183,7 +183,11 @@ class TranscriptionView extends Component {
             case 'left-middle':
               zoneFrame[1][0] = block.id;
               if( hint === 'tall')
-                zoneFrame[2][0] = block.id;
+								zoneFrame[2][0] = block.id;
+							else if( hint === 'wide') {
+									zoneFrame[1][1] = block.id;
+									zoneFrame[1][2] = block.id;
+							}
               break;
             case 'right-middle':
               zoneFrame[1][2] = block.id;
@@ -196,7 +200,11 @@ class TranscriptionView extends Component {
             case 'left-top':
               zoneFrame[0][0] = block.id;
               if( hint === 'tall')
-                zoneFrame[1][0] = block.id;
+								zoneFrame[1][0] = block.id;
+						  else if( hint === 'wide') {
+									zoneFrame[0][1] = block.id;
+									zoneFrame[0][2] = block.id;
+							}
               break;
             case 'right-top':
               zoneFrame[0][2] = block.id;
@@ -204,7 +212,11 @@ class TranscriptionView extends Component {
                 zoneFrame[1][2] = block.id;
               break;
             case 'left-bottom':
-              zoneFrame[2][0] = block.id;
+							zoneFrame[2][0] = block.id;
+							if( hint === 'wide') {
+								zoneFrame[2][1] = block.id;
+								zoneFrame[2][2] = block.id;
+							}
               break;
             case 'right-bottom':
               zoneFrame[2][2] = block.id;

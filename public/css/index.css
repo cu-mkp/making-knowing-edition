@@ -42,7 +42,8 @@ h4 {
   font-family: 'OpenSans', sans-serif;
   font-weight: 700;
   padding: 0;
-  margin: 0 0 0.3rem; }
+  margin: 0 0 0.3rem;
+  line-height: 1.5rem; }
 
 .invisible {
   opacity: 0; }
@@ -536,7 +537,7 @@ figure.current {
 .add {
   color: blue;
   vertical-align: super;
-  font-size: 8pt; }
+  font-size: 9pt; }
 
 .inline-figure {
   margin: 5px;
