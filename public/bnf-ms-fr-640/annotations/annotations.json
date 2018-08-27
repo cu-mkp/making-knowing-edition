@@ -2,25 +2,13 @@
     "title": "Annotations of BnF MS Fr. 640",
     "content": [
         {
-            "id": "anno1",
-            "name": "Annotation One",
-            "contentURL": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/annotations/anno1.html",
-            "abstract": "This is the abstract.",
+            "id": "EG_029r_1",
+            "name": "\"Stucco for Molding\", fol. 29r",
+            "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/EG_029r_1.html",
+            "folio": "029r",
+            "author": "Nina Elizondo-Garza",
+            "abstract": "Abstract: Fol. 29r_1 describes a method for creating stucco which the author-practitioner claims is versatile and inexpensive. This annotation conducts a material-based analysis of the entry, including a reconstruction following the instructions in this entry and a historical investigation of ancient and early modern stucco recipes and stucco use, to better situate the author-practitioner within his context. These comparisons reveal that the author-practitioner's recipe is apparently unusual. Moreover, investigating stucco highlights the author-practitioner's interest in ornamentation, his focus on using pre-existing patterns rather than creating new ones, and his possible first-hand experiences of making domestic and ephemeral decorative art.",
             "thumbnail": "thumburl"
-        },
-        {
-            "id": "anno2",
-            "name": "Annotation Two",
-            "contentURL": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/annotations/anno2.html",
-            "abstract": "This is the abstract.",
-            "thumbnail": "thumburl"
-        },
-        {
-            "id": "anno3",
-            "name": "Annotation Three",
-            "contentURL": "http://edition-staging.makingandknowing.org/bnf-ms-fr-640/annotations/anno3.html",
-            "abstract": "This is the abstract.",
-            "thumbnail": "thumburl"
-        } 
+        }
     ]
 }

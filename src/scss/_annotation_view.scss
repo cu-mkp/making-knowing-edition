@@ -1,5 +1,38 @@
 #annotation-view {
 
-    margin: 80px;
-    max-width: 600px;
+    margin: 80px 20% 80px 20%;
+    max-width: 66%;
+    line-height: 2;
+    text-indent: 50px;
+
+    h1 {
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    h3 {
+        margin: 40px 0px 40px 0px;
+        text-indent: 0px;
+    }
+
+    table.anno-table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      table.anno-table td, table.anno-table th {
+        border: 1px solid #AAAAAA;
+        padding: 5px;
+        line-height: 1.2;
+        text-indent: 0px;
+        vertical-align: top;
+      }
+      table.anno-table thead {
+          border-bottom: 2px solid #444444;
+      }
+      table.anno-table thead th {
+        font-size: 15px;
+        font-weight: bold;
+        color: #000000;
+      }
 }
