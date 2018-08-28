@@ -15,6 +15,38 @@
         text-indent: 0px;
     }
 
+    li {
+        p {
+            text-indent: 5px;
+        }
+    }
+
+    .author-bio {
+        .author-pic {
+            float: left;
+            border: 1px solid #DDDDDD;
+            margin: 20px;
+        }
+        text-indent: 0px;
+    }
+
+    figure {
+        img {
+            width: 300px;
+            border: 1px solid #DDDDDD;
+        }
+        figcaption {
+            text-indent: 0px;
+            line-height: 1.2;
+            margin-left: 50px;
+            font-size: 10pt;
+            width: 300px;
+            text-align: left
+        }     
+        float: right;
+        margin: 20px;
+    }
+
     table.anno-table {
         width: 100%;
         text-align: left;

@@ -289,6 +289,27 @@ figure.current {
   #annotation-view h3 {
     margin: 40px 0px 40px 0px;
     text-indent: 0px; }
+  #annotation-view li p {
+    text-indent: 5px; }
+  #annotation-view .author-bio {
+    text-indent: 0px; }
+    #annotation-view .author-bio .author-pic {
+      float: left;
+      border: 1px solid #DDDDDD;
+      margin: 20px; }
+  #annotation-view figure {
+    float: right;
+    margin: 20px; }
+    #annotation-view figure img {
+      width: 300px;
+      border: 1px solid #DDDDDD; }
+    #annotation-view figure figcaption {
+      text-indent: 0px;
+      line-height: 1.2;
+      margin-left: 50px;
+      font-size: 10pt;
+      width: 300px;
+      text-align: left; }
   #annotation-view table.anno-table {
     width: 100%;
     text-align: left;
