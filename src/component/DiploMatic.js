@@ -101,7 +101,7 @@ class DiploMatic extends Component {
 						<div id="diplomatic" className={fixedFrameModeClass}>
 							<RouteListener/>
 							{ this.renderHeader(fixedFrameModeClass) }
-							{ this.renderContent(fixedFrameModeClass) }
+							{ this.renderContent() }
 							{ this.renderFooter(fixedFrameModeClass) }
 							<div id="glossaryPopup" tabIndex="1"></div>
 						</div>	

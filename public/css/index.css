@@ -56,7 +56,7 @@ h4 {
   font-weight: 600;
   position: relative;
   top: -2.4rem;
-  right: 1rem;
+  right: 2rem;
   float: right; }
 
 #globalNavigation span {
@@ -337,10 +337,25 @@ figure.current {
   #diplomatic #header .compactTitle {
     font-weight: 700;
     display: none; }
+  #diplomatic #header .expandedViewOnly {
+    display: inline; }
+  @media only screen and (max-width: 500px) {
+    #diplomatic #header .expandedViewOnly {
+      display: none; }
+    #diplomatic #header #header .tagline,
+    #diplomatic #header #header .title {
+      display: none; }
+    #diplomatic #header #header .compactTitle {
+      display: block;
+      font-size: 2rem;
+      width: 5rem;
+      margin: .6rem 0 0 0; }
+    #diplomatic #header #header #search {
+      display: block;
+      margin: .5rem 1rem 0 0; } }
 
-#diplomatic #header.fixed {
-  z-index: 900;
-  position: fixed; }
+#diplomatic #search {
+  display: inline; }
 
 #diplomatic #content {
   margin-top: 5rem; }
@@ -369,6 +384,10 @@ figure.current {
     font-size: 0.8rem;
     padding: 0.8rem 0 0 0.3rem; }
 
+#diplomatic #header.fixed {
+  z-index: 900;
+  position: fixed; }
+
 #diplomatic #footer.fixed {
   z-index: 9000;
   position: fixed;
@@ -391,42 +410,6 @@ figure.current {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
-
-#diplomatic {
-  /* Compact view */ }
-  #diplomatic .expandedViewOnly {
-    display: inline; }
-  #diplomatic #search {
-    display: inline; }
-  @media only screen and (max-width: 1290px) {
-    #diplomatic .expandedViewOnly {
-      display: none; }
-    #diplomatic #search {
-      display: block;
-      margin: 0.8rem; }
-    #diplomatic #header .title {
-      display: block;
-      padding: 0.8rem 0 0;
-      font-size: 1rem; }
-    #diplomatic #header .tagline {
-      display: block;
-      margin: 0;
-      padding: 0.10rem 0 0 0.1rem;
-      font-size: 0.5rem; }
-    #diplomatic #footer .logos {
-      display: none; } }
-  @media only screen and (max-width: 500px) {
-    #diplomatic #header .tagline,
-    #diplomatic #header .title {
-      display: none; }
-    #diplomatic #header .compactTitle {
-      display: block;
-      font-size: 2rem;
-      width: 5rem;
-      margin: .6rem 0 0 0; }
-    #diplomatic #header #search {
-      display: block;
-      margin: .5rem 1rem 0 0; } }
 
 .imageGridComponent {
   background-color: #000000;
