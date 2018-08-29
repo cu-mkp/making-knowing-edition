@@ -320,12 +320,11 @@ figure.current {
     line-height: 1.2;
     text-indent: 0px;
     vertical-align: top; }
-  #annotation-view table.anno-table thead {
-    border-bottom: 2px solid #444444; }
-  #annotation-view table.anno-table thead th {
+  #annotation-view table.anno-table th {
+    padding-left: 5px;
+    background: #3F3626;
     font-size: 15px;
-    font-weight: bold;
-    color: #000000; }
+    color: white; }
 
 #annotation-list-view {
   margin: 80px;
