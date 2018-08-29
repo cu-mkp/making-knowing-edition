@@ -65,7 +65,7 @@ class TranscriptionView extends Component {
 		let zoneGridFinal = [ ...zoneGrid ];
 
 		// ignore the first row if there are no block sets in it
-		if( zoneGrid[0][0] === '.' && zoneGrid[0][1] === '.' & zoneGrid[0][1] === '.') {
+		if( zoneGrid[0] && zoneGrid[0][0] === '.' && zoneGrid[0][1] === '.' & zoneGrid[0][1] === '.') {
 			zoneGridFinal.shift();
 		}
 
