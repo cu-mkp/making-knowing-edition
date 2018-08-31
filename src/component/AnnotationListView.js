@@ -12,9 +12,14 @@ class AnnotationListView extends Component {
 
     renderAnnotation(annotation) {
       return (
-        <li key={`anno-${annotation.id}`}>
-            <Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link>
-        </li>
+        <div key={`anno-${annotation.id}`}>
+            <Link to={`/annotations/${annotation.id}`}><img className='thumbnail' src={annotation.thumbnail}></img></Link>
+            <div className='description'> 
+                <h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
+                <p>By: {annotation.author}</p>
+                <p>{annotation.abstract}</p>
+            </div>
+        </div>
       );
     }
 
@@ -25,9 +30,9 @@ class AnnotationListView extends Component {
         }
 
         return (
-            <ul>
+            <div className="annotationList">
                 { annoList }
-            </ul>
+            </div>
         );
     }
 
@@ -36,6 +41,7 @@ class AnnotationListView extends Component {
     
         return (
             <div id="annotation-list-view">
+                <h1> Annotations of BnF Ms. Fr. 640</h1>
                 { this.renderAnnotationList() }
             </div>
         );

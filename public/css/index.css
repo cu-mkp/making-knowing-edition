@@ -330,8 +330,18 @@ figure.current {
     color: white; }
 
 #annotation-list-view {
-  margin: 80px;
-  max-width: 600px; }
+  margin: 130px 20% 80px 20%;
+  max-width: 66%;
+  line-height: 2; }
+  #annotation-list-view h1 {
+    margin-bottom: 50px; }
+  #annotation-list-view .thumbnail {
+    border: 1px solid gray;
+    margin: 20px;
+    float: right;
+    width: 250px; }
+  #annotation-list-view .description {
+    padding: 10px; }
 
 #content-view {
   margin: 20px;

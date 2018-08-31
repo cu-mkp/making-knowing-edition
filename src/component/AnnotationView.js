@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 import { Link } from 'react-scroll';
- 
-
+import { Link as ReactLink } from 'react-router-dom';
 import { dispatchAction } from '../model/ReduxStore';
 
 class AnnotationView extends Component {
@@ -61,6 +60,9 @@ class AnnotationView extends Component {
 
         return (
             <div id="annotation-view">
+                <div className='annotation-nav'>
+                    <ReactLink to='/annotations'>Back to List</ReactLink>
+                </div>
                 {Parser(anno.content,htmlToReactParserOptions)}
             </div>
         );

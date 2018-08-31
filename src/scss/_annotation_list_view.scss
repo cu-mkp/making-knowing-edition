@@ -1,5 +1,68 @@
 #annotation-list-view {
 
-    margin: 80px;
-    max-width: 600px;
+    margin: 130px 20% 80px 20%;
+    max-width: 66%;
+    line-height: 2;
+    
+    h1 {
+        margin-bottom: 50px;
+    }
+
+    .thumbnail {
+        border: 1px solid gray;
+        margin: 20px;
+        float: right;
+        width: 250px;
+    }
+
+    .description {
+        padding: 10px;
+    }
+    
+
+    // table.annotationList {
+    //     border: 1px solid #1C6EA4;
+    //     width: 100%;
+    //     text-align: left;
+    //     border-collapse: collapse;
+    //   }
+    //   table.annotationList td, table.annotationList th {
+    //     border: 1px solid #AAAAAA;
+    //     padding: 5px;
+    //   }
+    //   table.annotationList thead {
+    //     background: #3F3626;
+    //     background: -moz-linear-gradient(top, #6f685c 0%, #524a3b 66%, #3F3626 100%);
+    //     background: -webkit-linear-gradient(top, #6f685c 0%, #524a3b 66%, #3F3626 100%);
+    //     background: linear-gradient(to bottom, #6f685c 0%, #524a3b 66%, #3F3626 100%);
+    //     border-bottom: 2px solid #444444;
+    //   }
+    //   table.annotationList thead th {
+    //     font-size: 15px;
+    //     font-weight: bold;
+    //     color: #FFFFFF;
+    //   }
+    //   table.annotationList tfoot {
+    //     font-size: 14px;
+    //     font-weight: bold;
+    //     color: #FFFFFF;
+    //     background: #D0E4F5;
+    //     background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    //     background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    //     background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
+    //     border-top: 2px solid #444444;
+    //   }
+    //   table.annotationList tfoot td {
+    //     font-size: 14px;
+    //   }
+    //   table.annotationList tfoot .links {
+    //     text-align: right;
+    //   }
+    //   table.annotationList tfoot .links a{
+    //     display: inline-block;
+    //     background: #1C6EA4;
+    //     color: #FFFFFF;
+    //     padding: 2px 8px;
+    //     border-radius: 5px;
+    //   }
 }
