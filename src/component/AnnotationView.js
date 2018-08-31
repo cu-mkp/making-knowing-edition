@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Parser from 'html-react-parser';
-import { Element, scroller } from 'react-scroll';
+import domToReact from 'html-react-parser/lib/dom-to-react';
+import { Link } from 'react-scroll';
  
 
 import { dispatchAction } from '../model/ReduxStore';
@@ -20,37 +21,29 @@ class AnnotationView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
-    scrollToAnchorTag = (e) => {                
-        // Somewhere else, even another file
-        scroller.scrollTo('myScrollToElement', {
-            duration: 500,
-            smooth: true,
-            containerId: this.id,
-            offset: 5 
-        }); 
+    // Add anchor tag navigation for footnotes
+    addFootnoteLink( domNode, parserOptions ) {
+        const tagClass = domNode.attribs.class;
+        if( tagClass === 'footnote-ref' || tagClass === 'footnote-back' ) {
+            const scrollTo = domNode.attribs.href.substr(1);
+            return (
+                <Link className='footnote-ref' id={domNode.attribs.id} activeClass="active" to={scrollTo} offset={-100} >
+                {domToReact(domNode.children, parserOptions)}
+                </Link>
+            );
+        }
+        else {
+            return domNode;
+        }
     }
 
     // Configure parser to replace certain tags with components
     htmlToReactParserOptions() {
 		var parserOptions =  {
-			 replace: function(domNode) {
+			 replace: (domNode) => {
 				 switch (domNode.name) {
                     case 'a':
-                        // determine tag class
-                        const tagClass = null;
-                        if( tagClass === 'footnote-ref' || tagClass === 'footnote-back' ) {
-                            // href="#fnref32"
-                            return (
-                                // reconstruct the link
-                                <Element name="fnref32">
-                                    <a onClick={this.scrollToAnchorTag}></a>
-                                </Element>
-                            );
-                        }
-                        else {
-                            return domNode;
-                        }
-
+                        return this.addFootnoteLink( domNode, parserOptions );
 					 default:
 						 /* Otherwise, Just pass through */
 						 return domNode;
