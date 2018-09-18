@@ -16,6 +16,9 @@
 /public/bnf-ms-fr-640/manifest-staging.json
 /public/bnf-ms-fr-640/list-staging
 /public/bnf-ms-fr-640/search-idx
+/public/bnf-ms-fr-640/annotations
+/public/bnf-ms-fr-640/images
+
 
 # misc
 .DS_Store

@@ -1,14 +1,335 @@
 {
-    "title": "Annotations of BnF MS Fr. 640",
-    "content": [
-        {
-            "id": "NE_029r_1",
-            "name": "\"Stucco for Molding\", fol. 29r",
-            "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/NE_029r_1.html",
-            "folio": "029r",
-            "author": "Nina Elizondo-Garza",
-            "abstract": "Abstract: Fol. 29r_1 describes a method for creating stucco which the author-practitioner claims is versatile and inexpensive. This annotation conducts a material-based analysis of the entry, including a reconstruction following the instructions in this entry and a historical investigation of ancient and early modern stucco recipes and stucco use, to better situate the author-practitioner within his context. These comparisons reveal that the author-practitioner's recipe is apparently unusual. Moreover, investigating stucco highlights the author-practitioner's interest in ornamentation, his focus on using pre-existing patterns rather than creating new ones, and his possible first-hand experiences of making domestic and ephemeral decorative art.",
-            "thumbnail": "http://localhost:4000/bnf-ms-fr-640/figures/annotations/EG_029r_1_fig005.jpg"
-        }
-    ]
+   "title": "Annotations of BnF MS Fr. 640",
+   "content": [
+      {
+         "id": "10AcxQUvF9X-bFESeqAEjqEWFyrSchAbdk15o1OSVdRU",
+         "name": "10AcxQUvF9X-bFESeqAEjqEWFyrSchAbdk15o1OSVdRU",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/10AcxQUvF9X-bFESeqAEjqEWFyrSchAbdk15o1OSVdRU.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "10_kJBnJ67qrrVBYIw-E9ZZnZXnwu3-XQpHMMRwBslrk",
+         "name": "10_kJBnJ67qrrVBYIw-E9ZZnZXnwu3-XQpHMMRwBslrk",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/10_kJBnJ67qrrVBYIw-E9ZZnZXnwu3-XQpHMMRwBslrk.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "12fOKzykn8J--fmftwc-Yghi_uiFex13aw7_hrBV4R1g",
+         "name": "12fOKzykn8J--fmftwc-Yghi_uiFex13aw7_hrBV4R1g",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/12fOKzykn8J--fmftwc-Yghi_uiFex13aw7_hrBV4R1g.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1307GL5qovGyYjsfiCWTaFhfIsgVnQlso_n-lhQa-urY",
+         "name": "1307GL5qovGyYjsfiCWTaFhfIsgVnQlso_n-lhQa-urY",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1307GL5qovGyYjsfiCWTaFhfIsgVnQlso_n-lhQa-urY.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "142dGr18rL0dyaBOArTkg6dOzWFsd6qy7QbxezmXmVLw",
+         "name": "142dGr18rL0dyaBOArTkg6dOzWFsd6qy7QbxezmXmVLw",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/142dGr18rL0dyaBOArTkg6dOzWFsd6qy7QbxezmXmVLw.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "15_umXL_zydbyQVYeyx1pBFKoAC4p85q1gk0m63Ajrfo",
+         "name": "15_umXL_zydbyQVYeyx1pBFKoAC4p85q1gk0m63Ajrfo",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/15_umXL_zydbyQVYeyx1pBFKoAC4p85q1gk0m63Ajrfo.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "18OqnSFdJneElUpi_CvF1XvAFg-yOZsBxj6b_2DypHUA",
+         "name": "18OqnSFdJneElUpi_CvF1XvAFg-yOZsBxj6b_2DypHUA",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/18OqnSFdJneElUpi_CvF1XvAFg-yOZsBxj6b_2DypHUA.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "18p6AkoM-WYiVqeYH1t1BF2ofsAvb8fJ0xKlaTTx3YdU",
+         "name": "18p6AkoM-WYiVqeYH1t1BF2ofsAvb8fJ0xKlaTTx3YdU",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/18p6AkoM-WYiVqeYH1t1BF2ofsAvb8fJ0xKlaTTx3YdU.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "196dGRxHqXIsJRmfEzzddbrTeI8Y9TvPnaK7Fc4Brp3c",
+         "name": "196dGRxHqXIsJRmfEzzddbrTeI8Y9TvPnaK7Fc4Brp3c",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/196dGRxHqXIsJRmfEzzddbrTeI8Y9TvPnaK7Fc4Brp3c.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "19hU-U8HcOJgSHUPg5Wi7H0TBqSqnOxjacGPu177bxhI",
+         "name": "19hU-U8HcOJgSHUPg5Wi7H0TBqSqnOxjacGPu177bxhI",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/19hU-U8HcOJgSHUPg5Wi7H0TBqSqnOxjacGPu177bxhI.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1BETVIbdM5pBncZiZjb9bPj3v_hijJTeKE0zEKmRdqfY",
+         "name": "1BETVIbdM5pBncZiZjb9bPj3v_hijJTeKE0zEKmRdqfY",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1BETVIbdM5pBncZiZjb9bPj3v_hijJTeKE0zEKmRdqfY.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1E7Yx_1PP_KPRRUbgAZmhlxMoMwwLB1OwNJPZIdeQUJg",
+         "name": "1E7Yx_1PP_KPRRUbgAZmhlxMoMwwLB1OwNJPZIdeQUJg",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1E7Yx_1PP_KPRRUbgAZmhlxMoMwwLB1OwNJPZIdeQUJg.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1GFWxS3NKhzh_olGNGMh77ZGAIs7KN_wJQZ2ORjXD44w",
+         "name": "1GFWxS3NKhzh_olGNGMh77ZGAIs7KN_wJQZ2ORjXD44w",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1GFWxS3NKhzh_olGNGMh77ZGAIs7KN_wJQZ2ORjXD44w.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1H1XkpYLArFcomH2WsPFjpBMutsXl1qzGZiVYJRR77uk",
+         "name": "1H1XkpYLArFcomH2WsPFjpBMutsXl1qzGZiVYJRR77uk",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1H1XkpYLArFcomH2WsPFjpBMutsXl1qzGZiVYJRR77uk.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1K5vI_wtNCUWXTOr1BFgRsmMQMDSrNFGdzmaeyJKRHA4",
+         "name": "1K5vI_wtNCUWXTOr1BFgRsmMQMDSrNFGdzmaeyJKRHA4",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1K5vI_wtNCUWXTOr1BFgRsmMQMDSrNFGdzmaeyJKRHA4.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1LRXL5e5NjUmqFe7smQYYHHMozIGQpdNv88VSC3NAJlI",
+         "name": "1LRXL5e5NjUmqFe7smQYYHHMozIGQpdNv88VSC3NAJlI",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1LRXL5e5NjUmqFe7smQYYHHMozIGQpdNv88VSC3NAJlI.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1MvCkw-O3gfIG2FmEfBxC3mkyyNKWEcv8ow43zU5-d2A",
+         "name": "1MvCkw-O3gfIG2FmEfBxC3mkyyNKWEcv8ow43zU5-d2A",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1MvCkw-O3gfIG2FmEfBxC3mkyyNKWEcv8ow43zU5-d2A.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1Okouu9SBGrEKg-byIMPkvpYGgpemoFZuyh6vhqO_swo",
+         "name": "1Okouu9SBGrEKg-byIMPkvpYGgpemoFZuyh6vhqO_swo",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1Okouu9SBGrEKg-byIMPkvpYGgpemoFZuyh6vhqO_swo.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1RT9VZ5Ict0x_6BIWif-xC9gqH-VYhfpvVCeK0sf6ZVc",
+         "name": "1RT9VZ5Ict0x_6BIWif-xC9gqH-VYhfpvVCeK0sf6ZVc",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1RT9VZ5Ict0x_6BIWif-xC9gqH-VYhfpvVCeK0sf6ZVc.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1V0GLiYHerhz-qm-oYfoZI_ukDfS4lczPEJVnGiF-O-0",
+         "name": "1V0GLiYHerhz-qm-oYfoZI_ukDfS4lczPEJVnGiF-O-0",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1V0GLiYHerhz-qm-oYfoZI_ukDfS4lczPEJVnGiF-O-0.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1ZNqXbJINti7teByIul9FVs52sOlzdV0NpW42-heVn3I",
+         "name": "1ZNqXbJINti7teByIul9FVs52sOlzdV0NpW42-heVn3I",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1ZNqXbJINti7teByIul9FVs52sOlzdV0NpW42-heVn3I.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1aBJDQ2p3E8BGAVYs9XUIwpc1z55IkXimbo7Xs6UOs8I",
+         "name": "1aBJDQ2p3E8BGAVYs9XUIwpc1z55IkXimbo7Xs6UOs8I",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1aBJDQ2p3E8BGAVYs9XUIwpc1z55IkXimbo7Xs6UOs8I.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1aBYi9s6N6VMxkG5UQ2Ai3f6z818B_sC22HQTMvIaVNM",
+         "name": "1aBYi9s6N6VMxkG5UQ2Ai3f6z818B_sC22HQTMvIaVNM",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1aBYi9s6N6VMxkG5UQ2Ai3f6z818B_sC22HQTMvIaVNM.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1c8z8aMc_HBVWLs9dU3MQcDGFo7r5c8xJte32f8ArQhI",
+         "name": "1c8z8aMc_HBVWLs9dU3MQcDGFo7r5c8xJte32f8ArQhI",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1c8z8aMc_HBVWLs9dU3MQcDGFo7r5c8xJte32f8ArQhI.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1cRzMvvNhh-dpr9pvWgzW60NrJBxVyPLuXpH0xMHyj_o",
+         "name": "1cRzMvvNhh-dpr9pvWgzW60NrJBxVyPLuXpH0xMHyj_o",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1cRzMvvNhh-dpr9pvWgzW60NrJBxVyPLuXpH0xMHyj_o.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1eazIdUafywO9AtLxRvLEzj6LfpPmTM0VK4x8oOHh-Pg",
+         "name": "1eazIdUafywO9AtLxRvLEzj6LfpPmTM0VK4x8oOHh-Pg",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1eazIdUafywO9AtLxRvLEzj6LfpPmTM0VK4x8oOHh-Pg.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1g8zJFcK35VdDmYfw8bHrBRHvNiz35pRjAkri-hkfFTo",
+         "name": "1g8zJFcK35VdDmYfw8bHrBRHvNiz35pRjAkri-hkfFTo",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1g8zJFcK35VdDmYfw8bHrBRHvNiz35pRjAkri-hkfFTo.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1hadGQunGoh9R6eJUndm-5MxRcoIi_r95EOG-ZqizP4Y",
+         "name": "1hadGQunGoh9R6eJUndm-5MxRcoIi_r95EOG-ZqizP4Y",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1hadGQunGoh9R6eJUndm-5MxRcoIi_r95EOG-ZqizP4Y.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1sLkUY56opxL5MUbgI6d7884xbft12WIh8v_8oU7DoJE",
+         "name": "1sLkUY56opxL5MUbgI6d7884xbft12WIh8v_8oU7DoJE",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1sLkUY56opxL5MUbgI6d7884xbft12WIh8v_8oU7DoJE.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1siU3IoHA65BVuHF5dt6n8m4jZvZ0OSU43WqR9xpGFCs",
+         "name": "1siU3IoHA65BVuHF5dt6n8m4jZvZ0OSU43WqR9xpGFCs",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1siU3IoHA65BVuHF5dt6n8m4jZvZ0OSU43WqR9xpGFCs.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1vnWGgmayvX5lFD8UZIelhJQsZB6_mOCeEPlU0B_Q0zU",
+         "name": "1vnWGgmayvX5lFD8UZIelhJQsZB6_mOCeEPlU0B_Q0zU",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1vnWGgmayvX5lFD8UZIelhJQsZB6_mOCeEPlU0B_Q0zU.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1xA_0tGA7Z8_D93A5PkrG9dtKaPaXRQrATxFXE0ipfQo",
+         "name": "1xA_0tGA7Z8_D93A5PkrG9dtKaPaXRQrATxFXE0ipfQo",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1xA_0tGA7Z8_D93A5PkrG9dtKaPaXRQrATxFXE0ipfQo.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      },
+      {
+         "id": "1ylpOMKmEFr5s8TD7CH36vFAfe8v6ssvc67OEGFQnP6A",
+         "name": "1ylpOMKmEFr5s8TD7CH36vFAfe8v6ssvc67OEGFQnP6A",
+         "contentURL": "http://localhost:4000/bnf-ms-fr-640/annotations/1ylpOMKmEFr5s8TD7CH36vFAfe8v6ssvc67OEGFQnP6A.html",
+         "folio": "001r",
+         "author": "AUTHOR NAME",
+         "abstract": "Lorem ipsum",
+         "thumbnail": "",
+         "status": "draft"
+      }
+   ]
 }
