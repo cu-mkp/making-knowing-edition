@@ -35,7 +35,7 @@ class EntryListView extends Component {
     }
 
 	render() {
-        // if( !this.props.annotations.loaded ) return null;
+        if( !this.props.entries.loaded ) return null;
     
         return (
             <div id="entry-list-view">
@@ -47,7 +47,7 @@ class EntryListView extends Component {
 
 function mapStateToProps(state) {
     return {
-        // annotations: state.annotations
+        entries: state.entries
     };
 }
 

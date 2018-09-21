@@ -4,6 +4,7 @@ import { takeEvery, select } from 'redux-saga/effects'
 import { putResolveAction } from '../model/ReduxStore';
 
 const justAnnotations = state => state.annotations
+const justEntries = state => state.entries
 
 function *userNavigation(action) {
     const pathname = action.payload.params[0].pathname;
@@ -21,6 +22,9 @@ function *userNavigation(action) {
                     yield resolveAnnotation(annotationID);
                 }
                 break;
+            case 'annotations':
+                yield resolveEntryManifest();
+                break;
             default:
         }    
     }
@@ -31,6 +35,14 @@ function *resolveAnnotationManifest() {
     if( !annotations.loaded ) {
         const response = yield axios.get(annotations.annotationManifestURL);
         yield putResolveAction( 'AnnotationActions.loadAnnotationManifest', response.data );    
+    }
+}
+
+function *resolveEntryManifest() {
+    const entries = yield select(justEntries)
+    if( !entries.loaded ) {
+        const response = yield axios.get(entries.annotationManifestURL);
+        yield putResolveAction( 'EntryActions.loadEntryManifest', response.data );    
     }
 }
 
