@@ -59,8 +59,8 @@ h4 {
   right: 1rem;
   float: right; }
 
-#globalNavigation span {
-  padding: 0.3rem; }
+#globalNavigation span, a {
+  padding: .3rem; }
 
 #globalNavigation span .francais {
   font-weight: 100; }
@@ -283,6 +283,10 @@ figure.current {
   max-width: 600px; }
 
 #annotation-list-view {
+  margin: 80px;
+  max-width: 600px; }
+
+#entry-list-view {
   margin: 80px;
   max-width: 600px; }
 

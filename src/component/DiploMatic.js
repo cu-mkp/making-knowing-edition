@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DocumentView from './DocumentView';
 import ContentView from './ContentView';
 import AnnotationView from './AnnotationView';
+import EntryListView from './EntryListView';
 import AnnotationListView from './AnnotationListView';
 import Search from './Search';
 import RouteListener from './RouteListener';
@@ -52,8 +53,8 @@ class DiploMatic extends Component {
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
 					<div className="expandedViewOnly">
-						<Link to='/annotations'>Annotations</Link>
-						<span>Entries</span>
+						<span>Annotations</span>
+						<Link to='/entries'>Entries</Link>
 						<Link to='/folios'>Folios</Link>
 						<span>About</span>
 					</div>
@@ -71,6 +72,7 @@ class DiploMatic extends Component {
 			<div id="content">
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
+					<Route path="/entries" component={EntryListView}/>
 					<Route path="/annotations" component={AnnotationListView} exact/>
 					<Route path="/annotations/:annoID" component={AnnotationView}/>
 					<Route path="/folios" component={DocumentView}/>
