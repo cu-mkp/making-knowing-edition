@@ -1,16 +1,7 @@
 
 var EntryActions = {};
 
-EntryActions.loadEntryManifest = function loadEntryManifest( state, entryManifestData ) {
-    let entries = {};
-    
-    for( let entry of entryManifestData["content"] ) {
-        entries[entry.id] = {
-            ...annotation,
-            loaded: false
-        };
-    }
-
+EntryActions.loadEntryManifest = function loadEntryManifest( state, entries ) {   
     return {
         ...state,
         entries,

@@ -22,7 +22,7 @@ function *userNavigation(action) {
                     yield resolveAnnotation(annotationID);
                 }
                 break;
-            case 'annotations':
+            case 'entries':
                 yield resolveEntryManifest();
                 break;
             default:
@@ -41,7 +41,7 @@ function *resolveAnnotationManifest() {
 function *resolveEntryManifest() {
     const entries = yield select(justEntries)
     if( !entries.loaded ) {
-        const response = yield axios.get(entries.annotationManifestURL);
+        const response = yield axios.get(entries.entryManifestURL);
         yield putResolveAction( 'EntryActions.loadEntryManifest', response.data );    
     }
 }
