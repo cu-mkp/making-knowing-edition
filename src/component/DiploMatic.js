@@ -52,12 +52,7 @@ class DiploMatic extends Component {
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
-					<div className="expandedViewOnly">
-						<Link to='/annotations'>Annotations</Link>
-						<Link to='/entries'>Entries</Link>
-						<Link to='/folios'>Folios</Link>
-						<span>About</span>
-					</div>
+					{ this.renderNavLinks() }
 					<Search/>
 					<div className="expandedViewOnly">
 						<span><span className="english">English</span> | <span className="francais">Français</span></span>
@@ -65,6 +60,28 @@ class DiploMatic extends Component {
 				</div>
 			</div>
 		);
+	}
+
+	renderNavLinks() {
+		if( process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES === 'true') {
+			return (
+				<div className="expandedViewOnly">
+					<span>Annotations</span>
+					<span>Entries</span>
+					<Link to='/folios'>Folios</Link>
+					<span>About</span>
+				</div>
+			);
+		} else {
+			return (
+				<div className="expandedViewOnly">
+					<Link to='/annotations'>Annotations</Link>
+					<Link to='/entries'>Entries</Link>
+					<Link to='/folios'>Folios</Link>
+					<span>About</span>
+				</div>
+			);
+		}
 	}
 
 	renderContent() {
