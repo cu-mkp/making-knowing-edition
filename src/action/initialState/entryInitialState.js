@@ -1,4 +1,4 @@
 export default {
-    entryManifestURL: 'http://localhost:4000/bnf-ms-fr-640/entries.json',
+    entryManifestURL: process.env.REACT_APP_ENTRY_MANIFEST,
     loaded: false
 }	
