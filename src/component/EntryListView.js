@@ -45,8 +45,28 @@ class EntryListView extends Component {
         );
     }
 
+    renderTagNav() {
+        return ( 
+            <ul className="tag-nav">
+                <li className="tag-nav-item">Animal (888)</li>
+                <li className="tag-nav-item">Bodypart (888)</li>
+                <li className="tag-nav-item">Environment (888)</li>
+                <li className="tag-nav-item">Material (888)</li>
+                <li className="tag-nav-item">Measurement (888)</li>
+                <li className="tag-nav-item">Place (888)</li>
+                <li className="tag-nav-item">Plant (888)</li>
+                <li className="tag-nav-item">Profession (888)</li>
+                <li className="tag-nav-item">Tool (888)</li>
+            </ul>
+        );
+    }
+
     renderEntryList() {
-        let entries = this.props.entries.entries;
+        let entries = this.props.entries.entries.sort(function(a, b) {
+            var textA = a.heading_tl.toUpperCase();
+            var textB = b.heading_tl.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });;
 
         let entryList = [];
         for( let entry of entries ) {
@@ -54,9 +74,12 @@ class EntryListView extends Component {
         }
 
         return (
-            <ul>
+            <div className='entries'>
+            <h2>Entries</h2>
+            <ul className='entry-list'>
                 { entryList }
             </ul>
+            </div>
         );
     }
 
@@ -65,6 +88,7 @@ class EntryListView extends Component {
     
         return (
             <div id="entry-list-view">
+                { this.renderTagNav() }
                 { this.renderEntryList() }
             </div>
         );
