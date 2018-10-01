@@ -1,0 +1,31 @@
+#entry-list-view {
+
+    margin: 80px;
+    max-width: 600px;
+
+    .entries {
+        h2 {
+            margin-bottom: 50px;
+        }
+    }
+
+    .entry-list {
+        list-style: none;
+    }
+
+    .tag-nav {
+        margin-top: 50px;
+        list-style: none;
+        height: 300000px;
+        margin-right: 100px;
+        float: left;
+    }
+
+    .tag-nav-item {
+        margin: 3px;
+        border: 1px solid gray;
+        padding: 5px;
+        width: 150px;
+        background: #ccc;
+    }
+}

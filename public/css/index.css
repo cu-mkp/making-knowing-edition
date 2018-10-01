@@ -59,8 +59,8 @@ h4 {
   right: 2rem;
   float: right; }
 
-#globalNavigation span {
-  padding: 0.3rem; }
+#globalNavigation span, a {
+  padding: .3rem; }
 
 #globalNavigation span .francais {
   font-weight: 100; }
@@ -342,6 +342,26 @@ figure.current {
     width: 250px; }
   #annotation-list-view .description {
     padding: 10px; }
+
+#entry-list-view {
+  margin: 80px;
+  max-width: 600px; }
+  #entry-list-view .entries h2 {
+    margin-bottom: 50px; }
+  #entry-list-view .entry-list {
+    list-style: none; }
+  #entry-list-view .tag-nav {
+    margin-top: 50px;
+    list-style: none;
+    height: 300000px;
+    margin-right: 100px;
+    float: left; }
+  #entry-list-view .tag-nav-item {
+    margin: 3px;
+    border: 1px solid gray;
+    padding: 5px;
+    width: 150px;
+    background: #ccc; }
 
 #content-view {
   margin: 20px;
