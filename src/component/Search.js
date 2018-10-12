@@ -13,24 +13,7 @@ class Search extends React.Component {
 	}
 
 	componentDidMount() {
-		// If we don't have a search index, load it.
-		if(Object.keys(this.props.search.index).length === 0){
-			let searchIndex = new SearchIndex();
-			searchIndex.load().then(
-				(searchIndex) => {
-					console.log("Search index loaded.")
-					dispatchAction(
-						this.props,
-						'SearchActions.updateSearchIndex',
-						searchIndex
-					);
-				},
-				(error) => {
-					// TODO update UI - disable the search field w/message
-					console.error('ERROR: Unable to load search index: ' + error);
-				}
-			);
-		}
+		
 	}
 
 	onSearchTermChange = (event) => {
@@ -47,16 +30,27 @@ class Search extends React.Component {
 			dispatchAction( this.props, 'DocumentViewActions.enterSearchMode' );	
 		}
 
-		// We cannot do this if the search index hasn't been defined yet,
-		// there's probably a slicker way to do this but let's poll, whee...
+		// If we don't have a search index, load it.
 		if(Object.keys(this.props.search.index).length === 0){
-			setTimeout(() => {
-				doSearch();
-			}, 250);
-			return;
+			let searchIndex = new SearchIndex();
+			searchIndex.load().then(
+				(searchIndex) => {
+					console.log("Search index loaded.")
+					dispatchAction(
+						this.props,
+						'SearchActions.updateSearchIndex',
+						searchIndex
+					);
+					doSearch();
+				},
+				(error) => {
+					// TODO update UI - disable the search field w/message
+					console.error('ERROR: Unable to load search index: ' + error);
+				}
+			);
+		} else {
+			doSearch();
 		}
-
-		doSearch();
 	}
 
 	render() {
