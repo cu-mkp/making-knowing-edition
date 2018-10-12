@@ -12,10 +12,6 @@ class Search extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	componentDidMount() {
-		
-	}
-
 	onSearchTermChange = (event) => {
 		let searchTerm = event.target.value;
 		dispatchAction( this.props, 'SearchActions.changeSearchTerm', searchTerm);
