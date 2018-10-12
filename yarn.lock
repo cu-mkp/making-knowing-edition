@@ -4863,8 +4863,8 @@ lunr-languages@^1.0.0:
   resolved "https://registry.yarnpkg.com/lunr-languages/-/lunr-languages-1.0.0.tgz#830bca2fe864b713ebe13ff33ed48ee06e635723"
 
 lunr@^2.1.6:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.2.1.tgz#62c62947bf83619450e94abf26061f1ce3baaa47"
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.3.tgz#5a72d170c872e441e7d0ffb61fff76b499ac0780"
 
 macaddress@^0.2.8:
   version "0.2.8"

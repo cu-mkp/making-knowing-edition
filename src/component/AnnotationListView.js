@@ -15,7 +15,7 @@ class AnnotationListView extends Component {
         <div key={`anno-${annotation.id}`}>
             <div className='description'> 
                 <h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
-                <ul class='annotation-details'>
+                <ul className='annotation-details'>
                     <li>{annotation.authors}</li>
                     <li>{annotation.theme}, {annotation.semester} {annotation.year}</li>
                     <li>{annotation.entryIDs}</li>
