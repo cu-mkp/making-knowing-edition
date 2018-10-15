@@ -14,7 +14,8 @@ class SearchResultView extends Component {
 		this.fragmentParserOptions = this.generateFragmentParserOptions();
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.resultClicked = this.resultClicked.bind(this);
+		this.transcriptionResultClicked = this.transcriptionResultClicked.bind(this);
+		this.annotationResultClicked = this.annotationResultClicked.bind(this);
 		this.handleCheck = this.handleCheck.bind(this);
 	}
 
@@ -34,8 +35,7 @@ class SearchResultView extends Component {
 		}
   	}
 
-	resultClicked(event) {
-
+	transcriptionResultClicked(event) {
 		// remove p and strip leading zeros
 		let folioname = event.currentTarget.dataset.folioname.slice(1);
 			folioname = folioname.replace(/^[0|\D]*/,'');
@@ -60,8 +60,24 @@ class SearchResultView extends Component {
 				event.currentTarget.dataset.type
 			);
 		}
+	}
 
+	annotationResultClicked(event) {
+		const annotationID = event.currentTarget.dataset.annoid;
 
+		// dispatchAction(
+		// 	this.props,
+		// 	'SearchActions.searchMatched',
+		// 	uniq(this.matchedOn)
+		// );
+		// dispatchAction(
+		// 	this.props,
+		// 	'DocumentViewActions.gotoSearchResult',
+		// 	this.props.document,
+		// 	longID,
+		// 	'right',
+		// 	event.currentTarget.dataset.type
+		// );
 	}
 
 	handleCheck(event) {
@@ -120,7 +136,7 @@ class SearchResultView extends Component {
 	renderSearchResult( type, result, idx ) {
 		if( type !== 'anno') {
 			return (
-				<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.resultClicked}>
+				<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.transcriptionResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
 						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
@@ -134,7 +150,7 @@ class SearchResultView extends Component {
 			const annotation = this.props.annotations.annotations[result];
 
 			return (
-				<div key={idx} className="searchResult" data-type={type}>
+				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
 						<span className="name">{annotation.name}</span>(<span className="folio">{annotation.entryIDs}</span>)
