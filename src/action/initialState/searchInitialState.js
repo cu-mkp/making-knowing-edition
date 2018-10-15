@@ -6,7 +6,8 @@ export default {
     typeHidden:{
         tc: false,
         tcn:false,
-        tl: false
+        tl: false,
+        anno: false
     },
     results:''
 }

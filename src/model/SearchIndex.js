@@ -25,6 +25,7 @@ class SearchIndex {
 			// promise to load the search index
 			return new Promise(function(resolve, reject) {
 				axios.all([
+            axios.get(`${this.searchIndexURL}/annotation_search_index.js`),
 						axios.get(`${this.searchIndexURL}/tl_search_index.js`),
 						axios.get(`${this.searchIndexURL}/tl_recipe_book.js`),
 						axios.get(`${this.searchIndexURL}/tc_search_index.js`),
@@ -32,17 +33,16 @@ class SearchIndex {
 						axios.get(`${this.searchIndexURL}/tcn_search_index.js`),
 						axios.get(`${this.searchIndexURL}/tcn_recipe_book.js`)
 					])
-
-					.then(axios.spread(function(searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
-			            this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
-			            this.recipeBook['tl'] = recipeTl.data;
+					.then(axios.spread(function(anno, searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
+            this.searchIndex['anno'] = lunr.Index.load(anno.data);
+            this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
+            this.recipeBook['tl'] = recipeTl.data;
 						this.searchIndex['tc'] = lunr.Index.load(searchTc.data);
-			            this.recipeBook['tc'] = recipeTc.data;
+            this.recipeBook['tc'] = recipeTc.data;
 						this.searchIndex['tcn'] = lunr.Index.load(searchTcn.data);
-			            this.recipeBook['tcn'] = recipeTcn.data;
-			            this.loaded = true;
-			            resolve(this);
-
+            this.recipeBook['tcn'] = recipeTcn.data;
+            this.loaded = true;
+            resolve(this);
 					}.bind(this)))
 					.catch((error) => {
 						reject(error);
@@ -54,6 +54,17 @@ class SearchIndex {
   parseIDs( docID ) {
     const parts = docID.split('-');
     return { recipeID: parts[0], folioID: parts[1] };
+  }
+
+  searchAnnotations( searchTerm ) {
+    let results = this.searchIndex['anno'].search(searchTerm);
+    let displayResults = [];
+
+    for( let result of results ) {
+      displayResults.push( result.ref );
+    }
+
+    return displayResults;
   }
 
 	// transcription type can be tc, tcn, or tl.

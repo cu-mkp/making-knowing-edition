@@ -117,6 +117,36 @@ class SearchResultView extends Component {
 		return parserOptions;
 	}
 
+	renderSearchResult( type, result, idx ) {
+		if( type !== 'anno') {
+			return (
+				<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.resultClicked}>
+					<div className="fa fa-file-alt icon"></div>
+					<div className="title">
+						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
+					</div>
+					<div className="contextFragments">
+						{Parser(result.contextFragments.toString(), this.fragmentParserOptions)}
+					</div>
+				</div>
+			);	
+		} else {
+			const annotation = this.props.annotations.annotations[result];
+
+			return (
+				<div key={idx} className="searchResult" data-type={type}>
+					<div className="fa fa-file-alt icon"></div>
+					<div className="title">
+						<span className="name">{annotation.name}</span>(<span className="folio">{annotation.entryIDs}</span>)
+					</div>
+					<div className="contextFragments">
+						<span>{annotation.theme}, {annotation.semester} {annotation.year}</span>
+					</div>
+				</div>
+			);
+		}
+	}
+
 	// RENDER
 	render() {
 
@@ -154,6 +184,7 @@ class SearchResultView extends Component {
 						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.documentView.uiLabels.transcriptionType['tl']} ({this.props.search.results["tl"].length})</span>
 						<input checked={!(this.props.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{this.props.documentView.uiLabels.transcriptionType['tc']} ({this.props.search.results["tc"].length})</span>
 						<input checked={!(this.props.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{this.props.documentView.uiLabels.transcriptionType['tcn']} ({this.props.search.results["tcn"].length})</span>
+						<input checked={!(this.props.search.typeHidden['anno'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='anno'>{this.props.documentView.uiLabels.transcriptionType['anno']} ({this.props.search.results["anno"].length})</span>
 					</div>
 				</form>
 				<div className="searchResults">
@@ -166,17 +197,9 @@ class SearchResultView extends Component {
 							<div className={(this.props.search.typeHidden[type])?"resultSectionHeader hidden":"resultSectionHeader"}>
 								{this.props.documentView.uiLabels.transcriptionType[type]} ({this.props.search.results[type].length} {this.props.search.results[type].length === 1?"match":"matches"})
 							</div>
-							{this.props.search.results[type].map((result, idx) =>
-								<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.resultClicked}>
-									<div className="fa fa-file-alt icon"></div>
-									<div className="title">
-										<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
-									</div>
-									<div className="contextFragments">
-										{Parser(result.contextFragments.toString(), this.fragmentParserOptions)}
-									</div>
-								</div>
-							)}
+							{this.props.search.results[type].map((result, idx) => {
+								return this.renderSearchResult( type, result, idx );
+							})}
 						</div>
 					)}
 				</div>
@@ -201,7 +224,8 @@ function mapStateToProps(state) {
 	return {
 		search: state.search,
 		document: state.document,
-        documentView: state.documentView
+        documentView: state.documentView,
+		annotations: state.annotations
     };
 }
 

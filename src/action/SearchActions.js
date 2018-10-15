@@ -32,6 +32,7 @@ SearchActions.beginSearch = function beginSearch( state ) {
     results['tc'] = state.index.searchEdition(searchTerm,'tc');
     results['tcn'] = state.index.searchEdition(searchTerm,'tcn');
     results['tl'] = state.index.searchEdition(searchTerm,'tl');
+    results['anno'] = state.index.searchAnnotations(searchTerm);
     
     return {
         ...state,

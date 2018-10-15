@@ -12,6 +12,7 @@ export default {
 			tcn: 'Normalized Transcription',
 			tl: 'Translation',
 			f: 'Facsimile',
+			anno: 'Annotation'
 		}
 	},
 	left: {
