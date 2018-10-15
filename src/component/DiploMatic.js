@@ -93,6 +93,7 @@ class DiploMatic extends Component {
 					<Route path="/annotations" component={AnnotationListView} exact/>
 					<Route path="/annotations/:annoID" component={AnnotationView}/>
 					<Route path="/folios" component={DocumentView}/>
+					<Route path="/search" component={DocumentView}/>
 				</Switch>
 			</div>
 		);

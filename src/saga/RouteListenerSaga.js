@@ -15,6 +15,9 @@ function *userNavigation(action) {
             case 'folios':
                 // TODO refactor existing code to go here.
                 break;
+            case 'search':
+                yield resolveAnnotationManifest();
+                break;
             case 'annotations':
                 yield resolveAnnotationManifest();
                 if( pathSegments.length > 2 ) {

@@ -20,8 +20,9 @@ class Search extends React.Component {
 	onSubmit(event) {
 		event.preventDefault();
 
+		this.props.history.push('/search');
+
 		let doSearch = () => {
-			this.props.history.push('/folios');
 			dispatchAction( this.props, 'SearchActions.beginSearch' );
 			dispatchAction( this.props, 'DocumentViewActions.enterSearchMode' );	
 		}
