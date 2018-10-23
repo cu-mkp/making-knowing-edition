@@ -20,6 +20,7 @@ class SearchResultView extends Component {
 	}
 
 	exitSearch(event) {
+		this.props.history.push('/folios');
 		dispatchAction( this.props, 'DocumentViewActions.exitSearchMode' );
 		dispatchAction( this.props, 'SearchActions.clearSearch' );
 	}
@@ -153,7 +154,7 @@ class SearchResultView extends Component {
 				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
-						<span className="name">{annotation.name}</span>(<span className="folio">{annotation.entryIDs}</span>)
+						<span className="name">{annotation.name}</span>
 					</div>
 					<div className="contextFragments">
 						<span>{annotation.theme}, {annotation.semester} {annotation.year}</span>
