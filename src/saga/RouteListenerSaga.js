@@ -5,6 +5,7 @@ import { putResolveAction } from '../model/ReduxStore';
 
 const justAnnotations = state => state.annotations
 const justEntries = state => state.entries
+const juxtDocument = state => state.document
 
 function *userNavigation(action) {
     const pathname = action.payload.params[0].pathname;
@@ -13,10 +14,11 @@ function *userNavigation(action) {
     if( pathSegments.length > 1 ) {
         switch(pathSegments[1]) {
             case 'folios':
-                // TODO refactor existing code to go here.
+                yield resolveDocumentManifest();
                 break;
             case 'search':
                 yield resolveAnnotationManifest();
+                yield resolveDocumentManifest();
                 break;
             case 'annotations':
                 yield resolveAnnotationManifest();
@@ -30,6 +32,14 @@ function *userNavigation(action) {
                 break;
             default:
         }    
+    }
+}
+
+function *resolveDocumentManifest() {
+    const document = yield select(juxtDocument)
+    if( !document.loaded ) {
+        const response = yield axios.get(document.manifestURL)
+        yield putResolveAction( 'DocumentActions.loadDocument', response.data );    
     }
 }
 

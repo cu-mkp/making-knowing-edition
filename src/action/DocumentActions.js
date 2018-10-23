@@ -1,22 +1,6 @@
 import Folio from '../model/Folio';
-import axios from 'axios';
-import { dispatchAction } from '../model/ReduxStore';
 
 var DocumentActions = {};
-
-DocumentActions.requestDocument = function loadDocument( state, currentDocumentName, folioIDPrefix, manifestURL, dispatcher ) {
-	axios.get(manifestURL).then( function( manifestResponse ) {
-		dispatchAction( dispatcher, 'DocumentActions.loadDocument', manifestResponse.data );
-	})
-	.catch( (error) => {
-		console.log(error)
-	})
-
-	return { 
-		...state,
-		currentDocumentName, folioIDPrefix, manifestURL
-	}
-};
 
 DocumentActions.loadDocument = function loadDocument( state, manifestData ) {
 	let folios = parseManifest(manifestData);
