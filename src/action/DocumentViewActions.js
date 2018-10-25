@@ -24,75 +24,75 @@ DocumentViewActions.setXMLMode = function setXMLMode( state, side, newState ) {
 };
 
 // case SET_STATE_FROM_HASH:
-DocumentViewActions.setStateFromHash = function setStateFromHash( state, newState, doc ) {
+// DocumentViewActions.setStateFromHash = function setStateFromHash( state, newState, doc ) {
 
-	if(doc.folioNameByIDIndex.length === 0){
-		//console.log("WARNING: SET_STATE_FROM_HASH reducer - doc.folioNameByIDIndex not defined, cannot change folio, leaving state alone");
-		return state;
-	}
+// 	if(doc.folioNameByIDIndex.length === 0){
+// 		//console.log("WARNING: SET_STATE_FROM_HASH reducer - doc.folioNameByIDIndex not defined, cannot change folio, leaving state alone");
+// 		return state;
+// 	}
 
-	if(typeof newState.left.folioShortID === 'undefined' || typeof newState.right.folioShortID === 'undefined'){
-		//console.log("WARNING: SET_STATE_FROM_HASH reducer - cannot work without specifying both left and right pane folio IDs, leaving state alone");
-		return state;
-	}
+// 	if(typeof newState.left.folioShortID === 'undefined' || typeof newState.right.folioShortID === 'undefined'){
+// 		//console.log("WARNING: SET_STATE_FROM_HASH reducer - cannot work without specifying both left and right pane folio IDs, leaving state alone");
+// 		return state;
+// 	}
 
-	// FIXME: this should be factored out into a helper method
-	let current_idx = doc.folioIndex.indexOf(newState.left.folioShortID);
-	let left_current_hasNext,left_nextID,left_current_hasPrev,left_prevID;
-	if (current_idx > -1) {
-		 left_current_hasNext = (current_idx < (doc.folioIndex.length - 1));
-		 left_nextID = left_current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-		 left_current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-		 left_prevID = left_current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
-	}
+// 	// FIXME: this should be factored out into a helper method
+// 	let current_idx = doc.folioIndex.indexOf(newState.left.folioShortID);
+// 	let left_current_hasNext,left_nextID,left_current_hasPrev,left_prevID;
+// 	if (current_idx > -1) {
+// 		 left_current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+// 		 left_nextID = left_current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+// 		 left_current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+// 		 left_prevID = left_current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+// 	}
 
-	 current_idx = doc.folioIndex.indexOf(newState.right.folioShortID);
+// 	 current_idx = doc.folioIndex.indexOf(newState.right.folioShortID);
 
-	 let right_current_hasNext,right_nextID,right_current_hasPrev,right_prevID;
-	if (current_idx > -1) {
-		 right_current_hasNext = (current_idx < (doc.folioIndex.length - 1));
-		 right_nextID = right_current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-		 right_current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-		 right_prevID = right_current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
-	}
-	return {
-		...state,
-		bookMode: newState.bookMode,
-		linkedMode: newState.linkedMode,
-		left:{
-			...state.left,
-			width: newState.left.width,
-			currentFolioID: newState.left.folioID,
-			currentFolioName: (typeof doc.folioNameByIDIndex[newState.left.folioShortID] !== 'undefined')?doc.folioNameByIDIndex[newState.left.folioShortID] :'',
-			currentFolioShortID: newState.left.folioShortID,
-			viewType: newState.left.viewType,
-			transcriptionType: newState.left.transcriptType,
-				transcriptionTypeLabel: state.uiLabels.transcriptionType[newState.left.transcriptType],
-			isGridMode: newState.left.isGridMode,
+// 	 let right_current_hasNext,right_nextID,right_current_hasPrev,right_prevID;
+// 	if (current_idx > -1) {
+// 		 right_current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+// 		 right_nextID = right_current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+// 		 right_current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+// 		 right_prevID = right_current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+// 	}
+// 	return {
+// 		...state,
+// 		bookMode: newState.bookMode,
+// 		linkedMode: newState.linkedMode,
+// 		left:{
+// 			...state.left,
+// 			width: newState.left.width,
+// 			currentFolioID: newState.left.folioID,
+// 			currentFolioName: (typeof doc.folioNameByIDIndex[newState.left.folioShortID] !== 'undefined')?doc.folioNameByIDIndex[newState.left.folioShortID] :'',
+// 			currentFolioShortID: newState.left.folioShortID,
+// 			viewType: newState.left.viewType,
+// 			transcriptionType: newState.left.transcriptType,
+// 				transcriptionTypeLabel: state.uiLabels.transcriptionType[newState.left.transcriptType],
+// 			isGridMode: newState.left.isGridMode,
 
-			hasPrevious: left_current_hasPrev,
-			hasNext: left_current_hasNext,
-			previousFolioShortID: left_prevID,
-			nextFolioShortID: left_nextID
-		},
-		right:{
-			...state.right,
-			width: newState.right.width,
-			currentFolioID: newState.right.folioID,
-			currentFolioName: (typeof doc.folioNameByIDIndex[newState.right.folioShortID] !== 'undefined')?doc.folioNameByIDIndex[newState.right.folioShortID] :'',
-			currentFolioShortID: newState.right.folioShortID,
-			viewType: newState.right.viewType,
-			transcriptionType: newState.right.transcriptType,
-				transcriptionTypeLabel: state.uiLabels.transcriptionType[newState.right.transcriptType],
-			isGridMode: newState.right.isGridMode,
+// 			hasPrevious: left_current_hasPrev,
+// 			hasNext: left_current_hasNext,
+// 			previousFolioShortID: left_prevID,
+// 			nextFolioShortID: left_nextID
+// 		},
+// 		right:{
+// 			...state.right,
+// 			width: newState.right.width,
+// 			currentFolioID: newState.right.folioID,
+// 			currentFolioName: (typeof doc.folioNameByIDIndex[newState.right.folioShortID] !== 'undefined')?doc.folioNameByIDIndex[newState.right.folioShortID] :'',
+// 			currentFolioShortID: newState.right.folioShortID,
+// 			viewType: newState.right.viewType,
+// 			transcriptionType: newState.right.transcriptType,
+// 				transcriptionTypeLabel: state.uiLabels.transcriptionType[newState.right.transcriptType],
+// 			isGridMode: newState.right.isGridMode,
 
-			hasPrevious: right_current_hasPrev,
-			hasNext: right_current_hasNext,
-			previousFolioShortID: right_prevID,
-			nextFolioShortID: right_nextID
-		}
-	};
-};
+// 			hasPrevious: right_current_hasPrev,
+// 			hasNext: right_current_hasNext,
+// 			previousFolioShortID: right_prevID,
+// 			nextFolioShortID: right_nextID
+// 		}
+// 	};
+// };
 
 // SET_DRAWER_MODE
 DocumentViewActions.setDrawerMode = function setDrawerMode( state, drawerMode ) {

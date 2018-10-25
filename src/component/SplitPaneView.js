@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import copyObject from '../lib/copyObject';
 import SplitPaneViewport from './SplitPaneViewport';
 import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
-import DocumentHelper from '../model/DocumentHelper';
 
 class SplitPaneView extends Component {
 
@@ -36,9 +34,6 @@ class SplitPaneView extends Component {
 		this.onEndDrag = this.onEndDrag.bind(this);
 		this.updatePaneSize = this.updatePaneSize.bind(this);
 		this.updatePaneSize = this.updatePaneSize.bind(this);
-
-		// Update the pane content
-		this.refreshPanes(props);
 	}
 
 	// On drag, update the UI continuously
@@ -104,26 +99,6 @@ class SplitPaneView extends Component {
 			);
 		}
 	}
-	// Update the panes content
-	refreshPanes(props){
-		//console.log("\nSplitPaneView: LEFT: "+props.documentView['left'].viewType+" "+props.documentView['left'].currentFolioID);
-		//console.log("SplitPaneView: RIGHT: "+props.documentView['right'].viewType+" "+props.documentView['right'].currentFolioID);
-		this.openFolio('right', props.documentView['right'].currentFolioID, props.documentView['right'].viewType);
-		this.openFolio('left', props.documentView['left'].currentFolioID, props.documentView['left'].viewType);
-	}
-
-	openFolio(side, folioID, viewType) {
-		// We don't usually get into this state except via hashload
-		if(typeof this.state.viewports === 'undefined'){
-			//console.log("WARNING: Cannot load folio until I have one to load");
-			return;
-		}
-		if(folioID.length <= 0){return;}
-		let viewport = copyObject(this.state.viewports[side]);
-		viewport.document = this.props.document;
-		viewport.folio = DocumentHelper.getFolio(this.props.document, folioID);
-		viewport.viewType = viewType;
-	}
 
 	viewKey(viewport, side) {
 		if (viewport.viewType === 'ImageGridView') {
@@ -159,6 +134,7 @@ class SplitPaneView extends Component {
 		window.removeEventListener("mouseup", this.onEndDrag);
 		window.removeEventListener("resize", this.onResize);
 	}
+
 	componentWillReceiveProps(newProps){
 		this.setState( {
 			...this.state,
@@ -185,11 +161,6 @@ class SplitPaneView extends Component {
 				}
 			}
 		});
-
-		if( newProps.documentView['left'].currentFolioID !==this.props.documentView['left'].currentFolioID ||
-			newProps.documentView['right'].currentFolioID!==this.props.documentView['right'].currentFolioID){
-				this.refreshPanes(newProps);
-		}
 	}
 
 	componentWillMount() {
