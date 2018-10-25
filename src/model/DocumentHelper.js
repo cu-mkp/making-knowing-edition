@@ -15,4 +15,8 @@ DocumentHelper.getFolio = function getFolio(document, folioID) {
   });
 };
 
+DocumentHelper.folioURL = function( folioID ) {
+  return `${process.env.REACT_APP_FOLIO_URL_PREFIX}${folioID}`;
+}
+
 export default DocumentHelper;

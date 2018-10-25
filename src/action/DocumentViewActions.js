@@ -1,3 +1,5 @@
+import DocumentHelper from '../model/DocumentHelper';
+
 var DocumentViewActions = {};
 
 // SET_XML_MODE 
@@ -76,9 +78,8 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			bookMode: status,
 			left:{
 				...state.left,
-				currentFolioID: doc.folioIDPrefix+versoID,
+				currentFolioID: DocumentHelper.folioURL(versoID),
 				currentFolioShortID: versoID,
-				currentFolioName: doc.folioNameByIDIndex[versoID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -87,9 +88,8 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			},
 			right:{
 				...state.right,
-				currentFolioID: doc.folioIDPrefix+nextID,
+				currentFolioID: DocumentHelper.folioURL(nextID),
 				currentFolioShortID: nextID,
-				currentFolioName: doc.folioNameByIDIndex[nextID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -218,9 +218,8 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			...state,
 			left:{
 				...state.left,
-				currentFolioID: doc.folioIDPrefix+versoID,
+				currentFolioID: DocumentHelper.folioURL(versoID),
 				currentFolioShortID: versoID,
-				currentFolioName: doc.folioNameByIDIndex[versoID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -228,9 +227,8 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			},
 			right:{
 				...state.right,
-				currentFolioID: doc.folioIDPrefix+nextID,
+				currentFolioID: DocumentHelper.folioURL(nextID),
 				currentFolioShortID: nextID,
-				currentFolioName: doc.folioNameByIDIndex[nextID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -259,7 +257,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 				...state.left,
 				currentFolioID: id,
 				currentFolioShortID: shortID,
-				currentFolioName: doc.folioNameByIDIndex[shortID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
 				previousFolioShortID: prevID,
@@ -269,7 +266,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 				...state.right,
 				currentFolioID: id,
 				currentFolioShortID: shortID,
-				currentFolioName: doc.folioNameByIDIndex[shortID],
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
 				previousFolioShortID: prevID,
@@ -286,7 +282,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 					currentFolioID: id,
 					transcriptionType: type,
 					currentFolioShortID: shortID,
-					currentFolioName: doc.folioNameByIDIndex[shortID],
 					hasPrevious: current_hasPrev,
 					hasNext: current_hasNext,
 					previousFolioShortID: prevID,
@@ -304,7 +299,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 					currentFolioID: id,
 					transcriptionType: type,
 					currentFolioShortID: shortID,
-					currentFolioName: doc.folioNameByIDIndex[shortID],
 					hasPrevious: current_hasPrev,
 					hasNext: current_hasNext,
 					previousFolioShortID: prevID,
@@ -340,7 +334,6 @@ DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, doc, id
 			currentFolioID: id,
 			transcriptionType: type,
 			currentFolioShortID: shortID,
-			currentFolioName: doc.folioNameByIDIndex[shortID],
 			hasPrevious: current_hasPrev,
 			hasNext: current_hasNext,
 			previousFolioShortID: prevID,
@@ -396,7 +389,6 @@ DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {
             isGridMode: false,
             viewType: 'TranscriptionView',
             transcriptionType: 'tc',
-            currentFolioName: '',
             currentFolioID: '-1',
             currentFolioShortID: '',
             nextFolioShortID: '',
@@ -414,7 +406,6 @@ DocumentViewActions.exitSearchMode = function exitSearchMode( state ) {
         leftState = {
             ...state.left,
             viewType: 'ImageGridView',
-            currentFolioName: '',
             currentFolioID: '',
             currentFolioShortID: '',
             // hasPrevious: false,

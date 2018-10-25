@@ -54,7 +54,7 @@ class navigation extends React.Component {
 				event.currentTarget.dataset.direction				
 			)
 
-			let longID = this.props.document.folioIDPrefix+this.props.documentView.right.nextFolioShortID;
+			let longID = DocumentHelper.folioURL(this.props.documentView.right.nextFolioShortID);
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
@@ -141,7 +141,7 @@ class navigation extends React.Component {
 			return;
 		}
 		console.log(event.currentTarget.dataset.id);
-		let longID = this.props.document.folioIDPrefix+event.currentTarget.dataset.id;
+		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
@@ -167,7 +167,7 @@ class navigation extends React.Component {
 		// Convert folioName to ID (and confirm it exists)
 		let folioID = this.props.document.folioIDByNameIndex[folioName];
 		if(typeof folioID !== 'undefined'){
-			let longID = this.props.document.folioIDPrefix+folioID;
+			let longID = DocumentHelper.folioURL(folioID);
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
@@ -206,6 +206,7 @@ class navigation extends React.Component {
 			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
 				 columnIconClass += (imageViewActive)?' hidden':'';
 			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
+			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].currentFolioShortID];
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>
@@ -240,7 +241,7 @@ class navigation extends React.Component {
 									data-direction="forward"
 									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
-							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{this.props.documentView[this.props.side].currentFolioName}</div>
+							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName}</div>
 						</div>
 						<JumpToFolio side={this.props.side}
 									 isVisible={this.state.popoverVisible}

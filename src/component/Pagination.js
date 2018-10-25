@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
 import {dispatchAction} from '../model/ReduxStore';
 
+import DocumentHelper from '../model/DocumentHelper';
+
 class navigation extends React.Component {
 
 	constructor(props,context){
@@ -15,7 +17,7 @@ class navigation extends React.Component {
 			return;
 		}
 
-		let longID = this.props.document.folioIDPrefix+event.currentTarget.dataset.id;
+		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
 		dispatchAction(
 			this.props,
 			'DocumentViewActions.changeCurrentFolio',
@@ -29,6 +31,7 @@ class navigation extends React.Component {
 
 
     render() {
+		const folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].currentFolioShortID];
 		return (
 			<div className="paginationComponent">
 				<div className="paginationControl">
@@ -39,7 +42,7 @@ class navigation extends React.Component {
 							data-id={this.props.documentView[this.props.side].previousFolioShortID}
 							className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
 
-					<span className="folioName">Folio {this.props.documentView[this.props.side].currentFolioName}</span>
+					<span className="folioName">Folio {folioName}</span>
 
 					<span 	title = "Go forward"
 							onClick={this.changeCurrentFolio}
