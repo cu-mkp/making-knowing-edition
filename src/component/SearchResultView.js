@@ -5,6 +5,7 @@ import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 
 import {dispatchAction} from '../model/ReduxStore';
+import DocumentHelper from '../model/DocumentHelper';
 
 class SearchResultView extends Component {
 
@@ -198,10 +199,10 @@ class SearchResultView extends Component {
 						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {this.props.search.term}
 					</div>
 					<div className="searchFilters">
-						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{this.props.documentView.uiLabels.transcriptionType['tl']} ({this.props.search.results["tl"].length})</span>
-						<input checked={!(this.props.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{this.props.documentView.uiLabels.transcriptionType['tc']} ({this.props.search.results["tc"].length})</span>
-						<input checked={!(this.props.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{this.props.documentView.uiLabels.transcriptionType['tcn']} ({this.props.search.results["tcn"].length})</span>
-						<input checked={!(this.props.search.typeHidden['anno'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='anno'>{this.props.documentView.uiLabels.transcriptionType['anno']} ({this.props.search.results["anno"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({this.props.search.results["tl"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({this.props.search.results["tc"].length})</span>
+						<input checked={!(this.props.search.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({this.props.search.results["tcn"].length})</span>
+						<input checked={!(this.props.search.typeHidden['anno'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({this.props.search.results["anno"].length})</span>
 					</div>
 				</form>
 				<div className="searchResults">
@@ -212,7 +213,7 @@ class SearchResultView extends Component {
 				 	{displayOrderArray.map((type, i) =>
 						<div key={type} className={(this.props.search.results[type].length===0)?"resultSection hidden":"resultSection"}>
 							<div className={(this.props.search.typeHidden[type])?"resultSectionHeader hidden":"resultSectionHeader"}>
-								{this.props.documentView.uiLabels.transcriptionType[type]} ({this.props.search.results[type].length} {this.props.search.results[type].length === 1?"match":"matches"})
+								{DocumentHelper.transcriptionTypeLabels[type]} ({this.props.search.results[type].length} {this.props.search.results[type].length === 1?"match":"matches"})
 							</div>
 							{this.props.search.results[type].map((result, idx) => {
 								return this.renderSearchResult( type, result, idx );

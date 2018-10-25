@@ -6,20 +6,10 @@ export default {
     folioIndex: [],
 	folioNameByIDIndex:{},
 	folioIDByNameIndex:{},
-	uiLabels: {
-		transcriptionType: {
-			tc: 'Transcription',
-			tcn: 'Normalized Transcription',
-			tl: 'Translation',
-			f: 'Facsimile',
-			anno: 'Annotation'
-		}
-	},
 	left: {
 		isXMLMode: false,
 		isGridMode: false,
 		transcriptionType: 'tc',
-		transcriptionTypeLabel: 'Transcription',
 		currentFolioName: '',
 		currentFolioID: '',
 		currentFolioShortID: '',
@@ -34,7 +24,6 @@ export default {
 		isXMLMode: false,
 		isGridMode: false,
 		transcriptionType: 'tc',
-		transcriptionTypeLabel: 'Transcription',
 		currentFolioName: '',
 		currentFolioID: '',
 		currentFolioShortID: '',

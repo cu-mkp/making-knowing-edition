@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
-import JumpToFolio from './JumpToFolio.js';
 
+import JumpToFolio from './JumpToFolio';
+import DocumentHelper from '../model/DocumentHelper';
 
 class navigation extends React.Component {
 
@@ -203,18 +204,19 @@ class navigation extends React.Component {
 			let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
 			let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
 			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
-			 	columnIconClass += (imageViewActive)?' hidden':'';
+				 columnIconClass += (imageViewActive)?' hidden':'';
+			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>
 							<button className="dropbtn">
-								{this.props.documentView[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+								{transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
 							</button>
 							<div className="dropdown-content">
-								<span data-id='tl' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['tl']}</span>
-								<span data-id='tc' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['tc']}</span>
-								<span data-id='tcn' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['tcn']}</span>
-								<span data-id='f' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['f']}</span>
+								<span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
+								<span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
+								<span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
+								<span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
