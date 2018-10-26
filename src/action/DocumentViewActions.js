@@ -1,4 +1,3 @@
-import DocumentHelper from '../model/DocumentHelper';
 
 var DocumentViewActions = {};
 

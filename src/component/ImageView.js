@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 
 import Navigation from '../component/Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
-import {dispatchAction} from '../model/ReduxStore';
 
 import DocumentHelper from '../model/DocumentHelper';
 
@@ -65,9 +64,7 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setPaneViewtype',
+		this.props.documentViewActions.setPaneViewtype(
 			this.props.side,
 			'ImageGridView'
 		);
@@ -105,8 +102,7 @@ class ImageView extends Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-        documentView: state.documentView
+		document: state.document
     };
 }
 
