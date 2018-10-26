@@ -48,18 +48,17 @@ class navigation extends React.Component {
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
 				this.props.document,
-				this.props.documentView.left.currentFolioID,
+				this.props.documentView.left.currentFolioShortID,
 				'left',
 				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction				
 			)
 
-			let longID = DocumentHelper.folioURL(this.props.documentView.right.nextFolioShortID);
 			dispatchAction(
 				this.props,
 				'DocumentViewActions.changeCurrentFolio',
 				this.props.document,
-				longID,
+				this.props.documentView.right.nextFolioShortID,
 				'left',
 				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction
@@ -110,7 +109,7 @@ class navigation extends React.Component {
 					this.props,
 					'DocumentViewActions.changeCurrentFolio',
 					this.props.document,
-					this.props.documentView.left.currentFolioID,
+					this.props.documentView.left.currentFolioShortID,
 					'right',
 					this.props.documentView.left.transcriptionType,
 					event.currentTarget.dataset.direction					
@@ -120,7 +119,7 @@ class navigation extends React.Component {
 					this.props,
 					'DocumentViewActions.changeCurrentFolio',
 					this.props.document,
-					this.props.documentView.right.currentFolioID,
+					this.props.documentView.right.currentFolioShortID,
 					'left',
 					this.props.documentView.right.transcriptionType,
 					event.currentTarget.dataset.direction					

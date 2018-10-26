@@ -13,7 +13,7 @@ class ImageView extends Component {
 	constructor(props,context){
 		super(props,context);
 		this.isLoaded = false;
-		this.currentFolioID="";
+		this.currentFolioURL="";
 		this.elementID =  "image-view-seadragon-"+this.props.side;
 		this.onZoomFixed_1 = this.onZoomFixed_1.bind(this);
 		this.onZoomFixed_2 = this.onZoomFixed_2.bind(this);
@@ -21,20 +21,24 @@ class ImageView extends Component {
 	}
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.documentView[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextProps.documentView[this.props.side].currentFolioID));
+		const nextFolioID = nextProps.documentView[this.props.side].currentFolioShortID;
+		const nextFolioURL = DocumentHelper.folioURL(nextFolioID);
+		if(nextFolioURL !== this.currentFolioURL){
+			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextFolioURL));
 		}
 	}
 
 	componentDidMount() {
-		if(this.props.documentView[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(DocumentHelper.getFolio(this.props.document, this.props.documentView[this.props.side].currentFolioID));
+		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioURL = DocumentHelper.folioURL(folioID);
+		if(folioURL !== this.currentFolioURL){
+			this.loadFolio(DocumentHelper.getFolio(this.props.document, folioURL));
 		}
 	}
 
 	loadFolio(thisFolio){
 		//window.loadingModal_start();
-		this.currentFolioID=thisFolio.id;
+		this.currentFolioURL=thisFolio.id;
 		if(typeof this.viewer !== 'undefined'){
 			this.viewer.destroy();
 		}

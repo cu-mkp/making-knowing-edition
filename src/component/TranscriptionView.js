@@ -40,7 +40,13 @@ class TranscriptionView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.documentView[this.props.side].currentFolioID});
+				const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+				const folioURL = DocumentHelper.folioURL(folioID);
+				this.setState({
+					folio: folio,
+					isLoaded: true,
+					currentlyLoaded: folioURL
+				});
 			},(error) => {
 				console.log('Unable to load transcription: '+error);
 			}
@@ -320,9 +326,11 @@ class TranscriptionView extends Component {
   	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-  		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
+			const nextfolioID = nextProps.documentView[this.props.side].currentFolioShortID;
+			const nextfolioURL = DocumentHelper.folioURL(nextfolioID);
+  		if(this.state.currentlyLoaded !== nextfolioURL){
 			this.contentChange=true;
-			this.loadFolio(DocumentHelper.getFolio( this.props.document, nextProps.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextfolioURL));
 	  	}
 	}
 
@@ -454,10 +462,12 @@ class TranscriptionView extends Component {
 	// RENDER
 	render() {
 		// Retrofit - the folios are loaded asynchronously
-		if(this.props.documentView[this.props.side].currentFolioID === '-1') {
+		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioURL = DocumentHelper.folioURL(folioID);
+		if(folioURL === '-1') {
 			return this.watermark();
 		} else if(!this.state.isLoaded){
-			this.loadFolio(DocumentHelper.getFolio( this.props.document, this.props.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, folioURL));
 			return this.watermark();
 		} else {
 

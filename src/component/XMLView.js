@@ -19,7 +19,13 @@ class XMLView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.documentView[this.props.side].currentFolioID});
+				const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+				const folioURL = DocumentHelper.folioURL(folioID);
+				this.setState({
+					folio: folio,
+					isLoaded: true,
+					currentlyLoaded: folioURL
+				});
 				//this.forceUpdate();
 			},(error) => {
 				console.log('Unable to load transcription: '+error);
@@ -31,9 +37,11 @@ class XMLView extends Component {
   // Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
+		const nextFolioID = nextProps.documentView[this.props.side].currentFolioShortID;
+		const nextFolioURL = DocumentHelper.folioURL(nextFolioID);
+		if(this.state.currentlyLoaded !== nextFolioURL){
 			this.contentChange=true;
-			this.loadFolio(DocumentHelper.getFolio( this.props.document, nextProps.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, nextFolioURL));
   	}
 	}
 
@@ -57,14 +65,16 @@ class XMLView extends Component {
 		let thisID = "xmlViewComponent_"+this.props.side;
 
 		// Retrofit - the folios are loaded asynchronously
-		if(this.props.documentView[this.props.side].currentFolioID === '-1'){
+		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioURL = DocumentHelper.folioURL(folioID);
+		if(folioURL === '-1'){
 			return (
 				<div className="watermark">
 					<div className="watermark_contents"/>
 				</div>
 			);
 		}else if(!this.state.isLoaded){
-			this.loadFolio(DocumentHelper.getFolio( this.props.document, this.props.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, folioURL));
 			return (
 				<div className="watermark">
 					<div className="watermark_contents"/>

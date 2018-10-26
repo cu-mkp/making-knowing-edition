@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
 import {dispatchAction} from '../model/ReduxStore';
+import DocumentHelper from '../model/DocumentHelper';
 
 class ImageGridView extends React.Component {
 
@@ -14,8 +15,12 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props.documentView[this.props.side].currentFolioID !== nextProps.documentView[this.props.side].currentFolioID){
-			let thumbs = this.generateThumbs(nextProps.documentView[this.props.side].currentFolioID, nextProps.document.folios);
+		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const nextFolioID = nextProps.documentView[this.props.side].currentFolioShortID;
+
+		if(folioID !== nextFolioID){
+			const nextFolioURL = DocumentHelper.folioURL(nextFolioID);
+			let thumbs = this.generateThumbs(nextFolioURL, nextProps.document.folios);
 			let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 			let visibleThumbs = thumbs.slice(0,thumbCount);
 			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
@@ -23,7 +28,9 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillMount(){
-		let thumbs = this.generateThumbs(this.props.documentView[this.props.side].currentFolioID, this.props.document.folios);
+		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioURL = DocumentHelper.folioURL(folioID);
+		let thumbs = this.generateThumbs(folioURL, this.props.document.folios);
 		let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 		let visibleThumbs = thumbs.slice(0,thumbCount);
 		this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});

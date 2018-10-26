@@ -78,7 +78,6 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			bookMode: status,
 			left:{
 				...state.left,
-				currentFolioID: DocumentHelper.folioURL(versoID),
 				currentFolioShortID: versoID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
@@ -88,7 +87,6 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			},
 			right:{
 				...state.right,
-				currentFolioID: DocumentHelper.folioURL(nextID),
 				currentFolioShortID: nextID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
@@ -187,14 +185,11 @@ DocumentViewActions.changeTranscriptionType = function changeTranscriptionType( 
 };
 		
 // CHANGE_CURRENT_FOLIO
-DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc, id, side, transcriptionType, direction ) {
+DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc, shortID, side, transcriptionType, direction ) {
 	if(doc.folioIndex.length === 0){
 		console.log("WARNING: DocumentViewActions.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
 		return state;
 	}
-
-	// Lookup prev/next
-	let shortID = id.substr(id.lastIndexOf('/') + 1);
 
 	// Book mode? (recto/verso)
 	if(state.bookMode ){
@@ -218,7 +213,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			...state,
 			left:{
 				...state.left,
-				currentFolioID: DocumentHelper.folioURL(versoID),
 				currentFolioShortID: versoID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
@@ -227,7 +221,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			},
 			right:{
 				...state.right,
-				currentFolioID: DocumentHelper.folioURL(nextID),
 				currentFolioShortID: nextID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
@@ -255,7 +248,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			...state,
 			left:{
 				...state.left,
-				currentFolioID: id,
 				currentFolioShortID: shortID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
@@ -264,7 +256,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			},
 			right:{
 				...state.right,
-				currentFolioID: id,
 				currentFolioShortID: shortID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
@@ -279,7 +270,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 				...state,
 				left:{
 					...state.left,
-					currentFolioID: id,
 					transcriptionType: type,
 					currentFolioShortID: shortID,
 					hasPrevious: current_hasPrev,
@@ -296,7 +286,6 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 				...state,
 				right:{
 					...state.right,
-					currentFolioID: id,
 					transcriptionType: type,
 					currentFolioShortID: shortID,
 					hasPrevious: current_hasPrev,
@@ -331,7 +320,6 @@ DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, doc, id
 		...state,
 		right:{
 			...state.right,
-			currentFolioID: id,
 			transcriptionType: type,
 			currentFolioShortID: shortID,
 			hasPrevious: current_hasPrev,
@@ -389,7 +377,6 @@ DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {
             isGridMode: false,
             viewType: 'TranscriptionView',
             transcriptionType: 'tc',
-            currentFolioID: '-1',
             currentFolioShortID: '',
             nextFolioShortID: '',
             previousFolioShortID: ''
@@ -402,11 +389,10 @@ DocumentViewActions.exitSearchMode = function exitSearchMode( state ) {
     // If we have a folio selected in search results, match the left pane
     // otherwise just clear and gridview
     let leftState;
-    if(parseInt(state.right.currentFolioID,10) === -1){
+    if(parseInt(state.right.currentFolioShortID,10) === -1){
         leftState = {
             ...state.left,
             viewType: 'ImageGridView',
-            currentFolioID: '',
             currentFolioShortID: '',
             // hasPrevious: false,
             // hasNext: false,
