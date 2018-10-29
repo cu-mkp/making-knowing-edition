@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
-import {dispatchAction} from '../model/ReduxStore';
 
 import DocumentHelper from '../model/DocumentHelper';
 
@@ -18,9 +17,7 @@ class navigation extends React.Component {
 		}
 
 		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.changeCurrentFolio',
+		this.props.documentViewActions.changeCurrentFolio(
 			this.props.document,
 			longID,
 			this.props.side,
@@ -57,8 +54,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-        documentView: state.documentView
+		document: state.document
     };
 }
 

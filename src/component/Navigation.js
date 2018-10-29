@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {dispatchAction} from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
 
 import JumpToFolio from './JumpToFolio';
@@ -32,43 +31,35 @@ class navigation extends React.Component {
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		// Change viewtype
-		dispatchAction( 
-			this.props,
-			'DocumentViewActions.changeTranscriptionType',
+		this.props.documentViewActions.changeTranscriptionType(
 			this.props.side,
 			event.currentTarget.dataset.id
-		);			
+		);
 	}
 
 	toggleBookmode = function(event){
 
 		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.documentView.bookMode === true){
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.changeCurrentFolio',
+			this.props.documentViewActions.changeCurrentFolio(
 				this.props.document,
 				this.props.documentView.left.currentFolioShortID,
 				'left',
 				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction				
-			)
+			);
 
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.changeCurrentFolio',
+			this.props.documentView.changeCurrentFolio(
 				this.props.document,
-				this.props.documentView.right.nextFolioShortID,
-				'left',
+				this.props.documentView.left.nextFolioShortID,
+				'right',
 				this.props.documentView.left.transcriptionType,
-				event.currentTarget.dataset.direction
+				event.currentTarget.dataset.direction			
 			);
 		}
 
 		// Toggle bookmode
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setBookMode',
+		this.props.documentView.setBookMode(
 			this.props.document,
 			this.props.documentView.left.currentFolioShortID, 
 			!this.props.documentView.bookMode
@@ -76,19 +67,15 @@ class navigation extends React.Component {
 	}
 
 	toggleXMLMode = function(event){
-		dispatchAction( 
-			this.props, 
-			'DocumentViewActions.setXMLMode', 
+		this.props.documentViewActions.setXMLMode(
 			this.props.side, 
 			!this.props.documentView[this.props.side].isXMLMode
-		)
+		);
 	}
 
 	// aka gridMode
 	toggleColumns = function(event){
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setColumnModeForSide',
+		this.props.documentViewActions.setColumnModeForSide(
 			this.props.side, 
 			!this.props.documentView[this.props.side].isGridMode			
 		);
@@ -105,9 +92,7 @@ class navigation extends React.Component {
 		// If we are transitioning from unlocked to locked, synch up the panes
 		if(!this.props.documentView.linkedMode === true){
 			if(this.props.side === 'left'){
-				dispatchAction( 
-					this.props,
-					'DocumentViewActions.changeCurrentFolio',
+				this.props.documentViewActions.changeCurrentFolio(
 					this.props.document,
 					this.props.documentView.left.currentFolioShortID,
 					'right',
@@ -115,9 +100,7 @@ class navigation extends React.Component {
 					event.currentTarget.dataset.direction					
 				);
 			}else{
-				dispatchAction(
-					this.props,
-					'DocumentViewActions.changeCurrentFolio',
+				this.props.documentViewActions.changeCurrentFolio(
 					this.props.document,
 					this.props.documentView.right.currentFolioShortID,
 					'left',
@@ -128,9 +111,7 @@ class navigation extends React.Component {
 		}
 
 		// Set lock
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setLinkedMode',
+		this.props.documentViewActions.setLinkedMode(
 			!this.props.documentView.linkedMode
 		);
 	}
@@ -141,10 +122,7 @@ class navigation extends React.Component {
 		}
 		console.log(event.currentTarget.dataset.id);
 		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.changeCurrentFolio',
-			this.props.document,
+		this.props.documentViewActions.changeCurrentFolio(
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,
@@ -167,9 +145,7 @@ class navigation extends React.Component {
 		let folioID = this.props.document.folioIDByNameIndex[folioName];
 		if(typeof folioID !== 'undefined'){
 			let longID = DocumentHelper.folioURL(folioID);
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.changeCurrentFolio',
+			this.props.documentViewActions.changeCurrentFolio(
 				this.props.document,
 				longID,
 				this.props.side
@@ -258,8 +234,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-		documentView: state.documentView
+		document: state.document
     };
 }
 

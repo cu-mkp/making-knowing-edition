@@ -21,9 +21,7 @@ class SplitPaneView extends Component {
 		this.state={
 			style:{
 				gridTemplateColumns:`${split_left}fr ${this.dividerWidth}px ${split_right}fr`
-			},
-			leftWidth: leftW,
-			rightWidth: leftW
+			}
 		};
 
 		// event handlers
@@ -88,12 +86,8 @@ class SplitPaneView extends Component {
 		// Record state change
 		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-		if(right_px !== this.state.rightWidth && (left_px>=this.leftPaneMinWidth)){
-			this.setState( { 
-				...this.state, 
-				leftWidth: left_px,
-				rightWidth: right_px
-			})
+		if(right_px !== this.props.documentView.right.width && (left_px>=this.leftPaneMinWidth)){
+			this.props.documentViewActions.setWidths(left_px,right_px);
 		}
 	}
 
@@ -105,11 +99,7 @@ class SplitPaneView extends Component {
 		// Set the default width on mount
 		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-		this.setState( { 
-			...this.state, 
-			leftWidth: left_px,
-			rightWidth: right_px
-		})
+		this.props.documentViewActions.setWidths(left_px,right_px);
 	}
 
 	componentWillUnmount() {

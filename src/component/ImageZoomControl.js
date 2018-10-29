@@ -1,7 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
-class ImageZoomControl extends React.Component {
+export default class ImageZoomControl extends React.Component {
 
 	render() {
 		let in_id="os-zoom-in "+this.props.side;
@@ -19,10 +18,3 @@ class ImageZoomControl extends React.Component {
 		);
 	}
 }
-
-function mapStateToProps(state) {
-	return {
-		documentView: state.documentView
-	};
-}
-export default connect(mapStateToProps)(ImageZoomControl);

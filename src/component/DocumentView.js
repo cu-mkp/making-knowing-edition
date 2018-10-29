@@ -44,6 +44,20 @@ class DocumentView extends Component {
                 viewType: 'TranscriptionView'
             }
         }
+
+        this.documentViewActions = {
+            setXMLMode: this.setXMLMode.bind(this),
+            setDrawerMode: this.setDrawerMode.bind(this),
+            setLinkedMode: this.setLinkedMode.bind(this),
+            setBookMode: this.setBookMode.bind(this),
+            setPaneViewtype: this.setPaneViewtype.bind(this),
+            setColumnModeForSide: this.setColumnModeForSide.bind(this),
+            changeTranscriptionType: this.changeTranscriptionType.bind(this),
+            changeCurrentFolio: this.changeCurrentFolio.bind(this),
+            enterSearchMode: this.enterSearchMode.bind(this),
+            exitSearchMode: this.exitSearchMode.bind(this),
+            setWidths: this.setWidths.bind(this)
+        }
     }
 
     componentWillMount() {
@@ -124,6 +138,16 @@ class DocumentView extends Component {
         }
     }
 
+    setWidths( left, right ) {
+        this.setState( {
+            ...this.state,
+            left:{	...this.state.left,
+                    width: left},
+            right:{	...this.state.right,
+                    width: right}
+        } );
+    }
+
     setPaneViewtype( side, viewType ) {
         if(side === 'left'){
             this.setState( {
@@ -165,7 +189,7 @@ class DocumentView extends Component {
     }
 
     changeTranscriptionType( side, transcriptionType ) {
-        let xmlMode = state[side].isXMLMode;
+        let xmlMode = this.state[side].isXMLMode;
         let viewType = xmlMode ? 'XMLView' : 'TranscriptionView';
     
         if (transcriptionType === 'f'){
@@ -196,10 +220,14 @@ class DocumentView extends Component {
         }
     }
 
-    changeCurrentFolio( doc, shortID, side, transcriptionType, direction ) {
+    changeCurrentFolio( doc, id, side, transcriptionType, direction ) {
         if(doc.folioIndex.length === 0){
-            console.log("WARNING: DocumentViewActions.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
+            console.log("WARNING: DocumentView.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
+            return;
         }
+
+        // Lookup prev/next
+        let shortID = id.substr(id.lastIndexOf('/') + 1);
     
         // Book mode? (recto/verso)
         if( this.state.bookMode ){
@@ -372,25 +400,12 @@ class DocumentView extends Component {
         const pane = this.state[side];
         const key = this.viewPaneKey(side);
 
-        const documentViewActions = {
-            setXMLMode: this.setXMLMode.bind(this),
-            setDrawerMode: this.setDrawerMode.bind(this),
-            setLinkedMode: this.setLinkedMode.bind(this),
-            setBookMode: this.setBookMode.bind(this),
-            setPaneViewtype: this.setPaneViewtype.bind(this),
-            setColumnModeForSide: this.setColumnModeForSide.bind(this),
-            changeTranscriptionType: this.changeTranscriptionType.bind(this),
-            changeCurrentFolio: this.changeCurrentFolio.bind(this),
-            enterSearchMode: this.enterSearchMode.bind(this),
-            exitSearchMode: this.exitSearchMode.bind(this)
-        }
-
         if( pane.viewType === 'ImageView') {
             return (
                 <ImageView
                     key={key}
                     documentView={this.state}
-                    documentViewActions={documentViewActions}
+                    documentViewActions={this.documentViewActions}
                     history={this.props.history}
                     side={side}
                     drawerMode={this.state.drawerMode}
@@ -402,7 +417,7 @@ class DocumentView extends Component {
                 <TranscriptionView
                     key={key}
                     documentView={this.state}
-                    documentViewActions={documentViewActions}
+                    documentViewActions={this.documentViewActions}
                     history={this.props.history}
                     side={side}
                     drawerMode={this.state.drawerMode}
@@ -414,7 +429,7 @@ class DocumentView extends Component {
                 <XMLView
                     key={key}
                     documentView={this.state}
-                    documentViewActions={documentViewActions}
+                    documentViewActions={this.documentViewActions}
                     history={this.props.history}
                     side={side}
                     drawerMode={this.state.drawerMode}
@@ -426,7 +441,7 @@ class DocumentView extends Component {
                 <ImageGridView
                     key = {key}
                     documentView={this.state}
-                    documentViewActions={documentViewActions}
+                    documentViewActions={this.documentViewActions}
                     history={this.props.history}
                     side={side}
                     drawerMode={this.state.drawerMode}
@@ -463,12 +478,11 @@ class DocumentView extends Component {
         return (
             <div>
                 <SplitPaneView 
-                    drawerMode={this.state.drawerMode}
-                    linkedMode={this.state.linkedMode}
-                    bookMode={this.state.bookMode}
                     inSearchMode={this.state.inSearchMode}
                     leftPane={leftPane} 
                     rightPane={rightPane} 
+                    documentView={this.state}
+                    documentViewActions={this.documentViewActions}
                     history={this.props.history} 
                 />
             </div>

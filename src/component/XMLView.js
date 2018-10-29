@@ -88,9 +88,9 @@ class XMLView extends Component {
 
 			return (
 				<div id={thisID} className={thisClass}>
-						<Navigation history={this.props.history} side={this.props.side}/>
+						<Navigation history={this.props.history} side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 						<div className="xmlContent">
-							<Pagination side={this.props.side} className="pagination_upper"/>
+							<Pagination side={this.props.side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 
 							<div className="xmlContentInner">
 								{ transcriptionType === 'tl' ? xmlContent : <pre>{xmlContent}</pre> }
@@ -107,8 +107,7 @@ class XMLView extends Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-        documentView: state.documentView
+		document: state.document
     };
 }
 
