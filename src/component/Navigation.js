@@ -49,7 +49,7 @@ class navigation extends React.Component {
 				event.currentTarget.dataset.direction				
 			);
 
-			this.props.documentView.changeCurrentFolio(
+			this.props.documentViewActions.changeCurrentFolio(
 				this.props.document,
 				this.props.documentView.left.nextFolioShortID,
 				'right',
@@ -59,7 +59,7 @@ class navigation extends React.Component {
 		}
 
 		// Toggle bookmode
-		this.props.documentView.setBookMode(
+		this.props.documentViewActions.setBookMode(
 			this.props.document,
 			this.props.documentView.left.currentFolioShortID, 
 			!this.props.documentView.bookMode

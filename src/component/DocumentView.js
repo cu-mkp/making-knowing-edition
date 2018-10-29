@@ -65,87 +65,97 @@ class DocumentView extends Component {
     }
 
     setXMLMode( side, xmlMode ) {
-        let nextState = { ...this.state };
-        nextState[side].viewType = xmlMode ? 'XMLView' : 'TranscriptionView'
-        nextState[side].isXMLMode = xmlMode
-        this.setState(nextState);
+        this.setState((state) => {
+            let nextState = { ...state };
+            nextState[side].viewType = xmlMode ? 'XMLView' : 'TranscriptionView'
+            nextState[side].isXMLMode = xmlMode
+            return nextState;
+        });
     }
 
     setDrawerMode( drawerMode ) {
-        return Object.assign({}, this.state, {
-            drawerMode: drawerMode
+        this.setState((state) => {
+            return Object.assign({}, state, {
+                drawerMode: drawerMode
+            });
         });
     }
     
     setLinkedMode( linkedMode ) {
-        return Object.assign({}, this.state, {
-            linkedMode: linkedMode
-        })
+        this.setState((state) => {
+            return Object.assign({}, state, {
+                linkedMode: linkedMode
+            })
+        });
     }
     
     setBookMode( doc, shortid, status ) {
-        // Missing index warning
-        if(doc.folioIndex.length === 0){
-            console.log("WARNING: SET_BOOK_MODE reducer - folio index not defined, cannot determine next/previous, leaving state alone");
-        }
-    
-        // Exiting bookmode
-        if(!status){
-            this.setState( {
-                ...this.state,
-                bookMode: status
-            } );    
-        // Entering bookmode
-        }else{    
-            let versoID=findNearestVerso(shortid, doc.folioNameByIDIndex, doc.folioIndex);
-            let current_idx = doc.folioIndex.indexOf(versoID);
-            let nextID = '';
-            let prevID = '';
-            let nextNextID='';
-            let current_hasPrev = false;
-            let current_hasNext = false;
-            let current_hasNextNext = false;
-            if (current_idx > -1) {
-                current_hasNext = (current_idx < (doc.folioIndex.length - 1));
-                nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-                current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
-                nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
-                current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-                prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+        this.setState((state) => {
+            // Missing index warning
+            if(doc.folioIndex.length === 0){
+                console.log("WARNING: SET_BOOK_MODE reducer - folio index not defined, cannot determine next/previous, leaving state alone");
             }
-            this.setState( {
-                ...this.state,
-                bookMode: status,
-                left:{
-                    ...this.state.left,
-                    currentFolioShortID: versoID,
-                    hasPrevious: current_hasPrev,
-                    hasNext: current_hasNextNext,
-                    previousFolioShortID: prevID,
-                    nextFolioShortID: nextNextID,
-                    viewType:'ImageView'
-                },
-                right:{
-                    ...this.state.right,
-                    currentFolioShortID: nextID,
-                    hasPrevious: current_hasPrev,
-                    hasNext: current_hasNextNext,
-                    previousFolioShortID: prevID,
-                    nextFolioShortID: nextNextID,
-                    viewType:'ImageView'
+        
+            // Exiting bookmode
+            if(!status){
+                return {
+                    ...state,
+                    bookMode: status
+                };    
+            // Entering bookmode
+            }else{    
+                let versoID=findNearestVerso(shortid, doc.folioNameByIDIndex, doc.folioIndex);
+                let current_idx = doc.folioIndex.indexOf(versoID);
+                let nextID = '';
+                let prevID = '';
+                let nextNextID='';
+                let current_hasPrev = false;
+                let current_hasNext = false;
+                let current_hasNextNext = false;
+                if (current_idx > -1) {
+                    current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+                    nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+                    current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
+                    nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
+                    current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+                    prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
                 }
-            });
-        }
+                return {
+                    ...state,
+                    bookMode: status,
+                    left:{
+                        ...state.left,
+                        currentFolioShortID: versoID,
+                        hasPrevious: current_hasPrev,
+                        hasNext: current_hasNextNext,
+                        previousFolioShortID: prevID,
+                        nextFolioShortID: nextNextID,
+                        viewType:'ImageView'
+                    },
+                    right:{
+                        ...state.right,
+                        currentFolioShortID: nextID,
+                        hasPrevious: current_hasPrev,
+                        hasNext: current_hasNextNext,
+                        previousFolioShortID: prevID,
+                        nextFolioShortID: nextNextID,
+                        viewType:'ImageView'
+                    }
+                };
+            }
+        });
     }
 
     setWidths( left, right ) {
-        this.setState( {
-            ...this.state,
-            left:{	...this.state.left,
-                    width: left},
-            right:{	...this.state.right,
-                    width: right}
-        } );
+        this.setState((state) => {
+            return {
+                ...state,
+                left:{	...state.left,
+                        width: left},
+                right:{	...state.right,
+                        width: right}
+            };
+        });
     }
 
     setPaneViewtype( side, viewType ) {
@@ -171,55 +181,59 @@ class DocumentView extends Component {
     };
 
     setColumnModeForSide( side, newState ) {
-        if(side === 'left'){
-            this.setState( {
-                ...this.state,
-                left:{
-                    ...this.state.left,
-                    isGridMode: newState
-                }
-            } );
-        }else{
-            this.setState( {
-                ...this.state,
-                right:{
-                    ...this.state.right,
-                    isGridMode: newState
-                }
-            } );
-        }
+        this.setState((state) => {
+            if(side === 'left'){
+                return {
+                    ...state,
+                    left:{
+                        ...state.left,
+                        isGridMode: newState
+                    }
+                };
+            }else{
+                return {
+                    ...state,
+                    right:{
+                        ...state.right,
+                        isGridMode: newState
+                    }
+                };
+            }
+        });
     }
 
     changeTranscriptionType( side, transcriptionType ) {
-        let xmlMode = this.state[side].isXMLMode;
-        let viewType = xmlMode ? 'XMLView' : 'TranscriptionView';
-    
-        if (transcriptionType === 'f'){
-            viewType = 'ImageView';
-            xmlMode = false;
-        }
-    
-        if(side === 'left'){
-            this.setState( {
-                ...this.state,
-                left:{
-                    ...this.state.left,
-                    transcriptionType: transcriptionType,
-                    viewType:viewType,
-                    isXMLMode: xmlMode
-                }
-            } );
-        }else{
-            this.setState( {
-                ...this.state,
-                right:{
-                    ...this.state.right,
-                    transcriptionType: transcriptionType,
-                    viewType:viewType,
-                    isXMLMode: xmlMode
-                }
-            });
-        }
+        this.setState((state) => {
+            let xmlMode = state[side].isXMLMode;
+            let viewType = xmlMode ? 'XMLView' : 'TranscriptionView';
+        
+            if (transcriptionType === 'f'){
+                viewType = 'ImageView';
+                xmlMode = false;
+            }
+        
+            if(side === 'left'){
+                return {
+                    ...state,
+                    left:{
+                        ...state.left,
+                        transcriptionType: transcriptionType,
+                        viewType:viewType,
+                        isXMLMode: xmlMode
+                    }
+                };
+            }else{
+                return {
+                    ...state,
+                    right:{
+                        ...state.right,
+                        transcriptionType: transcriptionType,
+                        viewType:viewType,
+                        isXMLMode: xmlMode
+                    }
+                };
+            }
+        });
     }
 
     changeCurrentFolio( doc, id, side, transcriptionType, direction ) {
