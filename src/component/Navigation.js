@@ -116,13 +116,14 @@ class navigation extends React.Component {
 		);
 	}
 
-	changeCurrentFolio = function(event){
+	changeCurrentFolio = (event) => {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
 		console.log(event.currentTarget.dataset.id);
 		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
 		this.props.documentViewActions.changeCurrentFolio(
+			this.props.document,
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,

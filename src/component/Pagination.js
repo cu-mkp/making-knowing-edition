@@ -11,7 +11,7 @@ class navigation extends React.Component {
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
 	}
 
-	changeCurrentFolio = function(event){
+	changeCurrentFolio = (event) => {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
