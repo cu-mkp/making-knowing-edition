@@ -149,23 +149,25 @@ class DocumentView extends Component {
     }
 
     setPaneViewtype( side, viewType ) {
-        if(side === 'left'){
-            this.setState( {
-                ...this.state,
-                left:{
-                    ...this.state.left,
-                    viewType: viewType
-                }
-            } );
-        }else{
-            this.setState( {
-                ...this.state,
-                right:{
-                    ...this.state.right,
-                    viewType: viewType
-                }
-            });
-        }
+        this.setState((state) => {
+            if(side === 'left'){
+                return {
+                    ...state,
+                    left:{
+                        ...state.left,
+                        viewType: viewType
+                    }
+                };
+            } else {
+                return {
+                    ...state,
+                    right:{
+                        ...state.right,
+                        viewType: viewType
+                    }
+                };
+            }
+        })
     };
 
     setColumnModeForSide( side, newState ) {
@@ -221,120 +223,120 @@ class DocumentView extends Component {
     }
 
     changeCurrentFolio( doc, id, side, transcriptionType, direction ) {
-        if(doc.folioIndex.length === 0){
-            console.log("WARNING: DocumentView.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
-            return;
-        }
-
-        // Lookup prev/next
-        let shortID = id.substr(id.lastIndexOf('/') + 1);
+        this.setState((state) => {
+            if(doc.folioIndex.length === 0){
+                console.log("WARNING: DocumentView.changeCurrentFolio - folio index not defined, cannot change folio, leaving state alone");
+                return;
+            }
     
-        // Book mode? (recto/verso)
-        if( this.state.bookMode ){
-            let versoID=findNearestVerso(shortID, doc.folioNameByIDIndex, doc.folioIndex, direction);
-            let current_idx = doc.folioIndex.indexOf(versoID);
+            // Lookup prev/next
+            let shortID = id.substr(id.lastIndexOf('/') + 1);
+        
+            // Book mode? (recto/verso)
+            if( state.bookMode ){
+                let versoID=findNearestVerso(shortID, doc.folioNameByIDIndex, doc.folioIndex, direction);
+                let current_idx = doc.folioIndex.indexOf(versoID);
+                let nextID = '';
+                let prevID = '';
+                let nextNextID='';
+                let current_hasPrev = false;
+                let current_hasNext = false;
+                let current_hasNextNext = false;
+                if (current_idx > -1) {
+                    current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+                    nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+                    current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
+                    nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
+                    current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+                    prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+                }
+                return {
+                    ...state,
+                    left:{
+                        ...state.left,
+                        currentFolioShortID: versoID,
+                        hasPrevious: current_hasPrev,
+                        hasNext: current_hasNextNext,
+                        previousFolioShortID: prevID,
+                        nextFolioShortID: nextNextID
+                    },
+                    right:{
+                        ...state.right,
+                        currentFolioShortID: nextID,
+                        hasPrevious: current_hasPrev,
+                        hasNext: current_hasNextNext,
+                        previousFolioShortID: prevID,
+                        nextFolioShortID: nextNextID
+                    }
+                };
+            }
+        
+            // Not book mode
+            let current_idx = doc.folioIndex.indexOf(shortID);
             let nextID = '';
             let prevID = '';
-            let nextNextID='';
             let current_hasPrev = false;
             let current_hasNext = false;
-            let current_hasNextNext = false;
             if (current_idx > -1) {
                 current_hasNext = (current_idx < (doc.folioIndex.length - 1));
                 nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-                current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
-                nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
+        
                 current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
                 prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
             }
-            this.setState( {
-                ...this.state,
-                left:{
-                    ...this.state.left,
-                    currentFolioShortID: versoID,
-                    hasPrevious: current_hasPrev,
-                    hasNext: current_hasNextNext,
-                    previousFolioShortID: prevID,
-                    nextFolioShortID: nextNextID
-                },
-                right:{
-                    ...this.state.right,
-                    currentFolioShortID: nextID,
-                    hasPrevious: current_hasPrev,
-                    hasNext: current_hasNextNext,
-                    previousFolioShortID: prevID,
-                    nextFolioShortID: nextNextID
-                }
-            });
-            return;
-        }
-    
-        // Not book mode
-        let current_idx = doc.folioIndex.indexOf(shortID);
-        let nextID = '';
-        let prevID = '';
-        let current_hasPrev = false;
-        let current_hasNext = false;
-        if (current_idx > -1) {
-            current_hasNext = (current_idx < (doc.folioIndex.length - 1));
-            nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-    
-            current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-            prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
-        }
-        if(this.state.linkedMode){
-            this.setState( {
-                ...this.state,
-                left:{
-                    ...this.state.left,
-                    currentFolioShortID: shortID,
-                    hasPrevious: current_hasPrev,
-                    hasNext: current_hasNext,
-                    previousFolioShortID: prevID,
-                    nextFolioShortID: nextID
-                },
-                right:{
-                    ...this.state.right,
-                    currentFolioShortID: shortID,
-                    hasPrevious: current_hasPrev,
-                    hasNext: current_hasNext,
-                    previousFolioShortID: prevID,
-                    nextFolioShortID: nextID
-                }
-            });
-        } else {
-            if(side === 'left'){
-                let type = (typeof transcriptionType === 'undefined')?this.state[side].transcriptionType:transcriptionType;
-                this.setState( {
-                    ...this.state,
+            if(state.linkedMode){
+                return {
+                    ...state,
                     left:{
-                        ...this.state.left,
-                        transcriptionType: type,
+                        ...state.left,
                         currentFolioShortID: shortID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNext,
                         previousFolioShortID: prevID,
                         nextFolioShortID: nextID
-                    }
-                });
-        
-            }else{
-                let type = (typeof transcriptionType === 'undefined')?this.state[side].transcriptionType:transcriptionType;
-        
-                this.setState( {
-                    ...this.state,
+                    },
                     right:{
-                        ...this.state.right,
-                        transcriptionType: type,
+                        ...state.right,
                         currentFolioShortID: shortID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNext,
                         previousFolioShortID: prevID,
                         nextFolioShortID: nextID
                     }
-                });
+                };
+            } else {
+                if(side === 'left'){
+                    let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+                    return {
+                        ...state,
+                        left:{
+                            ...state.left,
+                            transcriptionType: type,
+                            currentFolioShortID: shortID,
+                            hasPrevious: current_hasPrev,
+                            hasNext: current_hasNext,
+                            previousFolioShortID: prevID,
+                            nextFolioShortID: nextID
+                        }
+                    };
+                }else{
+                    let type = (typeof transcriptionType === 'undefined')?state[side].transcriptionType:transcriptionType;
+            
+                    return {
+                        ...state,
+                        right:{
+                            ...state.right,
+                            transcriptionType: type,
+                            currentFolioShortID: shortID,
+                            hasPrevious: current_hasPrev,
+                            hasNext: current_hasNext,
+                            previousFolioShortID: prevID,
+                            nextFolioShortID: nextID
+                        }
+                    };
+                }
             }
-        }
+        });
     }
 
     enterSearchMode() {    

@@ -403,7 +403,7 @@ class TranscriptionView extends Component {
 							let term = this2.nodeTreeToString(domNode.children);
 								return (
 								<Gloss side={side}
-										term={term}>
+										term={term} documentView={this2.props.documentView}>
 											{domToReact(domNode.children, parserOptions)}
 									</Gloss>
 							);

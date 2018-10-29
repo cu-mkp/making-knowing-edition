@@ -11,33 +11,41 @@ class ImageView extends Component {
 
 	constructor(props,context){
 		super(props,context);
-		this.isLoaded = false;
-		this.currentFolioURL="";
 		this.elementID =  "image-view-seadragon-"+this.props.side;
 		this.onZoomFixed_1 = this.onZoomFixed_1.bind(this);
 		this.onZoomFixed_2 = this.onZoomFixed_2.bind(this);
 		this.onZoomFixed_3 = this.onZoomFixed_3.bind(this);
+
+		this.state = {
+			isLoaded: false,
+			currentFolioURL: ""
+		}
 	}
+
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-		const nextFolioID = nextProps.documentView[this.props.side].currentFolioShortID;
-		const nextFolioURL = DocumentHelper.folioURL(nextFolioID);
-		if(nextFolioURL !== this.currentFolioURL){
-			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextFolioURL));
+		const folioID = nextProps.documentView[this.props.side].currentFolioShortID;
+		if( folioID ) {
+			const folioURL = DocumentHelper.folioURL(folioID);
+			if(folioURL !== this.state.currentFolioURL){
+				this.loadFolio(DocumentHelper.getFolio(this.props.document, folioURL));
+			}	
 		}
 	}
 
 	componentDidMount() {
 		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
-		const folioURL = DocumentHelper.folioURL(folioID);
-		if(folioURL !== this.currentFolioURL){
-			this.loadFolio(DocumentHelper.getFolio(this.props.document, folioURL));
+		if( folioID ) {
+			const folioURL = DocumentHelper.folioURL(folioID);
+			if(folioURL !== this.state.currentFolioURL){
+				this.loadFolio(DocumentHelper.getFolio(this.props.document, folioURL));
+			}	
 		}
 	}
 
 	loadFolio(thisFolio){
 		//window.loadingModal_start();
-		this.currentFolioURL=thisFolio.id;
+		this.setState({ ...this.state, currentFolioURL: thisFolio.id })
 		if(typeof this.viewer !== 'undefined'){
 			this.viewer.destroy();
 		}
@@ -54,7 +62,7 @@ class ImageView extends Component {
 				this.viewer.addTiledImage({
 					tileSource: folio.tileSource
 				});
-				this.isLoaded=true;
+				this.setState({ ...this.state, isLoaded: true });
 				//window.loadingModal_stop();
 			},
 			(error) => {
