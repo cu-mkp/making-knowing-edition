@@ -95,7 +95,7 @@ class ImageView extends Component {
 		return (
 			<div>
 				<div className={thisClass}>
-					<Navigation history={this.props.history} side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+					<Navigation side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 					<ImageZoomControl side={this.props.side}
 									  documentView={this.props.documentView}
 									  onZoomFixed_1={this.onZoomFixed_1}

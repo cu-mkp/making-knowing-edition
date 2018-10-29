@@ -88,7 +88,7 @@ class XMLView extends Component {
 
 			return (
 				<div id={thisID} className={thisClass}>
-						<Navigation history={this.props.history} side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+						<Navigation side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 						<div className="xmlContent">
 							<Pagination side={this.props.side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 

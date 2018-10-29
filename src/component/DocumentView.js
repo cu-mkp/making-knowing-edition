@@ -422,10 +422,7 @@ class DocumentView extends Component {
                     key={key}
                     documentView={this.state}
                     documentViewActions={this.documentViewActions}
-                    history={this.props.history}
                     side={side}
-                    drawerMode={this.state.drawerMode}
-                    drawerOpen={pane.drawerOpen}
                 />
             );
         } else if( pane.viewType === 'TranscriptionView' ) {
@@ -434,10 +431,7 @@ class DocumentView extends Component {
                     key={key}
                     documentView={this.state}
                     documentViewActions={this.documentViewActions}
-                    history={this.props.history}
                     side={side}
-                    drawerMode={this.state.drawerMode}
-                    drawerOpen={pane.drawerOpen}
                 />
             );
         } else if( pane.viewType === 'XMLView' ) {
@@ -448,8 +442,6 @@ class DocumentView extends Component {
                     documentViewActions={this.documentViewActions}
                     history={this.props.history}
                     side={side}
-                    drawerMode={this.state.drawerMode}
-                    drawerOpen={pane.drawerOpen}
                 />
             );
         } else if( pane.viewType === 'ImageGridView' ) {
@@ -458,10 +450,7 @@ class DocumentView extends Component {
                     key = {key}
                     documentView={this.state}
                     documentViewActions={this.documentViewActions}
-                    history={this.props.history}
                     side={side}
-                    drawerMode={this.state.drawerMode}
-                    drawerOpen={pane.drawerOpen}
                 />
             );
         } else {
@@ -499,7 +488,6 @@ class DocumentView extends Component {
                     rightPane={rightPane} 
                     documentView={this.state}
                     documentViewActions={this.documentViewActions}
-                    history={this.props.history} 
                 />
             </div>
         );

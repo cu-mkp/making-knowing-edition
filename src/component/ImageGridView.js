@@ -84,7 +84,6 @@ class ImageGridView extends React.Component {
 	}
 
 	render() {
-		//let thisClass = (this.props.documentView.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
 		let thisClass= "imageGridComponent";
 		thisClass = thisClass+" "+this.props.side;
 		let visibleThumbs=this.state.visibleThumbs;

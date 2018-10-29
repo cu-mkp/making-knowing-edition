@@ -108,67 +108,16 @@ class SplitPaneView extends Component {
 		window.removeEventListener("resize", this.onResize);
 	}
 
-	componentWillReceiveProps(newProps){
-		this.setState( {
-			...this.state,
-			drawerButtonVisible: false,
-			drawerIconClass: 'fa-caret-left',
-			viewports: {
-				left: {
-					folio: this.firstFolio,
-					viewportName: 'left',
-					viewWidth: 0,
-					drawerWidth: 200,
-					drawerMode: false,
-					drawerOpen: false
-				},
-				right: {
-					folio: this.firstFolio,
-					viewportName: 'right',
-					viewWidth: 0,
-					drawerWidth: 0,
-					drawerMode: false,
-					drawerOpen: false
-				}
-			}
-		});
-	}
-
 	componentWillMount() {
 		this.updateUI();
-		this.setState( {
-			...this.state,
-			drawerButtonVisible: false,
-			drawerIconClass: 'fa-caret-left',
-			viewports: {
-				left: {
-					folio: this.firstFolio,
-					viewportName: 'left',
-					viewWidth: 0,
-					drawerWidth: 200,
-					drawerMode: false,
-					drawerOpen: false
-				},
-				right: {
-					folio: this.firstFolio,
-					viewportName: 'right',
-					viewWidth: 0,
-					drawerWidth: 0,
-					drawerMode: false,
-					drawerOpen: false
-				}
-			}
-		});
-
 	}
 
 	renderDivider() {
-		let drawerIconClass = `drawer-icon fas ${this.state.drawerIconClass} fa-2x`;
-		let drawerButtonClass = this.state.drawerButtonVisible ? 'drawer-button' : 'drawer-button hidden';
+		let drawerIconClass = `drawer-icon fas fa-caret-left fa-2x`;
 
 		return (
 			<div className = "divider" onMouseDown = {this.onStartDrag}>
-				<div className = {drawerButtonClass} onClick = {this.onDrawerButton} >
+				<div className = 'drawer-button hidden' onClick = {this.onDrawerButton} >
 					<i className = {drawerIconClass} > </i>
 				</div>
 			</div>

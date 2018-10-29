@@ -532,7 +532,7 @@ class TranscriptionView extends Component {
 				return (
 					// Render the transcription
 		      <div id={thisID} className={thisClass}>
-		          <Navigation history={this.props.history} side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+		          <Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 
@@ -548,7 +548,7 @@ class TranscriptionView extends Component {
 				// Empty content
 				return (
 					<div className={thisClass} id={thisID}>
-						<Navigation history={this.props.history} side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+						<Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 						<div className="transcriptContent">
 							<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 							{ this.watermark() }
