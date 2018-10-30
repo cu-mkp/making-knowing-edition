@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import SplitPaneView from './SplitPaneView';
 import {dispatchAction} from '../model/ReduxStore';
+import DocumentHelper from '../model/DocumentHelper';
 
 import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
@@ -90,7 +91,7 @@ class DocumentView extends Component {
                 };    
             // Entering bookmode
             }else{    
-                let versoID=findNearestVerso(shortid, doc.folioNameByIDIndex, doc.folioIndex);
+                let versoID=DocumentHelper.findNearestVerso(shortid, doc.folioNameByIDIndex, doc.folioIndex);
                 let current_idx = doc.folioIndex.indexOf(versoID);
                 let nextID = '';
                 let prevID = '';
@@ -234,7 +235,7 @@ class DocumentView extends Component {
         
             // Book mode? (recto/verso)
             if( state.bookMode ){
-                let versoID=findNearestVerso(shortID, doc.folioNameByIDIndex, doc.folioIndex, direction);
+                let versoID=DocumentHelper.findNearestVerso(shortID, doc.folioNameByIDIndex, doc.folioIndex, direction);
                 let current_idx = doc.folioIndex.indexOf(versoID);
                 let nextID = '';
                 let prevID = '';
@@ -395,9 +396,6 @@ class DocumentView extends Component {
         } );
     };
 
-    // TODO pull viewport construction and document view actions to here, along with 
-    // parsing of the folios path - search gets a different component
-
     renderPane(side) {
         const viewType = this.state[side].viewType;
         const key = this.viewPaneKey(side);
@@ -468,7 +466,6 @@ class DocumentView extends Component {
         return (
             <div>
                 <SplitPaneView 
-                    inSearchMode={this.state.inSearchMode}
                     leftPane={leftPane} 
                     rightPane={rightPane} 
                     documentView={this.state}
@@ -485,35 +482,5 @@ function mapStateToProps(state) {
         document: state.document
 	};
 }
-
-function findNearestVerso(id, folioNameByIDIndex, folioIndex, direction){
-	let found=false;
-	let versoID=id;
-	let lookLeft=(typeof direction === undefined || direction === 'back');
-
-	while(!found){
-		// Look to see if this name ends in "v"
-		let candidateName = folioNameByIDIndex[versoID];
-		if(candidateName.endsWith("v")){
-			found=true;
-
-		// No, so keep looking
-		}else{
-			if(lookLeft && folioIndex.indexOf(versoID) > 0){
-				versoID=folioIndex[folioIndex.indexOf(versoID) - 1];
-			}else{
-				lookLeft=false;
-				if(folioIndex.indexOf(versoID) < folioIndex.length){
-					versoID=folioIndex[folioIndex.indexOf(versoID) + 1];
-				}else{
-					console.log("ERROR: Couldn't find a single verso page!");
-					return null;
-				}
-			}
-		}
-	}
-	return versoID;
-}
-
 
 export default connect(mapStateToProps)(DocumentView);
