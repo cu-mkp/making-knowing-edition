@@ -15,26 +15,21 @@ class DocumentView extends Component {
         super(props)
 
         const paneDefaults = {
-            isXMLMode: false,
-            isGridMode: false,
-            transcriptionType: 'tc',
             currentFolioShortID: '',
-            hasPrevious: false,
-            hasNext: false,
+            transcriptionType: 'tc',
             nextFolioShortID: '',
             previousFolioShortID: '',
-            width: 0,
-            drawerOpen: false
+            isXMLMode: false,
+            isGridMode: false,
+            hasPrevious: false,
+            hasNext: false,
+            width: 0
         }
 
         this.state = {
-            drawerMode: false,
             linkedMode: true,
             bookMode: false,
             inSearchMode:false,
-            folioIndex: [],
-            folioNameByIDIndex:{},
-            folioIDByNameIndex:{},
             left: {
                 ...paneDefaults,
                 viewType: 'ImageGridView'
@@ -47,7 +42,6 @@ class DocumentView extends Component {
 
         this.documentViewActions = {
             setXMLMode: this.setXMLMode.bind(this),
-            setDrawerMode: this.setDrawerMode.bind(this),
             setLinkedMode: this.setLinkedMode.bind(this),
             setBookMode: this.setBookMode.bind(this),
             setPaneViewtype: this.setPaneViewtype.bind(this),
@@ -70,14 +64,6 @@ class DocumentView extends Component {
             nextState[side].viewType = xmlMode ? 'XMLView' : 'TranscriptionView'
             nextState[side].isXMLMode = xmlMode
             return nextState;
-        });
-    }
-
-    setDrawerMode( drawerMode ) {
-        this.setState((state) => {
-            return Object.assign({}, state, {
-                drawerMode: drawerMode
-            });
         });
     }
     
@@ -413,10 +399,10 @@ class DocumentView extends Component {
     // parsing of the folios path - search gets a different component
 
     renderPane(side) {
-        const pane = this.state[side];
+        const viewType = this.state[side].viewType;
         const key = this.viewPaneKey(side);
 
-        if( pane.viewType === 'ImageView') {
+        if( viewType === 'ImageView') {
             return (
                 <ImageView
                     key={key}
@@ -425,7 +411,7 @@ class DocumentView extends Component {
                     side={side}
                 />
             );
-        } else if( pane.viewType === 'TranscriptionView' ) {
+        } else if( viewType === 'TranscriptionView' ) {
             return(
                 <TranscriptionView
                     key={key}
@@ -434,17 +420,16 @@ class DocumentView extends Component {
                     side={side}
                 />
             );
-        } else if( pane.viewType === 'XMLView' ) {
+        } else if( viewType === 'XMLView' ) {
             return(
                 <XMLView
                     key={key}
                     documentView={this.state}
                     documentViewActions={this.documentViewActions}
-                    history={this.props.history}
                     side={side}
                 />
             );
-        } else if( pane.viewType === 'ImageGridView' ) {
+        } else if( viewType === 'ImageGridView' ) {
             return (
                 <ImageGridView
                     key = {key}
@@ -455,7 +440,7 @@ class DocumentView extends Component {
             );
         } else {
             return (
-                <div>ERROR: Undefined split pane type.</div>
+                <div>ERROR: Unrecognized viewType.</div>
             );
         }
     }	      
