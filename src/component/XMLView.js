@@ -19,7 +19,7 @@ class XMLView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+				const folioID = this.props.documentView[this.props.side].iiifShortID;
 				const folioURL = DocumentHelper.folioURL(folioID);
 				this.setState({
 					folio: folio,
@@ -37,7 +37,7 @@ class XMLView extends Component {
   // Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-		const nextFolioID = nextProps.documentView[this.props.side].currentFolioShortID;
+		const nextFolioID = nextProps.documentView[this.props.side].iiifShortID;
 		const nextFolioURL = DocumentHelper.folioURL(nextFolioID);
 		if(this.state.currentlyLoaded !== nextFolioURL){
 			this.contentChange=true;
@@ -65,7 +65,7 @@ class XMLView extends Component {
 		let thisID = "xmlViewComponent_"+this.props.side;
 
 		// Retrofit - the folios are loaded asynchronously
-		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
 		const folioURL = DocumentHelper.folioURL(folioID);
 		if(folioURL === '-1'){
 			return (

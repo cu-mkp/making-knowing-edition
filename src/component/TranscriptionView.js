@@ -40,7 +40,7 @@ class TranscriptionView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+				const folioID = this.props.documentView[this.props.side].iiifShortID;
 				const folioURL = DocumentHelper.folioURL(folioID);
 				this.setState({
 					folio: folio,
@@ -326,7 +326,7 @@ class TranscriptionView extends Component {
   	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-			const nextfolioID = nextProps.documentView[this.props.side].currentFolioShortID;
+			const nextfolioID = nextProps.documentView[this.props.side].iiifShortID;
 			const nextfolioURL = DocumentHelper.folioURL(nextfolioID);
   		if(this.state.currentlyLoaded !== nextfolioURL){
 			this.contentChange=true;
@@ -383,7 +383,7 @@ class TranscriptionView extends Component {
 							
 						case 'h2':
 							//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
-							if(this2.props.documentView[this2.props.side].currentFolioShortID === 'f19'){
+							if(this2.props.documentView[this2.props.side].iiifShortID === 'f19'){
 								let text = this2.nodeTreeToString(domNode.children);
 								let annotationType = "fieldNotes"; // fieldNotes | annotation | video
 								let annotationContent = "This is a fieldNote annotation for: '"+text;
@@ -462,7 +462,7 @@ class TranscriptionView extends Component {
 	// RENDER
 	render() {
 		// Retrofit - the folios are loaded asynchronously
-		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
 		const folioURL = DocumentHelper.folioURL(folioID);
 		if(folioURL === '-1') {
 			return this.watermark();

@@ -24,7 +24,7 @@ class ImageView extends Component {
 
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-		const folioID = nextProps.documentView[this.props.side].currentFolioShortID;
+		const folioID = nextProps.documentView[this.props.side].iiifShortID;
 		if( folioID ) {
 			const folioURL = DocumentHelper.folioURL(folioID);
 			if(folioURL !== this.state.currentFolioURL){
@@ -34,7 +34,7 @@ class ImageView extends Component {
 	}
 
 	componentDidMount() {
-		const folioID = this.props.documentView[this.props.side].currentFolioShortID;
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
 		if( folioID ) {
 			const folioURL = DocumentHelper.folioURL(folioID);
 			if(folioURL !== this.state.currentFolioURL){

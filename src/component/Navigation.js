@@ -43,7 +43,7 @@ class navigation extends React.Component {
 		if(!this.props.documentView.bookMode === true){
 			this.props.documentViewActions.changeCurrentFolio(
 				this.props.document,
-				this.props.documentView.left.currentFolioShortID,
+				this.props.documentView.left.iiifShortID,
 				'left',
 				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction				
@@ -61,7 +61,7 @@ class navigation extends React.Component {
 		// Toggle bookmode
 		this.props.documentViewActions.setBookMode(
 			this.props.document,
-			this.props.documentView.left.currentFolioShortID, 
+			this.props.documentView.left.iiifShortID, 
 			!this.props.documentView.bookMode
 		);
 	}
@@ -94,7 +94,7 @@ class navigation extends React.Component {
 			if(this.props.side === 'left'){
 				this.props.documentViewActions.changeCurrentFolio(
 					this.props.document,
-					this.props.documentView.left.currentFolioShortID,
+					this.props.documentView.left.iiifShortID,
 					'right',
 					this.props.documentView.left.transcriptionType,
 					event.currentTarget.dataset.direction					
@@ -102,7 +102,7 @@ class navigation extends React.Component {
 			}else{
 				this.props.documentViewActions.changeCurrentFolio(
 					this.props.document,
-					this.props.documentView.right.currentFolioShortID,
+					this.props.documentView.right.iiifShortID,
 					'left',
 					this.props.documentView.right.transcriptionType,
 					event.currentTarget.dataset.direction					
@@ -182,7 +182,7 @@ class navigation extends React.Component {
 			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
 				 columnIconClass += (imageViewActive)?' hidden':'';
 			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
-			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].currentFolioShortID];
+			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>

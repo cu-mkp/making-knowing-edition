@@ -77,7 +77,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			bookMode: status,
 			left:{
 				...state.left,
-				currentFolioShortID: versoID,
+				iiifShortID: versoID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -86,7 +86,7 @@ DocumentViewActions.setBookMode = function setBookMode( state, doc, shortid, sta
 			},
 			right:{
 				...state.right,
-				currentFolioShortID: nextID,
+				iiifShortID: nextID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -212,7 +212,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			...state,
 			left:{
 				...state.left,
-				currentFolioShortID: versoID,
+				iiifShortID: versoID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -220,7 +220,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			},
 			right:{
 				...state.right,
-				currentFolioShortID: nextID,
+				iiifShortID: nextID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNextNext,
 				previousFolioShortID: prevID,
@@ -247,7 +247,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			...state,
 			left:{
 				...state.left,
-				currentFolioShortID: shortID,
+				iiifShortID: shortID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
 				previousFolioShortID: prevID,
@@ -255,7 +255,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 			},
 			right:{
 				...state.right,
-				currentFolioShortID: shortID,
+				iiifShortID: shortID,
 				hasPrevious: current_hasPrev,
 				hasNext: current_hasNext,
 				previousFolioShortID: prevID,
@@ -270,7 +270,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 				left:{
 					...state.left,
 					transcriptionType: type,
-					currentFolioShortID: shortID,
+					iiifShortID: shortID,
 					hasPrevious: current_hasPrev,
 					hasNext: current_hasNext,
 					previousFolioShortID: prevID,
@@ -286,7 +286,7 @@ DocumentViewActions.changeCurrentFolio = function changeCurrentFolio( state, doc
 				right:{
 					...state.right,
 					transcriptionType: type,
-					currentFolioShortID: shortID,
+					iiifShortID: shortID,
 					hasPrevious: current_hasPrev,
 					hasNext: current_hasNext,
 					previousFolioShortID: prevID,
@@ -320,7 +320,7 @@ DocumentViewActions.gotoSearchResult = function gotoSearchResult( state, doc, id
 		right:{
 			...state.right,
 			transcriptionType: type,
-			currentFolioShortID: shortID,
+			iiifShortID: shortID,
 			hasPrevious: current_hasPrev,
 			hasNext: current_hasNext,
 			previousFolioShortID: prevID,
@@ -376,7 +376,7 @@ DocumentViewActions.enterSearchMode = function enterSearchMode( state ) {
             isGridMode: false,
             viewType: 'TranscriptionView',
             transcriptionType: 'tc',
-            currentFolioShortID: '',
+            iiifShortID: '',
             nextFolioShortID: '',
             previousFolioShortID: ''
         }
@@ -388,11 +388,11 @@ DocumentViewActions.exitSearchMode = function exitSearchMode( state ) {
     // If we have a folio selected in search results, match the left pane
     // otherwise just clear and gridview
     let leftState;
-    if(parseInt(state.right.currentFolioShortID,10) === -1){
+    if(parseInt(state.right.iiifShortID,10) === -1){
         leftState = {
             ...state.left,
             viewType: 'ImageGridView',
-            currentFolioShortID: '',
+            iiifShortID: '',
             // hasPrevious: false,
             // hasNext: false,
             nextFolioShortID: '',

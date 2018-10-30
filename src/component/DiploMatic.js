@@ -84,6 +84,44 @@ class DiploMatic extends Component {
 		}
 	}
 
+	renderDocumentView = (props) => {
+		const firstFolioID = props.match.params.folioID;
+
+		let viewports;
+		if( !firstFolioID ) {
+			// /folios
+			viewports = {
+				left: {
+					transcriptionType: 'tc',
+					isGridMode: true					
+				},
+				right: {
+					transcriptionType: 'tc',
+					isGridMode: false
+				}
+			}
+		} else {
+			// /folios/3r
+			viewports = {
+				left: {
+					folioID: firstFolioID,
+					transcriptionType: 'f',
+					isGridMode: false
+				},
+				right: {
+					folioID: firstFolioID,
+					transcriptionType: 'tc',
+					isGridMode: false
+				}
+			}
+		}
+		// TODO 4 part and 5 part paths
+
+		return (
+			<DocumentView viewports={viewports}></DocumentView>
+		);
+	}
+
 	renderContent() {
 		return (
 			<div id="content">
@@ -92,8 +130,8 @@ class DiploMatic extends Component {
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/annotations" component={AnnotationListView} exact/>
 					<Route path="/annotations/:annoID" component={AnnotationView}/>
-					<Route path="/folios" component={DocumentView} exact/>
-					<Route path="/folios/:folioID" component={DocumentView}/>
+					<Route path="/folios" render={this.renderDocumentView} exact/>
+					<Route path="/folios/:folioID" render={this.renderDocumentView}/>
 					<Route path="/search" component={DocumentView}/>
 				</Switch>
 			</div>

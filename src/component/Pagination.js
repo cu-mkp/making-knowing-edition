@@ -28,7 +28,7 @@ class navigation extends React.Component {
 
 
     render() {
-		const folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].currentFolioShortID];
+		const folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 		return (
 			<div className="paginationComponent">
 				<div className="paginationControl">

@@ -16,14 +16,14 @@ class DocumentView extends Component {
         super(props)
 
         const paneDefaults = {
-            currentFolioShortID: '',
+            iiifShortID: '',
             transcriptionType: 'tc',
             nextFolioShortID: '',
             previousFolioShortID: '',
-            isXMLMode: false,
-            isGridMode: false,
             hasPrevious: false,
             hasNext: false,
+            isXMLMode: false,
+            isGridMode: false,
             width: 0
         }
 
@@ -76,6 +76,7 @@ class DocumentView extends Component {
         });
     }
     
+    // TODO URL
     setBookMode( doc, shortid, status ) {
         this.setState((state) => {
             // Missing index warning
@@ -112,7 +113,7 @@ class DocumentView extends Component {
                     bookMode: status,
                     left:{
                         ...state.left,
-                        currentFolioShortID: versoID,
+                        iiifShortID: versoID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNextNext,
                         previousFolioShortID: prevID,
@@ -121,7 +122,7 @@ class DocumentView extends Component {
                     },
                     right:{
                         ...state.right,
-                        currentFolioShortID: nextID,
+                        iiifShortID: nextID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNextNext,
                         previousFolioShortID: prevID,
@@ -189,6 +190,7 @@ class DocumentView extends Component {
         });
     }
 
+    // TODO refactor into URL
     changeTranscriptionType( side, transcriptionType ) {
         this.setState((state) => {
             let xmlMode = state[side].isXMLMode;
@@ -223,6 +225,7 @@ class DocumentView extends Component {
         });
     }
 
+    // TODO refactor into URL
     changeCurrentFolio( doc, id, side, transcriptionType, direction ) {
         this.setState((state) => {
             if(doc.folioIndex.length === 0){
@@ -255,7 +258,7 @@ class DocumentView extends Component {
                     ...state,
                     left:{
                         ...state.left,
-                        currentFolioShortID: versoID,
+                        iiifShortID: versoID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNextNext,
                         previousFolioShortID: prevID,
@@ -263,7 +266,7 @@ class DocumentView extends Component {
                     },
                     right:{
                         ...state.right,
-                        currentFolioShortID: nextID,
+                        iiifShortID: nextID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNextNext,
                         previousFolioShortID: prevID,
@@ -290,7 +293,7 @@ class DocumentView extends Component {
                     ...state,
                     left:{
                         ...state.left,
-                        currentFolioShortID: shortID,
+                        iiifShortID: shortID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNext,
                         previousFolioShortID: prevID,
@@ -298,7 +301,7 @@ class DocumentView extends Component {
                     },
                     right:{
                         ...state.right,
-                        currentFolioShortID: shortID,
+                        iiifShortID: shortID,
                         hasPrevious: current_hasPrev,
                         hasNext: current_hasNext,
                         previousFolioShortID: prevID,
@@ -313,7 +316,7 @@ class DocumentView extends Component {
                         left:{
                             ...state.left,
                             transcriptionType: type,
-                            currentFolioShortID: shortID,
+                            iiifShortID: shortID,
                             hasPrevious: current_hasPrev,
                             hasNext: current_hasNext,
                             previousFolioShortID: prevID,
@@ -328,7 +331,7 @@ class DocumentView extends Component {
                         right:{
                             ...state.right,
                             transcriptionType: type,
-                            currentFolioShortID: shortID,
+                            iiifShortID: shortID,
                             hasPrevious: current_hasPrev,
                             hasNext: current_hasNext,
                             previousFolioShortID: prevID,
@@ -357,7 +360,7 @@ class DocumentView extends Component {
                 isGridMode: false,
                 viewType: 'TranscriptionView',
                 transcriptionType: 'tc',
-                currentFolioShortID: '',
+                iiifShortID: '',
                 nextFolioShortID: '',
                 previousFolioShortID: ''
             }
@@ -368,11 +371,11 @@ class DocumentView extends Component {
         // If we have a folio selected in search results, match the left pane
         // otherwise just clear and gridview
         let leftState;
-        if(parseInt(this.state.right.currentFolioShortID,10) === -1){
+        if(parseInt(this.state.right.iiifShortID,10) === -1){
             leftState = {
                 ...this.state.left,
                 viewType: 'ImageGridView',
-                currentFolioShortID: '',
+                iiifShortID: '',
                 // hasPrevious: false,
                 // hasNext: false,
                 nextFolioShortID: '',
@@ -396,15 +399,57 @@ class DocumentView extends Component {
         } );
     };
 
-    renderPane(side) {
-        const viewType = this.state[side].viewType;
+    determineViewType(side) {
+        const transcriptionType = this.props.viewports[side].transcriptionType;
+        const gridMode = this.props.viewports[side].isGridMode;
+        const xmlMode = this.state[side].isXMLMode;
+
+        if( gridMode === true ) {
+            return 'ImageGridView';
+        }
+
+        if( transcriptionType === 'f' ) {
+            return 'ImageView';
+        } else {
+            return xmlMode ? 'XMLView' : 'TranscriptionView';
+        }
+    }
+
+    determineNextPrev(folioID) {
+        const doc = this.props.document;
+        const shortID = doc.folioNameByIDIndex[folioID];
+
+        // Not book mode
+        let current_idx = doc.folioIndex.indexOf(shortID);
+        let nextID = '';
+        let prevID = '';
+        let current_hasPrev = false;
+        let current_hasNext = false;
+        if (current_idx > -1) {
+            current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+            nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+    
+            current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+            prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+        }
+
+        return {
+            hasPrevious: current_hasPrev,
+            hasNext: current_hasNext,
+            previousFolioShortID: prevID,
+            nextFolioShortID: nextID
+        };
+    }
+
+    renderPane(side,docView) {
+        const viewType = this.determineViewType(side);
         const key = this.viewPaneKey(side);
 
         if( viewType === 'ImageView') {
             return (
                 <ImageView
                     key={key}
-                    documentView={this.state}
+                    documentView={docView}
                     documentViewActions={this.documentViewActions}
                     side={side}
                 />
@@ -413,7 +458,7 @@ class DocumentView extends Component {
             return(
                 <TranscriptionView
                     key={key}
-                    documentView={this.state}
+                    documentView={docView}
                     documentViewActions={this.documentViewActions}
                     side={side}
                 />
@@ -422,7 +467,7 @@ class DocumentView extends Component {
             return(
                 <XMLView
                     key={key}
-                    documentView={this.state}
+                    documentView={docView}
                     documentViewActions={this.documentViewActions}
                     side={side}
                 />
@@ -431,7 +476,7 @@ class DocumentView extends Component {
             return (
                 <ImageGridView
                     key = {key}
-                    documentView={this.state}
+                    documentView={docView}
                     documentViewActions={this.documentViewActions}
                     side={side}
                 />
@@ -460,8 +505,22 @@ class DocumentView extends Component {
     render() {
         if( !this.props.document.loaded ) { return null; }
 
-        const leftPane = this.renderPane( 'left' );
-        const rightPane = this.renderPane( 'right' );
+        const docView = {
+            linkedMode: this.state.linkedMode,
+            bookMode: this.state.bookMode,
+            inSearchMode: this.state.inSearchMode,
+            left: {
+                ...this.props.viewports['left'],
+                ...this.determineNextPrev(this.props.viewports['left'].folioID)
+            },
+            right: {
+                ...this.props.viewports['right'],
+                ...this.determineNextPrev(this.props.viewports['right'].folioID)
+            }
+        };
+
+        const leftPane = this.renderPane( 'left', docView );
+        const rightPane = this.renderPane( 'right', docView );
         
         return (
             <div>
