@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 
 import SplitPaneView from './SplitPaneView';
 import {dispatchAction} from '../model/ReduxStore';
-// import DocumentHelper from '../model/DocumentHelper';
 
 import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
@@ -66,62 +65,38 @@ class DocumentView extends Component {
         });
     }
     
-    // TODO URL
-    setBookMode( doc, shortid, status ) {
-        // this.setState((state) => {
-        //     // Missing index warning
-        //     if(doc.folioIndex.length === 0){
-        //         console.log("WARNING: SET_BOOK_MODE reducer - folio index not defined, cannot determine next/previous, leaving state alone");
-        //     }
+    setBookMode( doc, shortid, bookMode ) {
+        this.setState((state) => {
+            return Object.assign({}, state, {
+                bookMode
+            })
+        });
+
+        if( bookMode ) {
+            let [ versoID, rectoID ] = this.findBookFolios(shortid);
+            let versoName = this.props.document.folioNameByIDIndex[versoID];
+            let rectoName = this.props.document.folioNameByIDIndex[rectoID];
+            this.navigateFolios( versoName, 'f', rectoName, 'f' );
+        }
+    }
+
+    findBookFolios(shortID){
+        const doc = this.props.document;
+
+        let versoFolio = doc.folioNameByIDIndex[shortID];
+        let versoIndex = doc.folioIndex.indexOf(shortID);
         
-        //     // Exiting bookmode
-        //     if(!status){
-        //         return {
-        //             ...state,
-        //             bookMode: status
-        //         };    
-        //     // Entering bookmode
-        //     }else{    
-        //         let versoID=DocumentHelper.findNearestVerso(shortid, doc.folioNameByIDIndex, doc.folioIndex);
-        //         let current_idx = doc.folioIndex.indexOf(versoID);
-        //         let nextID = '';
-        //         let prevID = '';
-        //         let nextNextID='';
-        //         let current_hasPrev = false;
-        //         let current_hasNext = false;
-        //         let current_hasNextNext = false;
-        //         if (current_idx > -1) {
-        //             current_hasNext = (current_idx < (doc.folioIndex.length - 1));
-        //             nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-        //             current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
-        //             nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
-        //             current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-        //             prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
-        //         }
-        //         return {
-        //             ...state,
-        //             bookMode: status,
-        //             left:{
-        //                 ...state.left,
-        //                 iiifShortID: versoID,
-        //                 hasPrevious: current_hasPrev,
-        //                 hasNext: current_hasNextNext,
-        //                 previousFolioShortID: prevID,
-        //                 nextFolioShortID: nextNextID,
-        //                 viewType:'ImageView'
-        //             },
-        //             right:{
-        //                 ...state.right,
-        //                 iiifShortID: nextID,
-        //                 hasPrevious: current_hasPrev,
-        //                 hasNext: current_hasNextNext,
-        //                 previousFolioShortID: prevID,
-        //                 nextFolioShortID: nextNextID,
-        //                 viewType:'ImageView'
-        //             }
-        //         };
-        //     }
-        // });
+        if( !versoFolio.endsWith('v') ) {
+            if( versoFolio.endsWith('r') ) {
+                versoIndex = versoIndex-1;
+            } else {
+                console.log('ERROR: could not find matching book folios.')
+                return [null,null];
+            }    
+        }
+
+        let rectoIndex = versoIndex + 1;
+        return [ doc.folioIndex[versoIndex], doc.folioIndex[rectoIndex] ];
     }
 
     setWidths( left, right ) {
@@ -189,34 +164,37 @@ class DocumentView extends Component {
         this.props.history.push(`/folios/${folioID}/${transcriptionType}/${folioID2}/${transcriptionType2}`);
     }
 
-    changeCurrentFolio( doc, id, side, transcriptionType, direction ) {
+    changeCurrentFolio( doc, id, side, transcriptionType ) {
         // Lookup prev/next
         let iiifShortID = id.substr(id.lastIndexOf('/') + 1);
         let folioID = this.props.document.folioNameByIDIndex[iiifShortID];
 
         if( this.state.bookMode ) {
-            // TODO
+            let [ versoID, rectoID ] = this.findBookFolios(iiifShortID);
+            if( versoID ) {
+                let versoName = this.props.document.folioNameByIDIndex[versoID];
+                let rectoName = this.props.document.folioNameByIDIndex[rectoID];
+                this.navigateFolios( versoName, 'f', rectoName, 'f' );    
+            }
+        } else if( this.state.linkedMode ) {
+            this.navigateFolios( folioID, transcriptionType );
         } else {
-            if( this.state.linkedMode ) {
-                this.navigateFolios( folioID, transcriptionType );
+            if( side === 'left' ) {
+                let otherSide = this.props.viewports['right'];
+                this.navigateFolios( 
+                    folioID, 
+                    transcriptionType, 
+                    otherSide.folioID,  
+                    otherSide.transcriptionType
+                );    
             } else {
-                if( side === 'left' ) {
-                    let otherSide = this.props.viewports['right'];
-                    this.navigateFolios( 
-                        folioID, 
-                        transcriptionType, 
-                        otherSide.folioID,  
-                        otherSide.transcriptionType
-                    );    
-                } else {
-                    let otherSide = this.props.viewports['left'];
-                    this.navigateFolios( 
-                        otherSide.folioID,  
-                        otherSide.transcriptionType,
-                        folioID, 
-                        transcriptionType 
-                    );    
-                }
+                let otherSide = this.props.viewports['left'];
+                this.navigateFolios( 
+                    otherSide.folioID,  
+                    otherSide.transcriptionType,
+                    folioID, 
+                    transcriptionType 
+                );    
             }
         }
     }
@@ -290,62 +268,33 @@ class DocumentView extends Component {
         return xmlMode ? 'XMLView' : 'TranscriptionView';
     }
 
-    // determineNextPrevBookMode(viewport,side) {
-    //     const doc = this.props.document;
-    //     const shortID = doc.folioIDByNameIndex[viewport.folioID];
-    //     const direction = 'back';
-                
-    //     let versoID=DocumentHelper.findNearestVerso(shortID, doc.folioNameByIDIndex, doc.folioIndex, direction);
-    //     let current_idx = doc.folioIndex.indexOf(versoID);
-    //     let prevID = '';
-    //     let nextNextID='';
-    //     let current_hasPrev = false;
-    //     let current_hasNextNext = false;
-    //     if (current_idx > -1) {
-    //         current_hasNextNext = (current_idx < (doc.folioIndex.length - 2));
-    //         nextNextID = current_hasNextNext ? doc.folioIndex[current_idx + 2] : '';
-    //         current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-    //         prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
-    //     }
-    //     if( side === 'left' ) {
-    //         return {
-    //             iiifShortID: shortID,
-    //             transcriptionType: viewport.transcriptionType,
-    //             hasPrevious: current_hasPrev,
-    //             hasNext: current_hasNextNext,
-    //             previousFolioShortID: prevID,
-    //             nextFolioShortID: nextNextID,
-    //             width: 0
-    //         }
-    //     } else {
-    //         return {
-    //             iiifShortID: shortID,
-    //             transcriptionType: viewport.transcriptionType,
-    //             hasPrevious: current_hasPrev,
-    //             hasNext: current_hasNextNext,
-    //             previousFolioShortID: prevID,
-    //             nextFolioShortID: nextNextID,
-    //             width: 0
-    //         }
-    //     }
-    // }
-
     viewportState(side) {
         const doc = this.props.document;
         const viewport = this.props.viewports[side];
         const shortID = doc.folioIDByNameIndex[viewport.folioID];
-
-        let current_idx = doc.folioIndex.indexOf(shortID);
         let nextID = '';
         let prevID = '';
         let current_hasPrev = false;
         let current_hasNext = false;
-        if (current_idx > -1) {
-            current_hasNext = (current_idx < (doc.folioIndex.length - 1));
-            nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
-    
-            current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
-            prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+
+        if( this.state.bookMode ) {
+            let [ versoID, rectoID ] = this.findBookFolios(shortID);
+            let current_idx = doc.folioIndex.indexOf(versoID);
+            if (current_idx > -1) {
+                current_hasNext = (current_idx < (doc.folioIndex.length - 2));
+                nextID = current_hasNext ? doc.folioIndex[current_idx + 2] : '';
+                current_hasPrev = (current_idx > 1 && doc.folioIndex.length > 1);
+                prevID = current_hasPrev ? doc.folioIndex[current_idx - 2] : '';
+            }
+        } else {
+            let current_idx = doc.folioIndex.indexOf(shortID);
+            if (current_idx > -1) {
+                current_hasNext = (current_idx < (doc.folioIndex.length - 1));
+                nextID = current_hasNext ? doc.folioIndex[current_idx + 1] : '';
+        
+                current_hasPrev = (current_idx > 0 && doc.folioIndex.length > 1);
+                prevID = current_hasPrev ? doc.folioIndex[current_idx - 1] : '';
+            }
         }
 
         return {
