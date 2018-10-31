@@ -130,7 +130,7 @@ DocumentViewActions.setPaneViewtype = function setPaneViewtype( state, side, vie
 };
 
 // SET_COLUMN_MODE_FOR_SIDE
-DocumentViewActions.setColumnModeForSide = function setColumnModeForSide( state, side, newState ) {
+DocumentViewActions.setGridMode = function setGridMode( state, side, newState ) {
 	if(side === 'left'){
 		return {
 			...state,

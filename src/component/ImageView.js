@@ -72,10 +72,7 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		this.props.documentViewActions.setPaneViewtype(
-			this.props.side,
-			'ImageGridView'
-		);
+		this.props.documentViewActions.changeTranscriptionType(this.props.side, 'g');
 	}
 
 	onZoomFixed_1 = (e) => {

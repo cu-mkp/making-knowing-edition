@@ -85,40 +85,49 @@ class DiploMatic extends Component {
 	}
 
 	renderDocumentView = (props) => {
-		const firstFolioID = props.match.params.folioID;
-
+		const { folioID, transcriptionType, folioID2, transcriptionType2 } = props.match.params;
 		let viewports;
-		if( !firstFolioID ) {
-			// /folios
+
+		if( !folioID ) {
+			// route /folios
 			viewports = {
 				left: {
-					transcriptionType: 'tc',
-					isGridMode: true					
+					transcriptionType: 'g'
 				},
 				right: {
-					transcriptionType: 'tc',
-					isGridMode: false
+					transcriptionType: 'tc'
 				}
 			}
 		} else {
-			// /folios/3r
+			let leftFolioID = folioID;
+			let leftTranscriptionType, rightFolioID, rightTranscriptionType;
+			if( folioID2 ) {
+				// route /folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2
+				leftTranscriptionType = transcriptionType;
+				rightFolioID = folioID2;
+				rightTranscriptionType = transcriptionType2 ? transcriptionType2 : 'tc'
+			} else {
+				// route /folios/:folioID
+				// route /folios/:folioID/:transcriptionType
+				leftTranscriptionType = 'f';
+				rightFolioID = folioID;
+				rightTranscriptionType = transcriptionType ? transcriptionType : 'tc';
+			}
+
 			viewports = {
 				left: {
-					folioID: firstFolioID,
-					transcriptionType: 'f',
-					isGridMode: false
+					folioID: leftFolioID,
+					transcriptionType: leftTranscriptionType
 				},
 				right: {
-					folioID: firstFolioID,
-					transcriptionType: 'tc',
-					isGridMode: false
-				}
-			}
+					folioID: rightFolioID,
+					transcriptionType: rightTranscriptionType
+				}	
+			}	
 		}
-		// TODO 4 part and 5 part paths
-
+	
 		return (
-			<DocumentView viewports={viewports}></DocumentView>
+			<DocumentView viewports={viewports} history={props.history}></DocumentView>
 		);
 	}
 
@@ -130,8 +139,10 @@ class DiploMatic extends Component {
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/annotations" component={AnnotationListView} exact/>
 					<Route path="/annotations/:annoID" component={AnnotationView}/>
+					<Route path="/folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2" render={this.renderDocumentView} exact/>
+					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
+					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>
 					<Route path="/folios" render={this.renderDocumentView} exact/>
-					<Route path="/folios/:folioID" render={this.renderDocumentView}/>
 					<Route path="/search" component={DocumentView}/>
 				</Switch>
 			</div>

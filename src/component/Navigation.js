@@ -75,7 +75,7 @@ class navigation extends React.Component {
 
 	// aka gridMode
 	toggleColumns = function(event){
-		this.props.documentViewActions.setColumnModeForSide(
+		this.props.documentViewActions.setGridMode(
 			this.props.side, 
 			!this.props.documentView[this.props.side].isGridMode			
 		);
