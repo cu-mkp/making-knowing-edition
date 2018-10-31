@@ -463,10 +463,10 @@ class TranscriptionView extends Component {
 	render() {
 		// Retrofit - the folios are loaded asynchronously
 		const folioID = this.props.documentView[this.props.side].iiifShortID;
-		const folioURL = DocumentHelper.folioURL(folioID);
-		if(folioURL === '-1') {
+		if(folioID === '-1') {
 			return this.watermark();
 		} else if(!this.state.isLoaded){
+			const folioURL = DocumentHelper.folioURL(folioID);
 			this.loadFolio(DocumentHelper.getFolio( this.props.document, folioURL));
 			return this.watermark();
 		} else {

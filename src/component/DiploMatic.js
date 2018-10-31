@@ -92,9 +92,11 @@ class DiploMatic extends Component {
 			// route /folios
 			viewports = {
 				left: {
+					folioID: '-1',
 					transcriptionType: 'g'
 				},
 				right: {
+					folioID: '-1',
 					transcriptionType: 'tc'
 				}
 			}

@@ -271,6 +271,16 @@ class DocumentView extends Component {
     viewportState(side) {
         const doc = this.props.document;
         const viewport = this.props.viewports[side];
+
+        // blank folio ID
+        if( viewport.folioID === '-1' ) {
+            return { 
+                ...this.state[side],
+                iiifShortID: viewport.folioID,
+                transcriptionType: viewport.transcriptionType
+            }
+        }
+
         const shortID = doc.folioIDByNameIndex[viewport.folioID];
         let nextID = '';
         let prevID = '';
