@@ -42,7 +42,6 @@ class navigation extends React.Component {
 		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.documentView.bookMode === true){
 			this.props.documentViewActions.changeCurrentFolio(
-				this.props.document,
 				this.props.documentView.left.iiifShortID,
 				'left',
 				this.props.documentView.left.transcriptionType,
@@ -50,7 +49,6 @@ class navigation extends React.Component {
 			);
 
 			this.props.documentViewActions.changeCurrentFolio(
-				this.props.document,
 				this.props.documentView.left.nextFolioShortID,
 				'right',
 				this.props.documentView.left.transcriptionType,
@@ -60,7 +58,6 @@ class navigation extends React.Component {
 
 		// Toggle bookmode
 		this.props.documentViewActions.setBookMode(
-			this.props.document,
 			this.props.documentView.left.iiifShortID, 
 			!this.props.documentView.bookMode
 		);
@@ -93,7 +90,6 @@ class navigation extends React.Component {
 		if(!this.props.documentView.linkedMode === true){
 			if(this.props.side === 'left'){
 				this.props.documentViewActions.changeCurrentFolio(
-					this.props.document,
 					this.props.documentView.left.iiifShortID,
 					'right',
 					this.props.documentView.left.transcriptionType,
@@ -101,7 +97,6 @@ class navigation extends React.Component {
 				);
 			}else{
 				this.props.documentViewActions.changeCurrentFolio(
-					this.props.document,
 					this.props.documentView.right.iiifShortID,
 					'left',
 					this.props.documentView.right.transcriptionType,
@@ -123,7 +118,6 @@ class navigation extends React.Component {
 		console.log(event.currentTarget.dataset.id);
 		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
 		this.props.documentViewActions.changeCurrentFolio(
-			this.props.document,
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,
@@ -147,7 +141,6 @@ class navigation extends React.Component {
 		if(typeof folioID !== 'undefined'){
 			let longID = DocumentHelper.folioURL(folioID);
 			this.props.documentViewActions.changeCurrentFolio(
-				this.props.document,
 				longID,
 				this.props.side
 			);

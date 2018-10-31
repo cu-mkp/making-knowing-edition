@@ -18,7 +18,6 @@ class navigation extends React.Component {
 
 		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
 		this.props.documentViewActions.changeCurrentFolio(
-			this.props.document,
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,

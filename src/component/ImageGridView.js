@@ -38,7 +38,6 @@ class ImageGridView extends React.Component {
 	onClickThumb = (id, e) => {
 		// Set the folio for this side
 		this.props.documentViewActions.changeCurrentFolio(
-			this.props.document,
 			id,
 			this.props.side
 		);

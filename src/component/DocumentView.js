@@ -65,7 +65,7 @@ class DocumentView extends Component {
         });
     }
     
-    setBookMode( doc, shortid, bookMode ) {
+    setBookMode( shortid, bookMode ) {
         this.setState((state) => {
             return Object.assign({}, state, {
                 bookMode
@@ -164,7 +164,7 @@ class DocumentView extends Component {
         this.props.history.push(`/folios/${folioID}/${transcriptionType}/${folioID2}/${transcriptionType2}`);
     }
 
-    changeCurrentFolio( doc, id, side, transcriptionType ) {
+    changeCurrentFolio( id, side, transcriptionType ) {
         // Lookup prev/next
         let iiifShortID = id.substr(id.lastIndexOf('/') + 1);
         let folioID = this.props.document.folioNameByIDIndex[iiifShortID];
