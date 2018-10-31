@@ -90,7 +90,6 @@ class DocumentView extends Component {
             if( versoFolio.endsWith('r') ) {
                 versoIndex = versoIndex-1;
             } else {
-                console.log('ERROR: could not find matching book folios.')
                 return [null,null];
             }    
         }
