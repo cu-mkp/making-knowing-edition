@@ -140,6 +140,12 @@ class DiploMatic extends Component {
 		);
 	}
 
+	renderAnnotationView(props) {
+		return (
+			<AnnotationView annoID={props.match.params.annoID}></AnnotationView>
+		);
+	}
+
 	renderContent() {
 		return (
 			<div id="content">
@@ -147,7 +153,7 @@ class DiploMatic extends Component {
 					<Route path="/" component={ContentView} exact/>
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/annotations" component={AnnotationListView} exact/>
-					<Route path="/annotations/:annoID" component={AnnotationView}/>
+					<Route path="/annotations/:annoID" render={this.renderAnnotationView}/>
 					<Route path="/folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2" render={this.renderDocumentView} exact/>
 					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
 					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>

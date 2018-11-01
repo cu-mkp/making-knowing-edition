@@ -58,20 +58,7 @@ class SearchResultView extends Component {
 
 	annotationResultClicked(event) {
 		const annotationID = event.currentTarget.dataset.annoid;
-
-		// dispatchAction(
-		// 	this.props,
-		// 	'SearchActions.searchMatched',
-		// 	uniq(this.matchedOn)
-		// );
-		// dispatchAction(
-		// 	this.props,
-		// 	'DocumentViewActions.gotoSearchResult',
-		// 	this.props.document,
-		// 	longID,
-		// 	'right',
-		// 	event.currentTarget.dataset.type
-		// );
+		this.props.searchActions.changeCurrentAnnotation(annotationID);
 	}
 
 	handleCheck(event) {

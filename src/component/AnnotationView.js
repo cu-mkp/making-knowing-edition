@@ -12,7 +12,7 @@ class AnnotationView extends Component {
         super(props,context);
 
         this.state = { 
-            annoID: props.match.params.annoID
+            annoID: props.annoID
         };
     }
 

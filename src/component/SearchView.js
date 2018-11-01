@@ -6,6 +6,7 @@ import {dispatchAction} from '../model/ReduxStore';
 
 import SearchResultView from './SearchResultView';
 import TranscriptionView from './TranscriptionView';
+import AnnotationView from './AnnotationView';
 
 class SearchView extends Component {
 
@@ -14,6 +15,8 @@ class SearchView extends Component {
 
         this.state = {
             inSearchMode: true,
+            detailView: 'TranscriptionView',
+            annotationID: '',
             left: {
                 width: 0
             },
@@ -27,6 +30,7 @@ class SearchView extends Component {
         this.searchActions = {
             changeTranscriptionType: this.changeTranscriptionType.bind(this),
             changeCurrentFolio: this.changeCurrentFolio.bind(this),
+            changeCurrentAnnotation: this.changeCurrentAnnotation.bind(this),
             exitSearch: this.exitSearch.bind(this)
         }
     }
@@ -69,6 +73,7 @@ class SearchView extends Component {
         this.setState( (state) => {
             return {
                 ...state,
+                detailView: 'TranscriptionView',
                 right: {
                     ...state.right,
                     iiifShortID,
@@ -76,6 +81,19 @@ class SearchView extends Component {
                 }
             }
         });
+        const folioID = this.props.document.folioNameByIDIndex[iiifShortID];
+        this.props.history.push(`/search/folio/${folioID}/${transcriptionType}`);
+    }
+
+    changeCurrentAnnotation( annotationID ) {
+        this.setState( (state) => {
+            return {
+                ...state,
+                detailView: 'AnnotationView',
+                annotationID
+            }
+        });
+        this.props.history.push(`/search/annotation/${annotationID}`);
     }
 
     renderSearchResultView() {
@@ -110,21 +128,26 @@ class SearchView extends Component {
     }
 
     renderSearchDetail() {
+        if( this.state.detailView === 'TranscriptionView' ) {
+            // combine component state with state from props
+            const docView = {
+                ...this.state,
+                right: this.transcriptionViewState()
+            };
 
-        // combine component state with state from props
-        const docView = {
-            ...this.state,
-            right: this.transcriptionViewState()
-        };
-
-        return (
-            <TranscriptionView
-                    documentView={docView}
-                    documentViewActions={this.searchActions}
-                    key='search-detail'
-                    side='right'
-            />
-        );
+            return (
+                <TranscriptionView
+                        documentView={docView}
+                        documentViewActions={this.searchActions}
+                        key='search-detail'
+                        side='right'
+                />
+            );
+        } else {
+            return (
+                <AnnotationView annoID={this.state.annotationID} />
+            );
+        }
     }
 
     render() {
