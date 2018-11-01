@@ -24,7 +24,6 @@ class Search extends React.Component {
 
 		let doSearch = () => {
 			dispatchAction( this.props, 'SearchActions.beginSearch' );
-			dispatchAction( this.props, 'DocumentViewActions.enterSearchMode' );	
 		}
 
 		// If we don't have a search index, load it.
@@ -69,7 +68,6 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		documentView: state.documentView,
 		search: state.search
 	};
 }

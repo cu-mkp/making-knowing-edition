@@ -38,10 +38,7 @@ class DocumentView extends Component {
             setBookMode: this.setBookMode.bind(this),
             setGridMode: this.setGridMode.bind(this),
             changeTranscriptionType: this.changeTranscriptionType.bind(this),
-            changeCurrentFolio: this.changeCurrentFolio.bind(this),
-            // enterSearchMode: this.enterSearchMode.bind(this),
-            // exitSearchMode: this.exitSearchMode.bind(this),
-            setWidths: this.setWidths.bind(this)
+            changeCurrentFolio: this.changeCurrentFolio.bind(this)
         }
     }
 
@@ -98,7 +95,7 @@ class DocumentView extends Component {
         return [ doc.folioIndex[versoIndex], doc.folioIndex[rectoIndex] ];
     }
 
-    setWidths( left, right ) {
+    onWidth = ( left, right ) => {
         this.setState((state) => {
             let nextState = {...state};
             nextState['left'].width = left;
@@ -198,62 +195,6 @@ class DocumentView extends Component {
         }
     }
 
-    // enterSearchMode() {    
-    //     this.setState( {
-    //         ...this.state,
-    //         linkedMode: false,
-    //         bookMode: false,
-    //         inSearchMode: true,
-        
-    //         left: {
-    //             ...this.state.left,
-    //             viewType: 'SearchResultView'
-    //         },
-        
-    //         right:{
-    //             ...this.state.right,
-    //             isGridMode: false,
-    //             viewType: 'TranscriptionView',
-    //             transcriptionType: 'tc',
-    //             iiifShortID: '',
-    //             nextFolioShortID: '',
-    //             previousFolioShortID: ''
-    //         }
-    //     });
-    // }
-
-    // exitSearchMode() {
-    //     // If we have a folio selected in search results, match the left pane
-    //     // otherwise just clear and gridview
-    //     let leftState;
-    //     if(parseInt(this.state.right.iiifShortID,10) === -1){
-    //         leftState = {
-    //             ...this.state.left,
-    //             viewType: 'ImageGridView',
-    //             iiifShortID: '',
-    //             // hasPrevious: false,
-    //             // hasNext: false,
-    //             nextFolioShortID: '',
-    //             previousFolioShortID: ''
-    //         };
-    //     }else{
-    //         leftState = {
-    //             ...this.state.right,
-    //             viewType: 'ImageView'
-    //         };
-    //     }
-    
-    //     this.setState( {
-    //         ...this.state,
-    //         linkedMode: true,
-    //         inSearchMode: false,
-    //         left: leftState,
-    //         right:{
-    //             ...this.state.right,
-    //         }
-    //     } );
-    // };
-
     determineViewType(side) {
         const transcriptionType = this.props.viewports[side].transcriptionType;
         const xmlMode = this.state[side].isXMLMode;
@@ -287,7 +228,7 @@ class DocumentView extends Component {
         let current_hasNext = false;
 
         if( this.state.bookMode ) {
-            let [ versoID, rectoID ] = this.findBookFolios(shortID);
+            let [ versoID ] = this.findBookFolios(shortID);
             let current_idx = doc.folioIndex.indexOf(versoID);
             if (current_idx > -1) {
                 current_hasNext = (current_idx < (doc.folioIndex.length - 2));
@@ -393,8 +334,8 @@ class DocumentView extends Component {
                 <SplitPaneView 
                     leftPane={this.renderPane( 'left', docView )} 
                     rightPane={this.renderPane( 'right', docView )} 
-                    documentView={docView}
-                    documentViewActions={this.documentViewActions}
+                    inSearchMode={false}
+                    onWidth={this.onWidth.bind(this)}
                 />
             </div>
         );

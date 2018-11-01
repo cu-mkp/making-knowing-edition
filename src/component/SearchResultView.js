@@ -21,8 +21,7 @@ class SearchResultView extends Component {
 	}
 
 	exitSearch(event) {
-		this.props.history.push('/folios');
-		dispatchAction( this.props, 'DocumentViewActions.exitSearchMode' );
+		this.props.searchActions.exitSearch();
 		dispatchAction( this.props, 'SearchActions.clearSearch' );
 	}
 
@@ -53,14 +52,7 @@ class SearchResultView extends Component {
 				'SearchActions.searchMatched',
 				uniq(this.matchedOn)
 			);
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.gotoSearchResult',
-				this.props.document,
-				longID,
-				'right',
-				event.currentTarget.dataset.type
-			);
+			this.props.searchActions.changeCurrentFolio(longID,'right', event.currentTarget.dataset.type )
 		}
 	}
 
@@ -242,7 +234,6 @@ function mapStateToProps(state) {
 	return {
 		search: state.search,
 		document: state.document,
-        documentView: state.documentView,
 		annotations: state.annotations
     };
 }

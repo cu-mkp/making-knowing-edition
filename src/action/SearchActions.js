@@ -37,6 +37,7 @@ SearchActions.beginSearch = function beginSearch( state ) {
     return {
         ...state,
         term:searchTerm,
+        loaded:true,
         results:results
     };
 };

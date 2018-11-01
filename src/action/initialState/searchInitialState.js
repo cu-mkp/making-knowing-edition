@@ -9,5 +9,6 @@ export default {
         tl: false,
         anno: false
     },
-    results:''
+    results:'',
+    loaded: false
 }

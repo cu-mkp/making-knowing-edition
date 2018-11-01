@@ -41,7 +41,7 @@ class SplitPaneView extends Component {
 			let right_viewWidth = whole - left_viewWidth;
 
 			// Update as long as we're within limits
-			let leftLimit = (this.props.documentView.inSearchMode)?this.leftPaneMinWidth_inSearchMode:this.leftPaneMinWidth;
+			let leftLimit = (this.props.inSearchMode)?this.leftPaneMinWidth_inSearchMode:this.leftPaneMinWidth;
 			console.log(leftLimit);
 			if(left_viewWidth > leftLimit &&
 			   right_viewWidth > this.rightPaneMinWidth){
@@ -86,8 +86,8 @@ class SplitPaneView extends Component {
 		// Record state change
 		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
 		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-		if(right_px !== this.props.documentView.right.width && (left_px>=this.leftPaneMinWidth)){
-			this.props.documentViewActions.setWidths(left_px,right_px);
+		if( this.props.onWidth && left_px>=this.leftPaneMinWidth) {
+			this.props.onWidth(left_px,right_px);
 		}
 	}
 
@@ -97,9 +97,11 @@ class SplitPaneView extends Component {
 		window.addEventListener("resize", this.onResize);
 
 		// Set the default width on mount
-		let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
-		let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
-		this.props.documentViewActions.setWidths(left_px,right_px);
+		if( this.props.onWidth ) {
+			let left_px = Math.floor(Math.abs(window.innerWidth * this.splitFraction));
+			let right_px = Math.floor(window.innerWidth * (1.0 - this.splitFraction));
+			this.props.onWidth(left_px,right_px);	
+		}
 	}
 
 	componentWillUnmount() {

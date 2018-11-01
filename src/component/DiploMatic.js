@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DocumentView from './DocumentView';
+import SearchView from './SearchView';
 import ContentView from './ContentView';
 import AnnotationView from './AnnotationView';
 import EntryListView from './EntryListView';
@@ -133,6 +134,12 @@ class DiploMatic extends Component {
 		);
 	}
 
+	renderSearchView(props) {
+		return (
+			<SearchView history={props.history}></SearchView>
+		);
+	}
+
 	renderContent() {
 		return (
 			<div id="content">
@@ -145,7 +152,7 @@ class DiploMatic extends Component {
 					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
 					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>
 					<Route path="/folios" render={this.renderDocumentView} exact/>
-					<Route path="/search" component={DocumentView}/>
+					<Route path="/search" component={this.renderSearchView}/>
 				</Switch>
 			</div>
 		);
