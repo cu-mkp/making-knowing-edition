@@ -17,7 +17,8 @@ class AnnotationView extends Component {
     }
 
     componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+        const fixedFrameMode = (this.props.inSearchMode);
+        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', fixedFrameMode );
     }
 
     // Add anchor tag navigation for footnotes
@@ -51,6 +52,15 @@ class AnnotationView extends Component {
 		 };
 		 return parserOptions;
     }
+
+    renderAnnotationNav() {
+        if( this.props.inSearchMode ) return '';
+        return (
+            <div className='annotation-nav'>
+                <ReactLink to='/annotations'>Back to List</ReactLink>
+            </div>
+        );
+    }
     
 	render() {
         let anno = this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
@@ -60,9 +70,7 @@ class AnnotationView extends Component {
 
         return (
             <div id="annotation-view">
-                <div className='annotation-nav'>
-                    <ReactLink to='/annotations'>Back to List</ReactLink>
-                </div>
+                { this.renderAnnotationNav() }
                 {Parser(anno.content,htmlToReactParserOptions)}
             </div>
         );

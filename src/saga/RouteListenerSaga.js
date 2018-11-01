@@ -19,6 +19,12 @@ function *userNavigation(action) {
             case 'search':
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
+                if( pathSegments.length > 3 ) {
+                    if( 'annotation' === pathSegments[2] ) {
+                        let annotationID = pathSegments[3];
+                        yield resolveAnnotation(annotationID);    
+                    }
+                }
                 break;
             case 'annotations':
                 yield resolveAnnotationManifest();

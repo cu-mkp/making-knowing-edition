@@ -145,7 +145,7 @@ class SearchView extends Component {
             );
         } else {
             return (
-                <AnnotationView annoID={this.state.annotationID} />
+                <AnnotationView inSearchMode={true} annoID={this.state.annotationID} />
             );
         }
     }
