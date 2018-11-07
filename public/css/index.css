@@ -278,9 +278,17 @@ figure.current {
   top: -.2rem;
   color: #4A4A4A; }
 
-#annotation-view {
+#annotation-view.view-mode {
   margin: 80px 20% 80px 20%;
-  max-width: 66%;
+  max-width: 66%; }
+
+#annotation-view.search-mode {
+  overflow: scroll;
+  margin: 80px 0 80px 1rem;
+  height: calc(100vh - 7rem);
+  width: calc(100% - 1.2rem); }
+
+#annotation-view {
   line-height: 2;
   text-indent: 50px; }
   #annotation-view h1 {

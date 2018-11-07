@@ -139,13 +139,17 @@ class SearchView extends Component {
                 <TranscriptionView
                         documentView={docView}
                         documentViewActions={this.searchActions}
-                        key='search-detail'
+                        key={`search-folio-${this.state.right.iiifShortID}`}
                         side='right'
                 />
             );
         } else {
             return (
-                <AnnotationView inSearchMode={true} annoID={this.state.annotationID} />
+                <AnnotationView 
+                    key={`search-anno-${this.state.annotationID}`}
+                    inSearchMode={true}
+                    annoID={this.state.annotationID} 
+                />
             );
         }
     }

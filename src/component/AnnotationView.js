@@ -67,9 +67,10 @@ class AnnotationView extends Component {
         if( !anno || !anno.loaded ) return null;
         
         let htmlToReactParserOptions = this.htmlToReactParserOptions();
+        const modeClass = this.props.inSearchMode ? 'search-mode' : 'view-mode';
 
         return (
-            <div id="annotation-view">
+            <div id="annotation-view" className={modeClass}>
                 { this.renderAnnotationNav() }
                 {Parser(anno.content,htmlToReactParserOptions)}
             </div>
