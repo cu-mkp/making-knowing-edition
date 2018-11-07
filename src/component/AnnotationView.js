@@ -41,6 +41,17 @@ class AnnotationView extends Component {
     htmlToReactParserOptions() {
 		var parserOptions =  {
 			 replace: (domNode) => {
+                // drop these
+                if( domNode.name === 'body' || 
+                    domNode.name === 'head' ||
+                    domNode.name === 'html'     ) {
+                    return ( 
+                    <div className={`anno-${domNode.name}`}>
+                        {domToReact(domNode.children, parserOptions)}
+                    </div> 
+                    );
+                }
+
 				 switch (domNode.name) {
                     case 'a':
                         return this.addFootnoteLink( domNode, parserOptions );
