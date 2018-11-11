@@ -42,7 +42,6 @@ class SplitPaneView extends Component {
 
 			// Update as long as we're within limits
 			let leftLimit = (this.props.inSearchMode)?this.leftPaneMinWidth_inSearchMode:this.leftPaneMinWidth;
-			console.log(leftLimit);
 			if(left_viewWidth > leftLimit &&
 			   right_viewWidth > this.rightPaneMinWidth){
 				   this.splitFraction = (whole === 0) ? 0.0 : left_viewWidth / whole;

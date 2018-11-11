@@ -54,7 +54,7 @@ class DiploMatic extends Component {
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
 					{ this.renderNavLinks() }
-					<Search/>
+					<Search />
 					<div className="expandedViewOnly">
 						<span><span className="english">English</span> | <span className="francais">Français</span></span>
 					</div>
@@ -135,8 +135,18 @@ class DiploMatic extends Component {
 	}
 
 	renderSearchView(props) {
+		const { folioID, transcriptionType, annotationID } = props.match.params;
+		const searchQuery = decodeURI(window.location.href.split("q=")[1]); 
+
 		return (
-			<SearchView history={props.history}></SearchView>
+			<SearchView 
+				searchQuery={searchQuery} 
+				history={props.history}
+				folioID={folioID}
+				transcriptionType={transcriptionType}
+				annotationID={annotationID}
+			>
+			</SearchView>
 		);
 	}
 
@@ -158,6 +168,8 @@ class DiploMatic extends Component {
 					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
 					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>
 					<Route path="/folios" render={this.renderDocumentView} exact/>
+					<Route path="/search/annotation/:annotationID" render={this.renderSearchView} exact/> 
+					<Route path="/search/folio/:folioID/:transcriptionType" render={this.renderSearchView} exact/> 
 					<Route path="/search" component={this.renderSearchView}/>
 				</Switch>
 			</div>

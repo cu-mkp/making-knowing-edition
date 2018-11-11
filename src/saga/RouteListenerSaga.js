@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { takeEvery, select } from 'redux-saga/effects'
 
+import SearchIndex from '../model/SearchIndex';
+
 import { putResolveAction } from '../model/ReduxStore';
 
 const justAnnotations = state => state.annotations
 const justEntries = state => state.entries
 const juxtDocument = state => state.document
+const justSearch = state => state.search
 
 function *userNavigation(action) {
     const pathname = action.payload.params[0].pathname;
@@ -19,6 +22,7 @@ function *userNavigation(action) {
             case 'search':
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
+                yield resolveSearchIndex();
                 if( pathSegments.length > 3 ) {
                     if( 'annotation' === pathSegments[2] ) {
                         let annotationID = pathSegments[3];
@@ -46,6 +50,15 @@ function *resolveDocumentManifest() {
     if( !document.loaded ) {
         const response = yield axios.get(document.manifestURL)
         yield putResolveAction( 'DocumentActions.loadDocument', response.data );    
+    }
+}
+
+function *resolveSearchIndex() {
+    const search = yield select(justSearch)
+    if( !search.index ) {
+        let searchIndex = new SearchIndex();
+        searchIndex = yield searchIndex.load();
+        yield putResolveAction( 'SearchActions.loadSearchIndex', searchIndex );    
     }
 }
 

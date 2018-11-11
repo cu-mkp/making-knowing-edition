@@ -14,17 +14,8 @@ class SearchView extends Component {
         super(props)
 
         this.state = {
-            inSearchMode: true,
-            detailView: 'TranscriptionView',
-            annotationID: '',
-            left: {
-                width: 0
-            },
-            right: {
-                iiifShortID: '',
-                transcriptionType: 'tc',
-                width: 0
-            }
+            leftWidth: 0,
+            rightWidth: 0
         }
 
         this.searchActions = {
@@ -40,71 +31,54 @@ class SearchView extends Component {
     }
 
     onWidth = ( left, right ) => {
-        this.setState((state) => {
-            let nextState = {...state};
-            nextState['left'].width = left;
-            nextState['right'].width = right;
-            return nextState;
+        this.setState({
+            leftWidth: left,
+            rightWidth: right
         });
     }
 
     exitSearch() {
-        const iiifShortID = this.state.right.iiifShortID;
-        const folioID = this.props.document.folioNameByIDIndex[iiifShortID];
-        const transcriptionType = this.state.right.transcriptionType;
-        this.props.history.push(`/folios/${folioID}/${transcriptionType}`);
+        if( this.props.folioID ) {
+            const folioID = this.props.folioID;
+            const transcriptionType = this.props.transcriptionType;
+            this.props.history.push(`/folios/${folioID}/${transcriptionType}`);    
+        } else if( this.props.annotationID ) {
+            const annotationID = this.props.annotationID
+            this.props.history.push(`/annotations/${annotationID}`);    
+        }
     }
 
-    changeTranscriptionType( side, transcriptionType ) {        
-        this.setState( (state) => {
-            return {
-                ...state,
-                right: {
-                    ...state.right,
-                    transcriptionType
-                }
-            }
-        });
+    changeTranscriptionType( side, transcriptionType ) {   
+        const folioID = this.props.folioID; 
+        this.props.history.push(`/search/folio/${folioID}/${transcriptionType}?q=${this.props.searchQuery}`);    
     }
 
     changeCurrentFolio( id, side, transcriptionType ) {
         let iiifShortID = id.substr(id.lastIndexOf('/') + 1);
-
-        this.setState( (state) => {
-            return {
-                ...state,
-                detailView: 'TranscriptionView',
-                right: {
-                    ...state.right,
-                    iiifShortID,
-                    transcriptionType    
-                }
-            }
-        });
         const folioID = this.props.document.folioNameByIDIndex[iiifShortID];
-        this.props.history.push(`/search/folio/${folioID}/${transcriptionType}`);
+        const url = encodeURI(`/search/folio/${folioID}/${transcriptionType}?q=${this.props.searchQuery}`);
+        this.props.history.push(url);
     }
 
     changeCurrentAnnotation( annotationID ) {
-        this.setState( (state) => {
-            return {
-                ...state,
-                detailView: 'AnnotationView',
-                annotationID
-            }
-        });
-        this.props.history.push(`/search/annotation/${annotationID}`);
+        const url = encodeURI(`/search/annotation/${annotationID}?q=${this.props.searchQuery}`);
+        this.props.history.push(url);
     }
 
     renderSearchResultView() {
         return (
-            <SearchResultView searchActions={this.searchActions}></SearchResultView>
+            <SearchResultView 
+                searchQuery={this.props.searchQuery} 
+                history={this.props.history}
+                searchActions={this.searchActions}>
+            </SearchResultView>
         );
     }
 
     transcriptionViewState() {
         const doc = this.props.document;
-        const shortID = this.state.right.iiifShortID;
+        const shortID = this.props.document.folioIDByNameIndex[this.props.folioID];
+
         let nextID = '';
         let prevID = '';
         let current_hasPrev = false;
@@ -119,7 +93,9 @@ class SearchView extends Component {
         }
 
         return {
-            ...this.state['right'],
+            iiifShortID: shortID,
+            transcriptionType: this.props.transcriptionType,
+            width: this.state.rightWidth,
             hasPrevious: current_hasPrev,
             hasNext: current_hasNext,
             previousFolioShortID: prevID,
@@ -128,10 +104,13 @@ class SearchView extends Component {
     }
 
     renderSearchDetail() {
-        if( this.state.detailView === 'TranscriptionView' ) {
+        if( this.props.folioID ) {
             // combine component state with state from props
             const docView = {
-                ...this.state,
+                inSearchMode: true,
+                left: {
+                    width: this.state.leftWidth
+                },
                 right: this.transcriptionViewState()
             };
 
@@ -139,23 +118,25 @@ class SearchView extends Component {
                 <TranscriptionView
                         documentView={docView}
                         documentViewActions={this.searchActions}
-                        key={`search-folio-${this.state.right.iiifShortID}`}
+                        key={`search-folio-${this.props.folioID}`}
                         side='right'
                 />
             );
         } else {
             return (
                 <AnnotationView 
-                    key={`search-anno-${this.state.annotationID}`}
+                    key={`search-anno-${this.props.annotationID}`}
                     inSearchMode={true}
-                    annoID={this.state.annotationID} 
+                    annoID={this.props.annotationID} 
                 />
             );
         }
     }
 
     render() {
-        if( !this.props.document.loaded || !this.props.search.loaded ) { return null; }
+        if( !this.props.document.loaded || 
+            !this.props.search.index ||
+            !this.props.search.index.loaded  ) { return null; }
 
         return (
             <div>

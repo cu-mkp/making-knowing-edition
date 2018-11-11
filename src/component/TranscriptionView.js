@@ -11,7 +11,6 @@ import DocumentHelper from '../model/DocumentHelper';
 
 class TranscriptionView extends Component {
 
-
 	constructor(props) {
 		super(props);
 		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];

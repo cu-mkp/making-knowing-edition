@@ -1,5 +1,5 @@
 export default {
-    index:{},
+    index:null,
     rawSearchTerm: '',
     term:'',
     matched:[],
@@ -9,6 +9,5 @@ export default {
         tl: false,
         anno: false
     },
-    results:'',
-    loaded: false
+    results:''
 }
