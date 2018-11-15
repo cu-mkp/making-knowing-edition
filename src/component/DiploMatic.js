@@ -136,11 +136,9 @@ class DiploMatic extends Component {
 
 	renderSearchView(props) {
 		const { folioID, transcriptionType, annotationID } = props.match.params;
-		const searchQuery = decodeURI(window.location.href.split("q=")[1]); 
 
 		return (
 			<SearchView 
-				searchQuery={searchQuery} 
 				history={props.history}
 				folioID={folioID}
 				transcriptionType={transcriptionType}

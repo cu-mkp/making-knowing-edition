@@ -1,4 +1,5 @@
 export default {
     term:'',
-    matched:[]
+    matched:[],
+    results: null
 }

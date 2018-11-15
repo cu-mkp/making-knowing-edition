@@ -7,6 +7,13 @@ SearchActions.loadSearchIndex = function loadSearchIndex( state, searchIndex ) {
     }
 };
 
+SearchActions.searchResults = function searchMatched( state, results ) {
+    return {
+        ...state,
+        results
+    }
+};
+
 SearchActions.searchMatched = function searchMatched( state, matched ) {
     return {
         ...state,

@@ -29,6 +29,7 @@ function *userNavigation(action) {
                         yield resolveAnnotation(annotationID);    
                     }
                 }
+                yield resolveSearchResult();
                 break;
             case 'annotations':
                 yield resolveAnnotationManifest();
@@ -60,6 +61,24 @@ function *resolveSearchIndex() {
         searchIndex = yield searchIndex.load();
         yield putResolveAction( 'SearchActions.loadSearchIndex', searchIndex );    
     }
+}
+
+function *resolveSearchResult() {
+    const search = yield select(justSearch)
+    const searchIndex = search.index;
+    const searchQuery = decodeURI(window.location.href.split("q=")[1]);
+
+    if( !searchIndex || !searchQuery ) {
+        yield putResolveAction( 'SearchActions.searchResults', null );            
+    }
+
+    let results = {};
+    results.searchQuery = searchQuery;
+    results['tc'] = searchIndex.searchEdition(searchQuery,'tc');
+    results['tcn'] = searchIndex.searchEdition(searchQuery,'tcn');
+    results['tl'] = searchIndex.searchEdition(searchQuery,'tl');
+    results['anno'] = searchIndex.searchAnnotations(searchQuery);	    
+    yield putResolveAction( 'SearchActions.searchResults', results );        
 }
 
 function *resolveAnnotationManifest() {

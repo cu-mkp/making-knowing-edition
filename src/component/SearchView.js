@@ -50,25 +50,27 @@ class SearchView extends Component {
 
     changeTranscriptionType( side, transcriptionType ) {   
         const folioID = this.props.folioID; 
-        this.props.history.push(`/search/folio/${folioID}/${transcriptionType}?q=${this.props.searchQuery}`);    
+        const searchQuery = this.props.search.results.searchQuery;
+        this.props.history.push(`/search/folio/${folioID}/${transcriptionType}?q=${searchQuery}`);    
     }
 
     changeCurrentFolio( id, side, transcriptionType ) {
         let iiifShortID = id.substr(id.lastIndexOf('/') + 1);
         const folioID = this.props.document.folioNameByIDIndex[iiifShortID];
-        const url = encodeURI(`/search/folio/${folioID}/${transcriptionType}?q=${this.props.searchQuery}`);
+        const searchQuery = this.props.search.results.searchQuery;
+        const url = encodeURI(`/search/folio/${folioID}/${transcriptionType}?q=${searchQuery}`);
         this.props.history.push(url);
     }
 
     changeCurrentAnnotation( annotationID ) {
-        const url = encodeURI(`/search/annotation/${annotationID}?q=${this.props.searchQuery}`);
+        const searchQuery = this.props.search.results.searchQuery;
+        const url = encodeURI(`/search/annotation/${annotationID}?q=${searchQuery}`);
         this.props.history.push(url);
     }
 
     renderSearchResultView() {
         return (
             <SearchResultView 
-                searchQuery={this.props.searchQuery} 
                 history={this.props.history}
                 searchActions={this.searchActions}>
             </SearchResultView>
@@ -136,7 +138,8 @@ class SearchView extends Component {
     render() {
         if( !this.props.document.loaded || 
             !this.props.search.index ||
-            !this.props.search.index.loaded  ) { return null; }
+            !this.props.search.index.loaded ||
+            !this.props.search.results ) { return null; }
 
         return (
             <div>

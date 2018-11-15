@@ -22,8 +22,6 @@ class SearchResultView extends Component {
 			}
 		}
 
-		this.results = {};
-
 		this.fragmentParserOptions = this.generateFragmentParserOptions();
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,7 +32,6 @@ class SearchResultView extends Component {
 
 	exitSearch() {
 		this.props.searchActions.exitSearch();
-		this.results = {};		
 	}
 
 	handleSubmit(event) {
@@ -171,23 +168,13 @@ class SearchResultView extends Component {
 			}
 		}
 
-		// refresh search results if the query has changed
-		if( this.results.searchQuery !== this.props.searchQuery ) {
-			const searchQuery = this.props.searchQuery;
-			const searchIndex = this.props.search.index;
-
-			this.results.searchQuery = searchQuery;
-			this.results['tc'] = searchIndex.searchEdition(searchQuery,'tc');
-			this.results['tcn'] = searchIndex.searchEdition(searchQuery,'tcn');
-			this.results['tl'] = searchIndex.searchEdition(searchQuery,'tl');
-			this.results['anno'] = searchIndex.searchAnnotations(searchQuery);	
-		}
+		const results = this.props.search.results;
 
 		// Total results
-		let totalResultCount = this.results["tc"].length +
-							   this.results["tcn"].length +
-							   this.results["tl"].length + 
-							   this.results["anno"].length;
+		let totalResultCount = results["tc"].length +
+							   results["tcn"].length +
+							   results["tl"].length + 
+							   results["anno"].length;
 
 		return (
 			<div className="searchResultsComponent">
@@ -196,30 +183,30 @@ class SearchResultView extends Component {
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField"><input name="searchTerm"  key={this.props.searchQuery} className="textField" defaultValue={this.props.searchQuery}/></div>
+						<div className="searchField"><input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/></div>
 						<div className="searchButton"><button type="submit"><span className="fa fa-search" aria-hidden="true"></span></button></div>
 					</div>
 					<div className="searchFilters">
-						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {this.props.searchQuery}
+						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {results.searchQuery}
 					</div>
 					<div className="searchFilters">
-						<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({this.results["tl"].length})</span>
-						<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({this.results["tc"].length})</span>
-						<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({this.results["tcn"].length})</span>
-						<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({this.results["anno"].length})</span>
+						<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
+						<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
+						<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
+						<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
 					</div>
 				</form>
 				<div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
-						No Results found for '{this.props.searchQuery}'
+						No Results found for '{results.searchQuery}'
 					</div>
 
 				 	{displayOrderArray.map((type, i) =>
-						<div key={type} className={(this.results[type].length===0)?"resultSection hidden":"resultSection"}>
+						<div key={type} className={(results[type].length===0)?"resultSection hidden":"resultSection"}>
 							<div className={(this.state.typeHidden[type])?"resultSectionHeader hidden":"resultSectionHeader"}>
-								{DocumentHelper.transcriptionTypeLabels[type]} ({this.results[type].length} {this.results[type].length === 1?"match":"matches"})
+								{DocumentHelper.transcriptionTypeLabels[type]} ({results[type].length} {results[type].length === 1?"match":"matches"})
 							</div>
-							{this.results[type].map((result, idx) => {
+							{results[type].map((result, idx) => {
 								return this.renderSearchResult( type, result, idx );
 							})}
 						</div>
