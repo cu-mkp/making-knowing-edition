@@ -503,10 +503,7 @@ class TranscriptionView extends Component {
 
 				// If in searchmode, inject <mark> around searchterms
 				if(this.props.documentView.inSearchMode) {
-					//for(let y=0;y<this.props.documentView.search.matched.length;y++){
-
-						// The first matched term is the word we searched for, but we match a lot more things...
-						let y = 0;
+					for(let y=0;y<this.props.search.matched.length;y++){
 						let matchedTerm = this.props.search.matched[y];
 						matchedTerm = matchedTerm.replace(/[^a-zA-Z ]/g, "").trim();
 						console.log(matchedTerm);
@@ -525,7 +522,7 @@ class TranscriptionView extends Component {
 							aggregator+=thisLine+">"
 						}
 						content=aggregator;
-					//}
+					}
 				}
 
 				return (
