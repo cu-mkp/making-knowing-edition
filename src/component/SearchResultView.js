@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {dispatchAction} from '../model/ReduxStore';
 
 import Parser from 'html-react-parser';
-import domToReact from 'html-react-parser/lib/dom-to-react';
 
 import DocumentHelper from '../model/DocumentHelper';
 
@@ -11,7 +9,6 @@ class SearchResultView extends Component {
 
 	constructor(props) {
 		super(props);
-		this.matchedOn=[];
 
 		this.state = {
 			typeHidden:{
@@ -22,7 +19,6 @@ class SearchResultView extends Component {
 			}
 		}
 
-		this.fragmentParserOptions = this.generateFragmentParserOptions();
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.transcriptionResultClicked = this.transcriptionResultClicked.bind(this);
@@ -56,11 +52,6 @@ class SearchResultView extends Component {
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
 		}else{
 			let longID = DocumentHelper.folioURL(shortID);
-			dispatchAction(
-				this.props,
-				'SearchActions.searchMatched',
-				uniq(this.matchedOn)
-			);	
 			this.props.searchActions.changeCurrentFolio(longID,'right', event.currentTarget.dataset.type )
 		}
 	}
@@ -93,37 +84,6 @@ class SearchResultView extends Component {
 		}
 	}
 
-	generateFragmentParserOptions() {
-		let this2=this;
-		let parserOptions = {
-			 replace: function(domNode) {
-				 switch (domNode.name) {
-					case 'span':
-						//FIXME: This should really walk the tree, but we're going to assume keyword matches are not heavily nested
-						if(typeof domNode.children[0] !== 'undefined' && domNode.children[0].type === 'text'){
-
-							// Make lower and strip punctuation except -
-							let matchedTerm = domNode.children[0].data;
-								matchedTerm = matchedTerm.toLowerCase();
-								matchedTerm = matchedTerm.replace(/(~|`|!|@|#|$|%|^|&|\*|\(|\)|{|}|\[|\]|;|:|"|'|<|,|\.|>|\?|\/|\\|\|_|\+|=)/g,"");
-							this2.matchedOn.push(matchedTerm);
-							return (
-								<mark unrecognized_tag={domNode.name}>
-									{domToReact(domNode.children, parserOptions)}
-								</mark>
-							);
-						} else return domNode;
-
-					 /* Just pass through */
-					 default:
-						 return domNode;
-				 }
-			 }
-		 };
-
-		return parserOptions;
-	}
-
 	renderSearchResult( type, result, idx ) {
 		if( type !== 'anno') {
 			return (
@@ -133,12 +93,12 @@ class SearchResultView extends Component {
 						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
 					</div>
 					<div className="contextFragments">
-						{Parser(result.contextFragments.toString(), this.fragmentParserOptions)}
+						{Parser(result.contextFragments.toString())}
 					</div>
 				</div>
 			);	
 		} else {
-			const annotation = this.props.annotations.annotations[result];
+			const annotation = this.props.annotations.annotations[result.id];
 
 			return (
 				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
@@ -156,9 +116,6 @@ class SearchResultView extends Component {
 
 	// RENDER
 	render() {
-
-		// This is populated each time by the fragment parser.
-		this.matchedOn=[];
 
 		// Display order
 		let displayOrderArray = [];
@@ -216,19 +173,6 @@ class SearchResultView extends Component {
 		);
 	}
 }
-
-function uniq(a) {
-    var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
-
-    return a.filter(function(item) {
-        var type = typeof item;
-        if(type in prims)
-            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
-        else
-            return objs.indexOf(item) >= 0 ? false : objs.push(item);
-    });
-}
-
 
 function mapStateToProps(state) {
 	return {

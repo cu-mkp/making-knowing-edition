@@ -1,5 +1,5 @@
 export default {
     term:'',
-    matched:[],
+    index: null,
     results: null
 }

@@ -80,10 +80,19 @@ class AnnotationView extends Component {
         let htmlToReactParserOptions = this.htmlToReactParserOptions();
         const modeClass = this.props.inSearchMode ? 'search-mode' : 'view-mode';
 
+        // Mark any found search terms
+        let content;
+        if(this.props.inSearchMode) {
+            const searchResults = this.props.search.results['anno'];
+            content = this.props.search.index.markMatchedTerms(searchResults, 'anno', this.state.annoID, anno.content);
+        } else {
+            content = anno.content;
+        }
+
         return (
             <div id="annotation-view" className={modeClass}>
                 { this.renderAnnotationNav() }
-                {Parser(anno.content,htmlToReactParserOptions)}
+                {Parser(content,htmlToReactParserOptions)}
             </div>
         );
 	}
@@ -91,6 +100,7 @@ class AnnotationView extends Component {
 
 function mapStateToProps(state) {
     return {
+        search: state.search,
         annotations: state.annotations
     };
 }

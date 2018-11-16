@@ -497,32 +497,17 @@ class TranscriptionView extends Component {
 
 				// Strip linebreaks except for tc (happens on string before parser)
 				let content = transcriptionData.content;
-				if(this.props.documentView[side].transcriptionType !== 'tc'){
+				const transcriptionType = this.props.documentView[side].transcriptionType;
+				if(transcriptionType !== 'tc'){
 					content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
 				}
 
-				// If in searchmode, inject <mark> around searchterms
+				// Mark any found search terms
 				if(this.props.documentView.inSearchMode) {
-					for(let y=0;y<this.props.search.matched.length;y++){
-						let matchedTerm = this.props.search.matched[y];
-						matchedTerm = matchedTerm.replace(/[^a-zA-Z ]/g, "").trim();
-						console.log(matchedTerm);
-						let contentAsArray = content.split(">");
-						let aggregator="";
-						for(let x=0;x<contentAsArray.length;x++){
-							let part1 = contentAsArray[x].split("<")[0];
-
-							let taggedTerm="<mark>$1</mark>";
-							let reg = "(" + matchedTerm.toString().replace(/,/g,"|") + ")";
-			        		let regex = new RegExp(reg, "giu");
-								part1 = part1.replace(regex,taggedTerm);
-
-							let part2 = contentAsArray[x].split("<")[1];
-							let thisLine = part1 + "<" + part2;
-							aggregator+=thisLine+">"
-						}
-						content=aggregator;
-					}
+					const searchResults = this.props.search.results[transcriptionType];
+					const folioName = this.props.document.folioNameByIDIndex[folioID];
+					const properFolioName = DocumentHelper.generateFolioID(folioName);
+					content = this.props.search.index.markMatchedTerms(searchResults, 'folio', properFolioName, content);
 				}
 
 				return (

@@ -58,10 +58,14 @@ class SearchIndex {
 
   searchAnnotations( searchTerm ) {
     let results = this.searchIndex['anno'].search(searchTerm);
-    let displayResults = [];
 
+    let displayResults = [];
     for( let result of results ) {
-      displayResults.push( result.ref );
+      let searchResult = {
+        id: result.ref,
+        matchedTerms: Object.keys(result.matchData.metadata)
+      };
+      displayResults.push( searchResult );
     }
 
     return displayResults;
@@ -69,6 +73,8 @@ class SearchIndex {
 
 	// transcription type can be tc, tcn, or tl.
   searchEdition( searchTerm, transcriptionType) {
+    // TODO if there are multiple terms in the search query, AND them together.
+    // TODO deal with blank search query (whitespace only)
     let results = this.searchIndex[transcriptionType].search(searchTerm);
     let recipes = [];
 
@@ -76,14 +82,58 @@ class SearchIndex {
       const { recipeID, folioID } = this.parseIDs( result.ref );
       let recipe = this.recipeBook[transcriptionType][ recipeID ];
       if( recipe ) {
-        let fragments = createFragments( result.matchData.metadata, recipe.passages[folioID] )
-        recipes.push( { name: recipe.name, folio: folioID, contextFragments: fragments } );
+        let [ keywords, fragments ] = createFragments( result.matchData.metadata, recipe.passages[folioID] )
+        // if there is more than one term, they must appear together. If they don't, we will 
+        // not be able to generate a fragment.
+        if( fragments ) {
+          recipes.push({ 
+            name: recipe.name, 
+            folio: folioID, 
+            matchedTerms: keywords, 
+            contextFragments: fragments 
+          });  
+        }
       }
     }
 
     return recipes;
   }
 
+  markMatchedTerms( searchResults, recordType, recordID, content ) {
+
+    // recordID could be for a folio or an annotation
+    let idKey = (recordType === 'folio') ? 'folio' : 'id';
+
+    // find the matched terms that related to this folio
+    let matchedTerms = [];
+    for( let searchResult of searchResults ) {
+      if( searchResult[idKey] === recordID ) {
+        matchedTerms = matchedTerms.concat( searchResult.matchedTerms );
+      }
+    }
+    // distill a set of unique terms
+    matchedTerms = matchedTerms.filter( (value, index, self) => {return self.indexOf(value) === index} );
+          
+    // Inject <mark> around searchterms
+    let aggregator="";
+    for( let matchedTerm of matchedTerms ) {
+        matchedTerm = matchedTerm.replace(/[^a-zA-Z ]/g, "").trim();
+        let contentAsArray = content.split(">");        
+        for(let x=0;x<contentAsArray.length;x++){
+          let part1 = contentAsArray[x].split("<")[0];
+
+          let taggedTerm="<mark>$1</mark>";
+          let reg = "(" + matchedTerm.toString().replace(/,/g,"|") + ")";
+              let regex = new RegExp(reg, "giu");
+            part1 = part1.replace(regex,taggedTerm);
+
+          let part2 = contentAsArray[x].split("<")[1];
+          let thisLine = part1 + "<" + part2;
+          aggregator+=thisLine+">"
+        }
+    }
+    return aggregator;
+  }
 }
 
 export default SearchIndex;
@@ -157,18 +207,50 @@ function createFragment( fullText, highlightPosition ) {
 // pull a window of text out of the content to display with the search result
 function createFragments( resultMetadata, fullText ) {
   let highlightedFragments = [];
+  const keywords = Object.keys(resultMetadata);
 
-  for( let keyword of Object.keys(resultMetadata) ) {
+  if( keywords.length === 1 ) {
+    const keyword = keywords[0];
     let keywordData = resultMetadata[keyword];
-	if(typeof keywordData.content !== 'undefined'){
-    	for( let highlightPosition of keywordData.content.position ) {
-      		let fragment = createFragment( fullText, highlightPosition );
-      		highlightedFragments.push(fragment);
-    	}
-	}else{
-		console.error("WARNING: ResultMetaData does not contan content for keyword:"+keyword);
-	}
+    for( let highlightPosition of keywordData.content.position ) {
+      let fragment = createFragment( fullText, highlightPosition );
+      highlightedFragments.push(fragment);
+    }
+  } else {
+    let words = fullText.replace(/\n/g, ' ').split(' ');
+  
+    // if there are multiple keywords, find them together in order
+    let keywordSequence = [], i = 0;
+    for( let keyword of keywords ) {
+      let keywordData = resultMetadata[keyword];
+      let indexArray = [];
+      for( let highlightPosition of keywordData.content.position ) {
+        let idx = offsetToWordIndex( words, highlightPosition );
+        indexArray.push( idx );
+      }
+      keywordSequence[i++] = indexArray;
+    }
+    for( let n=0; n < keywordSequence.length; n++ ) {
+      // find a term for the next keyword that is term position + 1
+      for( let term of keywordSequence[n] ) {
+        // if another keyword follows this one
+        if( keywordSequence.length > n+1 ) {
+          for( let nextTerm of keywordSequence[n+1] ) {
+            if( term+1 === nextTerm ) {
+              // terms n and n+1 are adjacent
+              console.log( `terms found at ${term} and ${nextTerm}`);
+              // TODO convert index back into offset range
+              // let termPosition = wordIndexToOffset( words, term );
+              // let nextTermPosition = wordIndexToOffset( words, nextTerm );
+              // let fragment = createFragment( fullText, termPosition, nextTermPosition );
+              // highlightedFragments.push(fragment);      
+              break;
+            }
+          }  
+        }
+      }
+    }
   }
 
-  return highlightedFragments;
+  return [ keywords, highlightedFragments ];
 }
