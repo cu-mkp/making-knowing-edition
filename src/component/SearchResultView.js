@@ -93,7 +93,7 @@ class SearchResultView extends Component {
 						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
 					</div>
 					<div className="contextFragments">
-						{Parser(result.contextFragments.toString())}
+						{Parser(result.contextFragment)}
 					</div>
 				</div>
 			);	
