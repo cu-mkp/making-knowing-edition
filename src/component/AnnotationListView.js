@@ -13,11 +13,13 @@ class AnnotationListView extends Component {
     renderAnnotation(annotation) {
       return (
         <div key={`anno-${annotation.id}`}>
-            <Link to={`/annotations/${annotation.id}`}><img alt={`${annotation.name}`} className='thumbnail' src={annotation.thumbnail}></img></Link>
             <div className='description'> 
                 <h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
-                <p>By: {annotation.author}</p>
-                <p>{annotation.abstract}</p>
+                <ul className='annotation-details'>
+                    <li>{annotation.authors}</li>
+                    <li>{annotation.theme}, {annotation.semester} {annotation.year}</li>
+                    <li>{annotation.entryIDs}</li>
+                </ul>
             </div>
         </div>
       );

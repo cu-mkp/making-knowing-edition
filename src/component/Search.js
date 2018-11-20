@@ -2,61 +2,27 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
-import SearchIndex from '../model/SearchIndex';
-import {dispatchAction} from '../model/ReduxStore';  
-
 class Search extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state = { searchTerm: '' };
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	componentDidMount() {
-		// If we don't have a search index, load it.
-		if(Object.keys(this.props.search.index).length === 0){
-			let searchIndex = new SearchIndex();
-			searchIndex.load().then(
-				(searchIndex) => {
-					console.log("Search index loaded.")
-					dispatchAction(
-						this.props,
-						'SearchActions.updateSearchIndex',
-						searchIndex
-					);
-				},
-				(error) => {
-					// TODO update UI - disable the search field w/message
-					console.error('ERROR: Unable to load search index: ' + error);
-				}
-			);
-		}
+	onSearchTermChange = (event) => {
+		const searchTerm = event.target.value;
+		this.setState( { ...this.state, searchTerm })
 	}
 
-	onSearchTermChange = (event) => {
-		let searchTerm = event.target.value;
-		dispatchAction( this.props, 'SearchActions.changeSearchTerm', searchTerm);
+	doSearch(searchQuery) {
+		const url = encodeURI(`/search?q=${searchQuery}`);
+		this.props.history.push(url);
 	}
 
 	onSubmit(event) {
 		event.preventDefault();
-
-		let doSearch = () => {
-			this.props.history.push('/folios');
-			dispatchAction( this.props, 'SearchActions.beginSearch' );
-			dispatchAction( this.props, 'DocumentViewActions.enterSearchMode' );	
-		}
-
-		// We cannot do this if the search index hasn't been defined yet,
-		// there's probably a slicker way to do this but let's poll, whee...
-		if(Object.keys(this.props.search.index).length === 0){
-			setTimeout(() => {
-				doSearch();
-			}, 250);
-			return;
-		}
-
-		doSearch();
+		this.doSearch(this.state.searchTerm);
 	}
 
 	render() {
@@ -67,7 +33,7 @@ class Search extends React.Component {
 						className="searchBox" 
 						placeholder="Search the Edition"
 						onChange={this.onSearchTermChange}
-						value={this.props.search.rawSearchTerm}
+						value={this.state.searchTerm}
 						/>
 				</form>
 			</div>
@@ -78,7 +44,6 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		documentView: state.documentView,
 		search: state.search
 	};
 }

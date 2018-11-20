@@ -11,7 +11,6 @@ import DocumentHelper from '../model/DocumentHelper';
 
 class TranscriptionView extends Component {
 
-
 	constructor(props) {
 		super(props);
 		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
@@ -40,7 +39,13 @@ class TranscriptionView extends Component {
 		}
 		folio.load().then(
 			(folio) => {
-				this.setState({folio:folio,isLoaded:true,currentlyLoaded:this.props.documentView[this.props.side].currentFolioID});
+				const folioID = this.props.documentView[this.props.side].iiifShortID;
+				const folioURL = DocumentHelper.folioURL(folioID);
+				this.setState({
+					folio: folio,
+					isLoaded: true,
+					currentlyLoaded: folioURL
+				});
 			},(error) => {
 				console.log('Unable to load transcription: '+error);
 			}
@@ -320,9 +325,11 @@ class TranscriptionView extends Component {
   	// Refresh the content if there is an incoming change
 	componentWillReceiveProps(nextProps) {
 		this.contentChange=false;
-  		if(this.state.currentlyLoaded !== nextProps.documentView[this.props.side].currentFolioID){
+			const nextfolioID = nextProps.documentView[this.props.side].iiifShortID;
+			const nextfolioURL = DocumentHelper.folioURL(nextfolioID);
+  		if(this.state.currentlyLoaded !== nextfolioURL){
 			this.contentChange=true;
-			this.loadFolio(DocumentHelper.getFolio( this.props.document, nextProps.documentView[this.props.side].currentFolioID));
+			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextfolioURL));
 	  	}
 	}
 
@@ -375,7 +382,7 @@ class TranscriptionView extends Component {
 							
 						case 'h2':
 							//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
-							if(this2.props.documentView[this2.props.side].currentFolioShortID === 'f19'){
+							if(this2.props.documentView[this2.props.side].iiifShortID === 'f19'){
 								let text = this2.nodeTreeToString(domNode.children);
 								let annotationType = "fieldNotes"; // fieldNotes | annotation | video
 								let annotationContent = "This is a fieldNote annotation for: '"+text;
@@ -395,7 +402,7 @@ class TranscriptionView extends Component {
 							let term = this2.nodeTreeToString(domNode.children);
 								return (
 								<Gloss side={side}
-										term={term}>
+										term={term} documentView={this2.props.documentView}>
 											{domToReact(domNode.children, parserOptions)}
 									</Gloss>
 							);
@@ -454,10 +461,12 @@ class TranscriptionView extends Component {
 	// RENDER
 	render() {
 		// Retrofit - the folios are loaded asynchronously
-		if(this.props.documentView[this.props.side].currentFolioID === '-1') {
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
+		if(folioID === '-1') {
 			return this.watermark();
 		} else if(!this.state.isLoaded){
-			this.loadFolio(DocumentHelper.getFolio( this.props.document, this.props.documentView[this.props.side].currentFolioID));
+			const folioURL = DocumentHelper.folioURL(folioID);
+			this.loadFolio(DocumentHelper.getFolio( this.props.document, folioURL));
 			return this.watermark();
 		} else {
 
@@ -488,49 +497,31 @@ class TranscriptionView extends Component {
 
 				// Strip linebreaks except for tc (happens on string before parser)
 				let content = transcriptionData.content;
-				if(this.props.documentView[side].transcriptionType !== 'tc'){
+				const transcriptionType = this.props.documentView[side].transcriptionType;
+				if(transcriptionType !== 'tc'){
 					content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
 				}
 
-				// If in searchmode, inject <mark> around searchterms
+				// Mark any found search terms
 				if(this.props.documentView.inSearchMode) {
-					//for(let y=0;y<this.props.documentView.search.matched.length;y++){
-
-						// The first matched term is the word we searched for, but we match a lot more things...
-						let y = 0;
-						let matchedTerm = this.props.search.matched[y];
-						matchedTerm = matchedTerm.replace(/[^a-zA-Z ]/g, "").trim();
-						console.log(matchedTerm);
-						let contentAsArray = content.split(">");
-						let aggregator="";
-						for(let x=0;x<contentAsArray.length;x++){
-							let part1 = contentAsArray[x].split("<")[0];
-
-							let taggedTerm="<mark>$1</mark>";
-							let reg = "(" + matchedTerm.toString().replace(/,/g,"|") + ")";
-			        		let regex = new RegExp(reg, "giu");
-								part1 = part1.replace(regex,taggedTerm);
-
-							let part2 = contentAsArray[x].split("<")[1];
-							let thisLine = part1 + "<" + part2;
-							aggregator+=thisLine+">"
-						}
-						content=aggregator;
-					//}
+					const searchResults = this.props.search.results[transcriptionType];
+					const folioName = this.props.document.folioNameByIDIndex[folioID];
+					const properFolioName = DocumentHelper.generateFolioID(folioName);
+					content = this.props.search.index.markMatchedTerms(searchResults, 'folio', properFolioName, content);
 				}
 
 				return (
 					// Render the transcription
 		      <div id={thisID} className={thisClass}>
-		          <Navigation history={this.props.history} side={side}/>
+		          <Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
       			  <div className="transcriptContent">
-      			  	<Pagination side={side} className="pagination_upper"/>
+      			  	<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 
 								<div className={surfaceClass} style={surfaceStyle}>
 									{Parser(content,htmlToReactParserOptions)}
 								</div>
 
-								<Pagination side={side} className="pagination_lower"/>
+								<Pagination side={side} className="pagination_lower" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
       			  </div>
 		      </div>
 				);
@@ -538,9 +529,9 @@ class TranscriptionView extends Component {
 				// Empty content
 				return (
 					<div className={thisClass} id={thisID}>
-						<Navigation history={this.props.history} side={side}/>
+						<Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 						<div className="transcriptContent">
-							<Pagination side={side} className="pagination_upper"/>
+							<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 							{ this.watermark() }
 						</div>
 					</div>
@@ -554,7 +545,6 @@ class TranscriptionView extends Component {
 function mapStateToProps(state) {
 	return {
 				document: state.document,
-				documentView: state.documentView,
 				search: state.search
     };
 }

@@ -95,7 +95,6 @@ class Gloss extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		documentView: state.documentView,
 		glossary: state.glossary
 	};
 }

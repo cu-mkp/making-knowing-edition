@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
-import {dispatchAction} from '../model/ReduxStore';
+
+import DocumentHelper from '../model/DocumentHelper';
 
 class navigation extends React.Component {
 
@@ -10,16 +11,13 @@ class navigation extends React.Component {
 		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
 	}
 
-	changeCurrentFolio = function(event){
+	changeCurrentFolio = (event) => {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
 
-		let longID = this.props.document.folioIDPrefix+event.currentTarget.dataset.id;
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.changeCurrentFolio',
-			this.props.document,
+		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
+		this.props.documentViewActions.changeCurrentFolio(
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,
@@ -29,6 +27,7 @@ class navigation extends React.Component {
 
 
     render() {
+		const folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 		return (
 			<div className="paginationComponent">
 				<div className="paginationControl">
@@ -39,7 +38,7 @@ class navigation extends React.Component {
 							data-id={this.props.documentView[this.props.side].previousFolioShortID}
 							className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
 
-					<span className="folioName">Folio {this.props.documentView[this.props.side].currentFolioName}</span>
+					<span className="folioName">Folio {folioName}</span>
 
 					<span 	title = "Go forward"
 							onClick={this.changeCurrentFolio}
@@ -54,8 +53,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-        documentView: state.documentView
+		document: state.document
     };
 }
 

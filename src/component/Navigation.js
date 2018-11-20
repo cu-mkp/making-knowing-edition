@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {dispatchAction} from '../model/ReduxStore';
 import {Icon} from "react-font-awesome-5";
-import JumpToFolio from './JumpToFolio.js';
 
+import JumpToFolio from './JumpToFolio';
+import DocumentHelper from '../model/DocumentHelper';
 
 class navigation extends React.Component {
 
@@ -31,64 +31,48 @@ class navigation extends React.Component {
 	// Onclick event handlers, bound to "this" via constructor above
 	changeType = function (event) {
 		// Change viewtype
-		dispatchAction( 
-			this.props,
-			'DocumentViewActions.changeTranscriptionType',
+		this.props.documentViewActions.changeTranscriptionType(
 			this.props.side,
 			event.currentTarget.dataset.id
-		);			
+		);
 	}
 
 	toggleBookmode = function(event){
 
 		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.documentView.bookMode === true){
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.changeCurrentFolio',
-				this.props.document,
-				this.props.documentView.left.currentFolioID,
+			this.props.documentViewActions.changeCurrentFolio(
+				this.props.documentView.left.iiifShortID,
 				'left',
 				this.props.documentView.left.transcriptionType,
 				event.currentTarget.dataset.direction				
-			)
+			);
 
-			let longID = this.props.document.folioIDPrefix+this.props.documentView.right.nextFolioShortID;
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.changeCurrentFolio',
-				this.props.document,
-				longID,
-				'left',
+			this.props.documentViewActions.changeCurrentFolio(
+				this.props.documentView.left.nextFolioShortID,
+				'right',
 				this.props.documentView.left.transcriptionType,
-				event.currentTarget.dataset.direction
+				event.currentTarget.dataset.direction			
 			);
 		}
 
 		// Toggle bookmode
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setBookMode',
-			this.props.document,
-			this.props.documentView.left.currentFolioShortID, 
+		this.props.documentViewActions.setBookMode(
+			this.props.documentView.left.iiifShortID, 
 			!this.props.documentView.bookMode
 		);
 	}
 
 	toggleXMLMode = function(event){
-		dispatchAction( 
-			this.props, 
-			'DocumentViewActions.setXMLMode', 
+		this.props.documentViewActions.setXMLMode(
 			this.props.side, 
 			!this.props.documentView[this.props.side].isXMLMode
-		)
+		);
 	}
 
 	// aka gridMode
 	toggleColumns = function(event){
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setColumnModeForSide',
+		this.props.documentViewActions.setGridMode(
 			this.props.side, 
 			!this.props.documentView[this.props.side].isGridMode			
 		);
@@ -105,21 +89,15 @@ class navigation extends React.Component {
 		// If we are transitioning from unlocked to locked, synch up the panes
 		if(!this.props.documentView.linkedMode === true){
 			if(this.props.side === 'left'){
-				dispatchAction( 
-					this.props,
-					'DocumentViewActions.changeCurrentFolio',
-					this.props.document,
-					this.props.documentView.left.currentFolioID,
+				this.props.documentViewActions.changeCurrentFolio(
+					this.props.documentView.left.iiifShortID,
 					'right',
 					this.props.documentView.left.transcriptionType,
 					event.currentTarget.dataset.direction					
 				);
 			}else{
-				dispatchAction(
-					this.props,
-					'DocumentViewActions.changeCurrentFolio',
-					this.props.document,
-					this.props.documentView.right.currentFolioID,
+				this.props.documentViewActions.changeCurrentFolio(
+					this.props.documentView.right.iiifShortID,
 					'left',
 					this.props.documentView.right.transcriptionType,
 					event.currentTarget.dataset.direction					
@@ -128,23 +106,18 @@ class navigation extends React.Component {
 		}
 
 		// Set lock
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setLinkedMode',
+		this.props.documentViewActions.setLinkedMode(
 			!this.props.documentView.linkedMode
 		);
 	}
 
-	changeCurrentFolio = function(event){
+	changeCurrentFolio = (event) => {
 		if(typeof event.currentTarget.dataset.id === 'undefined' || event.currentTarget.dataset.id.length === 0){
 			return;
 		}
 		console.log(event.currentTarget.dataset.id);
-		let longID = this.props.document.folioIDPrefix+event.currentTarget.dataset.id;
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.changeCurrentFolio',
-			this.props.document,
+		let longID = DocumentHelper.folioURL(event.currentTarget.dataset.id);
+		this.props.documentViewActions.changeCurrentFolio(
 			longID,
 			this.props.side,
 			this.props.documentView[this.props.side].transcriptionType,
@@ -166,11 +139,8 @@ class navigation extends React.Component {
 		// Convert folioName to ID (and confirm it exists)
 		let folioID = this.props.document.folioIDByNameIndex[folioName];
 		if(typeof folioID !== 'undefined'){
-			let longID = this.props.document.folioIDPrefix+folioID;
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.changeCurrentFolio',
-				this.props.document,
+			let longID = DocumentHelper.folioURL(folioID);
+			this.props.documentViewActions.changeCurrentFolio(
 				longID,
 				this.props.side
 			);
@@ -203,18 +173,20 @@ class navigation extends React.Component {
 			let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
 			let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
 			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
-			 	columnIconClass += (imageViewActive)?' hidden':'';
+				 columnIconClass += (imageViewActive)?' hidden':'';
+			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
+			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>
 							<button className="dropbtn">
-								{this.props.documentView[this.props.side].transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+								{transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
 							</button>
 							<div className="dropdown-content">
-								<span data-id='tl' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['tl']}</span>
-								<span data-id='tc' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['tc']}</span>
-								<span data-id='tcn' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['tcn']}</span>
-								<span data-id='f' onClick={this.changeType}>{this.props.documentView.uiLabels.transcriptionType['f']}</span>
+								<span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
+								<span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
+								<span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
+								<span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
@@ -238,7 +210,7 @@ class navigation extends React.Component {
 									data-direction="forward"
 									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
-							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{this.props.documentView[this.props.side].currentFolioName}</div>
+							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName}</div>
 						</div>
 						<JumpToFolio side={this.props.side}
 									 isVisible={this.state.popoverVisible}
@@ -256,8 +228,7 @@ class navigation extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-		documentView: state.documentView
+		document: state.document
     };
 }
 

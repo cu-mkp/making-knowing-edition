@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 
 import Navigation from '../component/Navigation';
 import ImageZoomControl from './ImageZoomControl.js';
-import {dispatchAction} from '../model/ReduxStore';
 
 import DocumentHelper from '../model/DocumentHelper';
 
@@ -12,29 +11,41 @@ class ImageView extends Component {
 
 	constructor(props,context){
 		super(props,context);
-		this.isLoaded = false;
-		this.currentFolioID="";
 		this.elementID =  "image-view-seadragon-"+this.props.side;
 		this.onZoomFixed_1 = this.onZoomFixed_1.bind(this);
 		this.onZoomFixed_2 = this.onZoomFixed_2.bind(this);
 		this.onZoomFixed_3 = this.onZoomFixed_3.bind(this);
+
+		this.state = {
+			isLoaded: false,
+			currentFolioURL: ""
+		}
 	}
+
 	// Refresh the content only if there is an incoming change
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.documentView[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(DocumentHelper.getFolio(this.props.document, nextProps.documentView[this.props.side].currentFolioID));
+		const folioID = nextProps.documentView[this.props.side].iiifShortID;
+		if( folioID ) {
+			const folioURL = DocumentHelper.folioURL(folioID);
+			if(folioURL !== this.state.currentFolioURL){
+				this.loadFolio(DocumentHelper.getFolio(this.props.document, folioURL));
+			}	
 		}
 	}
 
 	componentDidMount() {
-		if(this.props.documentView[this.props.side].currentFolioID !== this.currentFolioID){
-			this.loadFolio(DocumentHelper.getFolio(this.props.document, this.props.documentView[this.props.side].currentFolioID));
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
+		if( folioID ) {
+			const folioURL = DocumentHelper.folioURL(folioID);
+			if(folioURL !== this.state.currentFolioURL){
+				this.loadFolio(DocumentHelper.getFolio(this.props.document, folioURL));
+			}	
 		}
 	}
 
 	loadFolio(thisFolio){
 		//window.loadingModal_start();
-		this.currentFolioID=thisFolio.id;
+		this.setState({ ...this.state, currentFolioURL: thisFolio.id })
 		if(typeof this.viewer !== 'undefined'){
 			this.viewer.destroy();
 		}
@@ -51,7 +62,7 @@ class ImageView extends Component {
 				this.viewer.addTiledImage({
 					tileSource: folio.tileSource
 				});
-				this.isLoaded=true;
+				this.setState({ ...this.state, isLoaded: true });
 				//window.loadingModal_stop();
 			},
 			(error) => {
@@ -61,12 +72,7 @@ class ImageView extends Component {
 		);
 	}
 	onZoomGrid = (e) => {
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.setPaneViewtype',
-			this.props.side,
-			'ImageGridView'
-		);
+		this.props.documentViewActions.changeTranscriptionType(this.props.side, 'g');
 	}
 
 	onZoomFixed_1 = (e) => {
@@ -86,8 +92,9 @@ class ImageView extends Component {
 		return (
 			<div>
 				<div className={thisClass}>
-					<Navigation history={this.props.history} side={this.props.side}/>
+					<Navigation side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 					<ImageZoomControl side={this.props.side}
+									  documentView={this.props.documentView}
 									  onZoomFixed_1={this.onZoomFixed_1}
 									  onZoomFixed_2={this.onZoomFixed_2}
 									  onZoomFixed_3={this.onZoomFixed_3}
@@ -101,8 +108,7 @@ class ImageView extends Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-        documentView: state.documentView
+		document: state.document
     };
 }
 

@@ -1,10 +1,20 @@
+#annotation-view.view-mode {
+    margin: 80px 20% 80px 20%;
+    max-width: 66%;    
+}
+
+#annotation-view.search-mode {
+    overflow: scroll;
+    padding: 80px 20px 80px 20px;
+    width: calc(100% - 2.5rem);    
+    height: calc(100vh - 14rem);
+}
+
 #annotation-view {
 
-    margin: 80px 20% 80px 20%;
-    max-width: 66%;
     line-height: 2;
     text-indent: 50px;
-
+    
     h1 {
         margin-bottom: 50px;
         text-align: center;

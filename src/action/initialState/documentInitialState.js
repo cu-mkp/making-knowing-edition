@@ -1,7 +1,6 @@
 export default {
-    currentDocumentName: '',
-	folioIDPrefix: null,
-    manifestURL: null,
+    currentDocumentName: 'BnF Ms. Fr. 640',
+    manifestURL: process.env.REACT_APP_IIIF_MANIFEST,
     folios: [],
     loaded: false,
     folioIndex: [],

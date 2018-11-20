@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
-import {dispatchAction} from '../model/ReduxStore';
+import DocumentHelper from '../model/DocumentHelper';
 
 class ImageGridView extends React.Component {
 
@@ -14,8 +14,12 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(this.props.documentView[this.props.side].currentFolioID !== nextProps.documentView[this.props.side].currentFolioID){
-			let thumbs = this.generateThumbs(nextProps.documentView[this.props.side].currentFolioID, nextProps.document.folios);
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
+		const nextFolioID = nextProps.documentView[this.props.side].iiifShortID;
+
+		if(folioID !== nextFolioID){
+			const nextFolioURL = DocumentHelper.folioURL(nextFolioID);
+			let thumbs = this.generateThumbs(nextFolioURL, nextProps.document.folios);
 			let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 			let visibleThumbs = thumbs.slice(0,thumbCount);
 			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
@@ -23,7 +27,9 @@ class ImageGridView extends React.Component {
 	}
 
 	componentWillMount(){
-		let thumbs = this.generateThumbs(this.props.documentView[this.props.side].currentFolioID, this.props.document.folios);
+		const folioID = this.props.documentView[this.props.side].iiifShortID;
+		const folioURL = DocumentHelper.folioURL(folioID);
+		let thumbs = this.generateThumbs(folioURL, this.props.document.folios);
 		let thumbCount = (thumbs.length > this.loadIncrement) ? this.loadIncrement :thumbs.length;
 		let visibleThumbs = thumbs.slice(0,thumbCount);
 		this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
@@ -31,23 +37,18 @@ class ImageGridView extends React.Component {
 
 	onClickThumb = (id, e) => {
 		// Set the folio for this side
-		dispatchAction(
-			this.props,
-			'DocumentViewActions.changeCurrentFolio',
-			this.props.document,
+		this.props.documentViewActions.changeCurrentFolio(
 			id,
 			this.props.side
 		);
 
-		// Replace this pane with imageView if the pane is big enough
-		if(this.props.documentView[this.props.side].width >= this.thumbnailNavigationModeSize){
-			dispatchAction(
-				this.props,
-				'DocumentViewActions.setPaneViewtype',
-				this.props.side,
-				'ImageView'
-			);
-		}
+		// TODO Replace this pane with imageView if the pane is big enough
+		// if(this.props.documentView[this.props.side].width >= this.thumbnailNavigationModeSize){
+		// 	this.props.documentViewActions.changeTranscriptionType(
+		// 		this.props.side,
+		// 		'f'
+		// 	);
+		// }
 	}
 
 	generateThumbs (currentID, folios) {
@@ -57,6 +58,7 @@ class ImageGridView extends React.Component {
 				<figcaption className={(folio.id===currentID)?"thumbnail-caption current":"thumbnail-caption"}>
 					{(folio.id===currentID)?("*"+folio.name):folio.name}
 				</figcaption>
+
 			</li>
 		));
 		return thumbs;
@@ -81,7 +83,6 @@ class ImageGridView extends React.Component {
 	}
 
 	render() {
-		//let thisClass = (this.props.documentView.drawerMode && !this.props.drawerOpen ) ? "imageGridComponent hidden" : "imageGridComponent";
 		let thisClass= "imageGridComponent";
 		thisClass = thisClass+" "+this.props.side;
 		let visibleThumbs=this.state.visibleThumbs;
@@ -105,9 +106,8 @@ class ImageGridView extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		document: state.document,
-        documentView: state.documentView
-    };
+		document: state.document
+	};
 }
 
 export default connect(mapStateToProps)(ImageGridView);

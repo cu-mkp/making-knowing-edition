@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DocumentView from './DocumentView';
+import SearchView from './SearchView';
 import ContentView from './ContentView';
 import AnnotationView from './AnnotationView';
 import EntryListView from './EntryListView';
@@ -53,7 +54,7 @@ class DiploMatic extends Component {
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
 					{ this.renderNavLinks() }
-					<Search/>
+					<Search />
 					<div className="expandedViewOnly">
 						<span><span className="english">English</span> | <span className="francais">Français</span></span>
 					</div>
@@ -84,6 +85,75 @@ class DiploMatic extends Component {
 		}
 	}
 
+	renderDocumentView = (props) => {
+		const { folioID, transcriptionType, folioID2, transcriptionType2 } = props.match.params;
+		let viewports;
+
+		if( !folioID ) {
+			// route /folios
+			viewports = {
+				left: {
+					folioID: '-1',
+					transcriptionType: 'g'
+				},
+				right: {
+					folioID: '-1',
+					transcriptionType: 'tc'
+				}
+			}
+		} else {
+			let leftFolioID = folioID;
+			let leftTranscriptionType, rightFolioID, rightTranscriptionType;
+			if( folioID2 ) {
+				// route /folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2
+				leftTranscriptionType = transcriptionType;
+				rightFolioID = folioID2;
+				rightTranscriptionType = transcriptionType2 ? transcriptionType2 : 'tc'
+			} else {
+				// route /folios/:folioID
+				// route /folios/:folioID/:transcriptionType
+				leftTranscriptionType = 'f';
+				rightFolioID = folioID;
+				rightTranscriptionType = transcriptionType ? transcriptionType : 'tc';
+			}
+
+			viewports = {
+				left: {
+					folioID: leftFolioID,
+					transcriptionType: leftTranscriptionType
+				},
+				right: {
+					folioID: rightFolioID,
+					transcriptionType: rightTranscriptionType
+				}	
+			}	
+		}
+	
+		return (
+			<DocumentView viewports={viewports} history={props.history}></DocumentView>
+		);
+	}
+
+	renderSearchView(props) {
+		const { folioID, transcriptionType, annotationID } = props.match.params;
+
+		return (
+			<SearchView 
+				history={props.history}
+				folioID={folioID}
+				transcriptionType={transcriptionType}
+				annotationID={annotationID}
+			>
+			</SearchView>
+		);
+	}
+
+	renderAnnotationView(props) {
+		return (
+			<AnnotationView annoID={props.match.params.annoID}></AnnotationView>
+		);
+	}
+
 	renderContent() {
 		return (
 			<div id="content">
@@ -91,8 +161,14 @@ class DiploMatic extends Component {
 					<Route path="/" component={ContentView} exact/>
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/annotations" component={AnnotationListView} exact/>
-					<Route path="/annotations/:annoID" component={AnnotationView}/>
-					<Route path="/folios" component={DocumentView}/>
+					<Route path="/annotations/:annoID" render={this.renderAnnotationView}/>
+					<Route path="/folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2" render={this.renderDocumentView} exact/>
+					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
+					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>
+					<Route path="/folios" render={this.renderDocumentView} exact/>
+					<Route path="/search/annotation/:annotationID" render={this.renderSearchView} exact/> 
+					<Route path="/search/folio/:folioID/:transcriptionType" render={this.renderSearchView} exact/> 
+					<Route path="/search" component={this.renderSearchView}/>
 				</Switch>
 			</div>
 		);

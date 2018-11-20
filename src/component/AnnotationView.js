@@ -12,12 +12,13 @@ class AnnotationView extends Component {
         super(props,context);
 
         this.state = { 
-            annoID: props.match.params.annoID
+            annoID: props.annoID
         };
     }
 
     componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+        const fixedFrameMode = (this.props.inSearchMode);
+        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', fixedFrameMode );
     }
 
     // Add anchor tag navigation for footnotes
@@ -40,6 +41,17 @@ class AnnotationView extends Component {
     htmlToReactParserOptions() {
 		var parserOptions =  {
 			 replace: (domNode) => {
+                // drop these
+                if( domNode.name === 'body' || 
+                    domNode.name === 'head' ||
+                    domNode.name === 'html'     ) {
+                    return ( 
+                    <div className={`anno-${domNode.name}`}>
+                        {domToReact(domNode.children, parserOptions)}
+                    </div> 
+                    );
+                }
+
 				 switch (domNode.name) {
                     case 'a':
                         return this.addFootnoteLink( domNode, parserOptions );
@@ -51,19 +63,36 @@ class AnnotationView extends Component {
 		 };
 		 return parserOptions;
     }
+
+    renderAnnotationNav() {
+        if( this.props.inSearchMode ) return '';
+        return (
+            <div className='annotation-nav'>
+                <ReactLink to='/annotations'>Back to List</ReactLink>
+            </div>
+        );
+    }
     
 	render() {
         let anno = this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
         if( !anno || !anno.loaded ) return null;
         
         let htmlToReactParserOptions = this.htmlToReactParserOptions();
+        const modeClass = this.props.inSearchMode ? 'search-mode' : 'view-mode';
+
+        // Mark any found search terms
+        let content;
+        if(this.props.inSearchMode) {
+            const searchResults = this.props.search.results['anno'];
+            content = this.props.search.index.markMatchedTerms(searchResults, 'anno', this.state.annoID, anno.content);
+        } else {
+            content = anno.content;
+        }
 
         return (
-            <div id="annotation-view">
-                <div className='annotation-nav'>
-                    <ReactLink to='/annotations'>Back to List</ReactLink>
-                </div>
-                {Parser(anno.content,htmlToReactParserOptions)}
+            <div id="annotation-view" className={modeClass}>
+                { this.renderAnnotationNav() }
+                {Parser(content,htmlToReactParserOptions)}
             </div>
         );
 	}
@@ -71,6 +100,7 @@ class AnnotationView extends Component {
 
 function mapStateToProps(state) {
     return {
+        search: state.search,
         annotations: state.annotations
     };
 }
