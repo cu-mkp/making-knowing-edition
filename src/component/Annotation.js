@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Annotation extends React.Component {
 
@@ -24,7 +25,7 @@ class Annotation extends React.Component {
 				break;
 
 			case 'annotation':
-				icon = 'icon fa fa-search';
+				icon = 'icon fa fa-flask';
 				tooltip = "Annotation";
 				break;
 
@@ -41,6 +42,7 @@ class Annotation extends React.Component {
 		}
 		icon += this.state.visible?' open':'';
 		let content_style = this.state.visible?{display: "block"}:{display: "none"};
+		const annotation = this.props.annotation;
 		return (
 			  <div className="annotation">
 			  	<div className="header">
@@ -48,12 +50,13 @@ class Annotation extends React.Component {
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
-			  		{this.props.children}
-
-					<iframe title="x" className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+					<Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link>
 				</div>
 			  </div>
 		);
+		// For video:
+		// 	<iframe title="x" className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+
 	}
 }
 

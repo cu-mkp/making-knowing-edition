@@ -3,17 +3,27 @@ var AnnotationActions = {};
 
 AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( state, annotationManifestData ) {
     let annotations = {};
+    let annotationsByEntry = {};
     
     for( let annotation of annotationManifestData["content"] ) {
         annotations[annotation.id] = {
             ...annotation,
             loaded: false
         };
+        // also index the annotations by entry ID
+        let entryIDs = annotation.entryIDs.split(';');
+        for( let entryID of entryIDs ) {
+            if( !annotationsByEntry[entryID] ) {
+                annotationsByEntry[entryID] = [];
+            }
+            annotationsByEntry[entryID].push(annotation.id);
+        }
     }
 
     return {
         ...state,
         annotations,
+        annotationsByEntry,
         loaded: true
     };
 };
