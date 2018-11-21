@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
+import Parser from 'html-react-parser';
 
 import { dispatchAction } from '../model/ReduxStore';
 
@@ -25,6 +26,7 @@ class AnnotationListView extends Component {
         <div key={`anno-${annotation.id}`}>
             <div className='description'> 
                 <h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
+                {Parser(annotation.abstract)}
                 <ul className='annotation-details'>
                     <li>{annotation.authors}</li>
                     <li>{annotation.theme}, {annotation.semester} {annotation.year}</li>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
+import Parser from 'html-react-parser';
 
 class Annotation extends React.Component {
 
@@ -50,7 +51,8 @@ class Annotation extends React.Component {
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
-					<Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link>
+					  <h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
+					{Parser(annotation.abstract)}
 				</div>
 			  </div>
 		);
