@@ -10,6 +10,16 @@ class AnnotationListView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
+    renderEntryLinks(entryIDs) {
+        let links = [];
+        let idList = entryIDs.split(';');
+        for( let entryID of idList ) {
+            let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
+            links.push(<Link key={entryID} to={`/folios/${folioID}`}>{entryID}</Link>);
+        }
+        return links;        
+    } 
+
     renderAnnotation(annotation) {
       return (
         <div key={`anno-${annotation.id}`}>
@@ -18,7 +28,7 @@ class AnnotationListView extends Component {
                 <ul className='annotation-details'>
                     <li>{annotation.authors}</li>
                     <li>{annotation.theme}, {annotation.semester} {annotation.year}</li>
-                    <li>{annotation.entryIDs}</li>
+                    <li>{this.renderEntryLinks(annotation.entryIDs)}</li>
                 </ul>
             </div>
         </div>
@@ -55,5 +65,14 @@ function mapStateToProps(state) {
         annotations: state.annotations
     };
 }
+
+function sliceZeros(paddedID) {
+    if( paddedID[0] && paddedID[0] === '0' ) {
+        return sliceZeros(paddedID.slice(1))
+    } else {
+        return paddedID;
+    }
+}
+
 
 export default connect(mapStateToProps)(AnnotationListView);
