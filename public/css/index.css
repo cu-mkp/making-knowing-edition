@@ -321,21 +321,21 @@ figure.current {
       font-size: 10pt;
       width: 300px;
       text-align: left; }
-  #annotation-view table.anno-table {
+  #annotation-view table {
     width: 100%;
     text-align: left;
     border-collapse: collapse; }
-  #annotation-view table.anno-table td, #annotation-view table.anno-table th {
-    border: 1px solid #AAAAAA;
-    padding: 5px;
-    line-height: 1.2;
-    text-indent: 0px;
-    vertical-align: top; }
-  #annotation-view table.anno-table th {
-    padding-left: 5px;
-    background: #3F3626;
-    font-size: 15px;
-    color: white; }
+    #annotation-view table td, #annotation-view table th {
+      border: 1px solid #AAAAAA;
+      padding: 5px;
+      line-height: 1.2;
+      text-indent: 0px;
+      vertical-align: top; }
+    #annotation-view table th {
+      padding-left: 5px;
+      background: #3F3626;
+      font-size: 15px;
+      color: white; }
 
 #annotation-list-view {
   margin: 130px 20% 80px 20%;
