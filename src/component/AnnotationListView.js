@@ -5,6 +5,8 @@ import Parser from 'html-react-parser';
 
 import { dispatchAction } from '../model/ReduxStore';
 
+const lorem = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex.</p>"
+
 class AnnotationListView extends Component {
 
     componentWillMount() {
@@ -22,19 +24,22 @@ class AnnotationListView extends Component {
     } 
 
     renderAnnotation(annotation) {
-      return (
-        <div key={`anno-${annotation.id}`}>
-            <div className='description'> 
-                <h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
-                {Parser(annotation.abstract)}
-                <ul className='annotation-details'>
-                    <li>{annotation.authors}</li>
-                    <li>{annotation.theme}, {annotation.semester} {annotation.year}</li>
-                    <li>{this.renderEntryLinks(annotation.entryIDs)}</li>
-                </ul>
+        let abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
+        return (
+        <div className='anno' key={`anno-${annotation.id}`}>
+            <div className='status'>Status: <span className='status-indicator icon fa fa-circle'></span></div>
+            <h2 className='title'><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
+            <div className='byline'>By: {annotation.authors}</div>
+            <div>
+                <div className='thumbnail'><span className='icon fa fa-10x fa-flask'></span></div>
+                <div className='abstract'>{Parser(abstract)}</div>
+            </div>
+             <div className='details'>
+                <span className='metadata'>{annotation.theme}, {annotation.semester} {annotation.year}</span>
+                <span className='entries'>{this.renderEntryLinks(annotation.entryIDs)}</span>
             </div>
         </div>
-      );
+        );
     }
 
     renderAnnotationList() {

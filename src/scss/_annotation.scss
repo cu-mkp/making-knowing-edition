@@ -1,44 +1,64 @@
-.annotation .icon {
-	margin: -.6rem 0 0 0;
-	width: 3rem;
-	min-height: 2.5rem;
-	border-radius: 0.3rem;
-	color: #92aac7;
-	float: right;
-	font-size: 1.2rem;
-	background-color: #cccccc21;
-	border: 1px dashed #0000001a;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+.annotation {
+
+	.anno-btn {
+		margin: -.6rem 0 0 0;
+		width: 3rem;
+		min-height: 2.5rem;
+		border-radius: 0.3rem;
+		color: #92aac7;
+		float: right;
+		font-size: 1.2rem;
+		background-color: #cccccc21;
+		border: 1px dashed #0000001a;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.thumbnail {
+		border: 1px solid gray;
+		margin: 15px 15px 5px 0px;
+		float: left;
+		height: 200px;
+		width: 200px;
+		background: white;
+		.icon {
+			color: darkgray;
+			margin: 20px 35px
+		}
+	}
+
+	.header {
+		margin: 1rem 0 0 0;
+		display: flex;
+	}
+
+	.header .title {
+		width: 100%;
+	}
+	
+	.content {
+		border-radius: 0.3rem 0 0.3rem 0.3rem;
+		border: 1px dashed #0000001a;
+		background-color: #cccccc69;
+		padding: 1rem;
+		margin: 0 0 1rem 0;
+	}
+
+	.header .icon.open {
+		border-radius: 0.3rem 0.3rem 0 0;
+		border-bottom: none;
+		background-color: #cccccc69;
+	}
+
+	.videoEmbed {
+		border-radius: 0.3rem;
+		margin: 2rem 1rem 0 0;
+		background-color: #bfbfbf;
+		width: 100%;
+	}	
 }
 
-.annotation .header {
-	margin: 1rem 0 0 0;
-	display: flex;
-}
 
-.annotation .header .title {
-	width: 100%;
-}
 
-.annotation .content {
-	border-radius: 0.3rem 0 0.3rem 0.3rem;
-	border: 1px dashed #0000001a;
-	background-color: #cccccc69;
-	padding: 1rem;
-	margin: 0 0 1rem 0;
-}
 
-.annotation .header .icon.open {
-	border-radius: 0.3rem 0.3rem 0 0;
-	border-bottom: none;
-	background-color: #cccccc69;
-}
-
-.annotation .videoEmbed {
-	border-radius: 0.3rem;
-	margin: 2rem 1rem 0 0;
-	background-color: #bfbfbf;
-	width: 100%;
-}

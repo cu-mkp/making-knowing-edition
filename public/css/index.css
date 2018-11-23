@@ -343,13 +343,28 @@ figure.current {
   line-height: 2; }
   #annotation-list-view h1 {
     margin-bottom: 50px; }
-  #annotation-list-view .thumbnail {
-    border: 1px solid gray;
-    margin: 20px;
-    float: right;
-    width: 250px; }
-  #annotation-list-view .description {
-    padding: 10px; }
+  #annotation-list-view .anno {
+    margin-top: 30px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 15px; }
+    #annotation-list-view .anno .title a {
+      padding-left: 0px; }
+    #annotation-list-view .anno .status-indicator {
+      color: red; }
+    #annotation-list-view .anno .thumbnail {
+      border: 1px solid gray;
+      margin: 10px;
+      float: left;
+      height: 200px;
+      width: 200px; }
+      #annotation-list-view .anno .thumbnail .icon {
+        color: darkgray;
+        margin: 20px 30px; }
+    #annotation-list-view .anno .status {
+      float: right; }
+    #annotation-list-view .anno .entries {
+      float: right; }
 
 #entry-list-view {
   margin: 80px;
@@ -774,7 +789,7 @@ figure.current {
 #glossaryPopup:focus {
   outline: none; }
 
-.annotation .icon {
+.annotation .anno-btn {
   margin: -.6rem 0 0 0;
   width: 3rem;
   min-height: 2.5rem;
@@ -787,6 +802,17 @@ figure.current {
   display: flex;
   flex-direction: column;
   justify-content: center; }
+
+.annotation .thumbnail {
+  border: 1px solid gray;
+  margin: 15px 15px 5px 0px;
+  float: left;
+  height: 200px;
+  width: 200px;
+  background: white; }
+  .annotation .thumbnail .icon {
+    color: darkgray;
+    margin: 20px 35px; }
 
 .annotation .header {
   margin: 1rem 0 0 0;

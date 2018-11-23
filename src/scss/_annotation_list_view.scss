@@ -8,18 +8,42 @@
         margin-bottom: 50px;
     }
 
-    .thumbnail {
-        border: 1px solid gray;
-        margin: 20px;
-        float: right;
-        width: 250px;
-    }
+    .anno {
 
-    .description {
-        padding: 10px;
+        margin-top: 30px;
+        border: 2px solid gray;
+        border-radius: 10px;
+        padding: 15px;
+
+        .title a {
+            padding-left: 0px;
+        }
+
+        .status-indicator {
+            color: red;
+        }
+
+        .thumbnail {
+            border: 1px solid gray;
+            margin: 10px;
+            float: left;
+            height: 200px;
+            width: 200px;
+            .icon {
+                color: darkgray;
+                margin: 20px 30px
+            }
+        }
+
+        .status {
+            float: right;
+        }
+        
+        .entries {
+            float: right;
+        }
     }
     
-
     // table.annotationList {
     //     border: 1px solid #1C6EA4;
     //     width: 100%;
