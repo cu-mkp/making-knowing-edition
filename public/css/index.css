@@ -789,6 +789,9 @@ figure.current {
 #glossaryPopup:focus {
   outline: none; }
 
+.annotation .content {
+  min-height: 255px; }
+
 .annotation .anno-btn {
   margin: -.6rem 0 0 0;
   width: 3rem;
