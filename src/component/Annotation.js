@@ -1,5 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import Parser from 'html-react-parser';
+
+const lorem = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex.</p>"
 
 class Annotation extends React.Component {
 
@@ -19,28 +23,30 @@ class Annotation extends React.Component {
 		let tooltip = '';
 		switch (this.props.type) {
 			case 'fieldNotes':
-				icon = 'icon fa fa-flask';
+				icon = 'anno-btn icon fa fa-flask';
 				tooltip = "Field Note";
 				break;
 
 			case 'annotation':
-				icon = 'icon fa fa-search';
+				icon = 'anno-btn icon fa fa-flask';
 				tooltip = "Annotation";
 				break;
 
 			case 'video':
-				icon = 'icon fa fa-video';
+				icon = 'anno-btn icon fa fa-video';
 				tooltip = "Video Annotation";
 				break;
 
 			default:
-				icon = 'icon fa fa-question';
+				icon = 'anno-btn icon fa fa-question';
 				tooltip = "Question";
 				break;
 
 		}
 		icon += this.state.visible?' open':'';
 		let content_style = this.state.visible?{display: "block"}:{display: "none"};
+		const annotation = this.props.annotation;
+		const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
 		return (
 			  <div className="annotation">
 			  	<div className="header">
@@ -48,12 +54,15 @@ class Annotation extends React.Component {
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
-			  		{this.props.children}
-
-					<iframe title="x" className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+					<h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
+					<div className='thumbnail'><span className='icon fa fa-10x fa-flask'></span></div>
+					<div className='abstract'>{Parser(abstract)}</div>
 				</div>
 			  </div>
 		);
+		// For video:
+		// 	<iframe title="x" className="videoEmbed" src="https://player.vimeo.com/video/129811219" frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen="true"></iframe>
+
 	}
 }
 

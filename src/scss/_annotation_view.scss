@@ -62,23 +62,24 @@
         margin: 20px;
     }
 
-    table.anno-table {
+    table {
         width: 100%;
         text-align: left;
         border-collapse: collapse;
-      }
-      table.anno-table td, table.anno-table th {
+
+        td, th {
         border: 1px solid #AAAAAA;
         padding: 5px;
         line-height: 1.2;
         text-indent: 0px;
         vertical-align: top;
-      }
-
-      table.anno-table th {
-        padding-left: 5px;
-        background: #3F3626;
-        font-size: 15px;
-        color: white;
-      }
+        }
+     
+        th {
+            padding-left: 5px;
+            background: #3F3626;
+            font-size: 15px;
+            color: white;
+        }
+    }    
 }

@@ -87,6 +87,7 @@ class TranscriptionView extends Component {
 		// use ID and class from the first block in the set
 		let firstBlock = blockSet[0];
 		let elementID = firstBlock.id;
+		let entryID = firstBlock.attributes['data-entry-id'].value;
 		let classStr = "";
 		for( let i=0; i < firstBlock.classList.length; i++ ) {
 	  		classStr = classStr + " " + firstBlock.classList.item(i);
@@ -94,7 +95,7 @@ class TranscriptionView extends Component {
 
 		// combine the blocks in the block set. divs are all merged into a single div
 		// other element types become children of the single div.
-		let el = `<div id="${elementID}" className="${classStr}">`;
+		let el = `<div id="${elementID}" className="${classStr}" data-entry-id="${entryID}">`;
 		for( let block of blockSet ) {
 			block.setAttribute("className", "block");
 			if( block.name === 'div' ) {
@@ -163,16 +164,18 @@ class TranscriptionView extends Component {
       for (let zone of zones) {
         // create a rolling frame that is ORed on to grid with each step
         let zoneFrame = copyObject( emptyZoneFrame );
-        let marginFrame = copyObject( emptyMarginFrame );
+				let marginFrame = copyObject( emptyMarginFrame );
+				let entryID = zone.id;
         let blocks = zone.children;
 
         for( let block of blocks ) {
           let layoutCode = validLayoutCode(block.dataset.layout);
           let hint = validLayoutHint(block.dataset.layoutHint);
+					block.setAttribute('data-entry-id', entryID);
 
           // group all the blocks together that share a layout code
           if( marginFrame[layoutCode] ) {
-            block.id = marginFrame[layoutCode][0].id;
+						block.id = marginFrame[layoutCode][0].id;
             marginFrame[layoutCode].push(block);
           } else {
             zoneIndex++;
@@ -381,17 +384,17 @@ class TranscriptionView extends Component {
 							);
 							
 						case 'h2':
-							//FIXME: Annotations are currently hardcoded to folio 74/f19 for demo
-							if(this2.props.documentView[this2.props.side].iiifShortID === 'f19'){
-								let text = this2.nodeTreeToString(domNode.children);
-								let annotationType = "fieldNotes"; // fieldNotes | annotation | video
-								let annotationContent = "This is a fieldNote annotation for: '"+text;
-								annotationContent +="' Mauris laoreet purus ut urna ullamcorper fringilla. Morbi fermentum lectus ac dictum auctor. Suspendisse suscipit quam non arcu ultrices, vel dignissim tellus gravida. Nunc vitae odio lorem. Nulla nisl erat, laoreet vitae lectus quis, pharetra semper diam. In hac habitasse platea dictumst. Nullam id felis quis metus iaculis fermentum quis quis tortor. Proin maximus urna mi, non semper mauris fringilla eu. Vivamus eget lectus malesuada, commodo ex sit amet, finibus nunc. Pellentesque non ultrices magna. Proin molestie tempus diam, ac faucibus orci vulputate in. Donec tempor faucibus enim. Pellentesque facilisis ut mi sit amet cursus. Integer sollicitudin faucibus metus iaculis faucibus. Suspendisse in velit eget orci pretium placerat. Morbi rhoncus, libero ac convallis pellentesque, enim eros elementum leo, vitae suscipit mi nibh at sem."
+							let entryID = domNode.attribs['data-entry-id'];
+							const annotations = this2.props.annotations.annotationsByEntry[entryID];
+							if( annotations ) { 
+								const annotationID = annotations[0]; // for now, just take the first one
+								const annotation = this2.props.annotations.annotations[annotationID];
+								let annotationType = "annotation"; // fieldNotes | annotation | video
 								return (
 									<Annotation headerContent={domToReact(domNode.children, parserOptions)}
 												side={side}
-												type={annotationType}>
-													{annotationContent}
+												type={annotationType}
+												annotation={annotation}>
 									</Annotation>
 								);
 							} else {
@@ -544,6 +547,7 @@ class TranscriptionView extends Component {
 
 function mapStateToProps(state) {
 	return {
+				annotations: state.annotations,
 				document: state.document,
 				search: state.search
     };
