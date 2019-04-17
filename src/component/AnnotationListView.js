@@ -27,11 +27,14 @@ class AnnotationListView extends Component {
 
     renderByline( annotationAuthors ) {
         const { authors } = this.props.authors
-        let authorInfos = annotationAuthors.map( authorID => authors[authorID] )
+        let authorInfos = []
+        for( let authorID of annotationAuthors ) {
+            authorInfos.push(authors[authorID])
+        }
 
         let lastID = authorInfos.length > 0 ? authorInfos[authorInfos.length-1].id : null
-        return authorInfos.map( author => {
-
+        let authorInfoDivs = []
+        for( let author of authorInfos ) {
             const frag = (
                 <div>
                     <Typography><b>{author.fullName}</b></Typography>
@@ -42,14 +45,15 @@ class AnnotationListView extends Component {
                 </div>
             )
 
-            return (
+            authorInfoDivs.push(
                 <CustomizedTooltops key={author.id} 
                     htmlFragment={frag}
                     inner={<span>{author.fullName}{ (author.id !== lastID) ? ', ' : '' }</span>}
                 >                    
                 </CustomizedTooltops>                  
             )
-        })
+        }
+        return authorInfoDivs
     }
 
     renderAnnotation(annotation) {
