@@ -23,13 +23,26 @@ class AnnotationListView extends Component {
         return links;        
     } 
 
+    renderByline( annotationAuthors ) {
+        const { authors } = this.props.authors
+        let authorInfos = annotationAuthors.map( authorID => authors[authorID] )
+
+        let lastID = authorInfos.length > 0 ? authorInfos[authorInfos.length-1].id : null
+        return authorInfos.map( author => {
+            return (
+                <span key={author.id}>{author.fullName}{ (author.id !== lastID) ? ', ' : '' }</span>   
+            )
+        })
+    }
+
     renderAnnotation(annotation) {
         let abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
+
         return (
         <div className='anno' key={`anno-${annotation.id}`}>
             <div className='status'>Status: <span className='status-indicator icon fa fa-circle'></span></div>
             <h2 className='title'><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
-            <div className='byline'>By: {annotation.authors}</div>
+            <div className='byline'>By: {this.renderByline(annotation.authors)}</div>
             <div>
                 <div className='thumbnail'><span className='icon fa fa-10x fa-flask'></span></div>
                 <div className='abstract'>{Parser(abstract)}</div>
@@ -69,7 +82,8 @@ class AnnotationListView extends Component {
 
 function mapStateToProps(state) {
     return {
-        annotations: state.annotations
+        annotations: state.annotations,
+        authors: state.authors
     };
 }
 
