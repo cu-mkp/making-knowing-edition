@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Parser from 'html-react-parser';
+import Typography from '@material-ui/core/Typography';
 
 import { dispatchAction } from '../model/ReduxStore';
+import CustomizedTooltops from './CustomizedTooltops';
 
 const lorem = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex.</p>"
 
@@ -29,8 +31,23 @@ class AnnotationListView extends Component {
 
         let lastID = authorInfos.length > 0 ? authorInfos[authorInfos.length-1].id : null
         return authorInfos.map( author => {
+
+            const frag = (
+                <div>
+                    <Typography><b>{author.fullName}</b></Typography>
+                    <Typography>{author.semester} {author.year}</Typography>
+                    <Typography>{author.authorType}</Typography>
+                    <Typography>{author.degree} {author.yearAtTime}</Typography>
+                    <Typography>{author.department} {author.subField}</Typography>
+                </div>
+            )
+
             return (
-                <span key={author.id}>{author.fullName}{ (author.id !== lastID) ? ', ' : '' }</span>   
+                <CustomizedTooltops key={author.id} 
+                    htmlFragment={frag}
+                    inner={<span>{author.fullName}{ (author.id !== lastID) ? ', ' : '' }</span>}
+                >                    
+                </CustomizedTooltops>                  
             )
         })
     }
@@ -96,4 +113,5 @@ function sliceZeros(paddedID) {
 }
 
 
+// export default connect(mapStateToProps)(withStyles(AnnotationListView));
 export default connect(mapStateToProps)(AnnotationListView);
