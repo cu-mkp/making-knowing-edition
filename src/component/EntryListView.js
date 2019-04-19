@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import Chip from '@material-ui/core/Chip';
+import { CardContent, CardActionArea, Badge } from '@material-ui/core';
+import CardHeader from '@material-ui/core/CardHeader';
 
 import { dispatchAction } from '../model/ReduxStore';
 
@@ -35,28 +40,46 @@ class EntryListView extends Component {
             }
         }
         let mentionRow = ( tags.length > 0 ) ? <p>Mentions: {tags.join(' ')} </p> : '';
-        return (
-        <li key={`entry-${entry.id}`}>
-            <h3>{heading}</h3>
-            <p>Folio: {entry.folio}</p>
-            {mentionRow}
-        </li>
-        );
+
+        // [title tcn]/[title tl]- [folio # start]
+        // [category 1] | [category 2]
+        // [term type 1 unique terms] | [term type 2 unique terms] | [term type 3 unique terms] | [term type 4 unique terms]...
+        // [Annotations: [title]]
+
+        return(
+            <Card className="entry" key={`entry-${entry.id}`}>
+                <CardHeader title={`${heading} - ${entry.folio}`}>
+                </CardHeader>
+                <CardContent>
+
+                </CardContent>
+            </Card>
+        )
+
+        // return (
+        // <li key={`entry-${entry.id}`}>
+        //     <h3>{heading}</h3>
+        //     <p>Folio: {entry.folio}</p>
+        //     {mentionRow}
+        // </li>
+        // );
     }
 
     renderTagNav() {
         return ( 
-            <ul className="tag-nav">
-                <li className="tag-nav-item">Animal (888)</li>
-                <li className="tag-nav-item">Bodypart (888)</li>
-                <li className="tag-nav-item">Environment (888)</li>
-                <li className="tag-nav-item">Material (888)</li>
-                <li className="tag-nav-item">Measurement (888)</li>
-                <li className="tag-nav-item">Place (888)</li>
-                <li className="tag-nav-item">Plant (888)</li>
-                <li className="tag-nav-item">Profession (888)</li>
-                <li className="tag-nav-item">Tool (888)</li>
-            </ul>
+            <div className="tag-nav">
+                <Badge badgeContent={888} color="primary">
+                    <Chip className="tag-nav-item" label="Animal"></Chip>
+                </Badge>
+                <Chip className="tag-nav-item" label="Bodypart (888)"></Chip>
+                <Chip className="tag-nav-item" label="Environment (888)"></Chip>
+                <Chip className="tag-nav-item" label="Material (888)"></Chip>
+                <Chip className="tag-nav-item" label="Measurement (888)"></Chip>
+                <Chip className="tag-nav-item" label="Place (888)"></Chip>
+                <Chip className="tag-nav-item" label="Plant (888)"></Chip>
+                <Chip className="tag-nav-item" label="Profession (888)"></Chip>
+                <Chip className="tag-nav-item" label="Tool (888)"></Chip>
+            </div>
         );
     }
 
@@ -69,16 +92,15 @@ class EntryListView extends Component {
 
         let entryList = [];
         for( let entry of entries ) {
-            entryList.push( this.renderEntry(entry) );
+            if( entry.heading_tl !== '') {
+                entryList.push( this.renderEntry(entry) );
+            }
         }
 
         return (
-            <div className='entries'>
-            <h2>Entries</h2>
             <ul className='entry-list'>
                 { entryList }
             </ul>
-            </div>
         );
     }
 
@@ -87,8 +109,11 @@ class EntryListView extends Component {
     
         return (
             <div id="entry-list-view">
-                { this.renderTagNav() }
-                { this.renderEntryList() }
+                <div className='entries'>
+                    <Typography variant='h3' gutterBottom>Entries</Typography>
+                    { this.renderTagNav() }
+                    { this.renderEntryList() }
+                </div>
             </div>
         );
 	}

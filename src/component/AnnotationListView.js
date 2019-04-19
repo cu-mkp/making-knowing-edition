@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import Parser from 'html-react-parser';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import Avatar from '@material-ui/core/Avatar';
 import { CardContent, CardActionArea } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';

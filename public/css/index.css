@@ -356,16 +356,10 @@ figure.current {
 #entry-list-view {
   margin: 80px;
   max-width: 600px; }
-  #entry-list-view .entries h2 {
-    margin-bottom: 50px; }
-  #entry-list-view .entry-list {
-    list-style: none; }
+  #entry-list-view .entry {
+    margin-top: 10px; }
   #entry-list-view .tag-nav {
-    margin-top: 50px;
-    list-style: none;
-    height: 300000px;
-    margin-right: 100px;
-    float: left; }
+    margin-top: 30px; }
   #entry-list-view .tag-nav-item {
     margin: 3px;
     border: 1px solid gray;

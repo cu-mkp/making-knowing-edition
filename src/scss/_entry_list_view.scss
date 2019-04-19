@@ -3,22 +3,12 @@
     margin: 80px;
     max-width: 600px;
 
-    .entries {
-        h2 {
-            margin-bottom: 50px;
-        }
-    }
-
-    .entry-list {
-        list-style: none;
+    .entry {
+        margin-top: 10px;
     }
 
     .tag-nav {
-        margin-top: 50px;
-        list-style: none;
-        height: 300000px;
-        margin-right: 100px;
-        float: left;
+        margin-top: 30px;
     }
 
     .tag-nav-item {
