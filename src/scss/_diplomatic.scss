@@ -1,11 +1,14 @@
 #diplomatic {
-	
+
+	background: #eee;
+
 	#header {
 		width: 100vw;
 		margin: 0;
 		color: white;
 		height: $header-height;
-		background-color: #656565;
+		background-color: black;
+		// background-color: #656565;
 		font-family: 'OpenSans', sans-serif;
 		grid-area: header;
 		padding: 1rem 0 0 1rem;
@@ -149,6 +152,7 @@
 }
 
 #diplomatic.fixed {
+	background: white;
 	position: fixed;
 	padding: 0;
 	// top: 4.4rem;

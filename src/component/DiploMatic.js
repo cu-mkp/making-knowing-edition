@@ -54,9 +54,9 @@ class DiploMatic extends Component {
 				<div id="globalNavigation">
 					{ this.renderNavLinks() }
 					<Search />
-					<div className="expandedViewOnly">
+					{/* <div className="expandedViewOnly">
 						<span><span className="english">English</span> | <span className="francais">Français</span></span>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		);
