@@ -379,20 +379,18 @@ figure.current {
     color: white;
     height: 4rem;
     background-color: black;
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Oswald', sans-serif;
     grid-area: header;
     padding: 1rem 0 0 1rem;
     white-space: nowrap; }
     #diplomatic #header .title {
-      font-size: 2rem;
-      font-weight: 700; }
+      font-size: 24pt; }
       #diplomatic #header .title .home-link {
         color: white;
         text-decoration: none; }
     #diplomatic #header .tagline {
-      font-weight: 300;
       font-size: 0.8rem;
-      padding: 0.3rem 0 0 0.3rem; }
+      padding: 0.5rem 0 0 0; }
     #diplomatic #header .compactTitle {
       font-weight: 700;
       display: none; }
