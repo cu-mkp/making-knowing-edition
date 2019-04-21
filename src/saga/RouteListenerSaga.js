@@ -18,10 +18,12 @@ function *userNavigation(action) {
     if( pathSegments.length > 1 ) {
         switch(pathSegments[1]) {
             case 'folios':
+                yield resolveAuthors();
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
                 break;
             case 'search':
+                yield resolveAuthors();
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
                 yield resolveSearchIndex();
