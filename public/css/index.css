@@ -377,7 +377,7 @@ figure.current {
     width: 100vw;
     margin: 0;
     color: white;
-    height: 4rem;
+    height: 5rem;
     background-color: black;
     font-family: 'Oswald', sans-serif;
     grid-area: header;
@@ -451,17 +451,17 @@ figure.current {
 #diplomatic.fixed {
   background: white;
   position: fixed;
-  padding: 0;
   width: 100vw;
   height: calc(100vh - $chrome-height);
   font-family: 'OpenSans', sans-serif;
   font-size: 0.9rem;
-  line-height: 1.2rem;
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  #diplomatic.fixed #content {
+    line-height: 1.2rem; }
 
 .imageGridComponent {
   background-color: #000000;

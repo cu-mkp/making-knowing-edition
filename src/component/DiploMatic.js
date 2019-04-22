@@ -50,7 +50,7 @@ class DiploMatic extends Component {
 			<div id="header" className={fixedFrameModeClass}>
 				<div className="title"><Link to='/' className='home-link'>BnF Ms. Fr. 640</Link> <span className='warning'>(BETA)</span></div>
 				<div className="compactTitle">M&amp;K</div>
-				<div className="tagline">Digital Critical Edition</div>
+				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
 					{ this.renderNavLinks() }
 					<Search />
