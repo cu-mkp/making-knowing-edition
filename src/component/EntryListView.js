@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import { CardContent, CardActionArea, Badge } from '@material-ui/core';
-import CardHeader from '@material-ui/core/CardHeader';
 
 import { dispatchAction } from '../model/ReduxStore';
 
@@ -92,14 +91,14 @@ class EntryListView extends Component {
 
     renderEntryList() {
         let entries = this.props.entries.entries.sort(function(a, b) {
-            var textA = a.heading_tl.toUpperCase();
-            var textB = b.heading_tl.toUpperCase();
+            var textA = a.heading_tcn.toUpperCase().replace(/[@+\s]/g,'');
+            var textB = b.heading_tcn.toUpperCase().replace(/[@+\s]/g,'');
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });;
 
         let entryList = [];
         for( let entry of entries ) {
-            if( entry.heading_tl !== '') {
+            if( entry.heading_tcn !== '' && entry.heading_tl !== '') {
                 entryList.push( this.renderEntry(entry) );
             }
         }
