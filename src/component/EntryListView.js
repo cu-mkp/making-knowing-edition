@@ -111,7 +111,7 @@ class EntryListView extends Component {
             <div id="entry-list-view">
                 <div className='entries'>
                     <Typography variant='h3' gutterBottom>Entries</Typography>
-                    { this.renderTagNav() }
+                    {/* { this.renderTagNav() } */}
                     { this.renderEntryList() }
                 </div>
             </div>
