@@ -32,7 +32,8 @@ class EntryListView extends Component {
     }
 
     renderEntry(entry) {        
-        const heading = entry.heading_tl !== '' ? entry.heading_tl : 'Untitled Entry';
+        const heading = `${entry.heading_tcn} / ${entry.heading_tl}`.replace(/[@+]/g,'');
+
         let tags = [];
         for( let tag of Object.keys(tagNames) ) {
             if( entry.mentions[tag] > 0 ) {
@@ -46,13 +47,19 @@ class EntryListView extends Component {
         // [term type 1 unique terms] | [term type 2 unique terms] | [term type 3 unique terms] | [term type 4 unique terms]...
         // [Annotations: [title]]
 
+        const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
+
         return(
             <Card className="entry" key={`entry-${entry.id}`}>
-                <CardHeader title={`${heading} - ${entry.folio}`}>
-                </CardHeader>
-                <CardContent>
-
-                </CardContent>
+                <CardActionArea
+                    onClick={e => {this.props.history.push(folioURL)}}
+                >
+                    <CardContent>
+                        <Typography><b>{`${heading} - ${entry.folio}`}</b></Typography>
+                        <Typography>Moldmaking and Metalworking</Typography>
+                        <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
+                    </CardContent>
+                </CardActionArea>
             </Card>
         )
 
@@ -111,6 +118,7 @@ class EntryListView extends Component {
             <div id="entry-list-view">
                 <div className='entries'>
                     <Typography variant='h3' gutterBottom>Entries</Typography>
+                    <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque.</Typography>
                     {/* { this.renderTagNav() } */}
                     { this.renderEntryList() }
                 </div>

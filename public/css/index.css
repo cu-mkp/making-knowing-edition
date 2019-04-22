@@ -355,7 +355,7 @@ figure.current {
 
 #entry-list-view {
   margin: 80px;
-  max-width: 600px; }
+  max-width: 800px; }
   #entry-list-view .entry {
     margin-top: 10px; }
   #entry-list-view .tag-nav {
@@ -377,11 +377,11 @@ figure.current {
     width: 100vw;
     margin: 0;
     color: white;
-    height: 5rem;
+    height: 4.5rem;
     background-color: black;
     font-family: 'Oswald', sans-serif;
     grid-area: header;
-    padding: 1rem 0 0 1rem;
+    padding: 0.5rem 0 0 1rem;
     white-space: nowrap; }
     #diplomatic #header .title {
       font-size: 24pt; }
@@ -395,7 +395,10 @@ figure.current {
       font-weight: 700;
       display: none; }
     #diplomatic #header .expandedViewOnly {
+      margin-right: 50px;
       display: inline; }
+      #diplomatic #header .expandedViewOnly a {
+        margin-right: 10px; }
     @media only screen and (max-width: 500px) {
       #diplomatic #header .expandedViewOnly {
         display: none; }

@@ -11,7 +11,7 @@
 		// background-color: #656565;
 		font-family: 'Oswald', sans-serif;
 		grid-area: header;
-		padding: 1rem 0 0 1rem;
+		padding: 0.5rem 0 0 1rem;
 		white-space: nowrap;
 
 		.title {
@@ -35,7 +35,11 @@
 		}
 
 		.expandedViewOnly {
+			margin-right: 50px;
 			display: inline;
+			a {
+				margin-right: 10px;
+			}
 		}
 
 		// Laptops screens
