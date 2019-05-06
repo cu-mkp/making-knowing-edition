@@ -7,8 +7,11 @@
 	float: right;
 }
 
-#globalNavigation span, a {
-	padding: .3rem;
+#globalNavigation {
+	span, a {
+		color: white;
+		padding: .3rem;
+	}
 }
 
 #globalNavigation span .francais {

@@ -14,6 +14,8 @@ import glossaryInitialState from './initialState/glossaryInitialState';
 import annotationInitialState from './initialState/annotationInitialState';
 import entryInitialState from './initialState/entryInitialState';
 import documentInitialState from './initialState/documentInitialState';
+import AuthorActions from './AuthorActions';
+import authorInitialState from './initialState/authorInitialState';
 
 export default function rootReducer() {
     return combineReducers({
@@ -22,6 +24,7 @@ export default function rootReducer() {
         search: createReducer( 'SearchActions', SearchActions, searchInitialState ),
         glossary: createReducer( 'GlossaryActions', GlossaryActions, glossaryInitialState ),
         annotations: createReducer( 'AnnotationActions', AnnotationActions, annotationInitialState ),
-        entries: createReducer( 'EntryActions', EntryActions, entryInitialState )
+        entries: createReducer( 'EntryActions', EntryActions, entryInitialState ),
+        authors: createReducer( 'AuthorActions', AuthorActions, authorInitialState )
     });    
 };

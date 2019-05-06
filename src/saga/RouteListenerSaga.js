@@ -9,6 +9,7 @@ const justAnnotations = state => state.annotations
 const justEntries = state => state.entries
 const juxtDocument = state => state.document
 const justSearch = state => state.search
+const justAuthors = state => state.authors
 
 function *userNavigation(action) {
     const pathname = action.payload.params[0].pathname;
@@ -17,10 +18,12 @@ function *userNavigation(action) {
     if( pathSegments.length > 1 ) {
         switch(pathSegments[1]) {
             case 'folios':
+                yield resolveAuthors();
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
                 break;
             case 'search':
+                yield resolveAuthors();
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
                 yield resolveSearchIndex();
@@ -33,6 +36,7 @@ function *userNavigation(action) {
                 yield resolveSearchResult();
                 break;
             case 'annotations':
+                yield resolveAuthors();
                 yield resolveAnnotationManifest();
                 if( pathSegments.length > 2 ) {
                     let annotationID = pathSegments[2];
@@ -87,6 +91,14 @@ function *resolveAnnotationManifest() {
     if( !annotations.loaded ) {
         const response = yield axios.get(annotations.annotationManifestURL);
         yield putResolveAction( 'AnnotationActions.loadAnnotationManifest', response.data );    
+    }
+}
+
+function *resolveAuthors() {
+    const authors = yield select(justAuthors)
+    if( !authors.loaded ) {
+        const response = yield axios.get(authors.authorsURL);
+        yield putResolveAction( 'AuthorActions.loadAuthors', response.data );    
     }
 }
 

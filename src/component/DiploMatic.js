@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Provider, connect } from 'react-redux'
 import { HashRouter, Route, Switch, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DocumentView from './DocumentView';
 import SearchView from './SearchView';
@@ -55,9 +54,9 @@ class DiploMatic extends Component {
 				<div id="globalNavigation">
 					{ this.renderNavLinks() }
 					<Search />
-					<div className="expandedViewOnly">
+					{/* <div className="expandedViewOnly">
 						<span><span className="english">English</span> | <span className="francais">Français</span></span>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		);
@@ -191,17 +190,15 @@ class DiploMatic extends Component {
 
 		return (
 			<Provider store={this.props.store}>
-				<MuiThemeProvider>
-					<HashRouter>
-						<div id="diplomatic" className={fixedFrameModeClass}>
-							<RouteListener/>
-							{ this.renderHeader(fixedFrameModeClass) }
-							{ this.renderContent() }
-							{ this.renderFooter(fixedFrameModeClass) }
-							<div id="glossaryPopup" tabIndex="1"></div>
-						</div>	
-					</HashRouter>
-				</MuiThemeProvider>
+				<HashRouter>
+					<div id="diplomatic" className={fixedFrameModeClass}>
+						<RouteListener/>
+						{ this.renderHeader(fixedFrameModeClass) }
+						{ this.renderContent() }
+						{ this.renderFooter(fixedFrameModeClass) }
+						<div id="glossaryPopup" tabIndex="1"></div>
+					</div>	
+				</HashRouter>
 			</Provider>
 		);
 	}
