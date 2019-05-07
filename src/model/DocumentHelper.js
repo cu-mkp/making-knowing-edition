@@ -6,7 +6,8 @@ DocumentHelper.transcriptionTypeLabels = {
   tcn: 'Normalized Transcription',
   tl: 'Translation',
   f: 'Facsimile',
-  anno: 'Annotation'
+  anno: 'Annotation',
+  glossary: 'Glossary'
 };
 
 DocumentHelper.getFolio = function getFolio(document, folioID) {
