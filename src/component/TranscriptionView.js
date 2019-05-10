@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import copyObject from '../lib/copyObject';
 import Navigation from '../component/Navigation';
 import Pagination from '../component/Pagination';
-import Gloss from '../component/Gloss';
+import EditorComment from '../component/EditorComment';
 import Annotation from '../component/Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
@@ -369,6 +369,12 @@ class TranscriptionView extends Component {
 								</span>
 							);
 
+						case 'comment':
+							const commentID = ( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
+							return (
+								<EditorComment commentID={commentID}></EditorComment>
+							);
+
 						case 'corr':
 							return (
 								<span className='corr'>
@@ -402,12 +408,8 @@ class TranscriptionView extends Component {
 							}
 
 						case 'm':
-							let term = this2.nodeTreeToString(domNode.children);
-								return (
-								<Gloss side={side}
-										term={term} documentView={this2.props.documentView}>
-											{domToReact(domNode.children, parserOptions)}
-									</Gloss>
+							return( 
+								<span style={{color: 'blue'}}>{domToReact(domNode.children, parserOptions)}</span>								
 							);
 
 						case 'man':
