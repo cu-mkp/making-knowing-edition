@@ -8,15 +8,16 @@ class EditorComment extends Component {
 
     render() {
         const comments = this.props.comments.comments
-
-        // TODO get the comment from the comments table
+        const commentText = comments[this.props.commentID] ? 
+            comments[this.props.commentID] : 
+            `ERROR: Could not find comment for id: ${this.props.commentID}.`
         
         const frag = (
             <div>
-                <Typography>{comments[this.props.commentID].comment}</Typography>
+                <Typography>{commentText}</Typography>
             </div>
         )
-        const style = { color: 'red' }
+        const style = { fontStyle: 'bold', fontSize: '20pt', color: 'red' }
 
         return ( 
             <CustomizedTooltops 
