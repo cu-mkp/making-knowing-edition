@@ -8,16 +8,11 @@ import { CardContent, CardActionArea } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 
-import { dispatchAction } from '../model/ReduxStore';
-import CustomizedTooltops from './CustomizedTooltops';
+import CustomizedTooltops from '../CustomizedTooltops';
 
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex."
 
-class AnnotationListView extends Component {
-
-    componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
-    }
+class AnnotationCard extends Component {
 
     renderEntryLinks(entryIDs) {
         let links = [];
@@ -62,63 +57,39 @@ class AnnotationListView extends Component {
         return authorInfoDivs
     }
 
-    renderAnnotation(annotation) {
+    render() {
+        const { annotation } = this.props
+
         let abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
 
         return (
-        <Card className='anno' key={`anno-${annotation.id}`}>
-            <CardActionArea 
-                onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}
-            >
-                <CardHeader 
-                    title={annotation.name} 
-                    subheader={this.renderByline(annotation.authors)}
-                >            
-                </CardHeader>
-                <CardMedia style={{height: 200}} image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
-                </CardMedia>
-                </CardActionArea>
-                <CardContent>
-                    <Typography className='abstract'>{Parser(abstract)}</Typography>
-                    <div className='details'>
-                        {/* <Link to={`/annotations/${annotation.id}`}>View</Link> */}
-                        <Typography className='entries'>(<i>{this.renderEntryLinks(annotation.entryIDs)}</i>)<span className='status-indicator icon fa fa-circle'></span></Typography>      
-                        <Typography className='metadata'>{annotation.theme}, {annotation.semester} {annotation.year}</Typography>
-                    </div>
-                </CardContent>
-        </Card>
+            <Card className='anno'>
+                <CardActionArea 
+                    onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}
+                >
+                    <CardHeader 
+                        title={annotation.name} 
+                        subheader={this.renderByline(annotation.authors)}
+                    >            
+                    </CardHeader>
+                    <CardMedia style={{height: 200}} image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
+                    </CardMedia>
+                    </CardActionArea>
+                    <CardContent>
+                        <Typography className='abstract'>{Parser(abstract)}</Typography>
+                        <div className='details'>
+                            {/* <Link to={`/annotations/${annotation.id}`}>View</Link> */}
+                            <Typography className='entries'>(<i>{this.renderEntryLinks(annotation.entryIDs)}</i>)<span className='status-indicator icon fa fa-circle'></span></Typography>      
+                            <Typography className='metadata'>{annotation.theme}, {annotation.semester} {annotation.year}</Typography>
+                        </div>
+                    </CardContent>
+            </Card>
         );
     }
-
-    renderAnnotationList() {
-        let annoList = [];
-        for( let annotation of Object.values(this.props.annotations.annotations) ) {
-            annoList.push( this.renderAnnotation(annotation) );
-        }
-
-        return (
-            <div className="annotationList">
-                { annoList }
-            </div>
-        );
-    }
-
-	render() {
-        if( !this.props.annotations.loaded ) return null;
-    
-        return (
-            <div id="annotation-list-view">
-                <Typography variant='h3' gutterBottom>Annotations of BnF Ms. Fr. 640</Typography>
-                <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque.</Typography>
-                { this.renderAnnotationList() }
-            </div>
-        );
-	}
 }
 
 function mapStateToProps(state) {
     return {
-        annotations: state.annotations,
         authors: state.authors
     };
 }
@@ -132,5 +103,4 @@ function sliceZeros(paddedID) {
 }
 
 
-// export default connect(mapStateToProps)(withStyles(AnnotationListView));
-export default connect(mapStateToProps)(AnnotationListView);
+export default connect(mapStateToProps)(AnnotationCard);

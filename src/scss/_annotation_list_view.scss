@@ -1,32 +1,45 @@
 #annotation-list-view {
 
-    margin: 30px 20% 80px 20%;
-    max-width: 66%;
-    line-height: 2;
-
-    .annotationList {
-        max-width: 600px;
+    margin: 10px;
+    
+    .titlebar h4 {
+        padding: 16px;
     }
 
-    .anno {
+    .titlebar .list-mode-buttons {
+        float: right;
+    }
 
-        margin-top: 30px;
+    .contentArea {
+        display: flex;
 
-        // .title a {
-        //     padding-left: 0px;
-        // }
-
-        .status-indicator {
-            color: red;
+        .tocbar {
+            padding: 5px;
+            min-width: 200px;
         }
 
-        .entries {
-            float: right;
-        }
+        .anno-list {
+            display: flex;
+            flex-wrap: wrap;
+            background:#eee;
+
+            .anno {
+                
+                margin-top: 20px;
+                margin-left: 20px;
+                max-width: 450px;
+                .status-indicator {
+                    color: red;
+                }
         
-        .details {
-            margin-top: 30px;
+                .entries {
+                    float: right;
+                }
+                
+                .details {
+                    margin-top: 30px;
+                }
+            }        
         }
     }
-
 }

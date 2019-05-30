@@ -339,19 +339,30 @@ figure.current {
       color: white; }
 
 #annotation-list-view {
-  margin: 30px 20% 80px 20%;
-  max-width: 66%;
-  line-height: 2; }
-  #annotation-list-view .annotationList {
-    max-width: 600px; }
-  #annotation-list-view .anno {
-    margin-top: 30px; }
-    #annotation-list-view .anno .status-indicator {
-      color: red; }
-    #annotation-list-view .anno .entries {
-      float: right; }
-    #annotation-list-view .anno .details {
-      margin-top: 30px; }
+  margin: 10px; }
+  #annotation-list-view .titlebar h4 {
+    padding: 16px; }
+  #annotation-list-view .titlebar .list-mode-buttons {
+    float: right; }
+  #annotation-list-view .contentArea {
+    display: flex; }
+    #annotation-list-view .contentArea .tocbar {
+      padding: 5px;
+      min-width: 200px; }
+    #annotation-list-view .contentArea .anno-list {
+      display: flex;
+      flex-wrap: wrap;
+      background: #eee; }
+      #annotation-list-view .contentArea .anno-list .anno {
+        margin-top: 20px;
+        margin-left: 20px;
+        max-width: 450px; }
+        #annotation-list-view .contentArea .anno-list .anno .status-indicator {
+          color: red; }
+        #annotation-list-view .contentArea .anno-list .anno .entries {
+          float: right; }
+        #annotation-list-view .contentArea .anno-list .anno .details {
+          margin-top: 30px; }
 
 #entry-list-view {
   margin: 80px;
@@ -415,8 +426,6 @@ figure.current {
         margin: .5rem 1rem 0 0; } }
   #diplomatic #search {
     display: inline; }
-  #diplomatic #content {
-    margin-top: 5rem; }
   #diplomatic #navigation {
     background-color: blue;
     height: 4.4rem; }
@@ -464,7 +473,8 @@ figure.current {
   -ms-user-select: none;
   user-select: none; }
   #diplomatic.fixed #content {
-    line-height: 1.2rem; }
+    line-height: 1.2rem;
+    margin-top: 5rem; }
 
 .imageGridComponent {
   background-color: #000000;
