@@ -29,7 +29,7 @@ class AnnotationCard extends Component {
         let idList = entryIDs.split(';');
         for( let entryID of idList ) {
             let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
-            links.push( <MenuItem onClick={this.handleClose}> <Link key={entryID} to={`/folios/${folioID}`}>{entryID}</Link></MenuItem>);
+            links.push( <MenuItem  key={entryID} onClick={this.handleClose}> <Link to={`/folios/${folioID}`}><Typography>{folioID}</Typography></Link></MenuItem>);
         }
         return links;        
     } 
@@ -73,7 +73,7 @@ class AnnotationCard extends Component {
                 <Button
                     onClick={this.handleClick}
                 >
-                    Go to Folio
+                    View Folio
                 </Button>
                 <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
                     { this.renderEntryLinks() }
