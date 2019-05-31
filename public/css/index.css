@@ -342,8 +342,12 @@ figure.current {
   margin: 10px; }
   #annotation-list-view .titlebar h4 {
     padding: 16px; }
+  #annotation-list-view .seperator {
+    font-size: 28pt; }
   #annotation-list-view .titlebar .list-mode-buttons {
-    float: right; }
+    margin: 16px;
+    position: absolute;
+    right: 20px; }
   #annotation-list-view .contentArea {
     display: flex; }
     #annotation-list-view .contentArea .tocbar {
@@ -363,6 +367,20 @@ figure.current {
           float: right; }
         #annotation-list-view .contentArea .anno-list .anno .details {
           margin-top: 30px; }
+      #annotation-list-view .contentArea .anno-list .annothumb {
+        margin-top: 20px;
+        margin-left: 20px;
+        max-width: 225px;
+        min-width: 225px; }
+        #annotation-list-view .contentArea .anno-list .annothumb .thumb-media {
+          height: 200px;
+          display: flex;
+          align-items: flex-end; }
+          #annotation-list-view .contentArea .anno-list .annothumb .thumb-media .title {
+            background: grey;
+            width: 100%;
+            padding: 8px;
+            color: white; }
 
 #entry-list-view {
   margin: 80px;

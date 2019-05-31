@@ -6,8 +6,14 @@
         padding: 16px;
     }
 
+    .seperator {
+        font-size: 28pt;
+    }
+
     .titlebar .list-mode-buttons {
-        float: right;
+        margin: 16px;
+        position: absolute;
+        right: 20px;
     }
 
     .contentArea {
@@ -39,7 +45,28 @@
                 .details {
                     margin-top: 30px;
                 }
+            }       
+            
+            .annothumb {
+                margin-top: 20px;
+                margin-left: 20px;
+                max-width: 225px;
+                min-width: 225px;
+
+                .thumb-media {
+                    height: 200px;
+                    display: flex;
+                    align-items: flex-end;
+    
+                    .title {
+                        background: grey;
+                        width: 100%;
+                        padding: 8px;
+                        color: white
+                    }                
+                }
             }        
+
         }
     }
 }

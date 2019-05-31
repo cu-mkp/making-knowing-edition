@@ -1,14 +1,45 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Paper, Typography } from '@material-ui/core';
+import { Icon } from "react-font-awesome-5";
 import { dispatchAction } from '../../model/ReduxStore';
+
 import AnnotationCard from './AnnotationCard';
-import {Icon} from "react-font-awesome-5";
+import AnnotationThumb from './AnnotationThumb';
 
 class AnnotationListView extends Component {
 
+    constructor() {
+        super()
+
+        this.state = {
+            listMode: 'thumbs'
+        }
+    }
+
     componentWillMount() {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+    }
+
+    renderTableOfContents() {
+        return (
+            <Paper className="tocbar">
+                <Typography variant='h6' gutterBottom>Making &amp; Knowing Workshops</Typography>
+                <Typography>Metal Working and Moldmaking</Typography>
+                <Typography>Colormaking</Typography>
+                <Typography>Practical Knowledge</Typography>
+                <Typography>Ephemeral Art</Typography>
+                <Typography>Print and Impression</Typography>
+            </Paper>
+        );
+    }
+
+    onDisplayCards = () => {
+        this.setState( { ...this.state, listMode: 'cards' } )
+    }
+
+    onDisplayThumbs = () => {
+        this.setState( { ...this.state, listMode: 'thumbs' } )
     }
 
 	render() {
@@ -16,26 +47,26 @@ class AnnotationListView extends Component {
 
         let annoList = [];
         for( let annotation of Object.values(this.props.annotations.annotations) ) {
-            annoList.push(<AnnotationCard key={`anno-${annotation.id}`} annotation={annotation}></AnnotationCard>);
+            if( this.state.listMode === 'cards' ) {
+                annoList.push(<AnnotationCard history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationCard>);            
+            }
+            else {
+                annoList.push(<AnnotationThumb history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationThumb>)
+            }     
         }
 
         return (
             <div id="annotation-list-view">
                 <Paper className="titlebar">
                     <div className="list-mode-buttons">
-                        <Icon.ThLarge size="2x"/> | <Icon.Th size="2x"/>
+                        <span title="Display Cards" onClick={this.onDisplayCards}><Icon.ThLarge size="2x"/></span>
+                        <span className="seperator"> | </span>
+                        <span title="Display Thumbnails" onClick={this.onDisplayThumbs}><Icon.Th size="2x"/></span>
                     </div>
                     <Typography variant='h4' gutterBottom>Annotations of BnF Ms. Fr. 640</Typography>
                 </Paper>
                 <div className="contentArea">
-                    <Paper className="tocbar">
-                        <Typography variant='h6' gutterBottom>Making &amp; Knowing Workshops</Typography>
-                        <Typography>Metal Working and Moldmaking</Typography>
-                        <Typography>Colormaking</Typography>
-                        <Typography>Practical Knowledge</Typography>
-                        <Typography>Ephemeral Art</Typography>
-                        <Typography>Print and Impression</Typography>
-                    </Paper>
+                    { this.renderTableOfContents() }
                     <Paper className="anno-list">
                         { annoList }
                     </Paper>   
