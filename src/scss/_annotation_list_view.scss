@@ -10,14 +10,20 @@
         }
 
         .list-mode-buttons {
-            margin: 16px;
+            margin: 10px;
             position: absolute;
             right: 20px;
+
+            span {
+                color: black;
+            }
         }    
     }
     
     .seperator {
-        font-size: 28pt;
+        display: inline;
+        border: 2px solid grey;
+        margin: 6px;
     }
 
     .contentArea {

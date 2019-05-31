@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, IconButton } from '@material-ui/core';
 import { Icon } from "react-font-awesome-5";
 import { dispatchAction } from '../../model/ReduxStore';
 
@@ -59,9 +59,9 @@ class AnnotationListView extends Component {
             <div id="annotation-list-view">
                 <Paper className="titlebar">
                     <div className="list-mode-buttons">
-                        <span title="Display Cards" onClick={this.onDisplayCards}><Icon.ThLarge size="2x"/></span>
-                        <span className="seperator"> | </span>
-                        <span title="Display Thumbnails" onClick={this.onDisplayThumbs}><Icon.Th size="2x"/></span>
+                        <IconButton onClick={this.onDisplayCards}><span title="Display Cards" ><Icon.ThLarge /></span></IconButton>   
+                        <div className="seperator"></div>
+                        <IconButton onClick={this.onDisplayThumbs}><span title="Display Thumbnails" ><Icon.Th /></span></IconButton>   
                     </div>
                     <Typography variant='h4' gutterBottom>Annotations of BnF Ms. Fr. 640</Typography>
                 </Paper>

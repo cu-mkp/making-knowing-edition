@@ -345,11 +345,15 @@ figure.current {
     #annotation-list-view .titlebar h4 {
       padding: 16px; }
     #annotation-list-view .titlebar .list-mode-buttons {
-      margin: 16px;
+      margin: 10px;
       position: absolute;
       right: 20px; }
+      #annotation-list-view .titlebar .list-mode-buttons span {
+        color: black; }
   #annotation-list-view .seperator {
-    font-size: 28pt; }
+    display: inline;
+    border: 2px solid grey;
+    margin: 6px; }
   #annotation-list-view .contentArea {
     display: flex; }
     #annotation-list-view .contentArea .tocbar {
