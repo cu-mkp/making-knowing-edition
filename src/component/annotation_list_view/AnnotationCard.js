@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Parser from 'html-react-parser';
-import Typography from '@material-ui/core/Typography';
+import {Typography, Button} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import { CardContent, CardActionArea } from '@material-ui/core';
+import { CardContent, Menu, MenuItem } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 
@@ -14,14 +14,22 @@ const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed port
 
 class AnnotationCard extends Component {
 
-    renderEntryLinks(entryIDs) {
+    constructor() {
+        super()
+
+        this.state = {
+            anchorEl: null
+        }
+    }
+
+    renderEntryLinks() {
+        const {entryIDs} = this.props.annotation
+
         let links = [];
         let idList = entryIDs.split(';');
-        let lastID = idList.length > 0 ? idList[idList.length-1] : null
         for( let entryID of idList ) {
             let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
-            const comma = (entryID !== lastID) ? ',' : ''
-            links.push(<Link key={entryID} to={`/folios/${folioID}`}>{entryID}{comma}</Link>);
+            links.push( <MenuItem onClick={this.handleClose}> <Link key={entryID} to={`/folios/${folioID}`}>{entryID}</Link></MenuItem>);
         }
         return links;        
     } 
@@ -57,6 +65,31 @@ class AnnotationCard extends Component {
         return authorInfoDivs
     }
 
+    renderFolioDropDown() {
+        const {anchorEl} = this.state
+        
+        return (
+            <div style={{ display: 'inline-block'}}>
+                <Button
+                    onClick={this.handleClick}
+                >
+                    Go to Folio
+                </Button>
+                <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
+                    { this.renderEntryLinks() }
+                </Menu>            
+            </div>
+        )
+    }
+
+    handleClick = (event) => {
+        this.setState({ ...this.state, anchorEl: event.currentTarget })
+    }
+    
+    handleClose = () => {
+        this.setState({ ...this.state, anchorEl: null })
+    }
+
     render() {
         const { annotation } = this.props
 
@@ -64,26 +97,23 @@ class AnnotationCard extends Component {
 
         return (
             <Card className='anno'>
-                <CardActionArea 
-                    onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}
-                >
-                    <CardHeader 
-                        title={annotation.name} 
-                        subheader={this.renderByline(annotation.authors)}
-                    >            
-                    </CardHeader>
-                    <CardMedia style={{height: 200}} image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
-                    </CardMedia>
-                    </CardActionArea>
-                    <CardContent>
-                        <Typography className='abstract'>{Parser(abstract)}</Typography>
-                        <div className='details'>
-                            {/* <Link to={`/annotations/${annotation.id}`}>View</Link> */}
-                            <Typography className='entries'>(<i>{this.renderEntryLinks(annotation.entryIDs)}</i>)<span className='status-indicator icon fa fa-circle'></span></Typography>      
-                            <Typography className='metadata'>{annotation.theme}, {annotation.semester} {annotation.year}</Typography>
-                        </div>
-                    </CardContent>
+                <CardHeader 
+                    title={annotation.name} 
+                    subheader={this.renderByline(annotation.authors)}
+                >            
+                </CardHeader>
+                <CardMedia style={{height: 200}} image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
+                </CardMedia>
+                <CardContent>
+                    <Typography className='abstract'>{Parser(abstract)}</Typography>
+                    <div className='details'>
+                        <Button onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}>Read Annotation</Button>
+                        { this.renderFolioDropDown() }
+                    </div>
+                </CardContent>
             </Card>
+
+            // <span className='status-indicator icon fa fa-circle'></span>
         );
     }
 }

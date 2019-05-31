@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
-import { CardContent, CardActionArea } from '@material-ui/core';
-import CardHeader from '@material-ui/core/CardHeader';
+import { CardActionArea } from '@material-ui/core';
 import CardMedia from '@material-ui/core/CardMedia';
 
 class AnnotationThumb extends Component {

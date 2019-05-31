@@ -378,7 +378,8 @@ figure.current {
         #annotation-list-view .contentArea .anno-list .anno .entries {
           float: right; }
         #annotation-list-view .contentArea .anno-list .anno .details {
-          margin-top: 30px; }
+          margin-bottom: 10px;
+          float: right; }
       #annotation-list-view .contentArea .anno-list .annothumb {
         margin-top: 20px;
         margin-left: 20px;

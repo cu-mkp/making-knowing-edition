@@ -13,7 +13,7 @@ class AnnotationListView extends Component {
         super()
 
         this.state = {
-            listMode: 'thumbs'
+            listMode: 'cards'
         }
     }
 
