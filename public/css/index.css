@@ -340,23 +340,31 @@ figure.current {
 
 #annotation-list-view {
   margin: 10px; }
-  #annotation-list-view .titlebar h4 {
-    padding: 16px; }
+  #annotation-list-view .titlebar {
+    margin-top: 90px; }
+    #annotation-list-view .titlebar h4 {
+      padding: 16px; }
+    #annotation-list-view .titlebar .list-mode-buttons {
+      margin: 16px;
+      position: absolute;
+      right: 20px; }
   #annotation-list-view .seperator {
     font-size: 28pt; }
-  #annotation-list-view .titlebar .list-mode-buttons {
-    margin: 16px;
-    position: absolute;
-    right: 20px; }
   #annotation-list-view .contentArea {
     display: flex; }
     #annotation-list-view .contentArea .tocbar {
-      padding: 5px;
-      min-width: 200px; }
+      padding: 10px;
+      min-width: 250px; }
+      #annotation-list-view .contentArea .tocbar .category {
+        margin-left: 5px;
+        margin-top: 20px; }
     #annotation-list-view .contentArea .anno-list {
       display: flex;
       flex-wrap: wrap;
-      background: #eee; }
+      background: #eee;
+      overflow-y: scroll;
+      height: calc( 100vh - 230px);
+      padding-right: 20px; }
       #annotation-list-view .contentArea .anno-list .anno {
         margin-top: 20px;
         margin-left: 20px;

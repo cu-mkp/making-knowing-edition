@@ -18,18 +18,18 @@ class AnnotationListView extends Component {
     }
 
     componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
     }
 
     renderTableOfContents() {
         return (
             <Paper className="tocbar">
                 <Typography variant='h6' gutterBottom>Making &amp; Knowing Workshops</Typography>
-                <Typography>Metal Working and Moldmaking</Typography>
-                <Typography>Colormaking</Typography>
-                <Typography>Practical Knowledge</Typography>
-                <Typography>Ephemeral Art</Typography>
-                <Typography>Print and Impression</Typography>
+                <Typography className="category" >Metal Working and Moldmaking</Typography>
+                <Typography className="category">Colormaking</Typography>
+                <Typography className="category">Practical Knowledge</Typography>
+                <Typography className="category">Ephemeral Art</Typography>
+                <Typography className="category">Print and Impression</Typography>
             </Paper>
         );
     }

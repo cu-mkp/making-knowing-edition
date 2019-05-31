@@ -1,33 +1,45 @@
 #annotation-list-view {
 
     margin: 10px;
-    
-    .titlebar h4 {
-        padding: 16px;
-    }
 
+    .titlebar {
+        margin-top: 90px;
+
+        h4 {
+            padding: 16px;
+        }
+
+        .list-mode-buttons {
+            margin: 16px;
+            position: absolute;
+            right: 20px;
+        }    
+    }
+    
     .seperator {
         font-size: 28pt;
-    }
-
-    .titlebar .list-mode-buttons {
-        margin: 16px;
-        position: absolute;
-        right: 20px;
     }
 
     .contentArea {
         display: flex;
 
         .tocbar {
-            padding: 5px;
-            min-width: 200px;
+            padding: 10px;
+            min-width: 250px;
+            
+            .category {
+                margin-left: 5px;
+                margin-top: 20px;
+            }
         }
 
         .anno-list {
             display: flex;
             flex-wrap: wrap;
             background:#eee;
+            overflow-y: scroll;
+            height: calc( 100vh - 230px);
+            padding-right: 20px;
 
             .anno {
                 
