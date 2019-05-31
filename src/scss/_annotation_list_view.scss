@@ -39,53 +39,68 @@
             }
         }
 
-        .anno-list {
-            display: flex;
-            flex-wrap: wrap;
-            background:#eee;
+        .sections {
             overflow-y: scroll;
             height: calc( 100vh - 230px);
-            padding-right: 20px;
 
-            .anno {
+            .section {
                 
-                margin-top: 20px;
-                margin-left: 20px;
-                max-width: 450px;
-                .status-indicator {
-                    color: red;
+                .section-header {
+                    .title {
+                        padding: 5px;
+                        color: white;
+                        background: black;    
+                    }
+                    width: 100%;
                 }
         
-                .entries {
-                    float: right;
-                }
-                
-                .details {
-                    margin-bottom: 10px;
-                    float: right;
-                }
-            }       
-            
-            .annothumb {
-                margin-top: 20px;
-                margin-left: 20px;
-                max-width: 225px;
-                min-width: 225px;
-
-                .thumb-media {
-                    height: 200px;
+                .annotations {
                     display: flex;
-                    align-items: flex-end;
-    
-                    .title {
-                        background: grey;
-                        width: 100%;
-                        padding: 8px;
-                        color: white
-                    }                
-                }
-            }        
+                    flex-wrap: wrap;
+                    background:#eee;
+                    padding-right: 20px;        
+                    padding-bottom: 20px;
 
+                    .anno {                        
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        max-width: 450px;
+
+                        .status-indicator {
+                            color: red;
+                        }
+                
+                        .entries {
+                            float: right;
+                        }
+                        
+                        .details {
+                            margin-bottom: 10px;
+                            float: right;
+                        }
+                    }       
+                    
+                    .annothumb {
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        max-width: 225px;
+                        min-width: 225px;
+        
+                        .thumb-media {
+                            height: 200px;
+                            display: flex;
+                            align-items: flex-end;
+            
+                            .title {
+                                background: grey;
+                                width: 100%;
+                                padding: 8px;
+                                color: white
+                            }                
+                        }
+                    }        
+                }
+            }
         }
     }
 }

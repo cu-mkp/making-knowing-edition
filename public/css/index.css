@@ -362,38 +362,46 @@ figure.current {
       #annotation-list-view .contentArea .tocbar .category {
         margin-left: 5px;
         margin-top: 20px; }
-    #annotation-list-view .contentArea .anno-list {
-      display: flex;
-      flex-wrap: wrap;
-      background: #eee;
+    #annotation-list-view .contentArea .sections {
       overflow-y: scroll;
-      height: calc( 100vh - 230px);
-      padding-right: 20px; }
-      #annotation-list-view .contentArea .anno-list .anno {
-        margin-top: 20px;
-        margin-left: 20px;
-        max-width: 450px; }
-        #annotation-list-view .contentArea .anno-list .anno .status-indicator {
-          color: red; }
-        #annotation-list-view .contentArea .anno-list .anno .entries {
-          float: right; }
-        #annotation-list-view .contentArea .anno-list .anno .details {
-          margin-bottom: 10px;
-          float: right; }
-      #annotation-list-view .contentArea .anno-list .annothumb {
-        margin-top: 20px;
-        margin-left: 20px;
-        max-width: 225px;
-        min-width: 225px; }
-        #annotation-list-view .contentArea .anno-list .annothumb .thumb-media {
-          height: 200px;
-          display: flex;
-          align-items: flex-end; }
-          #annotation-list-view .contentArea .anno-list .annothumb .thumb-media .title {
-            background: grey;
-            width: 100%;
-            padding: 8px;
-            color: white; }
+      height: calc( 100vh - 230px); }
+      #annotation-list-view .contentArea .sections .section .section-header {
+        width: 100%; }
+        #annotation-list-view .contentArea .sections .section .section-header .title {
+          padding: 5px;
+          color: white;
+          background: black; }
+      #annotation-list-view .contentArea .sections .section .annotations {
+        display: flex;
+        flex-wrap: wrap;
+        background: #eee;
+        padding-right: 20px;
+        padding-bottom: 20px; }
+        #annotation-list-view .contentArea .sections .section .annotations .anno {
+          margin-top: 20px;
+          margin-left: 20px;
+          max-width: 450px; }
+          #annotation-list-view .contentArea .sections .section .annotations .anno .status-indicator {
+            color: red; }
+          #annotation-list-view .contentArea .sections .section .annotations .anno .entries {
+            float: right; }
+          #annotation-list-view .contentArea .sections .section .annotations .anno .details {
+            margin-bottom: 10px;
+            float: right; }
+        #annotation-list-view .contentArea .sections .section .annotations .annothumb {
+          margin-top: 20px;
+          margin-left: 20px;
+          max-width: 225px;
+          min-width: 225px; }
+          #annotation-list-view .contentArea .sections .section .annotations .annothumb .thumb-media {
+            height: 200px;
+            display: flex;
+            align-items: flex-end; }
+            #annotation-list-view .contentArea .sections .section .annotations .annothumb .thumb-media .title {
+              background: grey;
+              width: 100%;
+              padding: 8px;
+              color: white; }
 
 #entry-list-view {
   margin: 80px;

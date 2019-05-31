@@ -21,10 +21,11 @@ class AnnotationListView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
     }
 
-    renderTableOfContents() {
+    renderTableOfContents(sections) {
+        // TODO parse sections and make links to sections
         return (
             <Paper className="tocbar">
-                <Typography variant='h6' gutterBottom>Making &amp; Knowing Workshops</Typography>
+                <Typography variant='h6' gutterBottom>Making &amp; Knowing Workshop Themes</Typography>
                 <Typography className="category" >Metal Working and Moldmaking</Typography>
                 <Typography className="category">Colormaking</Typography>
                 <Typography className="category">Practical Knowledge</Typography>
@@ -42,18 +43,58 @@ class AnnotationListView extends Component {
         this.setState( { ...this.state, listMode: 'thumbs' } )
     }
 
-	render() {
-        if( !this.props.annotations.loaded ) return null;
-
-        let annoList = [];
-        for( let annotation of Object.values(this.props.annotations.annotations) ) {
+    renderSection(section) {
+        let annoComponents = []
+        for( let annotation of section.annotations ) {
             if( this.state.listMode === 'cards' ) {
-                annoList.push(<AnnotationCard history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationCard>);            
+                annoComponents.push(<AnnotationCard history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationCard>);            
             }
             else {
-                annoList.push(<AnnotationThumb history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationThumb>)
+                annoComponents.push(<AnnotationThumb history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationThumb>)
             }     
         }
+
+        return (
+            <div key={`section-${section.name}`} className="section">
+                <div className="section-header">
+                    <Typography className="title">{section.name}</Typography>
+                </div>
+                <div className="annotations">
+                    { annoComponents }
+                </div>
+            </div> 
+        )
+    }
+
+    renderSections(sections) {
+        let sectionComponents = []
+        for( let section of Object.values(sections) ) {
+            const sectionComponent = this.renderSection(section)
+            sectionComponents.push(sectionComponent)
+        }
+
+        return (
+            <div className="sections">
+                { sectionComponents }
+            </div>
+        )
+    }
+
+	render() {
+        if( !this.props.annotations.loaded ) return null;
+        
+        const annotations = Object.values(this.props.annotations.annotations)
+
+        let sections = {}
+        for( let annotation of annotations ) {
+            if( !sections[annotation.theme] ) {
+                sections[annotation.theme] = { name: annotation.theme, annotations: [ annotation ] }
+            } else {
+                sections[annotation.theme].annotations.push( annotation )
+            }
+        }
+
+        // TODO sort annotations alpabetically for each section, turn sections into a list
 
         return (
             <div id="annotation-list-view">
@@ -66,10 +107,8 @@ class AnnotationListView extends Component {
                     <Typography variant='h4' gutterBottom>Annotations of BnF Ms. Fr. 640</Typography>
                 </Paper>
                 <div className="contentArea">
-                    { this.renderTableOfContents() }
-                    <Paper className="anno-list">
-                        { annoList }
-                    </Paper>   
+                    { this.renderTableOfContents(sections) }
+                    { this.renderSections(sections) }
                 </div>
             </div>
         );
