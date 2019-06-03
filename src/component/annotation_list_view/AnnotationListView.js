@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Paper, Typography, IconButton } from '@material-ui/core';
 import { Icon } from "react-font-awesome-5";
+import { Link } from 'react-scroll';
 import { dispatchAction } from '../../model/ReduxStore';
 
 import AnnotationCard from './AnnotationCard';
@@ -22,11 +23,16 @@ class AnnotationListView extends Component {
     }
 
     renderTableOfContents(sectionList) {
-        // TODO parse sections and make links to sections
         
         const sectionHeadings = []
         for( let section of sectionList ) {
-            sectionHeadings.push( <Typography key={`section-heading-${section.name}`}  className="category" >{section.name}</Typography> )
+            sectionHeadings.push( 
+                <Link to={section.id} containerId="sections-area" smooth="true" offset={-175}>
+                    <Typography key={`nav-${section.id}`}  className="category" >
+                        {section.name}              
+                    </Typography> 
+                </Link>      
+            )
         }
 
         return (
@@ -59,7 +65,7 @@ class AnnotationListView extends Component {
         }
 
         return (
-            <div key={`section-${section.name}`} className="section">
+            <div id={section.id} key={section.id} className="section">
                 <div className="section-header">
                     <Typography className="title">{section.name}</Typography>
                 </div>
@@ -78,7 +84,7 @@ class AnnotationListView extends Component {
         }
 
         return (
-            <div className="sections">
+            <div id="sections-area" className="sections">
                 { sectionComponents }
             </div>
         )

@@ -33,7 +33,9 @@ AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( stat
     
     // sort the sections and the annotations in each section
     let annotationSections = Object.values(sections).sort(alphaSort);
+    let i = 0
     for( let section of annotationSections ) {
+        section.id = `section-${i++}`
         section.annotations = section.annotations.sort(alphaSort);
     }
 
