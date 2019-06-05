@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
-import { CardContent, CardActionArea, Badge } from '@material-ui/core';
+import {Typography, Card, Chip, Avatar } from '@material-ui/core';
+import { CardContent, CardActionArea } from '@material-ui/core';
 
 import { dispatchAction } from '../model/ReduxStore';
 
@@ -30,7 +28,7 @@ class EntryListView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
-    renderEntry(entry) {        
+    renderEntryCard(entry) {        
         const heading = `${entry.heading_tcn} / ${entry.heading_tl}`.replace(/[@+]/g,'');
 
         let tags = [];
@@ -39,7 +37,7 @@ class EntryListView extends Component {
                 tags.push(tagNames[tag])
             }
         }
-        let mentionRow = ( tags.length > 0 ) ? <p>Mentions: {tags.join(' ')} </p> : '';
+        let mentionRow = ( tags.length > 0 ) ? this.renderEntryTypes(tags) : '';
 
         // [title tcn]/[title tl]- [folio # start]
         // [category 1] | [category 2]
@@ -57,55 +55,43 @@ class EntryListView extends Component {
                         <Typography><b>{`${heading} - ${entry.folio}`}</b></Typography>
                         <Typography>Moldmaking and Metalworking</Typography>
                         <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
+                        <Typography>{mentionRow}</Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>
         )
-
-        // return (
-        // <li key={`entry-${entry.id}`}>
-        //     <h3>{heading}</h3>
-        //     <p>Folio: {entry.folio}</p>
-        //     {mentionRow}
-        // </li>
-        // );
     }
 
-    renderTagNav() {
-        return ( 
-            <div className="tag-nav">
-                <Badge badgeContent={888} color="primary">
-                    <Chip className="tag-nav-item" label="Animal"></Chip>
-                </Badge>
-                <Chip className="tag-nav-item" label="Bodypart (888)"></Chip>
-                <Chip className="tag-nav-item" label="Environment (888)"></Chip>
-                <Chip className="tag-nav-item" label="Material (888)"></Chip>
-                <Chip className="tag-nav-item" label="Measurement (888)"></Chip>
-                <Chip className="tag-nav-item" label="Place (888)"></Chip>
-                <Chip className="tag-nav-item" label="Plant (888)"></Chip>
-                <Chip className="tag-nav-item" label="Profession (888)"></Chip>
-                <Chip className="tag-nav-item" label="Tool (888)"></Chip>
-            </div>
-        );
+    onClick = () => {
+        
+    }
+
+    renderEntryTypes(tags) {
+        let chips = []
+        for( let tagName of tags) {
+            chips.push(<Chip
+                className="tag-nav-item"
+                key={`chip-${tagName}`}
+                avatar={ <Avatar>55</Avatar> }
+                onClick={this.onClick}
+                label={tagName}
+            />)
+        }
+
+        return(
+           chips
+        )
     }
 
     renderEntryList() {
-        let entries = this.props.entries.entries.sort(function(a, b) {
-            var textA = a.heading_tcn.toUpperCase().replace(/[@+\s]/g,'');
-            var textB = b.heading_tcn.toUpperCase().replace(/[@+\s]/g,'');
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        });;
-
-        let entryList = [];
-        for( let entry of entries ) {
-            if( entry.heading_tcn !== '' && entry.heading_tl !== '') {
-                entryList.push( this.renderEntry(entry) );
-            }
+        let entryCards = [];
+        for( let entry of this.props.entries.entryList ) {
+            entryCards.push( this.renderEntryCard(entry) );
         }
 
         return (
             <ul className='entry-list'>
-                { entryList }
+                { entryCards }
             </ul>
         );
     }
@@ -117,8 +103,7 @@ class EntryListView extends Component {
             <div id="entry-list-view">
                 <div className='entries'>
                     <Typography variant='h3' gutterBottom>Entries</Typography>
-                    <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque.</Typography>
-                    {/* { this.renderTagNav() } */}
+                    { this.renderEntryTypes(Object.values(tagNames)) }
                     { this.renderEntryList() }
                 </div>
             </div>

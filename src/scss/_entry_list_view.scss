@@ -1,7 +1,7 @@
 #entry-list-view {
 
     margin: 80px;
-    max-width: 800px;
+    max-width: 500px;
 
     .entry {
         margin-top: 10px;
@@ -13,9 +13,5 @@
 
     .tag-nav-item {
         margin: 3px;
-        border: 1px solid gray;
-        padding: 5px;
-        width: 150px;
-        background: #ccc;
     }
 }
