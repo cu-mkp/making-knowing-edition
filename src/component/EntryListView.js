@@ -29,52 +29,41 @@ class EntryListView extends Component {
     }
 
     renderEntryCard(entry) {        
-        const heading = `${entry.heading_tcn} / ${entry.heading_tl}`.replace(/[@+]/g,'');
-
         let tags = [];
         for( let tag of Object.keys(tagNames) ) {
             if( entry.mentions[tag] > 0 ) {
-                tags.push(tagNames[tag])
+                tags.push({ name: tagNames[tag], count: entry.mentions[tag]})
             }
         }
         let mentionRow = ( tags.length > 0 ) ? this.renderEntryTypes(tags) : '';
-
-        // [title tcn]/[title tl]- [folio # start]
-        // [category 1] | [category 2]
-        // [term type 1 unique terms] | [term type 2 unique terms] | [term type 3 unique terms] | [term type 4 unique terms]...
-        // [Annotations: [title]]
 
         const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
 
         return(
             <Card className="entry" key={`entry-${entry.id}`}>
-                <CardActionArea
-                    onClick={e => {this.props.history.push(folioURL)}}
-                >
-                    <CardContent>
-                        <Typography><b>{`${heading} - ${entry.folio}`}</b></Typography>
-                        <Typography>Moldmaking and Metalworking</Typography>
-                        <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
-                        <Typography>{mentionRow}</Typography>
-                    </CardContent>
-                </CardActionArea>
+                <CardContent>
+                    <Typography onClick={e => {this.props.history.push(folioURL)}} variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography>
+                    <Typography>Moldmaking and Metalworking</Typography>
+                    <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
+                    <div className="entry-chips">{mentionRow}</div>
+                </CardContent>
             </Card>
         )
     }
 
     onClick = () => {
-        
+        // TODO
     }
 
     renderEntryTypes(tags) {
         let chips = []
-        for( let tagName of tags) {
+        for( let tag of tags) {
             chips.push(<Chip
                 className="tag-nav-item"
-                key={`chip-${tagName}`}
-                avatar={ <Avatar>55</Avatar> }
+                key={`chip-${tag.name}`}
+                avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
                 onClick={this.onClick}
-                label={tagName}
+                label={tag.name}
             />)
         }
 
@@ -99,11 +88,16 @@ class EntryListView extends Component {
 	render() {
         if( !this.props.entries.loaded ) return null;
     
+        let tags = []
+        for( let tagName of Object.values(tagNames) ) {
+            tags.push({ name: tagName, count: 0 })
+        }
+
         return (
             <div id="entry-list-view">
                 <div className='entries'>
                     <Typography variant='h3' gutterBottom>Entries</Typography>
-                    { this.renderEntryTypes(Object.values(tagNames)) }
+                    { this.renderEntryTypes(tags) }
                     { this.renderEntryList() }
                 </div>
             </div>

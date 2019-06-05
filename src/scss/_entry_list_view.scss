@@ -1,10 +1,14 @@
 #entry-list-view {
 
     margin: 80px;
-    max-width: 500px;
+    max-width: 700px;
 
     .entry {
         margin-top: 10px;
+
+        .entry-chips {
+            margin-top: 10px;
+        }
     }
 
     .tag-nav {

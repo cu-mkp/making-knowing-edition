@@ -405,9 +405,11 @@ figure.current {
 
 #entry-list-view {
   margin: 80px;
-  max-width: 500px; }
+  max-width: 700px; }
   #entry-list-view .entry {
     margin-top: 10px; }
+    #entry-list-view .entry .entry-chips {
+      margin-top: 10px; }
   #entry-list-view .tag-nav {
     margin-top: 30px; }
   #entry-list-view .tag-nav-item {
