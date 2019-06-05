@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Typography, Card, Chip, Avatar } from '@material-ui/core';
-import { CardContent, CardActionArea } from '@material-ui/core';
+import { CardContent, Link } from '@material-ui/core';
 
 import { dispatchAction } from '../model/ReduxStore';
 
 const tagNames = {
     "al": "animal",
     "bp": "bodypart",
-    "cn": "cn",
+    "cn": "currency",
     "env": "environment",
     "m": "material",
     "ms": "measurement",
     "pa": "place",
     "pl": "plant",
-    "pn": "pn",
+    "pn": "personal name",
     "pro": "profession",
-    "sn": "sn",
+    "sn": "sensory",
     "tl": "tool",
-    "md": "md",
-    "mu": "mu"
+    "md": "medical",
+    "mu": "music"
 };
 
 class EntryListView extends Component {
@@ -42,7 +42,7 @@ class EntryListView extends Component {
         return(
             <Card className="entry" key={`entry-${entry.id}`}>
                 <CardContent>
-                    <Typography onClick={e => {this.props.history.push(folioURL)}} variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography>
+                    <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
                     <Typography>Moldmaking and Metalworking</Typography>
                     <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
                     <div className="entry-chips">{mentionRow}</div>
@@ -52,10 +52,12 @@ class EntryListView extends Component {
     }
 
     onClick = () => {
-        // TODO
+        // TODO 
+        // determine which tag was clicked on and toggle it
     }
 
     renderEntryTypes(tags) {
+        // need to display toggle state
         let chips = []
         for( let tag of tags) {
             chips.push(<Chip
