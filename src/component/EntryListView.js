@@ -79,7 +79,7 @@ class EntryListView extends Component {
         return (
             <div id="entry-list-view">
                 <div className='entries'>
-                    <Typography variant='h3' gutterBottom>Entries</Typography>
+                    <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
                     { this.renderEntryTypes(tags) }
                     <ReactList
                         itemRenderer={this.renderEntryCard}
