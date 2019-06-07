@@ -8,7 +8,7 @@ import SearchView from './SearchView';
 import ContentView from './ContentView';
 import AnnotationView from './AnnotationView';
 import EntryListView from './EntryListView';
-import AnnotationListView from './AnnotationListView';
+import AnnotationListView from './annotation_list_view/AnnotationListView';
 import Search from './Search';
 import RouteListener from './RouteListener';
 

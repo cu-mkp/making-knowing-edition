@@ -2,31 +2,34 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom'
 import Parser from 'html-react-parser';
-import Typography from '@material-ui/core/Typography';
+import {Typography, Button} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import { CardContent, CardActionArea } from '@material-ui/core';
+import { CardContent, Menu, MenuItem } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 
-import { dispatchAction } from '../model/ReduxStore';
-import CustomizedTooltops from './CustomizedTooltops';
+import CustomizedTooltops from '../CustomizedTooltops';
 
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex."
 
-class AnnotationListView extends Component {
+class AnnotationCard extends Component {
 
-    componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+    constructor() {
+        super()
+
+        this.state = {
+            anchorEl: null
+        }
     }
 
-    renderEntryLinks(entryIDs) {
+    renderEntryLinks() {
+        const {entryIDs} = this.props.annotation
+
         let links = [];
         let idList = entryIDs.split(';');
-        let lastID = idList.length > 0 ? idList[idList.length-1] : null
         for( let entryID of idList ) {
             let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
-            const comma = (entryID !== lastID) ? ',' : ''
-            links.push(<Link key={entryID} to={`/folios/${folioID}`}>{entryID}{comma}</Link>);
+            links.push( <MenuItem  key={entryID} onClick={this.handleClose}> <Link to={`/folios/${folioID}`}><Typography>{folioID}</Typography></Link></MenuItem>);
         }
         return links;        
     } 
@@ -62,14 +65,38 @@ class AnnotationListView extends Component {
         return authorInfoDivs
     }
 
-    renderAnnotation(annotation) {
+    renderFolioDropDown() {
+        const {anchorEl} = this.state
+        
+        return (
+            <div style={{ display: 'inline-block'}}>
+                <Button
+                    onClick={this.handleClick}
+                >
+                    View Folio
+                </Button>
+                <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
+                    { this.renderEntryLinks() }
+                </Menu>            
+            </div>
+        )
+    }
+
+    handleClick = (event) => {
+        this.setState({ ...this.state, anchorEl: event.currentTarget })
+    }
+    
+    handleClose = () => {
+        this.setState({ ...this.state, anchorEl: null })
+    }
+
+    render() {
+        const { annotation } = this.props
+
         let abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
 
         return (
-        <Card className='anno' key={`anno-${annotation.id}`}>
-            <CardActionArea 
-                onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}
-            >
+            <Card className='anno'>
                 <CardHeader 
                     title={annotation.name} 
                     subheader={this.renderByline(annotation.authors)}
@@ -77,48 +104,22 @@ class AnnotationListView extends Component {
                 </CardHeader>
                 <CardMedia style={{height: 200}} image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
                 </CardMedia>
-                </CardActionArea>
                 <CardContent>
                     <Typography className='abstract'>{Parser(abstract)}</Typography>
                     <div className='details'>
-                        {/* <Link to={`/annotations/${annotation.id}`}>View</Link> */}
-                        <Typography className='entries'>(<i>{this.renderEntryLinks(annotation.entryIDs)}</i>)<span className='status-indicator icon fa fa-circle'></span></Typography>      
-                        <Typography className='metadata'>{annotation.theme}, {annotation.semester} {annotation.year}</Typography>
+                        <Button onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}>Read Annotation</Button>
+                        { this.renderFolioDropDown() }
                     </div>
                 </CardContent>
-        </Card>
+            </Card>
+
+            // <span className='status-indicator icon fa fa-circle'></span>
         );
     }
-
-    renderAnnotationList() {
-        let annoList = [];
-        for( let annotation of Object.values(this.props.annotations.annotations) ) {
-            annoList.push( this.renderAnnotation(annotation) );
-        }
-
-        return (
-            <div className="annotationList">
-                { annoList }
-            </div>
-        );
-    }
-
-	render() {
-        if( !this.props.annotations.loaded ) return null;
-    
-        return (
-            <div id="annotation-list-view">
-                <Typography variant='h3' gutterBottom>Annotations of BnF Ms. Fr. 640</Typography>
-                <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque.</Typography>
-                { this.renderAnnotationList() }
-            </div>
-        );
-	}
 }
 
 function mapStateToProps(state) {
     return {
-        annotations: state.annotations,
         authors: state.authors
     };
 }
@@ -132,5 +133,4 @@ function sliceZeros(paddedID) {
 }
 
 
-// export default connect(mapStateToProps)(withStyles(AnnotationListView));
-export default connect(mapStateToProps)(AnnotationListView);
+export default connect(mapStateToProps)(AnnotationCard);

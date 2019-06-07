@@ -1,32 +1,106 @@
 #annotation-list-view {
 
-    margin: 30px 20% 80px 20%;
-    max-width: 66%;
-    line-height: 2;
+    margin: 10px;
 
-    .annotationList {
-        max-width: 600px;
+    .titlebar {
+        margin-top: 90px;
+
+        h4 {
+            padding: 16px;
+        }
+
+        .list-mode-buttons {
+            margin: 10px;
+            position: absolute;
+            right: 20px;
+
+            span {
+                color: black;
+            }
+        }    
+    }
+    
+    .seperator {
+        display: inline;
+        border: 2px solid grey;
+        margin: 6px;
     }
 
-    .anno {
+    .contentArea {
+        display: flex;
 
-        margin-top: 30px;
-
-        // .title a {
-        //     padding-left: 0px;
-        // }
-
-        .status-indicator {
-            color: red;
+        .tocbar {
+            padding: 10px;
+            min-width: 250px;
+            
+            .category {
+                margin-left: 5px;
+                margin-top: 20px;
+            }
         }
 
-        .entries {
-            float: right;
-        }
+        .sections {
+            overflow-y: scroll;
+            height: calc( 100vh - 230px);
+
+            .section {
+                
+                .section-header {
+                    .title {
+                        padding: 5px;
+                        color: white;
+                        background: black;    
+                    }
+                    width: 100%;
+                }
         
-        .details {
-            margin-top: 30px;
+                .annotations {
+                    display: flex;
+                    flex-wrap: wrap;
+                    background:#eee;
+                    padding-right: 20px;        
+                    padding-bottom: 20px;
+
+                    .anno {                        
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        max-width: 450px;
+
+                        .status-indicator {
+                            color: red;
+                        }
+                
+                        .entries {
+                            float: right;
+                        }
+                        
+                        .details {
+                            margin-bottom: 10px;
+                            float: right;
+                        }
+                    }       
+                    
+                    .annothumb {
+                        margin-top: 20px;
+                        margin-left: 20px;
+                        max-width: 225px;
+                        min-width: 225px;
+        
+                        .thumb-media {
+                            height: 200px;
+                            display: flex;
+                            align-items: flex-end;
+            
+                            .title {
+                                background: grey;
+                                width: 100%;
+                                padding: 8px;
+                                color: white
+                            }                
+                        }
+                    }        
+                }
+            }
         }
     }
-
 }

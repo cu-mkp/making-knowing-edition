@@ -104,10 +104,6 @@
         display: inline;
     }
 
-	#content {
-		margin-top: 5rem;
-	}
-
 	#navigation {
 		background-color: blue;
 		height: 4.4rem;
@@ -163,6 +159,7 @@
 	font-size: 0.9rem;
 	#content {
 		line-height: 1.2rem;
+		margin-top: 5rem;	
 	}
 	overflow: hidden;	
 
