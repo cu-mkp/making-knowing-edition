@@ -22,17 +22,18 @@ class AnnotationCard extends Component {
         }
     }
 
-    renderEntryLinks() {
-        const {entryIDs} = this.props.annotation
+    // TODO remove or refactor display of links
+    // renderEntryLinks() {
+    //     const {entryIDs} = this.props.annotation
 
-        let links = [];
-        let idList = entryIDs.split(';');
-        for( let entryID of idList ) {
-            let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
-            links.push( <MenuItem  key={entryID} onClick={this.handleClose}> <Link to={`/folios/${folioID}`}><Typography>{folioID}</Typography></Link></MenuItem>);
-        }
-        return links;        
-    } 
+    //     let links = [];
+    //     let idList = entryIDs.split(';');
+    //     for( let entryID of idList ) {
+    //         let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
+    //         links.push( <MenuItem  key={entryID} onClick={this.handleClose}> <Link to={`/folios/${folioID}`}><Typography>{folioID}</Typography></Link></MenuItem>);
+    //     }
+    //     return links;        
+    // } 
 
     renderByline( annotationAuthors ) {
         const { authors } = this.props.authors
@@ -65,23 +66,6 @@ class AnnotationCard extends Component {
         return authorInfoDivs
     }
 
-    renderFolioDropDown() {
-        const {anchorEl} = this.state
-        
-        return (
-            <div style={{ display: 'inline-block'}}>
-                <Button
-                    onClick={this.handleClick}
-                >
-                    View Folio
-                </Button>
-                <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleClose}>
-                    { this.renderEntryLinks() }
-                </Menu>            
-            </div>
-        )
-    }
-
     handleClick = (event) => {
         this.setState({ ...this.state, anchorEl: event.currentTarget })
     }
@@ -108,7 +92,6 @@ class AnnotationCard extends Component {
                     <Typography className='abstract'>{Parser(abstract)}</Typography>
                     <div className='details'>
                         <Button onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}>Read Annotation</Button>
-                        { this.renderFolioDropDown() }
                     </div>
                 </CardContent>
             </Card>
