@@ -407,10 +407,10 @@ class TranscriptionView extends Component {
 								return domNode;
 							}
 
-						case 'm':
-							return( 
-								<span style={{color: 'blue'}}>{domToReact(domNode.children, parserOptions)}</span>								
-							);
+						// case 'm':
+						// 	return( 
+						// 		<span style={{color: 'blue'}}>{domToReact(domNode.children, parserOptions)}</span>								
+						// 	);
 
 						case 'man':
 							return (

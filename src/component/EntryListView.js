@@ -1,28 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
-import { CardContent, CardActionArea, Badge } from '@material-ui/core';
+import ReactList from 'react-list';
+import {Typography, Card, Chip, Avatar } from '@material-ui/core';
+import { CardContent, Link } from '@material-ui/core';
 
 import { dispatchAction } from '../model/ReduxStore';
-
-const tagNames = {
-    "al": "animal",
-    "bp": "bodypart",
-    "cn": "cn",
-    "env": "environment",
-    "m": "material",
-    "ms": "measurement",
-    "pa": "place",
-    "pl": "plant",
-    "pn": "pn",
-    "pro": "profession",
-    "sn": "sn",
-    "tl": "tool",
-    "md": "md",
-    "mu": "mu"
-};
 
 class EntryListView extends Component {
 
@@ -30,96 +12,108 @@ class EntryListView extends Component {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
-    renderEntry(entry) {        
-        const heading = `${entry.heading_tcn} / ${entry.heading_tl}`.replace(/[@+]/g,'');
+    renderEntryCard = (index, key) => {        
+        const { entryList, tagNameMap } = this.props.entries
+        const entry = entryList[index]
 
         let tags = [];
-        for( let tag of Object.keys(tagNames) ) {
-            if( entry.mentions[tag] > 0 ) {
-                tags.push(tagNames[tag])
+        for( let tagID of Object.keys(tagNameMap) ) {
+            if( entry.mentions[tagID] > 0 ) {
+                tags.push({ id: tagID, name: tagNameMap[tagID], count: entry.mentions[tagID]})
             }
         }
-        let mentionRow = ( tags.length > 0 ) ? <p>Mentions: {tags.join(' ')} </p> : '';
-
-        // [title tcn]/[title tl]- [folio # start]
-        // [category 1] | [category 2]
-        // [term type 1 unique terms] | [term type 2 unique terms] | [term type 3 unique terms] | [term type 4 unique terms]...
-        // [Annotations: [title]]
+        let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
 
         const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
 
         return(
-            <Card className="entry" key={`entry-${entry.id}`}>
-                <CardActionArea
-                    onClick={e => {this.props.history.push(folioURL)}}
-                >
-                    <CardContent>
-                        <Typography><b>{`${heading} - ${entry.folio}`}</b></Typography>
-                        <Typography>Moldmaking and Metalworking</Typography>
-                        <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
-                    </CardContent>
-                </CardActionArea>
+            <Card className="entry" key={key}>
+                <CardContent>
+                    <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
+                    <Typography>Moldmaking and Metalworking</Typography>
+                    <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
+                    <div className="entry-chips">{mentionRow}</div>
+                </CardContent>
             </Card>
         )
-
-        // return (
-        // <li key={`entry-${entry.id}`}>
-        //     <h3>{heading}</h3>
-        //     <p>Folio: {entry.folio}</p>
-        //     {mentionRow}
-        // </li>
-        // );
     }
 
-    renderTagNav() {
-        return ( 
-            <div className="tag-nav">
-                <Badge badgeContent={888} color="primary">
-                    <Chip className="tag-nav-item" label="Animal"></Chip>
-                </Badge>
-                <Chip className="tag-nav-item" label="Bodypart (888)"></Chip>
-                <Chip className="tag-nav-item" label="Environment (888)"></Chip>
-                <Chip className="tag-nav-item" label="Material (888)"></Chip>
-                <Chip className="tag-nav-item" label="Measurement (888)"></Chip>
-                <Chip className="tag-nav-item" label="Place (888)"></Chip>
-                <Chip className="tag-nav-item" label="Plant (888)"></Chip>
-                <Chip className="tag-nav-item" label="Profession (888)"></Chip>
-                <Chip className="tag-nav-item" label="Tool (888)"></Chip>
-            </div>
-        );
+    onClickNavigationChip = (e) => {
+        const tagID = e.currentTarget.getAttribute('tagid')
+        dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
     }
 
-    renderEntryList() {
-        let entries = this.props.entries.entries.sort(function(a, b) {
-            var textA = a.heading_tcn.toUpperCase().replace(/[@+\s]/g,'');
-            var textB = b.heading_tcn.toUpperCase().replace(/[@+\s]/g,'');
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        });;
+    onClickCardChip = (e) => {
+        const tagID = e.currentTarget.getAttribute('tagid')
+        // dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
+    }
 
-        let entryList = [];
-        for( let entry of entries ) {
-            if( entry.heading_tcn !== '' && entry.heading_tl !== '') {
-                entryList.push( this.renderEntry(entry) );
-            }
+    renderCardChips(tags) {
+        const { filterTags } = this.props.entries
+
+        // need to display toggle state
+        let chips = []
+        for( let tag of tags) {
+            chips.push(<Chip
+                className="tag-nav-item"
+                tagid={tag.id}
+                key={`chip-${tag.id}`}
+                color= { filterTags.includes(tag.id) ? "primary" : "default"}
+                avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
+                onClick={this.onClick}
+                variant="outlined"
+                label={tag.name}
+            />)
         }
 
-        return (
-            <ul className='entry-list'>
-                { entryList }
-            </ul>
-        );
+        return(
+           chips
+        )
+    }
+
+    renderNavigationChips(tags) {
+        const { filterTags } = this.props.entries
+
+        // need to display toggle state
+        let chips = []
+        for( let tag of tags) {
+            chips.push(<Chip
+                className="tag-nav-item"
+                tagid={tag.id}
+                key={`chip-${tag.id}`}
+                color= { filterTags.includes(tag.id) ? "primary" : "default"}
+                avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
+                onClick={this.onClickNavigationChip}
+                label={tag.name}
+            />)
+        }
+
+        return(
+           chips
+        )
     }
 
 	render() {
         if( !this.props.entries.loaded ) return null;
+
+        const { entryList, tagNameMap } = this.props.entries
     
+        const tagIDs = Object.keys(tagNameMap)
+        let tags = []
+        for( let tagID of tagIDs ) {
+            tags.push({ id: tagID, name: tagNameMap[tagID] })
+        }
+
         return (
             <div id="entry-list-view">
                 <div className='entries'>
-                    <Typography variant='h3' gutterBottom>Entries</Typography>
-                    <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque.</Typography>
-                    {/* { this.renderTagNav() } */}
-                    { this.renderEntryList() }
+                    <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
+                    { this.renderNavigationChips(tags) }
+                    <ReactList
+                        itemRenderer={this.renderEntryCard}
+                        length={entryList.length}
+                        type='uniform'
+                    />
                 </div>
             </div>
         );

@@ -405,17 +405,15 @@ figure.current {
 
 #entry-list-view {
   margin: 80px;
-  max-width: 800px; }
+  max-width: 700px; }
   #entry-list-view .entry {
     margin-top: 10px; }
+    #entry-list-view .entry .entry-chips {
+      margin-top: 10px; }
   #entry-list-view .tag-nav {
     margin-top: 30px; }
   #entry-list-view .tag-nav-item {
-    margin: 3px;
-    border: 1px solid gray;
-    padding: 5px;
-    width: 150px;
-    background: #ccc; }
+    margin: 3px; }
 
 #content-view {
   margin: 20px;
