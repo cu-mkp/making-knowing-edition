@@ -29,13 +29,22 @@
     .contentArea {
         display: flex;
 
-        .tocbar {
+        h6 {
             padding: 10px;
+        }
+
+        .tocbar {
             min-width: 250px;
             
             .category {
-                margin-left: 5px;
                 margin-top: 20px;
+                padding: 5px;
+            }
+
+            .active-section p {
+                color: white;
+                background: black;   
+                width: 100%;
             }
         }
 

@@ -27,7 +27,7 @@ class AnnotationListView extends Component {
         const sectionHeadings = []
         for( let section of sectionList ) {
             sectionHeadings.push( 
-                <Link to={section.id} containerId="sections-area" smooth="true" offset={-175}>
+                <Link to={section.id} activeClass="active-section" spy={true} containerId="sections-area" smooth="true" offset={-175}>
                     <Typography key={`nav-${section.id}`}  className="category" >
                         {section.name}              
                     </Typography> 

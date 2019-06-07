@@ -356,12 +356,17 @@ figure.current {
     margin: 6px; }
   #annotation-list-view .contentArea {
     display: flex; }
+    #annotation-list-view .contentArea h6 {
+      padding: 10px; }
     #annotation-list-view .contentArea .tocbar {
-      padding: 10px;
       min-width: 250px; }
       #annotation-list-view .contentArea .tocbar .category {
-        margin-left: 5px;
-        margin-top: 20px; }
+        margin-top: 20px;
+        padding: 5px; }
+      #annotation-list-view .contentArea .tocbar .active-section p {
+        color: white;
+        background: black;
+        width: 100%; }
     #annotation-list-view .contentArea .sections {
       overflow-y: scroll;
       height: calc( 100vh - 230px); }
