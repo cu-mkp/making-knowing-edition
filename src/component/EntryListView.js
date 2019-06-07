@@ -22,7 +22,7 @@ class EntryListView extends Component {
                 tags.push({ id: tagID, name: tagNameMap[tagID], count: entry.mentions[tagID]})
             }
         }
-        let mentionRow = ( tags.length > 0 ) ? this.renderEntryTypes(tags) : '';
+        let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
 
         const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
 
@@ -38,12 +38,17 @@ class EntryListView extends Component {
         )
     }
 
-    onClick = (e) => {
+    onClickNavigationChip = (e) => {
         const tagID = e.currentTarget.getAttribute('tagid')
         dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
     }
 
-    renderEntryTypes(tags) {
+    onClickCardChip = (e) => {
+        const tagID = e.currentTarget.getAttribute('tagid')
+        // dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
+    }
+
+    renderCardChips(tags) {
         const { filterTags } = this.props.entries
 
         // need to display toggle state
@@ -56,6 +61,29 @@ class EntryListView extends Component {
                 color= { filterTags.includes(tag.id) ? "primary" : "default"}
                 avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
                 onClick={this.onClick}
+                variant="outlined"
+                label={tag.name}
+            />)
+        }
+
+        return(
+           chips
+        )
+    }
+
+    renderNavigationChips(tags) {
+        const { filterTags } = this.props.entries
+
+        // need to display toggle state
+        let chips = []
+        for( let tag of tags) {
+            chips.push(<Chip
+                className="tag-nav-item"
+                tagid={tag.id}
+                key={`chip-${tag.id}`}
+                color= { filterTags.includes(tag.id) ? "primary" : "default"}
+                avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
+                onClick={this.onClickNavigationChip}
                 label={tag.name}
             />)
         }
@@ -80,7 +108,7 @@ class EntryListView extends Component {
             <div id="entry-list-view">
                 <div className='entries'>
                     <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
-                    { this.renderEntryTypes(tags) }
+                    { this.renderNavigationChips(tags) }
                     <ReactList
                         itemRenderer={this.renderEntryCard}
                         length={entryList.length}

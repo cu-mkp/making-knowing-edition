@@ -55,7 +55,7 @@ function reloadEntryList( entries, filterTags ) {
     for( let entry of entries ) {
         if( entry.heading_tcn !== '' && entry.heading_tl !== '') {
             if( matchFilterTags( entry.mentions, filterTags ) ) {
-                const displayHeading = `${entry.heading_tcn} / ${entry.heading_tl}`.replace(/[@+]/g,'');
+                const displayHeading = `${entry.heading_tl} / ${entry.heading_tcn}`.replace(/[@+]/g,'');
                 entryList.push( { ...entry, displayHeading });    
             }
         }
