@@ -44,7 +44,7 @@ class EntryListView extends Component {
     }
 
     onClickCardChip = (e) => {
-        const tagID = e.currentTarget.getAttribute('tagid')
+        // const tagID = e.currentTarget.getAttribute('tagid')
         // dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
     }
 
@@ -112,7 +112,7 @@ class EntryListView extends Component {
                     <ReactList
                         itemRenderer={this.renderEntryCard}
                         length={entryList.length}
-                        type='uniform'
+                        type='variable'
                     />
                 </div>
             </div>

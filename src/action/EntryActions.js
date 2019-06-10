@@ -41,7 +41,7 @@ function matchFilterTags( mentions, filterTags ) {
     if( filterTags.length === 0 ) return true
 
     for( let tagID of filterTags ) {
-        if( !mentions[tagID] || parseInt(mentions[tagID]) === 0 ) {
+        if( !mentions[tagID] || parseInt(mentions[tagID],10) === 0 ) {
             return false
         }
     }    

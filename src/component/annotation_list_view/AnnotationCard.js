@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom'
 import Parser from 'html-react-parser';
 import {Typography, Button} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
-import { CardContent, Menu, MenuItem } from '@material-ui/core';
+import { CardContent } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 
@@ -107,13 +106,13 @@ function mapStateToProps(state) {
     };
 }
 
-function sliceZeros(paddedID) {
-    if( paddedID[0] && paddedID[0] === '0' ) {
-        return sliceZeros(paddedID.slice(1))
-    } else {
-        return paddedID;
-    }
-}
+// function sliceZeros(paddedID) {
+//     if( paddedID[0] && paddedID[0] === '0' ) {
+//         return sliceZeros(paddedID.slice(1))
+//     } else {
+//         return paddedID;
+//     }
+// }
 
 
 export default connect(mapStateToProps)(AnnotationCard);
