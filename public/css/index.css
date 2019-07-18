@@ -339,33 +339,86 @@ figure.current {
       color: white; }
 
 #annotation-list-view {
-  margin: 30px 20% 80px 20%;
-  max-width: 66%;
-  line-height: 2; }
-  #annotation-list-view .annotationList {
-    max-width: 600px; }
-  #annotation-list-view .anno {
-    margin-top: 30px; }
-    #annotation-list-view .anno .status-indicator {
-      color: red; }
-    #annotation-list-view .anno .entries {
-      float: right; }
-    #annotation-list-view .anno .details {
-      margin-top: 30px; }
+  margin: 10px; }
+  #annotation-list-view .titlebar {
+    margin-top: 90px; }
+    #annotation-list-view .titlebar h4 {
+      padding: 16px; }
+    #annotation-list-view .titlebar .list-mode-buttons {
+      margin: 10px;
+      position: absolute;
+      right: 20px; }
+      #annotation-list-view .titlebar .list-mode-buttons span {
+        color: black; }
+  #annotation-list-view .seperator {
+    display: inline;
+    border: 2px solid grey;
+    margin: 6px; }
+  #annotation-list-view .contentArea {
+    display: flex; }
+    #annotation-list-view .contentArea h6 {
+      padding: 10px; }
+    #annotation-list-view .contentArea .tocbar {
+      min-width: 250px; }
+      #annotation-list-view .contentArea .tocbar .category {
+        margin-top: 20px;
+        padding: 5px; }
+      #annotation-list-view .contentArea .tocbar .active-section p {
+        color: white;
+        background: black;
+        width: 100%; }
+    #annotation-list-view .contentArea .sections {
+      overflow-y: scroll;
+      height: calc( 100vh - 230px); }
+      #annotation-list-view .contentArea .sections .section .section-header {
+        width: 100%; }
+        #annotation-list-view .contentArea .sections .section .section-header .title {
+          padding: 5px;
+          color: white;
+          background: black; }
+      #annotation-list-view .contentArea .sections .section .annotations {
+        display: flex;
+        flex-wrap: wrap;
+        background: #eee;
+        padding-right: 20px;
+        padding-bottom: 20px; }
+        #annotation-list-view .contentArea .sections .section .annotations .anno {
+          margin-top: 20px;
+          margin-left: 20px;
+          max-width: 450px; }
+          #annotation-list-view .contentArea .sections .section .annotations .anno .status-indicator {
+            color: red; }
+          #annotation-list-view .contentArea .sections .section .annotations .anno .entries {
+            float: right; }
+          #annotation-list-view .contentArea .sections .section .annotations .anno .details {
+            margin-bottom: 10px;
+            float: right; }
+        #annotation-list-view .contentArea .sections .section .annotations .annothumb {
+          margin-top: 20px;
+          margin-left: 20px;
+          max-width: 225px;
+          min-width: 225px; }
+          #annotation-list-view .contentArea .sections .section .annotations .annothumb .thumb-media {
+            height: 200px;
+            display: flex;
+            align-items: flex-end; }
+            #annotation-list-view .contentArea .sections .section .annotations .annothumb .thumb-media .title {
+              background: grey;
+              width: 100%;
+              padding: 8px;
+              color: white; }
 
 #entry-list-view {
   margin: 80px;
-  max-width: 800px; }
+  max-width: 700px; }
   #entry-list-view .entry {
     margin-top: 10px; }
+    #entry-list-view .entry .entry-chips {
+      margin-top: 10px; }
   #entry-list-view .tag-nav {
     margin-top: 30px; }
   #entry-list-view .tag-nav-item {
-    margin: 3px;
-    border: 1px solid gray;
-    padding: 5px;
-    width: 150px;
-    background: #ccc; }
+    margin: 3px; }
 
 #content-view {
   margin: 20px;
@@ -415,8 +468,6 @@ figure.current {
         margin: .5rem 1rem 0 0; } }
   #diplomatic #search {
     display: inline; }
-  #diplomatic #content {
-    margin-top: 5rem; }
   #diplomatic #navigation {
     background-color: blue;
     height: 4.4rem; }
@@ -464,7 +515,8 @@ figure.current {
   -ms-user-select: none;
   user-select: none; }
   #diplomatic.fixed #content {
-    line-height: 1.2rem; }
+    line-height: 1.2rem;
+    margin-top: 5rem; }
 
 .imageGridComponent {
   background-color: #000000;
