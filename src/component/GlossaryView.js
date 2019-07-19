@@ -11,8 +11,54 @@ class GlossaryView extends Component {
 			event.currentTarget.dataset.id
 		);
     }
+
+//     -- A --
+
+// Abreuvoir, abreveoir: 1. (m.) a trough for watering or feeding animals [DMF2015] 2. (m.) a small rabbit. [COT1611]
+
+// Abreuvoir, abreveoir: (m.) a trough for watering or feeding animals [DMF2015] 
+
+// -- B --
+
+// {head-word}, {alternate-spelling}: {meaning-number}. {part-of-speech} {meaning} [{references}]
+
+
+
+    renderMeanings(entry) {
+        const meaningList = []
+        for( let i=0; i < entry.meanings.length; i++ ) { 
+            const meaning = entry.meanings[i]
+            const refString = meaning.references ? `[${meaning.references}]` : ''
+            const numString = (entry.meanings.length > 1) ? `${i+1}. ` : ''
+            const key = `gloss-${entry.headWord}-${i}`
+            meaningList.push( 
+                <span key={key}>{numString} {meaning.partOfSpeech} {meaning.meaning} {refString} </span>
+            )
+        }
+        return meaningList
+    }
+
+    renderGlossary() {
+        const {glossary} = this.props.glossary
+        const entryList = Object.values(glossary)
+
+        // {head-word}, {alternate-spelling}: {meaning-number}. {part-of-speech} {meaning} [{references}]
+
+        const glossaryEntries = []
+        for( let entry of entryList ) {
+            const meanings = this.renderMeanings(entry)
+            const altString = entry.alternateSpellings ? `, ${entry.alternateSpellings}` : ''
+            glossaryEntries.push( 
+                <p key={`gloss-${entry.headWord}`} >{entry.headWord}{altString}: {meanings}</p>
+            )
+        }
+
+        return glossaryEntries
+    }
     
 	render() {
+        if( !this.props.glossary.loaded ) return null;
+
         let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
 
         return (
@@ -30,7 +76,7 @@ class GlossaryView extends Component {
                     </div>
                 </div>
                 <div>
-                    <p>THIS IS THE GLOSSARY</p>
+                    { this.renderGlossary() }
                 </div>
             </div>
         );
@@ -41,7 +87,7 @@ class GlossaryView extends Component {
 
 function mapStateToProps(state) {
 	return {
-		// document: state.document
+		glossary: state.glossary
     };
 }
 

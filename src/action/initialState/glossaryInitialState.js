@@ -1,5 +1,5 @@
 export default {
-    tc: {},
-    tcn: {},
-    tl: {}
+    glossaryURL: process.env.REACT_APP_GLOSSARY,
+    glossary: {},
+    loaded: false
 }	
