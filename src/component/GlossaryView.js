@@ -12,18 +12,6 @@ class GlossaryView extends Component {
 		);
     }
 
-//     -- A --
-
-// Abreuvoir, abreveoir: 1. (m.) a trough for watering or feeding animals [DMF2015] 2. (m.) a small rabbit. [COT1611]
-
-// Abreuvoir, abreveoir: (m.) a trough for watering or feeding animals [DMF2015] 
-
-// -- B --
-
-// {head-word}, {alternate-spelling}: {meaning-number}. {part-of-speech} {meaning} [{references}]
-
-
-
     renderMeanings(entry) {
         const meaningList = []
         for( let i=0; i < entry.meanings.length; i++ ) { 
@@ -55,27 +43,34 @@ class GlossaryView extends Component {
 
         return glossaryEntries
     }
+
+    renderTranscriptionTypeDropDown() {
+        let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
+
+        return (
+            <div className="dropdown">
+                <button className="dropbtn">
+                    {transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
+                </button>
+                <div className="dropdown-content">
+                    <span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
+                    <span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
+                    <span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
+                    <span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
+                    <span data-id='glossary' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['glossary']}</span>
+                </div>
+           </div>
+        )
+    }
     
 	render() {
         if( !this.props.glossary.loaded ) return null;
 
-        let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
-
         return (
-            <div>
-                <div className="dropdown">
-                    <button className="dropbtn">
-                        {transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-                    </button>
-                    <div className="dropdown-content">
-                        <span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
-                        <span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
-                        <span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
-                        <span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
-                        <span data-id='glossary' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['glossary']}</span>
-                    </div>
-                </div>
-                <div>
+            <div className="glossaryView">
+                { this.renderTranscriptionTypeDropDown() }
+                <div className="glossaryContent">
+                    <h2 className="title">Glossary of Terms</h2>
                     { this.renderGlossary() }
                 </div>
             </div>

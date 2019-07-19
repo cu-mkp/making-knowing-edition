@@ -196,7 +196,6 @@ class DiploMatic extends Component {
 						{ this.renderHeader(fixedFrameModeClass) }
 						{ this.renderContent() }
 						{ this.renderFooter(fixedFrameModeClass) }
-						<div id="glossaryPopup" tabIndex="1"></div>
 					</div>	
 				</HashRouter>
 			</Provider>

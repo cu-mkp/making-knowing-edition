@@ -1,65 +1,37 @@
-.glossaryTerm {
-	color: #52759d;
+.glossaryView {
+
+	.title {
+		white-space: nowrap;
+		position: relative;
+		width: calc(100% - 1.7rem);
+		text-align: center;
+		top: 3rem;
+		font-size: 1.2rem;
+		font-weight: 700;
+		top: -.3rem;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.glossaryContent {
+
+		overflow: scroll;
+		margin: 0 0 0 1rem;
+		height:calc(100vh - 7rem);
+
+		padding: 4.5rem 0 0;
+		width: calc(100% - 1.2rem);
+		min-height: 100vh;
+	
+		-webkit-user-select: text;
+		-moz-user-select: text;
+		-ms-user-select: text;
+		user-select: text;
+	
+		min-width: 10rem;
+	}
 }
 
-#glossaryPopup {
-	display: none;
-	position: absolute;
-	top: 10rem;
-	height: 5rem;
-	width: 20rem;
-	background: rgb(231, 231, 231);
-	border: 1px solid rgba(90, 98, 102, 0.53);
-	border-radius: 0.3rem;
-	-webkit-box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.21176470588235294);
-	-moz-box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.21176470588235294);
-	box-shadow: 6px 6px 5px 0 rgba(0, 0, 0, 0.21176470588235294);
-	font-family: sans-serif;
-	padding: 0.5rem;
-}
 
-#glossaryPopup:after,
-#glossaryPopup:before {
-	bottom: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-
-#glossaryPopup:after {
-	border-color: rgba(133, 133, 133, 0);
-	border-bottom-color: rgb(231, 231, 231);
-	border-width: 15px;
-	margin-left: -15px;
-}
-
-#glossaryPopup:before {
-	border-color: rgba(194, 225, 245, 0);
-	border-bottom-color: rgba(90, 98, 102, 0.87);
-	border-width: 16px;
-	margin-left: -16px;
-}
-
-#glossaryPopup .term {
-	font-weight: 900;
-	background-color: rgba(0, 0, 0, 0.07058823529411765);
-	margin: 0 0 0.5rem;
-	border-radius: 0.3rem;
-	padding: 0.2rem;
-}
-
-#glossaryPopup .definition {
-	font-weight: 200;
-	font-size: 0.8rem;
-	margin: 0 0 0 0.2rem;
-	overflow:scroll;
-	height:3rem;
-}
-
-#glossaryPopup:focus {
-	outline: none;
-}
