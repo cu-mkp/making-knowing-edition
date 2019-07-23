@@ -4,7 +4,7 @@ import DocumentHelper from '../model/DocumentHelper';
 import { Link } from 'react-scroll';
 import { Typography } from '@material-ui/core';
 
-const alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+const alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z' ]
 
 class GlossaryView extends Component {
 
@@ -48,7 +48,7 @@ class GlossaryView extends Component {
             if( filterTerm.length === 0 && entry.headWord[0] === alpha[alphaIndex] ) {
                 const alphaHeadingID = `alpha-${alphaIndex}` 
                 glossaryEntries.push(
-                    <Typography key={`gloss-heading-${alpha[alphaIndex]}`} id={alphaHeadingID}>---- {alpha[alphaIndex]} ----</Typography>
+                    <Typography variant='h4' key={`gloss-heading-${alpha[alphaIndex]}`} id={alphaHeadingID}>&mdash; {alpha[alphaIndex]} &mdash;</Typography>
                 )
                 alphaIndex++
             }
@@ -76,7 +76,7 @@ class GlossaryView extends Component {
             const letter = alpha[i]
             const alphaID = `alpha-${i}`
             letterLinks.push(
-                <span key={`link-${alphaID}`}><Link to={alphaID} offset={-150} containerId="glossaryContent" smooth="true">{letter}</Link> </span> 
+                <span key={`link-${alphaID}`}><Link to={alphaID} offset={-120} containerId="glossaryViewInner" smooth="true">{letter}</Link> </span> 
             )
         }
 
@@ -124,9 +124,11 @@ class GlossaryView extends Component {
         return (
             <div id="glossaryView">
                 { this.renderToolbar() }
-                <div id="glossaryContent">
-                    <Typography variant='h2' className="title">Glossary of Terms</Typography>
-                    { this.renderGlossary() }
+                <div id="glossaryViewInner">
+                    <div id="glossaryContent">
+                        <Typography variant='h2' className="title">Glossary of Terms</Typography>
+                        { this.renderGlossary() }
+                    </div>
                 </div>
             </div>
         );
