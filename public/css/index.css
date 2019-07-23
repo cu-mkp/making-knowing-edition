@@ -762,25 +762,32 @@ figure.current {
 .xmlContentInner {
   overflow-x: scroll; }
 
-.glossaryView .title {
+#glossaryView .glossaryNav {
+  margin-left: 10px;
+  margin-top: 20px; }
+
+#glossaryView .alphaNav {
+  color: blue;
+  display: inline; }
+
+#glossaryView .title {
   white-space: nowrap;
   position: relative;
   width: calc(100% - 1.7rem);
   text-align: center;
-  top: 3rem;
   font-size: 1.2rem;
   font-weight: 700;
-  top: -.3rem;
+  top: -2rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
 
-.glossaryView .glossaryContent {
+#glossaryView #glossaryContent {
   overflow: scroll;
   margin: 0 0 0 1rem;
   height: calc(100vh - 7rem);
-  padding: 4.5rem 0 0;
+  padding: 3.5rem 0 0;
   width: calc(100% - 1.2rem);
   min-height: 100vh;
   -webkit-user-select: text;
