@@ -765,6 +765,8 @@ figure.current {
 #glossaryView .glossaryNav {
   margin-left: 10px;
   margin-top: 20px; }
+  #glossaryView .glossaryNav #glossary-filter {
+    margin-right: 20px; }
 
 #glossaryView .alphaNav {
   color: blue;

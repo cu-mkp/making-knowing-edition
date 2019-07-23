@@ -8,6 +8,12 @@ const alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
 
 class GlossaryView extends Component {
 
+    constructor() {
+        super()
+
+        this.state = { filterTerm: '' }
+    }
+
 	changeType = (event) => {
 		// Change viewtype
 		this.props.documentViewActions.changeTranscriptionType(
@@ -31,6 +37,7 @@ class GlossaryView extends Component {
 
     renderGlossary() {
         const {glossary} = this.props.glossary
+        const filterTerm = this.state.filterTerm.toLowerCase()
         const entryList = Object.values(glossary)
 
         // {head-word}, {alternate-spelling}: {meaning-number}. {part-of-speech} {meaning} [{references}]        
@@ -38,21 +45,29 @@ class GlossaryView extends Component {
         let alphaIndex = 0
         for( let entry of entryList ) {
             // render alphabetic header if we have started the next letter
-            if( entry.headWord[0] === alpha[alphaIndex] ) {
+            if( filterTerm.length === 0 && entry.headWord[0] === alpha[alphaIndex] ) {
                 const alphaHeadingID = `alpha-${alphaIndex}` 
                 glossaryEntries.push(
                     <Typography key={`gloss-heading-${alpha[alphaIndex]}`} id={alphaHeadingID}>---- {alpha[alphaIndex]} ----</Typography>
                 )
                 alphaIndex++
             }
-            const meanings = this.renderMeanings(entry)
-            const altString = entry.alternateSpellings ? `, ${entry.alternateSpellings}` : ''
-            glossaryEntries.push( 
-                <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}: {meanings}</Typography>
-            )
+            const lowerCaseHeadword = entry.headWord.toLowerCase()
+            if( filterTerm.length === 0 || (filterTerm.length !== 0 && lowerCaseHeadword.startsWith(filterTerm)) ) {
+                const meanings = this.renderMeanings(entry)
+                const altString = entry.alternateSpellings ? `, ${entry.alternateSpellings}` : ''
+                glossaryEntries.push( 
+                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}: {meanings}</Typography>
+                )    
+            }
         }
 
         return glossaryEntries
+    }
+
+    onFilterChange = (event) => {
+        const filterTerm = event.target.value;
+		this.setState( { ...this.state, filterTerm })
     }
 
     renderAlphaLinks() {
@@ -66,8 +81,17 @@ class GlossaryView extends Component {
         }
 
         return (
-            <div className='alphaNav'>
-               { letterLinks }
+            <div style={{display: 'inline'}}>
+                <input id="glossary-filter"
+                    className="searchBox" 
+                    placeholder="Filter by Entry"
+                    onChange={this.onFilterChange}
+                    value={this.state.filterTerm}
+                />
+                <span>Go to: </span>
+                <div className='alphaNav'>
+                    { letterLinks }
+                </div>
             </div>
         )
     }
