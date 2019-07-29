@@ -67,7 +67,7 @@ class DiploMatic extends Component {
 			return (
 				<div className="expandedViewOnly">
 					<span>Annotations</span>
-					<span>Entries</span>
+					<Link to='/entries'>Entries</Link>
 					<Link to='/folios'>Folios</Link>
 					<span>About</span>
 				</div>
