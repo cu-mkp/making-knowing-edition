@@ -67,7 +67,7 @@ class DiploMatic extends Component {
 			return (
 				<div className="expandedViewOnly">
 					<span>Annotations</span>
-					<span>Entries</span>
+					<Link to='/entries'>Entries</Link>
 					<Link to='/folios'>Folios</Link>
 					<span>About</span>
 				</div>
@@ -196,7 +196,6 @@ class DiploMatic extends Component {
 						{ this.renderHeader(fixedFrameModeClass) }
 						{ this.renderContent() }
 						{ this.renderFooter(fixedFrameModeClass) }
-						<div id="glossaryPopup" tabIndex="1"></div>
 					</div>	
 				</HashRouter>
 			</Provider>

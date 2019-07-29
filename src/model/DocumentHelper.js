@@ -2,11 +2,12 @@
 var DocumentHelper = {};
 
 DocumentHelper.transcriptionTypeLabels = {
-  tc: 'Transcription',
-  tcn: 'Normalized Transcription',
-  tl: 'Translation',
+  tc: 'Diplomatic (FR)',
+  tcn: 'Normalized (FR)',
+  tl: 'Translation (EN)',
   f: 'Facsimile',
-  anno: 'Annotation'
+  anno: 'Annotation',
+  glossary: 'Glossary'
 };
 
 DocumentHelper.getFolio = function getFolio(document, folioID) {

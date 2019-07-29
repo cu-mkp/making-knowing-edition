@@ -10,6 +10,7 @@ const justEntries = state => state.entries
 const juxtDocument = state => state.document
 const justSearch = state => state.search
 const justAuthors = state => state.authors
+const justGlossary = state => state.glossary
 const justComments = state => state.comments
 
 function *userNavigation(action) {
@@ -23,6 +24,7 @@ function *userNavigation(action) {
                 yield resolveComments();
                 yield resolveAnnotationManifest();
                 yield resolveDocumentManifest();
+                yield resolveGlossary();
                 break;
             case 'search':
                 yield resolveAuthors();
@@ -86,7 +88,7 @@ function *resolveSearchResult() {
     results['tc'] = searchIndex.searchEdition(searchQuery,'tc');
     results['tcn'] = searchIndex.searchEdition(searchQuery,'tcn');
     results['tl'] = searchIndex.searchEdition(searchQuery,'tl');
-    results['anno'] = searchIndex.searchAnnotations(searchQuery);	    
+    results['anno'] = (process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES==='false') ? searchIndex.searchAnnotations(searchQuery) : [];
     yield putResolveAction( 'SearchActions.searchResults', results );        
 }
 
@@ -103,6 +105,14 @@ function *resolveAuthors() {
     if( !authors.loaded ) {
         const response = yield axios.get(authors.authorsURL);
         yield putResolveAction( 'AuthorActions.loadAuthors', response.data );    
+    }
+}
+
+function *resolveGlossary() {
+    const glossary = yield select(justGlossary)
+    if( !glossary.loaded ) {
+        const response = yield axios.get(glossary.glossaryURL);
+        yield putResolveAction( 'GlossaryActions.loadGlossary', response.data );    
     }
 }
 

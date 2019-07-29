@@ -8,6 +8,7 @@ import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
 import TranscriptionView from './TranscriptionView';
 import XMLView from './XMLView';
+import GlossaryView from './GlossaryView';
 
 class DocumentView extends Component {
 
@@ -205,6 +206,9 @@ class DocumentView extends Component {
         if( transcriptionType === 'f' ) {
             return 'ImageView';
         } 
+        if( transcriptionType === 'glossary' ) {
+            return 'GlossaryView';
+        }
         return xmlMode ? 'XMLView' : 'TranscriptionView';
     }
 
@@ -292,6 +296,15 @@ class DocumentView extends Component {
         } else if( viewType === 'ImageGridView' ) {
             return (
                 <ImageGridView
+                    key = {key}
+                    documentView={docView}
+                    documentViewActions={this.documentViewActions}
+                    side={side}
+                />
+            );
+        } else if( viewType === 'GlossaryView') {
+            return (
+                <GlossaryView
                     key = {key}
                     documentView={docView}
                     documentViewActions={this.documentViewActions}

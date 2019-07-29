@@ -412,6 +412,16 @@ class TranscriptionView extends Component {
 						// 		<span style={{color: 'blue'}}>{domToReact(domNode.children, parserOptions)}</span>								
 						// 	);
 
+						case 'gap':
+							return (
+								<span>[gap]</span>
+							);
+
+						case 'ill':
+							return (
+								<span>[illegible]</span>
+							);
+
 						case 'man':
 							return (
 								<b>
