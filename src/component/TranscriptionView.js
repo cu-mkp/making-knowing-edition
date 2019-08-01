@@ -370,7 +370,7 @@ class TranscriptionView extends Component {
 							);
 
 						case 'comment':
-							const commentID = ( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
+							const commentID = domNode.attribs['rid'] //( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
 							return (
 								<EditorComment commentID={commentID}></EditorComment>
 							);
