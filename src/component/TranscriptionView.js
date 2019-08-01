@@ -382,11 +382,35 @@ class TranscriptionView extends Component {
 								</span>
 							);
 
+						case 'superscript':
+							return (
+								<sup>{domToReact(domNode.children, parserOptions)}</sup>
+							);
+	
+						case 'de':
+						case 'el':
+						case 'es':
+						case 'fr':
+						case 'it':
+						case 'la':
+						case 'oc':
+						case 'po':
+							return (
+								<i>
+									{domToReact(domNode.children, parserOptions)}
+								</i>
+							);
+
 						case 'exp':
 							return (
 								<span className='exp'>
 									&#123;{domToReact(domNode.children, parserOptions)}&#125;
 								</span>
+							);
+
+						case 'underline':
+							return (
+								<u>{domToReact(domNode.children, parserOptions)}</u>
 							);
 							
 						case 'h2':
@@ -407,10 +431,10 @@ class TranscriptionView extends Component {
 								return domNode;
 							}
 
-						// case 'm':
-						// 	return( 
-						// 		<span style={{color: 'blue'}}>{domToReact(domNode.children, parserOptions)}</span>								
-						// 	);
+						case 'unc':
+							return (
+								<span>[{domToReact(domNode.children, parserOptions)}?]</span>
+							);
 
 						case 'gap':
 							return (
@@ -422,27 +446,34 @@ class TranscriptionView extends Component {
 								<span>[illegible]</span>
 							);
 
-						case 'man':
-							return (
-								<b>
-									{domToReact(domNode.children, parserOptions)}
-								</b>
-							);
-
+						case 'al':
+						case 'bp':
+						case 'cn':
+						case 'df':
+						case 'env':
+						case 'm':
 						case 'mark':
+						case 'md':
+						case 'ms':
+						case 'mu':
+						case 'pa':
+						case 'pl':
+						case 'pn':
+						case 'pro':
+						case 'sn':
+						case 'tl':
+						case 'ups':
+						case 'tmp':
+						case 'wp':
 							return (
 								<span>{domToReact(domNode.children, parserOptions)}</span>
-							);
+							)
 
+						case 'emph':
+						case 'man':
 						case 'rub':
-						return (
-							<b>
-								{domToReact(domNode.children, parserOptions)}
-							</b>
-						);
-
 						case 'sup':
-							return (
+								return (
 								<b>
 									{domToReact(domNode.children, parserOptions)}
 								</b>
