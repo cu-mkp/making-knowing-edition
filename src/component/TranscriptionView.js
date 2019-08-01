@@ -549,9 +549,7 @@ class TranscriptionView extends Component {
 				// Strip linebreaks except for tc (happens on string before parser)
 				let content = transcriptionData.content;
 				const transcriptionType = this.props.documentView[side].transcriptionType;
-				if(transcriptionType !== 'tc'){
-					content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
-				}
+
 
 				// Mark any found search terms
 				if(this.props.documentView.inSearchMode) {
