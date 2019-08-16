@@ -369,8 +369,15 @@ class TranscriptionView extends Component {
 								</span>
 							);
 
+						case 'del':
+							return (
+								<s>
+									{domToReact(domNode.children, parserOptions)}
+								</s>
+							);
+		
 						case 'comment':
-							const commentID = ( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
+							const commentID = domNode.attribs['rid'] //( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
 							return (
 								<EditorComment commentID={commentID}></EditorComment>
 							);
@@ -382,11 +389,35 @@ class TranscriptionView extends Component {
 								</span>
 							);
 
+						case 'superscript':
+							return (
+								<sup>{domToReact(domNode.children, parserOptions)}</sup>
+							);
+	
+						case 'de':
+						case 'el':
+						case 'es':
+						case 'fr':
+						case 'it':
+						case 'la':
+						case 'oc':
+						case 'po':
+							return (
+								<i>
+									{domToReact(domNode.children, parserOptions)}
+								</i>
+							);
+
 						case 'exp':
 							return (
 								<span className='exp'>
-									&#123;{domToReact(domNode.children, parserOptions)}&#125;
+									&lt;{domToReact(domNode.children, parserOptions)}&gt;
 								</span>
+							);
+
+						case 'underline':
+							return (
+								<u>{domToReact(domNode.children, parserOptions)}</u>
 							);
 							
 						case 'h2':
@@ -407,42 +438,58 @@ class TranscriptionView extends Component {
 								return domNode;
 							}
 
-						// case 'm':
-						// 	return( 
-						// 		<span style={{color: 'blue'}}>{domToReact(domNode.children, parserOptions)}</span>								
-						// 	);
+						case 'unc':
+							return (
+								<span>[{domToReact(domNode.children, parserOptions)}?]</span>
+							);
+						
+						case 'sup':
+							return (
+								<span>[{domToReact(domNode.children, parserOptions)}]</span>
+							);
+
+						case 'lb':
+							return (
+								<br/>
+							);
 
 						case 'gap':
 							return (
-								<span>[gap]</span>
+								<i>[gap]</i>
 							);
 
 						case 'ill':
 							return (
-								<span>[illegible]</span>
+								<i>[illegible]</i>
 							);
 
-						case 'man':
-							return (
-								<b>
-									{domToReact(domNode.children, parserOptions)}
-								</b>
-							);
-
+						case 'al':
+						case 'bp':
+						case 'cn':
+						case 'df':
+						case 'env':
+						case 'm':
 						case 'mark':
+						case 'md':
+						case 'ms':
+						case 'mu':
+						case 'pa':
+						case 'pl':
+						case 'pn':
+						case 'pro':
+						case 'sn':
+						case 'tl':
+						case 'ups':
+						case 'tmp':
+						case 'wp':
 							return (
 								<span>{domToReact(domNode.children, parserOptions)}</span>
-							);
+							)
 
+						case 'emph':
+						case 'man':
 						case 'rub':
-						return (
-							<b>
-								{domToReact(domNode.children, parserOptions)}
-							</b>
-						);
-
-						case 'sup':
-							return (
+								return (
 								<b>
 									{domToReact(domNode.children, parserOptions)}
 								</b>
@@ -515,12 +562,8 @@ class TranscriptionView extends Component {
 				// Configure parser to replace certain tags with components
 				let htmlToReactParserOptions = this.htmlToReactParserOptions(side);
 
-				// Strip linebreaks except for tc (happens on string before parser)
 				let content = transcriptionData.content;
 				const transcriptionType = this.props.documentView[side].transcriptionType;
-				if(transcriptionType !== 'tc'){
-					content = content.replace(/(<br>|<br\/>|<lb>)/ig,"");
-				}
 
 				// Mark any found search terms
 				if(this.props.documentView.inSearchMode) {
