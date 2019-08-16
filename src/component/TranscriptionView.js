@@ -369,6 +369,13 @@ class TranscriptionView extends Component {
 								</span>
 							);
 
+						case 'del':
+							return (
+								<s>
+									{domToReact(domNode.children, parserOptions)}
+								</s>
+							);
+		
 						case 'comment':
 							const commentID = domNode.attribs['rid'] //( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
 							return (
@@ -439,6 +446,11 @@ class TranscriptionView extends Component {
 						case 'sup':
 							return (
 								<span>[{domToReact(domNode.children, parserOptions)}]</span>
+							);
+
+						case 'lb':
+							return (
+								<br/>
 							);
 
 						case 'gap':
@@ -550,10 +562,8 @@ class TranscriptionView extends Component {
 				// Configure parser to replace certain tags with components
 				let htmlToReactParserOptions = this.htmlToReactParserOptions(side);
 
-				// Strip linebreaks except for tc (happens on string before parser)
 				let content = transcriptionData.content;
 				const transcriptionType = this.props.documentView[side].transcriptionType;
-
 
 				// Mark any found search terms
 				if(this.props.documentView.inSearchMode) {
