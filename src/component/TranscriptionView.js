@@ -404,7 +404,7 @@ class TranscriptionView extends Component {
 						case 'exp':
 							return (
 								<span className='exp'>
-									&#123;{domToReact(domNode.children, parserOptions)}&#125;
+									&lt;{domToReact(domNode.children, parserOptions)}&gt;
 								</span>
 							);
 
@@ -435,15 +435,20 @@ class TranscriptionView extends Component {
 							return (
 								<span>[{domToReact(domNode.children, parserOptions)}?]</span>
 							);
+						
+						case 'sup':
+							return (
+								<span>[{domToReact(domNode.children, parserOptions)}]</span>
+							);
 
 						case 'gap':
 							return (
-								<span>[gap]</span>
+								<i>[gap]</i>
 							);
 
 						case 'ill':
 							return (
-								<span>[illegible]</span>
+								<i>[illegible]</i>
 							);
 
 						case 'al':
@@ -472,7 +477,6 @@ class TranscriptionView extends Component {
 						case 'emph':
 						case 'man':
 						case 'rub':
-						case 'sup':
 								return (
 								<b>
 									{domToReact(domNode.children, parserOptions)}
