@@ -7,7 +7,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://209.97.145.244/folio/p032v/tc",
+            "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/folio/p032v/tc",
             "@type": "dctypes:Text",
             "format": "text/html"
          },
@@ -17,7 +17,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://209.97.145.244/folio/p032v/tcn",
+            "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/folio/p032v/tcn",
             "@type": "dctypes:Text",
             "format": "text/html"
          },
@@ -27,7 +27,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://209.97.145.244/folio/p032v/tl",
+            "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/folio/p032v/tl",
             "@type": "dctypes:Text",
             "format": "text/html"
          },
@@ -37,7 +37,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://209.97.145.244/folio/p032v/tc/original.txt",
+            "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/folio/p032v/tc/original.txt",
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
@@ -47,7 +47,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://209.97.145.244/folio/p032v/tcn/original.txt",
+            "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/folio/p032v/tcn/original.txt",
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
@@ -57,7 +57,7 @@
          "@type": "oa:Annotation",
          "motivation": "sc:painting",
          "resource": {
-            "@id": "http://209.97.145.244/folio/p032v/tl/original.txt",
+            "@id": "http://edition.makingandknowing.org/bnf-ms-fr-640/folio/p032v/tl/original.txt",
             "@type": "dctypes:Text",
             "format": "text/xml"
          },
