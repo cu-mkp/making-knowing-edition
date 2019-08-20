@@ -22,17 +22,17 @@ class TranscriptionView extends Component {
 	// Recursively unpack a node tree object and just return the text
 	nodeTreeToString(node) {
 		let term = '';
-		for(let x=0;x<node.length;x++){
-			if(node[x].type === 'text'){
+		for(let x=0;x<node.length;x++) {
+			if(node[x].type === 'text') {
 				term += node[x].data+" ";
-			}else if(node[x].children.length > 0){
+			} else if(node[x].children.length > 0) {
 				term += this.nodeTreeToString(node[x].children);
 			}
 		}
   	  return term.trim();
     }
 
-	loadFolio(folio){
+	loadFolio(folio) {
 		if(typeof folio === 'undefined'){
 			//console.log("TranscriptView: Folio is undefined when you called loadFolio()!");
 			return;
@@ -115,9 +115,9 @@ class TranscriptionView extends Component {
     let zones = folioDiv.children;
 
     const emptyZoneFrame = [
-      [ '.', '.', '.' ],
-      [ '.', '.', '.' ],
-      [ '.', '.', '.' ]
+		[ '.', '.', '.' ],
+		[ '.', '.', '.' ],
+		[ '.', '.', '.' ]
     ];
 
     const emptyMarginFrame = {
@@ -130,14 +130,14 @@ class TranscriptionView extends Component {
       'right-top': false,
       'left-bottom': false,
       'right-bottom': false
-		};
+	};
 		
-		const hintCodes = [
-			'tall',
-			'extra-tall',
-			'wide',
-			'extra-wide'
-		];
+	const hintCodes = [
+		'tall',
+		'extra-tall',
+		'wide',
+		'extra-wide'
+	];
 
     let validLayoutCode = function( layoutCode ) {
       if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
@@ -145,15 +145,15 @@ class TranscriptionView extends Component {
       } else {
         return 'middle';
       }
-		};
+	};
 		
-		function validLayoutHint( layoutHint ) {
-			if( hintCodes.includes(layoutHint) ) {
-				return layoutHint;
-			} else {
-				return null;
-			}
+	function validLayoutHint( layoutHint ) {
+		if( hintCodes.includes(layoutHint) ) {
+			return layoutHint;
+		} else {
+			return null;
 		}
+	}
 
     let zoneGrid = [];
     let gridContent = "";
@@ -164,81 +164,81 @@ class TranscriptionView extends Component {
       for (let zone of zones) {
         // create a rolling frame that is ORed on to grid with each step
         let zoneFrame = copyObject( emptyZoneFrame );
-				let marginFrame = copyObject( emptyMarginFrame );
-				let entryID = zone.id;
+		let marginFrame = copyObject( emptyMarginFrame );
+		let entryID = zone.id;
         let blocks = zone.children;
 
         for( let block of blocks ) {
-          let layoutCode = validLayoutCode(block.dataset.layout);
-          let hint = validLayoutHint(block.dataset.layoutHint);
+			let layoutCode = validLayoutCode(block.dataset.layout);
+			let hint = validLayoutHint(block.dataset.layoutHint);
 					block.setAttribute('data-entry-id', entryID);
 
-          // group all the blocks together that share a layout code
-          if( marginFrame[layoutCode] ) {
-						block.id = marginFrame[layoutCode][0].id;
-            marginFrame[layoutCode].push(block);
-          } else {
-            zoneIndex++;
-            block.id = `z${zoneIndex}`;
-            marginFrame[layoutCode] = [block];
-          }
+			// group all the blocks together that share a layout code
+			if( marginFrame[layoutCode] ) {
+				block.id = marginFrame[layoutCode][0].id;
+				marginFrame[layoutCode].push(block);
+			} else {
+				zoneIndex++;
+				block.id = `z${zoneIndex}`;
+				marginFrame[layoutCode] = [block];
+			}
 
-          // decode the layout
-          switch(layoutCode) {
-            case 'top':
-              zoneFrame[0][1] = block.id;
-              break;
-            case 'left-middle':
-              zoneFrame[1][0] = block.id;
-              if( hint === 'tall')
-								zoneFrame[2][0] = block.id;
-							else if( hint === 'wide') {
-									zoneFrame[1][1] = block.id;
-									zoneFrame[1][2] = block.id;
-							}
-              break;
-            case 'right-middle':
-              zoneFrame[1][2] = block.id;
-              if( hint === 'tall')
-                zoneFrame[2][2] = block.id;
-              break;
-            case 'bottom':
-              zoneFrame[2][1] = block.id;
-              break;
-            case 'left-top':
-              zoneFrame[0][0] = block.id;
-              if( hint === 'tall')
-								zoneFrame[1][0] = block.id;
-						  else if( hint === 'wide') {
-									zoneFrame[0][1] = block.id;
-									zoneFrame[0][2] = block.id;
-							}
-              break;
-            case 'right-top':
-              zoneFrame[0][2] = block.id;
-              if( hint === 'tall')
-                zoneFrame[1][2] = block.id;
-              break;
-            case 'left-bottom':
-							zoneFrame[2][0] = block.id;
-							if( hint === 'wide') {
-								zoneFrame[2][1] = block.id;
-								zoneFrame[2][2] = block.id;
-							}
-              break;
-            case 'right-bottom':
-              zoneFrame[2][2] = block.id;
-              break;
-            default:
-              zoneFrame[1][1] = block.id;
-              zoneFrame[1][2] = block.id;
-          }
-        }
+			// decode the layout
+			switch(layoutCode) {
+				case 'top':
+					zoneFrame[0][1] = block.id;
+					break;
+				case 'left-middle':
+					zoneFrame[1][0] = block.id;
+					if( hint === 'tall')
+						zoneFrame[2][0] = block.id;
+					else if( hint === 'wide') {
+						zoneFrame[1][1] = block.id;
+						zoneFrame[1][2] = block.id;
+					}
+					break;
+				case 'right-middle':
+					zoneFrame[1][2] = block.id;
+					if( hint === 'tall')
+						zoneFrame[2][2] = block.id;
+					break;
+				case 'bottom':
+					zoneFrame[2][1] = block.id;
+					break;
+				case 'left-top':
+					zoneFrame[0][0] = block.id;
+					if( hint === 'tall')
+						zoneFrame[1][0] = block.id;
+					else if( hint === 'wide') {
+						zoneFrame[0][1] = block.id;
+						zoneFrame[0][2] = block.id;
+					}
+					break;
+				case 'right-top':
+					zoneFrame[0][2] = block.id;
+					if( hint === 'tall')
+						zoneFrame[1][2] = block.id;
+					break;
+				case 'left-bottom':
+					zoneFrame[2][0] = block.id;
+					if( hint === 'wide') {
+						zoneFrame[2][1] = block.id;
+						zoneFrame[2][2] = block.id;
+					}
+					break;
+				case 'right-bottom':
+					zoneFrame[2][2] = block.id;
+					break;
+				default:
+					zoneFrame[1][1] = block.id;
+					zoneFrame[1][2] = block.id;
+			}
+		}
 
         for( let blockSet of Object.values(marginFrame) ) {
-          if( blockSet ) {
-            gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
-          }
+			if( blockSet ) {
+				gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
+			}
         }
 
         // integrate frame into grid
@@ -246,7 +246,7 @@ class TranscriptionView extends Component {
         zoneGrid[rowIndex+1] = this.mergeRow( zoneFrame[1], zoneGrid[rowIndex+1] );
         zoneGrid[rowIndex+2] = this.mergeRow( zoneFrame[2], zoneGrid[rowIndex+2] );
         rowIndex = rowIndex + 1;
-      }
+		}
     }
     catch(error) {
       console.log(error);
@@ -256,8 +256,8 @@ class TranscriptionView extends Component {
 
     // set the grid-template-areas
     return {
-      content: gridContent,
-      layout: gridLayout
+		content: gridContent,
+		layout: gridLayout
     };
   }
 
@@ -291,26 +291,26 @@ class TranscriptionView extends Component {
     let index = 0;
     // for each zone, take its grid data and populate the grid, throw an error on any dupes
     try {
-      for (let zone of zones) {
-        let blocks = zone.children;
-        for(let block of blocks) {
-          let blockID = `z${index++}`;
-          gridContent = gridContent.concat( this.renderBlock(blockID, block) );
-          let gridData = block.dataset.layout;
-          if( typeof gridData !== "string" ) throw new Error(`Grid data not found for zone: ${block}`);
-          let gridDataList = gridData.split(' ');
-          for( let gridDatum of gridDataList ) {
-            let rowIndex = this.rowCodeToIndex(gridDatum[0]);
-            let columnIndex = this.columnCodeToIndex(gridDatum[1]);
-            if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
-            if( zoneGrid[rowIndex][columnIndex] === '.' ) {
-              zoneGrid[rowIndex][columnIndex] = blockID;
-            } else {
-              throw new Error(`Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`)
-            }
-          }
-        }
-      }
+		for (let zone of zones) {
+			let blocks = zone.children;
+			for(let block of blocks) {
+				let blockID = `z${index++}`;
+				gridContent = gridContent.concat( this.renderBlock(blockID, block) );
+				let gridData = block.dataset.layout;
+				if( typeof gridData !== "string" ) throw new Error(`Grid data not found for zone: ${block}`);
+				let gridDataList = gridData.split(' ');
+				for( let gridDatum of gridDataList ) {
+					let rowIndex = this.rowCodeToIndex(gridDatum[0]);
+					let columnIndex = this.columnCodeToIndex(gridDatum[1]);
+					if( zoneGrid[rowIndex] === undefined ) zoneGrid[rowIndex] = [ '.', '.', '.' ];
+					if( zoneGrid[rowIndex][columnIndex] === '.' ) {
+						zoneGrid[rowIndex][columnIndex] = blockID;
+					} else {
+						throw new Error(`Grid location ${gridDatum} already assigned to ${zoneGrid[rowIndex][columnIndex]}.`)
+					}
+				}
+			}
+		}
     }
     catch(error) {
       console.log(error);
