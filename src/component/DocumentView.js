@@ -17,7 +17,7 @@ class DocumentView extends Component {
 
         const paneDefaults = {
             isXMLMode: false,
-            isGridMode: false,
+            isGridMode: true,
             width: 0
         }
 

@@ -653,6 +653,9 @@ figure.current {
   vertical-align: super;
   font-size: 9pt; }
 
+.ups {
+  background: lightgray; }
+
 .inline-figure {
   margin: 5px;
   border: 1px solid gray;
