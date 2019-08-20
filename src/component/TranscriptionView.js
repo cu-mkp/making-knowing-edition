@@ -470,7 +470,6 @@ class TranscriptionView extends Component {
 
 						case 'al':
 						case 'bp':
-						case 'caption':
 						case 'cn':
 						case 'df':
 						case 'env':
