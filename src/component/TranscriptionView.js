@@ -463,8 +463,14 @@ class TranscriptionView extends Component {
 								<i>[illegible]</i>
 							);
 
+						case 'ups':
+							return (
+								<span className="ups">{domToReact(domNode.children, parserOptions)}</span>
+							)
+
 						case 'al':
 						case 'bp':
+						case 'caption':
 						case 'cn':
 						case 'df':
 						case 'env':
@@ -479,7 +485,6 @@ class TranscriptionView extends Component {
 						case 'pro':
 						case 'sn':
 						case 'tl':
-						case 'ups':
 						case 'tmp':
 						case 'wp':
 							return (
