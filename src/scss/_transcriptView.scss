@@ -32,10 +32,22 @@
 	background: lightgray;
 }
 
-.inline-figure {
+.small-inline-figure {
+	margin: 5px;
+	border: 1px solid gray;
+	width: 60px;
+}
+
+.medium-inline-figure {
 	margin: 5px;
 	border: 1px solid gray;
 	width: 200px;
+}
+
+.large-inline-figure {
+	margin: 5px;
+	border: 1px solid gray;
+	width: 350px;
 }
 
 
