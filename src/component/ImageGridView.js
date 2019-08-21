@@ -54,7 +54,7 @@ class ImageGridView extends React.Component {
 							value={this.state.jumpToBuffer}
 						/>
 						<button id="jump-to-button" onClick={this.onJumpTo}>
-							<span className="fa fa-hand-point-right"></span>
+							<span style={{color: 'black'}} className="fa fa-hand-point-right"></span>
 						</button>
 					</form>
 				</div>
