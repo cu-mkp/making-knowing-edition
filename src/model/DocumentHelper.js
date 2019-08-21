@@ -1,6 +1,8 @@
 
 var DocumentHelper = {};
 
+const folioNameRegex = /\d{1,3}[r|v]/
+
 DocumentHelper.transcriptionTypeLabels = {
   tc: 'Diplomatic (FR)',
   tcn: 'Normalized (FR)',
@@ -16,10 +18,24 @@ DocumentHelper.getFolio = function getFolio(document, folioID) {
   });
 };
 
+DocumentHelper.validFolioName = function validFolioName( folioName ) {
+  if( !folioName || folioName.length === 0 ) return null
+
+  if( folioName.match(folioNameRegex) ) {
+    return folioName
+  } else {
+    const numericID = parseInt( folioName, 10 )
+    if( !isNaN(numericID) ) {
+      return `${numericID}r`
+    } else {
+      return null
+    }
+  }
+};
+
 DocumentHelper.folioURL = function( folioID ) {
   return `${process.env.REACT_APP_FOLIO_URL_PREFIX}${folioID}`;
 }
-
 
 DocumentHelper.generateFolioID = function( bnfLabel ) {
   // grab r or v off the end

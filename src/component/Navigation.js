@@ -134,19 +134,6 @@ class navigation extends React.Component {
 		});
 	}
 
-	// User has requested a jump
-	jumpToFolio(folioName){
-		// Convert folioName to ID (and confirm it exists)
-		let folioID = this.props.document.folioIDByNameIndex[folioName];
-		if(typeof folioID !== 'undefined'){
-			let longID = DocumentHelper.folioURL(folioID);
-			this.props.documentViewActions.changeCurrentFolio(
-				longID,
-				this.props.side
-			);
-		}
-	}
-
 	renderData(item) {
         return <div key={item.id}>{item.name}</div>;
     }
@@ -217,7 +204,7 @@ class navigation extends React.Component {
 									 isVisible={this.state.popoverVisible}
 									 positionX={this.state.popoverX}
 									 positionY={this.state.popoverY}
-									 submitHandler={this.jumpToFolio.bind(this)}
+									 submitHandler={this.props.documentViewActions.jumpToFolio}
 									 blurHandler={this.onJumpBoxBlur}/>
 				</div>
 			)

@@ -10,7 +10,11 @@ class ImageGridView extends React.Component {
 		this.generateThumbs = this.generateThumbs.bind(this);
 		this.loadIncrement = 10;
 		this.thumbnailNavigationModeSize=312;
-		this.state={thumbs:'',visibleThumbs:[]};
+		this.state={
+			jumpToBuffer: '',
+			thumbs:'',
+			visibleThumbs:[]
+		};
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -24,6 +28,38 @@ class ImageGridView extends React.Component {
 			let visibleThumbs = thumbs.slice(0,thumbCount);
 			this.setState({thumbs:thumbs,visibleThumbs:visibleThumbs});
 		}
+	}
+
+    onJumpToChange = (event) => {
+        const jumpToBuffer = event.target.value;
+		this.setState( { ...this.state, jumpToBuffer })
+	}
+
+	onJumpTo = (event) => {
+		const { jumpToBuffer } = this.state
+		event.preventDefault();
+		this.props.documentViewActions.jumpToFolio(jumpToBuffer, this.props.side)
+		this.setState({ ...this.state, jumpToBuffer:""});
+	}
+
+	renderToolbar() {
+		return (
+			<div className='imageGridToolbar'>
+				<div className='jump-to'>
+					<form onSubmit={this.onJumpTo}>
+						<span>Jump to: </span>
+						<input id="jump-to-input"
+							placeholder="Folio Name (e.g. '3r')"
+							onChange={this.onJumpToChange}
+							value={this.state.jumpToBuffer}
+						/>
+						<button id="jump-to-button" onClick={this.onJumpTo}>
+							<span className="fa fa-hand-point-right"></span>
+						</button>
+					</form>
+				</div>
+			</div>	
+		)
 	}
 
 	componentWillMount(){
@@ -91,6 +127,7 @@ class ImageGridView extends React.Component {
 		}
 		return (
 			<div className={thisClass}>
+				 { this.renderToolbar() }
 				<InfiniteScroll
 					element = 'ul'
 					loadMore={this.moreThumbs}
