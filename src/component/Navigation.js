@@ -134,19 +134,6 @@ class navigation extends React.Component {
 		});
 	}
 
-	// User has requested a jump
-	jumpToFolio(folioName){
-		// Convert folioName to ID (and confirm it exists)
-		let folioID = this.props.document.folioIDByNameIndex[folioName];
-		if(typeof folioID !== 'undefined'){
-			let longID = DocumentHelper.folioURL(folioID);
-			this.props.documentViewActions.changeCurrentFolio(
-				longID,
-				this.props.side
-			);
-		}
-	}
-
 	renderData(item) {
         return <div key={item.id}>{item.name}</div>;
     }
@@ -169,13 +156,14 @@ class navigation extends React.Component {
 			if(!this.props.documentView.bookMode){
 				lockIconClass +=" active";
 			}
-			let imageViewActive = this.props.documentView[this.props.side].viewType === 'ImageView';
+			let imageViewActive = this.props.documentView[this.props.side].transcriptionType === 'f';
 			let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
 			let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
 			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
 				 columnIconClass += (imageViewActive)?' hidden':'';
 			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
 			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
+			let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>
@@ -211,13 +199,13 @@ class navigation extends React.Component {
 									data-direction="forward"
 									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
-							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName}</div>
+							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
 						</div>
 						<JumpToFolio side={this.props.side}
 									 isVisible={this.state.popoverVisible}
 									 positionX={this.state.popoverX}
 									 positionY={this.state.popoverY}
-									 submitHandler={this.jumpToFolio.bind(this)}
+									 submitHandler={this.props.documentViewActions.jumpToFolio}
 									 blurHandler={this.onJumpBoxBlur}/>
 				</div>
 			)

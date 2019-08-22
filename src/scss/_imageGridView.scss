@@ -36,3 +36,24 @@
 .hidden {
 	display: none;
 }
+
+.imageGridComponent  {
+	.imageGridToolbar {
+		padding: 5px;
+		color: white;
+		
+		.jump-to {
+			float: right;
+			display: 'inline';
+			margin-right: 30px;
+
+			#jump-to-input {
+				margin-left: 5px;
+			}
+
+			#jump-to-button {
+				margin-left: 5px;
+			}
+		}
+	}	
+}

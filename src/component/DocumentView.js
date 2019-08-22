@@ -9,6 +9,7 @@ import ImageGridView from './ImageGridView';
 import TranscriptionView from './TranscriptionView';
 import XMLView from './XMLView';
 import GlossaryView from './GlossaryView';
+import DocumentHelper from '../model/DocumentHelper';
 
 class DocumentView extends Component {
 
@@ -39,7 +40,8 @@ class DocumentView extends Component {
             setBookMode: this.setBookMode.bind(this),
             setGridMode: this.setGridMode.bind(this),
             changeTranscriptionType: this.changeTranscriptionType.bind(this),
-            changeCurrentFolio: this.changeCurrentFolio.bind(this)
+            changeCurrentFolio: this.changeCurrentFolio.bind(this),
+            jumpToFolio: this.jumpToFolio.bind(this),
         }
     }
 
@@ -75,6 +77,18 @@ class DocumentView extends Component {
             let versoName = this.props.document.folioNameByIDIndex[versoID];
             let rectoName = this.props.document.folioNameByIDIndex[rectoID];
             this.navigateFolios( versoName, 'f', rectoName, 'f' );
+        }
+    }
+
+    jumpToFolio( folioName, side ) {
+        // Convert folioName to ID (and confirm it exists)
+        const validFolioName = DocumentHelper.validFolioName(folioName)
+        if( validFolioName ) {
+            let folioID = this.props.document.folioIDByNameIndex[validFolioName];
+            if(typeof folioID !== 'undefined'){
+                let longID = DocumentHelper.folioURL(folioID);
+                this.changeCurrentFolio(longID,side);
+            }    
         }
     }
 

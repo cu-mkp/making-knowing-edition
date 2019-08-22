@@ -550,6 +550,18 @@ figure.current {
 .hidden {
   display: none; }
 
+.imageGridComponent .imageGridToolbar {
+  padding: 5px;
+  color: white; }
+  .imageGridComponent .imageGridToolbar .jump-to {
+    float: right;
+    display: 'inline';
+    margin-right: 30px; }
+    .imageGridComponent .imageGridToolbar .jump-to #jump-to-input {
+      margin-left: 5px; }
+    .imageGridComponent .imageGridToolbar .jump-to #jump-to-button {
+      margin-left: 5px; }
+
 .split-pane-view {
   height: 100%;
   width: 100%;

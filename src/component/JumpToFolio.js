@@ -17,9 +17,7 @@ class JumpToFolio extends React.Component {
 		let folioID = data.get("folioID");
 
 		// Submit the request
-		if(folioID.length > 0 ){
-			this.props.submitHandler(folioID);
-		}
+		this.props.submitHandler(folioID, this.props.side);
 
 		// Hide and clear
 		this.props.blurHandler();
@@ -55,7 +53,7 @@ class JumpToFolio extends React.Component {
 		return(
 			<div className="jumpToFolio_component" style={divStyle}>
 				<form onSubmit={this.handleSubmit}>
-					<input value={this.state.textInput} id={id} name="folioID" type="text" onChange={this.handleChange.bind(this)} onBlur={this.props.blurHandler}/>
+					<input placeholder="Folio Name (e.g. '3r')" value={this.state.textInput} id={id} name="folioID" type="text" onChange={this.handleChange.bind(this)} onBlur={this.props.blurHandler}/>
 				</form>
 			</div>
 		)}
