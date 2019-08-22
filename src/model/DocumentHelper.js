@@ -8,7 +8,7 @@ DocumentHelper.transcriptionTypeLabels = {
   tcn: 'Normalized (FR)',
   tl: 'Translation (EN)',
   f: 'Facsimile',
-  anno: 'Annotation',
+  anno: 'Research Esssay',
   glossary: 'Glossary'
 };
 

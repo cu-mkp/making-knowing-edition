@@ -68,7 +68,7 @@ class AnnotationView extends Component {
         if( this.props.inSearchMode ) return '';
         return (
             <div className='annotation-nav'>
-                <ReactLink to='/annotations'>Back to List</ReactLink>
+                <ReactLink to='/essays'>Back to List</ReactLink>
             </div>
         );
     }

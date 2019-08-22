@@ -66,7 +66,7 @@ class DiploMatic extends Component {
 		if( process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES === 'true') {
 			return (
 				<div className="expandedViewOnly">
-					<span>Annotations</span>
+					<span>Research Essays</span>
 					<Link to='/entries'>Entries</Link>
 					<Link to='/folios'>Folios</Link>
 					<span>About</span>
@@ -75,7 +75,7 @@ class DiploMatic extends Component {
 		} else {
 			return (
 				<div className="expandedViewOnly">
-					<Link to='/annotations'>Annotations</Link>
+					<Link to='/essays'>Research Essays</Link>
 					<Link to='/entries'>Entries</Link>
 					<Link to='/folios'>Folios</Link>
 					<span>About</span>
@@ -159,8 +159,8 @@ class DiploMatic extends Component {
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
 					<Route path="/entries" component={EntryListView}/>
-					<Route path="/annotations" component={AnnotationListView} exact/>
-					<Route path="/annotations/:annoID" render={this.renderAnnotationView}/>
+					<Route path="/essays" component={AnnotationListView} exact/>
+					<Route path="/essays/:annoID" render={this.renderAnnotationView}/>
 					<Route path="/folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2" render={this.renderDocumentView} exact/>
 					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
 					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>

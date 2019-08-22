@@ -44,7 +44,7 @@ class SearchView extends Component {
             this.props.history.push(`/folios/${folioID}/${transcriptionType}`);    
         } else if( this.props.annotationID ) {
             const annotationID = this.props.annotationID
-            this.props.history.push(`/annotations/${annotationID}`);    
+            this.props.history.push(`/essays/${annotationID}`);    
         }
     }
 

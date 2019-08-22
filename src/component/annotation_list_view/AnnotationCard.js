@@ -90,7 +90,7 @@ class AnnotationCard extends Component {
                 <CardContent>
                     <Typography className='abstract'>{Parser(abstract)}</Typography>
                     <div className='details'>
-                        <Button onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}>Read Annotation</Button>
+                        <Button onClick={e => {this.props.history.push(`/essays/${annotation.id}`)}}>Read Essay</Button>
                     </div>
                 </CardContent>
             </Card>
