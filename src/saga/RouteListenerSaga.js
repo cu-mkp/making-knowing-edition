@@ -40,7 +40,7 @@ function *userNavigation(action) {
                 }
                 yield resolveSearchResult();
                 break;
-            case 'annotations':
+            case 'essays':
                 yield resolveAuthors();
                 yield resolveComments();
                 yield resolveAnnotationManifest();

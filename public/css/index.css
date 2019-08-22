@@ -665,6 +665,9 @@ figure.current {
   vertical-align: super;
   font-size: 9pt; }
 
+.del {
+  color: red; }
+
 .ups {
   background: lightgray; }
 

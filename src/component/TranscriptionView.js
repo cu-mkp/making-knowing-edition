@@ -371,7 +371,7 @@ class TranscriptionView extends Component {
 
 						case 'del':
 							return (
-								<s>
+								<s className='del'>
 									{domToReact(domNode.children, parserOptions)}
 								</s>
 							);

@@ -54,7 +54,7 @@ class Annotation extends React.Component {
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
-					<h2><Link to={`/annotations/${annotation.id}`}>{annotation.name}</Link></h2>
+					<h2><Link to={`/essays/${annotation.id}`}>{annotation.name}</Link></h2>
 					<div className='thumbnail'><span className='icon fa fa-10x fa-flask'></span></div>
 					<div className='abstract'>{Parser(abstract)}</div>
 				</div>
