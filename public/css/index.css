@@ -651,6 +651,8 @@ figure.current {
   -ms-user-select: text;
   user-select: text;
   min-width: 10rem; }
+  .transcriptContent figure {
+    display: inline; }
 
 .transcriptionViewComponent {
   overflow: scroll;
