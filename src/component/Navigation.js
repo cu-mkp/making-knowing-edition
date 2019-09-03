@@ -44,15 +44,13 @@ class navigation extends React.Component {
 			this.props.documentViewActions.changeCurrentFolio(
 				this.props.documentView.left.iiifShortID,
 				'left',
-				this.props.documentView.left.transcriptionType,
-				event.currentTarget.dataset.direction				
+				this.props.documentView.left.transcriptionType		
 			);
 
 			this.props.documentViewActions.changeCurrentFolio(
 				this.props.documentView.left.nextFolioShortID,
 				'right',
-				this.props.documentView.left.transcriptionType,
-				event.currentTarget.dataset.direction			
+				this.props.documentView.left.transcriptionType	
 			);
 		}
 
@@ -92,15 +90,13 @@ class navigation extends React.Component {
 				this.props.documentViewActions.changeCurrentFolio(
 					this.props.documentView.left.iiifShortID,
 					'right',
-					this.props.documentView.left.transcriptionType,
-					event.currentTarget.dataset.direction					
+					this.props.documentView.left.transcriptionType			
 				);
 			}else{
 				this.props.documentViewActions.changeCurrentFolio(
 					this.props.documentView.right.iiifShortID,
 					'left',
-					this.props.documentView.right.transcriptionType,
-					event.currentTarget.dataset.direction					
+					this.props.documentView.right.transcriptionType			
 				);
 			}
 		}
@@ -120,8 +116,7 @@ class navigation extends React.Component {
 		this.props.documentViewActions.changeCurrentFolio(
 			longID,
 			this.props.side,
-			this.props.documentView[this.props.side].transcriptionType,
-			event.currentTarget.dataset.direction			
+			this.props.documentView[this.props.side].transcriptionType
 		);
 	}
 
@@ -190,13 +185,11 @@ class navigation extends React.Component {
 							<span 	title = "Go back"
 									onClick={this.changeCurrentFolio}
 									data-id={this.props.documentView[this.props.side].previousFolioShortID}
-									data-direction="back"
 									className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
 
 							<span 	title = "Go forward"
 									onClick={this.changeCurrentFolio}
 									data-id={this.props.documentView[this.props.side].nextFolioShortID}
-									data-direction="forward"
 									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 							&nbsp;&nbsp;
 							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
