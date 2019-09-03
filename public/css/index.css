@@ -662,6 +662,15 @@ figure.current {
 .block {
   margin-bottom: 1.5rem; }
 
+.block[data-layout='right-middle'] {
+  max-width: 350px; }
+
+.block[data-layout='right-top'] {
+  max-width: 350px; }
+
+.block[data-layout='right-bottom'] {
+  max-width: 350px; }
+
 .add {
   color: blue;
   vertical-align: super;
