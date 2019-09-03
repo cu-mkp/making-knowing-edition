@@ -663,13 +663,13 @@ figure.current {
   margin-bottom: 1.5rem; }
 
 .block[data-layout='right-middle'] {
-  max-width: 350px; }
+  max-width: 250px; }
 
 .block[data-layout='right-top'] {
-  max-width: 350px; }
+  max-width: 250px; }
 
 .block[data-layout='right-bottom'] {
-  max-width: 350px; }
+  max-width: 250px; }
 
 .add {
   color: blue;
