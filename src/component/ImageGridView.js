@@ -77,14 +77,6 @@ class ImageGridView extends React.Component {
 			id,
 			this.props.side
 		);
-
-		// TODO Replace this pane with imageView if the pane is big enough
-		// if(this.props.documentView[this.props.side].width >= this.thumbnailNavigationModeSize){
-		// 	this.props.documentViewActions.changeTranscriptionType(
-		// 		this.props.side,
-		// 		'f'
-		// 	);
-		// }
 	}
 
 	generateThumbs (currentID, folios) {

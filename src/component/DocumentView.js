@@ -188,7 +188,23 @@ class DocumentView extends Component {
                 this.navigateFolios( versoName, 'f', rectoName, 'f' );    
             }
         } else if( this.state.linkedMode ) {
-            this.navigateFolios( folioID, transcriptionType );
+            if( side === 'left' ) {
+                let otherSide = this.props.viewports['right'];
+                this.navigateFolios( 
+                    folioID, 
+                    transcriptionType, 
+                    folioID,  
+                    otherSide.transcriptionType
+                );   
+            } else {
+                let otherSide = this.props.viewports['left'];
+                this.navigateFolios( 
+                    folioID,  
+                    otherSide.transcriptionType,
+                    folioID, 
+                    transcriptionType 
+                );  
+            }
         } else {
             if( side === 'left' ) {
                 let otherSide = this.props.viewports['right'];
