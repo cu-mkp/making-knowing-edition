@@ -159,11 +159,6 @@ class navigation extends React.Component {
 			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
 			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 			let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
-
-			// TODO remove
-			// <span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
-			// &nbsp;
-
 			return (
 				<div className={thisClass} style={thisStyle}>
 						<div className={dropdownClass}>
@@ -179,6 +174,8 @@ class navigation extends React.Component {
 							</div>
 						</div>
 						<div className="breadcrumbs" style={thisStyle}>
+							<span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
+							&nbsp;
 							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
 							&nbsp;
 							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
