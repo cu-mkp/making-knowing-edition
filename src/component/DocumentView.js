@@ -87,7 +87,7 @@ class DocumentView extends Component {
             let folioID = this.props.document.folioIDByNameIndex[validFolioName];
             if(typeof folioID !== 'undefined'){
                 let longID = DocumentHelper.folioURL(folioID);
-                this.changeCurrentFolio(longID,side);
+                this.changeCurrentFolio(longID,side,this.props.viewports[side].transcriptionType);
             }    
         }
     }
