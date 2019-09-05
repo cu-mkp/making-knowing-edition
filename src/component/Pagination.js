@@ -20,8 +20,7 @@ class navigation extends React.Component {
 		this.props.documentViewActions.changeCurrentFolio(
 			longID,
 			this.props.side,
-			this.props.documentView[this.props.side].transcriptionType,
-			event.currentTarget.dataset.direction			
+			this.props.documentView[this.props.side].transcriptionType
 		);
 	}
 
@@ -34,7 +33,6 @@ class navigation extends React.Component {
 
 					<span	title = "Go back"
 							onClick={this.changeCurrentFolio}
-							data-direction="back"
 							data-id={this.props.documentView[this.props.side].previousFolioShortID}
 							className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}><Icon.ArrowCircleLeft/> </span>
 
@@ -42,7 +40,6 @@ class navigation extends React.Component {
 
 					<span 	title = "Go forward"
 							onClick={this.changeCurrentFolio}
-							data-direction="forward"
 							data-id={this.props.documentView[this.props.side].nextFolioShortID}
 							className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
 				</div>

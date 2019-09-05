@@ -37,8 +37,19 @@ class ImageGridView extends React.Component {
 
 	onJumpTo = (event) => {
 		const { jumpToBuffer } = this.state
+		const { side, document, documentViewActions } = this.props
 		event.preventDefault();
-		this.props.documentViewActions.jumpToFolio(jumpToBuffer, this.props.side)
+
+		// Convert folioName to ID (and confirm it exists)
+        const validFolioName = DocumentHelper.validFolioName(jumpToBuffer)
+        if( validFolioName ) {
+            let folioID = document.folioIDByNameIndex[validFolioName];
+            if(typeof folioID !== 'undefined'){
+                let longID = DocumentHelper.folioURL(folioID);
+                documentViewActions.changeCurrentFolio(longID,side);
+            }    
+		}
+		
 		this.setState({ ...this.state, jumpToBuffer:""});
 	}
 
@@ -77,14 +88,6 @@ class ImageGridView extends React.Component {
 			id,
 			this.props.side
 		);
-
-		// TODO Replace this pane with imageView if the pane is big enough
-		// if(this.props.documentView[this.props.side].width >= this.thumbnailNavigationModeSize){
-		// 	this.props.documentViewActions.changeTranscriptionType(
-		// 		this.props.side,
-		// 		'f'
-		// 	);
-		// }
 	}
 
 	generateThumbs (currentID, folios) {

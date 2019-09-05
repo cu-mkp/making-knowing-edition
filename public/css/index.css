@@ -651,6 +651,8 @@ figure.current {
   -ms-user-select: text;
   user-select: text;
   min-width: 10rem; }
+  .transcriptContent figure {
+    display: inline; }
 
 .transcriptionViewComponent {
   overflow: scroll;
@@ -659,6 +661,15 @@ figure.current {
 
 .block {
   margin-bottom: 1.5rem; }
+
+.block[data-layout='right-middle'] {
+  max-width: 250px; }
+
+.block[data-layout='right-top'] {
+  max-width: 250px; }
+
+.block[data-layout='right-bottom'] {
+  max-width: 250px; }
 
 .add {
   color: blue;

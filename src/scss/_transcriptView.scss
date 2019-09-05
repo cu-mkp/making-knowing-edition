@@ -10,6 +10,10 @@
 	user-select: text;
 
 	min-width: 10rem;
+
+	figure {
+		display: inline;
+	}
 }
 
 .transcriptionViewComponent {
@@ -20,6 +24,18 @@
 
 .block {
 	margin-bottom: 1.5rem;
+}
+
+.block[data-layout='right-middle'] {
+	max-width: 250px;
+}
+
+.block[data-layout='right-top'] {
+	max-width: 250px;
+}
+
+.block[data-layout='right-bottom'] {
+	max-width: 250px;
 }
 
 .add {
