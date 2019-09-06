@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const { execSync } = require('child_process');
 
@@ -5,11 +7,7 @@ const searchIndex = require('./search_index');
 const convert = require('./convert');
 const glossary = require('./glossary');
 const comments = require('./comments');
-
-const commentsCSV = "scripts/content_import/TEMP/input/metadata/DCE_comment-tracking-Tracking.csv";
-const glossaryCSV = "scripts/content_import/TEMP/input/glossary/DCE-glossary-table.csv";
-const targetCommentsFile = 'nginx/webroot/comments.json';
-const targetGlossaryFile = "nginx/webroot/glossary.json"
+const configLoader = require('./config_loader');
 
 const waitTimeLengthMins = 1;
 
@@ -148,15 +146,27 @@ async function main() {
     process.exit(-1);
   }  
 
+  // load the config
+  const configData = configLoader.load();
+  if( !configData ) {
+    console.log("Unable to load configuration file. Expected it in edition_data/config.json");
+    process.exit(-1);   
+  }
+
   // make sure the necessary dirs exist
-  const inputDir = 'scripts/content_import/TEMP/input';
-  const correctFormatDir = 'scripts/content_import/TEMP/sorted-input';
-  const folioPath = 'nginx/webroot/folio';
-  const searchIndexPath = 'nginx/webroot/search-idx';
+  const inputDir = configData.sourceDir;
+  const correctFormatDir = `${configData.workingDir}/sorted-input`;
+  const folioPath = `${configData.targetDir}/folio`;
+  const searchIndexPath = `${configData.targetDir}/search-idx`;
   if( !dirExists(folioPath) || !dirExists(searchIndexPath) || !dirExists(correctFormatDir) || !dirExists(inputDir) ) {
     console.log('Unable to start asset server.');
     return;
   }
+
+  const commentsCSV = `${configData.sourceDir}/metadata/DCE_comment-tracking-Tracking.csv`;
+  const glossaryCSV = `${configData.sourceDir}/glossary/DCE-glossary-table.csv`;
+  const targetCommentsFile = `${configData.targetDir}/comments.json`;
+  const targetGlossaryFile = `${configData.targetDir}/glossary.json`;
 
   const now = new Date();
   console.log( `Asset Pipeline started at: ${now.toString()}`);
