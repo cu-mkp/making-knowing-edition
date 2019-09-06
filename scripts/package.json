@@ -1,0 +1,30 @@
+{
+  "name": "making-knowing-assetserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_convert.js",
+  "dependencies": {
+    "csvtojson": "^2.0.8",
+    "fpath": "^0.1.5",
+    "he": "^1.1.1",
+    "html-beautify": "^1.0.4",
+    "html-minifier": "^3.5.9",
+    "jsdom": "^11.6.2",
+    "lunr": "2.3.3",
+    "lunr-languages": "^1.0.0",
+    "markdown-it": "^8.4.1",
+    "markdown-it-footnote": "^3.0.1",
+    "markdown-it-multimd-table": "^3.1.3",
+    "markdown-it-table": "^2.0.3",
+    "path": "^0.12.7",
+    "rename-keys": "^2.0.1",
+    "xml2js": "^0.4.19",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

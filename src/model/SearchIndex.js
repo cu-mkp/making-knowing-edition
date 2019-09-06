@@ -7,7 +7,7 @@ import fr from 'lunr-languages/lunr.fr'
 class SearchIndex {
 
 	constructor() {
-    this.searchIndexURL = process.env.REACT_APP_SEARCH_INDEX;
+    this.searchIndexURL = `${process.env.REACT_APP_EDITION_DATA_URL}/search-idx`;
     this.searchIndex = {};
     this.recipeBook = {};
 		this.loaded = false;
