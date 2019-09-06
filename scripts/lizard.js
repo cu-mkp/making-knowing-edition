@@ -8,26 +8,28 @@ const csv = require('csvtojson');
 const winston = require('winston');
 
 const searchIndex = require('./search_index');
+const configLoader = require('./config_loader');
 
 const rCloneServiceName = 'gdrive-bnf'
 const rCloneSharedDrive = false
 const googleShareName="Annotations";
-const baseDir = 'scripts/content_import/TEMP/annotations';
-const annotationMetaDataCSV = "scripts/content_import/TEMP/input/metadata/annotation-metadata.csv";
-const authorsCSV = "scripts/content_import/TEMP/input/metadata/authors.csv";
-const cachedAnnotationDriveScan = "scripts/content_import/TEMP/cachedScanFile.json";
-const targetAnnotationDir = 'nginx/webroot/annotations';
-const targetImageDir = 'nginx/webroot/images';
-const targetSearchIndexDir = 'nginx/webroot/search-idx';
-const tempCaptionDir = 'scripts/content_import/TEMP/captions';
-const tempAbstractDir = 'scripts/content_import/TEMP/abstract';
-const tempBiblioDir = 'scripts/content_import/TEMP/abstract';
-const convertAnnotationLog = 'scripts/content_import/TEMP/lizard.log';
+
+// path config vars
+let annotationMetaDataCSV;
+let authorsCSV;
+let baseDir;
+let targetImageDir;
+let targetSearchIndexDir;
+let targetAnnotationDir;
+let tempCaptionDir;
+let tempAbstractDir;
+let tempBiblioDir;
+let cachedAnnotationDriveScan;
+let convertAnnotationLog;
+let annotationRootURL;
+let imageRootURL;
+
 let logger = null;
-// const annotationRootURL = "http://localhost:4000/bnf-ms-fr-640/annotations";
-// const imageRootURL = "http://localhost:4000/bnf-ms-fr-640/images";
-const annotationRootURL = "http://142.93.204.224/annotations";
-const imageRootURL = "http://142.93.204.224/images";
 const maxDriveTreeDepth = 20;
 const docxMimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 const jpegMimeType = "image/jpeg";
@@ -38,16 +40,15 @@ const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
 
-
 async function loadAnnotationMetadata() {
     const csvData = fs.readFileSync(annotationMetaDataCSV).toString();
     let annotationMetadata = {};
     const tableObj = await csv().fromString(csvData)        
     tableObj.forEach( entry => {
         let metaData = {
-            id: entry['Annotation ID'],
+            id: entry['Annotation-ID'],
             driveID: entry['UUID'],
-            name: entry['Title'],
+            name: entry['short-title'],
             semester: entry['Semester'],
             year: entry['Year'],
             theme: entry['Theme'],
@@ -696,8 +697,39 @@ async function run(mode) {
     }    
 }
 
+function loadConfig() {
+    // load the config
+    const configData = configLoader.load();
+    if( !configData ) {
+        console.log("Unable to load configuration file. Expected it in edition_data/config.json");
+        process.exit(-1);   
+    }
+    const { sourceDir, targetDir, workingDir, editionDataURL } = configData
+
+    // source dir
+    annotationMetaDataCSV = `${sourceDir}/metadata/annotation-metadata.csv`;
+    authorsCSV = `${sourceDir}/metadata/authors.csv`;
+
+    // target dir
+    targetImageDir = `${targetDir}/images`;
+    targetSearchIndexDir = `${targetDir}/search-idx`;
+    targetAnnotationDir = `${targetDir}/annotations`;
+
+    // working dir
+    baseDir = `${workingDir}/annotations`;
+    tempCaptionDir = `${workingDir}/captions`;
+    tempAbstractDir = `${workingDir}/abstract`;
+    tempBiblioDir = `${workingDir}/biblio`;
+    cachedAnnotationDriveScan = `${workingDir}/cachedScanFile.json`;
+    convertAnnotationLog = `${workingDir}/lizard.log`;
+
+    // edition URL
+    annotationRootURL = `${editionDataURL}/annotations`;
+    imageRootURL = `${editionDataURL}/images`;
+}
 
 function main() {
+    loadConfig();
     setupLogging();
 
     let mode;
