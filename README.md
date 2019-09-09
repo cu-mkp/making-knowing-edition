@@ -1,80 +1,48 @@
-# Making and Knowing Edition Website
+README
+------
 
-This application is meant to build the Making and Knowing Edition Website on your local machine. It provides a [Gulp.js](http://gulpjs.com/) workflow with:
+Making and Knowing Edition Installation
+-----------
 
-- Browsersync (live reload and synchronized browser testing)
-- Concatenation and minification of CSS and JavaScript files
-- Asset management is done by Yarn
-- Deployment with rsync
+Steps:
 
-Main technologies include Node.js, React, and BabelJS.
+) Run yarn, and the cd into scripts and run yarn there.
+) Install rclone and pandoc via brew
+) Copy the edition_data_example directory to edition_data
+) Edit the config.json file, if necessary. The default version will work fine for a local installation.
 
-The final product is a completely static website with no technical dependencies
-except outbound links to servers hosting the IIIF images, video, and photography.
+{
+    "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
+    "targetDir": "public/bnf-ms-fr-640",
+    "sourceDir": "edition_data/input",
+    "workingDir": "edition_data/working"
+}
 
-In the browser, we are currently utilizing:
+) In the edition_data directory, clone the m-k-manuscript-data repository.
+) Create the public/bnf-ms-fr-640 dir
+) Create the edition_data/working dir
+) Move the figures dir and the entries.json file to the target dir.
+) Create a .env.development file with the following:
 
-* React
-* OpenSeaDragon
+REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
+REACT_APP_EDITION_DATA_URL=http://localhost:4000/bnf-ms-fr-640
+PORT=4000
 
-## System Preparation
+Now, you are ready to generate some data.
 
-To use this starter project, you'll need the following things installed on your machine.
+) Run scripts/asset_server local to populate the folios, search, glossary, and comments.
 
-### Required
-[Git](https://git-scm.com)
-[Ruby and Ruby Gems](https://rvm.io/rvm/install)
-[Jekyll](http://jekyllrb.com/) - `gem install jekyll`
-[Bundler](http://bundler.io/) - `gem install bundler` (mac users may need sudo)
+) Run scripts/lizard
 
-[NodeJS](http://nodejs.org) - use the installer.
-[Yarn](https://yarnpkg.com/en/docs/install) - follow installation instructions
-[GulpJS](https://github.com/gulpjs/gulp) - `npm install -g gulp` (mac users may need sudo)
+Making and Knowing Staging and Production
+---------------
 
-### Optional
-[Composer](https://getcomposer.org) (installs PHPMailer)
-[Make](https://www.gnu.org/software/make) (used with rsync for deploying)
+) Modify the editionDataURL to point at where you are hosting on the web
+) create a .env.production file with the following:
 
+REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
+REACT_APP_EDITION_DATA_URL=http://edition-staging.makingandknowing.org/bnf-ms-fr-640
 
-## Local Installation
+(you must have .ssh key setup for server, modify Makefile to change IP)
 
-Git clone this repository, or download it into a directory of your choice. Inside the directory run
-1. `yarn` (reference: package.json)
-2. `bundle install` (reference: Gemfile and Gemfile.lock)
-3. `composer install` (optional, reference: composer.json and composer.lock)
-
-Do all that in one step: `make install` ('composer install' disabled by default)
-
-## Usage
-
-### Tasks
-`yarn start`
-This will build your Jekyll site, give you file watching, browser synchronization, auto-rebuild, CSS injecting, Sass sourcemaps etc.
-
-`yarn build`
-This builds your site for production, with minified CSS and JavaScript. Run this before you deploy your site!
-
-`http://127.0.0.1.xip.io:3000`
-Here you can access your site. If you want to access it with your phone or tablet, use the external access address which is showing up in the terminal window.
-
-`http://127.0.0.1.xip.io:3001`
-Access the Browsersync UI.
-
-
-### Deployment
-Rsync is used here to sync our local _site with the remote host. Adjust the SSH-USER, SSH-HOST and REMOTE-PATH in the Makefile.
-
-Be careful with these settings since rsync is set to **delete** the files on the remote path!
-
-Deploy with `make deploy`.
-
-## Restrictions
-
-### compress.html layout
-
-Inline JavaScript can become broken where // comments used. Please remove the comments or change to /**/ style.
-[compress.html Docs](http://jch.penibelst.de/)
-
-## Credits
-
-Site Framework based on [Foundation for Jekyll Sites](https://github.com/Foundation-for-Jekyll-sites)
+) Run make deploy-staging OR make deploy-prod
