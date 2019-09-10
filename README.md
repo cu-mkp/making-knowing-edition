@@ -91,6 +91,8 @@ Now, you are ready to process some data!
 
 2. Run `scripts/lizard` to see a help message that details the various functions of this script. Lizard does the processing of research essays from Google Drive.
 
+3. Run `scripts/iiif_manifest` to generate a IIIF manifest file and associated Open Annotation JSON files with your edition data URL baked in.
+
 
 Running Locally
 -------
