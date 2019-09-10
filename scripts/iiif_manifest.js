@@ -1,64 +1,18 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
-
-// normal dev config
-const devConfiguration = {
-  iiifDomain: "http://localhost:4000",
-  transcriptionDomain: "http://localhost:4000",
-  folioPath: "/bnf-ms-fr-640/folio",
-  listPath: "/list-dev",
-  manifestFilename: 'manifest-dev.json',
-  annotationListPath: "/bnf-ms-fr-640/list-dev"
-};
-
-// const devConfiguration = {
-//   iiifDomain: "http://localhost:4000",
-//   transcriptionDomain: "http://142.93.204.224",
-//   folioPath: "/folio",
-//   listPath: "/list-dev",
-//   manifestFilename: 'manifest-dev.json',
-//   annotationListPath: "/bnf-ms-fr-640/list-dev"
-// };
-
-const prodConfiguration = {
-  iiifDomain: "http://edition.makingandknowing.org",
-  transcriptionDomain: "http://edition.makingandknowing.org",
-  folioPath: "/bnf-ms-fr-640/folio",
-  listPath: "/list",
-  manifestFilename: 'manifest.json',
-  annotationListPath: "/bnf-ms-fr-640/list"
-};
-
-const stagingConfiguration = {
-  iiifDomain: "http://edition-staging.makingandknowing.org",
-  transcriptionDomain: "http://142.93.204.224",
-  folioPath: "/folio",
-  listPath: "/list-staging",
-  manifestFilename: 'manifest-staging.json',
-  annotationListPath: "/bnf-ms-fr-640/list-staging"
-};
-
-// const prodConfiguration2 = {
-//   iiifDomain: "http://localhost:4000",
-//   transcriptionDomain: "http://209.97.145.244",
-//   folioPath: "/folio",
-//   listPath: "/list-dev",
-//   manifestFilename: 'manifest-dev.json',
-//   annotationListPath: "/bnf-ms-fr-640/list-dev"
-// };
-
-const outputDir = "TEMP";
+const configLoader = require('./config_loader');
 
 function generate_iiif_files(config) {
-  let manifestJSON = fs.readFileSync(`${__dirname}/bnf_manifest.json`, "utf8");
+  let manifestJSON = fs.readFileSync(`edition_data/bnf_manifest.json`, "utf8");
   let manifest = JSON.parse(manifestJSON);
   let canvases = manifest["sequences"][0]["canvases"];
 
-  let annotationListJSON = fs.readFileSync(`${__dirname}/annotation_list.json`, "utf8");
+  let annotationListJSON = fs.readFileSync(`scripts/annotation_list.json`, "utf8");
   let blankAnnotationList = JSON.parse(annotationListJSON);
 
   // make dirs for output, if necessary
-  let listDir = `${__dirname}/${outputDir}/${config.listPath}`;
-  if( !fs.existsSync(outputDir) ) fs.mkdirSync(outputDir);
+  let listDir = `${config.targetDir}/list`;
   if( !fs.existsSync(listDir) ) fs.mkdirSync(listDir);
 
   for( let canvas of canvases ) {
@@ -66,8 +20,8 @@ function generate_iiif_files(config) {
 
     if( folioID ) {
       let fileName = `${folioID}.json`;
-      let annotationListURL =  `${config.iiifDomain}${config.annotationListPath}/${fileName}`;
-      let folioURL = `${config.transcriptionDomain}${config.folioPath}/${folioID}`;
+      let annotationListURL =  `${config.editionDataURL}/list/${fileName}`;
+      let folioURL = `${config.editionDataURL}/folio/${folioID}`;
 
       // Add this to the manifest canvas entries:
       // "otherContent" : [ {
@@ -107,7 +61,7 @@ function generate_iiif_files(config) {
   }
 
   // Write out the manifest that was created.
-  fs.writeFile(`${__dirname}/${outputDir}/${config.manifestFilename}`, JSON.stringify(manifest, null, 3), (err) => {
+  fs.writeFile(`${config.targetDir}/manifest.json`, JSON.stringify(manifest, null, 3), (err) => {
       if (err) {
         console.log(err);
       } 
@@ -142,12 +96,16 @@ function generateFolioID( bnfLabel ) {
 }
 
 function main() {
-  generate_iiif_files(devConfiguration);
-  generate_iiif_files(stagingConfiguration);
-  generate_iiif_files(prodConfiguration);
-  // generate_iiif_files(prodConfiguration2);
 
-  console.log('IIIF Manifests created.');
+  // load the config
+  const config = configLoader.load();
+  if( !config ) {
+    console.log("Unable to load configuration file. Expected it in edition_data/config.json");
+    process.exit(-1);   
+  }
+
+  generate_iiif_files(config);
+  console.log('IIIF Manifest created.');
 }
 
 ///// RUN THE SCRIPT
