@@ -22,26 +22,26 @@ cd scripts
 yarn
 ```
 
-1. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a destination called 'google' which is authorized to access the share. On my mac with homebrew and interactive session:  
+2. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a destination called 'google' which is authorized to access the share. On my mac with homebrew and interactive session:  
 
 ```
 brew install rclone  
 rclone config
 ```
 
-2. Install [PANDOC](https://pandoc.org/) .
+3. Install [PANDOC](https://pandoc.org/) .
 
 ```
 brew install pandoc
 ```
 
-3. Copy the edition_data_example directory to edition_data
+4. Copy the edition_data_example directory to edition_data
 
 ```
 cp -R edition_data_example edition_data
 ```
 
-3. Edit the config.json file, if necessary. The default version will work fine for a local installation.
+5. Edit the config.json file, if necessary. The default version will work fine for a local installation.
 
 ```
 {
@@ -52,7 +52,7 @@ cp -R edition_data_example edition_data
 }
 ```
 
-4. Setup the necessary directory structure. 
+6. Setup the necessary directory structure. 
 
 ```
 mkdir public/bnf-ms-fr-640
@@ -61,13 +61,13 @@ mv edition_data/entries.json public/bnf-ms-fr-640
 mkdir edition_data/working
 ```
 
-5. In the edition_data directory, clone the m-k-manuscript-data repository.
+7. In the edition_data directory, clone the m-k-manuscript-data repository.
 
 ```
 git clone https://github.com/cu-mkp/m-k-manuscript-data.git
 ```
 
-9. Create a .env.development file with the following:
+8. Create a .env.development file with the following:
 
 ```
 REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
@@ -75,7 +75,7 @@ REACT_APP_EDITION_DATA_URL=http://localhost:4000/bnf-ms-fr-640
 PORT=4000
 ```
 
-2. Create a .env.production file with the following:
+9. Create a .env.production file with the following:
 
 ```
 REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
