@@ -64,6 +64,7 @@ mkdir edition_data/working
 7. In the edition_data directory, clone the m-k-manuscript-data repository.
 
 ```
+cd edition_data
 git clone https://github.com/cu-mkp/m-k-manuscript-data.git
 ```
 
