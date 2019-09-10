@@ -10,6 +10,8 @@ Installation
 
 In order to get the project running on you local machine, follow the steps below. Once you have a local environment, you can deploy a version of the edition to a server. If you want the server to automatically stay up to date, see the [MK Asset Server](https://github.com/performant-software/making-knowing-assetserver) project.
 
+Note: These instructions call for using `brew` to install certain software, which is MacOS specifc. If you are installing on a different OS, please use the package manager appropriate to your OS.
+
 Steps:
 
 1. Run yarn, and the cd into scripts and run yarn there.
@@ -27,8 +29,11 @@ brew install rclone
 rclone config
 ```
 
-2. Install pandoc via brew
+2. Install [PANDOC](https://pandoc.org/) .
 
+```
+brew install pandoc
+```
 
 3. Copy the edition_data_example directory to edition_data
 
