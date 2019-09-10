@@ -87,11 +87,11 @@ Processing Edition Data
 ----------
 Now, you are ready to process some data!
 
-1. Run `scripts/asset_server local` to populate the folios, search, glossary, and comments.
+1. Run `scripts/asset_server.js local` to populate the folios, search, glossary, and comments.
 
-2. Run `scripts/lizard` to see a help message that details the various functions of this script. Lizard does the processing of research essays from Google Drive.
+2. Run `scripts/lizard.js` to see a help message that details the various functions of this script. Lizard does the processing of research essays from Google Drive.
 
-3. Run `scripts/iiif_manifest` to generate a IIIF manifest file and associated Open Annotation JSON files with your edition data URL baked in.
+3. Run `scripts/iiif_manifest.js` to generate a IIIF manifest file and associated Open Annotation JSON files with your edition data URL baked in.
 
 
 Running Locally
