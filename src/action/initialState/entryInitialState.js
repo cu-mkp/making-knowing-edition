@@ -1,5 +1,5 @@
 export default {
-    entryManifestURL: process.env.REACT_APP_ENTRY_MANIFEST,
+    entryManifestURL: `${process.env.REACT_APP_EDITION_DATA_URL}/entries.json`,
     entries: null,
     entryList: null,
     filterTags: [],

@@ -1,80 +1,115 @@
-# Making and Knowing Edition Website
+Making and Knowing Edition 
+======
 
-This application is meant to build the Making and Knowing Edition Website on your local machine. It provides a [Gulp.js](http://gulpjs.com/) workflow with:
+The Making and Knowing Project is a research and pedagogical initiative in the Center for Science and Society at Columbia University that explores the intersections between artistic making and scientific knowing. From 2014 through 2019, the Project’s focus is the creation of a digital critical edition of an intriguing anonymous sixteenth-century French artisanal and technical manuscript, BnF Ms. Fr. 640.
 
-- Browsersync (live reload and synchronized browser testing)
-- Concatenation and minification of CSS and JavaScript files
-- Asset management is done by Yarn
-- Deployment with rsync
+This repository contains the website code and scripts to process the XML of the documentary edition, as well as the associated research essays. Once the site is compiled using the provided tools, it can be deployed as a static website with no special hosting requirements. 
 
-Main technologies include Node.js, React, and BabelJS.
+Installation
+------
 
-The final product is a completely static website with no technical dependencies
-except outbound links to servers hosting the IIIF images, video, and photography.
+In order to get the project running on you local machine, follow the steps below. Once you have a local environment, you can deploy a version of the edition to a server. If you want the server to automatically stay up to date, see the [MK Asset Server](https://github.com/performant-software/making-knowing-assetserver) project.
 
-In the browser, we are currently utilizing:
+Note: These instructions call for using `brew` to install certain software, which is MacOS specifc. If you are installing on a different OS, please use the package manager appropriate to your OS.
 
-* React
-* OpenSeaDragon
+Steps:
 
-## System Preparation
+1. Run yarn, and the cd into scripts and run yarn there.
 
-To use this starter project, you'll need the following things installed on your machine.
+```
+yarn 
+cd scripts
+yarn
+```
 
-### Required
-[Git](https://git-scm.com)
-[Ruby and Ruby Gems](https://rvm.io/rvm/install)
-[Jekyll](http://jekyllrb.com/) - `gem install jekyll`
-[Bundler](http://bundler.io/) - `gem install bundler` (mac users may need sudo)
+2. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a destination called 'google' which is authorized to access the share. On my mac with homebrew and interactive session:  
 
-[NodeJS](http://nodejs.org) - use the installer.
-[Yarn](https://yarnpkg.com/en/docs/install) - follow installation instructions
-[GulpJS](https://github.com/gulpjs/gulp) - `npm install -g gulp` (mac users may need sudo)
+```
+brew install rclone  
+rclone config
+```
 
-### Optional
-[Composer](https://getcomposer.org) (installs PHPMailer)
-[Make](https://www.gnu.org/software/make) (used with rsync for deploying)
+3. Install [PANDOC](https://pandoc.org/) .
+
+```
+brew install pandoc
+```
+
+4. Copy the edition_data_example directory to edition_data
+
+```
+cp -R edition_data_example edition_data
+```
+
+5. Edit the config.json file, if necessary. The default version will work fine for a local installation.
+
+```
+{
+    "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
+    "targetDir": "public/bnf-ms-fr-640",
+    "sourceDir": "edition_data/m-k-manuscript-data",
+    "workingDir": "edition_data/working"
+}
+```
+
+6. Setup the necessary directory structure. 
+
+```
+mkdir public/bnf-ms-fr-640
+mv edition_data/figures public/bnf-ms-fr-640 
+mv edition_data/entries.json public/bnf-ms-fr-640 
+mkdir edition_data/working
+```
+
+7. In the edition_data directory, clone the m-k-manuscript-data repository.
+
+```
+cd edition_data
+git clone https://github.com/cu-mkp/m-k-manuscript-data.git
+```
+
+8. Create a .env.development file with the following:
+
+```
+REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
+REACT_APP_EDITION_DATA_URL=http://localhost:4000/bnf-ms-fr-640
+PORT=4000
+```
+
+9. Create a .env.production file with the following:
+
+```
+REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
+REACT_APP_EDITION_DATA_URL=http://edition-staging.makingandknowing.org/bnf-ms-fr-640
+```
+
+Processing Edition Data
+----------
+Now, you are ready to process some data!
+
+1. Run `scripts/asset_server.js local` to populate the folios, search, glossary, and comments.
+
+2. Run `scripts/lizard.js` to see a help message that details the various functions of this script. Lizard does the processing of research essays from Google Drive.
+
+3. Run `scripts/iiif_manifest.js` to generate a IIIF manifest file and associated Open Annotation JSON files with your edition data URL baked in.
 
 
-## Local Installation
+Running Locally
+-------
 
-Git clone this repository, or download it into a directory of your choice. Inside the directory run
-1. `yarn` (reference: package.json)
-2. `bundle install` (reference: Gemfile and Gemfile.lock)
-3. `composer install` (optional, reference: composer.json and composer.lock)
+Once you have generated some data for the edition, you can start it locally:
 
-Do all that in one step: `make install` ('composer install' disabled by default)
+```
+yarn start
+```
 
-## Usage
+Deploying to a Server
+---------------
 
-### Tasks
-`yarn start`
-This will build your Jekyll site, give you file watching, browser synchronization, auto-rebuild, CSS injecting, Sass sourcemaps etc.
+1. Modify the editionDataURL to point at where you are hosting on the web
+(you must have .ssh key setup for server, modify Makefile to change IP)
 
-`yarn build`
-This builds your site for production, with minified CSS and JavaScript. Run this before you deploy your site!
-
-`http://127.0.0.1.xip.io:3000`
-Here you can access your site. If you want to access it with your phone or tablet, use the external access address which is showing up in the terminal window.
-
-`http://127.0.0.1.xip.io:3001`
-Access the Browsersync UI.
-
-
-### Deployment
-Rsync is used here to sync our local _site with the remote host. Adjust the SSH-USER, SSH-HOST and REMOTE-PATH in the Makefile.
-
-Be careful with these settings since rsync is set to **delete** the files on the remote path!
-
-Deploy with `make deploy`.
-
-## Restrictions
-
-### compress.html layout
-
-Inline JavaScript can become broken where // comments used. Please remove the comments or change to /**/ style.
-[compress.html Docs](http://jch.penibelst.de/)
-
-## Credits
-
-Site Framework based on [Foundation for Jekyll Sites](https://github.com/Foundation-for-Jekyll-sites)
+```
+yarn build
+make deploy-staging
+```
