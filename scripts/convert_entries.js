@@ -7,7 +7,6 @@ const tagTypes = [ "al", "bp", "cn", "env", "m", "ms", "pa", "pl", "pn", "pro", 
 
 function main() {
     const entriesJSON = fs.readFileSync(`${baseDir}/entries.json`, "utf8");
-  //  const entriesJSON = fs.readFileSync(`entries.json`, "utf8");
     const entries = JSON.parse(entriesJSON);
     
     // EXAMPLE ENTRY
