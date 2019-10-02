@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component,Fragment} from 'react';
 import {connect} from 'react-redux';
 import ReactList from 'react-list';
 import {Typography, Card, Chip, Avatar } from '@material-ui/core';
@@ -6,7 +6,10 @@ import { CardContent, Link } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 import { dispatchAction } from '../model/ReduxStore';
 
 class EntryListView extends Component {
@@ -30,38 +33,54 @@ class EntryListView extends Component {
       let chips = this.renderCardChips(tags)
       let references = this.renderReferences(tags, entry)
       return(
-            <Card className="entry" key={key}>
-            <CardContent>
-                    <ExpansionPanel >
+            // <Card className="entry" key={key}>
+            // <CardContent>
+                    <ExpansionPanel className="entry" key={key}>
                           <ExpansionPanelSummary  >
-                          <div style={{display:'flex', flexDirection:'column'}}>
+                          <div className={"detail-container"}>
                               <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
                               <Typography>Moldmaking and Metalworking</Typography>
                               <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
                               <div className="entry-chips">{mentionRow}</div>
+                              {tags.length > 0? ( <div><div   style={{float:'right',textAlign:'center',backgroundColor:'gainsboro',width:'40px',borderRadius:'20px'}}><ExpandMoreIcon style={{color:'white', margin:'5px' }}/>
+                                    </div></div>):''}
                         </div>        
                         </ExpansionPanelSummary>
+                        {tags.length > 0? (
                   <ExpansionPanelDetails>
                         <div className={"detail-container"}>
-                        <div className={"detail-row"}> 
+
+                              <div style={{marginBottom:'32px'}}>
+                                    <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
+                                    <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
+                                          <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
+                                          <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
+                                          <MenuItem value={'tl'}>Translation (EN)</MenuItem>
+                                    </Select>
+                              </div>
+                              <div className={"detail-header"}> 
                                     <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
                                     <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
-                          </div>
+                              </div>
                               {
                                     tags.map((tag,index)=>{
                                           return (
+                                                <Fragment>
                                               <div className={"detail-row"}> 
                                                       <div className={"chip-column"}> {chips[index]} </div> 
                                                       <div className={"reference-column"}><Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography></div>
+                                                      
                                                 </div>
+                                                <div className={"row-divider"} ></div>
+                                                </Fragment>
                                           )
                                     })
                               }
                         </div>
-                  </ExpansionPanelDetails>
+                  </ExpansionPanelDetails>) : ''}
                   </ExpansionPanel>
-            </CardContent>
-            </Card>  
+            // </CardContent>
+            // </Card>  
       )
   }
 
@@ -77,7 +96,6 @@ class EntryListView extends Component {
 
     renderCardChips(tags) {
         const { filterTags } = this.props.entries
-
         // need to display toggle state
         let chips = []
         for( let tag of tags) {
