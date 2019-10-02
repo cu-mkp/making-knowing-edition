@@ -1,4 +1,4 @@
-import React, {Component,Fragment} from 'react';
+import React, {Component,Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import ReactList from 'react-list';
 import {Typography, Card, Chip, Avatar } from '@material-ui/core';
@@ -11,6 +11,21 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import { dispatchAction } from '../model/ReduxStore';
+
+
+
+const ExpandToggleButton = (props) =>{
+      let [expanded, setExpanded] = useState(false);
+      function handleClick() {
+            let isExpanded = !expanded;
+            setExpanded(isExpanded);
+      }
+   let b = expanded === false ? (<div onClick={handleClick}><div style={{float:'right',textAlign:'center',backgroundColor:'gainsboro',width:'40px',borderRadius:'20px'}}>
+         <ExpandMoreIcon style={{color:'white', margin:'5px' }}/></div>
+   </div>):  (<div onClick={handleClick}><ExpandMoreIcon className="colapse-button" /></div>);
+    return b;
+}
+
 
 class EntryListView extends Component {
 
@@ -31,56 +46,50 @@ class EntryListView extends Component {
      
       const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
       let chips = this.renderCardChips(tags)
-      let references = this.renderReferences(tags, entry)
       return(
-            // <Card className="entry" key={key}>
-            // <CardContent>
-                    <ExpansionPanel className="entry" key={key}>
-                          <ExpansionPanelSummary  >
-                          <div className={"detail-container"}>
-                              <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
-                              <Typography>Moldmaking and Metalworking</Typography>
-                              <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
-                              <div className="entry-chips">{mentionRow}</div>
-                              {tags.length > 0? ( <div><div   style={{float:'right',textAlign:'center',backgroundColor:'gainsboro',width:'40px',borderRadius:'20px'}}><ExpandMoreIcon style={{color:'white', margin:'5px' }}/>
-                                    </div></div>):''}
-                        </div>        
+                    <ExpansionPanel className="entry" key={entry.id}>
+                          <ExpansionPanelSummary >
+                                <div className={"detail-container"}>
+                                      <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
+                                      <Typography>Moldmaking and Metalworking</Typography>
+                                     <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
+                                      <div className="entry-chips">{mentionRow}</div>
+                                      <ExpandToggleButton/>
+                                </div>        
                         </ExpansionPanelSummary>
-                        {tags.length > 0? (
-                  <ExpansionPanelDetails>
-                        <div className={"detail-container"}>
-
-                              <div style={{marginBottom:'32px'}}>
-                                    <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
-                                    <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
-                                          <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
-                                          <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
-                                          <MenuItem value={'tl'}>Translation (EN)</MenuItem>
-                                    </Select>
-                              </div>
-                              <div className={"detail-header"}> 
-                                    <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
-                                    <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
-                              </div>
-                              {
+                       
+                    <ExpansionPanelDetails>
+                         <div className={"detail-container"}>
+                               <div style={{marginBottom:'32px'}}>
+                                     <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
+                                     <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
+                                           <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
+                                           <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
+                                           <MenuItem value={'tl'}>Translation (EN)</MenuItem>
+                                     </Select>
+                               </div>
+                               <div className={"detail-header"}> 
+                                     <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
+                                     <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
+                               </div>
+                               {
                                     tags.map((tag,index)=>{
-                                          return (
-                                                <Fragment>
-                                              <div className={"detail-row"}> 
+                                           return (
+                                                 <Fragment>
+                                               <div className={"detail-row"}> 
                                                       <div className={"chip-column"}> {chips[index]} </div> 
-                                                      <div className={"reference-column"}><Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography></div>
+                                                       <div className={"reference-column"}><Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography></div>
                                                       
-                                                </div>
-                                                <div className={"row-divider"} ></div>
-                                                </Fragment>
-                                          )
-                                    })
+                                                 </div>
+                                                 <div className={"row-divider"} ></div>
+                                                 </Fragment>
+                                           )
+                                     })
                               }
-                        </div>
-                  </ExpansionPanelDetails>) : ''}
+                         </div>
+                    </ExpansionPanelDetails> 
                   </ExpansionPanel>
-            // </CardContent>
-            // </Card>  
+          
       )
   }
 

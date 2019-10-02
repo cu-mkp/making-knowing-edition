@@ -435,8 +435,9 @@ figure.current {
       width: 28%; }
     #entry-list-view .entry .reference-column {
       width: 72%; }
-    #entry-list-view .entry .expand-button {
-      float: right; }
+    #entry-list-view .entry .colapse-button {
+      float: right;
+      transform: rotate(180deg); }
   #entry-list-view .tag-nav {
     margin-top: 30px; }
   #entry-list-view .tag-nav-item {

@@ -35,8 +35,9 @@
         .reference-column {
               width:72%;
         }
-        .expand-button {
+        .colapse-button {
               float:right;
+              transform:rotate(180deg)
             
         }
     }
