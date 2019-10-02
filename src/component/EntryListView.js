@@ -42,18 +42,21 @@ class EntryListView extends Component {
                         </div>        
                         </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
-                        <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
+                        <div className={"detail-container"}>
+                        <div className={"detail-row"}> 
+                                    <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
+                                    <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
+                          </div>
                               {
                                     tags.map((tag,index)=>{
                                           return (
-                                              <div style={{display:'flex',marginBottom:'5px',marginTop:'5px'}}> 
-                                                      <div style={{width:'30%'}}> {chips[index]} </div> 
-                                                      <div style={{width:'70%' }}>{entry.text_references[tag.id]} </div>
+                                              <div className={"detail-row"}> 
+                                                      <div className={"chip-column"}> {chips[index]} </div> 
+                                                      <div className={"reference-column"}><Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography></div>
                                                 </div>
                                           )
                                     })
                               }
-                        
                         </div>
                   </ExpansionPanelDetails>
                   </ExpansionPanel>

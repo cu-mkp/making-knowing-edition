@@ -9,6 +9,21 @@
         .entry-chips {
             margin-top: 10px;
         }
+        .detail-container {
+              display: flex;
+              flex-direction:column;
+              width:100%;
+        }
+        .detail-row {
+            display:flex;
+            margin: 5px 0px;
+        }
+        .chip-column {
+              width: 30%;
+        }
+        .reference-column {
+              width:70%;
+        }
     }
 
     .tag-nav {
