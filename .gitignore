@@ -33,3 +33,7 @@ yarn-error.log*
 
 .env*
 .sass-cache/
+
+.vscode/launch.bak.json
+
+.vscode/
