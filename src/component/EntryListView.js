@@ -1,14 +1,51 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ReactList from 'react-list';
-import {Typography, Card, Chip, Avatar } from '@material-ui/core';
+import {Typography, Card, Chip, Avatar, FormLabel, RadioGroup, Radio, FormControlLabel} from '@material-ui/core';
 import { CardContent, Link } from '@material-ui/core';
+import  copyObject  from './../lib/copyObject'
 
 import { dispatchAction } from '../model/ReduxStore';
 
 class EntryListView extends Component {
 
-      const [sortBy, setSortBy] = useState()
+      state={
+            sortBy: 'alpha'
+      }
+
+      handleSelectSort =( event, orderBy )=>{
+            this.setState({sortBy: orderBy})
+      }
+
+      sortEntryList = ( listToSort )=>{
+            let unsorted = copyObject(listToSort)
+            function compareHeaders(a, b ) {
+                  if(a.heading_tl.toUpperCase() > b.heading_tl.toUpperCase())
+                        return 1;
+                  else if ( a.heading_tl.toUpperCase() < b.heading_tl.toUpperCase())
+                        return -1;
+                  else 
+                        return 0;
+            }
+            function compareFolios(a, b) {
+                  if(a.folio > b.folio)
+                        return 1;
+                  else if ( a.folio < b.folio)
+                        return -1;
+                  else 
+                        return 0;
+            }
+
+            switch( this.state.sortBy) {
+                  case "alpha":
+                        return unsorted.sort(compareHeaders)
+                  case "folio":
+                        return unsorted.sort(compareFolios)
+                  default:
+                        return unsorted.sort(compareHeaders)
+
+            }
+      }
 
       componentWillMount() {
             dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
@@ -16,8 +53,8 @@ class EntryListView extends Component {
 
       renderEntryCard = (index, key) => {        
             const { entryList, tagNameMap } = this.props.entries
-            const entry = entryList[index]
-
+            const sortedList = this.sortEntryList(entryList);
+            const entry = sortedList[index]
             let tags = [];
             for( let tagID of Object.keys(tagNameMap) ) {
                   if( entry.mentions[tagID] > 0 ) {
@@ -25,7 +62,6 @@ class EntryListView extends Component {
                   }
             }
             let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
-
             const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
 
             return(
@@ -95,38 +131,36 @@ class EntryListView extends Component {
       }
 
 	render() {
-        if( !this.props.entries.loaded ) return null;
-        const { entryList, tagNameMap } = this.props.entries
-        const tagIDs = Object.keys(tagNameMap)
-        let tags = []
-        for( let tagID of tagIDs ) {
-            tags.push({ id: tagID, name: tagNameMap[tagID] })
-        }
+            if( !this.props.entries.loaded ) 
+                  return null;
 
-        return (
-            <div id="entry-list-view">
-                <div className='entries'>
-                    <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
-                    <div>
-                        <FormLabel >Sort: </FormLabel>
-                        <RadioGroup
-                              aria-label="Gender"
-                              value={sortBy}
-                              onChange={this.handleSelectSort}
-                        >
-                              <FormControlLabel value="alpha" control={<Radio />} label="Alphabetically" />
-                              <FormControlLabel value="folio" control={<Radio />} label="By Folio Number" />
-                        </RadioGroup>
-                  </div> 
-                    { this.renderNavigationChips(tags) }
-                    <ReactList
-                        itemRenderer={this.renderEntryCard}
-                        length={entryList.length}
-                        type='variable'
-                    />
-                </div>
-            </div>
-        );
+            const { entryList, tagNameMap } = this.props.entries
+            const tagIDs = Object.keys(tagNameMap)
+            let tags = []
+            for( let tagID of tagIDs ) {
+                  tags.push({ id: tagID, name: tagNameMap[tagID] })
+            }
+
+            return (
+                  <div id="entry-list-view">
+                        <div className='entries'>
+                              <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
+                              <div className="sort-container">
+                                   <FormLabel className="sort-label">Sorted:</FormLabel>
+                                    <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
+                                          <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
+                                          <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
+                                    </RadioGroup>
+                              </div> 
+                              { this.renderNavigationChips(tags) }
+                              <ReactList
+                                    itemRenderer={this.renderEntryCard}
+                                    length={entryList.length}
+                                    type='variable'
+                              />
+                        </div>
+                  </div>
+            );
 	}
 }
 

@@ -9,7 +9,23 @@
         .entry-chips {
             margin-top: 10px;
         }
+       
     }
+
+    .sort-container {
+      display:flex;
+      margin-bottom:12px;
+
+            .sort-label {
+                  display:inline;
+                  margin:16px 10px 0px 0px;
+            }
+            .sort-radio {
+                  color: #3f51b5;
+            }
+      
+      }
+
 
     .tag-nav {
         margin-top: 30px;
