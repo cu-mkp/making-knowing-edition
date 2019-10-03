@@ -1,8 +1,8 @@
-import React, {Component,Fragment, useState, useEffect} from 'react';
+import React, {Component,Fragment} from 'react';
 import {connect} from 'react-redux';
 import ReactList from 'react-list';
-import {Typography, Card, Chip, Avatar } from '@material-ui/core';
-import { CardContent, Link } from '@material-ui/core';
+import {Typography,  Chip, Avatar } from '@material-ui/core';
+import { Link } from '@material-ui/core';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -15,37 +15,38 @@ import { dispatchAction } from '../model/ReduxStore';
 
 
 const ExpandToggleButton = (props) =>{
-      useEffect(()=>{
-            setExpanded(props.isExpanded)
-      } ,[props.isExpanded] )
-      let [expanded, setExpanded] = useState(props.isExpanded);
-    
-   let b = expanded === false ? (<div ><div style={{float:'right',textAlign:'center',backgroundColor:'gainsboro',width:'40px',borderRadius:'20px'}}>
-         <ExpandMoreIcon style={{color:'white', margin:'5px' }}/></div>
-   </div>):  (<div ><ExpandMoreIcon className="colapse-button" /></div>);
-    return b;
+      let expanded = props.isExpanded;
+      let b = expanded === false ? (<div ><div style={{float:'right',textAlign:'center',backgroundColor:'gainsboro',width:'40px',borderRadius:'20px'}}>
+            <ExpandMoreIcon style={{color:'white', margin:'5px' }}/></div>
+      </div>):  (<div ><ExpandMoreIcon className="colapse-button" /></div>);
+
+      return b;
 }
 
 
 
-const EntryCard = ( props )=>{
-      const[isExpanded, setIsExpanded] = useState(false)
-      const entry = props.entry
-      const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
+class EntryCard extends Component{
 
-      function toggleIconButton(event, boolExpanded){
-            setIsExpanded(boolExpanded)
+      state={
+            isExpanded:false
       }
-    
+
+      toggleIconButton=(event, boolExpanded)=>{
+            this.setState({isExpanded: boolExpanded})
+      }
+   
+      render(){
+            const entry = this.props.entry;
+            const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
       return(
-                    <ExpansionPanel className="entry" key={entry.id} onChange={toggleIconButton}>
+                    <ExpansionPanel className="entry" key={entry.id} onChange={this.toggleIconButton}>
                           <ExpansionPanelSummary >
                                 <div className={"detail-container"}>
                                       <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
                                       <Typography>Moldmaking and Metalworking</Typography>
                                      <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
-                                      <div className="entry-chips">{props.mentionRow}</div>
-                                      <ExpandToggleButton  isExpanded={isExpanded}  />
+                                      <div className="entry-chips">{this.props.mentionRow}</div>
+                                      <ExpandToggleButton  isExpanded={this.state.isExpanded}  />
                                 </div>        
                         </ExpansionPanelSummary>
                        
@@ -64,13 +65,13 @@ const EntryCard = ( props )=>{
                                      <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
                                </div>
                                {
-                                    props.tags.map((tag,index)=>{
+                                    this.props.tags.map((tag,index)=>{
                                            return (
                                                  <Fragment>
                                                       <div className={"detail-row"}> 
-                                                                  <div className={"chip-column"}> {props.chips[index]} </div> 
+                                                                  <div className={"chip-column"}> {this.props.chips[index]} </div> 
                                                                   <div className={"reference-column"}>
-                                                                        <Typography variant="subtitle2">{props.entry.text_references[tag.id]} </Typography>
+                                                                        <Typography variant="subtitle2">{this.props.entry.text_references[tag.id]} </Typography>
                                                                   </div>
                                                       </div>
                                                       <div className={"row-divider"} ></div>
@@ -82,7 +83,8 @@ const EntryCard = ( props )=>{
                     </ExpansionPanelDetails> 
                   </ExpansionPanel>
           
-      )
+            )
+                        }
 }
 
 
