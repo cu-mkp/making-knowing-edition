@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
+import Parser from 'html-react-parser';
 
 class EditorComment extends Component {
 
@@ -33,7 +34,7 @@ class EditorComment extends Component {
 
         const comments = this.props.comments.comments
         const content = comments[this.props.commentID] ? 
-            comments[this.props.commentID].comment : 
+            Parser(comments[this.props.commentID].comment) : 
             `ERROR: Could not find comment for id: ${this.props.commentID}.`
 
         const style = { maxWidth: 200, padding: "25px 15px 15px 15px" }
