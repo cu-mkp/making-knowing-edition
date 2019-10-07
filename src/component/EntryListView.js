@@ -7,6 +7,25 @@ import  copyObject  from './../lib/copyObject'
 
 import { dispatchAction } from '../model/ReduxStore';
 
+function isValidChar( str) {
+      let code = str.charCodeAt(0)
+      if (!(code > 47 && code < 58) && // numeric (0-9)
+      !(code > 64 && code < 91) && // upper alpha (A-Z)
+      !(code > 96 && code < 123)) { // lower alpha (a-z)
+      return false;
+      }else
+      return true;
+
+}
+function stripNonAlphaNumeric( strInput){
+      if(!strInput)
+      return strInput;
+     while ( ! isValidChar(strInput)) {
+       strInput = strInput.substring(1);
+     }
+      return strInput;
+}
+
 class EntryListView extends Component {
 
       state={
@@ -17,10 +36,18 @@ class EntryListView extends Component {
             this.setState({sortBy: orderBy})
       }
 
+    
+
       sortEntryList = ( listToSort )=>{
             let unsorted = copyObject(listToSort)
+            let trimmed = unsorted.map( item =>{
+                  item.heading_tl = stripNonAlphaNumeric(item.heading_tl)
+                 return item;
+            })
+
             function compareHeaders(a, b ) {
-                  if(a.heading_tl.toUpperCase() > b.heading_tl.toUpperCase())
+                 
+                  if(a.heading_tl.toUpperCase()> b.heading_tl.toUpperCase())
                         return 1;
                   else if ( a.heading_tl.toUpperCase() < b.heading_tl.toUpperCase())
                         return -1;
@@ -38,11 +65,11 @@ class EntryListView extends Component {
 
             switch( this.state.sortBy) {
                   case "alpha":
-                        return unsorted.sort(compareHeaders)
+                        return trimmed.sort(compareHeaders)
                   case "folio":
-                        return unsorted.sort(compareFolios)
+                        return trimmed.sort(compareFolios)
                   default:
-                        return unsorted.sort(compareHeaders)
+                        return trimmed.sort(compareHeaders)
 
             }
       }
