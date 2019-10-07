@@ -126,7 +126,7 @@ class GlossaryView extends Component {
                 { this.renderToolbar() }
                 <div id="glossaryViewInner">
                     <div id="glossaryContent">
-                        <Typography variant='h2' className="title">Glossary of Terms</Typography>
+                        <Typography variant='h2' className="title">Glossary</Typography>
                         { this.renderGlossary() }
                     </div>
                 </div>
