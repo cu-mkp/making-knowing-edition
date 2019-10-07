@@ -13,18 +13,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { dispatchAction } from '../model/ReduxStore';
 
 
-
-const ExpandToggleButton = (props) =>{
-      let expanded = props.isExpanded;
-      let b = expanded === false ? (<div ><div style={{float:'right',textAlign:'center',backgroundColor:'gainsboro',width:'40px',borderRadius:'20px'}}>
-            <ExpandMoreIcon style={{color:'white', margin:'5px' }}/></div>
-      </div>):  (<div ><ExpandMoreIcon className="colapse-button" /></div>);
-
-      return b;
-}
-
-
-
 class EntryCard extends Component{
 
       state={
@@ -40,13 +28,13 @@ class EntryCard extends Component{
             const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
       return(
                     <ExpansionPanel className="entry" key={entry.id} onChange={this.toggleIconButton}>
-                          <ExpansionPanelSummary >
+                          <ExpansionPanelSummary   expandIcon={<div><ExpandMoreIcon className="colapse-button" /></div>}>
                                 <div className={"detail-container"}>
                                       <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
                                       <Typography>Moldmaking and Metalworking</Typography>
                                      <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
                                       <div className="entry-chips">{this.props.mentionRow}</div>
-                                      <ExpandToggleButton  isExpanded={this.state.isExpanded}  />
+                                     
                                 </div>        
                         </ExpansionPanelSummary>
                        
