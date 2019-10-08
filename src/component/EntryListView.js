@@ -18,25 +18,6 @@ import copyObject from './../lib/copyObject';
 import { dispatchAction } from '../model/ReduxStore';
 
 
-function isValidChar( str) {
-      let code = str.charCodeAt(0)
-      if (!(code > 47 && code < 58) && // numeric (0-9)
-      !(code > 64 && code < 91) && // upper alpha (A-Z)
-      !(code > 96 && code < 123)) { // lower alpha (a-z)
-      return false;
-      }else
-      return true;
-}
-
-function stripNonAlphaNumeric( strInput){
-      if(!strInput)
-            return strInput;
-      while ( ! isValidChar(strInput)) {
-            strInput = strInput.substring(1);
-      }
-      return strInput;
-}
-
 
 class EntryListView extends Component {
 
@@ -242,6 +223,25 @@ function mapStateToProps(state) {
     };
 }
 
+
+function isValidChar( str) {
+      let code = str.charCodeAt(0)
+      if (!(code > 47 && code < 58) && // numeric (0-9)
+      !(code > 64 && code < 91) && // upper alpha (A-Z)
+      !(code > 96 && code < 123)) { // lower alpha (a-z)
+      return false;
+      }else
+      return true;
+}
+
+function stripNonAlphaNumeric( strInput){
+      if(!strInput)
+            return strInput;
+      while ( ! isValidChar(strInput)) {
+            strInput = strInput.substring(1);
+      }
+      return strInput;
+}
 
 
 export default connect(mapStateToProps)(EntryListView);
