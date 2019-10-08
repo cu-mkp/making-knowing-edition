@@ -438,6 +438,14 @@ figure.current {
     #entry-list-view .entry .colapse-button {
       float: right;
       transform: rotate(180deg); }
+  #entry-list-view .sort-container {
+    display: flex;
+    margin-bottom: 12px; }
+    #entry-list-view .sort-container .sort-label {
+      display: inline;
+      margin: 16px 10px 0px 0px; }
+    #entry-list-view .sort-container .sort-radio {
+      color: #3f51b5; }
   #entry-list-view .tag-nav {
     margin-top: 30px; }
   #entry-list-view .tag-nav-item {
