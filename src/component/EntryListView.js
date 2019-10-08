@@ -12,13 +12,34 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import { dispatchAction } from '../model/ReduxStore';
 
+function isValidChar( str) {
+      let code = str.charCodeAt(0)
+      if (!(code > 47 && code < 58) && // numeric (0-9)
+      !(code > 64 && code < 91) && // upper alpha (A-Z)
+      !(code > 96 && code < 123)) { // lower alpha (a-z)
+      return false;
+      }else
+      return true;
+
+}
+function stripNonAlphaNumeric( strInput){
+      if(!strInput)
+     while ( ! isValidChar(strInput)) {
+      return strInput;
+       strInput = strInput.substring(1);
+     }
+      return strInput;
+}
 
 class EntryListView extends Component {
 
-    componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
-    }
+      state={
+            sortBy: 'alpha'
+      }
 
+      handleSelectSort =( event, orderBy )=>{
+            this.setState({sortBy: orderBy})
+      }
     renderEntryCard = (index, key) => {        
       const { entryList, tagNameMap } = this.props.entries
       const entry = entryList[index];
@@ -42,12 +63,12 @@ class EntryListView extends Component {
                                     <div className="entry-chips">{this.props.mentionRow}</div>
                                    
                               </div>        
-                      </ExpansionPanelSummary>
                      
+                      </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
                        <div className={"detail-container"}>
-                             <div style={{marginBottom:'32px'}}>
                                    <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
+                             <div style={{marginBottom:'32px'}}>
                                    <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
                                          <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
                                          <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
@@ -66,31 +87,73 @@ class EntryListView extends Component {
                                                                 <div className={"chip-column"}> {chips[index]} </div> 
                                                                 <div className={"reference-column"}>
                                                                       <Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography>
-                                                                </div>
                                                     </div>
+                                                                </div>
                                                     <div className={"row-divider"} ></div>
                                                </Fragment>
                                          )
                                    })
-                            }
                        </div>
                   </ExpansionPanelDetails> 
+                            }
                 </ExpansionPanel>
       )
   }
 
-    onClickNavigationChip = (e) => {
-        const tagID = e.currentTarget.getAttribute('tagid')
-        dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
-    }
+    
 
-    onClickCardChip = (e) => {
-        // const tagID = e.currentTarget.getAttribute('tagid')
-        // dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
-    }
+      sortEntryList = ( listToSort )=>{
+            let unsorted = copyObject(listToSort)
+            let trimmed = unsorted.map( item =>{
+                  item.heading_tl = stripNonAlphaNumeric(item.heading_tl)
+                 return item;
+            })
+            function compareHeaders(a, b ) {
+                 
+                  if(a.heading_tl.toUpperCase()> b.heading_tl.toUpperCase())
+                        return 1;
+                  else if ( a.heading_tl.toUpperCase() < b.heading_tl.toUpperCase())
+                        return -1;
+                  else 
+                        return 0;
+            }
+            function compareFolios(a, b) {
+                  if(a.folio > b.folio)
+                        return 1;
+                  else if ( a.folio < b.folio)
+                  else 
+                        return -1;
+                        return 0;
+            }
+
+            switch( this.state.sortBy) {
+                  case "alpha":
+                        return trimmed.sort(compareHeaders)
+                  case "folio":
+                        return trimmed.sort(compareFolios)
+                  default:
+                        return trimmed.sort(compareHeaders)
+
+            }
+      }
+
+
+      renderEntryCard = (index, key) => {        
+            const { entryList, tagNameMap } = this.props.entries
+            const sortedList = this.sortEntryList(entryList);
+            const entry = sortedList[index]
+            let tags = [];
+            for( let tagID of Object.keys(tagNameMap) ) {
+                  if( entry.mentions[tagID] > 0 ) {
+                  tags.push({ id: tagID, name: tagNameMap[tagID], count: entry.mentions[tagID]})
+                  }
+            }
+            let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
+            const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
 
     renderCardChips(tags) {
         const { filterTags } = this.props.entries
+
         // need to display toggle state
         let chips = []
         for( let tag of tags) {
@@ -106,66 +169,72 @@ class EntryListView extends Component {
             />)
         }
 
-        return(
-           chips
-        )
-    }
+      onClickCardChip = (e) => {
+            // const tagID = e.currentTarget.getAttribute('tagid')
+            // dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
+      }
 
-    renderReferences(tags, entry){
-     let references = [];
-     for( let tag of tags ){
-           references.push( <div>{entry.text_references[tag.id]}</div>)
-     }
-   return references;
-    }
-
-    
     renderNavigationChips(tags) {
         const { filterTags } = this.props.entries
 
-        // need to display toggle state
-        let chips = []
-        for( let tag of tags) {
-            chips.push(<Chip
-                className="tag-nav-item"
-                tagid={tag.id}
-                key={`chip-${tag.id}`}
-                color= { filterTags.includes(tag.id) ? "primary" : "default"}
-                avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
-                onClick={this.onClickNavigationChip}
-                label={tag.name}
-            />)
-        }
+            return(
+            chips
+            )
+      }
 
-        return(
-           chips
-        )
-    }
+      renderNavigationChips(tags) {
+            const { filterTags } = this.props.entries
+
+            // need to display toggle state
+            let chips = []
+            for( let tag of tags) {
+                  chips.push(<Chip
+                  className="tag-nav-item"
+                  tagid={tag.id}
+                  key={`chip-${tag.id}`}
+                  color= { filterTags.includes(tag.id) ? "primary" : "default"}
+                  avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
+                  onClick={this.onClickNavigationChip}
+                  label={tag.name}
+                  />)
+            }
+
+            return(
+            chips
+            )
+      }
 
 	render() {
-        if( !this.props.entries.loaded ) return null;
+            if( !this.props.entries.loaded ) 
+                  return null;
 
-        const { entryList, tagNameMap } = this.props.entries
-    
-        const tagIDs = Object.keys(tagNameMap)
-        let tags = []
-        for( let tagID of tagIDs ) {
-            tags.push({ id: tagID, name: tagNameMap[tagID] })
-        }
+            const { entryList, tagNameMap } = this.props.entries
+            const tagIDs = Object.keys(tagNameMap)
+            let tags = []
+            for( let tagID of tagIDs ) {
+                  tags.push({ id: tagID, name: tagNameMap[tagID] })
+            }
 
-        return (
-            <div id="entry-list-view">
-                <div className='entries'>
-                    <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
-                    { this.renderNavigationChips(tags) }
-                    <ReactList
-                        itemRenderer={this.renderEntryCard}
-                        length={entryList.length}
-                        type='variable'
-                    />
-                </div>
-            </div>
-        );
+            return (
+                  <div id="entry-list-view">
+                        <div className='entries'>
+                              <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
+                              <div className="sort-container">
+                                   <FormLabel className="sort-label">Sorted:</FormLabel>
+                                    <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
+                                          <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
+                                          <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
+                                    </RadioGroup>
+                              </div> 
+                              { this.renderNavigationChips(tags) }
+                              <ReactList
+                                    itemRenderer={this.renderEntryCard}
+                                    length={entryList.length}
+                                    type='variable'
+                              />
+                        </div>
+                  </div>
+            );
 	}
 }
 

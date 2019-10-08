@@ -34,4 +34,9 @@ yarn-error.log*
 .env*
 .sass-cache/
 
+<<<<<<< HEAD
+=======
+.vscode/launch.bak.json
+
+>>>>>>> #94-sort-entries
 .vscode/
