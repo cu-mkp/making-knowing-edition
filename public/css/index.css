@@ -415,6 +415,29 @@ figure.current {
     margin-top: 10px; }
     #entry-list-view .entry .entry-chips {
       margin-top: 10px; }
+    #entry-list-view .entry .detail-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 0; }
+    #entry-list-view .entry .detail-header {
+      display: flex;
+      margin: 8px 0px;
+      text-align: center; }
+    #entry-list-view .entry .detail-row {
+      display: flex;
+      margin: 8px 0px; }
+    #entry-list-view .entry .row-divider {
+      width: 100%;
+      height: 2px;
+      background-color: gainsboro; }
+    #entry-list-view .entry .chip-column {
+      width: 28%; }
+    #entry-list-view .entry .reference-column {
+      width: 72%; }
+    #entry-list-view .entry .colapse-button {
+      float: right;
+      transform: rotate(180deg); }
   #entry-list-view .tag-nav {
     margin-top: 30px; }
   #entry-list-view .tag-nav-item {
