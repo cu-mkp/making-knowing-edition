@@ -17,6 +17,27 @@ import FormLabel from '@material-ui/core/FormLabel';
 import copyObject from './../lib/copyObject';
 import { dispatchAction } from '../model/ReduxStore';
 
+
+function isValidChar( str) {
+      let code = str.charCodeAt(0)
+      if (!(code > 47 && code < 58) && // numeric (0-9)
+      !(code > 64 && code < 91) && // upper alpha (A-Z)
+      !(code > 96 && code < 123)) { // lower alpha (a-z)
+      return false;
+      }else
+      return true;
+}
+
+function stripNonAlphaNumeric( strInput){
+      if(!strInput)
+            return strInput;
+      while ( ! isValidChar(strInput)) {
+            strInput = strInput.substring(1);
+      }
+      return strInput;
+}
+
+
 class EntryListView extends Component {
 
       state={
@@ -29,7 +50,8 @@ class EntryListView extends Component {
 
       renderEntryCard = (index, key) => {        
             const { entryList, tagNameMap } = this.props.entries
-            const entry = entryList[index];
+            const sortedList = this.sortEntryList(entryList);
+            const entry = sortedList[index]
             let tags = [];
             for( let tagID of Object.keys(tagNameMap) ) {
             if( entry.mentions[tagID] > 0 ) {
@@ -139,6 +161,10 @@ class EntryListView extends Component {
             return(chips)
       }
 
+      handleSelectSort =( event, orderBy )=>{
+            this.setState({sortBy: orderBy})
+      }
+
 	render() {
             if( !this.props.entries.loaded ) return null;
 
@@ -171,9 +197,7 @@ class EntryListView extends Component {
             );
 	}
 
-      handleSelectSort =( event, orderBy )=>{
-            this.setState({sortBy: orderBy})
-      }
+      
 
       sortEntryList = ( listToSort )=>{
             let unsorted = copyObject(listToSort)
@@ -219,24 +243,5 @@ function mapStateToProps(state) {
 }
 
 
-function isValidChar( str) {
-      let code = str.charCodeAt(0)
-      if (!(code > 47 && code < 58) && // numeric (0-9)
-      !(code > 64 && code < 91) && // upper alpha (A-Z)
-      !(code > 96 && code < 123)) { // lower alpha (a-z)
-      return false;
-      }else
-      return true;
-
-}
-
-function stripNonAlphaNumeric( strInput){
-      if(!strInput)
-            return strInput;
-      while ( ! isValidChar(strInput)) {
-            strInput = strInput.substring(1);
-      }
-      return strInput;
-}
 
 export default connect(mapStateToProps)(EntryListView);
