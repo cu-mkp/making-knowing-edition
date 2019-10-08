@@ -15,12 +15,16 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import copyObject from './../lib/copyObject';
-
+import { dispatchAction } from '../model/ReduxStore';
 
 class EntryListView extends Component {
 
       state={
             sortBy: 'alpha'
+      }
+
+      componentWillMount() {
+            dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
       }
 
       renderEntryCard = (index, key) => {        
@@ -45,69 +49,80 @@ class EntryListView extends Component {
                                           <div className="entry-chips">{this.props.mentionRow}</div>
                                     </div>        
                         </ExpansionPanelSummary>
-                              <ExpansionPanelDetails>
-                        <div className={"detail-container"}>
-                                    <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
-                                          <div style={{marginBottom:'32px'}}>
-                                                <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
-                                                      <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
-                                                      <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
-                                                      <MenuItem value={'tl'}>Translation (EN)</MenuItem>
-                                                </Select>
-                                          </div>
-                                          <div className={"detail-header"}> 
-                                                <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
-                                                <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
-                                          </div>
-                                                {
-                                                      tags.map((tag,index)=>{
-                                                            return (
-                                                                  <Fragment>
-                                                                              <div className={"detail-row"}> 
-                                                                                    <div className={"chip-column"}> {chips[index]} </div> 
-                                                                                    <div className={"reference-column"}>
-                                                                                          <Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography>
-                                                                                          </div>
+
+                        <ExpansionPanelDetails>
+                              <div className={"detail-container"}>
+                                    <div style={{marginBottom:'32px'}}>
+                                          <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
+                                          <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
+                                                <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
+                                                <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
+                                                <MenuItem value={'tl'}>Translation (EN)</MenuItem>
+                                          </Select>
+                                    </div>
+                                    <div className={"detail-header"}> 
+                                          <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
+                                          <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
+                                    </div>
+                                          {
+                                                tags.map((tag,index)=>{
+                                                      return (
+                                                            <Fragment>
+                                                                        <div className={"detail-row"}> 
+                                                                              <div className={"chip-column"}> {chips[index]} </div> 
+                                                                              <div className={"reference-column"}>
+                                                                                    <Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography>
                                                                               </div>
-                                                                        <div className={"row-divider"} ></div>
-                                                                  </Fragment>
-                                                            )
-                                                      })
-                                                }
-                              </div>
+                                                                        </div>
+                                                                  <div className={"row-divider"} ></div>
+                                                            </Fragment>
+                                                      )
+                                                })
+                                          }
+                                    </div>
                         </ExpansionPanelDetails> 
                   </ExpansionPanel>
                   )
       }
 
-      renderCardChips(tags) {
-        const { filterTags } = this.props.entries
-
-        // need to display toggle state
-        let chips = []
-        for( let tag of tags) {
-            chips.push(<Chip
-                className="tag-nav-item"
-                tagid={tag.id}
-                key={`chip-${tag.id}`}
-                color= { filterTags.includes(tag.id) ? "primary" : "default"}
-                avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
-                onClick={this.onClick}
-                variant="outlined"
-                label={tag.name}
-            />)
-        }
-            
+      onClickNavigationChip = (e) => {
+            const tagID = e.currentTarget.getAttribute('tagid')
+            dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
       }
-
+    
       onClickCardChip = (e) => {
             // const tagID = e.currentTarget.getAttribute('tagid')
             // dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
       }
+    
+      renderCardChips(tags) {
+          const { filterTags } = this.props.entries
+            let chips = []
+            for( let tag of tags) {
+                        chips.push(<Chip
+                        className="tag-nav-item"
+                        tagid={tag.id}
+                        key={`chip-${tag.id}`}
+                        color= { filterTags.includes(tag.id) ? "primary" : "default"}
+                        avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
+                        onClick={this.onClick}
+                        variant="outlined"
+                        label={tag.name}
+                        />)
+            }
+            return chips;
+      }
+
+      renderReferences(tags, entry){
+            let references = [];
+            for( let tag of tags ){
+                  references.push( <div>{entry.text_references[tag.id]}</div>)
+            }
+            return references;
+      }
 
       renderNavigationChips(tags) {
             const { filterTags } = this.props.entries
-
             // need to display toggle state
             let chips = []
             for( let tag of tags) {
@@ -121,15 +136,11 @@ class EntryListView extends Component {
                   label={tag.name}
                   />)
             }
-
-            return(
-            chips
-            )
+            return(chips)
       }
 
 	render() {
-            if( !this.props.entries.loaded ) 
-                  return null;
+            if( !this.props.entries.loaded ) return null;
 
             const { entryList, tagNameMap } = this.props.entries
             const tagIDs = Object.keys(tagNameMap)
@@ -196,7 +207,6 @@ class EntryListView extends Component {
                         return trimmed.sort(compareFolios)
                   default:
                         return trimmed.sort(compareHeaders)
-
             }
       }
 }
