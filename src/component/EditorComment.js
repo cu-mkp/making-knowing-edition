@@ -5,6 +5,7 @@ import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import Parser from 'html-react-parser';
+import Parser from 'html-react-parser'
 
 class EditorComment extends Component {
 
@@ -14,56 +15,47 @@ class EditorComment extends Component {
     };
 
     onOpen = event => {
-        this.setState({...this.state, open: true});
+        this.setState({anchorRef: event.currentTarget, open: true});
     };
 
     onClose = event => {
         this.setState({...this.state, open: false });
     };
 
-    handleAnchorRef = node => {
-        this.setState({
-            ...this.state, 
-            anchorRef: node,
-        });
-    };
-
     renderPopper() {
-        const { anchorRef, open } = this.state;
-        const id = `comment-${this.props.commentID}`;
-
-        const comments = this.props.comments.comments
-        const content = comments[this.props.commentID] ? 
-            Parser(comments[this.props.commentID].comment) : 
-            `ERROR: Could not find comment for id: ${this.props.commentID}.`
-
-        const style = { maxWidth: 200, padding: "25px 15px 15px 15px" }
-        const closeXStyle = { float: 'right', padding: 5, fontStyle: 'bold'}
-
-        return (
-            <Popper id={id} open={open} anchorEl={anchorRef}>
-                <Fade in={open}>
-                    <Paper>
-                        <div onClick={this.onClose} style={closeXStyle}>
-                            <span className="fa fa-window-close"></span>
-                        </div>
-                        <Typography style={style}>{content}</Typography>
-                    </Paper>
-                </Fade>
-            </Popper>
-        );
+      const { anchorRef, open } = this.state;
+      const id = `comment-${this.props.commentID}`;
+      const comments = this.props.comments.comments
+      const comment = comments[this.props.commentID] ? comments[this.props.commentID].comment: null;
+      let interpreted;
+      if(comment)
+            interpreted=Parser(comment)
+      const content= interpreted ? interpreted : comment ? comment : `ERROR: Could not find comment for id: ${this.props.commentID}.`
+      const style = { maxWidth: 200, padding: "25px 15px 15px 15px" }
+      const closeXStyle = { float: 'right', padding: 5, fontStyle: 'bold'}
+          return <Popper id={id} open={open} anchorEl={anchorRef}>
+                  <Fade in={open}>
+                        <Paper>
+                              <div onClick={this.onClose} style={closeXStyle}>
+                                    <span className="fa fa-window-close"></span>
+                              </div>
+                              <Typography style={style}>{content}</Typography>
+                        </Paper>
+                  </Fade>
+                  </Popper>
     }
 
+
+    
     render() {
         const style = { display: 'inline'}
         const asteriskStyle = { fontStyle: 'bold', fontSize: '20pt', color: 'red' }
-
-        return (
-            <div style={style}>
-                <span ref={this.handleAnchorRef} onClick={this.onOpen} style={asteriskStyle}>*</span>
-                {this.renderPopper()}
-            </div>
-        )
+                  return (
+                        <div style={style}>
+                              <span  onClick={(e) =>this.onOpen(e)} style={asteriskStyle}>*</span>
+                              {this.renderPopper()}
+                        </div>
+                  )
     }
 }
 
