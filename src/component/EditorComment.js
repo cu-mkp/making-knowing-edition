@@ -5,7 +5,7 @@ import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import Parser from 'html-react-parser';
-import Parser from 'html-react-parser'
+
 
 class EditorComment extends Component {
 
