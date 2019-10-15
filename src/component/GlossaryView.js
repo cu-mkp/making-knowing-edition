@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import DocumentHelper from '../model/DocumentHelper';
 import { Link } from 'react-scroll';
 import { Typography } from '@material-ui/core';
+import Parser from 'html-react-parser';
+
 
 const alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z' ]
 
@@ -10,7 +12,6 @@ class GlossaryView extends Component {
 
     constructor() {
         super()
-
         this.state = { filterTerm: '' }
     }
 
@@ -25,7 +26,8 @@ class GlossaryView extends Component {
     renderMeanings(entry) {
         const meaningList = []
         for( let i=0; i < entry.meanings.length; i++ ) { 
-            const meaning = entry.meanings[i]
+            const meaning = entry.meanings[i];
+           
             const refString = meaning.references ? `[${meaning.references}]` : ''
             const numString = (entry.meanings.length > 1) ? `${i+1}. ` : ''
             meaningList.push( 
@@ -57,7 +59,10 @@ class GlossaryView extends Component {
                 const meanings = this.renderMeanings(entry)
                 const altString = entry.alternateSpellings ? `, ${entry.alternateSpellings}` : ''
                 glossaryEntries.push( 
-                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}: {meanings}</Typography>
+                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}: {
+                          meanings.map(meaningful=>{
+                                return Parser(meaningful)
+                          })}</Typography>
                 )    
             }
         }
