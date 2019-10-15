@@ -22,7 +22,10 @@ var generate = async function generate(glossaryCSV, targetGlossaryFile) {
                 headWord,
                 alternateSpellings: entry['alternate-spellings'],
                 meanings: [ meaning ],
-                modernSpelling: entry['modern-spelling']
+                modernSpelling: entry['modern-spelling'],
+                synonym:entry['synonym-in-glossary'],
+                antonym:['antonym-in-glossary'],
+                seeAlso:['see-also-in-glossary'],
             }
             glossaryData[headWord] = glossaryEntry
         }
