@@ -18,10 +18,19 @@ var generate = async function generate(glossaryCSV, targetGlossaryFile) {
             existingEntry.meanings.push(meaning)
         } else {
             // create a new glossary entry
+    
+            let strAntonym = entry['antonym-in-glossary'];
+            let strSynonym = entry['synonym-in-glossary'];
+            let strSeeAlso = entry['see-also-in-glossary'];
+
             const glossaryEntry = {
                 headWord,
                 alternateSpellings: entry['alternate-spellings'],
-                meanings: [ meaning ]
+                meanings: [ meaning ],
+                modernSpelling: entry['modern-spelling'],
+                antonym:strAntonym,
+                synonym:strSynonym,
+                seeAlso: strSeeAlso
             }
             glossaryData[headWord] = glossaryEntry
         }
