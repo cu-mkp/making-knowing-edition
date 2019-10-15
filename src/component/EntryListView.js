@@ -22,7 +22,7 @@ import { dispatchAction } from '../model/ReduxStore';
 class EntryListView extends Component {
 
       state={
-            sortBy: 'alpha'
+            sortBy: 'folio'
       }
 
       componentWillMount() {
