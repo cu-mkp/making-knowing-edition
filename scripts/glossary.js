@@ -21,7 +21,8 @@ var generate = async function generate(glossaryCSV, targetGlossaryFile) {
             const glossaryEntry = {
                 headWord,
                 alternateSpellings: entry['alternate-spellings'],
-                meanings: [ meaning ]
+                meanings: [ meaning ],
+                modernSpelling: entry['modern-spelling']
             }
             glossaryData[headWord] = glossaryEntry
         }

@@ -57,9 +57,10 @@ class GlossaryView extends Component {
             const lowerCaseHeadword = entry.headWord.toLowerCase()
             if( filterTerm.length === 0 || (filterTerm.length !== 0 && lowerCaseHeadword.startsWith(filterTerm)) ) {
                 const meanings = this.renderMeanings(entry)
-                const altString = entry.alternateSpellings ? `, ${entry.alternateSpellings}` : ''
+                const altString = entry.alternateSpellings? `, ${entry.alternateSpellings}` : '';
+                const modString = entry.modernSpelling? ` (mod. ${entry.modernSpelling})` :'';
                 glossaryEntries.push( 
-                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}: {
+                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}{modString}: {
                           meanings.map(meaningful=>{
                                 return Parser(meaningful)
                           })}</Typography>
