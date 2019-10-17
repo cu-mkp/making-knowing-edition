@@ -22,25 +22,23 @@ class Navigation extends React.Component {
 		this.state={
 			popoverVisible:false,
 			popoverX:-1,
-			popoverY:-1
+                  popoverY:-1,
+                  docType:'tc'
 		}
 	}
 	onJumpBoxBlur = function(event){
 		this.setState({popoverVisible:false})
 	}
 
-	// Onclick event handlers, bound to "this" via constructor above
-	changeType = function (event) {
-		// Change viewtype
+	changeType = (event) =>{
 		this.props.documentViewActions.changeTranscriptionType(
 			this.props.side,
-			event.currentTarget.dataset.id
-		);
+			event.target.value
+            );
+            this.setState({docType:event.target.value})
 	}
 
 	toggleBookmode = function(event){
-
-		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.documentView.bookMode === true){
 			this.props.documentViewActions.changeCurrentFolio(
 				this.props.documentView.left.iiifShortID,
@@ -145,7 +143,6 @@ class Navigation extends React.Component {
         }else{
 			let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
 			let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
-			let thisClass = "navigationComponent "+this.props.side;
 			let dropdownClass  = "dropdown";
 				dropdownClass += (this.props.documentView[this.props.side].width<500)?' invisible':'';
  			let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
@@ -157,13 +154,41 @@ class Navigation extends React.Component {
 			let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
 			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
 				 columnIconClass += (imageViewActive)?' hidden':'';
-			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
 			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 			let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
 			return (
 				<div className="navigationComponent" style={widthStyle}>
                               <div id="navigation-row" className="navigationRow">
-                              <div id="right-side-controls" style={{display:'flex'}}>
+                                    <div id="tool-bar-buttons" className="breadcrumbs" > 
+							<span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
+							&nbsp;
+							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
+							&nbsp;
+							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
+							&nbsp;
+							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span>
+							&nbsp;
+							<span 	title = "Go back"
+									onClick={this.changeCurrentFolio}
+									data-id={this.props.documentView[this.props.side].previousFolioShortID}
+									className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+
+							<span 	title = "Go forward"
+									onClick={this.changeCurrentFolio}
+									data-id={this.props.documentView[this.props.side].nextFolioShortID}
+									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+							&nbsp;&nbsp;
+							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
+						
+                                          <JumpToFolio side={this.props.side}
+									 isVisible={this.state.popoverVisible}
+									 positionX={this.state.popoverX}
+									 positionY={this.state.popoverY}
+									 submitHandler={this.props.documentViewActions.jumpToFolio}
+									 blurHandler={this.onJumpBoxBlur}/>
+                                    </div>
+						    
+                                    <div id="doc-type-help" style={{display:'flex'}} className={dropdownClass}>
                                                 <Select className="dropdownV2" value={this.state.docType} id="doc-type" onClick={this.changeType}>
                                                       <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
                                                       <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
@@ -178,14 +203,7 @@ class Navigation extends React.Component {
      
                                     </div>
                               </div>
-						
 					
-						<JumpToFolio side={this.props.side}
-									 isVisible={this.state.popoverVisible}
-									 positionX={this.state.popoverX}
-									 positionY={this.state.popoverY}
-									 submitHandler={this.props.documentViewActions.jumpToFolio}
-									 blurHandler={this.onJumpBoxBlur}/>
 				</div>
 			)
 
