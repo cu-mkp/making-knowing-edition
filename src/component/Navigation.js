@@ -23,7 +23,7 @@ class Navigation extends React.Component {
 			popoverVisible:false,
 			popoverX:-1,
                   popoverY:-1,
-                  docType:'tc'
+                 
 		}
 	}
 	onJumpBoxBlur = function(event){
@@ -35,7 +35,7 @@ class Navigation extends React.Component {
 			this.props.side,
 			event.target.value
             );
-            this.setState({docType:event.target.value})
+           
 	}
 
 	toggleBookmode = function(event){
@@ -53,7 +53,6 @@ class Navigation extends React.Component {
 			);
 		}
 
-		// Toggle bookmode
 		this.props.documentViewActions.setBookMode(
 			this.props.documentView.left.iiifShortID, 
 			!this.props.documentView.bookMode
@@ -76,8 +75,6 @@ class Navigation extends React.Component {
 	}
 
 	toggleLockmode = function(event){
-
-		// If we are currently in bookmode, we toggle that instead
 		if(this.props.documentView.bookMode){
 			this.toggleBookmode();
 			return;
@@ -142,9 +139,14 @@ class Navigation extends React.Component {
             )
         }else{
 			let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
-			let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
+			let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth, border:'2px solid red'};
 			let dropdownClass  = "dropdown";
-				dropdownClass += (this.props.documentView[this.props.side].width<500)?' invisible':'';
+                        dropdownClass += (this.props.documentView[this.props.side].width<500)?' invisible':'';
+
+                  let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
+
+                  let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
+
  			let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
 			if(!this.props.documentView.bookMode){
 				lockIconClass +=" active";
@@ -159,7 +161,7 @@ class Navigation extends React.Component {
 			return (
 				<div className="navigationComponent" style={widthStyle}>
                               <div id="navigation-row" className="navigationRow">
-                                    <div id="tool-bar-buttons" className="breadcrumbs" > 
+                                    <div id="tool-bar-buttons" className="breadcrumbs" style={showButtonsStyle}> 
 							<span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
 							&nbsp;
 							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
@@ -188,8 +190,9 @@ class Navigation extends React.Component {
 									 blurHandler={this.onJumpBoxBlur}/>
                                     </div>
 						    
-                                    <div id="doc-type-help" style={{display:'flex'}} className={dropdownClass}>
-                                                <Select className="dropdownV2" value={this.state.docType} id="doc-type" onClick={this.changeType}>
+                                    <div id="doc-type-help" style={{display:'flex'}} >
+                                                <Select className="dropdownV2" style={selectColorStyle} 
+                                                      value={this.props.documentView[this.props.side].transcriptionType} id="doc-type" onClick={this.changeType}>
                                                       <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
                                                       <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
                                                       <MenuItem value="tcn">{DocumentHelper.transcriptionTypeLabels['tcn']}</MenuItem>
@@ -197,7 +200,7 @@ class Navigation extends React.Component {
                                                       <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
                                                 </Select>
                                                
-                                          <span title="Toggle folio help" onClick={this.toggleHelp}style={{marginTop:'10px'}} >
+                                          <span title="Toggle folio help" onClick={this.toggleHelp}style={{marginTop:'6px',marginRight:'16px'}} >
                                                 <i class="fas fa-question-circle"></i>
                                           </span> 
      
