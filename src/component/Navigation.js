@@ -221,12 +221,13 @@ class Navigation extends React.Component {
                                                 <Popper  anchorEl={this.state.anchorEl} open={this.state.openHelp}>
                                                       <Fade in={this.state.openHelp}>
                                                                   <Paper className="helpContainer">
-                                                                        <div onClick={this.toggleHelp} >
-                                                                              <span className="fa fa-window-close" className="closeX"></span>
+                                                                        <div onClick={this.toggleHelp} className="closeX">
+                                                                              <span className="fa fa-window-close" ></span>
                                                                         </div>
                                                                        <div className="helpHeader">
-                                                                       <Typography variant="subtitle1">Toolbar Buttons</Typography>
+                                                                        <Typography variant="subtitle1">Toolbar Buttons</Typography>
                                                                        </div>
+                                                                       <div>
                                                                             
                                                                              <List>
                                                                                     <ListItem button>
@@ -255,6 +256,7 @@ class Navigation extends React.Component {
                                                                                     </ListItem>
                                                                             
                                                                               </List>
+                                                                        </div>
                                                                   </Paper>
                                                       </Fade>      
                                                 </Popper>
