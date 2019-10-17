@@ -18,7 +18,6 @@ import copyObject from './../lib/copyObject';
 import { dispatchAction } from '../model/ReduxStore';
 
 
-
 class EntryListView extends Component {
 
       state={
@@ -163,8 +162,9 @@ class EntryListView extends Component {
                               <div className="sort-container">
                                    <FormLabel className="sort-label">Sorted:</FormLabel>
                                     <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
+                                    <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
                                           <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
-                                          <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
+                                         
                                     </RadioGroup>
                               </div> 
                               { this.renderNavigationChips(tags) }
