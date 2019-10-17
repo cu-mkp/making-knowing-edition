@@ -508,9 +508,8 @@ class TranscriptionView extends Component {
 	}
 
 	getTranscriptionData(transcription) {
-
-		if( typeof transcription === 'undefined') return null;
-
+            if( typeof transcription === 'undefined') return null;
+            
 		// Grid layout
 		if( transcription.layout === 'grid' ) {
 			return this.layoutGrid(transcription.html);
@@ -548,8 +547,6 @@ class TranscriptionView extends Component {
 			}
 
 			// Determine class and id for this component
-			let thisClass = "transcriptionViewComponent "+this.props.side;
-			let thisID = "transcriptionViewComponent_"+this.props.side;
 			let side = this.props.side;
 
 			if(transcriptionData.content.length !== 0){
@@ -578,7 +575,7 @@ class TranscriptionView extends Component {
                   return (
                   // Render the transcription
                  
-		      <div id={thisID} className={thisClass}>
+		      <div >
 		          <Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
@@ -595,7 +592,7 @@ class TranscriptionView extends Component {
 			} else {
 				// Empty content
 				return (
-					<div className={thisClass} id={thisID}>
+					<div >
 						<Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 						<div className="transcriptContent">
 							<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>

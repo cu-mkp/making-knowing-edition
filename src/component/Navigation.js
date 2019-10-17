@@ -1,11 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
-
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import JumpToFolio from './JumpToFolio';
 import DocumentHelper from '../model/DocumentHelper';
+import Popper from '@material-ui/core/Popper';
+import Typography from '@material-ui/core/Typography';
+import Fade from '@material-ui/core/Fade';
+import Paper from '@material-ui/core/Paper';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
-class navigation extends React.Component {
+class Navigation extends React.Component {
 
 	constructor(props,context){
 		super(props,context);
@@ -21,25 +30,31 @@ class navigation extends React.Component {
 		this.state={
 			popoverVisible:false,
 			popoverX:-1,
-			popoverY:-1
+                  popoverY:-1,
+                  anchorEl:null,
+                  openHelp: false,
 		}
-	}
+      }
+      
 	onJumpBoxBlur = function(event){
 		this.setState({popoverVisible:false})
 	}
 
-	// Onclick event handlers, bound to "this" via constructor above
-	changeType = function (event) {
-		// Change viewtype
+	changeType = (event) =>{
 		this.props.documentViewActions.changeTranscriptionType(
 			this.props.side,
-			event.currentTarget.dataset.id
-		);
-	}
+			event.target.value
+            );
+      }
+      
+      toggleHelp=(event)=>{
+            this.setState({
+                  anchorEl:event.currentTarget,
+                  openHelp:!this.state.openHelp
+            })
+      }
 
 	toggleBookmode = function(event){
-
-		// If we are transitioning into bookmode, synch up the panes
 		if(!this.props.documentView.bookMode === true){
 			this.props.documentViewActions.changeCurrentFolio(
 				this.props.documentView.left.iiifShortID,
@@ -54,7 +69,6 @@ class navigation extends React.Component {
 			);
 		}
 
-		// Toggle bookmode
 		this.props.documentViewActions.setBookMode(
 			this.props.documentView.left.iiifShortID, 
 			!this.props.documentView.bookMode
@@ -77,8 +91,6 @@ class navigation extends React.Component {
 	}
 
 	toggleLockmode = function(event){
-
-		// If we are currently in bookmode, we toggle that instead
 		if(this.props.documentView.bookMode){
 			this.toggleBookmode();
 			return;
@@ -120,7 +132,6 @@ class navigation extends React.Component {
 		);
 	}
 
-	// Display the jump navigation
 	revealJumpBox = function(event){
 		this.setState({
 			popoverVisible:true,
@@ -131,80 +142,135 @@ class navigation extends React.Component {
 
 	renderData(item) {
         return <div key={item.id}>{item.name}</div>;
-    }
+      }
 
-    render() {
+      render() {
 
-        if(!this.props.documentView){
-            return (
-                <div>
-                    Unknown Transcription Type
-                </div>
-            )
-        }else{
-			let recommendedWidth=(this.props.documentView[this.props.side].width-7);
-			let thisStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
-			let thisClass = "navigationComponent "+this.props.side;
-			let dropdownClass  = "dropdown";
-				dropdownClass += (this.props.documentView[this.props.side].width<500)?' invisible':'';
- 			let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
-			if(!this.props.documentView.bookMode){
-				lockIconClass +=" active";
-			}
-			let imageViewActive = this.props.documentView[this.props.side].transcriptionType === 'f';
-			let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
-			let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
-			let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
-				 columnIconClass += (imageViewActive)?' hidden':'';
-			let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
-			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
-			let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
-			return (
-				<div className={thisClass} style={thisStyle}>
-						<div className={dropdownClass}>
-							<button className="dropbtn">
-								{transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-							</button>
-							<div className="dropdown-content">
-								<span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
-								<span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
-								<span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
-								<span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
-								<span data-id='glossary' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['glossary']}</span>
-							</div>
-						</div>
-						<div className="breadcrumbs" style={thisStyle}>
-							<span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
-							&nbsp;
-							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
-							&nbsp;
-							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
-							&nbsp;
-							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span>
-							&nbsp;
-							<span 	title = "Go back"
-									onClick={this.changeCurrentFolio}
-									data-id={this.props.documentView[this.props.side].previousFolioShortID}
-									className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+            if(!this.props.documentView){
+                  return (
+                  <div>
+                        Unknown Transcription Type
+                  </div>
+                  )
+            }else{
+                        let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
+                        let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
+                        let selectContainerStyle  = (this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}
+                        let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
+                        let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
 
-							<span 	title = "Go forward"
-									onClick={this.changeCurrentFolio}
-									data-id={this.props.documentView[this.props.side].nextFolioShortID}
-									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
-							&nbsp;&nbsp;
-							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
-						</div>
-						<JumpToFolio side={this.props.side}
-									 isVisible={this.state.popoverVisible}
-									 positionX={this.state.popoverX}
-									 positionY={this.state.popoverY}
-									 submitHandler={this.props.documentViewActions.jumpToFolio}
-									 blurHandler={this.onJumpBoxBlur}/>
-				</div>
-			)
+                        let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
+                        if(!this.props.documentView.bookMode){
+                              lockIconClass +=" active";
+                        }
+                        let imageViewActive = this.props.documentView[this.props.side].transcriptionType === 'f';
+                        let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
+                        let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
+                        let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
+                              columnIconClass += (imageViewActive)?' hidden':'';
+                        let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
+                        let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
+                        return (
+                              <div className="navigationComponent" style={widthStyle}>
+                                    <div id="navigation-row" className="navigationRow">
 
-        }
-    }
+                                          <div id="tool-bar-buttons" className="breadcrumbs" style={showButtonsStyle}> 
+                                                <span title="Toggle coordination of views" onClick={this.toggleLockmode} 
+                                                      className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
+                                                &nbsp;
+                                                <span title="Toggle book mode" onClick={this.toggleBookmode} 
+                                                      className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
+                                                &nbsp;
+                                                <span title="Toggle XML mode" onClick={this.toggleXMLMode} 
+                                                      className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
+                                                &nbsp;
+                                                <span title="Toggle single column mode"  onClick={this.toggleColumns} 
+                                                      className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span>
+                                                &nbsp;
+                                                <span 	title = "Go back"
+                                                            onClick={this.changeCurrentFolio}
+                                                            data-id={this.props.documentView[this.props.side].previousFolioShortID}
+                                                            className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
+
+                                                <span 	title = "Go forward"
+                                                            onClick={this.changeCurrentFolio}
+                                                            data-id={this.props.documentView[this.props.side].nextFolioShortID}
+                                                            className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+                                                &nbsp;&nbsp;
+                                                {this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} 
+                                                      className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
+                                          
+                                                <JumpToFolio side={this.props.side}
+                                                            isVisible={this.state.popoverVisible}
+                                                            positionX={this.state.popoverX}
+                                                            positionY={this.state.popoverY}
+                                                            submitHandler={this.props.documentViewActions.jumpToFolio}
+                                                            blurHandler={this.onJumpBoxBlur}/>
+                                          </div>
+                                          
+                                          <div id="doc-type-help" style={selectContainerStyle}>
+                                                <Select className="dropdownV2" style={selectColorStyle} 
+                                                      value={this.props.documentView[this.props.side].transcriptionType} id="doc-type" onClick={this.changeType}>
+                                                      <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
+                                                      <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
+                                                      <MenuItem value="tcn">{DocumentHelper.transcriptionTypeLabels['tcn']}</MenuItem>
+                                                      <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem>
+                                                      <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
+                                                </Select>
+
+                                                <Popper  anchorEl={this.state.anchorEl} open={this.state.openHelp}>
+                                                      <Fade in={this.state.openHelp}>
+                                                                  <Paper className="helpContainer">
+                                                                        <div onClick={this.toggleHelp} className="closeX">
+                                                                              <span className="fa fa-window-close" ></span>
+                                                                        </div>
+                                                                  <div className="helpHeader">
+                                                                        <Typography variant="subtitle1">Toolbar Buttons</Typography>
+                                                                  </div>
+                                                                  <div>
+                                                                        <List>
+                                                                                    <ListItem button>
+                                                                                          <span class='fa fa-lock active'></span>
+                                                                                          <ListItemText primary="Toggle Sync Views" />
+                                                                                    </ListItem>
+                                                                                    <ListItem button>
+                                                                                          <span class='fa fa-book active'></span>
+                                                                                          <ListItemText primary="Toggle Book Mode" />
+                                                                                    </ListItem>
+                                                                                    <ListItem button>
+                                                                                          <span class='fa fa-code active'></span>
+                                                                                          <ListItemText primary="Toggle XML Mode" />
+                                                                                    </ListItem>
+                                                                                    <ListItem button>
+                                                                                          <span class='fa fa-columns active'></span>
+                                                                                          <ListItemText primary="Toggle Single Column Mode" />
+                                                                                    </ListItem>
+                                                                                    <ListItem button>
+                                                                                    <span><Icon.ArrowCircleLeft/><Icon.ArrowCircleRight/></span>
+                                                                                          <ListItemText primary="Go Forward / Back" />
+                                                                                    </ListItem>
+                                                                                    <ListItem button>
+                                                                                          <span class='fa fa-hand-point-right active'></span>
+                                                                                          <ListItemText primary="Jump to folio" />
+                                                                                    </ListItem>
+                                                                              </List>
+                                                                        </div>
+                                                                  </Paper>
+                                                      </Fade>      
+                                                </Popper>
+
+                                                <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
+                                                      <i class="fas fa-question-circle"></i>
+                                                </span> 
+      
+                                          </div>
+                                    </div>
+                                    
+                              </div>
+                        )
+
+            }
+      }
 }
 
 
@@ -215,4 +281,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(navigation);
+export default connect(mapStateToProps)(Navigation);

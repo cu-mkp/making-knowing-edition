@@ -38,39 +38,13 @@
 	#glossaryContent {
 		padding: 3.5rem 0 0;
 		min-height: 100vh;
-	
 		-webkit-user-select: text;
 		-moz-user-select: text;
 		-ms-user-select: text;
 		user-select: text;
-	
 		min-width: 10rem;
 	}
 
-	/* The dropdown container */
-	.dropdown {
-		margin: -1em;
-		float: right;
-		overflow: hidden;
-	}
-
-	.dropdown .dropbtn {
-		float: right;
-		height: 2.5rem;
-		position: relative;
-		width: 12rem;
-		font-size: 0.8rem;
-		font-weight: 900;
-		outline: none;
-		padding: 0;
-		background-color: inherit;
-		font-family: inherit;
-		margin: 0.35rem 1.5rem 0 1rem;
-		border: 0;
-		text-align: right;
-		color: black;
-		z-index: 800;
-	}
 }
 
 
