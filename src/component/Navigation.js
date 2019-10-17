@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Icon} from "react-font-awesome-5";
-
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import JumpToFolio from './JumpToFolio';
 import DocumentHelper from '../model/DocumentHelper';
 
