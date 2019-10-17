@@ -11,12 +11,19 @@
 .navigationRow{
       display:flex;
       justify-content:space-between;
-      padding:10px;
+      padding:10px 10px 5px 10px
 }
 
+.helpIcon {
+      margin-top:6px;
+      margin-right:16px
+}
+
+
+
 .dropdownV2 {
-      width:160px;
-      margin-right:16px;
+      width:150px;
+      margin-right:10px;
 }
 
 .imageViewComponent .navigationComponent {
@@ -29,15 +36,8 @@
 	color: #000000;
 }
 
-
 .breadcrumbs {
 	overflow:hidden;
-	//padding: 0.8rem 0 0;
-	//position:absolute;
-}
-
-.imageViewComponent .breadcrumbs{
-  margin:0 0 0 .8rem;
 }
 
 .breadcrumbs .folioName {
@@ -49,11 +49,21 @@
   text-decoration:underline;
 }
 
-/* The dropdown container */
-.dropdown {
-	overflow: hidden;
+.closeX { 
+      float: right;
+      padding: 5px;
+      font-style: bold;
 }
 
+.helpContainer {
+      padding:12px;
+      width:235px;
+      height:375px;
+}
+
+.helpHeader{
+      text-align:center;
+}
 
 
 

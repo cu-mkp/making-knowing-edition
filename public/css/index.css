@@ -163,11 +163,15 @@ figure.current {
 .navigationRow {
   display: flex;
   justify-content: space-between;
-  padding: 10px; }
+  padding: 10px 10px 5px 10px; }
+
+.helpIcon {
+  margin-top: 6px;
+  margin-right: 16px; }
 
 .dropdownV2 {
-  width: 160px;
-  margin-right: 16px; }
+  width: 150px;
+  margin-right: 10px; }
 
 .imageViewComponent .navigationComponent {
   background-color: black;
@@ -180,9 +184,6 @@ figure.current {
 .breadcrumbs {
   overflow: hidden; }
 
-.imageViewComponent .breadcrumbs {
-  margin: 0 0 0 .8rem; }
-
 .breadcrumbs .folioName {
   display: inline;
   white-space: nowrap;
@@ -191,9 +192,18 @@ figure.current {
   font-weight: 900;
   text-decoration: underline; }
 
-/* The dropdown container */
-.dropdown {
-  overflow: hidden; }
+.closeX {
+  float: right;
+  padding: 5px;
+  font-style: bold; }
+
+.helpContainer {
+  padding: 12px;
+  width: 235px;
+  height: 375px; }
+
+.helpHeader {
+  text-align: center; }
 
 .paginationComponent {
   white-space: nowrap;
@@ -781,61 +791,43 @@ figure.current {
 .xmlContentInner {
   overflow-x: scroll; }
 
-#glossaryView {
-  /* The dropdown container */ }
-  #glossaryView #glossaryViewInner {
-    overflow-y: scroll;
-    margin: 0 0 0 1rem;
-    width: calc(100% - 1.2rem);
-    height: calc(100vh - 170px); }
-  #glossaryView .glossaryNav {
-    background: white;
-    padding: 5px; }
-    #glossaryView .glossaryNav #glossary-filter {
-      margin-right: 10px; }
-  #glossaryView .alphaNav {
-    color: blue;
-    display: inline; }
-  #glossaryView .title {
-    white-space: nowrap;
-    position: relative;
-    width: calc(100% - 1.7rem);
-    text-align: center;
-    top: -1em;
-    font-size: 1.8rem;
-    font-weight: 700;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-  #glossaryView #glossaryContent {
-    padding: 3.5rem 0 0;
-    min-height: 100vh;
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
-    user-select: text;
-    min-width: 10rem; }
-  #glossaryView .dropdown {
-    margin: -1em;
-    float: right;
-    overflow: hidden; }
-  #glossaryView .dropdown .dropbtn {
-    float: right;
-    height: 2.5rem;
-    position: relative;
-    width: 12rem;
-    font-size: 0.8rem;
-    font-weight: 900;
-    outline: none;
-    padding: 0;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0.35rem 1.5rem 0 1rem;
-    border: 0;
-    text-align: right;
-    color: black;
-    z-index: 800; }
+#glossaryView #glossaryViewInner {
+  overflow-y: scroll;
+  margin: 0 0 0 1rem;
+  width: calc(100% - 1.2rem);
+  height: calc(100vh - 170px); }
+
+#glossaryView .glossaryNav {
+  background: white;
+  padding: 5px; }
+  #glossaryView .glossaryNav #glossary-filter {
+    margin-right: 10px; }
+
+#glossaryView .alphaNav {
+  color: blue;
+  display: inline; }
+
+#glossaryView .title {
+  white-space: nowrap;
+  position: relative;
+  width: calc(100% - 1.7rem);
+  text-align: center;
+  top: -1em;
+  font-size: 1.8rem;
+  font-weight: 700;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+#glossaryView #glossaryContent {
+  padding: 3.5rem 0 0;
+  min-height: 100vh;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  min-width: 10rem; }
 
 .annotation .content {
   min-height: 255px; }
