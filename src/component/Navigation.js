@@ -224,12 +224,11 @@ class Navigation extends React.Component {
                                                                         <div onClick={this.toggleHelp} className="closeX">
                                                                               <span className="fa fa-window-close" ></span>
                                                                         </div>
-                                                                       <div className="helpHeader">
+                                                                  <div className="helpHeader">
                                                                         <Typography variant="subtitle1">Toolbar Buttons</Typography>
-                                                                       </div>
-                                                                       <div>
-                                                                            
-                                                                             <List>
+                                                                  </div>
+                                                                  <div>
+                                                                        <List>
                                                                                     <ListItem button>
                                                                                           <span class='fa fa-lock active'></span>
                                                                                           <ListItemText primary="Toggle Sync Views" />
@@ -254,13 +253,12 @@ class Navigation extends React.Component {
                                                                                           <span class='fa fa-hand-point-right active'></span>
                                                                                           <ListItemText primary="Jump to folio" />
                                                                                     </ListItem>
-                                                                            
                                                                               </List>
                                                                         </div>
                                                                   </Paper>
                                                       </Fade>      
                                                 </Popper>
-                                                
+
                                                 <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
                                                       <i class="fas fa-question-circle"></i>
                                                 </span> 
