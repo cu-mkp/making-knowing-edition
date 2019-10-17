@@ -162,41 +162,23 @@ class Navigation extends React.Component {
 			return (
 				<div className="navigationComponent" style={widthStyle}>
                               <div id="navigation-row" className="navigationRow">
-
+                              <div id="right-side-controls" style={{display:'flex'}}>
+                                                <Select className="dropdownV2" value={this.state.docType} id="doc-type" onClick={this.changeType}>
+                                                      <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
+                                                      <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
+                                                      <MenuItem value="tcn">{DocumentHelper.transcriptionTypeLabels['tcn']}</MenuItem>
+                                                      <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem>
+                                                      <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
+                                                </Select>
+                                               
+                                          <span title="Toggle folio help" onClick={this.toggleHelp}style={{marginTop:'10px'}} >
+                                                <i class="fas fa-question-circle"></i>
+                                          </span> 
+     
+                                    </div>
                               </div>
-						<div className={dropdownClass}>
-							<button className="dropbtn">
-								{transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-							</button>
-							<div className="dropdown-content">
-								<span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
-								<span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
-								<span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
-								<span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
-								<span data-id='glossary' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['glossary']}</span>
-							</div>
-						</div>
-						<div className="breadcrumbs" >
-							<span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
-							&nbsp;
-							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
-							&nbsp;
-							<span title="Toggle XML mode" onClick={this.toggleXMLMode} className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
-							&nbsp;
-							<span title="Toggle single column mode"  onClick={this.toggleColumns} className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span>
-							&nbsp;
-							<span 	title = "Go back"
-									onClick={this.changeCurrentFolio}
-									data-id={this.props.documentView[this.props.side].previousFolioShortID}
-									className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
-
-							<span 	title = "Go forward"
-									onClick={this.changeCurrentFolio}
-									data-id={this.props.documentView[this.props.side].nextFolioShortID}
-									className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
-							&nbsp;&nbsp;
-							{this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
-						</div>
+						
+					
 						<JumpToFolio side={this.props.side}
 									 isVisible={this.state.popoverVisible}
 									 positionX={this.state.popoverX}

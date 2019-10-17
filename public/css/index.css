@@ -158,18 +158,7 @@ figure.current {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; 
-}
-
-.navigationRow {
-      display:flex;
-      padding:10px;
-      background-color:lightgreen;
-      justify-content:space-between;
-
-
-}
-
+  user-select: none; }
 
 .imageViewComponent .navigationComponent {
   background-color: black;
@@ -181,7 +170,7 @@ figure.current {
 
 .breadcrumbs {
   overflow: hidden;
-
+  padding: 0.8rem 0 0;
   position: absolute; }
 
 .imageViewComponent .breadcrumbs {
