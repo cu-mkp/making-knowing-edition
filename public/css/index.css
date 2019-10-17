@@ -152,15 +152,24 @@ figure.current {
   margin: auto auto auto auto; }
 
 .navigationComponent {
-  margin: -.3rem 0 0 -1rem;
-  padding: 0 0 0 1rem;
   position: fixed;
   z-index: 800;
   white-space: nowrap;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none; 
+}
+
+.navigationRow {
+      display:flex;
+      padding:10px;
+      background-color:lightgreen;
+      justify-content:space-between;
+
+
+}
+
 
 .imageViewComponent .navigationComponent {
   background-color: black;
@@ -172,7 +181,7 @@ figure.current {
 
 .breadcrumbs {
   overflow: hidden;
-  padding: 0.8rem 0 0;
+
   position: absolute; }
 
 .imageViewComponent .breadcrumbs {
@@ -687,7 +696,6 @@ figure.current {
 
 .transcriptionViewComponent {
   overflow: scroll;
-  margin: 0 0 0 1rem;
   height: calc(100vh - 7rem); }
 
 .block {

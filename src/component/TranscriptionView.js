@@ -578,7 +578,7 @@ class TranscriptionView extends Component {
                   return (
                   // Render the transcription
                  
-		      <div id={thisID} className={thisClass}>
+		      <div id={thisID} >
 		          <Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>

@@ -5,7 +5,7 @@ import {Icon} from "react-font-awesome-5";
 import JumpToFolio from './JumpToFolio';
 import DocumentHelper from '../model/DocumentHelper';
 
-class navigation extends React.Component {
+class Navigation extends React.Component {
 
 	constructor(props,context){
 		super(props,context);
@@ -142,8 +142,8 @@ class navigation extends React.Component {
                 </div>
             )
         }else{
-			let recommendedWidth=(this.props.documentView[this.props.side].width-7);
-			let thisStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
+			let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
+			let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
 			let thisClass = "navigationComponent "+this.props.side;
 			let dropdownClass  = "dropdown";
 				dropdownClass += (this.props.documentView[this.props.side].width<500)?' invisible':'';
@@ -160,7 +160,10 @@ class navigation extends React.Component {
 			let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
 			let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
 			return (
-				<div className={thisClass} style={thisStyle}>
+				<div className="navigationComponent" style={widthStyle}>
+                              <div id="navigation-row" className="navigationRow">
+
+                              </div>
 						<div className={dropdownClass}>
 							<button className="dropbtn">
 								{transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
@@ -173,7 +176,7 @@ class navigation extends React.Component {
 								<span data-id='glossary' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['glossary']}</span>
 							</div>
 						</div>
-						<div className="breadcrumbs" style={thisStyle}>
+						<div className="breadcrumbs" >
 							<span title="Toggle coordination of views" onClick={this.toggleLockmode} className={(this.props.documentView.inSearchMode)?'invisible':lockIconClass}></span>
 							&nbsp;
 							<span title="Toggle book mode" onClick={this.toggleBookmode} className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
@@ -215,4 +218,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(navigation);
+export default connect(mapStateToProps)(Navigation);
