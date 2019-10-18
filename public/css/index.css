@@ -884,9 +884,9 @@ figure.current {
 
 .jumpToFolio_component {
   margin: 1rem 0 0 -4.5rem;
-  padding: 0.5rem 0.7rem 0.5rem 0.5rem;
+  padding: 0.6rem;
   height: 1.2rem;
-  width: 8.5rem;
+  width: 9.5rem;
   background: #e7e7e7;
   border: 1px solid rgba(90, 98, 102, 0.53);
   border-radius: 0.3rem;
