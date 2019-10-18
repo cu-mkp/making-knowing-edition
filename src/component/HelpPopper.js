@@ -12,7 +12,7 @@ import {Icon} from "react-font-awesome-5";
 const HelpPopper=(props)=>{
             
            return( <Popper  anchorEl={props.anchorEl} open={props.open} style={props.marginStyle}>
-            
+                 <Fade in={props.open} >
                         <Paper className="helpContainer">
                               <div onClick={props.onClose} className="closeX">
                                     <span className="fa fa-window-close" ></span>
@@ -48,8 +48,9 @@ const HelpPopper=(props)=>{
                                           </ListItem>
                                     </List>
                               </div>
+                             
                         </Paper>
-          
+                        </Fade>
       </Popper>)
 
 }
