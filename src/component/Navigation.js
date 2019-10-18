@@ -5,13 +5,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import JumpToFolio from './JumpToFolio';
 import DocumentHelper from '../model/DocumentHelper';
-import Popper from '@material-ui/core/Popper';
-import Typography from '@material-ui/core/Typography';
-import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import HelpPopper from './HelpPopper'
 
 class Navigation extends React.Component {
 
@@ -24,13 +18,13 @@ class Navigation extends React.Component {
 		this.toggleBookmode = this.toggleBookmode.bind(this);
 		this.toggleXMLMode = this.toggleXMLMode.bind(this);
 		this.toggleColumns = this.toggleColumns.bind(this);
-		this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
-
+            this.changeCurrentFolio = this.changeCurrentFolio.bind(this);
+            this.helpRef=null;
 		this.state={
 			popoverVisible:false,
 			popoverX:-1,
                   popoverY:-1,
-                  anchorEl:null,
+                 
                   openHelp: false,
 		}
       }
@@ -48,7 +42,7 @@ class Navigation extends React.Component {
       
       toggleHelp=(event)=>{
             this.setState({
-                  anchorEl:event.currentTarget,
+               
                   openHelp:!this.state.openHelp
             })
       }
@@ -169,9 +163,12 @@ class Navigation extends React.Component {
                               columnIconClass += (imageViewActive)?' hidden':'';
                         let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
                         let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
+                        // this is messy but faster for the moment then figuring out why the sides dont behave the same
+                        let helpMarginStyle = this.props.side === "left"? {marginRight:'55px'}: {marginRight:'15px'}
+
                         return (
                               <div className="navigationComponent" style={widthStyle}>
-                                    <div id="navigation-row" className="navigationRow">
+                                    <div id="navigation-row" className="navigationRow" >
 
                                           <div id="tool-bar-buttons" className="breadcrumbs" style={showButtonsStyle}> 
                                                 <span title="Toggle coordination of views" onClick={this.toggleLockmode} 
@@ -205,9 +202,10 @@ class Navigation extends React.Component {
                                                             positionY={this.state.popoverY}
                                                             submitHandler={this.props.documentViewActions.jumpToFolio}
                                                             blurHandler={this.onJumpBoxBlur}/>
+                                        
                                           </div>
                                           
-                                          <div id="doc-type-help" style={selectContainerStyle}>
+                                          <div id="doc-type-help" style={selectContainerStyle} ref={e=>{this.helpRef = e}}>
                                                 <Select className="dropdownV2" style={selectColorStyle} 
                                                       value={this.props.documentView[this.props.side].transcriptionType} id="doc-type" onClick={this.changeType}>
                                                       <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
@@ -217,51 +215,12 @@ class Navigation extends React.Component {
                                                       <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
                                                 </Select>
 
-                                                <Popper  anchorEl={this.state.anchorEl} open={this.state.openHelp}>
-                                                      <Fade in={this.state.openHelp}>
-                                                                  <Paper className="helpContainer">
-                                                                        <div onClick={this.toggleHelp} className="closeX">
-                                                                              <span className="fa fa-window-close" ></span>
-                                                                        </div>
-                                                                  <div className="helpHeader">
-                                                                        <Typography variant="subtitle1">Toolbar Buttons</Typography>
-                                                                  </div>
-                                                                  <div>
-                                                                        <List>
-                                                                                    <ListItem button>
-                                                                                          <span class='fa fa-lock active'></span>
-                                                                                          <ListItemText primary="Toggle Sync Views" />
-                                                                                    </ListItem>
-                                                                                    <ListItem button>
-                                                                                          <span class='fa fa-book active'></span>
-                                                                                          <ListItemText primary="Toggle Book Mode" />
-                                                                                    </ListItem>
-                                                                                    <ListItem button>
-                                                                                          <span class='fa fa-code active'></span>
-                                                                                          <ListItemText primary="Toggle XML Mode" />
-                                                                                    </ListItem>
-                                                                                    <ListItem button>
-                                                                                          <span class='fa fa-columns active'></span>
-                                                                                          <ListItemText primary="Toggle Single Column Mode" />
-                                                                                    </ListItem>
-                                                                                    <ListItem button>
-                                                                                    <span><Icon.ArrowCircleLeft/><Icon.ArrowCircleRight/></span>
-                                                                                          <ListItemText primary="Go Forward / Back" />
-                                                                                    </ListItem>
-                                                                                    <ListItem button>
-                                                                                          <span class='fa fa-hand-point-right active'></span>
-                                                                                          <ListItemText primary="Jump to folio" />
-                                                                                    </ListItem>
-                                                                              </List>
-                                                                        </div>
-                                                                  </Paper>
-                                                      </Fade>      
-                                                </Popper>
-
                                                 <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
-                                                      <i class="fas fa-question-circle"></i>
+                                                      <i className="fas fa-question-circle"></i>
                                                 </span> 
       
+                                                <HelpPopper marginStyle={helpMarginStyle} anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
+
                                           </div>
                                     </div>
                                     
