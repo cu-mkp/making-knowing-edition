@@ -399,7 +399,6 @@ class TranscriptionView extends Component {
 						case 'fr':
 						case 'it':
 						case 'la':
-						case 'oc':
 						case 'po':
 							return (
 								<i>
@@ -444,7 +443,7 @@ class TranscriptionView extends Component {
 						
 						case 'sup':
 							return (
-								<span>[{domToReact(domNode.children, parserOptions)}]</span>
+                                                <span></span>
 							);
 
 						case 'lb':
