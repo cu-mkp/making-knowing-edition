@@ -46,7 +46,8 @@ function main() {
         let text_references = {};
         tagTypes.forEach( tagType => {
             mentions[tagType] = entry[tagType].length === 0 ? 0 : entry[tagType].split(';').length;
-            text_references[tagType] = entry[tagType];
+            const references = entry[tagType].replace( /;/g, "; ");
+            text_references[tagType] = references;
         });
         
         processedEntries.push({
@@ -63,6 +64,7 @@ function main() {
     fs.writeFile(`${targetDir}/entries.json`, JSON.stringify(processedEntries, null, 3), (err) => {
         if (err) throw err;
     });
+    console.log('completed entries script')
 }
 
 ///// RUN THE SCRIPT
