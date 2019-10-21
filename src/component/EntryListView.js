@@ -162,9 +162,8 @@ class EntryListView extends Component {
                               <div className="sort-container">
                                    <FormLabel className="sort-label">Sorted:</FormLabel>
                                     <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
-                                    <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
+                                          <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
                                           <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
-                                         
                                     </RadioGroup>
                               </div> 
                               { this.renderNavigationChips(tags) }

@@ -22,27 +22,27 @@ const HelpPopper=(props)=>{
                         </div>
                         <div>
                               <List>
-                                          <ListItem button>
+                                          <ListItem >
                                                 <span className='fa fa-lock active'></span>
                                                 <ListItemText primary="Toggle Sync Views" />
                                           </ListItem>
-                                          <ListItem button>
+                                          <ListItem >
                                                 <span className='fa fa-book active'></span>
                                                 <ListItemText primary="Toggle Book Mode" />
                                           </ListItem>
-                                          <ListItem button>
+                                          <ListItem >
                                                 <span className='fa fa-code active'></span>
                                                 <ListItemText primary="Toggle XML Mode" />
                                           </ListItem>
-                                          <ListItem button>
+                                          <ListItem >
                                                 <span className='fa fa-columns active'></span>
                                                 <ListItemText primary="Toggle Single Column Mode" />
                                           </ListItem>
-                                          <ListItem button>
+                                          <ListItem >
                                           <span><Icon.ArrowCircleLeft/><Icon.ArrowCircleRight/></span>
                                                 <ListItemText primary="Go Forward / Back" />
                                           </ListItem>
-                                          <ListItem button>
+                                          <ListItem >
                                                 <span className='fa fa-hand-point-right active'></span>
                                                 <ListItemText primary="Jump to folio" />
                                           </ListItem>
