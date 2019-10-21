@@ -24,7 +24,6 @@ class Navigation extends React.Component {
 			popoverVisible:false,
 			popoverX:-1,
                   popoverY:-1,
-                 
                   openHelp: false,
 		}
       }
@@ -34,6 +33,8 @@ class Navigation extends React.Component {
 	}
 
 	changeType = (event) =>{
+            if ( event.target.value === undefined)
+            return;
 		this.props.documentViewActions.changeTranscriptionType(
 			this.props.side,
 			event.target.value
@@ -42,7 +43,6 @@ class Navigation extends React.Component {
       
       toggleHelp=(event)=>{
             this.setState({
-               
                   openHelp:!this.state.openHelp
             })
       }
@@ -138,7 +138,6 @@ class Navigation extends React.Component {
       }
 
       render() {
-
             if(!this.props.documentView){
                   return (
                   <div>
@@ -151,7 +150,6 @@ class Navigation extends React.Component {
                         let selectContainerStyle  = (this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}
                         let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
                         let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
-
                         let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
                         if(!this.props.documentView.bookMode){
                               lockIconClass +=" active";
