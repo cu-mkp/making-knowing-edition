@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-
 import Parser from 'html-react-parser';
-
 import DocumentHelper from '../model/DocumentHelper';
+
 
 class SearchResultView extends Component {
 
