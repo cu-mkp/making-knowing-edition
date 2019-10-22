@@ -399,7 +399,6 @@ class TranscriptionView extends Component {
 						case 'fr':
 						case 'it':
 						case 'la':
-						case 'po':
 							return (
 								<i>
 									{domToReact(domNode.children, parserOptions)}
@@ -409,7 +408,7 @@ class TranscriptionView extends Component {
 						case 'exp':
 							return (
 								<span className='exp'>
-									&lt;{domToReact(domNode.children, parserOptions)}&gt;
+									&#123;{domToReact(domNode.children, parserOptions)}&#125;
 								</span>
 							);
 
