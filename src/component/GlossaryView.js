@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import DocumentHelper from '../model/DocumentHelper';
 import { Link } from 'react-scroll';
 import { Typography } from '@material-ui/core';
+import Parser from 'html-react-parser';
+import Navigation from './Navigation'
+
 
 const alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z' ]
 
@@ -10,7 +12,6 @@ class GlossaryView extends Component {
 
     constructor() {
         super()
-
         this.state = { filterTerm: '' }
     }
 
@@ -25,7 +26,8 @@ class GlossaryView extends Component {
     renderMeanings(entry) {
         const meaningList = []
         for( let i=0; i < entry.meanings.length; i++ ) { 
-            const meaning = entry.meanings[i]
+            const meaning = entry.meanings[i];
+           
             const refString = meaning.references ? `[${meaning.references}]` : ''
             const numString = (entry.meanings.length > 1) ? `${i+1}. ` : ''
             meaningList.push( 
@@ -55,9 +57,16 @@ class GlossaryView extends Component {
             const lowerCaseHeadword = entry.headWord.toLowerCase()
             if( filterTerm.length === 0 || (filterTerm.length !== 0 && lowerCaseHeadword.startsWith(filterTerm)) ) {
                 const meanings = this.renderMeanings(entry)
-                const altString = entry.alternateSpellings ? `, ${entry.alternateSpellings}` : ''
+                const altString = entry.alternateSpellings? `, ${entry.alternateSpellings}` : '';
+                const modString = entry.modernSpelling? ` (mod. ${entry.modernSpelling})` :'';
+                const seeAlso = entry.seeAlso? `, see also <span>&#8594;</span>${entry.seeAlso} `:'';
+                const synonym = entry.synonym? `, syn. <span>&#8594;</span>${entry.synonym}`:'';
+                const antonym = entry.antonym? `, ant. <span>&#8594;</span>${entry.antonym}`:'';
                 glossaryEntries.push( 
-                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}: {meanings}</Typography>
+                    <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}{modString}: {
+                          meanings.map(meaningful=>{
+                                return Parser(meaningful)
+                          })} {Parser(seeAlso)} {Parser(synonym)} {Parser(antonym)}</Typography>
                 )    
             }
         }
@@ -97,23 +106,9 @@ class GlossaryView extends Component {
     }
 
     renderToolbar() {
-        let transcriptionTypeLabel = DocumentHelper.transcriptionTypeLabels[this.props.documentView[this.props.side].transcriptionType];
-
         return (
             <div className='glossaryNav'>
                 { this.renderAlphaLinks() }
-                <div className="dropdown">
-                    <button className="dropbtn">
-                        {transcriptionTypeLabel} <span className="fa fa-caret-down"></span>
-                    </button>
-                    <div className="dropdown-content">
-                        <span data-id='tl' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tl']}</span>
-                        <span data-id='tc' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tc']}</span>
-                        <span data-id='tcn' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['tcn']}</span>
-                        <span data-id='f' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['f']}</span>
-                        <span data-id='glossary' onClick={this.changeType}>{DocumentHelper.transcriptionTypeLabels['glossary']}</span>
-                    </div>
-                </div>
             </div>
         )
     }
@@ -123,6 +118,7 @@ class GlossaryView extends Component {
 
         return (
             <div id="glossaryView">
+            <Navigation side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
                 { this.renderToolbar() }
                 <div id="glossaryViewInner">
                     <div id="glossaryContent">

@@ -4,7 +4,7 @@ import {Icon} from "react-font-awesome-5";
 
 import DocumentHelper from '../model/DocumentHelper';
 
-class navigation extends React.Component {
+class Pagination extends React.Component {
 
 	constructor(props,context){
 		super(props,context);
@@ -55,4 +55,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(navigation);
+export default connect(mapStateToProps)(Pagination);

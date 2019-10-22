@@ -8,18 +8,18 @@ import Annotation from '../component/Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 import DocumentHelper from '../model/DocumentHelper';
+import ErrorBoundary from './ErrorBoundary';
 
 class TranscriptionView extends Component {
-
 	constructor(props) {
 		super(props);
 		this.ROW_CODES = ['a','b','c','d','e','f','g','h','i','j'];
 		this.state = {folio:[], isLoaded:false, currentlyLoaded:''};
 		this.contentChange=true;
 		// window.loadingModal_stop();
-	}
-
-	// Recursively unpack a node tree object and just return the text
+      }
+      
+ 	// Recursively unpack a node tree object and just return the text
 	nodeTreeToString(node) {
 		let term = '';
 		for(let x=0;x<node.length;x++) {
@@ -30,7 +30,7 @@ class TranscriptionView extends Component {
 			}
 		}
   	  return term.trim();
-    }
+      }
 
 	loadFolio(folio) {
 		if(typeof folio === 'undefined'){
@@ -83,7 +83,6 @@ class TranscriptionView extends Component {
 	}
 
 	renderBlockSet( blockSet ) {
-
 		// use ID and class from the first block in the set
 		let firstBlock = blockSet[0];
 		let elementID = firstBlock.id;
@@ -107,159 +106,159 @@ class TranscriptionView extends Component {
 		return el.concat(`</div>`);
 	}
 
-  layoutMargin( html ) {
+      layoutMargin( html ) {
 
-    // load the surface into a DOM element to retrieve the grid data
-    let folioDiv = document.createElement("div");
-    folioDiv.innerHTML = html;
-    let zones = folioDiv.children;
+      // load the surface into a DOM element to retrieve the grid data
+      let folioDiv = document.createElement("div");
+      folioDiv.innerHTML = html;
+      let zones = folioDiv.children;
 
-    const emptyZoneFrame = [
-		[ '.', '.', '.' ],
-		[ '.', '.', '.' ],
-		[ '.', '.', '.' ]
-    ];
+      const emptyZoneFrame = [
+                  [ '.', '.', '.' ],
+                  [ '.', '.', '.' ],
+                  [ '.', '.', '.' ]
+      ];
 
-    const emptyMarginFrame = {
-      'middle': false,
-      'top': false,
-      'left-middle': false,
-      'right-middle': false,
-      'bottom': false,
-      'left-top': false,
-      'right-top': false,
-      'left-bottom': false,
-      'right-bottom': false
-	};
-		
-	const hintCodes = [
-		'tall',
-		'extra-tall',
-		'wide',
-		'extra-wide'
-	];
+      const emptyMarginFrame = {
+            'middle': false,
+            'top': false,
+            'left-middle': false,
+            'right-middle': false,
+            'bottom': false,
+            'left-top': false,
+            'right-top': false,
+            'left-bottom': false,
+            'right-bottom': false
+            };
+                  
+            const hintCodes = [
+                  'tall',
+                  'extra-tall',
+                  'wide',
+                  'extra-wide'
+            ];
 
-    let validLayoutCode = function( layoutCode ) {
-      if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
-        return layoutCode;
-      } else {
-        return 'middle';
+      let validLayoutCode = function( layoutCode ) {
+            if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
+            return layoutCode;
+            } else {
+            return 'middle';
+            }
+            };
+                  
+            function validLayoutHint( layoutHint ) {
+                  if( hintCodes.includes(layoutHint) ) {
+                        return layoutHint;
+                  } else {
+                        return null;
+                  }
+            }
+
+      let zoneGrid = [];
+      let gridContent = "";
+      let zoneIndex = 0;
+      let rowIndex = 0;
+      // for each zone, take its margin data and populate the grid
+      try {
+            for (let zone of zones) {
+            // create a rolling frame that is ORed on to grid with each step
+            let zoneFrame = copyObject( emptyZoneFrame );
+                  let marginFrame = copyObject( emptyMarginFrame );
+                  let entryID = zone.id;
+            let blocks = zone.children;
+
+            for( let block of blocks ) {
+                        let layoutCode = validLayoutCode(block.dataset.layout);
+                        let hint = validLayoutHint(block.dataset.layoutHint);
+                                    block.setAttribute('data-entry-id', entryID);
+
+                        // group all the blocks together that share a layout code
+                        if( marginFrame[layoutCode] ) {
+                              block.id = marginFrame[layoutCode][0].id;
+                              marginFrame[layoutCode].push(block);
+                        } else {
+                              zoneIndex++;
+                              block.id = `z${zoneIndex}`;
+                              marginFrame[layoutCode] = [block];
+                        }
+
+                        // decode the layout
+                        switch(layoutCode) {
+                              case 'top':
+                                    zoneFrame[0][1] = block.id;
+                                    break;
+                              case 'left-middle':
+                                    zoneFrame[1][0] = block.id;
+                                    if( hint === 'tall')
+                                          zoneFrame[2][0] = block.id;
+                                    else if( hint === 'wide') {
+                                          zoneFrame[1][1] = block.id;
+                                          zoneFrame[1][2] = block.id;
+                                    }
+                                    break;
+                              case 'right-middle':
+                                    zoneFrame[1][2] = block.id;
+                                    if( hint === 'tall')
+                                          zoneFrame[2][2] = block.id;
+                                    break;
+                              case 'bottom':
+                                    zoneFrame[2][1] = block.id;
+                                    break;
+                              case 'left-top':
+                                    zoneFrame[0][0] = block.id;
+                                    if( hint === 'tall')
+                                          zoneFrame[1][0] = block.id;
+                                    else if( hint === 'wide') {
+                                          zoneFrame[0][1] = block.id;
+                                          zoneFrame[0][2] = block.id;
+                                    }
+                                    break;
+                              case 'right-top':
+                                    zoneFrame[0][2] = block.id;
+                                    if( hint === 'tall')
+                                          zoneFrame[1][2] = block.id;
+                                    break;
+                              case 'left-bottom':
+                                    zoneFrame[2][0] = block.id;
+                                    if( hint === 'wide') {
+                                          zoneFrame[2][1] = block.id;
+                                          zoneFrame[2][2] = block.id;
+                                    }
+                                    break;
+                              case 'right-bottom':
+                                    zoneFrame[2][2] = block.id;
+                                    break;
+                              default:
+                                    zoneFrame[1][1] = block.id;
+                                    zoneFrame[1][2] = block.id;
+                        }
+                  }
+
+            for( let blockSet of Object.values(marginFrame) ) {
+                        if( blockSet ) {
+                              gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
+                        }
+            }
+
+            // integrate frame into grid
+            zoneGrid[rowIndex] = this.mergeRow( zoneFrame[0], zoneGrid[rowIndex] );
+            zoneGrid[rowIndex+1] = this.mergeRow( zoneFrame[1], zoneGrid[rowIndex+1] );
+            zoneGrid[rowIndex+2] = this.mergeRow( zoneFrame[2], zoneGrid[rowIndex+2] );
+            rowIndex = rowIndex + 1;
+                  }
       }
-	};
-		
-	function validLayoutHint( layoutHint ) {
-		if( hintCodes.includes(layoutHint) ) {
-			return layoutHint;
-		} else {
-			return null;
-		}
-	}
+      catch(error) {
+            console.log(error);
+      }
 
-    let zoneGrid = [];
-    let gridContent = "";
-    let zoneIndex = 0;
-    let rowIndex = 0;
-    // for each zone, take its margin data and populate the grid
-    try {
-      for (let zone of zones) {
-        // create a rolling frame that is ORed on to grid with each step
-        let zoneFrame = copyObject( emptyZoneFrame );
-		let marginFrame = copyObject( emptyMarginFrame );
-		let entryID = zone.id;
-        let blocks = zone.children;
+      let gridLayout = this.zoneGridToLayout( zoneGrid );
 
-        for( let block of blocks ) {
-			let layoutCode = validLayoutCode(block.dataset.layout);
-			let hint = validLayoutHint(block.dataset.layoutHint);
-					block.setAttribute('data-entry-id', entryID);
-
-			// group all the blocks together that share a layout code
-			if( marginFrame[layoutCode] ) {
-				block.id = marginFrame[layoutCode][0].id;
-				marginFrame[layoutCode].push(block);
-			} else {
-				zoneIndex++;
-				block.id = `z${zoneIndex}`;
-				marginFrame[layoutCode] = [block];
-			}
-
-			// decode the layout
-			switch(layoutCode) {
-				case 'top':
-					zoneFrame[0][1] = block.id;
-					break;
-				case 'left-middle':
-					zoneFrame[1][0] = block.id;
-					if( hint === 'tall')
-						zoneFrame[2][0] = block.id;
-					else if( hint === 'wide') {
-						zoneFrame[1][1] = block.id;
-						zoneFrame[1][2] = block.id;
-					}
-					break;
-				case 'right-middle':
-					zoneFrame[1][2] = block.id;
-					if( hint === 'tall')
-						zoneFrame[2][2] = block.id;
-					break;
-				case 'bottom':
-					zoneFrame[2][1] = block.id;
-					break;
-				case 'left-top':
-					zoneFrame[0][0] = block.id;
-					if( hint === 'tall')
-						zoneFrame[1][0] = block.id;
-					else if( hint === 'wide') {
-						zoneFrame[0][1] = block.id;
-						zoneFrame[0][2] = block.id;
-					}
-					break;
-				case 'right-top':
-					zoneFrame[0][2] = block.id;
-					if( hint === 'tall')
-						zoneFrame[1][2] = block.id;
-					break;
-				case 'left-bottom':
-					zoneFrame[2][0] = block.id;
-					if( hint === 'wide') {
-						zoneFrame[2][1] = block.id;
-						zoneFrame[2][2] = block.id;
-					}
-					break;
-				case 'right-bottom':
-					zoneFrame[2][2] = block.id;
-					break;
-				default:
-					zoneFrame[1][1] = block.id;
-					zoneFrame[1][2] = block.id;
-			}
-		}
-
-        for( let blockSet of Object.values(marginFrame) ) {
-			if( blockSet ) {
-				gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
-			}
-        }
-
-        // integrate frame into grid
-        zoneGrid[rowIndex] = this.mergeRow( zoneFrame[0], zoneGrid[rowIndex] );
-        zoneGrid[rowIndex+1] = this.mergeRow( zoneFrame[1], zoneGrid[rowIndex+1] );
-        zoneGrid[rowIndex+2] = this.mergeRow( zoneFrame[2], zoneGrid[rowIndex+2] );
-        rowIndex = rowIndex + 1;
-		}
-    }
-    catch(error) {
-      console.log(error);
-    }
-
-    let gridLayout = this.zoneGridToLayout( zoneGrid );
-
-    // set the grid-template-areas
-    return {
-		content: gridContent,
-		layout: gridLayout
-    };
-  }
+      // set the grid-template-areas
+      return {
+                  content: gridContent,
+                  layout: gridLayout
+      };
+      }
 
   mergeRow( sourceRow, targetRow ) {
     if( targetRow ) {
@@ -379,8 +378,8 @@ class TranscriptionView extends Component {
 						case 'comment':
 							const commentID = domNode.attribs['rid'] //( domNode.children && domNode.children[0] ) ? domNode.children[0].data : null
 							return (
-								<EditorComment commentID={commentID}></EditorComment>
-							);
+								            <EditorComment commentID={commentID}></EditorComment>
+							      );
 
 						case 'corr':
 							return (
@@ -400,7 +399,6 @@ class TranscriptionView extends Component {
 						case 'fr':
 						case 'it':
 						case 'la':
-						case 'oc':
 						case 'po':
 							return (
 								<i>
@@ -445,7 +443,7 @@ class TranscriptionView extends Component {
 						
 						case 'sup':
 							return (
-								<span>[{domToReact(domNode.children, parserOptions)}]</span>
+                                                <span></span>
 							);
 
 						case 'lb':
@@ -509,9 +507,8 @@ class TranscriptionView extends Component {
 	}
 
 	getTranscriptionData(transcription) {
-
-		if( typeof transcription === 'undefined') return null;
-
+            if( typeof transcription === 'undefined') return null;
+            
 		// Grid layout
 		if( transcription.layout === 'grid' ) {
 			return this.layoutGrid(transcription.html);
@@ -549,14 +546,11 @@ class TranscriptionView extends Component {
 			}
 
 			// Determine class and id for this component
-			let thisClass = "transcriptionViewComponent "+this.props.side;
-			let thisID = "transcriptionViewComponent_"+this.props.side;
 			let side = this.props.side;
 
 			if(transcriptionData.content.length !== 0){
 				let surfaceClass = "surface";
 				let surfaceStyle = {};
-
 				// Handle grid mode
 				if(this.props.documentView[this.props.side].isGridMode) {
 					surfaceClass += " grid-mode";
@@ -575,27 +569,30 @@ class TranscriptionView extends Component {
 					const folioName = this.props.document.folioNameByIDIndex[folioID];
 					const properFolioName = DocumentHelper.generateFolioID(folioName);
 					content = this.props.search.index.markMatchedTerms(searchResults, 'folio', properFolioName, content);
-				}
+                        }
 
-				return (
-					// Render the transcription
-		      <div id={thisID} className={thisClass}>
-		          <Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+                  return (
+                  // Render the transcription
+                 
+		      <div className="transcriptionViewComponent">
+                      <Navigation side={side} documentView={this.props.documentView} 
+                                    documentViewActions={this.props.documentViewActions}/>
       			  <div className="transcriptContent">
       			  	<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
-
-								<div className={surfaceClass} style={surfaceStyle}>
-									{Parser(content,htmlToReactParserOptions)}
-								</div>
-
-								<Pagination side={side} className="pagination_lower" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+                                    <ErrorBoundary>
+                                          <div className={surfaceClass} style={surfaceStyle}>
+                                                {Parser(content,htmlToReactParserOptions)}
+                                          </div>
+                                    </ErrorBoundary>    
+					<Pagination side={side} className="pagination_lower" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
       			  </div>
-		      </div>
-				);
+                  </div>
+                 );
+
 			} else {
 				// Empty content
 				return (
-					<div className={thisClass} id={thisID}>
+					<div >
 						<Navigation side={side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 						<div className="transcriptContent">
 							<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>

@@ -1,7 +1,8 @@
 const fs = require('fs');
 
-const baseDir = 'scripts/content_import/TEMP';
-const targetDir = '../making-knowing/public/bnf-ms-fr-640';
+//const baseDir = 'scripts/content_import/TEMP';
+const baseDir = 'edition_data/';
+const targetDir = 'public/bnf-ms-fr-640';
 const tagTypes = [ "al", "bp", "cn", "env", "m", "ms", "pa", "pl", "pn", "pro", "sn", "tl", "md", "mu" ];
 
 function main() {
@@ -42,8 +43,11 @@ function main() {
 
         // count up the number of mentions for each type
         let mentions = {};
+        let text_references = {};
         tagTypes.forEach( tagType => {
             mentions[tagType] = entry[tagType].length === 0 ? 0 : entry[tagType].split(';').length;
+            const references = entry[tagType].replace( /;/g, "; ");
+            text_references[tagType] = references;
         });
         
         processedEntries.push({
@@ -52,13 +56,15 @@ function main() {
             heading_tc, 
             heading_tcn, 
             heading_tl,
-            mentions
+            mentions,
+            text_references,
         });
     });
   
     fs.writeFile(`${targetDir}/entries.json`, JSON.stringify(processedEntries, null, 3), (err) => {
         if (err) throw err;
     });
+    console.log('completed entries script')
 }
 
 ///// RUN THE SCRIPT

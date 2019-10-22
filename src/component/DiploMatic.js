@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Provider, connect } from 'react-redux'
 import { HashRouter, Route, Switch, Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
 import DocumentView from './DocumentView';
 import SearchView from './SearchView';
 import ContentView from './ContentView';
@@ -11,6 +10,7 @@ import EntryListView from './EntryListView';
 import AnnotationListView from './annotation_list_view/AnnotationListView';
 import Search from './Search';
 import RouteListener from './RouteListener';
+
 
 class DiploMatic extends Component {
 

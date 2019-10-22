@@ -96,7 +96,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f3",
-        "label" : "page de garde recto",
+        "label" : "page de garde recto 1",
         "height" : 5387,
         "width" : 3375,
         "images" : [ {
@@ -122,7 +122,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f4",
-        "label" : "page de garde verso",
+        "label" : "page de garde verso 1",
         "height" : 5381,
         "width" : 3438,
         "images" : [ {
@@ -148,7 +148,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f5",
-        "label" : "NP",
+        "label" : "NP 1",
         "height" : 5396,
         "width" : 3372,
         "images" : [ {
@@ -174,7 +174,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f6",
-        "label" : "NP",
+        "label" : "NP 2",
         "height" : 5420,
         "width" : 3426,
         "images" : [ {
@@ -9040,7 +9040,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f347",
-        "label" : "NP",
+        "label" : "NP 3",
         "height" : 5351,
         "width" : 3408,
         "images" : [ {
@@ -9066,7 +9066,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f348",
-        "label" : "NP",
+        "label" : "NP 4",
         "height" : 5339,
         "width" : 3354,
         "images" : [ {
@@ -9092,7 +9092,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f349",
-        "label" : "page de garde recto",
+        "label" : "page de garde recto 2",
         "height" : 5327,
         "width" : 3414,
         "images" : [ {
@@ -9118,7 +9118,7 @@
         "@type" : "sc:Canvas"
       }, {
         "@id" : "https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/f350",
-        "label" : "page de garde verso",
+        "label" : "page de garde verso 2",
         "height" : 5339,
         "width" : 3375,
         "images" : [ {
