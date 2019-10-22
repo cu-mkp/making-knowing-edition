@@ -12,9 +12,7 @@ const { JSDOM } = jsdom;
 function parseFolio(html) {
   let dom = new JSDOM(html);
   let htmlDoc = dom.window.document;
-
   let folio = htmlDoc.querySelector('folio');
-
   if( folio === null ) return [];
 
   let recipeDivs = folio.children;
@@ -38,26 +36,24 @@ function parseFolio(html) {
 }
 
 function createSearchIndex( folioPath, indexPath, transcriptionType ) {
-
-  var recipeBook = {};
-
+      var recipeBook = {};
   // open an index for writing, output to searchIndexDir dir
-  var searchIndex = lunr(function () {
-    this.use(lunr.multiLanguage('en', 'fr'))
-    this.ref('id')
-    this.field('content')
-    this.metadataWhitelist = ['position'];
+      var searchIndex = lunr(function () {
+      this.use(lunr.multiLanguage('en', 'fr'))
+      this.ref('id')
+      this.field('content')
+      this.metadataWhitelist = ['position'];
 
-    let folios = fs.readdirSync(folioPath);
-    folios.forEach( folioID => {
+      let folios = fs.readdirSync(folioPath);
+      folios.forEach( folioID => {
 
-      // ignore hidden directories
-      if( folioID.startsWith('.') ) return;
+            // ignore hidden directories
+            if( folioID.startsWith('.') ) return;
 
-      // ignore the manifest file
-      if( folioID.startsWith('manifest') ) return;
+            // ignore the manifest file
+            if( folioID.startsWith('manifest') ) return;
 
-      let folioHTMLFile = `${folioPath}/${folioID}/${transcriptionType}/index.html`;
+            let folioHTMLFile = `${folioPath}/${folioID}/${transcriptionType}/index.html`;
 
       // make sure the folio file exists
       if( fs.existsSync(folioHTMLFile) ) {

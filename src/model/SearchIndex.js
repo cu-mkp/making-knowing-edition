@@ -72,7 +72,7 @@ class SearchIndex {
   }
 
 	// transcription type can be tc, tcn, or tl.
-  searchEdition( searchTerm, transcriptionType) {
+  searchEdition( searchTerm, transcriptionType, useQuery=true) {
     // TODO deal with blank search query (whitespace only)
      const terms = searchTerm.split(' ');
 //      let strippedTerms 
@@ -87,7 +87,15 @@ class SearchIndex {
 //            })
 //      }
 //       searchTerm = andTerms !=='' ?andTerms:searchTerm;
-      let results = this.searchIndex[transcriptionType].search(searchTerm);
+
+      let results;
+      if(! useQuery)
+            results= this.searchIndex[transcriptionType].search(searchTerm);
+      else {
+            results = this.searchIndex[transcriptionType].query(function(){
+                  this.term(searchTerm)
+            })
+      }
       let displayResults = [];
       for( let result of results ) {
             const { recipeID, folioID } = this.parseIDs( result.ref );
