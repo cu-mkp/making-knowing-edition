@@ -75,18 +75,18 @@ class SearchIndex {
   searchEdition( searchTerm, transcriptionType) {
     // TODO deal with blank search query (whitespace only)
      const terms = searchTerm.split(' ');
-     let strippedTerms 
-     let andTerms ='';
-     if(terms.length > 1){
-           strippedTerms = terms.map( t =>{
-                 return t.replace( /\+/g, '').replace(/-/g,'');
-           });
-           andTerms = '';
-           strippedTerms.forEach(t=>{
-                 andTerms += `+${t} `
-           })
-     }
-      searchTerm = andTerms !=='' ?andTerms:searchTerm;
+//      let strippedTerms 
+//      let andTerms ='';
+//      if(terms.length > 1){
+//            strippedTerms = terms.map( t =>{
+//                  return t.replace( /\+/g, '').replace(/-/g,'');
+//            });
+//            andTerms = '';
+//            strippedTerms.forEach(t=>{
+//                  andTerms += `+${t} `
+//            })
+//      }
+//       searchTerm = andTerms !=='' ?andTerms:searchTerm;
       let results = this.searchIndex[transcriptionType].search(searchTerm);
       let displayResults = [];
       for( let result of results ) {
