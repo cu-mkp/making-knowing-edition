@@ -2,7 +2,7 @@ const fs = require('fs');
 
 //const baseDir = 'scripts/content_import/TEMP';
 const baseDir = 'edition_data/';
-const targetDir = 'public/bnf-ms-fr-640';
+const targetDir = '../making-knowing/public/bnf-ms-fr-640';
 const tagTypes = [ "al", "bp", "cn", "env", "m", "ms", "pa", "pl", "pn", "pro", "sn", "tl", "md", "mu" ];
 
 function main() {
