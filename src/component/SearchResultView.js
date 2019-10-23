@@ -5,7 +5,7 @@ import DocumentHelper from '../model/DocumentHelper';
 import  Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
-
+import copyObject from '../lib/copyObject';
 
 class SearchResultView extends Component {
 
@@ -19,9 +19,9 @@ class SearchResultView extends Component {
 				tl: false,
 				anno: false
                   },
-                  sortByFolio: false,
+                  sortByFolio: true,
+                  searchResults:{},
 		}
-
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.transcriptionResultClicked = this.transcriptionResultClicked.bind(this);
@@ -115,22 +115,48 @@ class SearchResultView extends Component {
 				</div>
 			);
 		}
-	}
+      }
+      
+      toggleSort = ()=>{
+            let newValue = ! this.state.sortByFolio;
+            this.setState({sortByFolio : newValue})
+      }
+
+      getResultsByFolio( originalResults ){
+            const results = copyObject(originalResults);
+            let sortedResults={};
+            const compareRecipeIndices=(a,b)=>{
+                  if(a.index < b.index)
+                        return -1;
+                  else if ( a.index > b.index)
+                        return 1;
+                  else  
+                        return 0;
+            }
+
+            sortedResults.tc=results["tc"].sort(compareRecipeIndices);
+            sortedResults.tcn=results["tcn"].sort(compareRecipeIndices);
+            sortedResults.tl=results["tl"].sort(compareRecipeIndices);
+            sortedResults.anno = results.anno;
+            return sortedResults;
+      }
 
 	// RENDER
 	render() {
 
-		// Display order
-		let displayOrderArray = [];
+            let results;
+            if( this.state.sortByFolio)
+                  results=this.getResultsByFolio(this.props.search.results)
+            else
+                  results = this.props.search.results;
+
+            let displayOrderArray = [];
 		for (var key in this.state.typeHidden){
 			if(!this.state.typeHidden[key]){
 				displayOrderArray.push(key);
 			}
-		}
+            }
 
-		const results = this.props.search.results;
-
-		// Total results
 		let totalResultCount = results["tc"].length +
 							   results["tcn"].length +
 							   results["tl"].length + 
@@ -166,7 +192,7 @@ class SearchResultView extends Component {
                               <RadioGroup
                                    row={true}
                                     value={this.state.sortByFolio ? 'folioId': 'relevance'}
-                                    onChange={()=>{this.setState({sortByFolio: ! this.state.sortByFolio})}}
+                                    onChange={this.toggleSort}
                               >
                                     <FormControlLabel
                                           
