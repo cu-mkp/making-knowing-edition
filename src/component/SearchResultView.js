@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Parser from 'html-react-parser';
 import DocumentHelper from '../model/DocumentHelper';
+import  Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 
 class SearchResultView extends Component {
@@ -15,7 +18,8 @@ class SearchResultView extends Component {
 				tcn:false,
 				tl: false,
 				anno: false
-			}
+                  },
+                  sortByFolio: false,
 		}
 
 		this.exitSearch = this.exitSearch.bind(this);
@@ -152,10 +156,32 @@ class SearchResultView extends Component {
 						<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
 					</div>
 				</form>
-				<div className="searchResults">
+				
+                        
+                        <div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
 						No Results found for '{results.searchQuery}'
 					</div>
+                              <div >
+                              <RadioGroup
+                                   row={true}
+                                    value={this.state.sortByFolio ? 'folioId': 'relevance'}
+                                    onChange={()=>{this.setState({sortByFolio: ! this.state.sortByFolio})}}
+                              >
+                                    <FormControlLabel
+                                          
+                                          control={<Radio className='search-radio' />}
+                                          label={'Sort Results by Relevance'}
+                                          value='relevance'
+                                          />
+                                    <FormControlLabel
+                                     
+                                          control={<Radio  className='search-radio'/>}
+                                          label={'Sort Results by Folio Id'}
+                                          value='folioId'
+                                          />
+                                   </RadioGroup>
+                              </div>
 
 				 	{displayOrderArray.map((type, i) =>
 						<div key={type} className={(results[type].length===0)?"resultSection hidden":"resultSection"}>
@@ -168,6 +194,9 @@ class SearchResultView extends Component {
 						</div>
 					)}
 				</div>
+
+
+
 			</div>
 		);
 	}
