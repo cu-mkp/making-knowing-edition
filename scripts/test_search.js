@@ -25,8 +25,11 @@ var documents = [{
     var idx = lunr(function () {
       this.ref('name')
       this.field('text')
-    
+      this.field('index')
+    let value=9;
       documents.forEach(function (doc) {
+            doc.index=value;
+            value++;
         this.add(doc)
       }, this)
     })
@@ -34,20 +37,23 @@ var documents = [{
 
 /* USING QUERY METHOD****/
 
-  let results =   idx.query(function(){
-      const searchTerm = 'A JavaScript library for building user interfaces.';   //'library'
-      console.log(`search term is ${searchTerm}`)
-      this.term(['A JavaScript library for building user interfaces.'])
-  });
-  console.log(`results length is ${results.length}`)
+//   let results =   idx.query(function(){
+//       const searchTerm = 'JavaScript library';   //'library'
+//       console.log(`search term is ${searchTerm}`)
+//       this.term([searchTerm])
+//   });
+
+      let results = idx.search('library')
+      console.log(`results length is ${results.length}`)
 
       const resultText = [];
       let docWithTheTerm;
       results.forEach( result =>{
-      docWithTheTerm = documents.find( d =>{ return d.name === result.ref})
-            if(docWithTheTerm !== undefined)
-            {
-                  console.log(docWithTheTerm.text)
-                  resultText.push(docWithTheTerm);
+            docWithTheTerm = documents.find( d =>{ return d.name === result.ref})
+                  if(docWithTheTerm !== undefined)
+                  {
+                        console.log(`text ${docWithTheTerm.text}, index: ${docWithTheTerm.index}`)
+                        resultText.push(docWithTheTerm);
+                  }
             }
-      })
+            );

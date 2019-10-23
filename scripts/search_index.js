@@ -37,55 +37,55 @@ function parseFolio(html) {
 
 function createSearchIndex( folioPath, indexPath, transcriptionType ) {
       var recipeBook = {};
-  // open an index for writing, output to searchIndexDir dir
       var searchIndex = lunr(function () {
-      this.use(lunr.multiLanguage('en', 'fr'))
-      this.ref('id')
-      this.field('content')
-      this.metadataWhitelist = ['position'];
+            this.use(lunr.multiLanguage('en', 'fr'))
+            this.ref('id')
+            this.field('content')
+            this.metadataWhitelist = ['position',];
+            let folios = fs.readdirSync(folioPath);
+            let ordinalId=1;
+            folios.forEach( folioID => {
+                  // ignore hidden directories
+                  if( folioID.startsWith('.') ) 
+                        return;
+                  // ignore the manifest file
+                  if( folioID.startsWith('manifest') ) 
+                        return;
+                  let folioHTMLFile = `${folioPath}/${folioID}/${transcriptionType}/index.html`;
+                  if( fs.existsSync(folioHTMLFile) ) {
+                  const html = fs.readFileSync( folioHTMLFile, "utf8");
+                  const passages = parseFolio(html);
+                  for( let passage of passages ) {
+                  // create a search index document
+                        const passageRecord = { 
+                              id: `${passage.recipeID}-${folioID}`,
+                            
+                              content: passage.content,
+                        };
+                        // add record to lunr index
+                        this.add( passageRecord );
+                        console.log(`writing passage ordinal # ${ordinalId}`)
+                        ordinalId++;
+                        
+                        let recipe = recipeBook[passage.recipeID];
+                        if( !recipe ) {
+                              // create a new recipe entry
+                              recipe = {
+                              id: passage.recipeID,
+                              numericIndex: ordinalId,
+                              name: 'ERROR: Unable to parse name.',
+                              passages: {} 
+                              };
+                              recipeBook[passage.recipeID] = recipe;
+                        } 
+                        if( passage.name ) 
+                              recipe.name = passage.name;
 
-      let folios = fs.readdirSync(folioPath);
-      folios.forEach( folioID => {
+                        recipe.passages[folioID] = passageRecord.content;
+                        }
+                  }
 
-            // ignore hidden directories
-            if( folioID.startsWith('.') ) return;
-
-            // ignore the manifest file
-            if( folioID.startsWith('manifest') ) return;
-
-            let folioHTMLFile = `${folioPath}/${folioID}/${transcriptionType}/index.html`;
-
-      // make sure the folio file exists
-      if( fs.existsSync(folioHTMLFile) ) {
-        const html = fs.readFileSync( folioHTMLFile, "utf8");
-        const passages = parseFolio(html);
-
-        for( let passage of passages ) {
-          // create a search index document
-          const passageRecord = { 
-            id: `${passage.recipeID}-${folioID}`,
-            content: passage.content
-          };
-
-          // add record to lunr index
-          this.add( passageRecord );
-
-          let recipe = recipeBook[passage.recipeID];
-          if( !recipe ) {
-            // create a new recipe entry
-            recipe = {
-              id: passage.recipeID,
-              name: 'ERROR: Unable to parse name.',
-              passages: {} 
-            };
-            recipeBook[passage.recipeID] = recipe;
-          } 
-          if( passage.name ) recipe.name = passage.name;
-          recipe.passages[folioID] = passageRecord.content;
-        }
-      }
-
-    }, this);
+            }, this);
   });
 
   let searchIndexFile = `${indexPath}/${transcriptionType}_search_index.js`;
@@ -122,27 +122,22 @@ var generateAnnotationIndex = function generateAnnotationIndex( annotationPath, 
 
     let annotations = fs.readdirSync(annotationPath);
     annotations.forEach( annotationHTMLFile => {
-
       // ignore hidden directories
       if( annotationHTMLFile.startsWith('.') ) return;
-
       // ignore manifest
       if( annotationHTMLFile === 'annotations.json' ) return;
-
       const html = fs.readFileSync( `${annotationPath}/${annotationHTMLFile}`, "utf8");
       const content = parseAnnotation(html);
-
       const annotationID = annotationHTMLFile.split('.')[0];
-
       // create a search index document
       const annotationRecord = { 
         id: annotationID,
+        ordianlId:ordinalId,
         content: content
       };
-
+      ordinalId++;
       // add record to lunr index
       this.add( annotationRecord );
-
     }, this);
   });
 
