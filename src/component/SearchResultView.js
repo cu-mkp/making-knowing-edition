@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Parser from 'html-react-parser';
 import DocumentHelper from '../model/DocumentHelper';
-
+import  Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import copyObject from '../lib/copyObject';
 
 class SearchResultView extends Component {
 
@@ -15,9 +18,10 @@ class SearchResultView extends Component {
 				tcn:false,
 				tl: false,
 				anno: false
-			}
+                  },
+                  sortByFolio: true,
+                  searchResults:{},
 		}
-
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.transcriptionResultClicked = this.transcriptionResultClicked.bind(this);
@@ -111,22 +115,48 @@ class SearchResultView extends Component {
 				</div>
 			);
 		}
-	}
+      }
+      
+      toggleSort = ()=>{
+            let newValue = ! this.state.sortByFolio;
+            this.setState({sortByFolio : newValue})
+      }
+
+      getResultsByFolio( originalResults ){
+            const results = copyObject(originalResults);
+            let sortedResults={};
+            const compareRecipeIndices=(a,b)=>{
+                  if(a.index < b.index)
+                        return -1;
+                  else if ( a.index > b.index)
+                        return 1;
+                  else  
+                        return 0;
+            }
+
+            sortedResults.tc=results["tc"].sort(compareRecipeIndices);
+            sortedResults.tcn=results["tcn"].sort(compareRecipeIndices);
+            sortedResults.tl=results["tl"].sort(compareRecipeIndices);
+            sortedResults.anno = results.anno;
+            return sortedResults;
+      }
 
 	// RENDER
 	render() {
 
-		// Display order
-		let displayOrderArray = [];
+            let results;
+            if( this.state.sortByFolio)
+                  results=this.getResultsByFolio(this.props.search.results)
+            else
+                  results = this.props.search.results;
+
+            let displayOrderArray = [];
 		for (var key in this.state.typeHidden){
 			if(!this.state.typeHidden[key]){
 				displayOrderArray.push(key);
 			}
-		}
+            }
 
-		const results = this.props.search.results;
-
-		// Total results
 		let totalResultCount = results["tc"].length +
 							   results["tcn"].length +
 							   results["tl"].length + 
@@ -152,10 +182,32 @@ class SearchResultView extends Component {
 						<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
 					</div>
 				</form>
-				<div className="searchResults">
+				
+                        
+                        <div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
 						No Results found for '{results.searchQuery}'
 					</div>
+                              <div >
+                              <RadioGroup
+                                   row={true}
+                                    value={this.state.sortByFolio ? 'folioId': 'relevance'}
+                                    onChange={this.toggleSort}
+                              >
+                                    <FormControlLabel
+                                          
+                                          control={<Radio className='search-radio' />}
+                                          label={'Sort Results by Relevance'}
+                                          value='relevance'
+                                          />
+                                    <FormControlLabel
+                                     
+                                          control={<Radio  className='search-radio'/>}
+                                          label={'Sort Results by Folio Id'}
+                                          value='folioId'
+                                          />
+                                   </RadioGroup>
+                              </div>
 
 				 	{displayOrderArray.map((type, i) =>
 						<div key={type} className={(results[type].length===0)?"resultSection hidden":"resultSection"}>
@@ -168,6 +220,9 @@ class SearchResultView extends Component {
 						</div>
 					)}
 				</div>
+
+
+
 			</div>
 		);
 	}

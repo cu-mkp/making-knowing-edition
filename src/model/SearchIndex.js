@@ -72,33 +72,42 @@ class SearchIndex {
   }
 
 	// transcription type can be tc, tcn, or tl.
-  searchEdition( searchTerm, transcriptionType) {
+  searchEdition( searchTerm, transcriptionType, useQuery=true) {
     // TODO deal with blank search query (whitespace only)
-     const terms = searchTerm.split(' ');
-//      let strippedTerms 
-//      let andTerms ='';
-//      if(terms.length > 1){
-//            strippedTerms = terms.map( t =>{
-//                  return t.replace( /\+/g, '').replace(/-/g,'');
-//            });
-//            andTerms = '';
-//            strippedTerms.forEach(t=>{
-//                  andTerms += `+${t} `
-//            })
-//      }
-//       searchTerm = andTerms !=='' ?andTerms:searchTerm;
-      let results = this.searchIndex[transcriptionType].search(searchTerm);
+    const terms = searchTerm.split(' ');
+     let strippedTerms 
+     let andTerms ='';
+     if(terms.length > 1){
+           strippedTerms = terms.map( t =>{
+                 return t.replace( /\+/g, '').replace(/-/g,'');
+           });
+           andTerms = '';
+           strippedTerms.forEach(t=>{
+                 andTerms += `+${t} `
+           })
+     }
+      searchTerm = andTerms !=='' ?andTerms:searchTerm;
+
+      let results;
+    //  if(! useQuery)
+           results= this.searchIndex[transcriptionType].search(searchTerm);
+    //  else {
+           // results = this.searchIndex['tl'].query(function(){
+                 // this.term('willow charcoal')
+          //})
+     // }
       let displayResults = [];
       for( let result of results ) {
             const { recipeID, folioID } = this.parseIDs( result.ref );
             let recipe = this.recipeBook[transcriptionType][ recipeID ];
             if( recipe ) {
-            displayResults.push({ 
-            name: recipe.name, 
-            folio: folioID,
-            matchedTerms: Object.keys(result.matchData.metadata),
-            contextFragment: recipe.passages[folioID]
-            });  
+                  displayResults.push({ 
+                        name: recipe.name, 
+                        folio: folioID,
+                        index:recipe.numericIndex,
+                        matchedTerms: Object.keys(result.matchData.metadata),
+                        contextFragment: recipe.passages[folioID]
+                  });  
             }
       }
 
@@ -112,10 +121,8 @@ class SearchIndex {
   }
 
   markMatchedTerms( searchResults, recordType, recordID, content ) {
-
     // recordID could be for a folio or an annotation
     let idKey = (recordType === 'folio') ? 'folio' : 'id';
-
     // find the matched terms that related to this folio
     let matchedTerms = [];
     for( let searchResult of searchResults ) {

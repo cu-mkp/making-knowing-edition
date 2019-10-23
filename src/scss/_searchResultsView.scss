@@ -51,16 +51,20 @@
 	}
 
 	.searchFilters {
-		min-width: 25rem;
-		font-size: 0.6rem;
-		font-weight: 700;
-		margin: 0.4rem 0 0 0.2rem;
+		margin: 6px 0px;
+		font-size: 12px;
+		font-weight: 500;
+		
 	}
 
 	.searchResults {
 		overflow: scroll;
 		height: calc(100vh - 16.5rem);
-		margin: 0 -1rem 0 0;
+            margin: 0 -1rem 0 0;
+            
+            .search-radio {
+                  color: #3f51b5;
+            }
 	}
 	
 	hr {
@@ -129,10 +133,15 @@
 		border: none;
 	}
 	
+    
+
+
 }
 
 .searchFilters span,
 .searchResultsComponent .name {
 	margin: 0 0.5rem 0 0.1rem;
 }
+
+
 
