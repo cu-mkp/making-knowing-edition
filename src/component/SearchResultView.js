@@ -20,7 +20,7 @@ class SearchResultView extends Component {
 				anno: false
                   },
                   sortByFolio: true,
-                  searchResults:{},
+                  
 		}
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,11 +45,7 @@ class SearchResultView extends Component {
 	}
 	  
 	transcriptionResultClicked(event) {
-		// // remove p and strip leading zeros
-		let folioname = event.currentTarget.dataset.folioname.slice(1);
-			folioname = folioname.replace(/^[0|\D]*/,'');
-
-		// Convert to shortID
+		let folioname = event.currentTarget.dataset.folioname;
 		let shortID = this.props.document.folioIDByNameIndex[folioname];
 		if(typeof shortID === 'undefined'){
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
@@ -90,10 +86,11 @@ class SearchResultView extends Component {
 	renderSearchResult( type, result, idx ) {
 		if( type !== 'anno') {
 			return (
-				<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.transcriptionResultClicked}>
+				<div key={idx} className="searchResult" data-type={type} data-folioname={result.friendlyFolioName} onClick={this.transcriptionResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
-						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
+						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>
+                                    (<span className="folio">{result.friendlyFolioName}</span>)
 					</div>
 					<div className="contextFragments">
 						{Parser(result.contextFragment)}
@@ -102,7 +99,6 @@ class SearchResultView extends Component {
 			);	
 		} else {
 			const annotation = this.props.annotations.annotations[result.id];
-
 			return (
 				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
@@ -138,6 +134,7 @@ class SearchResultView extends Component {
             sortedResults.tcn=results["tcn"].sort(compareRecipeIndices);
             sortedResults.tl=results["tl"].sort(compareRecipeIndices);
             sortedResults.anno = results.anno;
+            sortedResults.searchQuery = results.searchQuery;
             return sortedResults;
       }
 

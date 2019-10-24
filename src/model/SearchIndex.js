@@ -51,28 +51,28 @@ class SearchIndex {
 		}
 	}
 
-  parseIDs( docID ) {
-    const parts = docID.split('-');
-    return { recipeID: parts[0], folioID: parts[1] };
-  }
+      parseIDs( docID ) {
+      const parts = docID.split('-');
+      return { recipeID: parts[0], folioID: parts[1] };
+      }
 
-  searchAnnotations( searchTerm ) {
-    let results = this.searchIndex['anno'].search(searchTerm);
+      searchAnnotations( searchTerm ) {
+      let results = this.searchIndex['anno'].search(searchTerm);
 
-    let displayResults = [];
-    for( let result of results ) {
-      let searchResult = {
-        id: result.ref,
-        matchedTerms: Object.keys(result.matchData.metadata)
-      };
-      displayResults.push( searchResult );
-    }
+      let displayResults = [];
+      for( let result of results ) {
+            let searchResult = {
+            id: result.ref,
+            matchedTerms: Object.keys(result.matchData.metadata)
+            };
+            displayResults.push( searchResult );
+      }
 
-    return displayResults;
-  }
+      return displayResults;
+      }
 
 	// transcription type can be tc, tcn, or tl.
-  searchEdition( searchTerm, transcriptionType, useQuery=true) {
+  searchEdition( searchTerm, transcriptionType) {
     // TODO deal with blank search query (whitespace only)
     const terms = searchTerm.split(' ');
      let strippedTerms 
@@ -81,7 +81,6 @@ class SearchIndex {
            strippedTerms = terms.map( t =>{
                  return t.replace( /\+/g, '').replace(/-/g,'');
            });
-           andTerms = '';
            strippedTerms.forEach(t=>{
                  andTerms += `+${t} `
            })
@@ -89,21 +88,19 @@ class SearchIndex {
       searchTerm = andTerms !=='' ?andTerms:searchTerm;
 
       let results;
-    //  if(! useQuery)
-           results= this.searchIndex[transcriptionType].search(searchTerm);
-    //  else {
-           // results = this.searchIndex['tl'].query(function(){
-                 // this.term('willow charcoal')
-          //})
-     // }
+      results= this.searchIndex[transcriptionType].search(searchTerm);  
       let displayResults = [];
       for( let result of results ) {
             const { recipeID, folioID } = this.parseIDs( result.ref );
             let recipe = this.recipeBook[transcriptionType][ recipeID ];
+            let friendlyFolioName = folioID.slice(1);
+            friendlyFolioName = friendlyFolioName.replace(/^[0|\D]*/,'');
+
             if( recipe ) {
                   displayResults.push({ 
                         name: recipe.name, 
                         folio: folioID,
+                        friendlyFolioName,
                         index:recipe.numericIndex,
                         matchedTerms: Object.keys(result.matchData.metadata),
                         contextFragment: recipe.passages[folioID]
