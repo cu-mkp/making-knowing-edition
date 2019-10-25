@@ -172,7 +172,7 @@ class Navigation extends React.Component {
                         <div className="navigationComponent" style={widthStyle}>
                               <div id="navigation-row" className="navigationRow" >
 
-                                    { this.props.documentView[this.props.side].transcriptionType != 'glossary' ? (
+                                    { this.props.documentView[this.props.side].transcriptionType !== 'glossary' ? (
 
                                           <div id="tool-bar-buttons" className="breadcrumbs" style={showButtonsStyle}> 
                                                 <span title="Toggle coordination of views" onClick={this.toggleLockmode} 

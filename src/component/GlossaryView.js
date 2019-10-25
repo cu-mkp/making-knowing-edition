@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-scroll';
 import { Typography } from '@material-ui/core';
 import Parser from 'html-react-parser';
 import Navigation from './Navigation'

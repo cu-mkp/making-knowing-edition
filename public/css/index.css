@@ -154,16 +154,18 @@ figure.current {
 .navigationComponent {
   position: fixed;
   z-index: 800;
+  height: 48px;
   white-space: nowrap;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
+  user-select: none;
+  padding: 4px; }
 
 .navigationRow {
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px 5px 10px; }
+  padding: 12px 10px 12px 10px; }
 
 .helpIcon {
   margin-top: 6px;
@@ -207,27 +209,17 @@ figure.current {
 
 .paginationComponent {
   white-space: nowrap;
-  position: relative;
-  width: calc(100% - 1.7rem);
   text-align: center;
-  top: 3rem;
   font-size: 1.2rem;
   font-weight: 700;
-  top: -.3rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none; }
-
-.paginationComponent:nth-of-type(3) {
-  padding: 1rem 0 0 0; }
+  user-select: none;
+  margin-top: 52px; }
 
 .paginationControl {
-  padding: 0;
-  margin: 0 0 20px 0;
-  display: inline-block;
-  top: 10rem;
-  left: 0; }
+  padding: 16px; }
 
 .paginationControl .arrow {
   font-size: 1.8rem;
@@ -632,22 +624,14 @@ figure.current {
 .ImageZoomControl > li > .zoom-grid {
   margin-top: 30px; }
 
-.transcriptContent {
-  padding: 0;
-  margin: 4.5rem 0 0;
-  width: calc(100% - 1.2rem);
-  min-height: 100vh;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-  min-width: 10rem; }
-  .transcriptContent figure {
-    display: inline; }
-
 .transcriptionViewComponent {
   overflow: scroll;
   height: calc(100vh - 7rem); }
+
+.transcriptContent {
+  padding: 5px 16px; }
+  .transcriptContent figure {
+    display: inline; }
 
 .block {
   margin-bottom: 1.5rem; }
@@ -793,13 +777,15 @@ figure.current {
 
 #glossaryView #glossaryViewInner {
   overflow-y: scroll;
-  margin: 0 0 0 1rem;
+  margin: 52px 0 0 0;
   width: calc(100% - 1.2rem);
-  height: calc(100vh - 170px); }
+  height: calc(100vh - 170px);
+  padding: 5px 16px; }
 
 #glossaryView .glossaryNav {
   background: white;
-  padding: 5px; }
+  padding: 5px;
+  position: relative; }
   #glossaryView .glossaryNav #glossary-filter {
     margin-right: 10px; }
 
