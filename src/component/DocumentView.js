@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 import SplitPaneView from './SplitPaneView';
 import {dispatchAction} from '../model/ReduxStore';
-
 import ImageView from './ImageView';
 import ImageGridView from './ImageGridView';
 import TranscriptionView from './TranscriptionView';
 import XMLView from './XMLView';
 import GlossaryView from './GlossaryView';
 import DocumentHelper from '../model/DocumentHelper';
+
 
 class DocumentView extends Component {
 
