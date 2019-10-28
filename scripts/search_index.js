@@ -39,6 +39,8 @@ function createSearchIndex( folioPath, indexPath, transcriptionType ) {
       var recipeBook = {};
       var searchIndex = lunr(function () {
             this.use(lunr.multiLanguage('en', 'fr'))
+            this.pipeline.remove(lunr.stemmer)
+            this.pipeline.remove(lunr.stopWordFilter)
             this.ref('id')
             this.field('content')
             this.metadataWhitelist = ['position',];
@@ -59,12 +61,10 @@ function createSearchIndex( folioPath, indexPath, transcriptionType ) {
                   // create a search index document
                         const passageRecord = { 
                               id: `${passage.recipeID}-${folioID}`,
-                            
                               content: passage.content,
                         };
                         // add record to lunr index
                         this.add( passageRecord );
-                        console.log(`writing passage ordinal # ${ordinalId}`)
                         ordinalId++;
                         
                         let recipe = recipeBook[passage.recipeID];
