@@ -629,7 +629,11 @@ figure.current {
   height: calc(100vh - 7rem); }
 
 .transcriptContent {
-  padding: 5px 16px; }
+  padding: 5px 16px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text; }
   .transcriptContent figure {
     display: inline; }
 
