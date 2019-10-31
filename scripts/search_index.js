@@ -39,8 +39,8 @@ function createSearchIndex( folioPath, indexPath, transcriptionType ) {
       var recipeBook = {};
       var searchIndex = lunr(function () {
             this.use(lunr.multiLanguage('en', 'fr'))
-            this.pipeline.remove(lunr.stemmer)
-            this.pipeline.remove(lunr.stopWordFilter)
+            // this.pipeline.remove(lunr.stemmer)
+            // this.pipeline.remove(lunr.stopWordFilter)
             this.ref('id')
             this.field('content')
             this.metadataWhitelist = ['position',];
