@@ -633,7 +633,8 @@ figure.current {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
-  user-select: text; }
+  user-select: text;
+  margin-bottom: 92px; }
   .transcriptContent figure {
     display: inline; }
 
