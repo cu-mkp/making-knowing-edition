@@ -9,6 +9,10 @@ require("lunr-languages/lunr.fr")(lunr)
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+function htmlToText(html) {
+  return html ? html.replace(/<\/?[^>]+>/ig, " ") : ""
+}
+
 function parseFolio(html) {
   let dom = new JSDOM(html);
   let htmlDoc = dom.window.document;
@@ -22,8 +26,8 @@ function parseFolio(html) {
     let recipeID = recipeDiv.id;
     if( recipeID ) {
       let headerElement = recipeDiv.querySelector("h2")
-      let name = ( headerElement ) ? headerElement.textContent : null;
-      let content = recipeDiv.textContent;
+      let name = ( headerElement ) ? htmlToText(headerElement.innerHTML) : null;
+      let content = htmlToText(recipeDiv.innerHTML);
       passages.push({
         recipeID: recipeID,
         name: name,
