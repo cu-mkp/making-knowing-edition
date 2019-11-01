@@ -3,7 +3,6 @@ import lunr from 'lunr';
 // import stemmer from 'lunr-languages/lunr.stemmer.support'
 // import fr from 'lunr-languages/lunr.fr'
 
-
 class SearchIndex {
 
 	constructor() {
@@ -13,7 +12,7 @@ class SearchIndex {
                         this.loaded = false;
                         //stemmer(lunr);
                         //fr(lunr)
-	}
+            }
 
 	load() {
 		if (this.loaded) {
@@ -36,10 +35,16 @@ class SearchIndex {
 					.then(axios.spread(function(anno, searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
                                     this.searchIndex['anno'] = lunr.Index.load(anno.data);
                                     this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
+                                    this.searchIndex['tl'].pipeline.remove(lunr.stemmer)
+                                    this.searchIndex['tl'].pipeline.remove(lunr.stopWordFilter)
                                     this.recipeBook['tl'] = recipeTl.data;
                                     this.searchIndex['tc'] = lunr.Index.load(searchTc.data);
+                                    this.searchIndex['tc'].pipeline.remove(lunr.stemmer)
+                                    this.searchIndex['tc'].pipeline.remove(lunr.stopWordFilter)
                                     this.recipeBook['tc'] = recipeTc.data;
                                     this.searchIndex['tcn'] = lunr.Index.load(searchTcn.data);
+                                    this.searchIndex['tcn'].pipeline.remove(lunr.stemmer)
+                                    this.searchIndex['tcn'].pipeline.remove(lunr.stopWordFilter)
                                     this.recipeBook['tcn'] = recipeTcn.data;
                                     this.loaded = true;
                                     resolve(this);
@@ -186,10 +191,9 @@ class SearchIndex {
                         }
                         // TODO remove the eliminated positions
                   }
-                  // if at the end, there are still matching phrases, keep those positions
-                  // and keep this result
                   if( phrasePositions.length > 0 ) {
-
+                        // TODO keep phrase positions that matched
+                        
                         phraseMatches.push(result)
                   }                  
             }

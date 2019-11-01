@@ -123,6 +123,7 @@ var generateAnnotationIndex = function generateAnnotationIndex( annotationPath, 
     this.ref('id')
     this.field('content')
     this.metadataWhitelist = ['position'];
+    let ordinalId = 0
 
     let annotations = fs.readdirSync(annotationPath);
     annotations.forEach( annotationHTMLFile => {
