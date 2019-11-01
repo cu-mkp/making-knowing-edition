@@ -89,6 +89,10 @@ class SearchIndex {
 
       let results;
       results= this.searchIndex[transcriptionType].search(searchTerm);  
+
+      // TODO
+      // results = this.phraseMatchFilter(strippedTerms,transcriptionType,results);
+
       let displayResults = [];
       for( let result of results ) {
             const { recipeID, folioID } = this.parseIDs( result.ref );
@@ -144,6 +148,55 @@ class SearchIndex {
     // turn back into a string
     const markedText = termList.join(' ');
     return markedText;
+  }
+
+  phraseMatchFilter(terms,transcriptionType,results) {
+      // result[0].matchData.metadata.gold.content.position[0] [offset,range]
+      // result[0].ref = "p100v_2-p100v"
+
+      // for a given result
+      let phraseMatches = []
+      for( let result of results ) {
+            const { recipeID, folioID } = this.parseIDs( result.ref );
+            const recipe = this.recipeBook[transcriptionType][ recipeID ];
+
+            if( recipe ) {
+                  const passage = recipe.passages[folioID]
+                  const foundTerms = result.matchData.metadata
+                  const firstTerm = terms[0]
+                  const phrasePositions = [ ...foundTerms[firstTerm].content.position ]
+
+                  for( let i=1; i < terms.length && phrasePositions.length > 0; i++ ) {
+                        // take the next term
+                        const term = terms[i], nextTerm = terms[i+1] 
+                        // for each content position
+                        let eliminatedPositions = []
+                        for( let phrasePosition of phrasePositions ) {
+                              // locate it in the passage
+                              const offset = phrasePosition[0]
+                              const range = phrasePosition[1]
+                              
+                              // TODO
+                              let termThatFollows
+
+                              if( nextTerm && nextTerm !== termThatFollows ) {
+                                    // not a match, eliminate this position 
+                                    eliminatedPositions.push(phrasePosition)
+                              }                                     
+                        }
+                        // TODO remove the eliminated positions
+                  }
+                  // if at the end, there are still matching phrases, keep those positions
+                  // and keep this result
+                  if( phrasePositions.length > 0 ) {
+
+                        phraseMatches.push(result)
+                  }                  
+            }
+      }
+
+      // return the list of results with phrase matches
+      return phraseMatches
   }
 }
 
