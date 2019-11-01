@@ -1,7 +1,7 @@
 import axios from 'axios';
 import lunr from 'lunr';
-import stemmer from 'lunr-languages/lunr.stemmer.support'
-import fr from 'lunr-languages/lunr.fr'
+// import stemmer from 'lunr-languages/lunr.stemmer.support'
+// import fr from 'lunr-languages/lunr.fr'
 
 
 class SearchIndex {
@@ -11,8 +11,8 @@ class SearchIndex {
             this.searchIndex = {};
             this.recipeBook = {};
                         this.loaded = false;
-                        stemmer(lunr);
-                        fr(lunr)
+                        //stemmer(lunr);
+                        //fr(lunr)
 	}
 
 	load() {

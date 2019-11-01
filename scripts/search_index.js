@@ -2,9 +2,9 @@ const fs = require('fs');
 
 // load lunr with fr support
 var lunr = require('lunr');
-require("lunr-languages/lunr.stemmer.support")(lunr)
-require('lunr-languages/lunr.multi')(lunr)
-require("lunr-languages/lunr.fr")(lunr)
+// require("lunr-languages/lunr.stemmer.support")(lunr)
+// require('lunr-languages/lunr.multi')(lunr)
+// require("lunr-languages/lunr.fr")(lunr)
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -42,9 +42,9 @@ function parseFolio(html) {
 function createSearchIndex( folioPath, indexPath, transcriptionType ) {
       var recipeBook = {};
       var searchIndex = lunr(function () {
-            this.use(lunr.multiLanguage('en', 'fr'))
-            // this.pipeline.remove(lunr.stemmer)
-            // this.pipeline.remove(lunr.stopWordFilter)
+            // this.use(lunr.multiLanguage('en', 'fr'))
+            this.pipeline.remove(lunr.stemmer)
+            this.pipeline.remove(lunr.stopWordFilter)
             this.ref('id')
             this.field('content')
             this.metadataWhitelist = ['position',];
