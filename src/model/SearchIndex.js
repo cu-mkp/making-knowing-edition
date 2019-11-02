@@ -95,8 +95,10 @@ class SearchIndex {
       let results;
       results= this.searchIndex[transcriptionType].search(searchTerm);  
 
-      // TODO
-      // results = this.phraseMatchFilter(strippedTerms,transcriptionType,results);
+      // TODO build UI 
+      // if( strippedTerms && results ) {
+      //       results = this.phraseMatchFilter(strippedTerms,transcriptionType,results);
+      // }
 
       let displayResults = [];
       for( let result of results ) {
@@ -156,8 +158,7 @@ class SearchIndex {
   }
 
   phraseMatchFilter(terms,transcriptionType,results) {
-      // result[0].matchData.metadata.gold.content.position[0] [offset,range]
-      // result[0].ref = "p100v_2-p100v"
+      const nextWordRegex = /^[\s]*[\n]*[\w]+/
 
       // for a given result
       let phraseMatches = []
@@ -169,31 +170,48 @@ class SearchIndex {
                   const passage = recipe.passages[folioID]
                   const foundTerms = result.matchData.metadata
                   const firstTerm = terms[0]
-                  const phrasePositions = [ ...foundTerms[firstTerm].content.position ]
+                  let possiblePhrases = []
 
-                  for( let i=1; i < terms.length && phrasePositions.length > 0; i++ ) {
-                        // take the next term
-                        const term = terms[i], nextTerm = terms[i+1] 
-                        // for each content position
-                        let eliminatedPositions = []
-                        for( let phrasePosition of phrasePositions ) {
-                              // locate it in the passage
-                              const offset = phrasePosition[0]
-                              const range = phrasePosition[1]
-                              
-                              // TODO
-                              let termThatFollows
-
-                              if( nextTerm && nextTerm !== termThatFollows ) {
-                                    // not a match, eliminate this position 
-                                    eliminatedPositions.push(phrasePosition)
-                              }                                     
-                        }
-                        // TODO remove the eliminated positions
+                  // first term in possible phrase ranges
+                  for( const position of foundTerms[firstTerm].content.position) {
+                        const offset = position[0]
+                        const range = position[1]
+                        const phrase = { offset, range }
+                        possiblePhrases.push(phrase)
                   }
-                  if( phrasePositions.length > 0 ) {
-                        // TODO keep phrase positions that matched
-                        
+
+                  for( let i=1; i < terms.length && possiblePhrases.length > 0; i++ ) {
+                        const term = terms[i] 
+
+                        let nextPhrases = []
+                        for( let j=0; j < possiblePhrases.length; j++ ) {
+                              const possiblePhrase = possiblePhrases[j]
+                              const { offset, range } = possiblePhrase
+
+                              // locate next word in the passage 
+                              const remainingRange = passage.substring(offset+range,passage.length)
+                              const matches = remainingRange.match(nextWordRegex)
+                              const nextWord = matches ? matches[0] : null
+                              
+                              // if we found another word in this phrase and that word is the term
+                              if( nextWord && nextWord.match(term) ) {
+                                    // extend this phrase to include this term
+                                    possiblePhrase.range = nextWord.length + range
+                                    nextPhrases.push(possiblePhrase)
+                              }
+                        }
+                        // these phrases match so far
+                        possiblePhrases = nextPhrases
+                  }
+                  if( possiblePhrases.length > 0 ) {
+                        // convert back to result format
+                        const foundPhrases = []
+                        for( const possiblePhrase of possiblePhrases ) {
+                              foundPhrases.push([possiblePhrase.offset,possiblePhrase.range])
+                        }                        
+                        let phrases = {}
+                        phrases[firstTerm] = foundPhrases
+                        result.matchData.metadata = phrases
                         phraseMatches.push(result)
                   }                  
             }
