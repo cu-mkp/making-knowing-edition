@@ -1,7 +1,5 @@
 import axios from 'axios';
 import lunr from 'lunr';
-// import stemmer from 'lunr-languages/lunr.stemmer.support'
-// import fr from 'lunr-languages/lunr.fr'
 
 class SearchIndex {
 
@@ -9,10 +7,8 @@ class SearchIndex {
             this.searchIndexURL = `${process.env.REACT_APP_EDITION_DATA_URL}/search-idx`;
             this.searchIndex = {};
             this.recipeBook = {};
-                        this.loaded = false;
-                        //stemmer(lunr);
-                        //fr(lunr)
-            }
+                  this.loaded = false;
+      }
 
 	load() {
 		if (this.loaded) {
@@ -24,34 +20,34 @@ class SearchIndex {
 			// promise to load the search index
 			return new Promise(function(resolve, reject) {
 				axios.all([
-            axios.get(`${this.searchIndexURL}/annotation_search_index.js`),
-						axios.get(`${this.searchIndexURL}/tl_search_index.js`),
-						axios.get(`${this.searchIndexURL}/tl_recipe_book.js`),
-						axios.get(`${this.searchIndexURL}/tc_search_index.js`),
-						axios.get(`${this.searchIndexURL}/tc_recipe_book.js`),
-						axios.get(`${this.searchIndexURL}/tcn_search_index.js`),
-						axios.get(`${this.searchIndexURL}/tcn_recipe_book.js`)
-					])
-					.then(axios.spread(function(anno, searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
-                                    this.searchIndex['anno'] = lunr.Index.load(anno.data);
-                                    this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
-                                    this.searchIndex['tl'].pipeline.remove(lunr.stemmer)
-                                    this.searchIndex['tl'].pipeline.remove(lunr.stopWordFilter)
-                                    this.recipeBook['tl'] = recipeTl.data;
-                                    this.searchIndex['tc'] = lunr.Index.load(searchTc.data);
-                                    this.searchIndex['tc'].pipeline.remove(lunr.stemmer)
-                                    this.searchIndex['tc'].pipeline.remove(lunr.stopWordFilter)
-                                    this.recipeBook['tc'] = recipeTc.data;
-                                    this.searchIndex['tcn'] = lunr.Index.load(searchTcn.data);
-                                    this.searchIndex['tcn'].pipeline.remove(lunr.stemmer)
-                                    this.searchIndex['tcn'].pipeline.remove(lunr.stopWordFilter)
-                                    this.recipeBook['tcn'] = recipeTcn.data;
-                                    this.loaded = true;
-                                    resolve(this);
-                                                      }.bind(this)))
-                                                      .catch((error) => {
-                                                            reject(error);
-                                                      });
+                        axios.get(`${this.searchIndexURL}/annotation_search_index.js`),
+                              axios.get(`${this.searchIndexURL}/tl_search_index.js`),
+                              axios.get(`${this.searchIndexURL}/tl_recipe_book.js`),
+                              axios.get(`${this.searchIndexURL}/tc_search_index.js`),
+                              axios.get(`${this.searchIndexURL}/tc_recipe_book.js`),
+                              axios.get(`${this.searchIndexURL}/tcn_search_index.js`),
+                              axios.get(`${this.searchIndexURL}/tcn_recipe_book.js`)
+                        ])
+                        .then(axios.spread(function(anno, searchTl, recipeTl, searchTc, recipeTc, searchTcn, recipeTcn) {
+                              this.searchIndex['anno'] = lunr.Index.load(anno.data);
+                              this.searchIndex['tl'] = lunr.Index.load(searchTl.data);
+                              this.searchIndex['tl'].pipeline.remove(lunr.stemmer)
+                              this.searchIndex['tl'].pipeline.remove(lunr.stopWordFilter)
+                              this.recipeBook['tl'] = recipeTl.data;
+                              this.searchIndex['tc'] = lunr.Index.load(searchTc.data);
+                              this.searchIndex['tc'].pipeline.remove(lunr.stemmer)
+                              this.searchIndex['tc'].pipeline.remove(lunr.stopWordFilter)
+                              this.recipeBook['tc'] = recipeTc.data;
+                              this.searchIndex['tcn'] = lunr.Index.load(searchTcn.data);
+                              this.searchIndex['tcn'].pipeline.remove(lunr.stemmer)
+                              this.searchIndex['tcn'].pipeline.remove(lunr.stopWordFilter)
+                              this.recipeBook['tcn'] = recipeTcn.data;
+                              this.loaded = true;
+                              resolve(this);
+                        }.bind(this)))
+                        .catch((error) => {
+                              reject(error);
+                        });
 			}.bind(this));
 		}
 	}
@@ -77,84 +73,84 @@ class SearchIndex {
       }
 
 	// transcription type can be tc, tcn, or tl.
-  searchEdition( searchTerm, transcriptionType) {
-    // TODO deal with blank search query (whitespace only)
-    const terms = searchTerm.split(' ');
-     let strippedTerms 
-     let andTerms ='';
-     if(terms.length > 1){
-           strippedTerms = terms.map( t =>{
-                 return t.replace( /\+/g, '').replace(/-/g,'');
-           });
-           strippedTerms.forEach(t=>{
-                 andTerms += `+${t} `
-           })
-     }
-      searchTerm = andTerms !=='' ?andTerms:searchTerm;
+      searchEdition( searchTerm, transcriptionType) {
+            // TODO deal with blank search query (whitespace only)
+            const terms = searchTerm.split(' ');
+            let strippedTerms 
+            let andTerms ='';
+            if(terms.length > 1){
+                  strippedTerms = terms.map( t =>{
+                        return t.replace( /\+/g, '').replace(/-/g,'');
+                  });
+                  strippedTerms.forEach(t=>{
+                        andTerms += `+${t} `
+                  })
+            }
+            searchTerm = andTerms !=='' ?andTerms:searchTerm;
 
-      let results;
-      results= this.searchIndex[transcriptionType].search(searchTerm);  
+            let results;
+            results= this.searchIndex[transcriptionType].search(searchTerm);  
 
-      // TODO build UI 
-      // if( strippedTerms && results ) {
-      //       results = this.phraseMatchFilter(strippedTerms,transcriptionType,results);
-      // }
+            // TODO build UI 
+            // if( strippedTerms && results ) {
+            //       results = this.phraseMatchFilter(strippedTerms,transcriptionType,results);
+            // }
 
-      let displayResults = [];
-      for( let result of results ) {
-            const { recipeID, folioID } = this.parseIDs( result.ref );
-            let recipe = this.recipeBook[transcriptionType][ recipeID ];
-            let friendlyFolioName = folioID.slice(1);
-            friendlyFolioName = friendlyFolioName.replace(/^[0|\D]*/,'');
+            let displayResults = [];
+            for( let result of results ) {
+                  const { recipeID, folioID } = this.parseIDs( result.ref );
+                  let recipe = this.recipeBook[transcriptionType][ recipeID ];
+                  let friendlyFolioName = folioID.slice(1);
+                  friendlyFolioName = friendlyFolioName.replace(/^[0|\D]*/,'');
 
-            if( recipe ) {
-                  displayResults.push({ 
-                        name: recipe.name, 
-                        folio: folioID,
-                        friendlyFolioName,
-                        index:recipe.numericIndex,
-                        matchedTerms: Object.keys(result.matchData.metadata),
-                        contextFragment: recipe.passages[folioID]
-                  });  
+                  if( recipe ) {
+                        displayResults.push({ 
+                              name: recipe.name, 
+                              folio: folioID,
+                              friendlyFolioName,
+                              index:recipe.numericIndex,
+                              matchedTerms: Object.keys(result.matchData.metadata),
+                              contextFragment: recipe.passages[folioID]
+                        });  
+                  }
+            }
+
+            for( let displayResult of displayResults ) {
+                  const folioID = displayResult.folio;
+                  displayResult.contextFragment = this.markMatchedTerms( [displayResult], 'folio', folioID, displayResult.contextFragment );
+                  // TODO shorten fragment 
+            }
+
+            return displayResults;
+      }
+
+  markMatchedTerms( searchResults, recordType, recordID, content ) {
+      // recordID could be for a folio or an annotation
+      let idKey = (recordType === 'folio') ? 'folio' : 'id';
+      // find the matched terms that related to this folio
+      let matchedTerms = [];
+      for( let searchResult of searchResults ) {
+            if( searchResult[idKey] === recordID ) {
+                  matchedTerms = matchedTerms.concat( searchResult.matchedTerms );
+            }
+      }
+      // distill a set of unique terms
+      matchedTerms = matchedTerms.filter( (value, index, self) => {return self.indexOf(value) === index} );
+
+      // Inject <mark> around searchterms
+      let termList = content.replace(/\n/g, ' ').split(' ');
+      for( let matchedTerm of matchedTerms ) {
+            for( let i=0; i < termList.length; i++ ) {
+                  let term = termList[i].replace(/[^a-zA-Z ]/g, "").trim();
+                  if( term === matchedTerm ) {
+                        termList[i] = HIGHLIGHT_START + termList[i] + HIGHLIGHT_END;
+                  }
             }
       }
 
-      for( let displayResult of displayResults ) {
-            const folioID = displayResult.folio;
-            displayResult.contextFragment = this.markMatchedTerms( [displayResult], 'folio', folioID, displayResult.contextFragment );
-            // TODO shorten fragment 
-      }
-
-      return displayResults;
-  }
-
-  markMatchedTerms( searchResults, recordType, recordID, content ) {
-    // recordID could be for a folio or an annotation
-    let idKey = (recordType === 'folio') ? 'folio' : 'id';
-    // find the matched terms that related to this folio
-    let matchedTerms = [];
-    for( let searchResult of searchResults ) {
-      if( searchResult[idKey] === recordID ) {
-        matchedTerms = matchedTerms.concat( searchResult.matchedTerms );
-      }
-    }
-    // distill a set of unique terms
-    matchedTerms = matchedTerms.filter( (value, index, self) => {return self.indexOf(value) === index} );
-
-    // Inject <mark> around searchterms
-    let termList = content.replace(/\n/g, ' ').split(' ');
-    for( let matchedTerm of matchedTerms ) {
-      for( let i=0; i < termList.length; i++ ) {
-        let term = termList[i].replace(/[^a-zA-Z ]/g, "").trim();
-        if( term === matchedTerm ) {
-          termList[i] = HIGHLIGHT_START + termList[i] + HIGHLIGHT_END;
-        }
-      }
-    }
-
-    // turn back into a string
-    const markedText = termList.join(' ');
-    return markedText;
+      // turn back into a string
+      const markedText = termList.join(' ');
+      return markedText;
   }
 
   phraseMatchFilter(terms,transcriptionType,results) {
