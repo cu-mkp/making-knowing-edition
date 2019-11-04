@@ -7,7 +7,7 @@ class SearchIndex {
             this.searchIndexURL = `${process.env.REACT_APP_EDITION_DATA_URL}/search-idx`;
             this.searchIndex = {};
             this.recipeBook = {};
-                  this.loaded = false;
+            this.loaded = false;
       }
 
 	load() {
@@ -53,23 +53,23 @@ class SearchIndex {
 	}
 
       parseIDs( docID ) {
-      const parts = docID.split('-');
-      return { recipeID: parts[0], folioID: parts[1] };
+            const parts = docID.split('-');
+            return { recipeID: parts[0], folioID: parts[1] };
       }
 
       searchAnnotations( searchTerm ) {
-      let results = this.searchIndex['anno'].search(searchTerm);
+            let results = this.searchIndex['anno'].search(searchTerm);
 
-      let displayResults = [];
-      for( let result of results ) {
-            let searchResult = {
-            id: result.ref,
-            matchedTerms: Object.keys(result.matchData.metadata)
-            };
-            displayResults.push( searchResult );
-      }
+            let displayResults = [];
+            for( let result of results ) {
+                  let searchResult = {
+                  id: result.ref,
+                  matchedTerms: Object.keys(result.matchData.metadata)
+                  };
+                  displayResults.push( searchResult );
+            }
 
-      return displayResults;
+            return displayResults;
       }
 
 	// transcription type can be tc, tcn, or tl.
