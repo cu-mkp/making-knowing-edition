@@ -204,7 +204,7 @@ class SearchResultView extends Component {
 					<div className="searchBox">
 						<div className="searchField">
 							<input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/>
-							<Button type="submit" variant="raised"><span className="fa fa-search"></span></Button>
+							<Button type="submit" variant="contained"><span className="fa fa-search"></span></Button>
 						</div>
 					</div>
 				</form>

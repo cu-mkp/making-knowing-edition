@@ -72,29 +72,47 @@ class SearchIndex {
             return displayResults;
       }
 
+      // transform search input into actionable data structure
+      parseSearchInput( searchInput ) {
+            // strip out non-word chars except for quotes and whitespace, reduce runs of whitespace
+            const filteredInput = searchInput.replace(/[^\w\s"]/g,"").replace(/[\s]+/, " ")
+
+            // make sure we ended up with at least one word character in the filtered input
+            if( !filteredInput.match(/\w/) ) return null
+
+            let phrases = [], terms = []
+            // find fragments delimited by quotes
+            const fragments = filteredInput.split('"')
+            for( let i=0; i < fragments.length; i++ ) {
+                  const fragment = fragments[i]
+                  if( fragment.length > 0 ) {
+                        const fragTerms = fragment.split(" ").filter( t => t.length > 0 )
+                        if( i % 2 ) {
+                              // capture the phrases (ordered sequences of terms in quotes)
+                              phrases.push(fragTerms)
+                        }                        
+                        // capture all of the terms     
+                        terms = terms.concat(fragTerms)
+                  }
+            }      
+
+            return { phrases, terms }
+      }
+
 	// transcription type can be tc, tcn, or tl.
-      searchEdition( searchTerm, transcriptionType) {
-            // TODO deal with blank search query (whitespace only)
-            const terms = searchTerm.split(' ');
-            let strippedTerms 
-            let andTerms ='';
-            if(terms.length > 1){
-                  strippedTerms = terms.map( t =>{
-                        return t.replace( /\+/g, '').replace(/-/g,'');
-                  });
-                  strippedTerms.forEach(t=>{
-                        andTerms += `+${t} `
-                  })
+      searchEdition( searchInput, transcriptionType) {
+            const searchTerms = this.parseSearchInput(searchInput)
+            if( !searchTerms ) return []
+            const lunrIndex = this.searchIndex[transcriptionType]
+
+            let searchString = searchTerms.terms.map(t => `+${t}`).join(' ')
+            let results = lunrIndex.search(searchString);  
+
+            // for now, only search for first phrase if any are given
+            if( results && searchTerms.phrases.length > 0 ) {
+                  const phrase = searchTerms.phrases[0]
+                  results = this.phraseMatchFilter(phrase,transcriptionType,results);
             }
-            searchTerm = andTerms !=='' ?andTerms:searchTerm;
-
-            let results;
-            results= this.searchIndex[transcriptionType].search(searchTerm);  
-
-            // TODO build UI 
-            // if( strippedTerms && results ) {
-            //       results = this.phraseMatchFilter(strippedTerms,transcriptionType,results);
-            // }
 
             let displayResults = [];
             for( let result of results ) {
