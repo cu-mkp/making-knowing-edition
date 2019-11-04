@@ -951,7 +951,7 @@ figure.current {
   .searchResultsComponent .searchResults {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: calc(100vh - 24rem);
+    height: calc(100vh - 20rem);
     margin-bottom: 5px; }
   .searchResultsComponent hr {
     border-bottom: 1px solid rgba(0, 0, 0, 0.0509804); }
