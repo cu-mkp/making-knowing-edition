@@ -936,14 +936,6 @@ figure.current {
     font-size: 0.75rem;
     padding: 2rem 0 0;
     margin: 0; }
-  .searchResultsComponent .searchButton {
-    font-size: 1.5rem;
-    z-index: 1;
-    position: relative;
-    margin: -1.9rem -.6rem 0 0;
-    float: right;
-    width: 2rem;
-    padding: 0; }
   .searchResultsComponent .textField {
     padding: 0 0 0 0.5rem;
     font-size: 1.5rem;
@@ -955,12 +947,15 @@ figure.current {
     margin: 6px 0px;
     font-size: 12px;
     font-weight: 500; }
-  .searchResultsComponent .searchResults {
-    overflow: scroll;
-    height: calc(100vh - 16.5rem);
-    margin: 0 -1rem 0 0; }
-    .searchResultsComponent .searchResults .search-radio {
+  .searchResultsComponent .searchResultControls {
+    margin-top: 30px; }
+    .searchResultsComponent .searchResultControls .search-radio {
       color: #3f51b5; }
+  .searchResultsComponent .searchResults {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: calc(100vh - 24rem);
+    margin-bottom: 5px; }
   .searchResultsComponent hr {
     border-bottom: 1px solid rgba(0, 0, 0, 0.0509804); }
   .searchResultsComponent .searchResult {
@@ -993,17 +988,6 @@ figure.current {
     font-weight: 400; }
   .searchResultsComponent .highlight {
     background: yellow; }
-  .searchResultsComponent button {
-    background-color: #dee3e4;
-    border-radius: 0.3rem;
-    top: -.12rem;
-    right: 0;
-    height: 2rem;
-    width: 2rem;
-    padding: 0;
-    position: relative; }
-  .searchResultsComponent button:focus {
-    border: none; }
 
 .searchFilters span,
 .searchResultsComponent .name {

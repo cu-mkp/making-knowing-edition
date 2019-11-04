@@ -6,6 +6,7 @@ import  Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import copyObject from '../lib/copyObject';
+import Button from '@material-ui/core/Button';
 
 class SearchResultView extends Component {
 
@@ -19,8 +20,7 @@ class SearchResultView extends Component {
 				tl: false,
 				anno: false
                   },
-                  sortByFolio: true,
-                  
+				sortByFolio: true                  
 		}
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +39,9 @@ class SearchResultView extends Component {
 		let searchQuery = data.get("searchTerm");
 
 		if(searchQuery.length > 0 && searchQuery !== this.props.searchQuery ){
-			const url = encodeURI(`/search?q=${searchQuery}`);
+			// TODO add phase to Q
+			const exact = '' //this.state.matchPhrase ? 'exact=true&' : ''
+			const url = encodeURI(`/search?${exact}q=${searchQuery}`);
 			this.props.history.push(url);
 		}
 	}
@@ -136,7 +138,50 @@ class SearchResultView extends Component {
             sortedResults.anno = results.anno;
             sortedResults.searchQuery = results.searchQuery;
             return sortedResults;
-      }
+	  }
+	  
+	renderSearchMethod() {
+		return (
+			<div style={{ marginTop: '5px'}}>
+				<Button type="submit" variant="raised"><span className="fa fa-search"></span>Find these words.</Button>
+				<Button type="submit" variant="raised" style={{ marginLeft: '15px'}}><span className="fa fa-search"></span>Find this phrase.</Button>
+			</div>
+		)
+	}
+
+	renderSortOptions() {
+		return (
+			<div>
+				<RadioGroup
+					row={true}
+					value={this.state.sortByFolio ? 'folioId': 'relevance'}
+					onChange={this.toggleSort}
+				>
+					<FormControlLabel
+						control={<Radio className='search-radio' />}
+						label={'Sort Results by Relevance'}
+						value='relevance'
+					/>
+					<FormControlLabel					
+						control={<Radio  className='search-radio'/>}
+						label={'Sort Results by Folio Id'}
+						value='folioId'
+					/>
+				</RadioGroup>		
+			</div>
+		)
+	}
+
+	renderSearchFilters(results) {
+		return (
+			<div className="searchFilters">
+				<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
+				<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
+				<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
+				<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
+			</div>
+		)
+	}
 
 	// RENDER
 	render() {
@@ -167,44 +212,20 @@ class SearchResultView extends Component {
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
 						<div className="searchField"><input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/></div>
-						<div className="searchButton"><button type="submit"><span className="fa fa-search" aria-hidden="true"></span></button></div>
 					</div>
-					<div className="searchFilters">
-						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {results.searchQuery}
-					</div>
-					<div className="searchFilters">
-						<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
-						<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
-						<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
-						<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
-					</div>
+					{ this.renderSearchMethod() }
 				</form>
-				
-                        
-                        <div className="searchResults">
+
+				<div className="searchResultControls">
+					{ this.renderSortOptions() }
+					{ this.renderSearchFilters(results) }
+				</div>
+
+				<div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
 						No Results found for '{results.searchQuery}'
 					</div>
-                              <div >
-                              <RadioGroup
-                                   row={true}
-                                    value={this.state.sortByFolio ? 'folioId': 'relevance'}
-                                    onChange={this.toggleSort}
-                              >
-                                    <FormControlLabel
-                                          
-                                          control={<Radio className='search-radio' />}
-                                          label={'Sort Results by Relevance'}
-                                          value='relevance'
-                                          />
-                                    <FormControlLabel
-                                     
-                                          control={<Radio  className='search-radio'/>}
-                                          label={'Sort Results by Folio Id'}
-                                          value='folioId'
-                                          />
-                                   </RadioGroup>
-                              </div>
+
 
 				 	{displayOrderArray.map((type, i) =>
 						<div key={type} className={(results[type].length===0)?"resultSection hidden":"resultSection"}>
@@ -217,9 +238,6 @@ class SearchResultView extends Component {
 						</div>
 					)}
 				</div>
-
-
-
 			</div>
 		);
 	}
