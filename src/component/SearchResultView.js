@@ -140,15 +140,6 @@ class SearchResultView extends Component {
             return sortedResults;
 	  }
 	  
-	renderSearchMethod() {
-		return (
-			<div style={{ marginTop: '5px'}}>
-				<Button type="submit" variant="raised"><span className="fa fa-search"></span>Find these words.</Button>
-				<Button type="submit" variant="raised" style={{ marginLeft: '15px'}}><span className="fa fa-search"></span>Find this phrase.</Button>
-			</div>
-		)
-	}
-
 	renderSortOptions() {
 		return (
 			<div>
@@ -211,9 +202,11 @@ class SearchResultView extends Component {
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField"><input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/></div>
+						<div className="searchField">
+							<input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/>
+							<Button type="submit" variant="raised"><span className="fa fa-search"></span></Button>
+						</div>
 					</div>
-					{ this.renderSearchMethod() }
 				</form>
 
 				<div className="searchResultControls">

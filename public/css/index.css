@@ -937,20 +937,17 @@ figure.current {
     padding: 2rem 0 0;
     margin: 0; }
   .searchResultsComponent .textField {
-    padding: 0 0 0 0.5rem;
     font-size: 1.5rem;
     height: 1.9rem;
     border-radius: 0.3rem;
     border: 1px solid #eae6e6;
-    width: 100%; }
+    width: 60%; }
   .searchResultsComponent .searchFilters {
     margin: 6px 0px;
     font-size: 12px;
     font-weight: 500; }
-  .searchResultsComponent .searchResultControls {
-    margin-top: 30px; }
-    .searchResultsComponent .searchResultControls .search-radio {
-      color: #3f51b5; }
+  .searchResultsComponent .searchResultControls .search-radio {
+    color: #3f51b5; }
   .searchResultsComponent .searchResults {
     overflow-x: hidden;
     overflow-y: scroll;
