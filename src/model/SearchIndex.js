@@ -133,11 +133,11 @@ class SearchIndex {
                   }
             }
 
-            for( let displayResult of displayResults ) {
-                  const folioID = displayResult.folio;
-                  displayResult.contextFragment = this.markMatchedTerms( [displayResult], 'folio', folioID, displayResult.contextFragment );
-                  // TODO shorten fragment 
-            }
+            // for( let displayResult of displayResults ) {
+            //       const folioID = displayResult.folio;
+            //       displayResult.contextFragment = this.markMatchedTerms( [displayResult], 'folio', folioID, displayResult.contextFragment );
+            //       // TODO shorten fragment 
+            // }
 
             return displayResults;
       }
