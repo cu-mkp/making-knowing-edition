@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Parser from 'html-react-parser';
 import DocumentHelper from '../model/DocumentHelper';
-
+import  Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import copyObject from '../lib/copyObject';
+import Button from '@material-ui/core/Button';
 
 class SearchResultView extends Component {
 
@@ -15,9 +19,9 @@ class SearchResultView extends Component {
 				tcn:false,
 				tl: false,
 				anno: false
-			}
+                  },
+				sortByFolio: true                  
 		}
-
 		this.exitSearch = this.exitSearch.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.transcriptionResultClicked = this.transcriptionResultClicked.bind(this);
@@ -35,17 +39,15 @@ class SearchResultView extends Component {
 		let searchQuery = data.get("searchTerm");
 
 		if(searchQuery.length > 0 && searchQuery !== this.props.searchQuery ){
-			const url = encodeURI(`/search?q=${searchQuery}`);
+			// TODO add phase to Q
+			const exact = '' //this.state.matchPhrase ? 'exact=true&' : ''
+			const url = encodeURI(`/search?${exact}q=${searchQuery}`);
 			this.props.history.push(url);
 		}
 	}
 	  
 	transcriptionResultClicked(event) {
-		// // remove p and strip leading zeros
-		let folioname = event.currentTarget.dataset.folioname.slice(1);
-			folioname = folioname.replace(/^[0|\D]*/,'');
-
-		// Convert to shortID
+		let folioname = event.currentTarget.dataset.folioname;
 		let shortID = this.props.document.folioIDByNameIndex[folioname];
 		if(typeof shortID === 'undefined'){
 			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
@@ -86,10 +88,11 @@ class SearchResultView extends Component {
 	renderSearchResult( type, result, idx ) {
 		if( type !== 'anno') {
 			return (
-				<div key={idx} className="searchResult" data-type={type} data-folioname={result.folio} onClick={this.transcriptionResultClicked}>
+				<div key={idx} className="searchResult" data-type={type} data-folioname={result.friendlyFolioName} onClick={this.transcriptionResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
-						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>(<span className="folio">{result.folio.replace(/^\s+|\s+$/g, '')}</span>)
+						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>
+                                    (<span className="folio">{result.friendlyFolioName}</span>)
 					</div>
 					<div className="contextFragments">
 						{Parser(result.contextFragment)}
@@ -98,7 +101,6 @@ class SearchResultView extends Component {
 			);	
 		} else {
 			const annotation = this.props.annotations.annotations[result.id];
-
 			return (
 				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
@@ -111,22 +113,83 @@ class SearchResultView extends Component {
 				</div>
 			);
 		}
+      }
+      
+      toggleSort = ()=>{
+            let newValue = ! this.state.sortByFolio;
+            this.setState({sortByFolio : newValue})
+      }
+
+      getResultsByFolio( originalResults ){
+            const results = copyObject(originalResults);
+            let sortedResults={};
+            const compareRecipeIndices=(a,b)=>{
+                  if(a.index < b.index)
+                        return -1;
+                  else if ( a.index > b.index)
+                        return 1;
+                  else  
+                        return 0;
+            }
+
+            sortedResults.tc=results["tc"].sort(compareRecipeIndices);
+            sortedResults.tcn=results["tcn"].sort(compareRecipeIndices);
+            sortedResults.tl=results["tl"].sort(compareRecipeIndices);
+            sortedResults.anno = results.anno;
+            sortedResults.searchQuery = results.searchQuery;
+            return sortedResults;
+	  }
+	  
+	renderSortOptions() {
+		return (
+			<div>
+				<RadioGroup
+					row={true}
+					value={this.state.sortByFolio ? 'folioId': 'relevance'}
+					onChange={this.toggleSort}
+				>
+					<FormControlLabel
+						control={<Radio className='search-radio' />}
+						label={'Sort Results by Relevance'}
+						value='relevance'
+					/>
+					<FormControlLabel					
+						control={<Radio  className='search-radio'/>}
+						label={'Sort Results by Folio Id'}
+						value='folioId'
+					/>
+				</RadioGroup>		
+			</div>
+		)
+	}
+
+	renderSearchFilters(results) {
+		return (
+			<div className="searchFilters">
+				<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
+				<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
+				<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
+				<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
+			</div>
+		)
 	}
 
 	// RENDER
 	render() {
 
-		// Display order
-		let displayOrderArray = [];
+            let results;
+            if( this.state.sortByFolio)
+                  results=this.getResultsByFolio(this.props.search.results)
+            else
+                  results = this.props.search.results;
+
+            let displayOrderArray = [];
 		for (var key in this.state.typeHidden){
 			if(!this.state.typeHidden[key]){
 				displayOrderArray.push(key);
 			}
-		}
+            }
 
-		const results = this.props.search.results;
-
-		// Total results
 		let totalResultCount = results["tc"].length +
 							   results["tcn"].length +
 							   results["tl"].length + 
@@ -139,23 +202,23 @@ class SearchResultView extends Component {
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField"><input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/></div>
-						<div className="searchButton"><button type="submit"><span className="fa fa-search" aria-hidden="true"></span></button></div>
-					</div>
-					<div className="searchFilters">
-						{totalResultCount} {totalResultCount === 1?"match":"matches"} for: {results.searchQuery}
-					</div>
-					<div className="searchFilters">
-						<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
-						<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
-						<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
-						<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
+						<div className="searchField">
+							<input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/>
+							<Button type="submit" variant="contained"><span className="fa fa-search"></span></Button>
+						</div>
 					</div>
 				</form>
+
+				<div className="searchResultControls">
+					{ this.renderSortOptions() }
+					{ this.renderSearchFilters(results) }
+				</div>
+
 				<div className="searchResults">
 					<div className={(totalResultCount === 0)?"noResultsFound":"hidden"}>
 						No Results found for '{results.searchQuery}'
 					</div>
+
 
 				 	{displayOrderArray.map((type, i) =>
 						<div key={type} className={(results[type].length===0)?"resultSection hidden":"resultSection"}>

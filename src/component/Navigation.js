@@ -6,6 +6,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import JumpToFolio from './JumpToFolio';
 import DocumentHelper from '../model/DocumentHelper';
 import HelpPopper from './HelpPopper'
+import AlphabetLinks from './AlphabetLinks';
+
 
 class Navigation extends React.Component {
 
@@ -138,6 +140,7 @@ class Navigation extends React.Component {
       }
 
       render() {
+
             if(!this.props.documentView){
                   return (
                   <div>
@@ -145,28 +148,31 @@ class Navigation extends React.Component {
                   </div>
                   )
             }else{
-                        let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
-                        let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
-                        let selectContainerStyle  = (this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}
-                        let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
-                        let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
-                        let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
-                        if(!this.props.documentView.bookMode){
-                              lockIconClass +=" active";
-                        }
-                        let imageViewActive = this.props.documentView[this.props.side].transcriptionType === 'f';
-                        let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
-                        let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
-                        let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
-                              columnIconClass += (imageViewActive)?' hidden':'';
-                        let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
-                        let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
-                        // this is messy but faster for the moment then figuring out why the sides dont behave the same
-                        let helpMarginStyle = this.props.side === "left"? {marginRight:'55px'}: {marginRight:'15px'}
+                       
+                  let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
+                  let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
+                  let selectContainerStyle  = (this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}
+                  let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
+                  let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
+                  let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
+                  if(!this.props.documentView.bookMode){
+                        lockIconClass +=" active";
+                  }
+                  let imageViewActive = this.props.documentView[this.props.side].transcriptionType === 'f';
+                  let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
+                  let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
+                  let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
+                        columnIconClass += (imageViewActive)?' hidden':'';
+                  let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
+                  let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
+                  // this is messy but faster for the moment then figuring out why the sides dont behave the same
+                  let helpMarginStyle = this.props.side === "left"? {marginRight:'55px'}: {marginRight:'15px'}
+                  
+                  return (
+                        <div className="navigationComponent" style={widthStyle}>
+                              <div id="navigation-row" className="navigationRow" >
 
-                        return (
-                              <div className="navigationComponent" style={widthStyle}>
-                                    <div id="navigation-row" className="navigationRow" >
+                                    { this.props.documentView[this.props.side].transcriptionType !== 'glossary' ? (
 
                                           <div id="tool-bar-buttons" className="breadcrumbs" style={showButtonsStyle}> 
                                                 <span title="Toggle coordination of views" onClick={this.toggleLockmode} 
@@ -187,45 +193,51 @@ class Navigation extends React.Component {
                                                             className={(this.props.documentView[this.props.side].hasPrevious)?'arrow':'arrow disabled'}> <Icon.ArrowCircleLeft/> </span>
 
                                                 <span 	title = "Go forward"
-                                                            onClick={this.changeCurrentFolio}
-                                                            data-id={this.props.documentView[this.props.side].nextFolioShortID}
-                                                            className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
+                                                      onClick={this.changeCurrentFolio}
+                                                      data-id={this.props.documentView[this.props.side].nextFolioShortID}
+                                                      className={(this.props.documentView[this.props.side].hasNext)?'arrow':'arrow disabled'}> <Icon.ArrowCircleRight/></span>
                                                 &nbsp;&nbsp;
                                                 {this.props.documentView[this.props.side].currentDocumentName} / Folios / <div onClick={this.revealJumpBox} 
-                                                      className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"></span></div> 
-                                          
+                                                      className="folioName">{folioName} <span style={jumpToIconStyle} className="fa fa-hand-point-right"> 
+                                                      </span>
+                                                      </div> 
+      
                                                 <JumpToFolio side={this.props.side}
                                                             isVisible={this.state.popoverVisible}
                                                             positionX={this.state.popoverX}
                                                             positionY={this.state.popoverY}
                                                             submitHandler={this.props.documentViewActions.jumpToFolio}
                                                             blurHandler={this.onJumpBoxBlur}/>
-                                        
-                                          </div>
-                                          
-                                          <div id="doc-type-help" style={selectContainerStyle} ref={e=>{this.helpRef = e}}>
-                                                <Select className="dropdownV2" style={selectColorStyle} 
-                                                      value={this.props.documentView[this.props.side].transcriptionType} id="doc-type" onClick={this.changeType}>
-                                                      <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
-                                                      <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
-                                                      <MenuItem value="tcn">{DocumentHelper.transcriptionTypeLabels['tcn']}</MenuItem>
-                                                      <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem>
-                                                      <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
-                                                </Select>
-
-                                                <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
-                                                      <i className="fas fa-question-circle"></i>
-                                                </span> 
-      
-                                                <HelpPopper marginStyle={helpMarginStyle} anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
-
-                                          </div>
-                                    </div>
                                     
-                              </div>
-                        )
+                                          </div>)
+                                    :
 
+                                    (<AlphabetLinks  onFilterChange = {this.props.onFilterChange} value = {this.props.value} />)
+
+                                     }
+
+
+                                    <div id="doc-type-help" style={selectContainerStyle} ref={e=>{this.helpRef = e}}>
+                                          <Select className="dropdownV2" style={selectColorStyle} 
+                                                value={this.props.documentView[this.props.side].transcriptionType} id="doc-type" onClick={this.changeType}>
+                                                <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
+                                                <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
+                                                <MenuItem value="tcn">{DocumentHelper.transcriptionTypeLabels['tcn']}</MenuItem>
+                                                <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem>
+                                                <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
+                                          </Select>
+                                          <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
+                                                <i className="fas fa-question-circle"></i>
+                                          </span> 
+                                          <HelpPopper marginStyle={helpMarginStyle} anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
+                                    </div>
+
+
+                              </div>
+                        </div>)
             }
+
+
       }
 }
 

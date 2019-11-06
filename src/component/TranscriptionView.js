@@ -573,18 +573,30 @@ class TranscriptionView extends Component {
                   return (
                   // Render the transcription
                  
-		      <div className="transcriptionViewComponent">
-                      <Navigation side={side} documentView={this.props.documentView} 
-                                    documentViewActions={this.props.documentViewActions}/>
-      			  <div className="transcriptContent">
-      			  	<Pagination side={side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+		    
+                  <div>      
+                        <Navigation 
+                              side={side} documentView={this.props.documentView} 
+                              documentViewActions={this.props.documentViewActions}/>
+                        <Pagination side={side}  documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
+                        <div className="transcriptionViewComponent">
+                              <div className="transcriptContent">
                                     <ErrorBoundary>
-                                          <div className={surfaceClass} style={surfaceStyle}>
+                                          <div 
+                                                className={surfaceClass} 
+                                                style={surfaceStyle}>
+                                                      
                                                 {Parser(content,htmlToReactParserOptions)}
                                           </div>
-                                    </ErrorBoundary>    
-					<Pagination side={side} className="pagination_lower" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
-      			  </div>
+                                    </ErrorBoundary>
+                              </div>
+                        </div> 
+
+                        <Pagination side={side}  
+                        documentView={this.props.documentView} 
+                        documentViewActions={this.props.documentViewActions}/>
+                        
+
                   </div>
                  );
 

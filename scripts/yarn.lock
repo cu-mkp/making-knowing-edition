@@ -799,10 +799,10 @@ lunr-languages@^1.0.0:
   resolved "https://registry.yarnpkg.com/lunr-languages/-/lunr-languages-1.1.0.tgz#d4debe5cccc00aa373fac4051127a2a5ea0ce0ca"
   integrity sha512-53pTQX8jkjZBWSPJa/+3UJyIPcGmeWWwqS4RRr5GxhRilqL9tv/Vuj7Vb1Nz3Dtz2HTK2Pdmrf3zevHS/ZycjQ==
 
-lunr@2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.3.tgz#5a72d170c872e441e7d0ffb61fff76b499ac0780"
-  integrity sha512-rlAEsgU9Bnavca2w1WJ6+6cdeHMXNyadcersyk3ZpuhgWb5HBNj8l4WwJz9PjksAhYDlpQffCVXPctOn+wCIVA==
+lunr@2.3.8:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.8.tgz#a8b89c31f30b5a044b97d2d28e2da191b6ba2072"
+  integrity sha512-oxMeX/Y35PNFuZoHp+jUj5OSEmLCaIH4KTFJh7a93cHBoFmpw2IoPs22VIz7vyO2YUnx2Tn9dzIwO2P/4quIRg==
 
 markdown-it-footnote@^3.0.1:
   version "3.0.2"

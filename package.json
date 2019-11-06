@@ -10,7 +10,7 @@
     "ajv": "^6.4.0",
     "axios": "^0.17.1",
     "html-react-parser": "^0.4.3",
-    "lunr": "^2.1.6",
+    "lunr": "^2.3.8",
     "lunr-languages": "^1.0.0",
     "node-gyp": "^3.6.2",
     "node-sass": "^4.12.0",

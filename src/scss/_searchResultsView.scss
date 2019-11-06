@@ -31,42 +31,36 @@
 		margin: 0;
 	}
 
-	.searchButton {
-		font-size: 1.5rem;
-		z-index: 1;
-		position: relative;
-		margin: -1.9rem -.6rem 0 0;
-		float: right;
-		width: 2rem;
-		padding: 0;
-	}
-
 	.textField {
-		padding: 0 0 0 0.5rem;
 		font-size: 1.5rem;
 		height: 1.9rem;
 		border-radius: 0.3rem;
 		border: 1px solid #eae6e6;
-		width: 100%;
+		width: 60%;
 	}
 
 	.searchFilters {
-		min-width: 25rem;
-		font-size: 0.6rem;
-		font-weight: 700;
-		margin: 0.4rem 0 0 0.2rem;
+		margin: 6px 0px;
+		font-size: 12px;
+		font-weight: 500;	
+	}
+
+	.searchResultControls {
+		.search-radio {
+			color: #3f51b5;
+		}
 	}
 
 	.searchResults {
-		overflow: scroll;
-		height: calc(100vh - 16.5rem);
-		margin: 0 -1rem 0 0;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		height: calc(100vh - 20rem);
+		margin-bottom: 5px;
 	}
 	
 	hr {
 		border-bottom: 1px solid rgba(0, 0, 0, 0.0509804);
-	}
-	
+	}	
 	
 	.searchResult {
 		font-weight: 100 !important;
@@ -114,25 +108,12 @@
 		background: yellow;
 	}
 	
-	button {
-		background-color: #dee3e4;
-		border-radius: 0.3rem;
-		top: -.12rem;
-		right: 0;
-		height: 2rem;
-		width: 2rem;
-		padding: 0;
-		position: relative;
-	}
-	
-	button:focus {
-		border: none;
-	}
-	
 }
 
 .searchFilters span,
 .searchResultsComponent .name {
 	margin: 0 0.5rem 0 0.1rem;
 }
+
+
 

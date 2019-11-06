@@ -2,14 +2,17 @@
 
 	#glossaryViewInner {
 		overflow-y: scroll;
-		margin: 0 0 0 1rem;
+		margin: 52px 0 0 0;
 		width: calc(100% - 1.2rem);
-		height: calc(100vh - 170px);
+            height: calc(100vh - 170px);
+            padding: 5px 16px;
 	}
 	
 	.glossaryNav {
 		background: white;
-		padding: 5px;
+            padding: 5px;
+            position:relative;
+       
 	
 		#glossary-filter {
 			margin-right: 10px;

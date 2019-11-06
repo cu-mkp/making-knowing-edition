@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-scroll';
 import { Typography } from '@material-ui/core';
 import Parser from 'html-react-parser';
 import Navigation from './Navigation'
-
-
-const alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'Z' ]
+import {alpha} from './AlphabetLinks'
 
 class GlossaryView extends Component {
 
@@ -79,53 +76,25 @@ class GlossaryView extends Component {
 		this.setState( { ...this.state, filterTerm })
     }
 
-    renderAlphaLinks() {
-        let letterLinks = []
-        for( let i=0; i < alpha.length; i++ ) {
-            const letter = alpha[i]
-            const alphaID = `alpha-${i}`
-            letterLinks.push(
-                <span key={`link-${alphaID}`}><Link to={alphaID} offset={-120} containerId="glossaryViewInner" smooth="true">{letter}</Link> </span> 
-            )
-        }
-
-        return (
-            <div style={{display: 'inline'}}>
-                <input id="glossary-filter"
-                    className="searchBox" 
-                    placeholder="Filter by Entry"
-                    onChange={this.onFilterChange}
-                    value={this.state.filterTerm}
-                />
-                <span>Go to: </span>
-                <div className='alphaNav'>
-                    { letterLinks }
-                </div>
-            </div>
-        )
-    }
-
-    renderToolbar() {
-        return (
-            <div className='glossaryNav'>
-                { this.renderAlphaLinks() }
-            </div>
-        )
-    }
-    
 	render() {
         if( !this.props.glossary.loaded ) return null;
 
         return (
             <div id="glossaryView">
-            <Navigation side={this.props.side} documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
-                { this.renderToolbar() }
-                <div id="glossaryViewInner">
-                    <div id="glossaryContent">
-                        <Typography variant='h2' className="title">Glossary</Typography>
-                        { this.renderGlossary() }
-                    </div>
-                </div>
+                  <Navigation 
+                        side={this.props.side} 
+                        onFilterChange = {this.onFilterChange}
+                        value = {this.state.filterTerm}
+                        documentView={this.props.documentView} 
+                        documentViewActions={this.props.documentViewActions}/>
+              
+                  <div id="glossaryViewInner">
+                        <div id="glossaryContent">
+                              <Typography variant='h2' className="title">Glossary</Typography>
+                              { this.renderGlossary() }
+                        </div>
+                  </div>
+
             </div>
         );
 
