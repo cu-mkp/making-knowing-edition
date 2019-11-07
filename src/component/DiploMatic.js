@@ -53,20 +53,11 @@ class DiploMatic extends Component {
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
-					{ this.renderNavLinks() }
+					<MainMenu history={props.history}></MainMenu>
 					<Search />
-					{/* <div className="expandedViewOnly">
-						<span><span className="english">English</span> | <span className="francais">Français</span></span>
-					</div> */}
 				</div>
 			</div>
 		);
-	}
-
-	renderNavLinks() {
-		return(
-			<MainMenu></MainMenu>
-		)
 	}
 
 	renderDocumentView = (props) => {
