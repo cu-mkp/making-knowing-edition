@@ -53,7 +53,7 @@ class DiploMatic extends Component {
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
-					<MainMenu history={props.history}></MainMenu>
+					<MainMenu></MainMenu>
 					<Search />
 				</div>
 			</div>
@@ -129,11 +129,19 @@ class DiploMatic extends Component {
 		);
 	}
 
+
+	renderContentView(props) {
+		return (
+			<ContentView contentID={props.match.params.contentID}></ContentView>
+		);
+	}
+
 	renderContent() {
 		return (
 			<div id="content">
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
+					<Route path="/docs/:contentID" render={this.renderContentView} exact/>
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/essays" component={AnnotationListView} exact/>
 					<Route path="/essays/:annoID" render={this.renderAnnotationView}/>

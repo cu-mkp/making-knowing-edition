@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { Menu, MenuItem } from '@material-ui/core'
 
 const menuStructure = [
@@ -108,13 +108,13 @@ const menuStructure = [
     }
 ]
 
-export default class MainMenu extends React.Component {
+class MainMenu extends React.Component {
 
     constructor(props,context) {
         super(props,context);
 
         this.state = {
-            anchorEl: null,
+            activeMenuEl: null,
             activeMenu: null
         }
     }
@@ -130,24 +130,25 @@ export default class MainMenu extends React.Component {
         );
     }
 
-    toggleTextMenu = (event) => {
-        this.setState({ ...this.state, anchorEl: event.currentTarget, activeMenu: true });
-    }
-
-    handleClose = () => {
-        this.setState({ ...this.state, anchorEl: null, activeMenu: false });
-    }
-
     renderTopNav() {
+        
+        const closeMenu = () => {
+            this.setState({ ...this.state, activeMenuEl: null, activeMenu: null });
+        }
 
         const topNavItems = [], subMenus = []
         let i = 0
         for( const topNavItem of menuStructure ) {
+            const itemKey = `top-nav-item-${i++}`
+            const activateMenu = (event) => {
+                this.setState({ ...this.state, activeMenuEl: event.currentTarget, activeMenu: itemKey });
+            }
+            
             if( topNavItem.menuItems ) {
-                topNavItems.push( <span key={`top-nav-item-${i++}`} onMouseOver={this.toggleMenu}>{topNavItem.label}</span> )
-                subMenus.push( this.renderSubMenu(topNavItem.menuItems) )
+                topNavItems.push( <span key={itemKey} onMouseOver={activateMenu} onMouseOut={closeMenu}>{topNavItem.label}</span> )
+                // subMenus.push( this.renderSubMenu(topNavItem.menuItems) )
             } else {
-                topNavItems.push( <span key={`top-nav-item-${i++}`} onClick={()=>{this.navTo(topNavItem.route)}}>{topNavItem.label}</span> )
+                topNavItems.push( <span key={itemKey} onClick={()=>{this.navTo(topNavItem.route)}}>{topNavItem.label}</span> )
             }
         }
 
@@ -163,15 +164,16 @@ export default class MainMenu extends React.Component {
         const menuItems = []
         let i = 0
         for( const menuItem of menu.menuItems) {
+            const itemKey = `menu-item-${i++}`
             if( !menuItem.placeholder ) {
-                menuItems.push( <MenuItem key={`menu-item-${i++}`} onClick={this.handleClose}>{menuItem.label}</MenuItem> )
+                menuItems.push( <MenuItem key={itemKey}>{menuItem.label}</MenuItem> )
             } else {
-                menuItems.push( <MenuItem key={`menu-item-${i++}`} onClick={()=>{this.navTo(menuItem.route)}}>{menuItem.label}</MenuItem> ) 
+                menuItems.push( <MenuItem key={itemKey} onClick={()=>{this.navTo(menuItem.route)}}>{menuItem.label}</MenuItem> ) 
             }
         }
 
         return( 
-            <Menu style={{ marginLeft: 10, marginTop: 62 }} open={activeMenu} anchorEl={anchorEl}>
+            <Menu style={{ marginLeft: 10, marginTop: 62 }} open={false} anchorEl={null}>
                 { menuItems }
             </Menu>
         )            
@@ -190,3 +192,5 @@ export default class MainMenu extends React.Component {
     }
 
 }
+
+export default withRouter(MainMenu);
