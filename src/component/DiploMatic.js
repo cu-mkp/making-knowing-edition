@@ -141,7 +141,7 @@ class DiploMatic extends Component {
 			<div id="content">
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
-					<Route path="/docs/:contentID" render={this.renderContentView} exact/>
+					<Route path="/content/:contentID" render={this.renderContentView} exact/>
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/essays" component={AnnotationListView} exact/>
 					<Route path="/essays/:annoID" render={this.renderAnnotationView}/>

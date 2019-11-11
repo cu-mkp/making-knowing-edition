@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, MenuItem } from '@material-ui/core'
+import { Menu, MenuItem, ClickAwayListener } from '@material-ui/core'
 
 const menuStructure = [
     {
         "label": "How to use",
-        "route": "/docs/how-to-use",
+        "route": "/content/how-to-use",
     },
     {
         "label": "The text",
         "menuItems": [
             {
                 "label": "Overview and about",
-                "route": "/docs/text" 
+                "route": "/content/text" 
             },
             {
                 "label": "Folios",
@@ -74,15 +74,15 @@ const menuStructure = [
         "menuItems": [
             {
                 "label": "Creation of the edition",
-                "route": "/docs/about_creation" 
+                "route": "/content/about_creation" 
             },
             {
-                "label": "About the M&amp;K Project",
-                "route": "/docs/about_m-k-project" 
+                "label": "About the M&K Project",
+                "route": "/content/about_m-k-project" 
             },
             {
                 "label": "Peer review",
-                "route": "/docs/about_peer-review" 
+                "route": "/content/about_peer-review" 
             },
             {
                 "label": "Credits",
@@ -130,12 +130,12 @@ class MainMenu extends React.Component {
         );
     }
 
+    closeMenu = () => {
+        this.setState({ ...this.state, activeMenuEl: null, activeMenu: null });
+    }
+
     renderTopNav() {
         
-        const closeMenu = () => {
-            this.setState({ ...this.state, activeMenuEl: null, activeMenu: null });
-        }
-
         const topNavItems = [], subMenus = []
         let i = 0
         for( const topNavItem of menuStructure ) {
@@ -145,8 +145,8 @@ class MainMenu extends React.Component {
             }
             
             if( topNavItem.menuItems ) {
-                topNavItems.push( <span key={itemKey} onMouseOver={activateMenu} onMouseOut={closeMenu}>{topNavItem.label}</span> )
-                // subMenus.push( this.renderSubMenu(topNavItem.menuItems) )
+                topNavItems.push( <span key={itemKey} onClick={activateMenu} >{topNavItem.label}</span> )
+                subMenus.push( this.renderSubMenu(topNavItem.menuItems, itemKey) )
             } else {
                 topNavItems.push( <span key={itemKey} onClick={()=>{this.navTo(topNavItem.route)}}>{topNavItem.label}</span> )
             }
@@ -160,21 +160,54 @@ class MainMenu extends React.Component {
         )
     }
 
-    renderSubMenu(menu) {
-        const menuItems = []
-        let i = 0
-        for( const menuItem of menu.menuItems) {
-            const itemKey = `menu-item-${i++}`
-            if( !menuItem.placeholder ) {
-                menuItems.push( <MenuItem key={itemKey}>{menuItem.label}</MenuItem> )
-            } else {
-                menuItems.push( <MenuItem key={itemKey} onClick={()=>{this.navTo(menuItem.route)}}>{menuItem.label}</MenuItem> ) 
+    renderSubMenu(menuItems, menuKey) {
+
+        const onClickCallback = (route) => {
+            return () => {
+                this.navTo(route)
+                this.closeMenu()
             }
         }
 
-        return( 
-            <Menu style={{ marginLeft: 10, marginTop: 62 }} open={false} anchorEl={null}>
-                { menuItems }
+        const menuItemElements = []
+        let i = 0
+        for( const menuItem of menuItems) {
+            const itemKey = `menu-item-${i++}`
+            if( menuItem.placeholder ) {
+                menuItemElements.push( 
+                    <MenuItem 
+                        key={itemKey} 
+                        onClick={this.closeMenu}
+                        style={{ color: "gray" }}
+                    >
+                        <i>{menuItem.label}</i>
+                    </MenuItem> 
+                )
+            } else {
+                menuItemElements.push( 
+                    <MenuItem 
+                        key={itemKey} 
+                        onClick={onClickCallback(menuItem.route)}
+                    >
+                        {menuItem.label}
+                    </MenuItem> 
+                ) 
+            }
+        }
+
+        const isOpen = this.state.activeMenu === menuKey
+        const anchorEl = isOpen ? this.state.activeMenuEl : null
+        
+        return ( 
+            <Menu                      
+                key={`${menuKey}-submenu`}
+                style={{ marginLeft: 10, marginTop: 62 }} 
+                open={isOpen} 
+                anchorEl={anchorEl}
+                disableAutoFocusItem={true}
+                onBackdropClick={this.closeMenu}
+            >
+                { menuItemElements }
             </Menu>
         )            
     }
