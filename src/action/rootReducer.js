@@ -7,6 +7,7 @@ import AnnotationActions from './AnnotationActions';
 import EntryActions from './EntryActions';
 import DocumentActions from './DocumentActions';
 import DiplomaticActions from './DiplomaticActions';
+import ContentActions from './ContentActions';
 
 import diplomaticInitialState from './initialState/diplomaticInitialState';
 import searchInitialState from './initialState/searchInitialState';
@@ -18,6 +19,7 @@ import AuthorActions from './AuthorActions';
 import authorInitialState from './initialState/authorInitialState';
 import CommentActions from './CommentActions';
 import commentInitialState from './initialState/commentInitialState';
+import contentInitialState from './initialState/contentInitialState';
 
 export default function rootReducer() {
     return combineReducers({
@@ -28,6 +30,7 @@ export default function rootReducer() {
         annotations: createReducer( 'AnnotationActions', AnnotationActions, annotationInitialState ),
         entries: createReducer( 'EntryActions', EntryActions, entryInitialState ),
         authors: createReducer( 'AuthorActions', AuthorActions, authorInitialState ),
-        comments: createReducer( 'CommentActions', CommentActions, commentInitialState )
+        comments: createReducer( 'CommentActions', CommentActions, commentInitialState ),
+        contents: createReducer( 'ContentActions', ContentActions, contentInitialState )
     });    
 };

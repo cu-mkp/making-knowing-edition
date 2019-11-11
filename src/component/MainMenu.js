@@ -1,112 +1,7 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import { Link, withRouter } from 'react-router-dom'
 import { Menu, MenuItem } from '@material-ui/core'
-
-const menuStructure = [
-    {
-        "label": "How to use",
-        "route": "/content/how-to-use",
-    },
-    {
-        "label": "The text",
-        "menuItems": [
-            {
-                "label": "Overview and about",
-                "route": "/content/text" 
-            },
-            {
-                "label": "Folios",
-                "route": "/folios" 
-            },
-            {
-                "label": "List of entries",
-                "route": "/entries" 
-            },
-            {
-                "label": "Index of keywords (term indices)",
-                "placeholder": true,
-                "route": "/" 
-            }
-        ]
-    },
-    {
-        "label": "Research and Resources",
-        "menuItems": [
-            {
-                "label": "Overview",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Principles of transcription, translation, and encoding",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Research essays",
-                "route": "/essays" 
-            },
-            {
-                "label": "Bibliography",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Glossary",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Field notes",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Resources",
-                "placeholder": true,
-                "route": "/" 
-            }
-
-        ]
-    },
-    {
-        "label": "About",
-        "menuItems": [
-            {
-                "label": "Creation of the edition",
-                "route": "/content/about_creation" 
-            },
-            {
-                "label": "About the M&K Project",
-                "route": "/content/about_m-k-project" 
-            },
-            {
-                "label": "Peer review",
-                "route": "/content/about_peer-review" 
-            },
-            {
-                "label": "Credits",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Contact",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "Sponsors",
-                "placeholder": true,
-                "route": "/" 
-            },
-            {
-                "label": "How to cite",
-                "placeholder": true,
-                "route": "/" 
-            },
-        ]
-    }
-]
 
 class MainMenu extends React.Component {
 
@@ -135,8 +30,9 @@ class MainMenu extends React.Component {
     }
 
     renderTopNav() {
-        
+        const {menuStructure} = this.props.contents
         const topNavItems = [], subMenus = []
+
         let i = 0
         for( const topNavItem of menuStructure ) {
             const itemKey = `top-nav-item-${i++}`
@@ -220,10 +116,17 @@ class MainMenu extends React.Component {
         if( process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES === 'true') {
             return this.renderProduction()
 		} else {
+            if( !this.props.contents.menuStructure ) return null;
 			return this.renderTopNav()
         }        
     }
 
 }
 
-export default withRouter(MainMenu);
+function mapStateToProps(state) {
+    return {
+        contents: state.contents
+    };
+}
+
+export default connect(mapStateToProps)(withRouter(MainMenu));

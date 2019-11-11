@@ -18,7 +18,7 @@ async function process(sourcePath, targetPath) {
     // TODO copy the menu structure file to the targetPath 
     const menuStructureFile = `${sourcePath}/menu-structure.json`
 
-    // for all md file found in sourcePath, process them into HTML at target path
+    // TODO for all md file found in sourcePath, process them into HTML at target path
     convertToHTML(`${sourcePath}/docs/how-to-use.md`,`${targetPath}/how-to-use.html`)
 
 }
