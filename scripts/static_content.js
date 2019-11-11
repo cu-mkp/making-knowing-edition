@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const { execSync } = require('child_process');
 
 function convertToHTML( source, target ) {
@@ -15,11 +14,21 @@ function convertToHTML( source, target ) {
 
 async function process(sourcePath, targetPath) {
 
-    // TODO copy the menu structure file to the targetPath 
-    const menuStructureFile = `${sourcePath}/menu-structure.json`
+    // copy the latest menu structure file to the targetPath 
+    fs.copyFileSync( `${sourcePath}/menu-structure.json`, `${targetPath}/menu-structure.json` );
 
-    // TODO for all md file found in sourcePath, process them into HTML at target path
-    convertToHTML(`${sourcePath}/docs/how-to-use.md`,`${targetPath}/how-to-use.html`)
+    const sourceDocsPath = `${sourcePath}/docs`
+
+    // For all md file found in sourcePath, process them into HTML at target path
+    const dirContents = fs.readdirSync(sourceDocsPath);
+    for( let i=0; i < dirContents.length; i++ ) {
+        const filename = dirContents[i];
+        const mdExtensionIndex = filename.indexOf('.md')
+        if( mdExtensionIndex != -1 ) {
+            const contentID = filename.substring(0,mdExtensionIndex)
+            convertToHTML(`${sourceDocsPath}/${contentID}.md`,`${targetPath}/${contentID}.html`)
+        }
+    }
 
 }
 
