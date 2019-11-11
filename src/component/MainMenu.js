@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { Menu, MenuItem, ClickAwayListener } from '@material-ui/core'
+import { Menu, MenuItem } from '@material-ui/core'
 
 const menuStructure = [
     {

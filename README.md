@@ -48,6 +48,7 @@ cp -R edition_data_example edition_data
     "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
     "targetDir": "public/bnf-ms-fr-640",
     "sourceDir": "edition_data/m-k-manuscript-data",
+    "contentDir": "edition_data/edition-webpages",
     "workingDir": "edition_data/working"
 }
 ```
@@ -66,6 +67,7 @@ mkdir edition_data/working
 ```
 cd edition_data
 git clone https://github.com/cu-mkp/m-k-manuscript-data.git
+git clone https://github.com/cu-mkp/edition-webpages.git
 ```
 
 8. Create a .env.development file with the following:
@@ -87,7 +89,7 @@ Processing Edition Data
 ----------
 Now, you are ready to process some data!
 
-1. Run `scripts/asset_server.js local` to populate the folios, search, glossary, and comments.
+1. Run `scripts/asset_server.js local` to populate the folios, search, glossary, content pages, and comments.
 
 2. Run `scripts/lizard.js` to see a help message that details the various functions of this script. Lizard does the processing of research essays from Google Drive.
 
