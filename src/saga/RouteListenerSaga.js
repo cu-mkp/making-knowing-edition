@@ -25,7 +25,8 @@ function *userNavigation(action) {
         switch(pathSegments[1]) {
             case 'content':
                 if( pathSegments.length > 2 ) {
-                    let contentID = pathSegments[2];
+                    const contentPath = pathSegments.slice(2)
+                    let contentID = contentPath.join('/');
                     yield resolveContent(contentID);
                 }
                 break;

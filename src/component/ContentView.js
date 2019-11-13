@@ -7,7 +7,7 @@ import domToReact from 'html-react-parser/lib/dom-to-react';
 class ContentView extends Component {
 
     componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
+        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
 
