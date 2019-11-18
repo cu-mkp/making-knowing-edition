@@ -12,13 +12,24 @@ const justSearch = state => state.search
 const justAuthors = state => state.authors
 const justGlossary = state => state.glossary
 const justComments = state => state.comments
+const justContents = state => state.contents
 
 function *userNavigation(action) {
+
+    yield resolveMenuStructure();
+
     const pathname = action.payload.params[0].pathname;
     const pathSegments = pathname.split('/');
 
     if( pathSegments.length > 1 ) {
         switch(pathSegments[1]) {
+            case 'content':
+                if( pathSegments.length > 2 ) {
+                    const contentPath = pathSegments.slice(2)
+                    let contentID = contentPath.join('/');
+                    yield resolveContent(contentID);
+                }
+                break;
             case 'folios':
                 yield resolveAuthors();
                 yield resolveComments();
@@ -100,6 +111,14 @@ function *resolveAnnotationManifest() {
     }
 }
 
+function *resolveMenuStructure() {
+    const contents = yield select(justContents)
+    if( !contents.loaded ) {
+        const response = yield axios.get(contents.menuStructureURL);
+        yield putResolveAction( 'ContentActions.loadMenuStructure', response.data );    
+    }
+}
+
 function *resolveAuthors() {
     const authors = yield select(justAuthors)
     if( !authors.loaded ) {
@@ -129,6 +148,16 @@ function *resolveEntryManifest() {
     if( !entries.loaded ) {
         const response = yield axios.get(entries.entryManifestURL);
         yield putResolveAction( 'EntryActions.loadEntryManifest', response.data );    
+    }
+}
+
+function *resolveContent(contentID) {
+    const contents = yield select(justContents);
+    const content = contents.contents[contentID];
+    if( !content ) {
+        const contentURL = `${contents.contentBaseURL}/${contentID}.html`
+        const response = yield axios.get(contentURL);
+        yield putResolveAction( 'ContentActions.loadContent', contentID, response.data );        
     }
 }
 

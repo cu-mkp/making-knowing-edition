@@ -1,14 +1,10 @@
 #diplomatic {
 
-	background: #eee;
-
 	#header {
-		width: 100vw;
 		margin: 0;
 		color: white;
 		height: $header-height;
 		background-color: black;
-		// background-color: #656565;
 		font-family: 'Oswald', sans-serif;
 		grid-area: header;
 		padding: 0.5rem 0 0 1rem;
@@ -16,7 +12,6 @@
 
 		.title {
 			font-size: 24pt;
-			// font-weight: 700;	
 
 			.home-link {
 				color: white;
@@ -42,82 +37,26 @@
 			}
 		}
 
-		// Laptops screens
-		@media only screen and (max-width: 1290px) {	
-			// #search {
-			// 	display: block;
-			// 	margin: 0.8rem;
-			// }
-	
-			// #header {
-			// 	.title {
-			// 		display: block;
-			// 		padding: 0.8rem 0 0;
-			// 		font-size: 1rem;
-			// 	}
-		
-			// 	.tagline {
-			// 		display: block;
-			// 		margin: 0;
-			// 		padding: 0.10rem 0 0 0.1rem;
-			// 		font-size: 0.5rem;
-			// 	}
-			// }
-	
-			// #footer {
-			// 	.logos {
-			// 		display: none;
-			// 	}
-			// }
+		#search {
+			display: inline;
 		}
-
-		// Mobile
-		@media only screen and (max-width: 500px) {
 	
-			.expandedViewOnly {
-				display: none;
+		#navigation {
+			background-color: blue;
+			height: 4.4rem;
+			.fixed-position {
+				width: 40rem;
+					top: 0;
+				right: 0;
+				position: Fixed;
 			}
-
-			#header {
-				.tagline,
-				.title {
-					display: none;
-				}
-		
-				.compactTitle {
-					display: block;
-					font-size:2rem;
-					width:5rem;
-		
-					margin:.6rem 0 0 0;
-				}
-				
-				#search {
-					display: block;
-					margin:.5rem 1rem 0 0;
-				}    
-			}
-		}
-	}
-
-	#search {
-        display: inline;
-    }
-
-	#navigation {
-		background-color: blue;
-		height: 4.4rem;
-		.fixed-position {
-			width: 40rem;
-				top: 0;
-			right: 0;
-			position: Fixed;
 		}
 	}
 
 	#footer {
-		width: 100vw;
 		margin: 0;
+		// width: 100%;
+		// position: fixed;
 		color: white;
 		height: $footer-height;
 		background-color: #656565;
@@ -126,27 +65,18 @@
 		padding: 0.4rem 0 0 1rem;
 		white-space: nowrap;
 		
+		bottom: 0;	
+		.logos {
+			margin-right: 20px;
+			float: right;
+		}	
+		
 		.copyright {
+			float: left;
 			font-weight: 300;
 			font-size: 0.8rem;
 			padding: 0.8rem 0 0 0.3rem;
 		}
-	}
-
-	#header.fixed {
-		z-index: $z-index-ui;
-		position: fixed;	
-	}
-
-	#footer.fixed {
-		z-index: 9000;
-		position: fixed;
-		bottom: 0;	
-		.logos {
-			position: fixed;
-			right: 1rem;
-			bottom: 0.6rem;
-		}	
 	}
 }
 
@@ -157,6 +87,18 @@
 	height: calc(100vh - $chrome-height);
 	font-family: 'OpenSans', sans-serif;
 	font-size: 0.9rem;
+
+	#header.fixed {
+		z-index: $z-index-ui;
+		position: fixed;	
+		width: 100vw;
+	}
+
+	#footer.fixed {
+		z-index: 9000;
+		width: 100vw;
+	}
+
 	#content {
 		line-height: 1.2rem;
 		margin-top: 5rem;	

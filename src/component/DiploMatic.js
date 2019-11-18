@@ -10,6 +10,7 @@ import EntryListView from './EntryListView';
 import AnnotationListView from './annotation_list_view/AnnotationListView';
 import Search from './Search';
 import RouteListener from './RouteListener';
+import MainMenu from './MainMenu';
 
 
 class DiploMatic extends Component {
@@ -52,36 +53,11 @@ class DiploMatic extends Component {
 				<div className="compactTitle">M&amp;K</div>
 				<div className="tagline">A Digital Critical Edition</div>
 				<div id="globalNavigation">
-					{ this.renderNavLinks() }
+					<MainMenu></MainMenu>
 					<Search />
-					{/* <div className="expandedViewOnly">
-						<span><span className="english">English</span> | <span className="francais">Français</span></span>
-					</div> */}
 				</div>
 			</div>
 		);
-	}
-
-	renderNavLinks() {
-		if( process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES === 'true') {
-			return (
-				<div className="expandedViewOnly">
-					<span>Research Essays</span>
-					<Link to='/entries'>Entries</Link>
-					<Link to='/folios'>Folios</Link>
-					<span>About</span>
-				</div>
-			);
-		} else {
-			return (
-				<div className="expandedViewOnly">
-					<Link to='/essays'>Research Essays</Link>
-					<Link to='/entries'>Entries</Link>
-					<Link to='/folios'>Folios</Link>
-					<span>About</span>
-				</div>
-			);
-		}
 	}
 
 	renderDocumentView = (props) => {
@@ -153,11 +129,20 @@ class DiploMatic extends Component {
 		);
 	}
 
+
+	renderContentView(props) {
+		const contentID = props.location.pathname.substring("/content/".length)
+		return (
+			<ContentView contentID={contentID}></ContentView>
+		);
+	}
+
 	renderContent() {
 		return (
 			<div id="content">
 				<Switch>
 					<Route path="/" component={ContentView} exact/>
+					<Route path="/content" render={this.renderContentView}/>
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/essays" component={AnnotationListView} exact/>
 					<Route path="/essays/:annoID" render={this.renderAnnotationView}/>

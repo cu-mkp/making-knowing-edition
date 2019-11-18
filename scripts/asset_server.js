@@ -7,6 +7,7 @@ const searchIndex = require('./search_index');
 const convert = require('./convert');
 const glossary = require('./glossary');
 const comments = require('./comments');
+const staticContent = require('./static_content')
 const configLoader = require('./config_loader');
 
 const waitTimeLengthMins = 1;
@@ -16,25 +17,13 @@ const transcriptionTypes = [
 ];
 
 function downloadFiles(inputDir) {
-
-  // if folder is empty, clone repository. otherwise pull from repo
-  if( fs.readdirSync(inputDir).length === 0 ) {
-    execSync(`git clone https://github.com/cu-mkp/m-k-manuscript-data.git ${inputDir}`, (error, stdout, stderr) => {
-      console.log(`${stdout}`);
-      console.log(`${stderr}`);
-      if (error !== null) {
-          console.log(`exec error: ${error}`);
-      }
-    });
-  } else {
-    execSync(`git -C ${inputDir} pull`, (error, stdout, stderr) => {
-      console.log(`${stdout}`);
-      console.log(`${stderr}`);
-      if (error !== null) {
-          console.log(`exec error: ${error}`);
-      }
-    });
-  }
+  execSync(`git -C ${inputDir} pull`, (error, stdout, stderr) => {
+    console.log(`${stdout}`);
+    console.log(`${stderr}`);
+    if (error !== null) {
+        console.log(`exec error: ${error}`);
+    }
+  });
 }
 
 function reorganizeFiles(pullDir, orderedDir) {
@@ -158,7 +147,12 @@ async function main() {
   const correctFormatDir = `${configData.workingDir}/sorted-input`;
   const folioPath = `${configData.targetDir}/folio`;
   const searchIndexPath = `${configData.targetDir}/search-idx`;
-  if( !dirExists(folioPath) || !dirExists(searchIndexPath) || !dirExists(correctFormatDir) || !dirExists(inputDir) ) {
+  const contentTargetPath = `${configData.targetDir}/content`;
+  if( !dirExists(folioPath) || 
+      !dirExists(searchIndexPath) || 
+      !dirExists(correctFormatDir) || 
+      !dirExists(inputDir) ||
+      !dirExists(contentTargetPath)    ) {
     console.log('Unable to start asset server.');
     return;
   }
@@ -174,6 +168,7 @@ async function main() {
   if( mode !== 'local' ) {
     console.log('Download files from Github...');
     downloadFiles(inputDir);  
+    downloadFiles(configData.contentDir);
   }
 
   console.log('Reorganize files...');
@@ -190,6 +185,9 @@ async function main() {
 
   console.log('Generate Glossary...');
   await glossary.generate(glossaryCSV, targetGlossaryFile);
+
+  console.log('Process Static Content...');
+  await staticContent.process(configData.contentDir, contentTargetPath);
 
   console.log('Generate Comments...');
   await comments.generate(commentsCSV, targetCommentsFile);
