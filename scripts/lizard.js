@@ -699,12 +699,12 @@ async function run(mode) {
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             break;
         case 'run': {
-            const annotationDriveAssets = locateAnnotationAssets();
-            const annotationAssets = syncDriveAssets( annotationDriveAssets );
             const annotationMetadata = await loadAnnotationMetadata()
+            const annotationDriveAssets = locateAnnotationAssets();
+            const selectedAssets = refreshFilter(annotationMetadata,annotationDriveAssets)
+            const annotationAssets = syncDriveAssets( selectedAssets );
             const authors = await loadAuthors()
-            const selectedAssets = refreshFilter(annotationMetadata,annotationAssets)
-            processAnnotations(selectedAssets,annotationMetadata,authors)
+            processAnnotations(annotationAssets,annotationMetadata,authors)
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             }
             break;
