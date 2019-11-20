@@ -681,7 +681,7 @@ function quickFix( driveAssets ) {
 async function run(mode) {
     switch( mode ) {
         case 'download': {
-            const annotationDriveAssets = locateAnnotationAssets(true);
+            const annotationDriveAssets = locateAnnotationAssets();
             const annotationMetadata = await loadAnnotationMetadata()
             const selectedAssets = refreshFilter(annotationMetadata,annotationDriveAssets)
             syncDriveAssets( selectedAssets );
@@ -745,8 +745,6 @@ function loadConfig() {
     dirExists(tempCaptionDir)
     dirExists(tempAbstractDir)
     dirExists(tempBiblioDir)
-    dirExists(cachedAnnotationDriveScan)
-    dirExists(convertAnnotationLog)
 
     // edition URL
     annotationRootURL = `${editionDataURL}/annotations`;
