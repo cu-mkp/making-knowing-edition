@@ -53,8 +53,8 @@ async function loadAnnotationMetadata() {
             year: entry['Year'],
             theme: entry['Theme'],
             entryIDs: entry['Entry ID'],
-            authors: entry['Author'],
-            status: 'draft'
+            status: entry['status-DCE'],
+            refresh: (entry['refresh-DCE'] === 'yes')
         }
         annotationMetadata[metaData.driveID] = metaData;
     });    
@@ -218,6 +218,7 @@ function locateAnnotationAssets(useCache) {
             } 
         });      
         annotationDriveJSON = buffer.toString();
+        fs.writeFileSync(cachedAnnotationDriveScan, annotationDriveJSON );
     }
     const annotationDriveMap = JSON.parse(annotationDriveJSON);
     const driveTreeRoot = createDriveTree(annotationDriveMap);
@@ -225,62 +226,79 @@ function locateAnnotationAssets(useCache) {
     let annotationAssets = [];
 
     driveTreeRoot.children.forEach( semester => {
-        semester.children.forEach( annotationRoot => {
-            let textFileNode = null;
-            let captionFile = null;
-            let abstractFile = null;
-            let biblioFile = null;
-            let illustrations = [];
-            if( annotationRoot.children ) {
-                annotationRoot.children.forEach( assetFile => {
-
-                    if( assetFile.mimeType === docxMimeType ) {
-                        if( assetFile.name.includes('Text_') ) {
-                            textFileNode = assetFile;
-                        } else if( assetFile.name.includes('Captions_') ) {
-                            captionFile = assetFile;
-                        } else if( assetFile.name.includes('Abstract_') ) {
-                            abstractFile = assetFile;
-                        } else if( assetFile.name.includes('Bibliography_') ) {
-                            biblioFile = assetFile;
-                        }       
-                    }
-
-                    if( assetFile.children ) {
-                        // locate the illustrations, if any
-                        if( assetFile.children.length > 0 && assetFile.name.includes('Illustrations_') ) {
-                            assetFile.children.forEach( illustrationFile => {
-                                if( illustrationFile.mimeType === jpegMimeType ) {
-                                    illustrations.push( illustrationFile );
-                                }
-                            });
-                        }                        
-                    } 
-                });  
-            } else {
-                const path = nodeToPath(annotationRoot)
-                logger.info(`Annotation folder contains no subfolders: ${path}`);
-            }
-
-            if( textFileNode ) {
-                annotationAssets.push({
-                    id: textFileNode.id,
-                    textFile: textFileNode,
-                    captionFile: captionFile,
-                    abstractFile: abstractFile,
-                    biblioFile: biblioFile,
-                    illustrations: illustrations
-                });
-                const path = nodeToPath(textFileNode);
-                logger.info(`Found annotation: ${textFileNode.id} in ${googleShareName}${path}`);
-            } else {
-                const path = nodeToPath(annotationRoot);
-                logger.info(`Annotation not found. Must contain docx file with Text_* in the filename: ${path}`);
-            }
-        });
+        if( semester.children ) {
+            semester.children.forEach( annotationRoot => {
+                let textFileNode = null;
+                let captionFile = null;
+                let abstractFile = null;
+                let biblioFile = null;
+                let illustrations = [];
+                if( annotationRoot.children ) {
+                    annotationRoot.children.forEach( assetFile => {
+    
+                        if( assetFile.mimeType === docxMimeType ) {
+                            if( assetFile.name.includes('Text_') ) {
+                                textFileNode = assetFile;
+                            } else if( assetFile.name.includes('Captions_') ) {
+                                captionFile = assetFile;
+                            } else if( assetFile.name.includes('Abstract_') ) {
+                                abstractFile = assetFile;
+                            } else if( assetFile.name.includes('Bibliography_') ) {
+                                biblioFile = assetFile;
+                            }       
+                        }
+    
+                        if( assetFile.children ) {
+                            // locate the illustrations, if any
+                            if( assetFile.children.length > 0 && assetFile.name.includes('Illustrations_') ) {
+                                assetFile.children.forEach( illustrationFile => {
+                                    if( illustrationFile.mimeType === jpegMimeType ) {
+                                        illustrations.push( illustrationFile );
+                                    }
+                                });
+                            }                        
+                        } 
+                    });  
+                } else {
+                    const path = nodeToPath(annotationRoot)
+                    logger.info(`Annotation folder contains no subfolders: ${path}`);
+                }
+    
+                if( textFileNode ) {
+                    annotationAssets.push({
+                        id: textFileNode.id,
+                        textFile: textFileNode,
+                        captionFile: captionFile,
+                        abstractFile: abstractFile,
+                        biblioFile: biblioFile,
+                        illustrations: illustrations
+                    });
+                    const path = nodeToPath(textFileNode);
+                    logger.info(`Found annotation: ${textFileNode.id} in ${googleShareName}${path}`);
+                } else {
+                    const path = nodeToPath(annotationRoot);
+                    logger.info(`Annotation not found. Must contain docx file with Text_* in the filename: ${path}`);
+                }
+            });
+        }
     });
 
     return annotationAssets;
+}
+
+function refreshFilter(annotationMetadata, annotationAssets) {
+    // filter out assets that aren't marked to be refreshed
+    const selectedAssets = []
+    for( const annotationAsset of annotationAssets ) {
+        const metadata = annotationMetadata[annotationAsset.id]
+        if( metadata ) {
+            const {status,refresh} = metadata
+            if( refresh && (status === 'published' || status === 'staging') ) {
+                selectedAssets.push(annotationAsset)
+            }    
+        }
+    }
+    return selectedAssets
 }
 
 function nodeToPath( fileNode, path=[] ) {
@@ -663,34 +681,30 @@ function quickFix( driveAssets ) {
 async function run(mode) {
     switch( mode ) {
         case 'download': {
-            const annotationDriveAssets = locateAnnotationAssets(false);
-            syncDriveAssets( annotationDriveAssets );
+            const annotationDriveAssets = locateAnnotationAssets(true);
+            const annotationMetadata = await loadAnnotationMetadata()
+            const selectedAssets = refreshFilter(annotationMetadata,annotationDriveAssets)
+            syncDriveAssets( selectedAssets );
             }
             break;
         case 'process': {
             const annotationAssets = findLocalAssets();
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
-            processAnnotations(annotationAssets,annotationMetadata,authors)
+            const selectedAssets = refreshFilter(annotationMetadata,annotationAssets)
+            processAnnotations(selectedAssets,annotationMetadata,authors)
             }
-            break;
-        case 'scan':
-            locateAnnotationAssets(false);
             break;
         case 'index':
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             break;
-        // case 'fix': {
-        //     const annotationDriveAssets = locateAnnotationAssets(true);
-        //     quickFix(annotationDriveAssets);
-        //     }
-        //     break;
         case 'run': {
             const annotationDriveAssets = locateAnnotationAssets();
             const annotationAssets = syncDriveAssets( annotationDriveAssets );
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
-            processAnnotations(annotationAssets,annotationMetadata,authors)
+            const selectedAssets = refreshFilter(annotationMetadata,annotationAssets)
+            processAnnotations(selectedAssets,annotationMetadata,authors)
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             }
             break;
