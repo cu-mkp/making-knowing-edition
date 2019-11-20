@@ -99,7 +99,7 @@ function *resolveSearchResult() {
     results['tc'] = searchIndex.searchEdition(searchQuery,'tc');
     results['tcn'] = searchIndex.searchEdition(searchQuery,'tcn');
     results['tl'] = searchIndex.searchEdition(searchQuery,'tl');
-    results['anno'] = (process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES==='false') ? searchIndex.searchAnnotations(searchQuery) : [];
+    results['anno'] = (process.env.REACT_APP_HIDE_IN_PROGRESS_FEATURES!=='true') ? searchIndex.searchAnnotations(searchQuery) : [];
     yield putResolveAction( 'SearchActions.searchResults', results );        
 }
 
