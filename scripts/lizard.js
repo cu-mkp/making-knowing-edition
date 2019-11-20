@@ -46,13 +46,13 @@ async function loadAnnotationMetadata() {
     const tableObj = await csv().fromString(csvData)        
     tableObj.forEach( entry => {
         let metaData = {
-            id: entry['Annotation-ID'],
+            id: entry['annotation-ID'],
             driveID: entry['UUID'],
-            name: entry['short-title'],
-            semester: entry['Semester'],
-            year: entry['Year'],
-            theme: entry['Theme'],
-            entryIDs: entry['Entry ID'],
+            name: entry['thumbnail-title'],
+            semester: entry['semester'],
+            year: entry['year'],
+            theme: entry['theme'],
+            entryIDs: entry['entry-id'],
             status: entry['status-DCE'],
             refresh: (entry['refresh-DCE'] === 'yes')
         }
@@ -729,6 +729,10 @@ function loadConfig() {
     targetSearchIndexDir = `${targetDir}/search-idx`;
     targetAnnotationDir = `${targetDir}/annotations`;
 
+    dirExists(targetImageDir)
+    dirExists(targetSearchIndexDir)
+    dirExists(targetAnnotationDir) 
+
     // working dir
     baseDir = `${workingDir}/annotations`;
     tempCaptionDir = `${workingDir}/captions`;
@@ -736,6 +740,13 @@ function loadConfig() {
     tempBiblioDir = `${workingDir}/biblio`;
     cachedAnnotationDriveScan = `${workingDir}/cachedScanFile.json`;
     convertAnnotationLog = `${workingDir}/lizard.log`;
+
+    dirExists(baseDir)
+    dirExists(tempCaptionDir)
+    dirExists(tempAbstractDir)
+    dirExists(tempBiblioDir)
+    dirExists(cachedAnnotationDriveScan)
+    dirExists(convertAnnotationLog)
 
     // edition URL
     annotationRootURL = `${editionDataURL}/annotations`;
