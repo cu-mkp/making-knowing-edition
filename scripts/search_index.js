@@ -9,8 +9,8 @@ var lunr = require('lunr');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-function xmlToText(html) {
-  return html ? html.replace(/<\/?[^>]+>/ig, "").replace(/\n+/g, " ") : ""
+function xmlToText(xml) {
+  return xml ? xml.replace(/<\/?[^>]+>/ig, "").replace(/\n+/g, " ") : ""
 }
 
 function parseFolio(xml) {
