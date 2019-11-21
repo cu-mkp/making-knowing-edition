@@ -10,9 +10,10 @@ const winston = require('winston');
 const searchIndex = require('./search_index');
 const configLoader = require('./config_loader');
 
-const rCloneServiceName = 'gdrive-bnf'
-const rCloneSharedDrive = false
-const googleShareName="Annotations";
+// rclone configuration
+let rCloneServiceName;
+let rCloneSharedDrive;
+let googleShareName;
 
 // path config vars
 let annotationMetaDataCSV;
@@ -718,7 +719,7 @@ function loadConfig() {
         console.log("Unable to load configuration file. Expected it in edition_data/config.json");
         process.exit(-1);   
     }
-    const { sourceDir, targetDir, workingDir, editionDataURL } = configData
+    const { sourceDir, targetDir, workingDir, editionDataURL, rclone } = configData
 
     // source dir
     annotationMetaDataCSV = `${sourceDir}/metadata/annotation-metadata.csv`;
@@ -749,6 +750,11 @@ function loadConfig() {
     // edition URL
     annotationRootURL = `${editionDataURL}/annotations`;
     imageRootURL = `${editionDataURL}/images`;
+
+    // rclone configuration
+    rCloneServiceName = rclone.serviceName;
+    rCloneSharedDrive = rclone.sharedDrive;
+    googleShareName = rclone.folderName;
 }
 
 function main() {
