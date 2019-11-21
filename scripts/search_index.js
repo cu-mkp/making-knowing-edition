@@ -130,7 +130,7 @@ var generateAnnotationIndex = function generateAnnotationIndex( annotationPath, 
       // ignore hidden directories
       if( annotationHTMLFile.startsWith('.') ) return;
       // ignore manifest
-      if( annotationHTMLFile === 'annotations.json' ) return;
+      if( annotationHTMLFile === 'annotations.json' || annotationHTMLFile === 'authors.json' ) return;
       const html = fs.readFileSync( `${annotationPath}/${annotationHTMLFile}`, "utf8");
       const content = parseAnnotation(html);
       const annotationID = annotationHTMLFile.split('.')[0];
