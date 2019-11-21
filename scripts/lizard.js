@@ -700,7 +700,7 @@ async function run(mode) {
             break;
         case 'run': {
             const annotationMetadata = await loadAnnotationMetadata()
-            const annotationDriveAssets = locateAnnotationAssets();
+            const annotationDriveAssets = locateAnnotationAssets(true);
             const selectedAssets = refreshFilter(annotationMetadata,annotationDriveAssets)
             const annotationAssets = syncDriveAssets( selectedAssets );
             const authors = await loadAuthors()
