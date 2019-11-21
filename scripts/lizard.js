@@ -55,7 +55,7 @@ async function loadAnnotationMetadata() {
             theme: entry['theme'],
             entryIDs: entry['entry-id'],
             status: entry['status-DCE'],
-            refresh: (entry['refresh-DCE'] === 'yes')
+            refresh: (entry['refresh-DCE'] === 'refresh')
         }
         annotationMetadata[metaData.driveID] = metaData;
     });    
@@ -288,15 +288,19 @@ function locateAnnotationAssets(useCache) {
 }
 
 function refreshFilter(annotationMetadata, annotationAssets) {
+
     // filter out assets that aren't marked to be refreshed
     const selectedAssets = []
     for( const annotationAsset of annotationAssets ) {
         const metadata = annotationMetadata[annotationAsset.id]
-        if( metadata ) {
+        if( metadata ) {        
             const {status,refresh} = metadata
-            if( refresh && (status === 'published' || status === 'staging') ) {
+            const annotationDir = `${baseDir}/${annotationAsset.id}`;
+            
+            // if user requests refresh or we don't have it yet and it is marked for publication
+            if(refresh || (!fs.existsSync(annotationDir) && (status === 'published' || status === 'staging')) ) {
                 selectedAssets.push(annotationAsset)
-            }    
+            }
         }
     }
     return selectedAssets
