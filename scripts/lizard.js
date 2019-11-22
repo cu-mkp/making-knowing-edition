@@ -24,11 +24,13 @@ let authorsCSV;
 let baseDir;
 let targetImageDir;
 let targetSearchIndexDir;
+let targetAnnotationThumbnailDir;
 let targetAnnotationDir;
 let tempCaptionDir;
 let tempAbstractDir;
 let tempBiblioDir;
 let tempThumbnailDir;
+let thumbnailListFile;
 let convertAnnotationLog;
 let annotationRootURL;
 let imageRootURL;
@@ -44,6 +46,7 @@ const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
 const thumbnailFolderName = "DCE Annotation Thumbnails";
+const thumbnailPlaceholder = "img/watermark.png";
 
 async function loadAnnotationMetadata() {
     const csvData = fs.readFileSync(annotationMetaDataCSV).toString();
@@ -237,6 +240,7 @@ function locateThumbnails() {
 
 function syncThumbnails(thumbnailAssets, annotationMetadata ) {
 
+    const thumbnails = {}
     for( const metadata of Object.values(annotationMetadata) ) {
         const {refresh, thumbnailURL} = metadata
 
@@ -251,8 +255,17 @@ function syncThumbnails(thumbnailAssets, annotationMetadata ) {
             if( refresh || !fs.existsSync(thumbnailTarget) ) {
                 syncDriveFile(thumbnailSource, tempThumbnailDir);
             }     
+            thumbnails[thumbnailID] = thumbnailNode.name
         }
     }
+
+    // save an index of the thumbnail dir
+    fs.writeFileSync( thumbnailListFile, JSON.stringify(thumbnails) )
+}
+
+function loadThumbnails() {
+    const buffer = fs.readFileSync(thumbnailListFile, "utf8")
+    return JSON.parse(buffer)
 }
 
 function locateAnnotationAssets() {
@@ -514,7 +527,7 @@ function syncDriveFile( source, dest ) {
 }
 
 
-function processAnnotations(annotationAssets, annotationMetadata, authors ) {
+function processAnnotations(annotationAssets, annotationMetadata, authors, thumbnails ) {
 
     logger.info("Processing Annotations")
     logSeperator()
@@ -558,6 +571,17 @@ function processAnnotations(annotationAssets, annotationMetadata, authors ) {
                 contentURL: null
             };  
         }
+
+        // process the thumbnail for this entry
+        const thumbnailID = findImageID(metadata.thumbnailURL)
+        const thumbnailFile = thumbnails[thumbnailID]
+        if( thumbnailFile ) {
+            const thumbnailSource = `${tempThumbnailDir}/${thumbnailFile}`
+            const thumbnailTarget = `${targetAnnotationThumbnailDir}/${thumbnailFile}`
+            fs.copyFileSync( thumbnailSource, thumbnailTarget )    
+            annotation.thumbnail = thumbnailFile
+        } 
+        
         annotationContent.push(annotation)
     })
 
@@ -804,8 +828,9 @@ async function run(mode) {
             const annotationAssets = findLocalAssets();
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
+            const thumbnails = loadThumbnails()
             const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
-            processAnnotations(publishedAssets,publishedMetadata,authors)
+            processAnnotations(publishedAssets,publishedMetadata,authors,thumbnails)
             }
             break;
         case 'index':
@@ -840,10 +865,12 @@ function loadConfig() {
     targetImageDir = `${targetDir}/images`;
     targetSearchIndexDir = `${targetDir}/search-idx`;
     targetAnnotationDir = `${targetDir}/annotations`;
+    targetAnnotationThumbnailDir = `${targetDir}/annotations-thumbnails`;
 
     dirExists(targetImageDir)
     dirExists(targetSearchIndexDir)
     dirExists(targetAnnotationDir) 
+    dirExists(targetAnnotationThumbnailDir)
 
     // working dir
     baseDir = `${workingDir}/annotations`;
@@ -851,6 +878,7 @@ function loadConfig() {
     tempAbstractDir = `${workingDir}/abstract`;
     tempBiblioDir = `${workingDir}/biblio`;
     tempThumbnailDir = `${workingDir}/thumbnails`;
+    thumbnailListFile = `${tempThumbnailDir}/thumbnails.json`;
     cachedAnnotationDriveScan = `${workingDir}/cachedScanFile.json`;
     convertAnnotationLog = `${workingDir}/lizard.log`;
 

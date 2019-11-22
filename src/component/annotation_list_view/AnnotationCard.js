@@ -65,6 +65,7 @@ class AnnotationCard extends Component {
 
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
         const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
+        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
 
         return (
             <Card className='anno'>
@@ -73,7 +74,7 @@ class AnnotationCard extends Component {
                     subheader={annotation.authors ? this.renderByline(annotation.authors) : ""}
                 >            
                 </CardHeader>
-                <CardMedia style={{height: 200}} image="/img/watermark.png">
+                <CardMedia style={{height: 200}} image={thumbnailURL}>
                 </CardMedia>
                 <CardContent>
                     <span className='abstract'>{Parser(abstract)}</span>

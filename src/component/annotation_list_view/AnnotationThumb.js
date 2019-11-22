@@ -10,9 +10,10 @@ class AnnotationThumb extends Component {
     render() {
         const { annotation } = this.props
         const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
-        
+        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
+
         const cardMedia = (
-            <CardMedia className="thumb-media" image="/img/watermark.png">
+            <CardMedia className="thumb-media" image={thumbnailURL}>
                 <Typography className="title">{title}</Typography>
             </CardMedia>
         )
