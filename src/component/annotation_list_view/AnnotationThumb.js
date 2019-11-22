@@ -22,7 +22,7 @@ class AnnotationThumb extends Component {
             <Card className='annothumb'>
                 { annotation.contentURL ? 
                     <CardActionArea 
-                        onClick={ e => {this.props.history.push(`/annotations/${annotation.id}`)}}
+                        onClick={ e => {this.props.history.push(`/essays/${annotation.id}`)}}
                     >
                         { cardMedia }
                     </CardActionArea>
