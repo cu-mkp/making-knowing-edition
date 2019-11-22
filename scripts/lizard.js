@@ -28,7 +28,7 @@ let targetAnnotationDir;
 let tempCaptionDir;
 let tempAbstractDir;
 let tempBiblioDir;
-let cachedAnnotationDriveScan;
+let tempThumbnailDir;
 let convertAnnotationLog;
 let annotationRootURL;
 let imageRootURL;
@@ -43,6 +43,7 @@ const wikischolarRegX = /wikischolars/;
 const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
+const thumbnailFolderName = "DCE Annotation Thumbnails";
 
 async function loadAnnotationMetadata() {
     const csvData = fs.readFileSync(annotationMetaDataCSV).toString();
@@ -52,6 +53,7 @@ async function loadAnnotationMetadata() {
         let metaData = {
             id: entry['annotation-ID'],
             driveID: entry['UUID'],
+            thumbnailURL: entry['thumbnail_url'],
             name: entry['thumbnail-title'],
             semester: entry['semester'],
             year: entry['year'],
@@ -208,22 +210,63 @@ function createDriveTree(driveMap) {
     return rootNode;
 }
 
-function locateAnnotationAssets(useCache) {
+function locateThumbnails() {        
+
+    // scan for thumbnails
+    const shared = rCloneSharedDrive ? "--drive-shared-with-me" : ""
+    const target = `${googleShareName}/${thumbnailFolderName}`
+    const buffer = execSync(`rclone lsjson ${shared} -R ${rCloneServiceName}:"${target}"`, (error, stdout, stderr) => {
+        if (error !== null) {
+            throw `ERROR: Unable to list Google Drive: ${googleShareName}`;
+        } 
+    });      
+    let thumbnailDriveJSON = buffer.toString();
+    const thumbnailDriveMap = JSON.parse(thumbnailDriveJSON);
+    const driveTreeRoot = createDriveTree(thumbnailDriveMap);
+
+    let thumbnailAssets = {};
+
+    driveTreeRoot.children.forEach( thumbnail => {
+        if( thumbnail.mimeType === jpegMimeType ) {
+            thumbnailAssets[thumbnail.id] = thumbnail
+        }
+    });
+
+    return thumbnailAssets;
+}
+
+function syncThumbnails(thumbnailAssets, annotationMetadata ) {
+
+    for( const metadata of Object.values(annotationMetadata) ) {
+        const {refresh, thumbnailURL} = metadata
+
+        // parse out the ID from the thumbnail URL and see if we have it
+        const thumbnailID = findImageID(thumbnailURL)
+        const thumbnailNode = thumbnailAssets[thumbnailID]
+
+        if( thumbnailNode ) {
+            const thumbnailSource = `${googleShareName}/${thumbnailFolderName}${nodeToPath(thumbnailNode)}`
+            const thumbnailTarget = `${tempThumbnailDir}/${thumbnailNode.name}`
+            
+            if( refresh || !fs.existsSync(thumbnailTarget) ) {
+                syncDriveFile(thumbnailSource, tempThumbnailDir);
+            }     
+        }
+    }
+}
+
+function locateAnnotationAssets() {
 
     // Use rclone to create a map of the manuscript folder in google drive
     let annotationDriveJSON;
-    if( useCache )  {
-        annotationDriveJSON = fs.readFileSync(cachedAnnotationDriveScan, "utf8");
-    } else {
-        const shared = rCloneSharedDrive ? "--drive-shared-with-me" : ""
-        const buffer = execSync(`rclone lsjson ${shared} -R ${rCloneServiceName}:"${googleShareName}"`, (error, stdout, stderr) => {
-            if (error !== null) {
-                throw `ERROR: Unable to list Google Drive: ${googleShareName}`;
-            } 
-        });      
-        annotationDriveJSON = buffer.toString();
-        fs.writeFileSync(cachedAnnotationDriveScan, annotationDriveJSON );
-    }
+    
+    const shared = rCloneSharedDrive ? "--drive-shared-with-me" : ""
+    const buffer = execSync(`rclone lsjson ${shared} -R ${rCloneServiceName}:"${googleShareName}"`, (error, stdout, stderr) => {
+        if (error !== null) {
+            throw `ERROR: Unable to list Google Drive: ${googleShareName}`;
+        } 
+    });      
+    annotationDriveJSON = buffer.toString();
     const annotationDriveMap = JSON.parse(annotationDriveJSON);
     const driveTreeRoot = createDriveTree(annotationDriveMap);
 
@@ -311,7 +354,6 @@ function filterForDownload(annotationMetadata, annotationAssets) {
                     selectedAssets.push(annotationAsset)
                 }
             }
-
         }
     }
     return selectedAssets
@@ -394,7 +436,7 @@ function syncDriveAssets( driveAssets ) {
         // create bibliography dir
         const biblioDir = `${annotationDir}/bibliography`;
         dirExists(biblioDir);
-
+        
         // this file is optional
         let captionFileDest = null;
         if( driveAsset.captionFile ) {
@@ -627,6 +669,17 @@ function processCaptions( captionHTMLFile ) {
     return captions;
 }
 
+function findImageID( url ) {
+    if( url.match(googleLinkRegX) ) {
+        return url.split('=')[1];
+    } 
+    if( url.match(googleLinkRegX2) ) {
+        // https://drive.google.com/file/d/0BwJi-u8sfkVDeVozNmxHN3dab0E/view?usp=sharing
+        return url.split('/')[5];
+    }
+    return null;
+}
+
 function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio ) {
 
     logger.info(`Processing annotation ${annotationID}`);
@@ -636,17 +689,6 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     let doc = htmlDOM.window.document;
 
     let anchorTags = doc.getElementsByTagName('A');
-
-    function findImageID( url ) {
-        if( url.match(googleLinkRegX) ) {
-            return url.split('=')[1];
-        } 
-        if( url.match(googleLinkRegX2) ) {
-            // https://drive.google.com/file/d/0BwJi-u8sfkVDeVozNmxHN3dab0E/view?usp=sharing
-            return url.split('/')[5];
-        }
-        return null;
-    }
 
     let replacements = [];
     for( let i=0; i< anchorTags.length; i++ ) {
@@ -751,9 +793,11 @@ async function run(mode) {
     switch( mode ) {
         case 'download': {
             const annotationDriveAssets = locateAnnotationAssets();
+            const thumbnailAssets = locateThumbnails();
             const annotationMetadata = await loadAnnotationMetadata()
             const selectedAssets = filterForDownload(annotationMetadata,annotationDriveAssets)
             syncDriveAssets( selectedAssets );
+            syncThumbnails( thumbnailAssets, annotationMetadata )
             }
             break;
         case 'process': {
@@ -806,6 +850,7 @@ function loadConfig() {
     tempCaptionDir = `${workingDir}/captions`;
     tempAbstractDir = `${workingDir}/abstract`;
     tempBiblioDir = `${workingDir}/biblio`;
+    tempThumbnailDir = `${workingDir}/thumbnails`;
     cachedAnnotationDriveScan = `${workingDir}/cachedScanFile.json`;
     convertAnnotationLog = `${workingDir}/lizard.log`;
 
@@ -813,6 +858,7 @@ function loadConfig() {
     dirExists(tempCaptionDir)
     dirExists(tempAbstractDir)
     dirExists(tempBiblioDir)
+    dirExists(tempThumbnailDir)
 
     // edition URL
     annotationRootURL = `${editionDataURL}/annotations`;
