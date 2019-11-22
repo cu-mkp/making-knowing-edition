@@ -336,7 +336,7 @@ figure.current {
         #annotation-list-view .contentArea .sections .section .annotations .anno {
           margin-top: 20px;
           margin-left: 20px;
-          max-width: 450px; }
+          width: 450px; }
           #annotation-list-view .contentArea .sections .section .annotations .anno .status-indicator {
             color: red; }
           #annotation-list-view .contentArea .sections .section .annotations .anno .entries {
