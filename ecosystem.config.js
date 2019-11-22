@@ -7,7 +7,8 @@ module.exports = {
         },
         {
             name      : 'lizard',
-            script    : 'scripts/lizard.js run',
+            script    : 'scripts/lizard.js',
+            args      : 'run',
             log       : 'edition_data/working/lizard_pm2.log'
         }
     ]
