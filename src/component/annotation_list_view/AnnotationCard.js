@@ -76,7 +76,7 @@ class AnnotationCard extends Component {
                 <CardMedia style={{height: 200}} image="/img/watermark.png">
                 </CardMedia>
                 <CardContent>
-                    <Typography className='abstract'>{Parser(abstract)}</Typography>
+                    <span className='abstract'>{Parser(abstract)}</span>
                     { annotation.status === 'staging' ? 
                         <span style={{color: 'green'}}><b>** IN STAGING **</b></span>                    
                     : null }
