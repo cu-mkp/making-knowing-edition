@@ -8,5 +8,6 @@
         "serviceName": "mk-annotations",
         "folderName": "Annotations",
         "sharedDrive": true
-    }
+    },
+    "stage": "staging"
 }

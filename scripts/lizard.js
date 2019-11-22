@@ -10,6 +10,9 @@ const winston = require('winston');
 const searchIndex = require('./search_index');
 const configLoader = require('./config_loader');
 
+// publication stage
+let publicationStage;
+
 // rclone configuration
 let rCloneServiceName;
 let rCloneSharedDrive;
@@ -98,7 +101,7 @@ function findLocalAssets() {
         return null;
     };
 
-    let annotationAssets = [];
+    let annotationAssets = {};
     // go through annotation asset dir and create a source manifest
     const annotationDirs = fs.readdirSync(baseDir);
     annotationDirs.forEach( annotationDir => {
@@ -129,14 +132,14 @@ function findLocalAssets() {
             });
         }
 
-        annotationAssets.push({
+        annotationAssets[annotationDir] = {
             id: annotationDir,
             textFile,
             captionFile,
             abstractFile,
             biblioFile,
             illustrations
-        });
+        };
     });
 
     return annotationAssets;
@@ -287,7 +290,7 @@ function locateAnnotationAssets(useCache) {
     return annotationAssets;
 }
 
-function refreshFilter(annotationMetadata, annotationAssets) {
+function filterForDownload(annotationMetadata, annotationAssets) {
 
     // filter out assets that aren't marked to be refreshed
     const selectedAssets = []
@@ -296,15 +299,52 @@ function refreshFilter(annotationMetadata, annotationAssets) {
         if( metadata ) {        
             const {status,refresh} = metadata
             const annotationDir = `${baseDir}/${annotationAsset.id}`;
-            
-            // if user requests refresh or we don't have it yet and it is marked for publication
-            if(refresh || (!fs.existsSync(annotationDir) && (status === 'published' || status === 'staging')) ) {
-                selectedAssets.push(annotationAsset)
+
+            if( publicationStage === 'production') {
+                // download everything that is published, to make sure we have the latest
+                if( status === 'published') {
+                    selectedAssets.push(annotationAsset)
+                }
+            } else {
+                // if user requests refresh or we don't have it yet and it is marked for publication
+                if(refresh || (!fs.existsSync(annotationDir) && (status === 'published' || status === 'staging')) ) {
+                    selectedAssets.push(annotationAsset)
+                }
             }
+
         }
     }
     return selectedAssets
 }
+
+function filterForPublication(annotationMetadata, annotationAssets) {
+
+    // filter only apply in production mode
+    if( publicationStage !== 'production') {
+        return annotationAssets
+    } 
+
+    // filter out assets that aren't marked to be refreshed
+    const selectedAssets = []
+    for( const annotationAsset of annotationAssets ) {
+        const metadata = annotationMetadata[annotationAsset.id]
+        if( metadata ) {        
+            const {status} = metadata
+            const annotationDir = `${baseDir}/${annotationAsset.id}`;
+
+            // must be downloaded and marked for publication
+            if( fs.existsSync(annotationDir) ) {
+                if( status === 'published' ) {
+                    selectedAssets.push(annotationAsset)
+                } else {
+                    // TODO delete assets not heading to production
+                }
+            } 
+        }
+    }
+    return selectedAssets
+}
+
 
 function nodeToPath( fileNode, path=[] ) {
     path.push(fileNode.name);
@@ -431,20 +471,40 @@ function processAnnotations(annotationAssets, annotationMetadata, authors ) {
     dirExists( tempAbstractDir )
 
     let annotationContent = []
-    annotationAssets.forEach( asset => {
-        const metadata = annotationMetadata[asset.id]
-        if( metadata ) {
-            let annotationAuthors = []
-            Object.values(authors).forEach( author => {
-                if( author.annotations.includes(metadata.id) ) {
-                    annotationAuthors.push( author.id )
-                }
-            })
-            let annotation = processAnnotation(asset,metadata,annotationAuthors)
-            annotationContent.push(annotation)
+    Object.values(annotationMetadata).forEach( metadata => {
+        
+        // record the authors
+        let annotationAuthors = []
+        Object.values(authors).forEach( author => {
+            if( author.annotations.includes(metadata.id) ) {
+                annotationAuthors.push( author.id )
+            }
+        })
+
+        const asset = annotationAssets[metadata.driveID]
+        let annotation
+        if( asset ) {
+            // if we have the asset, but it isn't marked for publication, just publish metadata
+            if( metadata.status !== 'staging' && metadata.status != 'production') {
+                annotation = {
+                    ...metadata,
+                    annotationAuthors,
+                    abstract: null,
+                    contentURL: null
+                };  
+            } else {
+                annotation = processAnnotation(asset,metadata,annotationAuthors)
+            }
         } else {
-            logger.info(`Unable to process annotation, metadata not found: ${asset.id}`)
+            // if we don't have the asset, just publish metadata
+            annotation = {
+                ...metadata,
+                annotationAuthors,
+                abstract: null,
+                contentURL: null
+            };  
         }
+        annotationContent.push(annotation)
     })
 
     let annotationManifest = {
@@ -675,20 +735,12 @@ function setupLogging() {
     });
 }
 
-function quickFix( driveAssets ) {
-    driveAssets.forEach( driveAsset => {
-        const annotationDir = `${baseDir}/${driveAsset.id}`;
-        const biblioDir = `${annotationDir}/bibliography`;
-        dirExists(biblioDir);
-    });
-}
-
 async function run(mode) {
     switch( mode ) {
         case 'download': {
             const annotationDriveAssets = locateAnnotationAssets();
             const annotationMetadata = await loadAnnotationMetadata()
-            const selectedAssets = refreshFilter(annotationMetadata,annotationDriveAssets)
+            const selectedAssets = filterForDownload(annotationMetadata,annotationDriveAssets)
             syncDriveAssets( selectedAssets );
             }
             break;
@@ -696,22 +748,18 @@ async function run(mode) {
             const annotationAssets = findLocalAssets();
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
-            const selectedAssets = refreshFilter(annotationMetadata,annotationAssets)
-            processAnnotations(selectedAssets,annotationMetadata,authors)
+            const publishedAssets = filterForPublication(annotationMetadata,annotationAssets)
+            processAnnotations(publishedAssets,annotationMetadata,authors)
             }
             break;
         case 'index':
+            // TODO only index the annotations published at this stage
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             break;
-        case 'run': {
-            const annotationMetadata = await loadAnnotationMetadata()
-            const annotationDriveAssets = locateAnnotationAssets(true);
-            const selectedAssets = refreshFilter(annotationMetadata,annotationDriveAssets)
-            const annotationAssets = syncDriveAssets( selectedAssets );
-            const authors = await loadAuthors()
-            processAnnotations(annotationAssets,annotationMetadata,authors)
-            searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
-            }
+        case 'run': 
+            await run('download')
+            await run('process')
+            await run('index')
             break;
     }    
 }
@@ -723,7 +771,10 @@ function loadConfig() {
         console.log("Unable to load configuration file. Expected it in edition_data/config.json");
         process.exit(-1);   
     }
-    const { sourceDir, targetDir, workingDir, editionDataURL, rclone } = configData
+    const { sourceDir, targetDir, workingDir, editionDataURL, rclone, stage } = configData
+
+    // publication stage
+    publicationStage = stage;
 
     // source dir
     annotationMetaDataCSV = `${sourceDir}/metadata/annotation-metadata.csv`;
