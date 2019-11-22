@@ -321,12 +321,15 @@ function filterForPublication(annotationMetadata, annotationAssets) {
 
     // filter only apply in production mode
     if( publicationStage !== 'production') {
-        return annotationAssets
+        return { 
+            publishedAssets: annotationAssets, 
+            publishedMetadata: annotationMetadata
+        }
     } 
 
     // filter out assets that aren't marked to be refreshed
-    const selectedAssets = []
-    for( const annotationAsset of annotationAssets ) {
+    const publishedAssets = {}, publishedMetadata = {}
+    for( const annotationAsset of Object.values(annotationAssets) ) {
         const metadata = annotationMetadata[annotationAsset.id]
         if( metadata ) {        
             const {status} = metadata
@@ -335,14 +338,23 @@ function filterForPublication(annotationMetadata, annotationAssets) {
             // must be downloaded and marked for publication
             if( fs.existsSync(annotationDir) ) {
                 if( status === 'published' ) {
-                    selectedAssets.push(annotationAsset)
+                    selectedAssets[annotationAsset.id] = annotationAsset
+                    publishedMetadata[metadata.id] = metadata
                 } else {
-                    // TODO delete assets not heading to production
+                    // delete assets not heading to production
+                    deleteAnnotation(metadata.id)
                 }
             } 
         }
     }
-    return selectedAssets
+    return { publishedAssets, publishedMetadata }
+}
+
+function deleteAnnotation(annotationID) {
+    const annotationHTMLFile = `${targetAnnotationDir}/${annotationID}.html`;    
+    const illustrationsDir = `${targetImageDir}/${annotationID}`;
+    fs.unlinkSync(annotationHTMLFile);
+    // TODO delete contents of illustration dir
 }
 
 
@@ -748,8 +760,8 @@ async function run(mode) {
             const annotationAssets = findLocalAssets();
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
-            const publishedAssets = filterForPublication(annotationMetadata,annotationAssets)
-            processAnnotations(publishedAssets,annotationMetadata,authors)
+            const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
+            processAnnotations(publishedAssets,publishedMetadata,authors)
             }
             break;
         case 'index':
