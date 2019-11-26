@@ -266,6 +266,8 @@ figure.current {
       float: left;
       border: 1px solid #DDDDDD;
       margin: 20px; }
+  #annotation-view blockquote p {
+    text-indent: 0px; }
   #annotation-view figure {
     float: right;
     margin: 20px; }
