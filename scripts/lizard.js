@@ -41,6 +41,9 @@ const docxMimeType = "application/vnd.openxmlformats-officedocument.wordprocessi
 const jpegMimeType = "image/jpeg";
 const googleLinkRegX = /https:\/\/drive\.google\.com\/open\?id=/;
 const googleLinkRegX2 = /https:\/\/drive.google.com\/file\/d\//;
+const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu\/doi\/10\.7916/
+const videoWidth = 560;
+const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
 const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
@@ -704,6 +707,10 @@ function findImageID( url ) {
     return null;
 }
 
+function findVideoURL( url ) {
+    return url.match(videoEmbedRegX) ? url : null
+}
+
 function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio ) {
 
     logger.info(`Processing annotation ${annotationID}`);
@@ -717,8 +724,10 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     let replacements = [];
     for( let i=0; i< anchorTags.length; i++ ) {
         let anchorTag = anchorTags[i];
-        const imageID = findImageID( anchorTag.href );
-        if( imageID ) {
+        let {href} = anchorTag;
+        const imageID = findImageID( href );
+        const videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
+        if( imageID || videoURL ) {
             const paragraphElement = findParentParagraph(anchorTag);     
             if( paragraphElement ) {
                 const figureRefEl = doc.createElement('i');
@@ -727,11 +736,15 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                 let figureNumber = extractFigureNumber(anchorTag.innerHTML);
                 if( figureNumber !== invalidFigureNumber ) {
                     let figureEl = doc.createElement('figure'); 
-                    const imageURL = `${imageRootURL}/${annotationID}/${imageID}.jpg`
                     const caption = captions[figureNumber];
                     if( !caption ) logger.info(`Caption not found for Fig. ${figureNumber}`);
                     const figCaption = (caption) ? `<figcaption>${caption}</figcaption>` : '';
-                    figureEl.innerHTML = `<img src="${imageURL}" alt="Figure" />${figCaption}`;  
+                    if( imageID ) {
+                        const imageURL = `${imageRootURL}/${annotationID}/${imageID}.jpg`
+                        figureEl.innerHTML = `<img src="${imageURL}" alt="Figure" />${figCaption}`;      
+                    } else {
+                        figureEl.innerHTML = `<iframe width="${videoWidth}" height="${videoHeight}" src="${videoURL}" frameborder="0" allowfullscreen></iframe>${figCaption}`
+                    }
                     // figure should be placed after this paragraph and the other figures
                     paragraphElement.parentNode.insertBefore(figureEl, paragraphElement.nextSibling);           
                 } else {
@@ -741,7 +754,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         } else {
             if( anchorTag.href.match( wikischolarRegX ) ) {
                 logger.info(`Wikischolars link detected: ${anchorTag.href}`)
-            }
+            } 
         }
     }
 

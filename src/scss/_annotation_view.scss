@@ -64,6 +64,9 @@
     }
 
     figure {
+        iframe {
+            width: 560px;
+            border: 1px solid #DDDDDD;        }
         img {
             width: 300px;
             border: 1px solid #DDDDDD;
@@ -72,10 +75,15 @@
             text-indent: 0px;
             line-height: 1.2;
             margin-left: 50px;
-            font-size: 10pt;
-            width: 300px;
+            font-size: 10pt;            
             text-align: left
+        }
+        img + figcaption {
+            width: 300px;
         }     
+        iframe + figcaption {
+            width: 560px;
+        }
         float: right;
         margin: 20px;
     }
