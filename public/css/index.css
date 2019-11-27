@@ -302,6 +302,9 @@ figure.current {
       background: #3F3626;
       font-size: 15px;
       color: white; }
+  #annotation-view .bibliography p {
+    text-indent: 0px;
+    margin-bottom: 15px; }
 
 #annotation-list-view {
   margin: 10px; }

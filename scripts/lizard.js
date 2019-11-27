@@ -767,6 +767,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     // Now append the bibliography
     if( biblio ) {
         let biblioEl = doc.createElement('div'); 
+        biblioEl.className = "bibliography";
         biblioEl.innerHTML = biblio;
         let body = doc.getElementsByTagName('body')[0];
         body.append(biblioEl);
