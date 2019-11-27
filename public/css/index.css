@@ -241,11 +241,17 @@ figure.current {
   height: calc(100vh - 14rem); }
 
 #annotation-view {
-  line-height: 2;
+  line-height: 1.5;
   text-indent: 50px; }
+  #annotation-view p {
+    margin: 0px; }
   #annotation-view h1 {
-    margin-bottom: 50px;
     text-align: center; }
+  #annotation-view h4 {
+    text-align: center;
+    margin-bottom: 30px; }
+  #annotation-view h4 + p {
+    text-indent: 0px; }
   #annotation-view h3 {
     margin: 40px 0px 40px 0px;
     text-indent: 0px; }
@@ -260,6 +266,8 @@ figure.current {
       float: left;
       border: 1px solid #DDDDDD;
       margin: 20px; }
+  #annotation-view blockquote p {
+    text-indent: 0px; }
   #annotation-view figure {
     float: right;
     margin: 20px; }
@@ -336,7 +344,7 @@ figure.current {
         #annotation-list-view .contentArea .sections .section .annotations .anno {
           margin-top: 20px;
           margin-left: 20px;
-          max-width: 450px; }
+          width: 350px; }
           #annotation-list-view .contentArea .sections .section .annotations .anno .status-indicator {
             color: red; }
           #annotation-list-view .contentArea .sections .section .annotations .anno .entries {

@@ -9,14 +9,14 @@ var lunr = require('lunr');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-function htmlToText(html) {
-  return html ? html.replace(/<\/?[^>]+>/ig, " ") : ""
+function xmlToText(xml) {
+  return xml ? xml.replace(/<\/?[^>]+>/ig, "").replace(/\n+/g, " ") : ""
 }
 
-function parseFolio(html) {
-  let dom = new JSDOM(html);
-  let htmlDoc = dom.window.document;
-  let folio = htmlDoc.querySelector('folio');
+function parseFolio(xml) {
+  let xmlDOM = new JSDOM(xml, { contentType: "text/xml" });
+  let xmlDoc = xmlDOM.window.document;
+  let folio = xmlDoc.querySelector('root');
   if( folio === null ) return [];
 
   let recipeDivs = folio.children;
@@ -25,9 +25,9 @@ function parseFolio(html) {
     let recipeDiv = recipeDivs[i];
     let recipeID = recipeDiv.id;
     if( recipeID ) {
-      let headerElement = recipeDiv.querySelector("h2")
-      let name = ( headerElement ) ? htmlToText(headerElement.innerHTML) : null;
-      let content = htmlToText(recipeDiv.innerHTML);
+      let headerElement = recipeDiv.querySelector("head")
+      let name = ( headerElement ) ? xmlToText(headerElement.innerHTML) : null;
+      let content = xmlToText(recipeDiv.innerHTML);
       passages.push({
         recipeID: recipeID,
         name: name,
@@ -57,10 +57,10 @@ function createSearchIndex( folioPath, indexPath, transcriptionType ) {
                   // ignore the manifest file
                   if( folioID.startsWith('manifest') ) 
                         return;
-                  let folioHTMLFile = `${folioPath}/${folioID}/${transcriptionType}/index.html`;
-                  if( fs.existsSync(folioHTMLFile) ) {
-                  const html = fs.readFileSync( folioHTMLFile, "utf8");
-                  const passages = parseFolio(html);
+                  let folioXMLFile = `${folioPath}/${folioID}/${transcriptionType}/original.txt`;
+                  if( fs.existsSync(folioXMLFile) ) {
+                  const xml = fs.readFileSync( folioXMLFile, "utf8");
+                  const passages = parseFolio(xml);
                   for( let passage of passages ) {
                   // create a search index document
                         const passageRecord = { 
@@ -130,7 +130,7 @@ var generateAnnotationIndex = function generateAnnotationIndex( annotationPath, 
       // ignore hidden directories
       if( annotationHTMLFile.startsWith('.') ) return;
       // ignore manifest
-      if( annotationHTMLFile === 'annotations.json' ) return;
+      if( annotationHTMLFile === 'annotations.json' || annotationHTMLFile === 'authors.json' ) return;
       const html = fs.readFileSync( `${annotationPath}/${annotationHTMLFile}`, "utf8");
       const content = parseAnnotation(html);
       const annotationID = annotationHTMLFile.split('.')[0];

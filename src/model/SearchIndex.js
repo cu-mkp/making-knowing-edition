@@ -1,5 +1,6 @@
 import axios from 'axios';
 import lunr from 'lunr';
+import { flattenProp } from 'recompose';
 
 class SearchIndex {
 
@@ -74,8 +75,8 @@ class SearchIndex {
 
       // transform search input into actionable data structure
       parseSearchInput( searchInput ) {
-            // strip out non-word chars except for quotes and whitespace, reduce runs of whitespace
-            const filteredInput = searchInput.replace(/[^\w\s"]/g,"").replace(/[\s]+/, " ")
+            // strip out non-word chars except for quotes, wildcards, and whitespace, reduce runs of whitespace
+            const filteredInput = searchInput.replace(/[^\w\s*"]/g,"").replace(/[\s]+/, " ")
 
             // make sure we ended up with at least one word character in the filtered input
             if( !filteredInput.match(/\w/) ) return null
@@ -95,6 +96,18 @@ class SearchIndex {
                         terms = terms.concat(fragTerms)
                   }
             }      
+
+            // if there are phrases, filter out wildcards
+            if( phrases.length > 0 ) {
+                  const removeWildcardRegex = /[*]/g
+                  const nextPhrases = []
+                  for( const phrase of phrases ) {
+                        const nextPhrase = phrase.map( term => term.replace(removeWildcardRegex,"") ) 
+                        nextPhrases.push(nextPhrase)
+                  }
+                  phrases = nextPhrases
+                  terms = terms.map( phrase => phrase.replace(removeWildcardRegex,"") )
+            }
 
             return { phrases, terms }
       }

@@ -49,7 +49,12 @@ cp -R edition_data_example edition_data
     "targetDir": "public/bnf-ms-fr-640",
     "sourceDir": "edition_data/m-k-manuscript-data",
     "contentDir": "edition_data/edition-webpages",
-    "workingDir": "edition_data/working"
+    "workingDir": "edition_data/working",
+    "rclone": {
+        "serviceName": "mk-annotations",
+        "folderName": "Annotations",
+        "sharedDrive": true
+    }
 }
 ```
 

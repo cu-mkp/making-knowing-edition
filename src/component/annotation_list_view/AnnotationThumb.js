@@ -7,19 +7,26 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 class AnnotationThumb extends Component {
 
-
     render() {
         const { annotation } = this.props
+        const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
+        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
+
+        const cardMedia = (
+            <CardMedia className="thumb-media" image={thumbnailURL}>
+                <Typography className="title">{title}</Typography>
+            </CardMedia>
+        )
 
         return (
             <Card className='annothumb'>
-                <CardActionArea 
-                    onClick={e => {this.props.history.push(`/annotations/${annotation.id}`)}}
-                >
-                    <CardMedia className="thumb-media" image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
-                        <Typography className="title">{annotation.name}</Typography>
-                    </CardMedia>
-                </CardActionArea>
+                { annotation.contentURL ? 
+                    <CardActionArea 
+                        onClick={ e => {this.props.history.push(`/essays/${annotation.id}`)}}
+                    >
+                        { cardMedia }
+                    </CardActionArea>
+                : cardMedia }
             </Card>
         );
     }

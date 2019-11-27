@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 import CustomizedTooltops from '../CustomizedTooltops';
 
-const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex."
+const comingSoon = "This essay is under revision."
 
 class AnnotationCard extends Component {
 
@@ -20,19 +20,6 @@ class AnnotationCard extends Component {
             anchorEl: null
         }
     }
-
-    // TODO remove or refactor display of links
-    // renderEntryLinks() {
-    //     const {entryIDs} = this.props.annotation
-
-    //     let links = [];
-    //     let idList = entryIDs.split(';');
-    //     for( let entryID of idList ) {
-    //         let folioID = sliceZeros( entryID.split('_')[0].slice(1) );
-    //         links.push( <MenuItem  key={entryID} onClick={this.handleClose}> <Link to={`/folios/${folioID}`}><Typography>{folioID}</Typography></Link></MenuItem>);
-    //     }
-    //     return links;        
-    // } 
 
     renderByline( annotationAuthors ) {
         const { authors } = this.props.authors
@@ -76,22 +63,29 @@ class AnnotationCard extends Component {
     render() {
         const { annotation } = this.props
 
-        let abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
+        const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
+        const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
+        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
 
         return (
             <Card className='anno'>
                 <CardHeader 
-                    title={annotation.name} 
-                    subheader={this.renderByline(annotation.authors)}
+                    title={title} 
+                    subheader={annotation.authors ? this.renderByline(annotation.authors) : ""}
                 >            
                 </CardHeader>
-                <CardMedia style={{height: 200}} image="/bnf-ms-fr-640/images/ann_015_sp_15/0B33U03wERu0ea3I1REx5ek1Yb00.jpg">
+                <CardMedia style={{height: 200}} image={thumbnailURL}>
                 </CardMedia>
                 <CardContent>
-                    <Typography className='abstract'>{Parser(abstract)}</Typography>
-                    <div className='details'>
-                        <Button onClick={e => {this.props.history.push(`/essays/${annotation.id}`)}}>Read Essay</Button>
-                    </div>
+                    <span className='abstract'>{Parser(abstract)}</span>
+                    { annotation.status === 'staging' ? 
+                        <span style={{color: 'green'}}><b>** IN STAGING **</b></span>                    
+                    : null }
+                    { annotation.contentURL ? 
+                        <div className='details'>
+                            <Button onClick={e => {this.props.history.push(`/essays/${annotation.id}`)}}>Read Essay</Button>
+                        </div>
+                    : null }
                 </CardContent>
             </Card>
 
