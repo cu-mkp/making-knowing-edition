@@ -49,7 +49,6 @@ const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
 const thumbnailFolderName = "DCE Annotation Thumbnails";
-const thumbnailPlaceholder = "img/watermark.png";
 
 async function loadAnnotationMetadata() {
     const csvData = fs.readFileSync(annotationMetaDataCSV).toString();
@@ -745,8 +744,17 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                     } else {
                         figureEl.innerHTML = `<iframe width="${videoWidth}" height="${videoHeight}" src="${videoURL}" frameborder="0" allowfullscreen></iframe>${figCaption}`
                     }
-                    // figure should be placed after this paragraph and the other figures
-                    paragraphElement.parentNode.insertBefore(figureEl, paragraphElement.nextSibling);           
+                    const { nextSibling } = paragraphElement;
+                    if( nextSibling.className === 'figure-container' ) {
+                        // figure container found, add the figure
+                        nextSibling.appendChild(figureEl);
+                    } else {
+                        // create the figure container and append the figure to it
+                        const figureContainer = doc.createElement('div');
+                        figureContainer.className = 'figure-container';
+                        figureContainer.appendChild(figureEl);
+                        paragraphElement.parentNode.insertBefore(figureContainer, nextSibling); 
+                    }
                 } else {
                     logger.info(`No figure number found in: ${anchorTag.innerHTML}`)
                 }

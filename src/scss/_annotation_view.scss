@@ -1,6 +1,6 @@
 #annotation-view.view-mode {
     margin: 80px 20% 80px 20%;
-    max-width: 66%;    
+    max-width: 960px;
 }
 
 #annotation-view.search-mode {
@@ -63,7 +63,13 @@
         }
     }
 
+    .figure-container {
+        float: right;
+    }
+
     figure {
+        margin: 20px;
+
         iframe {
             width: 560px;
             border: 1px solid #DDDDDD;        }
@@ -84,8 +90,6 @@
         iframe + figcaption {
             width: 560px;
         }
-        float: right;
-        margin: 20px;
     }
 
     table {
