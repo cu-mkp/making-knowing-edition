@@ -41,7 +41,7 @@ const docxMimeType = "application/vnd.openxmlformats-officedocument.wordprocessi
 const jpegMimeType = "image/jpeg";
 const googleLinkRegX = /https:\/\/drive\.google\.com\/open\?id=/;
 const googleLinkRegX2 = /https:\/\/drive.google.com\/file\/d\//;
-const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu\/doi\/10\.7916/
+const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu/;
 const videoWidth = 560;
 const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
