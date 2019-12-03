@@ -10,7 +10,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 function xmlToText(xml) {
-  return xml ? xml.replace(/<\/?[^>]+>/ig, "").replace(/\n+/g, " ") : ""
+  return xml ? xml.replace(/<\/?[^>]+>/ig, "").replace(/\n+/g, " ").replace(/’/g,"'") : ""
 }
 
 function parseFolio(xml) {
