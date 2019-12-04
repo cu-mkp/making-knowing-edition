@@ -46,6 +46,7 @@ const videoWidth = 560;
 const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
 const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
+const videoCitation = /[V|v]id(\.|eo[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
 const thumbnailFolderName = "DCE Annotation Thumbnails";
@@ -706,10 +707,6 @@ function findImageID( url ) {
     return null;
 }
 
-function findVideoURL( url ) {
-    return url.match(videoEmbedRegX) ? url : null
-}
-
 function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio ) {
 
     logger.info(`Processing annotation ${annotationID}`);
@@ -732,11 +729,12 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                 const figureRefEl = doc.createElement('i');
                 figureRefEl.innerHTML = anchorTag.innerHTML; 
                 replacements.push([anchorTag,figureRefEl]);
-                let figureNumber = extractFigureNumber(anchorTag.innerHTML);
+                const expectedType = (imageID) ? 'fig' : 'vid'
+                let figureNumber = extractFigureNumber(anchorTag.innerHTML,expectedType);
                 if( figureNumber !== invalidFigureNumber ) {
                     let figureEl = doc.createElement('figure'); 
                     const caption = captions[figureNumber];
-                    if( !caption ) logger.info(`Caption not found for Fig. ${figureNumber}`);
+                    if( !caption ) logger.info(`Caption not found for ${figureNumber}`);
                     const figCaption = (caption) ? `<figcaption>${caption}</figcaption>` : '';
                     if( imageID ) {
                         const imageURL = `${imageRootURL}/${annotationID}/${imageID}.jpg`
@@ -756,7 +754,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                         paragraphElement.parentNode.insertBefore(figureContainer, nextSibling); 
                     }
                 } else {
-                    logger.info(`No figure number found in: ${anchorTag.innerHTML}`)
+                    logger.info(`Invalid figure or video reference: ${anchorTag.innerHTML}`)
                 }
             }
         } else {
@@ -800,14 +798,29 @@ function findParentParagraph( node ) {
     return findParentParagraph( node.parentNode );
 }
 
-function extractFigureNumber( figureText ) {
+function extractFigureNumber( figureText, expectedType ) {
     const figureMatch = figureText.match(figureCitation)
-    if( figureMatch ) {
-        let figureNum = figureMatch[0].match(figureNumber)[0];
+    const videoMatch = figureText.match(videoCitation)
+
+    if( figureMatch || videoMatch ) {
+        let matched
+        if( figureMatch && videoMatch ) {
+            matched = ( figureMatch.index > videoMatch.index ) ? videoMatch : figureMatch
+        } else {
+            matched = figureMatch ? figureMatch : videoMatch
+        }
+
+        let figureNum = matched[0].match(figureNumber)[0];
         while( figureNum && figureNum[0] === '0') {
             figureNum = figureNum.substr(1);
         }
-        if(figureNum && figureNum.length > 0) return figureNum;
+        if(figureNum && figureNum.length > 0) {
+            const figType = (matched === figureMatch) ? 'fig' : 'vid'
+            // if we know what type it should be, it has to match
+            if( !expectedType || figType === expectedType ) {
+                return `${figType}. ${figureNum}`;
+            }
+        }
     }
     return invalidFigureNumber;
 }
