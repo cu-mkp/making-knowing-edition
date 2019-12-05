@@ -796,7 +796,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                         figureEl.innerHTML = `<iframe width="${videoWidth}" height="${videoHeight}" src="${videoURL}" frameborder="0" allowfullscreen></iframe>${figCaption}`
                     }
                     const { nextSibling } = paragraphElement;
-                    if( nextSibling.className === 'figure-container' ) {
+                    if( nextSibling && nextSibling.className === 'figure-container' ) {
                         // figure container found, add the figure
                         nextSibling.appendChild(figureEl);
                     } else {
