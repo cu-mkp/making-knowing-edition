@@ -76,7 +76,7 @@ class SearchIndex {
       // transform search input into actionable data structure
       parseSearchInput( searchInput ) {
             // strip out non-word chars except for quotes, wildcards, and whitespace, reduce runs of whitespace
-            const filteredInput = searchInput.replace(/[^\w\s*"]/g,"").replace(/[\s]+/, " ")
+            const filteredInput = searchInput.replace(/[^\w\s*"']/g,"").replace(/[\s]+/, " ")
 
             // make sure we ended up with at least one word character in the filtered input
             if( !filteredInput.match(/\w/) ) return null

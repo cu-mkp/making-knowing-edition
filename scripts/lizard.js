@@ -38,15 +38,20 @@ let imageRootURL;
 let logger = null;
 const maxDriveTreeDepth = 20;
 const docxMimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+const spreadsheetMimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+const rCloneExportFormats = "docx,csv";
 const jpegMimeType = "image/jpeg";
 const googleLinkRegX = /https:\/\/drive\.google\.com\/open\?id=/;
 const googleLinkRegX2 = /https:\/\/drive.google.com\/file\/d\//;
+const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu/;
+const videoWidth = 560;
+const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
 const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
+const videoCitation = /[V|v]id(\.|eo[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
 const thumbnailFolderName = "DCE Annotation Thumbnails";
-const thumbnailPlaceholder = "img/watermark.png";
 
 async function loadAnnotationMetadata() {
     const csvData = fs.readFileSync(annotationMetaDataCSV).toString();
@@ -94,14 +99,31 @@ async function loadAuthors() {
     return authors
 }
 
+async function loadAltText(altTextFile) {
+    const csvData = fs.readFileSync(altTextFile).toString();
+    let altTexts = {};
+    const tableObj = await csv().fromString(csvData)        
+    tableObj.forEach( entry => {
+        let altText = {
+            id: entry['UUID'],
+            text: entry['alt-text']
+        }
+        altTexts[altText.id] = altText;
+    });    
+    return altTexts
+}
+
 function findLocalAssets() {
 
-    function findDocinDir( dir ) {
+    function findDocinDir( dir, ext ) {
         // expect to find a single docx file in this dir
-        const dirContents = fs.readdirSync(dir);
-        for( let i=0; i < dirContents.length; i++ ) {
-            const filename = dirContents[i];
-            if( filename.endsWith('.docx') ) return `${dir}/${filename}`;
+        if( fs.existsSync(dir) ) {
+            const dirContents = fs.readdirSync(dir);
+            const extension = ext ? `.${ext}` : '.docx' 
+            for( let i=0; i < dirContents.length; i++ ) {
+                const filename = dirContents[i];
+                if( filename.endsWith(extension) ) return `${dir}/${filename}`;
+            }    
         }
         return null;
     };
@@ -126,6 +148,9 @@ function findLocalAssets() {
         // record bibliography file
         const biblioFile = findDocinDir(`${baseDir}/${annotationDir}/bibliography`)
 
+        // record alt text file
+        const altTextFile = findDocinDir(`${baseDir}/${annotationDir}/alttext`,'csv')
+
         // record illustrations
         const illustrationDir = `${baseDir}/${annotationDir}/illustrations`;
         let illustrations = [];
@@ -143,6 +168,7 @@ function findLocalAssets() {
             captionFile,
             abstractFile,
             biblioFile,
+            altTextFile,
             illustrations
         };
     });
@@ -292,6 +318,7 @@ function locateAnnotationAssets() {
                 let captionFile = null;
                 let abstractFile = null;
                 let biblioFile = null;
+                let altTextFile = null;
                 let illustrations = [];
                 if( annotationRoot.children ) {
                     annotationRoot.children.forEach( assetFile => {
@@ -305,7 +332,13 @@ function locateAnnotationAssets() {
                                 abstractFile = assetFile;
                             } else if( assetFile.name.includes('Bibliography_') ) {
                                 biblioFile = assetFile;
-                            }       
+                            }   
+                        }
+
+                        if( assetFile.mimeType === spreadsheetMimeType ) {
+                            if( assetFile.name.includes('Alttext_') ) {
+                                altTextFile = assetFile;
+                            }    
                         }
     
                         if( assetFile.children ) {
@@ -331,6 +364,7 @@ function locateAnnotationAssets() {
                         captionFile: captionFile,
                         abstractFile: abstractFile,
                         biblioFile: biblioFile,
+                        altTextFile: altTextFile,
                         illustrations: illustrations
                     });
                     const path = nodeToPath(textFileNode);
@@ -449,6 +483,10 @@ function syncDriveAssets( driveAssets ) {
         // create bibliography dir
         const biblioDir = `${annotationDir}/bibliography`;
         dirExists(biblioDir);
+
+        // create the alttext dir
+        const altTextDir = `${annotationDir}/alttext`;
+        dirExists(altTextDir);
         
         // this file is optional
         let captionFileDest = null;
@@ -474,6 +512,17 @@ function syncDriveAssets( driveAssets ) {
             syncDriveFile(biblioFileSrc, biblioDir);
         }
 
+        // alt text is optional
+        let altTextFileDest = null;
+        if( driveAsset.altTextFile ) {
+            const excelRegex = /.xlsx$/;
+            let altTextFileSrc = `${googleShareName}${nodeToPath(driveAsset.altTextFile)}`;
+            altTextFileSrc = altTextFileSrc.replace(excelRegex,'.csv')
+            altTextFileDest = `${altTextDir}/${driveAsset.altTextFile.name}`; 
+            altTextFileDest = altTextFileDest.replace(excelRegex,'.csv')
+            syncDriveFile(altTextFileSrc, altTextDir);
+        }
+        
         // make the illustrations dir 
         const illustrationsDir = `${annotationDir}/illustrations`;
         dirExists(illustrationsDir);
@@ -495,6 +544,7 @@ function syncDriveAssets( driveAssets ) {
             captionFile: captionFileDest,
             abstractFile: abstractFileDest,
             biblioFile: biblioFileDest,
+            altTextFile: altTextFileDest,
             illustrations: illustrations
         })
     });
@@ -515,7 +565,7 @@ function syncDriveFile( source, dest ) {
     // escape all quotes in source path
     const escSource = source.replace(/"/g, '\\"')  
     const shared = rCloneSharedDrive ? "--drive-shared-with-me" : ""
-    const cmd = `rclone ${shared} sync ${rCloneServiceName}:"${escSource}" "${dest}"`;
+    const cmd = `rclone --drive-export-formats ${rCloneExportFormats} ${shared} sync ${rCloneServiceName}:"${escSource}" "${dest}"`;
     logger.info(cmd);
     execSync(cmd, (error, stdout, stderr) => {
         console.log(`${stdout}`);
@@ -527,7 +577,7 @@ function syncDriveFile( source, dest ) {
 }
 
 
-function processAnnotations(annotationAssets, annotationMetadata, authors, thumbnails ) {
+async function processAnnotations(annotationAssets, annotationMetadata, authors, thumbnails ) {
 
     logger.info("Processing Annotations")
     logSeperator()
@@ -538,8 +588,7 @@ function processAnnotations(annotationAssets, annotationMetadata, authors, thumb
     dirExists( tempAbstractDir )
 
     let annotationContent = []
-    Object.values(annotationMetadata).forEach( metadata => {
-        
+    for( const metadata of Object.values(annotationMetadata)) {        
         // record the authors
         let annotationAuthors = []
         Object.values(authors).forEach( author => {
@@ -560,7 +609,7 @@ function processAnnotations(annotationAssets, annotationMetadata, authors, thumb
                     contentURL: null
                 };  
             } else {
-                annotation = processAnnotation(asset,metadata,annotationAuthors)
+                annotation = await processAnnotation(asset,metadata,annotationAuthors)
             }
         } else {
             // if we don't have the asset, just publish metadata
@@ -583,7 +632,7 @@ function processAnnotations(annotationAssets, annotationMetadata, authors, thumb
         } 
         
         annotationContent.push(annotation)
-    })
+    }
 
     let annotationManifest = {
         title: "Annotations of BnF MS Fr. 640",
@@ -609,7 +658,7 @@ function processAnnotations(annotationAssets, annotationMetadata, authors, thumb
     });
 }
 
-function processAnnotation( annotationAsset, metadata, authors ) {
+async function processAnnotation( annotationAsset, metadata, authors ) {
 
     function convertToHTML( source, target ) {
         const escSource = source.replace(/"/g, '\\"')  
@@ -634,6 +683,12 @@ function processAnnotation( annotationAsset, metadata, authors ) {
         const captionHTMLFile = `${tempCaptionDir}/${annotationID}.html`;  
         convertToHTML( annotationAsset.captionFile, captionHTMLFile );  
         captions = processCaptions(captionHTMLFile);
+    }
+
+    // Load alternate text for illustrations
+    let altTexts = {};
+    if( annotationAsset.altTextFile ) {
+        altTexts = await loadAltText( annotationAsset.altTextFile );
     }
 
     // Extract the abstract, if it exists
@@ -662,7 +717,7 @@ function processAnnotation( annotationAsset, metadata, authors ) {
     })
 
     // Take the pandoc output and transform it into final annotation html
-    processAnnotationHTML(annotationHTMLFile, annotationID, captions, biblio);
+    processAnnotationHTML(annotationHTMLFile, annotationID, captions, biblio, altTexts);
 
     return {
         ...metadata,
@@ -704,7 +759,7 @@ function findImageID( url ) {
     return null;
 }
 
-function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio ) {
+function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio, altTexts ) {
 
     logger.info(`Processing annotation ${annotationID}`);
     // load document 
@@ -717,31 +772,48 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     let replacements = [];
     for( let i=0; i< anchorTags.length; i++ ) {
         let anchorTag = anchorTags[i];
-        const imageID = findImageID( anchorTag.href );
-        if( imageID ) {
+        let {href} = anchorTag;
+        const imageID = findImageID( href );
+        const videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
+        if( imageID || videoURL ) {
             const paragraphElement = findParentParagraph(anchorTag);     
             if( paragraphElement ) {
                 const figureRefEl = doc.createElement('i');
                 figureRefEl.innerHTML = anchorTag.innerHTML; 
                 replacements.push([anchorTag,figureRefEl]);
-                let figureNumber = extractFigureNumber(anchorTag.innerHTML);
+                const expectedType = (imageID) ? 'fig' : 'vid'
+                let figureNumber = extractFigureNumber(anchorTag.innerHTML,expectedType);
                 if( figureNumber !== invalidFigureNumber ) {
                     let figureEl = doc.createElement('figure'); 
-                    const imageURL = `${imageRootURL}/${annotationID}/${imageID}.jpg`
                     const caption = captions[figureNumber];
-                    if( !caption ) logger.info(`Caption not found for Fig. ${figureNumber}`);
+                    if( !caption ) logger.info(`Caption not found for ${figureNumber}`);
                     const figCaption = (caption) ? `<figcaption>${caption}</figcaption>` : '';
-                    figureEl.innerHTML = `<img src="${imageURL}" alt="Figure" />${figCaption}`;  
-                    // figure should be placed after this paragraph and the other figures
-                    paragraphElement.parentNode.insertBefore(figureEl, paragraphElement.nextSibling);           
+                    if( imageID ) {
+                        const imageURL = `${imageRootURL}/${annotationID}/${imageID}.jpg`
+                        const altText = altTexts[imageID] ? altTexts[imageID].text : figureNumber
+                        figureEl.innerHTML = `<img src="${imageURL}" alt="${altText}" />${figCaption}`;      
+                    } else {
+                        figureEl.innerHTML = `<iframe width="${videoWidth}" height="${videoHeight}" src="${videoURL}" frameborder="0" allowfullscreen></iframe>${figCaption}`
+                    }
+                    const { nextSibling } = paragraphElement;
+                    if( nextSibling && nextSibling.className === 'figure-container' ) {
+                        // figure container found, add the figure
+                        nextSibling.appendChild(figureEl);
+                    } else {
+                        // create the figure container and append the figure to it
+                        const figureContainer = doc.createElement('div');
+                        figureContainer.className = 'figure-container';
+                        figureContainer.appendChild(figureEl);
+                        paragraphElement.parentNode.insertBefore(figureContainer, nextSibling); 
+                    }
                 } else {
-                    logger.info(`No figure number found in: ${anchorTag.innerHTML}`)
+                    logger.info(`Invalid figure or video reference: ${anchorTag.innerHTML}`)
                 }
             }
         } else {
             if( anchorTag.href.match( wikischolarRegX ) ) {
                 logger.info(`Wikischolars link detected: ${anchorTag.href}`)
-            }
+            } 
         }
     }
 
@@ -754,6 +826,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     // Now append the bibliography
     if( biblio ) {
         let biblioEl = doc.createElement('div'); 
+        biblioEl.className = "bibliography";
         biblioEl.innerHTML = biblio;
         let body = doc.getElementsByTagName('body')[0];
         body.append(biblioEl);
@@ -778,14 +851,29 @@ function findParentParagraph( node ) {
     return findParentParagraph( node.parentNode );
 }
 
-function extractFigureNumber( figureText ) {
+function extractFigureNumber( figureText, expectedType ) {
     const figureMatch = figureText.match(figureCitation)
-    if( figureMatch ) {
-        let figureNum = figureMatch[0].match(figureNumber)[0];
+    const videoMatch = figureText.match(videoCitation)
+
+    if( figureMatch || videoMatch ) {
+        let matched
+        if( figureMatch && videoMatch ) {
+            matched = ( figureMatch.index > videoMatch.index ) ? videoMatch : figureMatch
+        } else {
+            matched = figureMatch ? figureMatch : videoMatch
+        }
+
+        let figureNum = matched[0].match(figureNumber)[0];
         while( figureNum && figureNum[0] === '0') {
             figureNum = figureNum.substr(1);
         }
-        if(figureNum && figureNum.length > 0) return figureNum;
+        if(figureNum && figureNum.length > 0) {
+            const figType = (matched === figureMatch) ? 'fig' : 'vid'
+            // if we know what type it should be, it has to match
+            if( !expectedType || figType === expectedType ) {
+                return `${figType}. ${figureNum}`;
+            }
+        }
     }
     return invalidFigureNumber;
 }
@@ -830,7 +918,7 @@ async function run(mode) {
             const authors = await loadAuthors()
             const thumbnails = loadThumbnails()
             const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
-            processAnnotations(publishedAssets,publishedMetadata,authors,thumbnails)
+            await processAnnotations(publishedAssets,publishedMetadata,authors,thumbnails)
             }
             break;
         case 'index':
