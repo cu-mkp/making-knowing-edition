@@ -368,7 +368,7 @@ function locateAnnotationAssets() {
                         illustrations: illustrations
                     });
                     const path = nodeToPath(textFileNode);
-                    logger.info(`Found annotation: ${textFileNode.id} in ${googleShareName}${path}`);
+                    // logger.info(`Found annotation: ${textFileNode.id} in ${googleShareName}${path}`);
                 } else {
                     const path = nodeToPath(annotationRoot);
                     logger.info(`Annotation not found. Must contain docx file with Text_* in the filename: ${path}`);
@@ -388,7 +388,6 @@ function filterForDownload(annotationMetadata, annotationAssets) {
         const metadata = annotationMetadata[annotationAsset.id]
         if( metadata ) {        
             const {status,refresh} = metadata
-            const annotationDir = `${baseDir}/${annotationAsset.id}`;
 
             if( publicationStage === 'production') {
                 // download everything that is published, to make sure we have the latest
@@ -396,8 +395,8 @@ function filterForDownload(annotationMetadata, annotationAssets) {
                     selectedAssets.push(annotationAsset)
                 }
             } else {
-                // if user requests refresh or we don't have it yet and it is marked for publication
-                if(refresh || (!fs.existsSync(annotationDir) && (status === 'published' || status === 'staging')) ) {
+                // if user requests refresh 
+                if(refresh) {
                     selectedAssets.push(annotationAsset)
                 }
             }
@@ -903,13 +902,22 @@ function setupLogging() {
 
 async function run(mode) {
     switch( mode ) {
+        case 'download-all': {
+            const annotationDriveAssets = locateAnnotationAssets();
+            syncDriveAssets( annotationDriveAssets );
+            }
+            break;
+        case 'download-thumbs': {
+            const thumbnailAssets = locateThumbnails();
+            const annotationMetadata = await loadAnnotationMetadata()
+            syncThumbnails( thumbnailAssets, annotationMetadata )
+            }
+            break;
         case 'download': {
             const annotationDriveAssets = locateAnnotationAssets();
-            const thumbnailAssets = locateThumbnails();
             const annotationMetadata = await loadAnnotationMetadata()
             const selectedAssets = filterForDownload(annotationMetadata,annotationDriveAssets)
             syncDriveAssets( selectedAssets );
-            syncThumbnails( thumbnailAssets, annotationMetadata )
             }
             break;
         case 'process': {
@@ -924,6 +932,12 @@ async function run(mode) {
         case 'index':
             // TODO only index the annotations published at this stage
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
+            break;
+        case 'init':
+            await run('download-all')
+            await run('download-thumbs')
+            await run('process')
+            await run('index')
             break;
         case 'run': 
             await run('download')
@@ -1000,10 +1014,13 @@ function main() {
     if( mode === 'help' ) {
         console.log(`Usage: lizard.js <command>` );
         console.log("A helpful lizard that responds to the following commands:")
-        console.log("\tdownload: Download the annotations from Google Drive via rclone.");
+        console.log("\tdownload-thumbs: Download all the essay thumbnails from Google Drive via rclone.");
+        console.log("\tdownload-all: Download all essays from Google Drive.");
+        console.log("\tdownload: Download only essays marked with as 'refresh'.");
         console.log("\tprocess: Process the downloaded files and place them on the asset server.");
-        console.log("\tindex: Create a search index of the annotations.");
-        console.log("\trun: Do all of the above.")
+        console.log("\tindex: Create a search index of the essays.");
+        console.log("\trun: Download, process, and index.")
+        console.log("\tinit: Download all, download thumbs, process, and index.")
         console.log("\thelp: Displays this help. ");
         process.exit(-1);
     }
