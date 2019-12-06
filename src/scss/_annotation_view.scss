@@ -33,13 +33,19 @@
     }
 
     h3 {
-        margin: 40px 0px 40px 0px;
+        margin: 0px;
+        margin-top: 40px;
+        text-indent: 0px;
+    }
+
+    h3 + p {
         text-indent: 0px;
     }
     
     li {
         p {
             text-indent: 5px;
+            margin-bottom: 15px;
         }
     }
 
@@ -48,14 +54,6 @@
         text-decoration: underline blue;
     }
 
-    .author-bio {
-        .author-pic {
-            float: left;
-            border: 1px solid #DDDDDD;
-            margin: 20px;
-        }
-        text-indent: 0px;
-    }
 
     blockquote {
         p {
@@ -93,6 +91,7 @@
     }
 
     table {
+        margin: 20px;
         width: 100%;
         text-align: left;
         border-collapse: collapse;
