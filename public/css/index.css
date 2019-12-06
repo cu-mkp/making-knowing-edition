@@ -245,6 +245,8 @@ figure.current {
   text-indent: 50px; }
   #annotation-view p {
     margin: 0px; }
+  #annotation-view a {
+    word-wrap: break-word; }
   #annotation-view h1 {
     text-align: center; }
   #annotation-view h4 {
