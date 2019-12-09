@@ -45,17 +45,22 @@ class Annotation extends React.Component {
 		}
 		icon += this.state.visible?' open':'';
 		let content_style = this.state.visible?{display: "block"}:{display: "none"};
-		const annotation = this.props.annotation;
-		const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? lorem : annotation.abstract;
+		const {annotation} = this.props;
+
+		const comingSoon = "This essay is under revision."
+        const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
+        const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
+        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
+
 		return (
 			  <div className="annotation">
 			  	<div className="header">
-			  		<div className="title"><h2>{this.props.headerContent}</h2></div>
+			  		<div className="title"><h2>{title}</h2></div>
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
 					<h2><Link to={`/essays/${annotation.id}`}>{annotation.name}</Link></h2>
-					<div className='thumbnail'><span className='icon fa fa-10x fa-flask'></span></div>
+					<div className='thumbnail'><img style={{height: 200}} src={thumbnailURL}></img></div>
 					<div className='abstract'>{Parser(abstract)}</div>
 				</div>
 			  </div>
