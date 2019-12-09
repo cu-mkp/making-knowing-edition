@@ -66,11 +66,14 @@
     }
 
     .figure-container {
-        float: right;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     figure {
-        margin: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
 
         iframe {
             width: 560px;

@@ -269,9 +269,12 @@ figure.current {
   #annotation-view blockquote p {
     text-indent: 0px; }
   #annotation-view .figure-container {
-    float: right; }
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap; }
   #annotation-view figure {
-    margin: 20px; }
+    margin-top: 20px;
+    margin-bottom: 20px; }
     #annotation-view figure iframe {
       width: 560px;
       border: 1px solid #DDDDDD; }
