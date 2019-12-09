@@ -41,6 +41,7 @@ const docxMimeType = "application/vnd.openxmlformats-officedocument.wordprocessi
 const spreadsheetMimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 const rCloneExportFormats = "docx,csv";
 const jpegMimeType = "image/jpeg";
+const pngMimeType = "image/png";
 const googleLinkRegX = /https:\/\/drive\.google\.com\/open\?id=/;
 const googleLinkRegX2 = /https:\/\/drive.google.com\/file\/d\//;
 const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu/;
@@ -345,7 +346,7 @@ function locateAnnotationAssets() {
                             // locate the illustrations, if any
                             if( assetFile.children.length > 0 && assetFile.name.includes('Illustrations_') ) {
                                 assetFile.children.forEach( illustrationFile => {
-                                    if( illustrationFile.mimeType === jpegMimeType ) {
+                                    if( illustrationFile.mimeType === jpegMimeType || illustrationFile.mimeType === pngMimeType ) {
                                         illustrations.push( illustrationFile );
                                     }
                                 });
@@ -426,7 +427,7 @@ function filterForPublication(annotationMetadata, annotationAssets) {
             // must be downloaded and marked for publication
             if( fs.existsSync(annotationDir) ) {
                 if( status === 'published' ) {
-                    selectedAssets[annotationAsset.id] = annotationAsset
+                    publishedAssets[annotationAsset.id] = annotationAsset
                     publishedMetadata[metadata.id] = metadata
                 } else {
                     // delete assets not heading to production
@@ -441,7 +442,9 @@ function filterForPublication(annotationMetadata, annotationAssets) {
 function deleteAnnotation(annotationID) {
     const annotationHTMLFile = `${targetAnnotationDir}/${annotationID}.html`;    
     const illustrationsDir = `${targetImageDir}/${annotationID}`;
-    fs.unlinkSync(annotationHTMLFile);
+    if( fs.existsSync(annotationHTMLFile) ) {
+        fs.unlinkSync(annotationHTMLFile);
+    }
     // TODO delete contents of illustration dir
 }
 
@@ -531,7 +534,8 @@ function syncDriveAssets( driveAssets ) {
         driveAsset.illustrations.forEach( illustration => {
             const illustrationSrc = `${googleShareName}${nodeToPath(illustration)}`;
             const illustrationTmp = `${illustrationsDir}/${illustration.name}`;
-            const illustrationDest = `${illustrationsDir}/${illustration.id}.jpg`;   
+            const ext = illustration.mimeType === jpegMimeType ? 'jpg' : 'png';
+            const illustrationDest = `${illustrationsDir}/${illustration.id}.${ext}`;  
             syncDriveFile(illustrationSrc, illustrationsDir);
             fs.renameSync(illustrationTmp,illustrationDest);
             illustrations.push(illustrationDest);
@@ -600,7 +604,7 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
         let annotation
         if( asset ) {
             // if we have the asset, but it isn't marked for publication, just publish metadata
-            if( metadata.status !== 'staging' && metadata.status != 'production') {
+            if( metadata.status !== 'staging' && metadata.status != 'published') {
                 annotation = {
                     ...metadata,
                     annotationAuthors,
@@ -707,16 +711,19 @@ async function processAnnotation( annotationAsset, metadata, authors ) {
     }
     
     // Make a directory for the illustrations and copy them to there
+    const illustrations = {};
     const illustrationsDir = `${targetImageDir}/${annotationID}`;
     dirExists( illustrationsDir );
     annotationAsset.illustrations.forEach( illustration => {
         const sourceFile = `${baseDir}/${annotationAsset.id}/illustrations/${illustration}`
         const targetFile = `${illustrationsDir}/${illustration}`
+        const imageID = illustration.replace(/.\w+$/,'')
+        illustrations[imageID] = illustration
         fs.copyFileSync( sourceFile, targetFile );
     })
 
     // Take the pandoc output and transform it into final annotation html
-    processAnnotationHTML(annotationHTMLFile, annotationID, captions, biblio, altTexts);
+    processAnnotationHTML(annotationHTMLFile, annotationID, captions, biblio, illustrations, altTexts);
 
     return {
         ...metadata,
@@ -758,7 +765,7 @@ function findImageID( url ) {
     return null;
 }
 
-function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio, altTexts ) {
+function processAnnotationHTML( annotationHTMLFile, annotationID, captions, biblio, illustrations, altTexts ) {
 
     logger.info(`Processing annotation ${annotationID}`);
     // load document 
@@ -775,6 +782,9 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         const imageID = findImageID( href );
         const videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
         if( imageID || videoURL ) {
+            if( imageID && !illustrations[imageID] ) {
+                logger.info(`Illustration not found: ${href}`)
+            }
             const paragraphElement = findParentParagraph(anchorTag);     
             if( paragraphElement ) {
                 const figureRefEl = doc.createElement('i');
@@ -788,7 +798,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                     if( !caption ) logger.info(`Caption not found for ${figureNumber}`);
                     const figCaption = (caption) ? `<figcaption>${caption}</figcaption>` : '';
                     if( imageID ) {
-                        const imageURL = `${imageRootURL}/${annotationID}/${imageID}.jpg`
+                        const imageURL = `${imageRootURL}/${annotationID}/${illustrations[imageID]}`
                         const altText = altTexts[imageID] ? altTexts[imageID].text : figureNumber
                         figureEl.innerHTML = `<img src="${imageURL}" alt="${altText}" />${figCaption}`;      
                     } else {
