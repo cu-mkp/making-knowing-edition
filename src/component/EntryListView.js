@@ -16,6 +16,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import copyObject from './../lib/copyObject';
 import { dispatchAction } from '../model/ReduxStore';
+import { S_IFDIR } from 'constants';
 
 
 class EntryListView extends Component {
@@ -36,19 +37,28 @@ class EntryListView extends Component {
                   let odd = 0
                   for( const entryAnnotation of entryAnnotations ) {
                         const annotation = annotations[entryAnnotation]
+
                         const key = `${entry.id}-anno-${annotation.id}`
                         const annotationURL = `/essays/${annotation.id}`
-                        annotationList.push(
-                              <Link 
-                                    key={key} 
-                                    onClick={e => {this.props.history.push(annotationURL)}} 
-                              >
-                                    {annotation.name}
-                              </Link>
-                        )
+
+                        let annotationItem
+                        if( annotation.status ) {
+                              annotationItem = (
+                                    <Link 
+                                          key={key} 
+                                          onClick={e => {this.props.history.push(annotationURL)}} 
+                                    >
+                                          {annotation.name}
+                                    </Link>
+                              )
+                        } else {
+                              // if it doesn't have a status, don't link to it.
+                              annotationItem = <span key={key}>{annotation.name}</span>
+                        }
+                        annotationList.push(annotationItem)
                         if( entryAnnotations.length > 1 && !(odd++ % 2) ) {
                               annotationList.push(<span key={`${key}-comma`}>, </span>)
-                        }
+                        }      
                   }
             }
 
