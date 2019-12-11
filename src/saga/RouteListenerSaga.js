@@ -61,6 +61,7 @@ function *userNavigation(action) {
                 }
                 break;
             case 'entries':
+                yield resolveAnnotationManifest();
                 yield resolveEntryManifest();
                 break;
             default:

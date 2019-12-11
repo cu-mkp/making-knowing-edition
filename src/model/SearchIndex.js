@@ -1,6 +1,5 @@
 import axios from 'axios';
 import lunr from 'lunr';
-import { flattenProp } from 'recompose';
 
 class SearchIndex {
 

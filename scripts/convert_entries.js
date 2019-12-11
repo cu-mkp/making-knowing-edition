@@ -10,7 +10,7 @@ async function convert( entriesCSV, targetEntriesFile ) {
     let ordinalID = 1;
     const tableObj = await csv({ delimiter: '\t' }).fromString(csvData)        
     tableObj.forEach( entry => {
-        let { folio, heading_tc, heading_tcn, heading_tl, categories } = entry;
+        let { div_id, folio, heading_tc, heading_tcn, heading_tl, categories } = entry;
 
         // count up the number of mentions for each type
         let mentions = {};
@@ -23,6 +23,7 @@ async function convert( entriesCSV, targetEntriesFile ) {
         
         entries.push({
             id: ordinalID++,
+            div_id,
             folio, 
             heading_tc, 
             heading_tcn, 

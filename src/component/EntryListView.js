@@ -28,16 +28,51 @@ class EntryListView extends Component {
             dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
       }
 
+      renderAnnotationList( entry ) {
+            const { annotationsByEntry, annotations } = this.props.annotations
+            const annotationList = []
+            const entryAnnotations = annotationsByEntry[entry['div_id']]
+            if( entryAnnotations ) {
+                  let odd = 0
+                  for( const entryAnnotation of entryAnnotations ) {
+                        const annotation = annotations[entryAnnotation]
+                        const key = `${entry.id}-anno-${annotation.id}`
+                        const annotationURL = `/essays/${annotation.id}`
+                        annotationList.push(
+                              <Link 
+                                    key={key} 
+                                    onClick={e => {this.props.history.push(annotationURL)}} 
+                              >
+                                    {annotation.name}
+                              </Link>
+                        )
+                        if( entryAnnotations.length > 1 && !(odd++ % 2) ) {
+                              annotationList.push(<span key={`${key}-comma`}>, </span>)
+                        }
+                  }
+            }
+
+            if( annotationList.length === 0 ) {
+                  return null 
+            } else {
+                  const plural = annotationList.length > 1 ? 's' : ''
+                  return (
+                        <Typography>Annotation{plural}: { annotationList }</Typography>
+                  )      
+            }
+      }
+
       renderEntryCard = (index, key) => {        
             const { entryList, tagNameMap } = this.props.entries
             const sortedList = this.sortEntryList(entryList);
             const entry = sortedList[index]
             let tags = [];
             for( let tagID of Object.keys(tagNameMap) ) {
-            if( entry.mentions[tagID] > 0 ) {
-                  tags.push({ id: tagID, name: tagNameMap[tagID], count: entry.mentions[tagID]})
+                  if( entry.mentions[tagID] > 0 ) {
+                        tags.push({ id: tagID, name: tagNameMap[tagID], count: entry.mentions[tagID]})
+                  }
             }
-            }
+
             let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
             let categories = entry['categories'].replace(/;/g,', ')
             let chips = this.renderCardChips(tags)
@@ -47,8 +82,8 @@ class EntryListView extends Component {
                               <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
                                           <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
-                                          <Typography>{categories}</Typography>
-                                          <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
+                                          <Typography>Category: {categories}</Typography>
+                                          { this.renderAnnotationList(entry) }
                                           <div className="entry-chips">{mentionRow}</div>
                                     </div>        
                         </ExpansionPanelSummary>
@@ -70,7 +105,7 @@ class EntryListView extends Component {
                                           {
                                                 tags.map((tag,index)=>{
                                                       return (
-                                                            <Fragment>
+                                                            <Fragment key={`${entry.id}-frag-${index}`}>
                                                                         <div className={"detail-row"}> 
                                                                               <div className={"chip-column"}> {chips[index]} </div> 
                                                                               <div className={"reference-column"}>
@@ -219,7 +254,8 @@ class EntryListView extends Component {
 
 function mapStateToProps(state) {
     return {
-        entries: state.entries
+        entries: state.entries,
+        annotations: state.annotations
     };
 }
 

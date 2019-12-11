@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import Parser from 'html-react-parser';
 
-const lorem = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor tincidunt nunc vel pellentesque. In sagittis, nunc a luctus molestie, diam justo finibus tortor, ut rutrum nisi mauris ut elit. Morbi lorem urna, rhoncus eu venenatis at, varius quis mauris. Quisque pellentesque orci a libero malesuada, id semper sem dignissim. Duis dolor purus, rutrum et dictum id, laoreet vel nulla. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut sed nibh libero. Integer gravida ut ipsum a pretium. Integer id libero ex.</p>"
-
 class Annotation extends React.Component {
 
 	constructor(props, context) {
@@ -60,7 +58,7 @@ class Annotation extends React.Component {
 				</div>
 			  	<div className="content" style={content_style}>
 					<h2><Link to={`/essays/${annotation.id}`}>{annotation.name}</Link></h2>
-					<div className='thumbnail'><img style={{height: 200}} src={thumbnailURL}></img></div>
+					<div className='thumbnail' ><img alt={`Thumbnail for ${annotation.name}`} style={{height: 200}} src={thumbnailURL}></img></div>
 					<div className='abstract'>{Parser(abstract)}</div>
 				</div>
 			  </div>
