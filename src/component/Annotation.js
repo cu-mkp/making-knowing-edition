@@ -49,6 +49,7 @@ class Annotation extends React.Component {
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
         const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
         const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
+		const annotationLink = annotation.status ? <Link to={`/essays/${annotation.id}`}>{annotation.name}</Link> : annotation.name
 
 		return (
 			  <div className="annotation">
@@ -57,7 +58,7 @@ class Annotation extends React.Component {
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>
-					<h2><Link to={`/essays/${annotation.id}`}>{annotation.name}</Link></h2>
+					<h2>{annotationLink}</h2>
 					<div className='thumbnail' ><img alt={`Thumbnail for ${annotation.name}`} style={{height: 200}} src={thumbnailURL}></img></div>
 					<div className='abstract'>{Parser(abstract)}</div>
 				</div>
