@@ -119,9 +119,14 @@
         }
     }    
 
+    .footnotes {
+        line-height: 1;
+    }
+
     .bibliography {
         p {
             text-indent: 0px;   
+            line-height: 1;
             margin-bottom: 15px;
         }
     }

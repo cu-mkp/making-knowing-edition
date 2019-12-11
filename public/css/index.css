@@ -312,8 +312,11 @@ figure.current {
       background: #3F3626;
       font-size: 15px;
       color: white; }
+  #annotation-view .footnotes {
+    line-height: 1; }
   #annotation-view .bibliography p {
     text-indent: 0px;
+    line-height: 1;
     margin-bottom: 15px; }
 
 #annotation-list-view {
