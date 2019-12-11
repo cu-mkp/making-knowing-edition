@@ -10,11 +10,11 @@ Installation
 
 In order to get the project running on you local machine, follow the steps below. Once you have a local environment, you can deploy a version of the edition to a server. If you want the server to automatically stay up to date, see the [MK Asset Server](https://github.com/performant-software/making-knowing-assetserver) project.
 
-Note: These instructions call for using `brew` to install certain software, which is MacOS specifc. If you are installing on a different OS, please use the package manager appropriate to your OS.
+Note: These instructions call for using [homebrew](https://brew.sh/) to install certain software, which is MacOS specifc. If you are installing on a different OS, please use the package manager appropriate to your OS.
 
 Steps:
 
-1. Run yarn, and the cd into scripts and run yarn there.
+1. Run [yarn](https://yarnpkg.com), and the cd into scripts and run yarn there.
 
 ```
 yarn 
@@ -22,7 +22,7 @@ cd scripts
 yarn
 ```
 
-2. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a destination called 'google' which is authorized to access the share. On my mac with homebrew and interactive session:  
+2. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a service called 'mk-annotations' which is authorized to access the shared 'Annotations' directory (see step 5 below). On MacOS with [homebrew](https://brew.sh/) the commands are:  
 
 ```
 brew install rclone  
@@ -54,7 +54,8 @@ cp -R edition_data_example edition_data
         "serviceName": "mk-annotations",
         "folderName": "Annotations",
         "sharedDrive": true
-    }
+    },
+    "stage": "production"
 }
 ```
 
@@ -96,7 +97,7 @@ Now, you are ready to process some data!
 
 1. Run `scripts/asset_server.js local` to populate the folios, search, glossary, content pages, and comments.
 
-2. Run `scripts/lizard.js` to see a help message that details the various functions of this script. Lizard does the processing of research essays from Google Drive.
+2. Run `scripts/lizard.js init` to download and process all of the research essays.
 
 3. Run `scripts/iiif_manifest.js` to generate a IIIF manifest file and associated Open Annotation JSON files with your edition data URL baked in.
 
