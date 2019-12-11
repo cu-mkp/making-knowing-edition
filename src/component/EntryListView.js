@@ -39,6 +39,7 @@ class EntryListView extends Component {
             }
             }
             let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
+            let categories = entry['categories'].replace(/;/g,', ')
             let chips = this.renderCardChips(tags)
             const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
             return (
@@ -46,7 +47,7 @@ class EntryListView extends Component {
                               <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
                                           <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
-                                          <Typography>Moldmaking and Metalworking</Typography>
+                                          <Typography>{categories}</Typography>
                                           <Typography>Annotations: <i>Too thin things, fol. 142v (Fu, Zhang)</i></Typography>
                                           <div className="entry-chips">{mentionRow}</div>
                                     </div>        
