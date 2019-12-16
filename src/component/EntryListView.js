@@ -16,7 +16,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import copyObject from './../lib/copyObject';
 import { dispatchAction } from '../model/ReduxStore';
-import { S_IFDIR } from 'constants';
 
 
 class EntryListView extends Component {
@@ -92,7 +91,7 @@ class EntryListView extends Component {
                               <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
                                           <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
-                                          <Typography>Category: {categories}</Typography>
+                                          <Typography>Category: <i>{categories}</i></Typography>
                                           { this.renderAnnotationList(entry) }
                                           <div className="entry-chips">{mentionRow}</div>
                                     </div>        
