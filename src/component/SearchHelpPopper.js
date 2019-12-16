@@ -13,10 +13,15 @@ const SearchHelpPopper=(props)=>{
                         <span className="fa fa-window-close" ></span>
                     </div>
                     <div className="helpHeader">
-                        <Typography variant="subtitle1">Searching the Edition</Typography>
+                        <Typography variant="subtitle1">Quick Search Tips</Typography>
                     </div>
                     <div style={{ marginTop: 10}}>
-                        <Typography>The search bar allows you to search for words or phrases in the critical edition as well as the research essays. To search for a phrase, wrap the phrase in "quotes". Terms not in quotes are looked for together in the same entry, but not as a single phrase. The search is very literal, but if you want to find variants of a word you can use a wildcard "*" character. You can search in French and in English.</Typography>
+                        <ul>
+                            <li><Typography >Results given for pages on which all words appear (i.e., default search is AND)</Typography></li>
+                            <li><Typography >Use * for wildcard search (e.g., gol* = gold, golden, goldsmith, etc.)</Typography></li>
+                            <li><Typography >Use " " for exact phrases (e.g., "goldsmiths' forge")</Typography></li>
+                            <li><Typography >Use "exit search" button in upper left of left pane to return to regular browsing</Typography></li>
+                        </ul>                    
                     </div>                        
                 </Paper>
             </Fade>
