@@ -54,7 +54,7 @@ class Annotation extends React.Component {
 		return (
 			  <div className="annotation">
 			  	<div className="header">
-			  		<div className="title"><h2>{title}</h2></div>
+			  		<div className="title"><h2>{this.props.headerContent}</h2></div>
 			  		<div title = {tooltip} className={icon} onClick={this.toggleAnnotation}/>
 				</div>
 			  	<div className="content" style={content_style}>

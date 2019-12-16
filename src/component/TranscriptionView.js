@@ -425,11 +425,13 @@ class TranscriptionView extends Component {
 								const annotation = this2.props.annotations.annotations[annotationID];
 								let annotationType = "annotation"; // fieldNotes | annotation | video
 								return (
-									<Annotation headerContent={domToReact(domNode.children, parserOptions)}
-												side={side}
-												type={annotationType}
-												annotation={annotation}>
-									</Annotation>
+									<div>
+										<Annotation headerContent={domToReact(domNode.children, parserOptions)}
+											side={side}
+											type={annotationType}
+											annotation={annotation}>
+										</Annotation>
+									</div>
 								);
 							} else {
 								return domNode;
