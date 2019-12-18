@@ -9,5 +9,5 @@
         "folderName": "Annotations",
         "sharedDrive": true
     },
-    "stage": "staging"
+    "stage": "production"
 }

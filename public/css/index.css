@@ -195,13 +195,18 @@ figure.current {
 
 .closeX {
   float: right;
-  padding: 5px;
+  padding: 3px;
   font-style: bold; }
 
 .helpContainer {
   padding: 12px;
   width: 235px;
   height: 375px; }
+
+.searchHelpContainer {
+  padding: 5px;
+  width: 335px;
+  height: 250px; }
 
 .helpHeader {
   text-align: center; }
@@ -245,6 +250,8 @@ figure.current {
   text-indent: 50px; }
   #annotation-view p {
     margin: 0px; }
+  #annotation-view a {
+    word-wrap: break-word; }
   #annotation-view h1 {
     text-align: center; }
   #annotation-view h4 {
@@ -252,26 +259,27 @@ figure.current {
     margin-bottom: 30px; }
   #annotation-view h4 + p {
     text-indent: 0px; }
-  #annotation-view h3 {
-    margin: 40px 0px 40px 0px;
+  #annotation-view h2 {
+    margin: 0px;
+    margin-top: 40px;
+    text-indent: 0px; }
+  #annotation-view h2 + p {
     text-indent: 0px; }
   #annotation-view li p {
-    text-indent: 5px; }
+    text-indent: 5px;
+    margin-bottom: 15px; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }
-  #annotation-view .author-bio {
-    text-indent: 0px; }
-    #annotation-view .author-bio .author-pic {
-      float: left;
-      border: 1px solid #DDDDDD;
-      margin: 20px; }
   #annotation-view blockquote p {
     text-indent: 0px; }
   #annotation-view .figure-container {
-    float: right; }
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap; }
   #annotation-view figure {
-    margin: 20px; }
+    margin-top: 20px;
+    margin-bottom: 20px; }
     #annotation-view figure iframe {
       width: 560px;
       border: 1px solid #DDDDDD; }
@@ -289,6 +297,7 @@ figure.current {
     #annotation-view figure iframe + figcaption {
       width: 560px; }
   #annotation-view table {
+    margin: 20px;
     width: 100%;
     text-align: left;
     border-collapse: collapse; }
@@ -303,8 +312,11 @@ figure.current {
       background: #3F3626;
       font-size: 15px;
       color: white; }
+  #annotation-view .footnotes {
+    line-height: 1; }
   #annotation-view .bibliography p {
     text-indent: 0px;
+    line-height: 1;
     margin-bottom: 15px; }
 
 #annotation-list-view {

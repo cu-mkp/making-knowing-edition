@@ -5,6 +5,7 @@ const { execSync } = require('child_process');
 
 const searchIndex = require('./search_index');
 const convert = require('./convert');
+const convertEntries = require('./convert_entries');
 const glossary = require('./glossary');
 const comments = require('./comments');
 const staticContent = require('./static_content')
@@ -159,8 +160,10 @@ async function main() {
 
   const commentsCSV = `${configData.sourceDir}/metadata/DCE_comment-tracking-Tracking.csv`;
   const glossaryCSV = `${configData.sourceDir}/glossary/DCE-glossary-table.csv`;
+  const entriesCSV = `${configData.sourceDir}/metadata/entry_metadata.tsv`;
   const targetCommentsFile = `${configData.targetDir}/comments.json`;
   const targetGlossaryFile = `${configData.targetDir}/glossary.json`;
+  const targetEntriesFile = `${configData.targetDir}/entries.json`;
 
   const now = new Date();
   console.log( `Asset Pipeline started at: ${now.toString()}`);
@@ -179,6 +182,9 @@ async function main() {
 
   console.log('Convert folios to HTML...');
   convert.convertFolios(folioPath);
+
+  console.log('Convert entries to JSON...');
+  await convertEntries.convert(entriesCSV, targetEntriesFile);
 
   console.log('Generate Search Index...');
   searchIndex.generate(folioPath, searchIndexPath);

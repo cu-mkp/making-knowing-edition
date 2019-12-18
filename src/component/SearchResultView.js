@@ -7,13 +7,17 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import copyObject from '../lib/copyObject';
 import Button from '@material-ui/core/Button';
+import SearchHelpPopper from './SearchHelpPopper'
 
 class SearchResultView extends Component {
 
 	constructor(props) {
 		super(props);
 
+		this.helpRef=null;
+
 		this.state = {
+			openHelp: false,
 			typeHidden:{
 				tc: false,
 				tcn:false,
@@ -45,6 +49,12 @@ class SearchResultView extends Component {
 			this.props.history.push(url);
 		}
 	}
+
+	toggleHelp=(event)=>{
+		this.setState({ ...this.state, 
+			  openHelp:!this.state.openHelp
+		})
+  	}
 	  
 	transcriptionResultClicked(event) {
 		let folioname = event.currentTarget.dataset.folioname;
@@ -196,9 +206,13 @@ class SearchResultView extends Component {
 							   results["anno"].length;
 
 		return (
-			<div className="searchResultsComponent">
-				<div className="navigation" onClick={this.exitSearch}>
+			<div className="searchResultsComponent" >
+				<div className="navigation" onClick={this.exitSearch} ref={e=>{this.helpRef = e}}>
 					<div className="fa fa-th"></div> exit search
+					<span style={{ float: 'right' }} title="Toggle folio help" onClick={this.toggleHelp}  >
+						<i className="fas fa-lg fa-question-circle"></i>
+					</span> 
+					<SearchHelpPopper anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">

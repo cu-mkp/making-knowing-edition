@@ -55,7 +55,7 @@
 
 .closeX { 
       float: right;
-      padding: 5px;
+      padding: 3px;
       font-style: bold;
 }
 
@@ -63,8 +63,12 @@
       padding:12px;
       width:235px;
       height:375px;
-    
-   
+}
+
+.searchHelpContainer {
+      padding:5px;
+      width:335px;
+      height:250px;
 }
 
 .helpHeader{
