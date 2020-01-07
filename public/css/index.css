@@ -303,6 +303,7 @@ figure.current {
   #annotation-view table {
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 100%;
     text-align: left;
     border-collapse: collapse; }
     #annotation-view table td, #annotation-view table th {
