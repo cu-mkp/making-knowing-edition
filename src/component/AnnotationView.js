@@ -56,7 +56,7 @@ class AnnotationView extends Component {
                     case 'p':
                         // hack to pass a formatting hint for paragraphs continuing
                         // through blockquotes.
-                        const firstSpan = domNode.children && domNode.children[0] ? domNode.children[0].children : []
+                        const firstSpan = (domNode.children && domNode.children[0] && domNode.children[0].children) ? domNode.children[0].children : []
                         for( let child of firstSpan ) {
                             if( child.attribs && child.attribs['class'] === 'pull-left' ) {
                                 domNode.attribs['class'] = 'pull-left'
