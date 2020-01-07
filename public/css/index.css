@@ -267,6 +267,8 @@ figure.current {
     text-indent: 0px; }
   #annotation-view h2 + p {
     text-indent: 0px; }
+  #annotation-view .pull-left {
+    text-indent: 0px; }
   #annotation-view li p {
     text-indent: 5px;
     margin-bottom: 15px; }

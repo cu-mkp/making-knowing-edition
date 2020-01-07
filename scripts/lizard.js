@@ -770,6 +770,10 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     logger.info(`Processing annotation ${annotationID}`);
     // load document 
     let html = fs.readFileSync( annotationHTMLFile, "utf8");
+
+    // hack to pull paragraphs continuing through blockquotes together
+    html = html.replace('⇐','<span class="pull-left"></span>')
+
     let htmlDOM = new JSDOM(html);
     let doc = htmlDOM.window.document;
 
