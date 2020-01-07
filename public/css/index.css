@@ -299,8 +299,8 @@ figure.current {
     #annotation-view figure iframe + figcaption {
       width: 560px; }
   #annotation-view table {
-    margin: 20px;
-    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     text-align: left;
     border-collapse: collapse; }
     #annotation-view table td, #annotation-view table th {
