@@ -27,7 +27,7 @@ class Annotation extends React.Component {
 
 			case 'annotation':
 				icon = 'anno-btn icon fa fa-flask';
-				tooltip = "Annotation";
+				tooltip = "Research Essay";
 				break;
 
 			case 'video':
