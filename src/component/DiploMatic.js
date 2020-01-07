@@ -49,9 +49,9 @@ class DiploMatic extends Component {
 	renderHeader(fixedFrameModeClass) {
 		return (
 			<div id="header" className={fixedFrameModeClass}>
-				<div className="title"><Link to='/' className='home-link'>BnF Ms. Fr. 640</Link> <span className='warning'>(BETA)</span></div>
-				<div className="compactTitle">M&amp;K</div>
-				<div className="tagline">A Digital Critical Edition</div>
+				<div className="title"><Link to='/' className='home-link'>Secrets of Craft and Nature in Renaissance France</Link> <span className='warning'>(BETA)</span></div>
+				<div className="compactTitle">Secrets of Craft and Nature in Renaissance France.</div>
+				<div className="tagline">A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</div>
 				<div id="globalNavigation">
 					<MainMenu></MainMenu>
 					<Search />
