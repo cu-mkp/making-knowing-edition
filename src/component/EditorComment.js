@@ -35,7 +35,7 @@ class EditorComment extends Component {
       const closeXStyle = { float: 'right', padding: 5, fontStyle: 'bold'}
           return <Popper id={id} open={open} anchorEl={anchorRef}>
                   <Fade in={open}>
-                        <Paper>
+                        <Paper className="editor-comment-content">
                               <div onClick={this.onClose} style={closeXStyle}>
                                     <span className="fa fa-window-close"></span>
                               </div>
