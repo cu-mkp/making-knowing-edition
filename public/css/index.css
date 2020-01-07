@@ -276,7 +276,8 @@ figure.current {
     color: blue;
     text-decoration: underline blue; }
   #annotation-view blockquote p {
-    text-indent: 0px; }
+    text-indent: 0px;
+    line-height: 1.1; }
   #annotation-view .figure-container {
     align-items: center;
     display: flex;
@@ -438,9 +439,67 @@ figure.current {
     margin: 3px; }
 
 #content-view {
-  margin: 20px;
   padding-top: 10px;
-  min-height: 60vh; }
+  min-height: 60vh;
+  margin: 80px 20% 80px 20%;
+  max-width: 960px;
+  line-height: 1.5; }
+  #content-view p {
+    margin: 0px; }
+  #content-view a {
+    word-wrap: break-word; }
+  #content-view h1 {
+    text-align: center;
+    line-height: 2.2rem; }
+  #content-view h4 {
+    text-align: center;
+    margin-bottom: 30px; }
+  #content-view h2 {
+    font-size: 1.2em;
+    margin: 0px;
+    margin-top: 40px; }
+  #content-view blockquote p {
+    line-height: 1.1; }
+  #content-view .figure-container {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap; }
+  #content-view figure {
+    margin-top: 20px;
+    margin-bottom: 20px; }
+    #content-view figure iframe {
+      width: 560px;
+      border: 1px solid #DDDDDD; }
+    #content-view figure img {
+      width: 300px;
+      border: 1px solid #DDDDDD; }
+    #content-view figure figcaption {
+      text-indent: 0px;
+      line-height: 1.2;
+      margin-left: 50px;
+      font-size: 10pt;
+      text-align: left; }
+    #content-view figure img + figcaption {
+      width: 300px; }
+    #content-view figure iframe + figcaption {
+      width: 560px; }
+  #content-view table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse; }
+    #content-view table td, #content-view table th {
+      border: 1px solid #AAAAAA;
+      padding: 5px;
+      line-height: 1.2;
+      text-indent: 0px;
+      vertical-align: top; }
+    #content-view table th {
+      padding-left: 5px;
+      background: #3F3626;
+      font-size: 15px;
+      color: white; }
 
 #diplomatic #header {
   margin: 0;
