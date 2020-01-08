@@ -1028,9 +1028,9 @@ function main() {
     if( mode === 'help' ) {
         console.log(`Usage: lizard.js <command>` );
         console.log("A helpful lizard that responds to the following commands:")
-        console.log("\tdownload-thumbs: Download all the essay thumbnails from Google Drive via rclone.");
+        console.log("\tdownload-thumbs: Download essay thumbnails from Google Drive via rclone.");
         console.log("\tdownload-all: Download all essays from Google Drive.");
-        console.log("\tdownload: Download only essays marked with as 'refresh'.");
+        console.log("\tdownload: Download only essays marked with 'refresh'.");
         console.log("\tprocess: Process the downloaded files and place them on the asset server.");
         console.log("\tindex: Create a search index of the essays.");
         console.log("\trun: Download, process, and index.")
