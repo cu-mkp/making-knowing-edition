@@ -37,7 +37,7 @@ class AnnotationListView extends Component {
 
         return (
             <Paper className="tocbar">
-                <Typography variant='h6' gutterBottom>Making &amp; Knowing Workshop Themes</Typography>
+                <Typography variant='h6' gutterBottom>Research Essay Themes</Typography>
                 <div>
                     { sectionHeadings }
                 </div>
