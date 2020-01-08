@@ -78,6 +78,19 @@
         flex-wrap: wrap;
     }
 
+    ul {
+        text-indent: 65px;
+        padding: 0px;
+        li {
+            blockquote {
+                p {
+                    padding-left: 20px;
+                }
+            }
+            line-height: 1.1;
+        }
+    }
+
     figure {
         margin-top: 20px;
         margin-bottom: 20px;

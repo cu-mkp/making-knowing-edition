@@ -282,6 +282,13 @@ figure.current {
     align-items: center;
     display: flex;
     flex-wrap: wrap; }
+  #annotation-view ul {
+    text-indent: 65px;
+    padding: 0px; }
+    #annotation-view ul li {
+      line-height: 1.1; }
+      #annotation-view ul li blockquote p {
+        padding-left: 20px; }
   #annotation-view figure {
     margin-top: 20px;
     margin-bottom: 20px; }
