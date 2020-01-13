@@ -786,7 +786,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         let {href} = anchorTag;
         const imageID = findImageID( href );
         let videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
-        videoURL = !imageID && !videoURL && href.match(videoEmbedRegX2) ? href : null;
+        if(!videoURL && !imageID) videoURL = href.match(videoEmbedRegX2) ? href : null;
         if( imageID || videoURL ) {
             if( imageID && !illustrations[imageID] ) {
                 logger.info(`Illustration not found: ${href}`)
