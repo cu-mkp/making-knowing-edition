@@ -45,6 +45,7 @@ const pngMimeType = "image/png";
 const googleLinkRegX = /https:\/\/drive\.google\.com\/open\?id=/;
 const googleLinkRegX2 = /https:\/\/drive.google.com\/file\/d\//;
 const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu/;
+const videoEmbedRegX2 = /^https:\/\/player\.vimeo\.com/;
 const videoWidth = 560;
 const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
@@ -784,7 +785,8 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         let anchorTag = anchorTags[i];
         let {href} = anchorTag;
         const imageID = findImageID( href );
-        const videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
+        let videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
+        videoURL = !imageID && !videoURL && href.match(videoEmbedRegX2) ? href : null;
         if( imageID || videoURL ) {
             if( imageID && !illustrations[imageID] ) {
                 logger.info(`Illustration not found: ${href}`)
