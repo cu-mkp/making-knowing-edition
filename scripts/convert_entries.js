@@ -5,7 +5,7 @@ const tagTypes = [ "al", "bp", "cn", "env", "m", "ms", "pa", "pl", "pn", "pro", 
 
 async function convert( entriesCSV, targetEntriesFile ) {
 
-    const csvData = fs.readFileSync(entriesCSV).toString()
+    const csvData = fs.readFileSync(entriesCSV, "utf8").toString()
     let entries = [];
     let ordinalID = 1;
     const tableObj = await csv({ delimiter: '\t' }).fromString(csvData)        
