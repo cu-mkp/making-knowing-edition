@@ -53,6 +53,17 @@ class AnnotationView extends Component {
                 }
 
 				 switch (domNode.name) {
+                    case 'p':
+                        // hack to pass a formatting hint for paragraphs continuing
+                        // through blockquotes.
+                        if (domNode.children) {
+                            for( let child of domNode.children ) {
+                                if( child.attribs && child.attribs['class'] === 'pull-left' ) {
+                                    domNode.attribs['class'] = 'pull-left'
+                                }
+                            }    
+                        }
+                        return domNode
                     case 'a':
                         return this.addFootnoteLink( domNode, parserOptions );
 					 default:

@@ -45,6 +45,7 @@ const pngMimeType = "image/png";
 const googleLinkRegX = /https:\/\/drive\.google\.com\/open\?id=/;
 const googleLinkRegX2 = /https:\/\/drive.google.com\/file\/d\//;
 const videoEmbedRegX = /^https:\/\/academiccommons\.columbia\.edu/;
+const videoEmbedRegX2 = /^https:\/\/player\.vimeo\.com/;
 const videoWidth = 560;
 const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
@@ -770,6 +771,10 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
     logger.info(`Processing annotation ${annotationID}`);
     // load document 
     let html = fs.readFileSync( annotationHTMLFile, "utf8");
+
+    // hack to pull paragraphs continuing through blockquotes together
+    html = html.replace(/⇐/g,'<span class="pull-left"></span>')
+
     let htmlDOM = new JSDOM(html);
     let doc = htmlDOM.window.document;
 
@@ -780,7 +785,8 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         let anchorTag = anchorTags[i];
         let {href} = anchorTag;
         const imageID = findImageID( href );
-        const videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
+        let videoURL = !imageID && href.match(videoEmbedRegX) ? href : null;
+        if(!videoURL && !imageID) videoURL = href.match(videoEmbedRegX2) ? href : null;
         if( imageID || videoURL ) {
             if( imageID && !illustrations[imageID] ) {
                 logger.info(`Illustration not found: ${href}`)
@@ -1024,9 +1030,9 @@ function main() {
     if( mode === 'help' ) {
         console.log(`Usage: lizard.js <command>` );
         console.log("A helpful lizard that responds to the following commands:")
-        console.log("\tdownload-thumbs: Download all the essay thumbnails from Google Drive via rclone.");
+        console.log("\tdownload-thumbs: Download essay thumbnails from Google Drive via rclone.");
         console.log("\tdownload-all: Download all essays from Google Drive.");
-        console.log("\tdownload: Download only essays marked with as 'refresh'.");
+        console.log("\tdownload: Download only essays marked with 'refresh'.");
         console.log("\tprocess: Process the downloaded files and place them on the asset server.");
         console.log("\tindex: Create a search index of the essays.");
         console.log("\trun: Download, process, and index.")

@@ -5,7 +5,9 @@
     height:calc(100vh - 7rem);
 }
 
-
+.editor-comment-content {
+	word-wrap:break-word;
+}
 
 .transcriptContent {
       padding: 5px 16px;

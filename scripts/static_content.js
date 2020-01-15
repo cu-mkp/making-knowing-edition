@@ -3,7 +3,7 @@ const { execSync } = require('child_process');
 
 function convertToHTML( source, target ) {
     const escSource = source.replace(/"/g, '\\"')  
-    execSync(`pandoc -f commonmark -t html "${escSource}" > "${target}"`, (error, stdout, stderr) => {
+    execSync(`pandoc -f gfm -t html "${escSource}" > "${target}"`, (error, stdout, stderr) => {
         console.log(`${stdout}`);
         console.log(`${stderr}`);
         if (error !== null) {
