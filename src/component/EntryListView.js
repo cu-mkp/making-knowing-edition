@@ -90,7 +90,7 @@ class EntryListView extends Component {
                         <ExpansionPanel className="entry" key={entry.id} onChange={this.toggleIconButton}>
                               <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
-                                          <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio}`}</Typography></Link>
+                                          <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio_display}`}</Typography></Link>
                                           <Typography>Category: <i>{categories}</i></Typography>
                                           { this.renderAnnotationList(entry) }
                                           <div className="entry-chips">{mentionRow}</div>

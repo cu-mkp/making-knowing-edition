@@ -137,23 +137,39 @@ function convertPhraseLevelMarkup( htmlDoc, el, elementName ) {
   return newEl;
 }
 
+function parseLayout( el ) {
+  let layout = validLayoutCode( el.getAttribute('margin') );
+  let layoutHint = validLayoutHint( el.getAttribute('render') );
+  if( layoutHint === 'extra-wide') {
+    if( layout === 'top' ) {
+      layout = 'left-top'
+      layoutHint = 'wide'
+    }
+    if( layout === 'bottom' ) {
+      layout = 'left-bottom'
+      layoutHint = 'wide'
+    }
+  }
+  return { layout, layoutHint }
+}
+
 function convertAB( htmlDoc, ab ) {
   let abDiv = convertPhraseLevelMarkup( htmlDoc, ab, 'div' );
-  abDiv.dataset.layout = validLayoutCode( ab.getAttribute('margin') );
-  const layoutHint = validLayoutHint( ab.getAttribute('render') );
+  const { layout, layoutHint } = parseLayout(ab)
+  abDiv.dataset.layout = layout
   if( layoutHint ) {
     abDiv.dataset.layoutHint = layoutHint;
-  }
+  }  
   return abDiv;
 }
 
 function convertHead( htmlDoc, head ) {
   let h2Div = convertPhraseLevelMarkup( htmlDoc, head, 'h2' );
-  h2Div.dataset.layout = validLayoutCode( head.getAttribute('margin') );
-  const layoutHint = validLayoutHint( head.getAttribute('render') );
+  const { layout, layoutHint } = parseLayout(h2Div)
+  h2Div.dataset.layout = layout
   if( layoutHint ) {
     h2Div.dataset.layoutHint = layoutHint;
-  }
+  }  
   return h2Div;
 }
 
