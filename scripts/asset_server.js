@@ -160,7 +160,7 @@ async function main() {
 
   const commentsCSV = `${configData.sourceDir}/metadata/DCE_comment-tracking-Tracking.csv`;
   const glossaryCSV = `${configData.sourceDir}/glossary/DCE-glossary-table.csv`;
-  const entriesCSV = `${configData.sourceDir}/metadata/entry_metadata.csv`;
+  const entriesCSV = `${configData.sourceDir}/metadata/entry_metadata.tsv`;
   const targetCommentsFile = `${configData.targetDir}/comments.json`;
   const targetGlossaryFile = `${configData.targetDir}/glossary.json`;
   const targetEntriesFile = `${configData.targetDir}/entries.json`;

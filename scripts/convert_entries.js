@@ -1,16 +1,16 @@
 const fs = require('fs');
 const csv = require('csvtojson');
 
-const tagTypes = [ "animal","body_part","currency","definition","environment","material","medical","measurement","music","plant","place","personal_name","profession","sensory","tool","time","weapon" ]
+const tagTypes = [ "al", "bp", "cn", "env", "m", "ms", "pa", "pl", "pn", "pro", "sn", "tl", "md", "mu" ];
 
 async function convert( entriesCSV, targetEntriesFile ) {
 
     const csvData = fs.readFileSync(entriesCSV).toString()
     let entries = [];
     let ordinalID = 1;
-    const tableObj = await csv({ delimiter: ',' }).fromString(csvData)        
+    const tableObj = await csv({ delimiter: '\t' }).fromString(csvData)        
     tableObj.forEach( entry => {
-        let { div_id, folio_display, heading_tc, heading_tcn, heading_tl, categories } = entry;
+        let { div_id, folio, folio_display, heading_tc, heading_tcn, heading_tl, categories } = entry;
 
         // count up the number of mentions for each type
         let mentions = {};
@@ -24,7 +24,8 @@ async function convert( entriesCSV, targetEntriesFile ) {
         entries.push({
             id: ordinalID++,
             div_id,
-            folio: folio_display, 
+            folio,
+            folio_display, 
             heading_tc, 
             heading_tcn, 
             heading_tl,
