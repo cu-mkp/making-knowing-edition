@@ -169,8 +169,8 @@ class TranscriptionView extends Component {
 
             for( let block of blocks ) {
                         let layoutCode = validLayoutCode(block.dataset.layout);
-                        let hint = validLayoutHint(block.dataset.layoutHint);
-                                    block.setAttribute('data-entry-id', entryID);
+						let hint = validLayoutHint(block.dataset.layoutHint);
+						block.setAttribute('data-entry-id', entryID);
 
                         // group all the blocks together that share a layout code
                         if( marginFrame[layoutCode] ) {
