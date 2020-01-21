@@ -36,7 +36,7 @@ class DiploMatic extends Component {
 	renderHeader(fixedFrameModeClass) {
 		return (
 			<div id="header" className={fixedFrameModeClass}>
-				<div className="title"><Link to='/' className='home-link'>Secrets of Craft and Nature in Renaissance France</Link> <span className='warning'>(BETA)</span></div>
+				<div className="title"><Link to='/' className='home-link'>Secrets of Craft and Nature<br/> in Renaissance France</Link></div>
 				<div className="compactTitle">Secrets of Craft and Nature in Renaissance France</div>
 				<div className="tagline">A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</div>
 				<div id="globalNavigation">
@@ -148,7 +148,7 @@ class DiploMatic extends Component {
 	renderFooter(fixedFrameModeClass) {
 		return (
 			<div id="footer" className={fixedFrameModeClass}>
-				<div className="copyright">&copy; Secrets of Craft and Nature in Renaissance France - <span className='warning'>Please note: This is site is still being developed and not yet ready for scholarly use.</span></div>
+				<div className="copyright">&copy; The Center for Science and Society at Columbia University.</div>
 				<div className="logos">
 					<img alt="Columbia Logo" src="img/logo_columbia.png"/>
 					<img alt="Center Logo" src="img/logo_center.png"/>

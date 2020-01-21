@@ -54,7 +54,7 @@ h4 {
 #globalNavigation {
   font-size: 0.9rem;
   position: relative;
-  top: -2.4rem;
+  top: -4rem;
   right: 2rem;
   float: right; }
 
@@ -511,7 +511,7 @@ figure.current {
 #diplomatic #header {
   margin: 0;
   color: white;
-  height: 4.5rem;
+  height: 6.5rem;
   background-color: black;
   font-family: 'Oswald', sans-serif;
   grid-area: header;
@@ -584,7 +584,7 @@ figure.current {
     width: 100vw; }
   #diplomatic.fixed #content {
     line-height: 1.2rem;
-    margin-top: 5rem; }
+    margin-top: 7rem; }
 
 .imageGridComponent {
   background-color: #000000;
