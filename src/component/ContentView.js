@@ -34,30 +34,24 @@ class ContentView extends Component {
 
     render() {
         const {contentID} = this.props
-
-        if(!contentID) {
-            return (
-                <div id="content-view">
-                    <p>The manuscript now preserved at the Bibliothèque nationale de France, known as Ms. Fr. 640, comprises a compilation of technical "recipes" and observations about craft processes and natural materials. It was most probably written in the late sixteenth century by an experienced practitioner in the vicinity of Toulouse, France. The 171 folios of this rich and intriguing manuscript constitute the written record of the author-practitioner’s collection of recipes and his workshop investigations. The manuscript contains a remarkable range of techniques, including casting, mold making, metalwork, pigment and varnish making, drawing and painting instruction, practical therapeutics, vernacular natural history, practical perspective construction and the creation of optical effects, mechanical constructions, and even jokes and sleight-of-hand tricks. It offers a window into the early modern artisan’s workshop, revealing not only the materials and methods used by artisans and artists, but also insights into how and why nature was employed in creating art, and the extensive processes of experimentation that went on in an early modern workshop.</p>                        
-                </div>
-            )
-        }
-
-        const content = this.props.contents.contents[contentID]
-        if( !content ) {
-            return (
-                <div id="content-view">
-                    <h1>Content Not Found</h1>
-                    <p>Unable to load content for route: <b>/content/{contentID}</b></p>
-                </div>
-            )
-        } else {
+        const {contents} = this.props.contents
+        const content = contents[contentID]
+        if( !content ) return null;
+        
+        // if( !content ) {
+        //     return (
+        //         <div id="content-view">
+        //             <h1>Content Not Found</h1>
+        //             <p>Unable to load content for route: <b>/content/{contentID}</b></p>
+        //         </div>
+        //     )
+        // } else {
             return (
                 <div id="content-view">
                     {Parser(content,this.htmlToReactParserOptions)}
                 </div>
             )    
-        }
+        // }
     }
 
 }

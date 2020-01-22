@@ -23,6 +23,9 @@ function *userNavigation(action) {
 
     if( pathSegments.length > 1 ) {
         switch(pathSegments[1]) {
+            case '':
+                yield resolveContent('index');
+                break;
             case 'content':
                 if( pathSegments.length > 2 ) {
                     const contentPath = pathSegments.slice(2)
@@ -65,7 +68,7 @@ function *userNavigation(action) {
                 yield resolveEntryManifest();
                 break;
             default:
-        }    
+        } 
     }
 }
 

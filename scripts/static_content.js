@@ -28,6 +28,17 @@ function mirrorDirs(sourcePath, targetPath) {
     }
 }
 
+
+function copyDir(sourcePath, targetPath) {
+    const dirContents = fs.readdirSync(sourcePath, {withFileTypes: true});
+    for( let i=0; i < dirContents.length; i++ ) {
+        const sourceDirEnt = dirContents[i];
+        const sourceFile = `${sourcePath}/${sourceDirEnt.name}`
+        const targetFile = `${targetPath}/${sourceDirEnt.name}`
+        fs.copyFileSync( sourceFile, targetFile );
+    }
+}
+
 function locateContent(sourcePath,contentPath) {
     let contentFileIDs = []
     const targetDir = contentPath ? `${sourcePath}/${contentPath}` : sourcePath
@@ -53,9 +64,15 @@ function locateContent(sourcePath,contentPath) {
 
 async function process(sourcePath, targetPath) {
     const sourceDocsPath = `${sourcePath}/docs`
+    const sourceImagePath = `${sourcePath}/images`
+    const targetImagePath = `${targetPath}/images`
 
     // clear out target and match directory structure with source
     mirrorDirs(sourceDocsPath, targetPath)
+
+    // copy the images
+    if( !fs.existsSync(targetImagePath)) fs.mkdirSync(targetImagePath)
+    copyDir(sourceImagePath,targetImagePath)
 
     // copy the latest menu structure file to the targetPath 
     fs.copyFileSync( `${sourcePath}/menu-structure.json`, `${targetPath}/menu-structure.json` );
@@ -64,6 +81,7 @@ async function process(sourcePath, targetPath) {
     const contentFileIDs = locateContent(sourceDocsPath)
     for( const contentFileID of contentFileIDs ) {
         convertToHTML(`${sourceDocsPath}/${contentFileID}.md`,`${targetPath}/${contentFileID}.html`)
+        // TODO rewrite the link URLs to the target domain name
     }
 }
 

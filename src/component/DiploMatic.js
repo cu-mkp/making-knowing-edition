@@ -116,6 +116,11 @@ class DiploMatic extends Component {
 		);
 	}
 
+	renderIndexPage() {
+		return (
+			<ContentView contentID='index'></ContentView>
+		);
+	}
 
 	renderContentView(props) {
 		const contentID = props.location.pathname.substring("/content/".length)
@@ -128,7 +133,7 @@ class DiploMatic extends Component {
 		return (
 			<div id="content">
 				<Switch>
-					<Route path="/" component={ContentView} exact/>
+					<Route path="/" render={this.renderIndexPage} exact/>
 					<Route path="/content" render={this.renderContentView}/>
 					<Route path="/entries" component={EntryListView}/>
 					<Route path="/essays" component={AnnotationListView} exact/>
