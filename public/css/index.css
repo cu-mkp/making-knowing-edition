@@ -457,7 +457,9 @@ figure.current {
     padding-right: 20px;
     padding-bottom: 20px; }
   #content-view .homepage-header {
-    margin-bottom: 120px; }
+    margin-bottom: 100px; }
+    #content-view .homepage-header .intro {
+      margin: 10px; }
   #content-view .homepage-intro-video {
     float: right; }
   #content-view .homepage-grid-item {

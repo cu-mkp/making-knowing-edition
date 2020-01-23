@@ -15,7 +15,10 @@
     }
 
     .homepage-header {
-        margin-bottom: 120px;
+        margin-bottom: 100px;
+        .intro {
+            margin: 10px;
+        }
     }
 
     .homepage-intro-video {

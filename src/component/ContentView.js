@@ -61,9 +61,13 @@ class ContentView extends Component {
             <div id="content-view" className='home-page'>
                 <div className="homepage-header" >
                     <iframe className="homepage-intro-video" title="Introduction Video" src={introVideoURL} width="426" height="240" frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
-                    <Typography>This edition and translation of the ms. offers unique firsthand insight in making and materials from a time when artists were scientists. Brought to you by the Making and Knowing Project.</Typography>
-                    <Typography>For tips, please see How to Use.</Typography>
-                    <Typography>Check back over the coming months as we add new content and features.</Typography>
+                    <div className="intro">
+                        <Typography>This edition and translation of the ms. offers unique firsthand insight in making and materials from a time when artists were scientists. Brought to you by the <a href="https://www.makingandknowing.org/">Making and Knowing Project</a>.</Typography>
+                        <br></br>
+                        <Typography>For tips, please see <a href="#/content/how-to-use">How to Use</a>.</Typography>
+                        <br></br>
+                        <Typography><i>Check back over the coming months as we add new content and features.</i></Typography>
+                    </div>
                 </div>
                 <div className="homepage-grid">
                     { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.jpeg`, '/folios')}
