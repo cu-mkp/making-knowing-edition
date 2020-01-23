@@ -6,6 +6,26 @@
     max-width: 960px;
 
     line-height: 1.5;
+    
+    .homepage-grid {
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 20px;        
+        padding-bottom: 20px;
+    }
+
+    .homepage-header {
+        margin-bottom: 120px;
+    }
+
+    .homepage-intro-video {
+        float: right;
+    }
+
+    .homepage-grid-item {
+        width: 360px;
+        margin: 10px;
+    }
 
     p {
         margin: 0px;

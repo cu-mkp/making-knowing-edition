@@ -116,9 +116,9 @@ class DiploMatic extends Component {
 		);
 	}
 
-	renderIndexPage() {
+	renderIndexPage(props) {
 		return (
-			<ContentView contentID='index'></ContentView>
+			<ContentView history={props.history} contentID='index'></ContentView>
 		);
 	}
 
