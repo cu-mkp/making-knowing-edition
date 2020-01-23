@@ -765,6 +765,11 @@ figure.current {
 .ups {
   background: lightgray; }
 
+.x-small-inline-figure {
+  margin: 5px;
+  border: 1px solid gray;
+  width: 30px; }
+
 .small-inline-figure {
   margin: 5px;
   border: 1px solid gray;

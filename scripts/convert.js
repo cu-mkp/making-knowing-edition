@@ -22,6 +22,7 @@ const marginCodes = [
 ];
 
 const figureSizes = [
+  'x-small',
   'small',
   'medium',
   'large'
