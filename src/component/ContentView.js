@@ -56,7 +56,7 @@ class ContentView extends Component {
 
     renderHomePage() {
         const {imagesBaseURL} = this.props.contents
-        const introVideoURL = 'https://player.vimeo.com/video/384070384'
+        const introVideoURL = 'https://player.vimeo.com/video/386753079'
         return (
             <div id="content-view" className='home-page'>
                 <div className="homepage-header" >
