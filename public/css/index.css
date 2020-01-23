@@ -466,7 +466,7 @@ figure.current {
     width: 360px;
     margin: 10px; }
   #content-view p {
-    margin: 0px; }
+    margin-bottom: .25em; }
   #content-view a {
     word-wrap: break-word; }
   #content-view h1 {
@@ -485,6 +485,8 @@ figure.current {
     align-items: center;
     display: flex;
     flex-wrap: wrap; }
+  #content-view iframe {
+    text-align: center; }
   #content-view figure {
     margin-top: 20px;
     margin-bottom: 20px; }

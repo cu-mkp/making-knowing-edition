@@ -31,7 +31,7 @@
     }
 
     p {
-        margin: 0px;
+        margin-bottom: .25em;
     }
 
     a {
@@ -64,6 +64,11 @@
         align-items: center;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    iframe {
+        text-align: center;
+        
     }
 
     figure {
