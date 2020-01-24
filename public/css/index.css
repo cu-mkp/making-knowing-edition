@@ -451,6 +451,8 @@ figure.current {
   margin: 80px 20% 80px 20%;
   max-width: 960px;
   line-height: 1.5; }
+  #content-view .loading {
+    margin-left: 40%; }
   #content-view .homepage-grid {
     display: flex;
     flex-wrap: wrap;

@@ -88,22 +88,29 @@ class ContentView extends Component {
         }
 
         const content = contents[contentID]
-        if( !content ) return null;
         
-        // if( !content ) {
-        //     return (
-        //         <div id="content-view">
-        //             <h1>Content Not Found</h1>
-        //             <p>Unable to load content for route: <b>/content/{contentID}</b></p>
-        //         </div>
-        //     )
-        // } else {
+        if( !content ) {
+            return (
+                <div id="content-view">
+                    <div className="loading" >
+                        <img alt="Loading, please wait." src="/img/spinner.gif"></img>
+                    </div>
+                </div>
+            )     
+        } else if( content === 404 ) {
+            return (
+                <div id="content-view">
+                    <h1>Content Not Found</h1>
+                    <p>Unable to load content for route: <b>/content/{contentID}</b></p>
+                </div>
+            )
+        } else {
             return (
                 <div id="content-view">
                     {Parser(content,this.htmlToReactParserOptions)}
                 </div>
             )    
-        // }
+        }
     }
 
 }

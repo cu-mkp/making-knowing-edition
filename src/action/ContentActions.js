@@ -11,7 +11,7 @@ ContentActions.loadMenuStructure = function loadMenuStructure( state, menuStruct
 
 ContentActions.loadContent = function loadContent( state, contentID, contentData ) {
     let newState =  { ...state };
-    newState.contents[contentID] = contentData;
+    newState.contents[contentID] = ( contentData ) ? contentData : 404;
     return newState;
 };
 
