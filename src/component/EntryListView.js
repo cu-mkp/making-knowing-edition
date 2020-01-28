@@ -204,6 +204,9 @@ class EntryListView extends Component {
                   <div id="entry-list-view">
                         <div className='entries'>
                               <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
+                              <Typography>The List of Entries allows navigation of the manuscript by the headings of all “recipes” or entries in Ms. Fr. 640.</Typography><br/>
+                              <Typography>Relevant terms in each entry have been encoded using fourteen semantic tags that include materials, tools, and places. For a full list of the tags and their usage, see the <a href="#/content/research+resources/principles">Principles of Encoding</a>.</Typography><br/>
+                              <Typography>The list can be filtered by the semantic tags found in the entries, which can be further refined by clicking on multiple tag types.</Typography><br/>
                               <div className="sort-container">
                                    <FormLabel className="sort-label">Sorted:</FormLabel>
                                     <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >

@@ -7,8 +7,35 @@
 
     line-height: 1.5;
 
+    .loading {
+        margin-left: 40%;
+    }
+    
+    .homepage-grid {
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 20px;        
+        padding-bottom: 20px;
+    }
+
+    .homepage-header {
+        margin-bottom: 100px;
+        .intro {
+            margin: 10px;
+        }
+    }
+
+    .homepage-intro-video {
+        float: right;
+    }
+
+    .homepage-grid-item {
+        width: 360px;
+        margin: 10px;
+    }
+
     p {
-        margin: 0px;
+        margin-bottom: .25em;
     }
 
     a {
@@ -41,6 +68,11 @@
         align-items: center;
         display: flex;
         flex-wrap: wrap;
+    }
+
+    iframe {
+        text-align: center;
+        
     }
 
     figure {

@@ -65,7 +65,7 @@ function *userNavigation(action) {
                 yield resolveEntryManifest();
                 break;
             default:
-        }    
+        } 
     }
 }
 

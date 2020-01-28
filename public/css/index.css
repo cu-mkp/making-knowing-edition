@@ -54,7 +54,7 @@ h4 {
 #globalNavigation {
   font-size: 0.9rem;
   position: relative;
-  top: -2.4rem;
+  top: -4rem;
   right: 2rem;
   float: right; }
 
@@ -451,8 +451,24 @@ figure.current {
   margin: 80px 20% 80px 20%;
   max-width: 960px;
   line-height: 1.5; }
+  #content-view .loading {
+    margin-left: 40%; }
+  #content-view .homepage-grid {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 20px;
+    padding-bottom: 20px; }
+  #content-view .homepage-header {
+    margin-bottom: 100px; }
+    #content-view .homepage-header .intro {
+      margin: 10px; }
+  #content-view .homepage-intro-video {
+    float: right; }
+  #content-view .homepage-grid-item {
+    width: 360px;
+    margin: 10px; }
   #content-view p {
-    margin: 0px; }
+    margin-bottom: .25em; }
   #content-view a {
     word-wrap: break-word; }
   #content-view h1 {
@@ -471,6 +487,8 @@ figure.current {
     align-items: center;
     display: flex;
     flex-wrap: wrap; }
+  #content-view iframe {
+    text-align: center; }
   #content-view figure {
     margin-top: 20px;
     margin-bottom: 20px; }
@@ -511,7 +529,7 @@ figure.current {
 #diplomatic #header {
   margin: 0;
   color: white;
-  height: 4.5rem;
+  height: 6.5rem;
   background-color: black;
   font-family: 'Oswald', sans-serif;
   grid-area: header;
@@ -584,7 +602,7 @@ figure.current {
     width: 100vw; }
   #diplomatic.fixed #content {
     line-height: 1.2rem;
-    margin-top: 5rem; }
+    margin-top: 7rem; }
 
 .imageGridComponent {
   background-color: #000000;
@@ -748,6 +766,11 @@ figure.current {
 
 .ups {
   background: lightgray; }
+
+.x-small-inline-figure {
+  margin: 5px;
+  border: 1px solid gray;
+  width: 30px; }
 
 .small-inline-figure {
   margin: 5px;

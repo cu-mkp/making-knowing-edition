@@ -3,6 +3,11 @@ import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
+import {Typography} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import { CardActionArea } from '@material-ui/core';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
 
 class ContentView extends Component {
 
@@ -32,19 +37,67 @@ class ContentView extends Component {
 		 return parserOptions;
     }
 
+    renderGridCard(title, graphic, link) {
+        return (
+            <Card className="homepage-grid-item">
+                <CardActionArea 
+                    onClick={ e => {this.props.history.push(link)}}
+                >
+                    <CardMedia style={{width: 360, height: 350}} image={graphic}>
+                    </CardMedia>
+                    <CardHeader 
+                        title={title} 
+                    >            
+                    </CardHeader>
+                </CardActionArea>
+            </Card>
+        )
+    }
+
+    renderHomePage() {
+        const {imagesBaseURL} = this.props.contents
+        const introVideoURL = 'https://player.vimeo.com/video/386753079'
+        return (
+            <div id="content-view" className='home-page'>
+                <div className="homepage-header" >
+                    <iframe className="homepage-intro-video" title="Introduction Video" src={introVideoURL} width="426" height="240" frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
+                    <div className="intro">
+                        <Typography>This edition and translation of the ms. offers unique firsthand insight in making and materials from a time when artists were scientists. Brought to you by the <a href="https://www.makingandknowing.org/">Making and Knowing Project</a>.</Typography>
+                        <br></br>
+                        <Typography>For tips, please see <a href="#/content/how-to-use">How to Use</a>.</Typography>
+                        <br></br>
+                        <Typography><i>Check back over the coming months as we add new content and features.</i></Typography>
+                    </div>
+                </div>
+                <div className="homepage-grid">
+                    { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.jpeg`, '/folios')}
+                    { this.renderGridCard('STUDY',`${imagesBaseURL}/homepage-study.PNG`, '/essays')}
+                    { this.renderGridCard('EXPLORE',`${imagesBaseURL}/homepage-filter.png`, '/content/research+resources/overview')}
+                    { this.renderGridCard('ABOUT',`${imagesBaseURL}/homepage-about.jpg`, '/content/about/m-k-project')}
+                </div>
+            </div>
+        )
+    }
+
     render() {
         const {contentID} = this.props
+        const {contents} = this.props.contents
 
-        if(!contentID) {
-            return (
-                <div id="content-view">
-                    <p>The manuscript now preserved at the Bibliothèque nationale de France, known as Ms. Fr. 640, comprises a compilation of technical "recipes" and observations about craft processes and natural materials. It was most probably written in the late sixteenth century by an experienced practitioner in the vicinity of Toulouse, France. The 171 folios of this rich and intriguing manuscript constitute the written record of the author-practitioner’s collection of recipes and his workshop investigations. The manuscript contains a remarkable range of techniques, including casting, mold making, metalwork, pigment and varnish making, drawing and painting instruction, practical therapeutics, vernacular natural history, practical perspective construction and the creation of optical effects, mechanical constructions, and even jokes and sleight-of-hand tricks. It offers a window into the early modern artisan’s workshop, revealing not only the materials and methods used by artisans and artists, but also insights into how and why nature was employed in creating art, and the extensive processes of experimentation that went on in an early modern workshop.</p>                        
-                </div>
-            )
+        if( contentID === 'index') {
+            return this.renderHomePage()
         }
 
-        const content = this.props.contents.contents[contentID]
+        const content = contents[contentID]
+        
         if( !content ) {
+            return (
+                <div id="content-view">
+                    <div className="loading" >
+                        <img alt="Loading, please wait." src="/img/spinner.gif"></img>
+                    </div>
+                </div>
+            )     
+        } else if( content === 404 ) {
             return (
                 <div id="content-view">
                     <h1>Content Not Found</h1>
