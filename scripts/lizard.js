@@ -427,8 +427,8 @@ function filterForPublication(annotationMetadata, annotationAssets) {
             // must be downloaded 
             if( fs.existsSync(annotationDir) ) {
                 publishedAssets[annotationAsset.id] = annotationAsset
-                publishedMetadata[metadata.id] = metadata
             } 
+            publishedMetadata[metadata.id] = metadata
         }
     }
     return { publishedAssets, publishedMetadata }
@@ -599,7 +599,7 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
         let annotation
         if( asset ) {
             // if we have the asset, but it isn't marked for publication, just publish metadata
-            if( metadata.status !== 'staging' && metadata.status != 'published') {
+            if( metadata.status !== 'staging' && metadata.status !== 'published') {
                 annotation = {
                     ...metadata,
                     annotationAuthors,
@@ -930,8 +930,8 @@ async function run(mode) {
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
             const thumbnails = loadThumbnails()
-            const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
-            await processAnnotations(publishedAssets,publishedMetadata,authors,thumbnails)
+            // const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
+            await processAnnotations(annotationAssets,annotationMetadata,authors,thumbnails)
             }
             break;
         case 'index':
