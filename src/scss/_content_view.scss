@@ -19,18 +19,18 @@
     }
 
     .homepage-header {
-        margin-bottom: 100px;
+        h2 {
+            margin-top: 0px;
+            text-align: center;
+        }
         .intro {
             margin: 10px;
         }
     }
 
-    .homepage-intro-video {
-        float: right;
-    }
 
     .homepage-grid-item {
-        width: 360px;
+        width: 450px;
         margin: 10px;
     }
 
@@ -68,11 +68,6 @@
         align-items: center;
         display: flex;
         flex-wrap: wrap;
-    }
-
-    iframe {
-        text-align: center;
-        
     }
 
     figure {
