@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
-import {Typography} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import { CardActionArea } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';

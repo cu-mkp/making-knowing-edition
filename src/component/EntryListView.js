@@ -204,7 +204,7 @@ class EntryListView extends Component {
                   <div id="entry-list-view">
                         <div className='entries'>
                               <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
-                              <Typography>The List of Entries allows navigation of the manuscript by the headings of all “recipes” or entries in Ms. Fr. 640.</Typography><br/>
+                              <Typography>Ms. Fr. 640 consists almost entirely of units of text under titles, which the Project has called “entries.” The List of Entries forms an index in order to browse the manuscript.</Typography><br/>
                               <Typography>Relevant terms in each entry have been encoded using fourteen semantic tags that include materials, tools, and places. For a full list of the tags and their usage, see the <a href="#/content/research+resources/principles">Principles of Encoding</a>.</Typography><br/>
                               <Typography>The list can be filtered by the semantic tags found in the entries, which can be further refined by clicking on multiple tag types.</Typography><br/>
                               <div className="sort-container">
