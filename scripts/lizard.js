@@ -390,7 +390,7 @@ function filterForDownload(annotationMetadata, annotationAssets) {
         const metadata = annotationMetadata[annotationAsset.id]
         if( metadata ) {        
             const {status, refresh} = metadata
-            // ignore items with not status
+            // ignore items with no status
             if( status === 'published' || status === 'staging' ) {
                 if( publicationStage === 'production') {
                     // download everything to make sure we have the latest
@@ -406,43 +406,6 @@ function filterForDownload(annotationMetadata, annotationAssets) {
     }
     return selectedAssets
 }
-
-function filterForPublication(annotationMetadata, annotationAssets) {
-
-    // filter only apply in production mode
-    if( publicationStage !== 'production') {
-        return { 
-            publishedAssets: annotationAssets, 
-            publishedMetadata: annotationMetadata
-        }
-    } 
-
-    // filter out assets that didn't download
-    const publishedAssets = {}, publishedMetadata = {}
-    for( const annotationAsset of Object.values(annotationAssets) ) {
-        const metadata = annotationMetadata[annotationAsset.id]
-        if( metadata ) {        
-            const annotationDir = `${baseDir}/${annotationAsset.id}`;
-
-            // must be downloaded 
-            if( fs.existsSync(annotationDir) ) {
-                publishedAssets[annotationAsset.id] = annotationAsset
-            } 
-            publishedMetadata[metadata.id] = metadata
-        }
-    }
-    return { publishedAssets, publishedMetadata }
-}
-
-function deleteAnnotation(annotationID) {
-    const annotationHTMLFile = `${targetAnnotationDir}/${annotationID}.html`;    
-    const illustrationsDir = `${targetImageDir}/${annotationID}`;
-    if( fs.existsSync(annotationHTMLFile) ) {
-        fs.unlinkSync(annotationHTMLFile);
-    }
-    // TODO delete contents of illustration dir
-}
-
 
 function nodeToPath( fileNode, path=[] ) {
     path.push(fileNode.name);
@@ -930,7 +893,6 @@ async function run(mode) {
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
             const thumbnails = loadThumbnails()
-            // const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
             await processAnnotations(annotationAssets,annotationMetadata,authors,thumbnails)
             }
             break;
