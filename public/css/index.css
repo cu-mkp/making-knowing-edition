@@ -458,14 +458,13 @@ figure.current {
     flex-wrap: wrap;
     padding-right: 20px;
     padding-bottom: 20px; }
-  #content-view .homepage-header {
-    margin-bottom: 100px; }
-    #content-view .homepage-header .intro {
-      margin: 10px; }
-  #content-view .homepage-intro-video {
-    float: right; }
+  #content-view .homepage-header h2 {
+    margin-top: 0px;
+    text-align: center; }
+  #content-view .homepage-header .intro {
+    margin: 10px; }
   #content-view .homepage-grid-item {
-    width: 360px;
+    width: 450px;
     margin: 10px; }
   #content-view p {
     margin-bottom: .25em; }
@@ -487,8 +486,6 @@ figure.current {
     align-items: center;
     display: flex;
     flex-wrap: wrap; }
-  #content-view iframe {
-    text-align: center; }
   #content-view figure {
     margin-top: 20px;
     margin-bottom: 20px; }

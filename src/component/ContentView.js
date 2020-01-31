@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {dispatchAction} from '../model/ReduxStore';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
-import {Typography} from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import { CardActionArea } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -43,7 +42,7 @@ class ContentView extends Component {
                 <CardActionArea 
                     onClick={ e => {this.props.history.push(link)}}
                 >
-                    <CardMedia style={{width: 360, height: 350}} image={graphic}>
+                    <CardMedia style={{width: 490, height: 525}} image={graphic}>
                     </CardMedia>
                     <CardHeader 
                         title={title} 
@@ -60,20 +59,18 @@ class ContentView extends Component {
         return (
             <div id="content-view" className='home-page'>
                 <div className="homepage-header" >
-                    <iframe className="homepage-intro-video" title="Introduction Video" src={introVideoURL} width="426" height="240" frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
                     <div className="intro">
-                        <Typography>This edition and translation of the ms. offers unique firsthand insight in making and materials from a time when artists were scientists. Brought to you by the <a href="https://www.makingandknowing.org/">Making and Knowing Project</a>.</Typography>
-                        <br></br>
-                        <Typography>For tips, please see <a href="#/content/how-to-use">How to Use</a>.</Typography>
-                        <br></br>
-                        <Typography><i>Check back over the coming months as we add new content and features.</i></Typography>
+                        <h1>Secrets of Craft and Nature in Renaissance France</h1>
+                        <h2>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h2>
+                        <p>A production of the Making and Knowing Project, this edition provides a transcription and English translation of Ms. Fr. 640, composed by an anonymous “author-practitioner” in 1580s Toulouse and now held by the Bibliothèque nationale de France. This manuscript offers unique firsthand insight into making and materials from a time when artists were scientists. The research resources in this edition explore the manuscript’s context and diverse topics. For tips, please see <a href="#/content/how-to-use">How to Use</a>. <i>Check back over the coming months as we add new content and features.</i></p>                        
                     </div>
+                    <iframe className="homepage-intro-video" title="Introduction Video" src={introVideoURL} width="960" height="720" frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
                 </div>
                 <div className="homepage-grid">
                     { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.jpeg`, '/folios')}
-                    { this.renderGridCard('STUDY',`${imagesBaseURL}/homepage-study.PNG`, '/essays')}
+                    { this.renderGridCard('STUDY',`${imagesBaseURL}/homepage-study-tiles.PNG`, '/essays')}
                     { this.renderGridCard('EXPLORE',`${imagesBaseURL}/homepage-filter.png`, '/content/research+resources/overview')}
-                    { this.renderGridCard('ABOUT',`${imagesBaseURL}/homepage-about.jpg`, '/content/about/m-k-project')}
+                    { this.renderGridCard('ABOUT',`${imagesBaseURL}/homepage-about.jpg`, '/content/about/overview')}
                 </div>
             </div>
         )

@@ -314,7 +314,7 @@ function locateAnnotationAssets() {
     let annotationAssets = [];
 
     driveTreeRoot.children.forEach( semester => {
-        if( semester.children ) {
+        if( semester.children && semester.name !== thumbnailFolderName ) {
             semester.children.forEach( annotationRoot => {
                 let textFileNode = null;
                 let captionFile = null;
@@ -389,66 +389,23 @@ function filterForDownload(annotationMetadata, annotationAssets) {
     for( const annotationAsset of annotationAssets ) {
         const metadata = annotationMetadata[annotationAsset.id]
         if( metadata ) {        
-            const {status,refresh} = metadata
-
-            if( publicationStage === 'production') {
-                // download everything that is published, to make sure we have the latest
-                if( status === 'published') {
+            const {status, refresh} = metadata
+            // ignore items with no status
+            if( status === 'published' || status === 'staging' ) {
+                if( publicationStage === 'production') {
+                    // download everything to make sure we have the latest
                     selectedAssets.push(annotationAsset)
-                }
-            } else {
-                // if user requests refresh 
-                if(refresh) {
-                    selectedAssets.push(annotationAsset)
-                }
+                } else {
+                    // only if user requests refresh 
+                    if(refresh) {
+                        selectedAssets.push(annotationAsset)
+                    }
+                }    
             }
         }
     }
     return selectedAssets
 }
-
-function filterForPublication(annotationMetadata, annotationAssets) {
-
-    // filter only apply in production mode
-    if( publicationStage !== 'production') {
-        return { 
-            publishedAssets: annotationAssets, 
-            publishedMetadata: annotationMetadata
-        }
-    } 
-
-    // filter out assets that aren't marked to be refreshed
-    const publishedAssets = {}, publishedMetadata = {}
-    for( const annotationAsset of Object.values(annotationAssets) ) {
-        const metadata = annotationMetadata[annotationAsset.id]
-        if( metadata ) {        
-            const {status} = metadata
-            const annotationDir = `${baseDir}/${annotationAsset.id}`;
-
-            // must be downloaded and marked for publication
-            if( fs.existsSync(annotationDir) ) {
-                if( status === 'published' ) {
-                    publishedAssets[annotationAsset.id] = annotationAsset
-                    publishedMetadata[metadata.id] = metadata
-                } else {
-                    // delete assets not heading to production
-                    deleteAnnotation(metadata.id)
-                }
-            } 
-        }
-    }
-    return { publishedAssets, publishedMetadata }
-}
-
-function deleteAnnotation(annotationID) {
-    const annotationHTMLFile = `${targetAnnotationDir}/${annotationID}.html`;    
-    const illustrationsDir = `${targetImageDir}/${annotationID}`;
-    if( fs.existsSync(annotationHTMLFile) ) {
-        fs.unlinkSync(annotationHTMLFile);
-    }
-    // TODO delete contents of illustration dir
-}
-
 
 function nodeToPath( fileNode, path=[] ) {
     path.push(fileNode.name);
@@ -605,7 +562,7 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
         let annotation
         if( asset ) {
             // if we have the asset, but it isn't marked for publication, just publish metadata
-            if( metadata.status !== 'staging' && metadata.status != 'published') {
+            if( metadata.status !== 'staging' && metadata.status !== 'published') {
                 annotation = {
                     ...metadata,
                     annotationAuthors,
@@ -918,9 +875,11 @@ function setupLogging() {
 
 async function run(mode) {
     switch( mode ) {
-        case 'download-all': {
+        case 'download': {
             const annotationDriveAssets = locateAnnotationAssets();
-            syncDriveAssets( annotationDriveAssets );
+            const annotationMetadata = await loadAnnotationMetadata()
+            const selectedAssets = filterForDownload(annotationMetadata,annotationDriveAssets)
+            syncDriveAssets( selectedAssets );
             }
             break;
         case 'download-thumbs': {
@@ -929,20 +888,12 @@ async function run(mode) {
             syncThumbnails( thumbnailAssets, annotationMetadata )
             }
             break;
-        case 'download': {
-            const annotationDriveAssets = locateAnnotationAssets();
-            const annotationMetadata = await loadAnnotationMetadata()
-            const selectedAssets = filterForDownload(annotationMetadata,annotationDriveAssets)
-            syncDriveAssets( selectedAssets );
-            }
-            break;
         case 'process': {
             const annotationAssets = findLocalAssets();
             const annotationMetadata = await loadAnnotationMetadata()
             const authors = await loadAuthors()
             const thumbnails = loadThumbnails()
-            const { publishedAssets, publishedMetadata } = filterForPublication(annotationMetadata,annotationAssets)
-            await processAnnotations(publishedAssets,publishedMetadata,authors,thumbnails)
+            await processAnnotations(annotationAssets,annotationMetadata,authors,thumbnails)
             }
             break;
         case 'index':
@@ -950,7 +901,7 @@ async function run(mode) {
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             break;
         case 'init':
-            await run('download-all')
+            await run('download')
             await run('download-thumbs')
             await run('process')
             await run('index')
@@ -1031,7 +982,6 @@ function main() {
         console.log(`Usage: lizard.js <command>` );
         console.log("A helpful lizard that responds to the following commands:")
         console.log("\tdownload-thumbs: Download essay thumbnails from Google Drive via rclone.");
-        console.log("\tdownload-all: Download all essays from Google Drive.");
         console.log("\tdownload: Download only essays marked with 'refresh'.");
         console.log("\tprocess: Process the downloaded files and place them on the asset server.");
         console.log("\tindex: Create a search index of the essays.");

@@ -94,6 +94,7 @@ class AnnotationListView extends Component {
         if( !this.props.annotations.loaded ) return null;
 
         const {annotationSections} = this.props.annotations
+        const annotationCount = Object.keys(this.props.annotations.annotations).length
         
         return (
             <div id="annotation-list-view">
@@ -103,7 +104,7 @@ class AnnotationListView extends Component {
                         <div className="seperator"></div>
                         <IconButton onClick={this.onDisplayThumbs}><span title="Display Thumbnails" ><Icon.Th /></span></IconButton>   
                     </div>
-                    <Typography variant='h4' gutterBottom>Research Essays for BnF Ms. Fr. 640</Typography>
+                    <Typography variant='h4' gutterBottom>Research Essays for BnF Ms. Fr. 640 ({annotationCount})</Typography>
                 </Paper>
                 <div className="contentArea">
                     { this.renderTableOfContents(annotationSections) }

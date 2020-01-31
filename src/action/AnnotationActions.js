@@ -7,6 +7,9 @@ AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( stat
     let annotationsByEntry = {};
 
     for( let annotation of annotationList ) {
+        if( annotations[annotation.id] ) {
+            console.log('ERROR, duplicate annotation id: '+annotation.id)
+        }
         annotations[annotation.id] = {
             ...annotation,
             loaded: false
