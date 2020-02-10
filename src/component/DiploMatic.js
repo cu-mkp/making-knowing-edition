@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { Provider, connect } from 'react-redux'
 import { HashRouter, Route, Switch, Link } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import {dispatchAction} from '../model/ReduxStore';
+import ReactGA from 'react-ga';
 import PropTypes from 'prop-types'
 import DocumentView from './DocumentView';
 import SearchView from './SearchView';
@@ -14,6 +17,24 @@ import MainMenu from './MainMenu';
 
 
 class DiploMatic extends Component {
+
+	componentWillMount() {
+		const { googleAnalyticsTrackingID } = this.props.diplomatic
+
+		if( googleAnalyticsTrackingID ) {
+			ReactGA.initialize(googleAnalyticsTrackingID);
+
+			const history = createBrowserHistory()
+			history.listen((location) => {
+				const page = location.hash.slice(1)
+				ReactGA.set({ page });
+				ReactGA.pageview(page)
+				// console.log('GA: '+page)
+			})	
+		} else {
+			console.log('Google Analytics is not enabled.')
+		}
+    }
 
 	loadingModal_start(){
 		// Cancel any pending stops
@@ -163,8 +184,13 @@ class DiploMatic extends Component {
 	}
 
 	render() {
-		let fixedFrameModeClass = this.props.diplomatic.fixedFrameMode ? 'fixed' : '';
+		const { firstPageLoad, fixedFrameMode, googleAnalyticsTrackingID } = this.props.diplomatic
+		const fixedFrameModeClass = fixedFrameMode ? 'fixed' : '';
 
+		if( googleAnalyticsTrackingID && firstPageLoad ) {
+			dispatchAction( this.props, 'DiplomaticActions.recordLanding' );
+		}
+		
 		return (
 			<Provider store={this.props.store}>
 				<HashRouter>
