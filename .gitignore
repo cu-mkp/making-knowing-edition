@@ -12,7 +12,7 @@
 
 # don't track built assets in edition dir
 /public/bnf-ms-fr-640
-
+/public/google*
 
 # don't track edition_data dir
 /edition_data
