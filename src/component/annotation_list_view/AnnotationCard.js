@@ -61,8 +61,9 @@ class AnnotationCard extends Component {
     }
 
     render() {
-        const { annotation } = this.props
+        const { annotation, diplomatic } = this.props
 
+        const { releaseMode } = diplomatic
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
         const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
         const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
@@ -78,10 +79,10 @@ class AnnotationCard extends Component {
                 </CardMedia>
                 <CardContent>
                     <span className='abstract'>{Parser(abstract)}</span>
-                    { annotation.status === 'staging' ? 
+                    { (annotation.status === 'staging' && releaseMode !== 'production') ? 
                         <span style={{color: 'green'}}><b>** IN STAGING **</b></span>                    
                     : null }
-                    { annotation.contentURL ? 
+                    { (annotation.contentURL && ( releaseMode !== 'production' || ( releaseMode === 'production' && annotation.status === 'published' ))) ? 
                         <div className='details'>
                             <Button onClick={e => {this.props.history.push(`/essays/${annotation.id}`)}}>Read Essay</Button>
                         </div>
@@ -96,7 +97,8 @@ class AnnotationCard extends Component {
 
 function mapStateToProps(state) {
     return {
-        authors: state.authors
+        authors: state.authors,
+        diplomatic: state.diplomatic
     };
 }
 
