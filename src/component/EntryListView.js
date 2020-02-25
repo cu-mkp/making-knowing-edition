@@ -66,7 +66,7 @@ class EntryListView extends Component {
             } else {
                   const plural = annotationList.length > 1 ? 's' : ''
                   return (
-                        <Typography>Annotation{plural}: { annotationList }</Typography>
+                        <Typography>Essay{plural}: { annotationList }</Typography>
                   )      
             }
       }
