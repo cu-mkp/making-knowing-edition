@@ -405,10 +405,17 @@ figure.current {
 #entry-list-view {
   margin: 80px;
   max-width: 700px; }
+  #entry-list-view .filterBy {
+    margin-bottom: 20px; }
   #entry-list-view .entry {
     margin-top: 10px; }
     #entry-list-view .entry .entry-chips {
       margin-top: 10px; }
+    #entry-list-view .entry .entry-categories {
+      display: flex; }
+      #entry-list-view .entry .entry-categories p {
+        padding-top: 8px;
+        padding-right: 8px; }
     #entry-list-view .entry .detail-container {
       display: flex;
       flex-direction: column;

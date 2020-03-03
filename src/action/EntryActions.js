@@ -1,32 +1,43 @@
 
 var EntryActions = {};
 
-EntryActions.toggleFilter = function toggleFilter( state, filterTagID ) {  
-    const { filterTags, entries } = state
-    let nextFilterTags = [ ...filterTags ]
+EntryActions.toggleFilter = function toggleFilter( state, filterID, filterType ) {  
+    const { filterTags, filterCategories, entries } = state
 
-    let tagIndex = filterTags.indexOf(filterTagID)
-    if( tagIndex === -1 ) {
-        nextFilterTags.push(filterTagID)
+    let nextFilter, filterIndex
+    if( filterType === 'tags') {
+        nextFilter = [ ...filterTags ]
+        filterIndex = filterTags.indexOf(filterID)
     } else {
-        nextFilterTags.splice(tagIndex,1)
+        nextFilter = [ ...filterCategories ]
+        filterIndex = filterCategories.indexOf(filterID)
+    }
+ 
+    if( filterIndex === -1 ) {
+        nextFilter.push(filterID)
+    } else {
+        nextFilter.splice(filterIndex,1)
     }
 
-    const entryList = reloadEntryList( entries, nextFilterTags )
-
-    return {
-        ...state,
-        entryList,
-        filterTags: nextFilterTags
-    }
-}
-
-EntryActions.setSortType = function setSortType( state, sortType ) {  
-    // update sort type and reload entry list
+    if( filterType === 'tags' ) {
+        const entryList = reloadEntryList( entries, nextFilter, filterCategories )
+        return {
+            ...state,
+            entryList,
+            filterTags: nextFilter
+        }
+    } else {
+        const entryList = reloadEntryList( entries, filterTags, nextFilter )
+        return {
+            ...state,
+            entryList,
+            filterCategories: nextFilter
+        }
+    }    
 }
 
 EntryActions.loadEntryManifest = function loadEntryManifest( state, entries ) {  
-    const entryList = reloadEntryList( entries, state.filterTags )
+    const entryList = reloadEntryList( entries, state.filterTags, state.filterCategories )
 
     return {
         ...state,
@@ -50,11 +61,26 @@ function matchFilterTags( mentions, filterTags ) {
     return true
 }
 
-function reloadEntryList( entries, filterTags ) {
+function matchFilterCategories( categories, filterCategories ) {
+    // filter isn't active, allow all
+    if( filterCategories.length === 0 ) return true
+
+    for( let categoryName of filterCategories ) {
+        if( !categories.includes(categoryName) ) {
+            return false
+        }
+    }    
+
+    // all terms found
+    return true
+}
+
+
+function reloadEntryList( entries, filterTags, filterCategories ) {
     let entryList = [];
     for( let entry of entries ) {
         if( entry.heading_tcn !== '' && entry.heading_tl !== '') {
-            if( matchFilterTags( entry.mentions, filterTags ) ) {
+            if( matchFilterTags( entry.mentions, filterTags ) && matchFilterCategories( entry.categories, filterCategories ) ) {
                 const displayHeading = `${entry.heading_tl} / ${entry.heading_tcn}`.replace(/[@+]/g,'');
                 entryList.push( { ...entry, displayHeading });    
             }

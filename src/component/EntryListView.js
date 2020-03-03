@@ -72,7 +72,7 @@ class EntryListView extends Component {
       }
 
       renderEntryCard = (index, key) => {        
-            const { entryList, tagNameMap } = this.props.entries
+            const { entryList, tagNameMap, filterCategories } = this.props.entries
             const sortedList = this.sortEntryList(entryList);
             const entry = sortedList[index]
             let tags = [];
@@ -81,9 +81,13 @@ class EntryListView extends Component {
                         tags.push({ id: tagID, name: tagNameMap[tagID], count: entry.mentions[tagID]})
                   }
             }
+            let categories = []
+            for( let categoryName of entry.categories ) {
+                  categories.push({ id: categoryName, name: categoryName })
+            }
 
+            let categoryChips = this.renderNavigationChips(categories, 'categories', filterCategories)
             let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
-            let categories = entry['categories'].replace(/;/g,', ')
             let chips = this.renderCardChips(tags)
             const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
             return (
@@ -91,7 +95,7 @@ class EntryListView extends Component {
                               <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
                                           <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio_display}`}</Typography></Link>
-                                          <Typography>Category: <i>{categories}</i></Typography>
+                                          <div className='entry-categories'><Typography>Categories: </Typography>{categoryChips}</div>
                                           { this.renderAnnotationList(entry) }
                                           <div className="entry-chips">{mentionRow}</div>
                                     </div>        
@@ -134,7 +138,8 @@ class EntryListView extends Component {
 
       onClickNavigationChip = (e) => {
             const tagID = e.currentTarget.getAttribute('tagid')
-            dispatchAction( this.props, 'EntryActions.toggleFilter', tagID );
+            const filterType = e.currentTarget.getAttribute('filtertype')
+            dispatchAction( this.props, 'EntryActions.toggleFilter', tagID, filterType );
       }
     
       onClickCardChip = (e) => {
@@ -168,20 +173,22 @@ class EntryListView extends Component {
             return references;
       }
 
-      renderNavigationChips(tags) {
-            const { filterTags } = this.props.entries
+      renderNavigationChips(terms, filterType, filterList) {
             // need to display toggle state
             let chips = []
-            for( let tag of tags) {
-                  chips.push(<Chip
-                  className="tag-nav-item"
-                  tagid={tag.id}
-                  key={`chip-${tag.id}`}
-                  color= { filterTags.includes(tag.id) ? "primary" : "default"}
-                  avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
-                  onClick={this.onClickNavigationChip}
-                  label={tag.name}
-                  />)
+            for( let term of terms) {
+                  chips.push(
+                        <Chip
+                              className="tag-nav-item"
+                              filtertype={filterType}
+                              tagid={term.id}
+                              key={`chip-${term.id}`}
+                              color= { filterList.includes(term.id) ? "primary" : "default"}
+                              avatar={ term.count > 0 ? <Avatar>{term.count}</Avatar> : null }
+                              onClick={this.onClickNavigationChip}
+                              label={term.name}
+                        />
+                  )
             }
             return(chips)
       }
@@ -193,11 +200,15 @@ class EntryListView extends Component {
 	render() {
             if( !this.props.entries.loaded ) return null;
 
-            const { entryList, tagNameMap } = this.props.entries
+            const { entryList, tagNameMap, filterTags, filterCategories, categoryNames } = this.props.entries
             const tagIDs = Object.keys(tagNameMap)
             let tags = []
             for( let tagID of tagIDs ) {
                   tags.push({ id: tagID, name: tagNameMap[tagID] })
+            }
+            let categories = []
+            for( let categoryName of categoryNames ) {
+                  categories.push({ id: categoryName, name: categoryName })
             }
 
             return (
@@ -207,6 +218,14 @@ class EntryListView extends Component {
                               <Typography>Ms. Fr. 640 consists almost entirely of units of text under titles, which the Project has called “entries.” The List of Entries forms an index in order to browse the manuscript.</Typography><br/>
                               <Typography>Relevant terms in each entry have been encoded using fourteen semantic tags that include materials, tools, and places. For a full list of the tags and their usage, see the <a href="#/content/research+resources/principles">Principles of Encoding</a>.</Typography><br/>
                               <Typography>The list can be filtered by the semantic tags found in the entries, which can be further refined by clicking on multiple tag types.</Typography><br/>
+                              <div className="filterBy">
+                                    <h2>Filter by Category:</h2>
+                                    { this.renderNavigationChips(categories, 'categories', filterCategories) }
+                              </div>
+                              <div className="filterBy">
+                                    <h2>Filter by Tag:</h2>
+                                    { this.renderNavigationChips(tags, 'tags', filterTags ) }
+                              </div>
                               <div className="sort-container">
                                    <FormLabel className="sort-label">Sorted:</FormLabel>
                                     <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
@@ -214,7 +233,6 @@ class EntryListView extends Component {
                                           <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
                                     </RadioGroup>
                               </div> 
-                              { this.renderNavigationChips(tags) }
                               <ReactList
                                     itemRenderer={this.renderEntryCard}
                                     length={entryList.length}
