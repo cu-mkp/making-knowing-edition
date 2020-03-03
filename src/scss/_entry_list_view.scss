@@ -13,6 +13,13 @@
         .entry-chips {
             margin-top: 10px;
         }
+        .entry-categories {
+            display: flex;
+            p {
+                padding-top: 8px;
+                padding-right: 8px;
+            }
+        }
         .detail-container {
               display: flex;
               flex-direction:column;

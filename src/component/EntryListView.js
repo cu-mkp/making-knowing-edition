@@ -95,7 +95,7 @@ class EntryListView extends Component {
                               <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
                                           <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio_display}`}</Typography></Link>
-                                          <div>{categoryChips}</div>
+                                          <div className='entry-categories'><Typography>Categories: </Typography>{categoryChips}</div>
                                           { this.renderAnnotationList(entry) }
                                           <div className="entry-chips">{mentionRow}</div>
                                     </div>        
