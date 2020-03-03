@@ -405,6 +405,8 @@ figure.current {
 #entry-list-view {
   margin: 80px;
   max-width: 700px; }
+  #entry-list-view .filterBy {
+    margin-bottom: 20px; }
   #entry-list-view .entry {
     margin-top: 10px; }
     #entry-list-view .entry .entry-chips {

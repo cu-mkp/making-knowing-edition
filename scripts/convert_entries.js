@@ -21,6 +21,8 @@ async function convert( entriesCSV, targetEntriesFile ) {
             text_references[tagType] = references;
         });
         
+        const categoryNames = categories.split(';');
+
         entries.push({
             id: ordinalID++,
             div_id,
@@ -31,7 +33,7 @@ async function convert( entriesCSV, targetEntriesFile ) {
             heading_tl,
             mentions,
             text_references,
-            categories
+            categories: categoryNames
         });
     })
       
