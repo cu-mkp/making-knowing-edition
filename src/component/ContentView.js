@@ -64,7 +64,31 @@ class ContentView extends Component {
                         <h2>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h2>
                         <p>A production of the Making and Knowing Project, this edition provides a transcription and English translation of Ms. Fr. 640, composed by an anonymous “author-practitioner” in 1580s Toulouse and now held by the Bibliothèque nationale de France. This manuscript offers unique firsthand insight into making and materials from a time when artists were scientists. The research resources in this edition explore the manuscript’s context and diverse topics. For tips, please see <a href="#/content/how-to-use">How to Use</a>. <i>Check back over the coming months as we add new content and features.</i></p>                        
                     </div>
-                    <iframe className="homepage-intro-video" title="Introduction Video" src={introVideoURL} width="960" height="720" frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
+                    <div
+                        style={{
+                            position: "relative",
+                            paddingBottom: "56.25%" /* 16:9 */,
+                            paddingTop: 25,
+                            height: 0,
+                            margin: "40px 0 40px 0"
+                        }}
+                    >
+                        <iframe className="homepage-intro-video"
+                            style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100%"
+                            }}
+                            title="Introduction Video"
+                            src={introVideoURL}
+                            frameBorder="0"
+                            allow="autoplay; fullscreen"
+                            allowFullScreen>
+                        </iframe>
+                    </div>
+
                 </div>
                 <div className="homepage-grid">
                     { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.jpeg`, '/folios')}
