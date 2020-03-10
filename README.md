@@ -14,7 +14,7 @@ Note: These instructions call for using [homebrew](https://brew.sh/) to install 
 
 Steps:
 
-1. Run [yarn](https://yarnpkg.com), and the cd into scripts and run yarn there.
+1. Run [yarn](https://yarnpkg.com), and then cd into scripts and run yarn there.
 
 ```
 yarn 
@@ -64,7 +64,6 @@ cp -R edition_data_example edition_data
 ```
 mkdir public/bnf-ms-fr-640
 mv edition_data/figures public/bnf-ms-fr-640 
-mv edition_data/entries.json public/bnf-ms-fr-640 
 mkdir edition_data/working
 ```
 
@@ -82,6 +81,8 @@ git clone https://github.com/cu-mkp/edition-webpages.git
 REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
 REACT_APP_EDITION_DATA_URL=http://localhost:4000/bnf-ms-fr-640
 PORT=4000
+REACT_APP_RELEASE_MODE=staging
+REACT_APP_BUILD_ID=dev
 ```
 
 9. Create a .env.production file with the following:
@@ -89,6 +90,8 @@ PORT=4000
 ```
 REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
 REACT_APP_EDITION_DATA_URL=http://edition-staging.makingandknowing.org/bnf-ms-fr-640
+REACT_APP_RELEASE_MODE=staging
+REACT_APP_BUILD_ID=DDMMYY-N
 ```
 
 Processing Edition Data
