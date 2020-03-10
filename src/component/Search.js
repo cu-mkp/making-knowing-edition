@@ -22,6 +22,7 @@ class Search extends React.Component {
 
 	onSubmit(event) {
 		event.preventDefault();
+		this.props.onSearchDialogClose()
 		this.doSearch(this.state.searchTerm);
 	}
 
@@ -30,6 +31,7 @@ class Search extends React.Component {
 			<div id="search">
 				<form id="search" onSubmit={this.onSubmit}>
 					<input 
+						autoFocus={this.props.autoFocus}
 						className="searchBox" 
 						placeholder="Search the Edition"
 						onChange={this.onSearchTermChange}

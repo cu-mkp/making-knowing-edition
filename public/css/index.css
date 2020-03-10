@@ -52,15 +52,22 @@ h4 {
   opacity: 0.5; }
 
 #globalNavigation {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
   font-size: 0.9rem;
   position: relative;
   top: -4rem;
   right: 2rem;
   float: right; }
+  @media (min-width: 960px) {
+    #globalNavigation {
+      display: block; } }
 
-#globalNavigation span, #globalNavigation a {
+#globalNavigation .expandedViewOnly span, #globalNavigation .expandedViewOnly a {
   color: white;
-  padding-left: 1rem; }
+  margin-left: 1rem;
+  cursor: pointer; }
 
 #globalNavigation span .francais {
   font-weight: 100; }
@@ -539,24 +546,45 @@ figure.current {
   grid-area: header;
   padding: 0.5rem 0 0 1rem;
   white-space: nowrap; }
+  @media (min-width: 600px) {
+    #diplomatic #header {
+      padding: 0.5rem 0 0.5rem 1rem; } }
   #diplomatic #header .title {
-    font-size: 24pt; }
+    font-size: 12pt;
+    margin-top: 1rem; }
     #diplomatic #header .title .home-link {
       color: white;
       text-decoration: none; }
+    @media (min-width: 600px) {
+      #diplomatic #header .title {
+        font-size: 18pt; } }
+    @media (min-width: 960px) {
+      #diplomatic #header .title {
+        margin-top: 0;
+        font-size: 24pt; } }
   #diplomatic #header .tagline {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding: 0.5rem 0 0 0; }
+    @media (min-width: 960px) {
+      #diplomatic #header .tagline {
+        font-size: 0.8rem; } }
   #diplomatic #header .compactTitle {
     font-weight: 700;
     display: none; }
-  #diplomatic #header .expandedViewOnly {
-    margin-right: 50px;
-    display: inline; }
-    #diplomatic #header .expandedViewOnly a {
-      margin-right: 10px; }
-  #diplomatic #header #search {
-    display: inline; }
+  @media (min-width: 1280px) {
+    #diplomatic #header .expandedViewOnly {
+      margin-right: 50px;
+      display: inline; }
+      #diplomatic #header .expandedViewOnly a {
+        margin-right: 10px; } }
+  @media (min-width: 1280px) {
+    #diplomatic #header #search {
+      margin-top: 0;
+      display: inline; } }
+  @media (min-width: 960px) {
+    #diplomatic #header #search {
+      text-align: right;
+      margin-top: 10px; } }
   #diplomatic #header #navigation {
     background-color: blue;
     height: 4.4rem; }

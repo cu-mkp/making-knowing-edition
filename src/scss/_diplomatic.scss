@@ -9,19 +9,33 @@
 		grid-area: header;
 		padding: 0.5rem 0 0 1rem;
 		white-space: nowrap;
+		@include sm {
+			padding: 0.5rem 0 0.5rem 1rem;
+		}
 
 		.title {
-			font-size: 24pt;
-
+			font-size: 12pt;
+			margin-top: 1rem;
 			.home-link {
 				color: white;
 				text-decoration: none;	
 			}
+			@include sm {
+				font-size: 18pt;
+			}
+			@include md {
+				margin-top: 0;
+				font-size: 24pt;
+			}
 		}
 
 		.tagline {
-			font-size: 0.8rem;
-			padding: 0.5rem 0 0 0;	
+			font-size: 0.7rem;
+			padding: 0.5rem 0 0 0;
+			@include md {
+				font-size: 0.8rem;
+			}
+
 		}
 
 		.compactTitle {
@@ -30,15 +44,24 @@
 		}
 
 		.expandedViewOnly {
-			margin-right: 50px;
-			display: inline;
-			a {
-				margin-right: 10px;
+			@include lg {
+				margin-right: 50px;
+				display: inline;
+				a {
+					margin-right: 10px;
+				}
 			}
 		}
 
 		#search {
-			display: inline;
+			@include lg {
+				margin-top: 0;
+				display: inline;
+			}
+			@include md {
+				text-align: right;
+				margin-top: 10px;
+			}
 		}
 	
 		#navigation {

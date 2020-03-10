@@ -14,6 +14,8 @@ import AnnotationListView from './annotation_list_view/AnnotationListView';
 import Search from './Search';
 import RouteListener from './RouteListener';
 import MainMenu from './MainMenu';
+import SearchIconButton from './SearchIconButton'
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 
 class DiploMatic extends Component {
@@ -53,8 +55,11 @@ class DiploMatic extends Component {
 				// $("#loadingStateModal").fadeOut("fast");
 		}, 200);
 	}
+
 	
+
 	renderHeader(fixedFrameModeClass) {
+		const searchEl = (isWidthUp('md', this.props.width)) ? <Search /> : <SearchIconButton />
 		return (
 			<div id="header" className={fixedFrameModeClass}>
 				<div className="title"><Link to='/' className='home-link'>Secrets of Craft and Nature<br/> in Renaissance France</Link></div>
@@ -62,7 +67,7 @@ class DiploMatic extends Component {
 				<div className="tagline">A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</div>
 				<div id="globalNavigation">
 					<MainMenu></MainMenu>
-					<Search />
+					{searchEl}					
 				</div>
 			</div>
 		);
@@ -217,4 +222,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(DiploMatic);
+export default withWidth() (connect(mapStateToProps)(DiploMatic));

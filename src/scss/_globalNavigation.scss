@@ -1,15 +1,22 @@
 #globalNavigation {
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
 	font-size: 0.9rem;
 	position: relative;
 	top: -4rem;
 	right: 2rem;
 	float: right;
+	@include md {
+		display: block;
+	}
 }
 
-#globalNavigation {
+#globalNavigation .expandedViewOnly {
 	span, a {
 		color: white;
-		padding-left: 1rem;
+		margin-left: 1rem;
+		cursor: pointer;
 	}
 }
 
