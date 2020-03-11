@@ -368,13 +368,19 @@ figure.current {
 #annotation-list-view {
   margin: 10px; }
   #annotation-list-view .titlebar {
-    margin-top: 90px; }
+    margin-top: 90px;
+    position: relative;
+    padding-top: 40px; }
+    @media (min-width: 960px) {
+      #annotation-list-view .titlebar {
+        padding-top: 0; } }
     #annotation-list-view .titlebar h4 {
       padding: 16px; }
     #annotation-list-view .titlebar .list-mode-buttons {
       margin: 10px;
       position: absolute;
-      right: 20px; }
+      right: 20px;
+      top: 0; }
       #annotation-list-view .titlebar .list-mode-buttons span {
         color: black; }
   #annotation-list-view .seperator {
@@ -488,9 +494,12 @@ figure.current {
 #content-view {
   padding-top: 10px;
   min-height: 60vh;
-  margin: 80px 20% 80px 20%;
+  margin: 40px 10% 40px 10%;
   max-width: 960px;
   line-height: 1.5; }
+  @media (min-width: 960px) {
+    #content-view {
+      margin: 80px 20% 80px 20%; } }
   #content-view .loading {
     margin-left: 40%; }
   #content-view .homepage-grid {
@@ -506,6 +515,9 @@ figure.current {
   #content-view .homepage-grid-item {
     width: 450px;
     margin: 10px; }
+  #content-view img {
+    width: 100%;
+    height: auto; }
   #content-view p {
     margin-bottom: .25em; }
   #content-view a {

@@ -4,17 +4,18 @@ import { Paper, Typography, IconButton } from '@material-ui/core';
 import { Icon } from "react-font-awesome-5";
 import { Link } from 'react-scroll';
 import { dispatchAction } from '../../model/ReduxStore';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 import AnnotationCard from './AnnotationCard';
 import AnnotationThumb from './AnnotationThumb';
 
 class AnnotationListView extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
-            listMode: 'cards'
+            listMode: (isWidthUp('md', this.props.width)) ? 'cards' : 'thumbs'
         }
     }
 
@@ -82,7 +83,6 @@ class AnnotationListView extends Component {
             const sectionComponent = this.renderSection(section)
             sectionComponents.push(sectionComponent)
         }
-
         return (
             <div id="sections-area" className="sections">
                 { sectionComponents }
@@ -95,7 +95,15 @@ class AnnotationListView extends Component {
 
         const {annotationSections} = this.props.annotations
         const annotationCount = Object.keys(this.props.annotations.annotations).length
-        
+        let tableOfContentsEl;
+        let sectionsEl;
+        if (isWidthUp('md', this.props.width)){
+            tableOfContentsEl = this.renderTableOfContents(annotationSections);
+            sectionsEl = this.renderSections(annotationSections)
+        } else {
+            tableOfContentsEl = null;
+            sectionsEl = this.renderSections(annotationSections)
+        }
         return (
             <div id="annotation-list-view">
                 <Paper className="titlebar">
@@ -107,8 +115,8 @@ class AnnotationListView extends Component {
                     <Typography variant='h4' gutterBottom>Research Essays for BnF Ms. Fr. 640 ({annotationCount})</Typography>
                 </Paper>
                 <div className="contentArea">
-                    { this.renderTableOfContents(annotationSections) }
-                    { this.renderSections(annotationSections) }
+                    { tableOfContentsEl }
+                    { sectionsEl }
                 </div>
             </div>
         );
@@ -121,4 +129,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(AnnotationListView);
+export default withWidth() (connect(mapStateToProps)(AnnotationListView));

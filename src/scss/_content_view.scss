@@ -2,10 +2,14 @@
     padding-top: 10px;
     min-height: 60vh;
 
-    margin: 80px 20% 80px 20%;
+    margin: 40px 10% 40px 10%;
     max-width: 960px;
 
     line-height: 1.5;
+
+    @include md {
+        margin: 80px 20% 80px 20%;
+    }
 
     .loading {
         margin-left: 40%;
@@ -32,6 +36,11 @@
     .homepage-grid-item {
         width: 450px;
         margin: 10px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
     }
 
     p {
