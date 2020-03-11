@@ -442,8 +442,11 @@ figure.current {
               color: white; }
 
 #entry-list-view {
-  margin: 80px;
+  margin: 40px 10% 40px 10%;
   max-width: 700px; }
+  @media (min-width: 960px) {
+    #entry-list-view {
+      margin: 80px; } }
   #entry-list-view .filterBy {
     margin-bottom: 20px; }
   #entry-list-view .entry {
