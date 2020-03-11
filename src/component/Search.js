@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 class Search extends React.Component {
 
@@ -22,7 +23,7 @@ class Search extends React.Component {
 
 	onSubmit(event) {
 		event.preventDefault();
-		this.props.onSearchDialogClose()
+		(isWidthUp('md', this.props.width)) ? null : this.props.onSearchDialogClose()
 		this.doSearch(this.state.searchTerm);
 	}
 
@@ -50,4 +51,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(withRouter(Search));
+export default withWidth() (connect(mapStateToProps)(withRouter(Search)));
