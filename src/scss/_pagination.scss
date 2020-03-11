@@ -9,7 +9,10 @@
 	-ms-user-select: none;
       user-select: none;
       margin-top:52px;
-    
+	margin-bottom: 50px;
+	@include md {
+		margin-bottom: 0;
+	}
 }
 // .paginationComponent:nth-of-type(3){
 //   padding:1rem 0 0 0;

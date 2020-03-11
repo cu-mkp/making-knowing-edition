@@ -166,7 +166,11 @@ figure.current {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 4px; }
+  padding: 4px;
+  top: 165px; }
+  @media (min-width: 960px) {
+    .navigationComponent {
+      top: initial; } }
 
 .navigationRow {
   display: flex;
@@ -174,23 +178,41 @@ figure.current {
   padding: 12px 10px 12px 10px; }
 
 .helpIcon {
+  display: none;
   margin-top: 6px;
   margin-right: 16px; }
+  @media (min-width: 960px) {
+    .helpIcon {
+      display: block; } }
 
 .dropdownV2 {
   width: 150px;
   margin-right: 10px; }
 
 .imageViewComponent .navigationComponent {
-  background-color: black;
-  color: #ffffff; }
+  background-color: #4A4A4A;
+  border-radius: 0.3rem;
+  opacity: 0.8; }
+  @media (min-width: 960px) {
+    .imageViewComponent .navigationComponent {
+      background-color: black;
+      color: #ffffff;
+      border-radius: 0;
+      opacity: 1; } }
 
 .transcriptionViewComponent .navigationComponent {
   background-color: white;
   color: #000000; }
 
+#doc-type-help:after {
+  color: red; }
+
 .breadcrumbs {
-  overflow: hidden; }
+  overflow: hidden;
+  display: none; }
+  @media (min-width: 960px) {
+    .breadcrumbs {
+      display: block; } }
 
 .breadcrumbs .folioName {
   display: inline;
@@ -227,7 +249,11 @@ figure.current {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin-top: 52px; }
+  margin-top: 52px;
+  margin-bottom: 50px; }
+  @media (min-width: 960px) {
+    .paginationComponent {
+      margin-bottom: 0; } }
 
 .paginationControl {
   padding: 16px; }
@@ -722,8 +748,7 @@ figure.current {
 .ImageZoomControl {
   position: absolute;
   z-index: 1;
-  top: 4rem;
-  left: 2rem;
+  top: 8rem;
   color: white;
   width: 1rem;
   list-style: none;
@@ -732,6 +757,10 @@ figure.current {
   margin: 0;
   padding: .4rem 1rem 1rem .5rem;
   border-radius: 0.3rem; }
+  @media (min-width: 960px) {
+    .ImageZoomControl {
+      top: 4rem;
+      left: 2rem; } }
 
 .ImageZoomControl > li {
   color: #E0E0E0; }
@@ -936,6 +965,11 @@ figure.current {
   position: relative; }
   #glossaryView .glossaryNav #glossary-filter {
     margin-right: 10px; }
+  #glossaryView .glossaryNav .alphaNav {
+    display: none; }
+    @media (min-width: 960px) {
+      #glossaryView .glossaryNav .alphaNav {
+        display: block; } }
 
 #glossaryView .alphaNav {
   color: blue;
@@ -946,22 +980,28 @@ figure.current {
   position: relative;
   width: calc(100% - 1.7rem);
   text-align: center;
-  top: -1em;
+  top: -2em;
   font-size: 1.8rem;
   font-weight: 700;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  @media (min-width: 960px) {
+    #glossaryView .title {
+      top: -1em; } }
 
 #glossaryView #glossaryContent {
-  padding: 3.5rem 0 0;
+  padding: 5rem 0 0;
   min-height: 100vh;
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
   min-width: 10rem; }
+  @media (min-width: 960px) {
+    #glossaryView #glossaryContent {
+      padding: 3.5rem 0 0; } }
 
 .annotation .content {
   min-height: 255px; }

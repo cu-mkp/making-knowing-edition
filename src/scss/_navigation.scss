@@ -8,8 +8,10 @@
 	-ms-user-select: none;
       user-select: none;
       padding:4px;
-  
-
+      top: 165px;
+      @include md {
+            top: initial;
+      }
 }
 
 .navigationRow{
@@ -21,8 +23,12 @@
 }
 
 .helpIcon {
+      display: none;
       margin-top:6px;
-      margin-right:16px
+      margin-right:16px;
+      @include md {
+            display: block;
+      }
 }
 
 .dropdownV2 {
@@ -31,17 +37,32 @@
 }
 
 .imageViewComponent .navigationComponent {
-	background-color: rgba(0,0,0,1);
-	color: #ffffff;
-}
+      background-color: #4A4A4A;
+      border-radius: 0.3rem;
+      opacity: 0.8;
+      @include md {
+            background-color: rgba(0,0,0,1);
+            color: #ffffff;
+            border-radius: 0;
+            opacity: 1;
+      }
 
+}
 .transcriptionViewComponent .navigationComponent {
 	background-color: rgba(255,255,255,1);;
 	color: #000000;
 }
 
+#doc-type-help:after {
+      color: red;
+}
+
 .breadcrumbs {
-	overflow:hidden;
+      overflow:hidden;
+      display: none;
+      @include md {
+            display: block;
+      }
 }
 
 .breadcrumbs .folioName {
