@@ -637,22 +637,29 @@ figure.current {
 
 #diplomatic #footer {
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-around;
   color: white;
-  height: 3rem;
+  height: 5rem;
   background-color: #656565;
   font-family: 'OpenSans', sans-serif;
   grid-area: header;
-  padding: 0.4rem 0 0 1rem;
+  padding: 0.4rem 0 0.4rem 1rem;
   white-space: nowrap;
   bottom: 0; }
+  @media (min-width: 960px) {
+    #diplomatic #footer {
+      height: 3rem; } }
   #diplomatic #footer .logos {
     margin-right: 20px;
-    float: right; }
+    display: flex; }
   #diplomatic #footer .copyright {
-    float: left;
     font-weight: 300;
     font-size: 0.8rem;
-    padding: 0.8rem 0 0 0.3rem; }
+    margin-right: 40px; }
 
 #diplomatic.fixed {
   background: white;

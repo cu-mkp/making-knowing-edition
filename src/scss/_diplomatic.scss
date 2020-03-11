@@ -78,27 +78,32 @@
 
 	#footer {
 		margin: 0;
-		// width: 100%;
-		// position: fixed;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		align-content: space-around;
 		color: white;
-		height: $footer-height;
+		height: 5rem;
+		@include md {
+			height: $footer-height;
+		}
 		background-color: #656565;
 		font-family: 'OpenSans', sans-serif;
 		grid-area: header;
-		padding: 0.4rem 0 0 1rem;
+		padding: 0.4rem 0 0.4rem 1rem;
 		white-space: nowrap;
 		
 		bottom: 0;	
 		.logos {
 			margin-right: 20px;
-			float: right;
+			display: flex;
 		}	
 		
 		.copyright {
-			float: left;
 			font-weight: 300;
 			font-size: 0.8rem;
-			padding: 0.8rem 0 0 0.3rem;
+			margin-right: 40px;
 		}
 	}
 }
