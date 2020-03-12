@@ -44,7 +44,7 @@ function generate_iiif_files(config) {
 
       let resources = annoList["resources"];
       for( let i=0; i < 3; i++ ) {
-        resources[i]["resource"]["@id"] = transcriptionURLs[i];
+        resources[i]["resource"]["@id"] = `${transcriptionURLs[i]}/index.html`;
         resources[i]["on"] = annotationListURL;
       }
 

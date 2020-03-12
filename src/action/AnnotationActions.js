@@ -15,7 +15,7 @@ AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( stat
             loaded: false
         };
         // also index the annotations by entry ID
-        let entryIDs = annotation.entryIDs.split(';');
+        let entryIDs = annotation.entryIDs.split('; ');
         for( let entryID of entryIDs ) {
             if( !annotationsByEntry[entryID] ) {
                 annotationsByEntry[entryID] = [];

@@ -111,6 +111,7 @@ class SearchResultView extends Component {
 			);	
 		} else {
 			const annotation = this.props.annotations.annotations[result.id];
+			if(!annotation) return null
 			return (
 				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
