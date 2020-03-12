@@ -20,6 +20,7 @@ export default {
         "manuscript structure",
         "medicine",
         "merchants",
+        "metal process",
         "painting",
         "practical optics",
         "preserving",
@@ -27,9 +28,9 @@ export default {
         "stones",
         "tool",
         "tricks and sleight of hand",
+        "varnish",
         "wax process",
-        "wood and its coloring",
-        "varnish"
+        "wood and its coloring"
     ],
     tagNameMap: { 
         "al": "animal",

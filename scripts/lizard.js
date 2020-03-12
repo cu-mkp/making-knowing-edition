@@ -562,15 +562,15 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
         let annotation
         if( asset ) {
             // if we have the asset, but it isn't marked for publication, just publish metadata
-            if( metadata.status !== 'staging' && metadata.status !== 'published') {
+            if( metadata.status === 'staging' || metadata.status === 'published' || metadata.status === 'done') {
+                annotation = await processAnnotation(asset,metadata,annotationAuthors)
+            } else {
                 annotation = {
                     ...metadata,
                     annotationAuthors,
                     abstract: null,
                     contentURL: null
                 };  
-            } else {
-                annotation = await processAnnotation(asset,metadata,annotationAuthors)
             }
         } else {
             // if we don't have the asset, just publish metadata

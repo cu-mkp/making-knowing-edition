@@ -36,6 +36,8 @@ class DiploMatic extends Component {
 		} else {
 			console.log('Google Analytics is not enabled.')
 		}
+
+		console.log(`build: ${process.env.REACT_APP_BUILD_ID}`)
     }
 
 	loadingModal_start(){
