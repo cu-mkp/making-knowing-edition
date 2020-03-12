@@ -16,7 +16,7 @@ const SearchDialog = (props) => {
 
     return (
         <Dialog fullWidth onClose={handleClose} open={open}>
-            <DialogContent>
+            <DialogContent style={{display: "flex", justifyContent: "center"}}>
                 <Search onSearchDialogClose={handleClose} autoFocus/>
             </DialogContent>           
         </Dialog>

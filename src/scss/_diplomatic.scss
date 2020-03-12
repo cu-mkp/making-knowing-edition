@@ -54,13 +54,15 @@
 		}
 
 		#search {
-			@include lg {
-				margin-top: 0;
-				display: inline;
-			}
+
 			@include md {
 				text-align: right;
 				margin-top: 10px;
+				display: block;
+			}
+			@include lg {
+				margin-top: 0;
+				display: inline;
 			}
 		}
 	
