@@ -510,6 +510,18 @@ figure.current {
   @media (min-width: 960px) {
     #content-view {
       margin: 80px 20% 80px 20%; } }
+  #content-view .video-iframe-wrapper {
+    content: "<div></div>";
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0; }
+    #content-view .video-iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
   #content-view .loading {
     margin-left: 40%; }
   #content-view .homepage-grid {
@@ -625,14 +637,15 @@ figure.current {
       display: inline; }
       #diplomatic #header .expandedViewOnly a {
         margin-right: 10px; } }
+  @media (min-width: 960px) {
+    #diplomatic #header #search {
+      text-align: right;
+      margin-top: 10px;
+      display: block; } }
   @media (min-width: 1280px) {
     #diplomatic #header #search {
       margin-top: 0;
       display: inline; } }
-  @media (min-width: 960px) {
-    #diplomatic #header #search {
-      text-align: right;
-      margin-top: 10px; } }
   #diplomatic #header #navigation {
     background-color: blue;
     height: 4.4rem; }
