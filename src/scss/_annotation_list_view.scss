@@ -71,10 +71,14 @@
         
                 .annotations {
                     display: flex;
+                    justify-content: center;
                     flex-wrap: wrap;
                     background:#eee;
                     padding-right: 20px;        
                     padding-bottom: 20px;
+                    @include md {
+                        justify-content: flex-start;
+                    }
 
                     .anno {                        
                         margin-top: 20px;

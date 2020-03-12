@@ -269,8 +269,11 @@ figure.current {
   color: #4A4A4A; }
 
 #annotation-view.view-mode {
-  margin: 80px 20% 80px 20%;
+  margin: 40px 10% 40px 10%;
   max-width: 960px; }
+  @media (min-width: 960px) {
+    #annotation-view.view-mode {
+      margin: 80px 20% 80px 20%; } }
 
 #annotation-view.search-mode {
   overflow: scroll;
@@ -411,10 +414,14 @@ figure.current {
           background: black; }
       #annotation-list-view .contentArea .sections .section .annotations {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         background: #eee;
         padding-right: 20px;
         padding-bottom: 20px; }
+        @media (min-width: 960px) {
+          #annotation-list-view .contentArea .sections .section .annotations {
+            justify-content: flex-start; } }
         #annotation-list-view .contentArea .sections .section .annotations .anno {
           margin-top: 20px;
           margin-left: 20px;

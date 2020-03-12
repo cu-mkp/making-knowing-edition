@@ -1,6 +1,9 @@
 #annotation-view.view-mode {
-    margin: 80px 20% 80px 20%;
+    margin: 40px 10% 40px 10%;
     max-width: 960px;
+    @include md {
+        margin: 80px 20% 80px 20%;
+    }
 }
 
 #annotation-view.search-mode {
