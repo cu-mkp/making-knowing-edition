@@ -87,7 +87,7 @@ class DiploMatic extends Component {
 					transcriptionType: 'g'
 				},
 				right: {
-					folioID: '-1',
+					folioID: (isWidthUp('md', this.props.width)) ? '-1' : '1r',
 					transcriptionType: 'tc'
 				}
 			}

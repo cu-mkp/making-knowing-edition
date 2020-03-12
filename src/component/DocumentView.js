@@ -374,7 +374,7 @@ class DocumentView extends Component {
         };
         const mobileDocView = {
             ...this.state,
-            left: {...this.viewportState('left'), isGridMode: false},
+            right: {...this.viewportState('right'), isGridMode: false},
         }
         
         if(isWidthUp('md', this.props.width)){
@@ -392,7 +392,7 @@ class DocumentView extends Component {
             return (
                 <div>
                     <SinglePaneView
-                        singlePane={this.renderPane('left', mobileDocView)}
+                        singlePane={this.renderPane('right', mobileDocView)}
                     />
                 </div>
             );        }
