@@ -660,27 +660,42 @@ figure.current {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   align-content: space-around;
   color: white;
-  height: 5rem;
+  height: 4.5rem;
   background-color: #656565;
   font-family: 'OpenSans', sans-serif;
   grid-area: header;
-  padding: 0.4rem 0 0.4rem 1rem;
+  padding: 0.4rem 0 0.4rem 2rem;
   white-space: nowrap;
   bottom: 0; }
   @media (min-width: 960px) {
     #diplomatic #footer {
-      height: 3rem; } }
+      justify-content: space-between; } }
   #diplomatic #footer .logos {
-    margin-right: 20px;
-    display: flex; }
+    display: flex;
+    align-items: center;
+    margin-right: 30px; }
+    #diplomatic #footer .logos img {
+      width: 150px;
+      margin-right: 1rem; }
+      @media (min-width: 960px) {
+        #diplomatic #footer .logos img {
+          width: 200px; } }
+  #diplomatic #footer .footer-links {
+    margin-right: 2rem;
+    font-size: 0.8rem; }
+    #diplomatic #footer .footer-links a {
+      color: white;
+      text-decoration: none; }
+      #diplomatic #footer .footer-links a:hover {
+        text-decoration: underline; }
   #diplomatic #footer .copyright {
     font-weight: 300;
     font-size: 0.8rem;
-    margin-right: 40px; }
+    margin-right: 2rem; }
 
 #diplomatic.fixed {
   background: white;

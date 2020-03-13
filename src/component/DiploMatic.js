@@ -181,10 +181,23 @@ class DiploMatic extends Component {
 	renderFooter(fixedFrameModeClass) {
 		return (
 			<div id="footer" className={fixedFrameModeClass}>
-				<div className="copyright">&copy; The Center for Science and Society at Columbia University.</div>
+				<div className="copyright">&copy; Making and Knowing Project.</div>
+				<div className="footer-links">
+					<a target="_blank" rel="noopener noreferrer" href="https://cuit.columbia.edu/privacy-notice">
+						Privacy Notice
+					</a>
+					<span> | </span>
+					<a target="_blank" rel="noopener noreferrer" href="http://health.columbia.edu/disability-services">
+						Disability Services
+					</a>
+					<span> | </span>
+					<a target="_blank" rel="noopener noreferrer" href="http://eoaa.columbia.edu/columbia-university-non-discrimination-statement-and-policy">
+						Non-Discrimination
+					</a>
+				</div>
 				<div className="logos">
 					<img alt="Columbia Logo" src="img/logo_columbia.png"/>
-					<img alt="Center Logo" src="img/logo_center.png"/>
+					<img alt="Center Logo" src="img/logo_center_multi_line.png"/>
 				</div>
 			</div>
 		);

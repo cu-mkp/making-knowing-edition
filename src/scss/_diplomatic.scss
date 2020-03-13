@@ -82,30 +82,49 @@
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: center;
+		@include md {
+			justify-content: space-between;
+		}
 		align-items: center;
 		align-content: space-around;
 		color: white;
-		height: 5rem;
-		@include md {
-			height: $footer-height;
-		}
+		height: $footer-height;
 		background-color: #656565;
 		font-family: 'OpenSans', sans-serif;
 		grid-area: header;
-		padding: 0.4rem 0 0.4rem 1rem;
+		padding: 0.4rem 0 0.4rem 2rem;
 		white-space: nowrap;
 		
 		bottom: 0;	
 		.logos {
-			margin-right: 20px;
 			display: flex;
+			align-items: center;
+			margin-right: 30px;
+			img {
+				width: 150px;
+				@include md {
+					width: 200px;
+				}
+				margin-right: 1rem;
+			}
 		}	
-		
+		.footer-links {
+			margin-right: 2rem;
+			font-size: 0.8rem;
+			a {
+				color: white;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+
+			}
+		}
 		.copyright {
 			font-weight: 300;
 			font-size: 0.8rem;
-			margin-right: 40px;
+			margin-right: 2rem;
 		}
 	}
 }
