@@ -526,6 +526,7 @@ figure.current {
     margin-left: 40%; }
   #content-view .homepage-grid {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     padding-right: 20px;
     padding-bottom: 20px; }
