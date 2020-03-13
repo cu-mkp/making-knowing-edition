@@ -23,7 +23,7 @@ class Search extends React.Component {
 
 	onSubmit(event) {
 		event.preventDefault();
-		(isWidthUp('md', this.props.width)) ? null : this.props.onSearchDialogClose()
+		if(!isWidthUp('md', this.props.width)) {this.props.onSearchDialogClose()}
 		this.doSearch(this.state.searchTerm);
 	}
 
