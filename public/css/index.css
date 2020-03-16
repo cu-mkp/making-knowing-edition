@@ -287,32 +287,36 @@ figure.current {
   height: calc(100vh - 14rem); }
 
 #annotation-view {
-  line-height: 1.5;
-  text-indent: 50px; }
+  line-height: 1.5; }
   #annotation-view p {
-    margin: 0px; }
+    margin: 0px;
+    margin-bottom: .75em; }
   #annotation-view a {
     word-wrap: break-word; }
   #annotation-view h1 {
     text-align: center;
-    line-height: 2.2rem; }
-  #annotation-view h4 {
-    text-align: center;
-    margin-bottom: 30px; }
-  #annotation-view h4 + p {
-    text-indent: 0px; }
+    line-height: 2.5em;
+    line-height: 1.5em; }
   #annotation-view h2 {
-    font-size: 1.2em;
-    margin: 0px;
+    font-size: 1.6em;
     margin-top: 40px;
+    line-height: 1.7em;
+    text-indent: 0px; }
+  #annotation-view h3 {
+    font-size: 1.1em;
+    line-height: 1em;
+    margin-top: 1.5em;
+    text-indent: 0px; }
+  #annotation-view h4 {
+    text-align: center; }
+  #annotation-view h4 + p {
     text-indent: 0px; }
   #annotation-view h2 + p {
     text-indent: 0px; }
   #annotation-view .pull-left {
     text-indent: 0px; }
-  #annotation-view li p {
-    text-indent: 5px;
-    margin-bottom: 15px; }
+  #annotation-view .annotation-nav {
+    margin-bottom: 1rem; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }
@@ -322,33 +326,36 @@ figure.current {
   #annotation-view .figure-container {
     align-items: center;
     display: flex;
-    flex-wrap: wrap; }
-  #annotation-view ul {
-    text-indent: 65px;
-    padding: 0px; }
-    #annotation-view ul li {
-      line-height: 1.1; }
-      #annotation-view ul li blockquote p {
-        padding-left: 20px; }
+    flex-wrap: wrap;
+    width: 100%; }
+  #annotation-view li blockquote {
+    margin: 0; }
+    #annotation-view li blockquote p {
+      line-height: 1.5em;
+      margin-bottom: 0; }
+  #annotation-view ul ul {
+    padding-inline-start: 30px; }
+  #annotation-view ol ol {
+    padding-inline-start: 30px; }
   #annotation-view figure {
     margin-top: 20px;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    width: 100%; }
     #annotation-view figure iframe {
       width: 560px;
       border: 1px solid #DDDDDD; }
     #annotation-view figure img {
-      width: 300px;
+      width: 100%;
       border: 1px solid #DDDDDD; }
     #annotation-view figure div {
       width: fit-content; }
     #annotation-view figure figcaption {
       text-indent: 0px;
       line-height: 1.2;
-      margin-left: 50px;
       font-size: 10pt;
       text-align: left; }
     #annotation-view figure div + figcaption {
-      width: 300px; }
+      width: 100%; }
     #annotation-view figure iframe + figcaption {
       width: 560px; }
   #annotation-view table {
@@ -363,9 +370,11 @@ figure.current {
       line-height: 1.2;
       text-indent: 0px;
       vertical-align: top; }
+    #annotation-view table tr:nth-child(even) {
+      background-color: #f2f2f2; }
     #annotation-view table th {
       padding-left: 5px;
-      background: #3F3626;
+      background: #838383;
       font-size: 15px;
       color: white; }
   #annotation-view .footnotes {
@@ -522,7 +531,9 @@ figure.current {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 25px;
-    height: 0; }
+    height: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem; }
     #content-view .video-iframe-wrapper iframe {
       position: absolute;
       top: 0;
@@ -547,21 +558,40 @@ figure.current {
     margin: 10px; }
   #content-view img {
     width: 100%;
-    height: auto; }
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
+  #content-view img[alt^="very-small"] {
+    max-width: 5rem; }
+  #content-view img[alt^="small"] {
+    max-width: 10rem; }
+  #content-view img[alt^="medium"] {
+    max-width: 15rem; }
+  #content-view img[alt^="large"] {
+    max-width: 20rem; }
+  #content-view img[alt^="very-large"] {
+    max-width: 25rem; }
   #content-view p {
-    margin-bottom: .25em; }
+    margin-bottom: .75em;
+    margin-block-start: 0;
+    margin-block-end: 0; }
   #content-view a {
     word-wrap: break-word; }
   #content-view h1 {
     text-align: center;
-    line-height: 2.2rem; }
-  #content-view h4 {
-    text-align: center;
-    margin-bottom: 30px; }
+    font-size: 2.5em;
+    line-height: 1.5em; }
   #content-view h2 {
-    font-size: 1.2em;
-    margin: 0px;
-    margin-top: 40px; }
+    font-size: 1.6em;
+    margin-top: 40px;
+    line-height: 1.7em; }
+  #content-view h3 {
+    font-size: 1.1em;
+    line-height: 1em;
+    margin-top: 1.5em; }
+  #content-view h4 {
+    text-align: center; }
   #content-view blockquote p {
     line-height: 1.1; }
   #content-view .figure-container {
@@ -587,6 +617,10 @@ figure.current {
       width: 300px; }
     #content-view figure iframe + figcaption {
       width: 560px; }
+  #content-view ul ul {
+    padding-inline-start: 30px; }
+  #content-view ol ol {
+    padding-inline-start: 30px; }
   #content-view table {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -599,9 +633,11 @@ figure.current {
       line-height: 1.2;
       text-indent: 0px;
       vertical-align: top; }
+    #content-view table tr:nth-child(even) {
+      background-color: #f2f2f2; }
     #content-view table th {
       padding-left: 5px;
-      background: #3F3626;
+      background: #838383;
       font-size: 15px;
       color: white; }
 

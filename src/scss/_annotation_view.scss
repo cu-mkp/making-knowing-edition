@@ -16,10 +16,10 @@
 #annotation-view {
 
     line-height: 1.5;
-    text-indent: 50px;
 
     p {
         margin: 0px;
+        margin-bottom: .75em;
     }
 
     a {
@@ -28,22 +28,26 @@
     
     h1 {
         text-align: center;
-        line-height: 2.2rem;
+        line-height: 2.5em;
+        line-height: 1.5em;
     }
-
+    h2 {
+        font-size: 1.6em;
+        margin-top: 40px;
+        line-height: 1.7em;
+        text-indent: 0px;
+    }
+    h3 {
+        font-size: 1.1em;
+        line-height: 1em;
+        margin-top: 1.5em;
+        text-indent: 0px;
+    }
     h4 {
         text-align: center;
-        margin-bottom: 30px;
     }
 
     h4 + p {
-        text-indent: 0px;
-    }
-
-    h2 {
-        font-size: 1.2em;
-        margin: 0px;
-        margin-top: 40px;
         text-indent: 0px;
     }
 
@@ -55,13 +59,9 @@
         text-indent: 0px;
     }
     
-    li {
-        p {
-            text-indent: 5px;
-            margin-bottom: 15px;
-        }
+    .annotation-nav {
+        margin-bottom: 1rem;
     }
-
     .footnote-ref, .footnote-back {
         color: blue;
         text-decoration: underline blue;
@@ -79,29 +79,38 @@
         align-items: center;
         display: flex;
         flex-wrap: wrap;
+        width: 100%;
     }
 
-    ul {
-        text-indent: 65px;
-        padding: 0px;
-        li {
-            blockquote {
-                p {
-                    padding-left: 20px;
-                }
+    li {
+        blockquote {
+            margin: 0;
+            p {
+                line-height: 1.5em;
+                margin-bottom: 0;
             }
-            line-height: 1.1;
         }
+    }
+    ul {
+        ul {
+            padding-inline-start: 30px;
+        }       
+    }
+    ol {
+        ol {
+            padding-inline-start: 30px;
+        }       
     }
 
     figure {
         margin-top: 20px;
         margin-bottom: 20px;
+        width: 100%;
         iframe {
             width: 560px;
             border: 1px solid #DDDDDD;        }
         img {
-            width: 300px;
+            width: 100%;
             border: 1px solid #DDDDDD;
         }
         div {
@@ -110,12 +119,11 @@
         figcaption {
             text-indent: 0px;
             line-height: 1.2;
-            margin-left: 50px;
             font-size: 10pt;            
             text-align: left
         }
         div + figcaption {
-            width: 300px;
+            width: 100%;
         }     
         iframe + figcaption {
             width: 560px;
@@ -136,10 +144,10 @@
         text-indent: 0px;
         vertical-align: top;
         }
-     
+        tr:nth-child(even){background-color: #f2f2f2;}
         th {
             padding-left: 5px;
-            background: #3F3626;
+            background: rgb(131, 131, 131);
             font-size: 15px;
             color: white;
         }
