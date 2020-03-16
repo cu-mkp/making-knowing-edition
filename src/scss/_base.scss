@@ -54,3 +54,11 @@ h4 {
 .disabled{
   opacity: 0.5;
 }
+
+.figure-dialog-img-container {
+    img {
+		display: block;
+		width: 100%;
+		height: auto;
+    }
+}

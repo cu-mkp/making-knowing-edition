@@ -51,6 +51,11 @@ h4 {
 .disabled {
   opacity: 0.5; }
 
+.figure-dialog-img-container img {
+  display: block;
+  width: 100%;
+  height: auto; }
+
 #globalNavigation {
   display: flex;
   align-items: center;
@@ -334,13 +339,15 @@ figure.current {
     #annotation-view figure img {
       width: 300px;
       border: 1px solid #DDDDDD; }
+    #annotation-view figure div {
+      width: fit-content; }
     #annotation-view figure figcaption {
       text-indent: 0px;
       line-height: 1.2;
       margin-left: 50px;
       font-size: 10pt;
       text-align: left; }
-    #annotation-view figure img + figcaption {
+    #annotation-view figure div + figcaption {
       width: 300px; }
     #annotation-view figure iframe + figcaption {
       width: 560px; }
