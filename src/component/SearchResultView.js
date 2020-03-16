@@ -176,7 +176,7 @@ class SearchResultView extends Component {
 					/>
 					<FormControlLabel					
 						control={<Radio  className='search-radio'/>}
-						label={'Sort Results by Folio Id'}
+						label={'Sort Results by Folio'}
 						value='folioId'
 					/>
 				</RadioGroup>		
