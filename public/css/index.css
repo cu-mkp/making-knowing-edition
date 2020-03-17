@@ -328,6 +328,8 @@ figure.current {
     display: flex;
     flex-wrap: wrap;
     width: 100%; }
+  #annotation-view i {
+    font-style: normal; }
   #annotation-view li blockquote {
     margin: 0; }
     #annotation-view li blockquote p {
