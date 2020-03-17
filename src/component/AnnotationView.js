@@ -5,7 +5,7 @@ import domToReact from 'html-react-parser/lib/dom-to-react';
 import { Link } from 'react-scroll';
 import { Link as ReactLink } from 'react-router-dom';
 import { dispatchAction } from '../model/ReduxStore';
-import Figure from './Figure'
+import FigureImage from './FigureImage'
 
 class AnnotationView extends Component {
 
@@ -53,14 +53,16 @@ class AnnotationView extends Component {
                     );
                 }
                 
-                if (!domNode.attribs) return;
-                if (domNode.attribs.class === 'figure-container'){
-                    let figureNode = domNode.children
-                    let imgNode = [figureNode[0].children[0]]
-                    let captionNode = [figureNode[0].children[1]]
-                    let imgEl = domToReact(imgNode, parserOptions)
-                    let captionEl = domToReact(captionNode, parserOptions)
-                    return <Figure img={imgEl} caption={captionEl} />
+                if (domNode.name === 'img') {
+                    if (!domNode.attribs) return;
+                    if (domNode.parent.name === "figure") {
+                        let imgEl = domToReact([domNode])
+                        return (
+                            <FigureImage img={imgEl} />                         
+                        )
+                    } else {
+                        return;
+                    }
                 }
 
 				 switch (domNode.name) {

@@ -1,12 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Cancel';
-import { DialogActions } from '@material-ui/core';
 
 const FigureDialog = ({img, onClose, open}) => {
 
@@ -46,7 +41,7 @@ const FigureDialog = ({img, onClose, open}) => {
 FigureDialog.propTypes = {
 };
 
-const Figure = ({figure, img, caption}) => {
+const FigureImage = ({img}) => {
     const [open, setOpen] = React.useState(false);
     
     const handleClickOpen = () => {
@@ -57,16 +52,13 @@ const Figure = ({figure, img, caption}) => {
     };
 
     return (
-        <div className="figure-container">
-            <figure>
-                <div onClick={handleClickOpen}>
-                    {img}
-                </div>
-                {caption}
-            </figure>
+        <div className="figure-image-container">
+            <div onClick={handleClickOpen}>
+                {img}
+            </div>
             <FigureDialog open={open} onClose={handleClose} img={img}/>
         </div>
     );
 }
 
-export default Figure;
+export default FigureImage;
