@@ -3,6 +3,16 @@
 const fs = require('fs');
 const configLoader = require('./config_loader');
 
+
+function dirExists( dir ) {
+  if( !fs.existsSync(dir) ) {
+    fs.mkdirSync(dir);
+    if( !fs.existsSync(dir) ) {
+      throw `ERROR: ${dir} not found and unable to create it.`;
+    }
+  }  
+}
+
 function generate_iiif_files(config) {
   let manifestJSON = fs.readFileSync(`edition_data/bnf_manifest.json`, "utf8");
   let manifest = JSON.parse(manifestJSON);
@@ -13,7 +23,8 @@ function generate_iiif_files(config) {
 
   // make dirs for output, if necessary
   let listDir = `${config.targetDir}/list`;
-  if( !fs.existsSync(listDir) ) fs.mkdirSync(listDir);
+  dirExists(config.targetDir);
+  dirExists(listDir);
 
   for( let canvas of canvases ) {
     let folioID = generateFolioID(canvas["label"]);
