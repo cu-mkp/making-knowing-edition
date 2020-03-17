@@ -344,7 +344,7 @@ figure.current {
     margin-bottom: 20px;
     width: 100%; }
     #annotation-view figure iframe {
-      width: 560px;
+      width: 100%;
       border: 1px solid #DDDDDD; }
     #annotation-view figure img {
       width: 100%;
