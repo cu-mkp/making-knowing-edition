@@ -325,9 +325,42 @@ figure.current {
     line-height: 1.1; }
   #annotation-view .figure-container {
     align-items: center;
+    justify-content: space-around;
     display: flex;
-    flex-wrap: wrap;
-    width: 100%; }
+    flex-wrap: wrap; }
+  #annotation-view figure {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 100%; }
+    #annotation-view figure .video-iframe-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 25px;
+      height: 0;
+      margin-top: 1rem;
+      margin-bottom: 1rem; }
+      #annotation-view figure .video-iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        height: 100%;
+        border: 1px solid #DDDDDD; }
+    #annotation-view figure .figure-image-container {
+      padding-right: 30px; }
+    #annotation-view figure img {
+      width: 300px;
+      border: 1px solid #DDDDDD; }
+    #annotation-view figure figcaption {
+      text-indent: 0px;
+      line-height: 1.2;
+      font-size: 10pt;
+      text-align: left;
+      max-width: 100%; }
+    #annotation-view figure div + figcaption {
+      width: 300px; }
+    #annotation-view figure .video-iframe-wrapper + figcaption {
+      width: 560px; }
   #annotation-view i {
     font-style: normal; }
   #annotation-view li blockquote {
@@ -339,27 +372,6 @@ figure.current {
     padding-inline-start: 30px; }
   #annotation-view ol ol {
     padding-inline-start: 30px; }
-  #annotation-view figure {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100%; }
-    #annotation-view figure iframe {
-      width: 100%;
-      border: 1px solid #DDDDDD; }
-    #annotation-view figure img {
-      width: 100%;
-      border: 1px solid #DDDDDD; }
-    #annotation-view figure div {
-      width: fit-content; }
-    #annotation-view figure figcaption {
-      text-indent: 0px;
-      line-height: 1.2;
-      font-size: 10pt;
-      text-align: left; }
-    #annotation-view figure div + figcaption {
-      width: 100%; }
-    #annotation-view figure iframe + figcaption {
-      width: 560px; }
   #annotation-view table {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -529,7 +541,6 @@ figure.current {
     #content-view {
       margin: 80px 20% 80px 20%; } }
   #content-view .video-iframe-wrapper {
-    content: "<div></div>";
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 25px;
@@ -559,21 +570,22 @@ figure.current {
     width: 450px;
     margin: 10px; }
   #content-view img {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
     display: block;
-    margin-left: auto;
-    margin-right: auto; }
-  #content-view img[alt^="very-small"] {
-    max-width: 5rem; }
+    margin: 10px auto 10px auto; }
+    @media (min-width: 960px) {
+      #content-view img {
+        width: auto; } }
+  #content-view img[alt^="extra-small"] {
+    max-width: 175px; }
   #content-view img[alt^="small"] {
-    max-width: 10rem; }
+    max-width: 300px; }
   #content-view img[alt^="medium"] {
-    max-width: 15rem; }
+    max-width: 425px; }
   #content-view img[alt^="large"] {
-    max-width: 20rem; }
-  #content-view img[alt^="very-large"] {
-    max-width: 25rem; }
+    max-width: 600px; }
+  #content-view img[alt^="extra-large"] {
+    max-width: 900px; }
   #content-view p {
     margin-bottom: .75em;
     margin-block-start: 0;
@@ -596,29 +608,6 @@ figure.current {
     text-align: center; }
   #content-view blockquote p {
     line-height: 1.1; }
-  #content-view .figure-container {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap; }
-  #content-view figure {
-    margin-top: 20px;
-    margin-bottom: 20px; }
-    #content-view figure iframe {
-      width: 560px;
-      border: 1px solid #DDDDDD; }
-    #content-view figure img {
-      width: 300px;
-      border: 1px solid #DDDDDD; }
-    #content-view figure figcaption {
-      text-indent: 0px;
-      line-height: 1.2;
-      margin-left: 50px;
-      font-size: 10pt;
-      text-align: left; }
-    #content-view figure img + figcaption {
-      width: 300px; }
-    #content-view figure iframe + figcaption {
-      width: 560px; }
   #content-view ul ul {
     padding-inline-start: 30px; }
   #content-view ol ol {

@@ -12,14 +12,12 @@
     }
 
     .video-iframe-wrapper {
-        content: "<div></div>";
         position: relative;
         padding-bottom: 56.25%;
         padding-top: 25px;
         height: 0;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        
         iframe {
             position: absolute;
             top: 0;
@@ -59,27 +57,30 @@
     }
 
     img {
-        width: 100%;
-        height: auto;
+        @include md {
+            width: auto;
+        }  
+        max-width: 100%;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 10px auto 10px auto;
     }
 
-     img[alt^="very-small"] {
-         max-width: 5rem;
+
+
+     img[alt^="extra-small"] {
+         max-width: $image-xs;
      }
      img[alt^="small"] {
-         max-width: 10rem;
+         max-width: $image-sm;
      }
      img[alt^="medium"] {
-         max-width: 15rem;
+         max-width: $image-md;
      }
      img[alt^="large"] {
-         max-width: 20rem;
+         max-width: $image-lg;
      }
-     img[alt^="very-large"] {
-         max-width: 25rem;
+     img[alt^="extra-large"] {
+         max-width: $image-xl;
      }
 
     p {
@@ -120,37 +121,6 @@
         }
     }
 
-    .figure-container {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    figure {
-        margin-top: 20px;
-        margin-bottom: 20px;
-
-        iframe {
-            width: 560px;
-            border: 1px solid #DDDDDD;        }
-        img {
-            width: 300px;
-            border: 1px solid #DDDDDD;
-        }
-        figcaption {
-            text-indent: 0px;
-            line-height: 1.2;
-            margin-left: 50px;
-            font-size: 10pt;            
-            text-align: left
-        }
-        img + figcaption {
-            width: 300px;
-        }     
-        iframe + figcaption {
-            width: 560px;
-        }
-    }
     ul {
         ul {
             padding-inline-start: 30px;

@@ -21,6 +21,13 @@ $screen-md-min: 960px;
 $screen-lg-min: 1280px;
 $screen-xl-min: 1920px;
 
+// Standard Image Sizes
+$image-xs: 175px;
+$image-sm: 300px;
+$image-md: 425px;
+$image-lg: 600px;
+$image-xl: 900px;
+
 // BREAKPOINT MIXINS
 @mixin xs {
    @media (min-width: #{$screen-xs-min}) {

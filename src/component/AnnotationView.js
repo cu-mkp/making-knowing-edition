@@ -54,7 +54,6 @@ class AnnotationView extends Component {
                 }
                 
                 if (domNode.name === 'img') {
-                    if (!domNode.attribs) return;
                     if (domNode.parent.name === "figure") {
                         let imgEl = domToReact([domNode])
                         return (
@@ -63,6 +62,15 @@ class AnnotationView extends Component {
                     } else {
                         return;
                     }
+                }
+
+                if (domNode.name === 'iframe') {
+                    let iframeEl = domToReact([domNode])
+                    return (
+                        <div className="video-iframe-wrapper">
+                            {iframeEl}
+                        </div>                        
+                    )
                 }
 
 				 switch (domNode.name) {
