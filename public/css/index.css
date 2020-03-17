@@ -172,7 +172,9 @@ figure.current {
   -ms-user-select: none;
   user-select: none;
   padding: 4px;
-  top: 165px; }
+  top: 165px;
+  background-color: white;
+  border-radius: 0.3rem; }
   @media (min-width: 960px) {
     .navigationComponent {
       top: initial; } }
@@ -254,8 +256,7 @@ figure.current {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  margin-top: 52px;
-  margin-bottom: 50px; }
+  margin-top: 52px; }
   @media (min-width: 960px) {
     .paginationComponent {
       margin-bottom: 0; } }

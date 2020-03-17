@@ -9,6 +9,8 @@
       user-select: none;
       padding:4px;
       top: 165px;
+      background-color: white;
+      border-radius: 0.3rem;
       @include md {
             top: initial;
       }
