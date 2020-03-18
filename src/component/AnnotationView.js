@@ -73,6 +73,15 @@ class AnnotationView extends Component {
                     )
                 }
 
+                if( domNode.name === 'h1'){
+                    return (
+                        <div>
+                            <h1>{domToReact(domNode.children, parserOptions)}</h1>
+                            <p className="by-line">AUTHOR</p>
+                        </div>
+                    );
+                }
+
 				 switch (domNode.name) {
                     case 'p':
                         // hack to pass a formatting hint for paragraphs continuing
