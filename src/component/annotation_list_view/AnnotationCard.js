@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Parser from 'html-react-parser';
-import {Typography, Button} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import { CardContent } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-
-import CustomizedTooltops from '../CustomizedTooltops';
+import AnnotationByLine from '../AnnotationByLine';
 
 const comingSoon = "This essay is under revision."
 
@@ -21,37 +20,6 @@ class AnnotationCard extends Component {
         }
     }
 
-    renderByline( annotationAuthors ) {
-        const { authors } = this.props.authors
-        let authorInfos = []
-        for( let authorID of annotationAuthors ) {
-            authorInfos.push(authors[authorID])
-        }
-
-        let lastID = authorInfos.length > 0 ? authorInfos[authorInfos.length-1].id : null
-        let authorInfoDivs = []
-        for( let author of authorInfos ) {
-            const frag = (
-                <div>
-                    <Typography><b>{author.fullName}</b></Typography>
-                    <Typography>{author.semester} {author.year}</Typography>
-                    <Typography>{author.authorType}</Typography>
-                    <Typography>{author.degree} {author.yearAtTime}</Typography>
-                    <Typography>{author.department} {author.subField}</Typography>
-                </div>
-            )
-
-            authorInfoDivs.push(
-                <CustomizedTooltops key={author.id} 
-                    htmlFragment={frag}
-                    inner={<span>{author.fullName}{ (author.id !== lastID) ? ', ' : '' }</span>}
-                >                    
-                </CustomizedTooltops>                  
-            )
-        }
-        return authorInfoDivs
-    }
-
     handleClick = (event) => {
         this.setState({ ...this.state, anchorEl: event.currentTarget })
     }
@@ -61,8 +29,7 @@ class AnnotationCard extends Component {
     }
 
     render() {
-        const { annotation, diplomatic } = this.props
-
+        const { annotation, diplomatic, authors } = this.props
         const { releaseMode } = diplomatic
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
         const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
@@ -72,7 +39,7 @@ class AnnotationCard extends Component {
             <Card className='anno'>
                 <CardHeader 
                     title={title} 
-                    subheader={annotation.authors ? this.renderByline(annotation.authors) : ""}
+                    subheader={annotation.authors ? <AnnotationByLine annoAuthors={annotation.authors} authors={authors.authors} />  : ""}
                 >            
                 </CardHeader>
                 <CardMedia style={{height: 200}} image={thumbnailURL}>
