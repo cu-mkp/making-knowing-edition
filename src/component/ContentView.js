@@ -54,12 +54,8 @@ class ContentView extends Component {
                 <CardActionArea 
                     onClick={ e => {this.props.history.push(link)}}
                 >
-                    <CardMedia style={{width: 490, height: 525}} image={graphic}>
-                    </CardMedia>
-                    <CardHeader 
-                        title={title} 
-                    >            
-                    </CardHeader>
+                    <CardMedia className={"homepage-card-image"} image={graphic}/>
+                    <CardHeader title={title} />
                 </CardActionArea>
             </Card>
         )

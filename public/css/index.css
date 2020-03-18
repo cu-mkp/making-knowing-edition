@@ -558,7 +558,7 @@ figure.current {
     margin-left: 40%; }
   #content-view .homepage-grid {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     padding-right: 20px;
     padding-bottom: 20px; }
@@ -568,8 +568,19 @@ figure.current {
   #content-view .homepage-header .intro {
     margin: 10px; }
   #content-view .homepage-grid-item {
-    width: 450px;
-    margin: 10px; }
+    margin: 10px;
+    width: fit-content; }
+  #content-view .homepage-card-image {
+    width: 300px;
+    height: 250px; }
+    @media (min-width: 1280px) {
+      #content-view .homepage-card-image {
+        width: 350px;
+        height: 375px; } }
+    @media (min-width: 1920px) {
+      #content-view .homepage-card-image {
+        width: 450px;
+        height: 525px; } }
   #content-view img {
     max-width: 100%;
     display: block;
