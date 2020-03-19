@@ -6,6 +6,7 @@ import { Link } from 'react-scroll';
 import { Link as ReactLink } from 'react-router-dom';
 import { dispatchAction } from '../model/ReduxStore';
 import FigureImage from './FigureImage'
+import AnnotationByLine from './AnnotationByLine';
 
 class AnnotationView extends Component {
 
@@ -39,7 +40,7 @@ class AnnotationView extends Component {
     }
 
     // Configure parser to replace certain tags with components
-    htmlToReactParserOptions() {
+    htmlToReactParserOptions(annoAuthors, authors) {
 		var parserOptions =  {
 			 replace: (domNode) => {
                 // drop these
@@ -72,14 +73,24 @@ class AnnotationView extends Component {
                         </div>                        
                     )
                 }
-
-                if( domNode.name === 'h1'){
-                    return (
-                        <div>
-                            <h1>{domToReact(domNode.children, parserOptions)}</h1>
-                        </div>
-                    );
-                }
+                // TODO:Commented out AnnotationByline code until docs can be update to remove the hand-type by line 
+                //      (see comments in issue: https://github.com/cu-mkp/making-knowing-edition/issues/394)
+                // if( domNode.name === 'h1'){
+                //     return (
+                //         <div className="title-byline-container">
+                //             <h1>{domToReact(domNode.children, parserOptions)}</h1>
+                            
+                //             {
+                //                 annoAuthors ?
+                //                 <div>
+                //                     <AnnotationByLine annoAuthors={annoAuthors} authors={authors} /> 
+                //                 </div>
+                //                 :
+                //                 ""
+                //             }
+                //         </div>
+                //     );
+                // }
 
 				 switch (domNode.name) {
                     case 'p':
@@ -117,7 +128,7 @@ class AnnotationView extends Component {
         let anno = this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
         if( !anno || !anno.loaded ) return null;
         
-        let htmlToReactParserOptions = this.htmlToReactParserOptions();
+        let htmlToReactParserOptions = this.htmlToReactParserOptions(anno.authors, this.props.authors.authors);
         const modeClass = this.props.inSearchMode ? 'search-mode' : 'view-mode';
 
         // Mark any found search terms
@@ -140,6 +151,7 @@ class AnnotationView extends Component {
 
 function mapStateToProps(state) {
     return {
+        authors: state.authors,
         search: state.search,
         annotations: state.annotations
     };

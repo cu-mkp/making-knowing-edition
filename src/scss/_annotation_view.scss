@@ -63,6 +63,23 @@
     .annotation-nav {
         margin-bottom: 1rem;
     }
+    .title-byline-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        span {
+            &:hover {
+                cursor: default;
+            }
+            color: #000000b8;
+            font-family: 'OpenSans', sans-serif;
+            font-weight: 700;
+            padding: 0;
+            margin: 0 0 0.3rem;
+            line-height: 1.5rem;
+        }
+    }
     .footnote-ref, .footnote-back {
         color: blue;
         text-decoration: underline blue;
