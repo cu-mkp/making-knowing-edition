@@ -205,7 +205,7 @@ class DiploMatic extends Component {
 
 	render() {
 		const { firstPageLoad, fixedFrameMode, googleAnalyticsTrackingID } = this.props.diplomatic
-		const fixedFrameModeClass = fixedFrameMode ? 'fixed' : '';
+		const fixedFrameModeClass = fixedFrameMode ? 'fixed' : 'sticky';
 
 		if( googleAnalyticsTrackingID && firstPageLoad ) {
 			dispatchAction( this.props, 'DiplomaticActions.recordLanding' );

@@ -760,6 +760,11 @@ figure.current {
     font-size: 0.8rem;
     margin-right: 2rem; }
 
+#diplomatic.sticky #header.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 999; }
+
 #diplomatic.fixed {
   background: white;
   position: fixed;
