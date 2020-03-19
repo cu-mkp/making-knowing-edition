@@ -309,7 +309,8 @@ figure.current {
     margin-top: 1.5em;
     text-indent: 0px; }
   #annotation-view h4 {
-    text-align: center; }
+    text-align: center;
+    margin-bottom: 30px; }
   #annotation-view h4 + p {
     text-indent: 0px; }
   #annotation-view h2 + p {

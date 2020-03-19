@@ -77,7 +77,6 @@ class AnnotationView extends Component {
                     return (
                         <div>
                             <h1>{domToReact(domNode.children, parserOptions)}</h1>
-                            <p className="by-line">AUTHOR</p>
                         </div>
                     );
                 }
