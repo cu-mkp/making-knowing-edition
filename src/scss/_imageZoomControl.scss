@@ -1,8 +1,7 @@
 .ImageZoomControl {
   position: absolute;
   z-index: 1;
-  top:4rem;
-  left: 2rem;
+  top: 8rem;
   color: white;
   width: 1rem;
   list-style: none;
@@ -11,6 +10,10 @@
   margin:0;
   padding:.4rem 1rem 1rem .5rem;
   border-radius: 0.3rem;
+  @include md {
+      top:4rem;
+      left: 2rem;
+  }
 }
 
 .ImageZoomControl > li {

@@ -16,7 +16,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import copyObject from './../lib/copyObject';
 import { dispatchAction } from '../model/ReduxStore';
-
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 class EntryListView extends Component {
 
@@ -92,7 +92,7 @@ class EntryListView extends Component {
             const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
             return (
                         <ExpansionPanel className="entry" key={entry.id} onChange={this.toggleIconButton}>
-                              <ExpansionPanelSummary   expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
+                              <ExpansionPanelSummary expandIcon={ tags.length >0 ? (<div><ExpandMoreIcon className="colapse-button" /></div>):''}>
                                     <div className={"detail-container"}>
                                           <Link onClick={e => {this.props.history.push(folioURL)}} ><Typography variant="h6">{`${entry.displayHeading} - ${entry.folio_display}`}</Typography></Link>
                                           <div className='entry-categories'><Typography>Categories: </Typography>{categoryChips}</div>
@@ -111,10 +111,15 @@ class EntryListView extends Component {
                                                 <MenuItem value={'tl'}>Translation (EN)</MenuItem>
                                           </Select>
                                     </div>
-                                    <div className={"detail-header"}> 
+                                    {(isWidthUp('sm', this.props.width)) ?
+                                    <div className={"detail-header"}>
                                           <div className={"chip-column"}> <Typography variant="subtitle1">Word Category</Typography></div> 
                                           <div className={"reference-column"}> <Typography variant="subtitle1">References in this entry</Typography> </div>
+                                    </div> :
+                                    <div>
+                                          <Typography variant="subtitle1">Word category followed by references in this entry</Typography>
                                     </div>
+                                    }
                                           {
                                                 tags.map((tag,index)=>{
                                                       return (
@@ -310,4 +315,4 @@ function stripNonAlphaNumeric( strInput){
 }
 
 
-export default connect(mapStateToProps)(EntryListView);
+export default withWidth() (connect(mapStateToProps)(EntryListView));

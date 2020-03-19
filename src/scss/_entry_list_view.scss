@@ -1,7 +1,10 @@
 #entry-list-view {
 
-    margin: 80px;
+    margin: 40px 10% 40px 10%;
     max-width: 700px;
+    @include md {
+        margin: 80px;
+    }
 
     .filterBy {
         margin-bottom: 20px;
@@ -15,6 +18,7 @@
         }
         .entry-categories {
             display: flex;
+            flex-wrap: wrap;
             p {
                 padding-top: 8px;
                 padding-right: 8px;
@@ -25,14 +29,20 @@
               flex-direction:column;
               width:100%;
               padding:0;
+              margin-right: 30px;
         }
         .detail-header {
-            display:flex;
-            margin: 8px 0px;
-            text-align:center;
+            content: "TEST";
+            @include xs {
+                display:flex;
+                margin: 8px 0px;
+                text-align:center;
+            }
+
         }
         .detail-row {
             display:flex;
+            flex-wrap: wrap;
             margin: 8px 0px;
         }
         .row-divider {
@@ -41,15 +51,25 @@
             background-color:gainsboro;
         }
         .chip-column {
-              width: 28%;
+            display: flex;
+            align-items: center;
+            @include sm {
+                width: 35%;
+            }
+              
         }
         .reference-column {
-              width:72%;
+              display: flex;
+              align-items: center;
+              margin: 10px 0 10px 10px;
+              @include sm {
+                width: 65%;
+                margin: 0;
+              }
         }
         .colapse-button {
               float:right;
               transform:rotate(180deg)
-            
         }
     }
 

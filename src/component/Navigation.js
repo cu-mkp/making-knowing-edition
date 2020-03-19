@@ -7,8 +7,7 @@ import JumpToFolio from './JumpToFolio';
 import DocumentHelper from '../model/DocumentHelper';
 import HelpPopper from './HelpPopper'
 import AlphabetLinks from './AlphabetLinks';
-
-
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 class Navigation extends React.Component {
 
 	constructor(props,context){
@@ -151,7 +150,10 @@ class Navigation extends React.Component {
                        
                   let recommendedWidth=(this.props.documentView[this.props.side].width-8);// the divder is 16 px wide so each side is minus 8
                   let widthStyle = {'width':recommendedWidth,'maxWidth':recommendedWidth};
-                  let selectContainerStyle  = (this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}
+                  let selectContainerStyle  = 
+                        (isWidthUp('md', this.props.width)) ?
+                        ((this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}) :
+                        {}
                   let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
                   let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
                   let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
@@ -249,4 +251,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(Navigation);
+export default withWidth() (connect(mapStateToProps)(Navigation));

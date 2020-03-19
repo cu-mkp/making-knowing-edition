@@ -4,6 +4,11 @@
 
     .titlebar {
         margin-top: 90px;
+        position: relative;;
+        padding-top: 40px;
+        @include md {
+            padding-top: 0;
+        }
 
         h4 {
             padding: 16px;
@@ -13,6 +18,7 @@
             margin: 10px;
             position: absolute;
             right: 20px;
+            top: 0;
 
             span {
                 color: black;
@@ -65,10 +71,14 @@
         
                 .annotations {
                     display: flex;
+                    justify-content: center;
                     flex-wrap: wrap;
                     background:#eee;
                     padding-right: 20px;        
                     padding-bottom: 20px;
+                    @include md {
+                        justify-content: flex-start;
+                    }
 
                     .anno {                        
                         margin-top: 20px;

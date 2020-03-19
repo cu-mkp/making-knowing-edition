@@ -14,6 +14,8 @@ import AnnotationListView from './annotation_list_view/AnnotationListView';
 import Search from './Search';
 import RouteListener from './RouteListener';
 import MainMenu from './MainMenu';
+import SearchIconButton from './SearchIconButton'
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 
 class DiploMatic extends Component {
@@ -55,8 +57,11 @@ class DiploMatic extends Component {
 				// $("#loadingStateModal").fadeOut("fast");
 		}, 200);
 	}
+
 	
+
 	renderHeader(fixedFrameModeClass) {
+		const searchEl = (isWidthUp('md', this.props.width)) ? <Search /> : <SearchIconButton />
 		return (
 			<div id="header" className={fixedFrameModeClass}>
 				<div className="title"><Link to='/' className='home-link'>Secrets of Craft and Nature<br/> in Renaissance France</Link></div>
@@ -64,7 +69,7 @@ class DiploMatic extends Component {
 				<div className="tagline">A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</div>
 				<div id="globalNavigation">
 					<MainMenu></MainMenu>
-					<Search />
+					{searchEl}					
 				</div>
 			</div>
 		);
@@ -82,7 +87,7 @@ class DiploMatic extends Component {
 					transcriptionType: 'g'
 				},
 				right: {
-					folioID: '-1',
+					folioID: (isWidthUp('md', this.props.width)) ? '-1' : '1r',
 					transcriptionType: 'tc'
 				}
 			}
@@ -176,10 +181,23 @@ class DiploMatic extends Component {
 	renderFooter(fixedFrameModeClass) {
 		return (
 			<div id="footer" className={fixedFrameModeClass}>
-				<div className="copyright">&copy; The Center for Science and Society at Columbia University.</div>
+				<div className="copyright">&copy; Making and Knowing Project.</div>
+				<div className="footer-links">
+					<a target="_blank" rel="noopener noreferrer" href="https://cuit.columbia.edu/privacy-notice">
+						Privacy Notice
+					</a>
+					<span> | </span>
+					<a target="_blank" rel="noopener noreferrer" href="http://health.columbia.edu/disability-services">
+						Disability Services
+					</a>
+					<span> | </span>
+					<a target="_blank" rel="noopener noreferrer" href="http://eoaa.columbia.edu/columbia-university-non-discrimination-statement-and-policy">
+						Non-Discrimination
+					</a>
+				</div>
 				<div className="logos">
 					<img alt="Columbia Logo" src="img/logo_columbia.png"/>
-					<img alt="Center Logo" src="img/logo_center.png"/>
+					<img alt="Center Logo" src="img/logo_center_multi_line.png"/>
 				</div>
 			</div>
 		);
@@ -187,7 +205,7 @@ class DiploMatic extends Component {
 
 	render() {
 		const { firstPageLoad, fixedFrameMode, googleAnalyticsTrackingID } = this.props.diplomatic
-		const fixedFrameModeClass = fixedFrameMode ? 'fixed' : '';
+		const fixedFrameModeClass = fixedFrameMode ? 'fixed' : 'sticky';
 
 		if( googleAnalyticsTrackingID && firstPageLoad ) {
 			dispatchAction( this.props, 'DiplomaticActions.recordLanding' );
@@ -219,4 +237,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(DiploMatic);
+export default withWidth() (connect(mapStateToProps)(DiploMatic));

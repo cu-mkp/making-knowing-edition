@@ -1,5 +1,5 @@
 $header-height: 6.5rem;
-$footer-height: 3rem;
+$footer-height: 4.5rem;
 $chrome-height: $header-height + $footer-height;
 
 body {
@@ -53,4 +53,12 @@ h4 {
 
 .disabled{
   opacity: 0.5;
+}
+
+.figure-dialog-img-container {
+    img {
+		display: block;
+		width: 100%;
+		height: auto;
+    }
 }

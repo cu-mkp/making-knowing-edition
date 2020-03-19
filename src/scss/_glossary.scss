@@ -9,13 +9,19 @@
 	}
 	
 	.glossaryNav {
+
 		background: white;
-            padding: 5px;
-            position:relative;
-       
+		padding: 5px;
+		position:relative;
 	
 		#glossary-filter {
 			margin-right: 10px;
+		}
+		.alphaNav {
+			display: none;
+			@include md {
+				display: block;
+			}
 		}
 	}
 
@@ -29,23 +35,29 @@
 		position: relative;
 		width: calc(100% - 1.7rem);
 		text-align: center;
-		top: -1em;
+		top: -2em;
 		font-size: 1.8rem;
 		font-weight: 700;
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
+		@include md {
+			top: -1em;
+		}
 	}
 
 	#glossaryContent {
-		padding: 3.5rem 0 0;
+		padding: 5rem 0 0;
 		min-height: 100vh;
 		-webkit-user-select: text;
 		-moz-user-select: text;
 		-ms-user-select: text;
 		user-select: text;
 		min-width: 10rem;
+		@include md {
+			padding: 3.5rem 0 0;
+		}
 	}
 
 }

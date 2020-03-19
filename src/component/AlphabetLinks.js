@@ -27,8 +27,9 @@ export default class AlphabetLinks extends Component{
                         onChange={this.props.onFilterChange}
                         value={this.props.filterTerm}
                     />
-                    <span>Go to: </span>
+
                     <div className='alphaNav'>
+                        <span style={{color: "black"}}>Go to: </span>
                         { letterLinks }
                     </div>
                 </div>

@@ -8,6 +8,8 @@ import TranscriptionView from './TranscriptionView';
 import XMLView from './XMLView';
 import GlossaryView from './GlossaryView';
 import DocumentHelper from '../model/DocumentHelper';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import SinglePaneView from './SinglePaneView';
 
 
 class DocumentView extends Component {
@@ -370,17 +372,31 @@ class DocumentView extends Component {
             left: this.viewportState('left'),
             right: this.viewportState('right')
         };
+        const mobileDocView = {
+            ...this.state,
+            right: {...this.viewportState('right'), isGridMode: false},
+        }
         
-        return (
-            <div>
-                <SplitPaneView 
-                    leftPane={this.renderPane( 'left', docView )} 
-                    rightPane={this.renderPane( 'right', docView )} 
-                    inSearchMode={false}
-                    onWidth={this.onWidth.bind(this)}
-                />
-            </div>
-        );
+        if(isWidthUp('md', this.props.width)){
+            return (
+                <div>
+                    <SplitPaneView
+                        leftPane={this.renderPane('left', docView)}
+                        rightPane={this.renderPane('right', docView)}
+                        inSearchMode={false}
+                        onWidth={this.onWidth.bind(this)}
+                    />
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <SinglePaneView
+                        singlePane={this.renderPane('right', mobileDocView)}
+                    />
+                </div>
+            );        }
+
     }
 
 }
@@ -391,4 +407,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(DocumentView);
+export default withWidth() (connect(mapStateToProps)(DocumentView));

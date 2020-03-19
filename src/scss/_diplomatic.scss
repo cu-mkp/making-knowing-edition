@@ -9,19 +9,33 @@
 		grid-area: header;
 		padding: 0.5rem 0 0 1rem;
 		white-space: nowrap;
+		@include sm {
+			padding: 0.5rem 0 0.5rem 1rem;
+		}
 
 		.title {
-			font-size: 24pt;
-
+			font-size: 12pt;
+			margin-top: 1rem;
 			.home-link {
 				color: white;
 				text-decoration: none;	
 			}
+			@include sm {
+				font-size: 18pt;
+			}
+			@include md {
+				margin-top: 0;
+				font-size: 24pt;
+			}
 		}
 
 		.tagline {
-			font-size: 0.8rem;
-			padding: 0.5rem 0 0 0;	
+			font-size: 0.7rem;
+			padding: 0.5rem 0 0 0;
+			@include md {
+				font-size: 0.8rem;
+			}
+
 		}
 
 		.compactTitle {
@@ -30,15 +44,26 @@
 		}
 
 		.expandedViewOnly {
-			margin-right: 50px;
-			display: inline;
-			a {
-				margin-right: 10px;
+			@include lg {
+				margin-right: 50px;
+				display: inline;
+				a {
+					margin-right: 10px;
+				}
 			}
 		}
 
 		#search {
-			display: inline;
+
+			@include md {
+				text-align: right;
+				margin-top: 10px;
+				display: block;
+			}
+			@include lg {
+				margin-top: 0;
+				display: inline;
+			}
 		}
 	
 		#navigation {
@@ -55,31 +80,62 @@
 
 	#footer {
 		margin: 0;
-		// width: 100%;
-		// position: fixed;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		@include md {
+			justify-content: space-between;
+		}
+		align-items: center;
+		align-content: space-around;
 		color: white;
 		height: $footer-height;
 		background-color: #656565;
 		font-family: 'OpenSans', sans-serif;
 		grid-area: header;
-		padding: 0.4rem 0 0 1rem;
+		padding: 0.4rem 0 0.4rem 2rem;
 		white-space: nowrap;
 		
 		bottom: 0;	
 		.logos {
-			margin-right: 20px;
-			float: right;
+			display: flex;
+			align-items: center;
+			margin-right: 30px;
+			img {
+				width: 150px;
+				@include md {
+					width: 200px;
+				}
+				margin-right: 1rem;
+			}
 		}	
-		
+		.footer-links {
+			margin-right: 2rem;
+			font-size: 0.8rem;
+			a {
+				color: white;
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+
+			}
+		}
 		.copyright {
-			float: left;
 			font-weight: 300;
 			font-size: 0.8rem;
-			padding: 0.8rem 0 0 0.3rem;
+			margin-right: 2rem;
 		}
 	}
 }
 
+#diplomatic.sticky {
+	#header.sticky {
+		position: sticky;
+		top: 0;
+		z-index: 999;
+	}
+}
 #diplomatic.fixed {
 	background: white;
 	position: fixed;

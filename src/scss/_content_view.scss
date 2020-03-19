@@ -2,10 +2,31 @@
     padding-top: 10px;
     min-height: 60vh;
 
-    margin: 80px 20% 80px 20%;
+    margin: 40px 10% 40px 10%;
     max-width: 960px;
 
     line-height: 1.5;
+
+    @include md {
+        margin: 80px 20% 80px 20%;
+    }
+
+    .video-iframe-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 25px;
+        height: 0;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
 
     .loading {
         margin-left: 40%;
@@ -13,6 +34,7 @@
     
     .homepage-grid {
         display: flex;
+        justify-content: space-evenly;
         flex-wrap: wrap;
         padding-right: 20px;        
         padding-bottom: 20px;
@@ -30,12 +52,54 @@
 
 
     .homepage-grid-item {
-        width: 450px;
         margin: 10px;
+        width: fit-content;
     }
 
+    .homepage-card-image{
+        width: 300px;
+        height: 250px;
+        @include lg {
+            width: 350px;
+            height: 375px;
+        }
+        @include xl {
+            width: 450px;
+            height: 525px;
+        }
+    }
+
+    img {
+        @include md {
+            width: auto;
+        }  
+        max-width: 100%;
+        display: block;
+        margin: 10px auto 10px auto;
+    }
+
+
+
+     img[alt^="extra-small"] {
+         max-width: $image-xs;
+     }
+     img[alt^="small"] {
+         max-width: $image-sm;
+     }
+     img[alt^="medium"] {
+         max-width: $image-md;
+     }
+     img[alt^="large"] {
+         max-width: $image-lg;
+     }
+     img[alt^="extra-large"] {
+         max-width: $image-xl;
+     }
+
     p {
-        margin-bottom: .25em;
+        margin-bottom: .75em;
+        margin-block-start: 0;
+        margin-block-end: 0;
     }
 
     a {
@@ -44,19 +108,25 @@
     
     h1 {
         text-align: center;
-        line-height: 2.2rem;
+        font-size: 2.5em;
+        line-height: 1.5em;
     }
+    h2 {
+        font-size: 1.6em;
+        margin-top: 40px;
+        line-height: 1.7em;
+    }
+    h3 {
+        font-size: 1.1em;
+        line-height: 1em;
+        margin-top: 1.5em;
 
+    }
     h4 {
         text-align: center;
-        margin-bottom: 30px;
     }
 
-    h2 {
-        font-size: 1.2em;
-        margin: 0px;
-        margin-top: 40px;
-    }
+
 
     blockquote {
         p {
@@ -64,38 +134,16 @@
         }
     }
 
-    .figure-container {
-        align-items: center;
-        display: flex;
-        flex-wrap: wrap;
+    ul {
+        ul {
+            padding-inline-start: 30px;
+        }       
     }
-
-    figure {
-        margin-top: 20px;
-        margin-bottom: 20px;
-
-        iframe {
-            width: 560px;
-            border: 1px solid #DDDDDD;        }
-        img {
-            width: 300px;
-            border: 1px solid #DDDDDD;
-        }
-        figcaption {
-            text-indent: 0px;
-            line-height: 1.2;
-            margin-left: 50px;
-            font-size: 10pt;            
-            text-align: left
-        }
-        img + figcaption {
-            width: 300px;
-        }     
-        iframe + figcaption {
-            width: 560px;
-        }
+    ol {
+        ol {
+            padding-inline-start: 30px;
+        }       
     }
-
     table {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -110,10 +158,10 @@
         text-indent: 0px;
         vertical-align: top;
         }
-     
+        tr:nth-child(even){background-color: #f2f2f2;}
         th {
             padding-left: 5px;
-            background: #3F3626;
+            background: rgb(131, 131, 131);
             font-size: 15px;
             color: white;
         }

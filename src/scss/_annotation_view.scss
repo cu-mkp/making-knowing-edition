@@ -1,6 +1,9 @@
 #annotation-view.view-mode {
-    margin: 80px 20% 80px 20%;
+    margin: 40px 10% 40px 10%;
     max-width: 960px;
+    @include md {
+        margin: 80px 20% 80px 20%;
+    }
 }
 
 #annotation-view.search-mode {
@@ -13,10 +16,10 @@
 #annotation-view {
 
     line-height: 1.5;
-    text-indent: 50px;
 
     p {
         margin: 0px;
+        margin-bottom: .75em;
     }
 
     a {
@@ -25,22 +28,27 @@
     
     h1 {
         text-align: center;
-        line-height: 2.2rem;
+        line-height: 2.5em;
+        line-height: 1.5em;
     }
-
+    h2 {
+        font-size: 1.6em;
+        margin-top: 40px;
+        line-height: 1.7em;
+        text-indent: 0px;
+    }
+    h3 {
+        font-size: 1.1em;
+        line-height: 1em;
+        margin-top: 1.5em;
+        text-indent: 0px;
+    }
     h4 {
         text-align: center;
         margin-bottom: 30px;
     }
 
     h4 + p {
-        text-indent: 0px;
-    }
-
-    h2 {
-        font-size: 1.2em;
-        margin: 0px;
-        margin-top: 40px;
         text-indent: 0px;
     }
 
@@ -52,13 +60,26 @@
         text-indent: 0px;
     }
     
-    li {
-        p {
-            text-indent: 5px;
-            margin-bottom: 15px;
+    .annotation-nav {
+        margin-bottom: 1rem;
+    }
+    .title-byline-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        span {
+            &:hover {
+                cursor: default;
+            }
+            color: #000000b8;
+            font-family: 'OpenSans', sans-serif;
+            font-weight: 700;
+            padding: 0;
+            margin: 0 0 0.3rem;
+            line-height: 1.5rem;
         }
     }
-
     .footnote-ref, .footnote-back {
         color: blue;
         text-decoration: underline blue;
@@ -74,30 +95,34 @@
 
     .figure-container {
         align-items: center;
+        justify-content: space-around;
         display: flex;
         flex-wrap: wrap;
     }
-
-    ul {
-        text-indent: 65px;
-        padding: 0px;
-        li {
-            blockquote {
-                p {
-                    padding-left: 20px;
-                }
-            }
-            line-height: 1.1;
-        }
-    }
-
+    
     figure {
         margin-top: 20px;
         margin-bottom: 20px;
-
-        iframe {
-            width: 560px;
-            border: 1px solid #DDDDDD;        }
+        max-width: 100%;
+        .video-iframe-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            padding-top: 25px;
+            height: 0;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                max-width: 100%;
+                height: 100%;
+                border: 1px solid #DDDDDD;
+            }
+        }
+        .figure-image-container {
+            padding-right: 30px;
+        }
         img {
             width: 300px;
             border: 1px solid #DDDDDD;
@@ -105,18 +130,40 @@
         figcaption {
             text-indent: 0px;
             line-height: 1.2;
-            margin-left: 50px;
             font-size: 10pt;            
-            text-align: left
+            text-align: left;
+            max-width: 100%
         }
-        img + figcaption {
+        div + figcaption {
             width: 300px;
         }     
-        iframe + figcaption {
+        .video-iframe-wrapper + figcaption {
             width: 560px;
         }
     }
+    i {
+        font-style: normal;
+    }
 
+    li {
+        blockquote {
+            margin: 0;
+            p {
+                line-height: 1.5em;
+                margin-bottom: 0;
+            }
+        }
+    }
+    ul {
+        ul {
+            padding-inline-start: 30px;
+        }       
+    }
+    ol {
+        ol {
+            padding-inline-start: 30px;
+        }       
+    }
     table {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -131,10 +178,10 @@
         text-indent: 0px;
         vertical-align: top;
         }
-     
+        tr:nth-child(even){background-color: #f2f2f2;}
         th {
             padding-left: 5px;
-            background: #3F3626;
+            background: rgb(131, 131, 131);
             font-size: 15px;
             color: white;
         }

@@ -7,6 +7,8 @@ import {dispatchAction} from '../model/ReduxStore';
 import SearchResultView from './SearchResultView';
 import TranscriptionView from './TranscriptionView';
 import AnnotationView from './AnnotationView';
+import { withWidth } from '@material-ui/core';
+import { isWidthUp } from '@material-ui/core/withWidth';
 
 class SearchView extends Component {
 
@@ -140,16 +142,23 @@ class SearchView extends Component {
             !this.props.search.index ||
             !this.props.search.index.loaded ||
             !this.props.search.results ) { return null; }
-
-        return (
-            <div>
-                <SplitPaneView 
-                    leftPane={this.renderSearchResultView()} 
-                    rightPane={this.renderSearchDetail()} 
-                    inSearchMode={true}
-                />
-            </div>
-        );
+        if(isWidthUp('md', this.props.width)){
+            return(
+                <div>
+                    <SplitPaneView
+                        leftPane={this.renderSearchResultView()}
+                        rightPane={this.renderSearchDetail()}
+                        inSearchMode={true}
+                    />
+                </div>
+            )
+        } else {
+            return(
+                <div>
+                    {this.renderSearchResultView()}
+                </div>
+            )
+        }
     }
 
 }
@@ -161,4 +170,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(SearchView);
+export default withWidth() (connect(mapStateToProps)(SearchView));

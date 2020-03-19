@@ -8,6 +8,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import copyObject from '../lib/copyObject';
 import Button from '@material-ui/core/Button';
 import SearchHelpPopper from './SearchHelpPopper'
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 class SearchResultView extends Component {
 
@@ -58,18 +59,27 @@ class SearchResultView extends Component {
 	  
 	transcriptionResultClicked(event) {
 		let folioname = event.currentTarget.dataset.folioname;
-		let shortID = this.props.document.folioIDByNameIndex[folioname];
-		if(typeof shortID === 'undefined'){
-			console.error("Cannot find page via shortID lookup using '"+folioname+"', converting from: "+event.currentTarget.dataset.folioname);
-		}else{
-			let longID = DocumentHelper.folioURL(shortID);
-			this.props.searchActions.changeCurrentFolio(longID,'right', event.currentTarget.dataset.type )
-		}
+		if (isWidthUp('md', this.props.width)) {
+			let shortID = this.props.document.folioIDByNameIndex[folioname];
+			if (typeof shortID === 'undefined') {
+				console.error("Cannot find page via shortID lookup using '" + folioname + "', converting from: " + event.currentTarget.dataset.folioname);
+			} else {
+				let longID = DocumentHelper.folioURL(shortID);
+				this.props.searchActions.changeCurrentFolio(longID, 'right', event.currentTarget.dataset.type)
+			}
+		} else {
+			let transactionType = event.currentTarget.dataset.type;
+			this.props.history.push(`/folios/${folioname}/${transactionType}`);
+		}	
 	}
 
 	annotationResultClicked(event) {
 		const annotationID = event.currentTarget.dataset.annoid;
-		this.props.searchActions.changeCurrentAnnotation(annotationID);
+		if (isWidthUp('md', this.props.width)) {
+			this.props.searchActions.changeCurrentAnnotation(annotationID);
+		} else {
+			this.props.history.push(`/essays/${annotationID}`);    
+		}
 	}
 
 	handleCheck(event) {
@@ -166,7 +176,7 @@ class SearchResultView extends Component {
 					/>
 					<FormControlLabel					
 						control={<Radio  className='search-radio'/>}
-						label={'Sort Results by Folio Id'}
+						label={'Sort Results by Folio'}
 						value='folioId'
 					/>
 				</RadioGroup>		
@@ -259,4 +269,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(SearchResultView);
+export default withWidth() (connect(mapStateToProps)(SearchResultView));

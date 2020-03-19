@@ -42,6 +42,7 @@ class GlossaryView extends Component {
         // {head-word}, {alternate-spelling}: {meaning-number}. {part-of-speech} {meaning} [{references}]        
         const glossaryEntries = []
         let alphaIndex = 0
+        
         for( let entry of entryList ) {
             // render alphabetic header if we have started the next letter
             if( filterTerm.length === 0 && entry.headWord[0] === alpha[alphaIndex] ) {
@@ -52,7 +53,13 @@ class GlossaryView extends Component {
                 alphaIndex++
             }
             const lowerCaseHeadword = entry.headWord.toLowerCase()
-            if( filterTerm.length === 0 || (filterTerm.length !== 0 && lowerCaseHeadword.startsWith(filterTerm)) ) {
+            const lowerCaseAltSpellings = entry.alternateSpellings.toLowerCase()
+            const lowerCaseModSpellings = entry.modernSpelling.toLowerCase()
+            if( filterTerm.length === 0 ||
+                (filterTerm.length !== 0 && lowerCaseHeadword.startsWith(filterTerm)) ||
+                (filterTerm.length !== 0 && lowerCaseModSpellings.includes(filterTerm)) ||
+                (filterTerm.length !== 0 && lowerCaseAltSpellings.includes(filterTerm))
+            ) {
                 const meanings = this.renderMeanings(entry)
                 const altString = entry.alternateSpellings? `, ${entry.alternateSpellings}` : '';
                 const modString = entry.modernSpelling? ` (mod. ${entry.modernSpelling})` :'';

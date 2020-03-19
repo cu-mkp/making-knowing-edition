@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux';
 import { Link, withRouter } from 'react-router-dom'
 import { Menu, MenuItem } from '@material-ui/core'
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import MobileMenu from './MobileMenu'
 
 class MainMenu extends React.Component {
 
@@ -47,13 +49,18 @@ class MainMenu extends React.Component {
                 topNavItems.push( <span key={itemKey} onClick={()=>{this.navTo(topNavItem.route)}}>{topNavItem.label}</span> )
             }
         }
-
-        return (
-            <div className="expandedViewOnly">
-                { topNavItems }
-                { subMenus }
-            </div>
-        )
+        if (isWidthUp('md', this.props.width)){
+            return (
+                <div className="expandedViewOnly">
+                    {topNavItems}
+                    {subMenus}
+                </div>
+            )
+        } else {
+            return (
+                <MobileMenu menuStructure={menuStructure} history={this.props.history}/>
+            )
+        }
     }
 
     renderSubMenu(menuItems, menuKey) {
@@ -129,4 +136,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(withRouter(MainMenu));
+export default withWidth()(connect(mapStateToProps)(withRouter(MainMenu)));
