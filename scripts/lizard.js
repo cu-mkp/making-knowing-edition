@@ -936,6 +936,7 @@ function loadConfig() {
     targetAnnotationDir = `${targetDir}/annotations`;
     targetAnnotationThumbnailDir = `${targetDir}/annotations-thumbnails`;
 
+    dirExists(targetDir)
     dirExists(targetImageDir)
     dirExists(targetSearchIndexDir)
     dirExists(targetAnnotationDir) 
@@ -951,6 +952,7 @@ function loadConfig() {
     cachedAnnotationDriveScan = `${workingDir}/cachedScanFile.json`;
     convertAnnotationLog = `${workingDir}/lizard.log`;
 
+    dirExists(workingDir)
     dirExists(baseDir)
     dirExists(tempCaptionDir)
     dirExists(tempAbstractDir)

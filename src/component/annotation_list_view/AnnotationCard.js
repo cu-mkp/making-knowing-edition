@@ -49,7 +49,7 @@ class AnnotationCard extends Component {
                     { (annotation.status === 'staging' && releaseMode !== 'production') ? 
                         <span style={{color: 'green'}}><b>** IN STAGING **</b></span>                    
                     : null }
-                    { (annotation.contentURL && ( releaseMode !== 'production' || ( releaseMode === 'production' && annotation.status === 'published' ))) ? 
+                    { (annotation.contentURL && ( releaseMode !== 'production' || ( releaseMode === 'production' && (annotation.status === 'published' || annotation.status === 'done') ))) ? 
                         <div className='details'>
                             <Button onClick={e => {this.props.history.push(`/essays/${annotation.id}`)}}>Read Essay</Button>
                         </div>

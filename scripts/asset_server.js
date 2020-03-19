@@ -149,7 +149,9 @@ async function main() {
   const folioPath = `${configData.targetDir}/folio`;
   const searchIndexPath = `${configData.targetDir}/search-idx`;
   const contentTargetPath = `${configData.targetDir}/content`;
-  if( !dirExists(folioPath) || 
+  if( !dirExists(configData.workingDir) ||
+      !dirExists(configData.targetDir) ||
+      !dirExists(folioPath) || 
       !dirExists(searchIndexPath) || 
       !dirExists(correctFormatDir) || 
       !dirExists(inputDir) ||
