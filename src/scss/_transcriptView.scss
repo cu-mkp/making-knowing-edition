@@ -10,7 +10,10 @@
 }
 
 .transcriptContent {
-      padding: 5px 16px;
+	  padding: 50px 16px;
+	  @include md {
+		  padding: 5px 16px;
+	  }
      
 // 	padding: 0;
 //     margin: 4.5rem 0 0;

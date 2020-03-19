@@ -936,12 +936,15 @@ figure.current {
   word-wrap: break-word; }
 
 .transcriptContent {
-  padding: 5px 16px;
+  padding: 50px 16px;
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
   margin-bottom: 92px; }
+  @media (min-width: 960px) {
+    .transcriptContent {
+      padding: 5px 16px; } }
   .transcriptContent figure {
     display: inline; }
 
