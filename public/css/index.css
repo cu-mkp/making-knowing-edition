@@ -1074,6 +1074,9 @@ figure.current {
 .surface > #z20 {
   grid-area: z20; }
 
+.highlight {
+  background-color: yellow; }
+
 .xmlViewComponent .navigationComponent {
   background-color: white;
   color: #000000; }
