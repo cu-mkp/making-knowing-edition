@@ -5,17 +5,29 @@
     .titlebar {
         margin-top: 90px;
         position: relative;;
-        padding-top: 40px;
-        @include md {
-            padding-top: 0;
-        }
-
         h4 {
             padding: 16px;
+            width: 60%;
+            font-size: 1rem;
+            @include sm {
+                font-size: 1.2rem;
+                width: 70%;
+
+            }
+            @include md {
+                width: 100%;
+                font-size: 2rem;
+            }
+            @include lg {
+                font-size: 2.125rem;
+            }
         }
 
         .list-mode-buttons {
-            margin: 10px;
+            margin: 3px;
+            @include md {
+                margin: 10px;
+            }
             position: absolute;
             right: 20px;
             top: 0;
@@ -56,7 +68,16 @@
 
         .sections {
             overflow-y: scroll;
-            height: calc( 100vh - 230px);
+            height: calc( 100vh - 165px);
+            @include sm {
+                height: calc( 100vh - 196px);
+            }
+            @include md {
+                height: calc( 100vh - 215px);
+            }
+            @include lg {
+                height: calc( 100vh - 280px);
+            }
 
             .section {
                 

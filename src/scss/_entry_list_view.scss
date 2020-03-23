@@ -5,6 +5,12 @@
     @include md {
         margin: 80px;
     }
+    h3 {
+        font-size: 2.5rem;
+        @include md {
+            font-size: 3rem;;
+        }
+    }
 
     .filterBy {
         margin-bottom: 20px;

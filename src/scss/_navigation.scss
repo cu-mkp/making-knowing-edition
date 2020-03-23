@@ -8,9 +8,12 @@
 	-ms-user-select: none;
       user-select: none;
       padding:4px;
-      top: 165px;
+      top: 135px;
       background-color: white;
       border-radius: 0.3rem;
+      @include sm {
+            top: 165px;
+      }
       @include md {
             top: initial;
       }

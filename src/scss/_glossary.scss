@@ -2,10 +2,22 @@
 
 	#glossaryViewInner {
 		overflow-y: scroll;
-		margin: 52px 0 0 0;
+		margin: 5px 0 0 0;
+		@include md {
+			margin: 52px 0 0 0;
+		}
 		width: calc(100% - 1.2rem);
             height: calc(100vh - 170px);
             padding: 5px 16px;
+	}
+
+	.navigationComponent {
+		position: sticky;
+		top: 0;
+		@include md {
+			position: fixed;
+			top: initial;
+		}
 	}
 	
 	.glossaryNav {

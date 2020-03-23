@@ -1,6 +1,10 @@
-$header-height: 6.5rem;
+$header-height: 4.5rem;
+$sm-header-height: 5.5rem;
+$md-header-height: 6.5rem;
 $footer-height: 4.5rem;
 $chrome-height: $header-height + $footer-height;
+$sm-chrome-height: $sm-header-height + $footer-height;
+$md-chrome-height: $md-header-height + $footer-height;
 
 body {
 	padding: 0;
