@@ -1,5 +1,6 @@
 import axios from 'axios';
 import lunr from 'lunr';
+import findAndReplaceDOMText from 'findandreplacedomtext'
 
 class SearchIndex {
 
@@ -166,21 +167,15 @@ class SearchIndex {
       }
       // distill a set of unique terms
       matchedTerms = matchedTerms.filter( (value, index, self) => {return self.indexOf(value) === index} );
-
-      // Inject <mark> around searchterms
-      let termList = content.replace(/\n/g, ' ').split(' ');
-      for( let matchedTerm of matchedTerms ) {
-            for( let i=0; i < termList.length; i++ ) {
-                  let term = termList[i].replace(/[^a-zA-Z ]/g, "").trim();
-                  if( term === matchedTerm ) {
-                        termList[i] = HIGHLIGHT_START + termList[i] + HIGHLIGHT_END;
-                  }
-            }
-      }
-
-      // turn back into a string
-      const markedText = termList.join(' ');
-      return markedText;
+      // Inject html around searchterms
+      let domParser = new DOMParser();
+      let parsedContent = domParser.parseFromString(`<div id="tContent">${content}</div>`, "text/html").getElementById("tContent");
+      matchedTerms.forEach(matchedTerm => {
+            let regexp = new RegExp(matchedTerm, "gi")
+            findAndReplaceDOMText(parsedContent, { find: regexp, wrap: 'span', wrapClass: 'highlight' })
+      });
+      // return html as string
+      return parsedContent.innerHTML;
   }
 
   phraseMatchFilter(terms,transcriptionType,results) {

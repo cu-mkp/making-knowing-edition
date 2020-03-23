@@ -10,12 +10,16 @@
 		padding: 0.5rem 0 0 1rem;
 		white-space: nowrap;
 		@include sm {
-			padding: 0.5rem 0 0.5rem 1rem;
+			padding: 0.25rem 0 0.25rem 1rem;
+			height: $sm-header-height;
+		}
+		@include md {
+			height: $md-header-height
 		}
 
 		.title {
 			font-size: 12pt;
-			margin-top: 1rem;
+			margin-top: 0.25rem;
 			.home-link {
 				color: white;
 				text-decoration: none;	
@@ -141,6 +145,12 @@
 	position: fixed;
 	width: 100vw;
 	height: calc(100vh - $chrome-height);
+	@include sm {
+		height: calc(100vh - $sm-chrome-height);
+	}
+	@include md {
+		height: calc(100vh - $md-chrome-height);
+	}
 	font-family: 'OpenSans', sans-serif;
 	font-size: 0.9rem;
 
@@ -157,7 +167,10 @@
 
 	#content {
 		line-height: 1.2rem;
-		margin-top: 7rem;	
+		margin-top: 5rem;
+		@include sm {
+			margin-top: 7rem;
+		}
 	}
 	overflow: hidden;	
 
