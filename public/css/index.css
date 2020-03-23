@@ -288,10 +288,10 @@ figure.current {
   height: calc(100vh - 14rem); }
 
 #annotation-view {
-  line-height: 1.5; }
+  line-height: 1.5;
+  text-indent: 50px; }
   #annotation-view p {
-    margin: 0px;
-    margin-bottom: .75em; }
+    margin: 0px; }
   #annotation-view a {
     word-wrap: break-word; }
   #annotation-view h1 {
@@ -341,9 +341,10 @@ figure.current {
     line-height: 1.1; }
   #annotation-view .figure-container {
     align-items: center;
-    justify-content: space-around;
     display: flex;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    text-indent: 0px;
+    margin-left: 50px; }
   #annotation-view figure {
     margin-top: 20px;
     margin-bottom: 20px;

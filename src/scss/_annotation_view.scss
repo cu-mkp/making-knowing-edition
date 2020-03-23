@@ -16,10 +16,10 @@
 #annotation-view {
 
     line-height: 1.5;
+    text-indent: 50px;
 
     p {
         margin: 0px;
-        margin-bottom: .75em;
     }
 
     a {
@@ -95,9 +95,10 @@
 
     .figure-container {
         align-items: center;
-        justify-content: space-around;
         display: flex;
         flex-wrap: wrap;
+        text-indent: 0px;
+        margin-left: 50px;
     }
     
     figure {
