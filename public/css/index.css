@@ -402,7 +402,8 @@ figure.current {
       border: 1px solid #AAAAAA;
       padding: 5px;
       line-height: 1.2;
-      vertical-align: top; }
+      vertical-align: top;
+      min-width: 85px; }
     #annotation-view table tr:nth-child(even) {
       background-color: #f2f2f2; }
     #annotation-view table th {
@@ -697,7 +698,8 @@ figure.current {
       padding: 5px;
       line-height: 1.2;
       text-indent: 0px;
-      vertical-align: top; }
+      vertical-align: top;
+      min-width: 85px; }
     #content-view table tr:nth-child(even) {
       background-color: #f2f2f2; }
     #content-view table th {
