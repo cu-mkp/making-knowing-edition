@@ -86,7 +86,7 @@ class ContentView extends Component {
                 <div className="homepage-grid">
                     { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.jpeg`, '/folios')}
                     { this.renderGridCard('STUDY',`${imagesBaseURL}/homepage-study-tiles.PNG`, '/essays')}
-                    { this.renderGridCard('EXPLORE',`${imagesBaseURL}/homepage-filter.png`, '/content/research+resources/overview')}
+                    { this.renderGridCard('EXPLORE',`${imagesBaseURL}/homepage-filter.png`, '/content/resources/overview')}
                     { this.renderGridCard('ABOUT',`${imagesBaseURL}/homepage-about.jpg`, '/content/about/overview')}
                 </div>
             </div>
