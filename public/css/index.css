@@ -323,8 +323,7 @@ figure.current {
   #annotation-view .title-byline-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px; }
+    align-items: center; }
     #annotation-view .title-byline-container span {
       color: #000000b8;
       font-family: 'OpenSans', sans-serif;
@@ -334,6 +333,10 @@ figure.current {
       line-height: 1.5rem; }
       #annotation-view .title-byline-container span:hover {
         cursor: default; }
+  #annotation-view .annotation-abstract {
+    border: 1px dashed #b3b2b2;
+    padding: 1rem;
+    margin-bottom: 30px; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }
