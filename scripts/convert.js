@@ -7,7 +7,7 @@ const transcriptionTypes = [
   'tc', 'tcn', 'tl'
 ];
 
-const figuresDir = "/bnf-ms-fr-640/figures";
+let figureBaseURL;
 
 const marginCodes = [
   'middle',
@@ -176,7 +176,7 @@ function convertHead( htmlDoc, head ) {
 
 function createFigureEl( htmlDoc, figure ) {
   let figureID = figure.getAttribute('id');
-  let figureURL = ( figureID ) ? `${figuresDir}/${figureID.substr(4)}.png` : null;
+  let figureURL = ( figureID ) ? `${figureBaseURL}/${figureID.substr(4)}.png` : null;
   let figureSize = validFigureSize( figure.getAttribute('size') );
   let figureEl = htmlDoc.createElement('figure');
   let imgEl = htmlDoc.createElement('img');
@@ -281,7 +281,8 @@ function convertFile( folioID, transcriptionType, xmlFile, htmlFile ) {
   }
 }
 
-function convertFolios( folioPath ) {
+function convertFolios( folioPath, figureURL ) {
+  figureBaseURL = figureURL
   const folios = fs.readdirSync(folioPath);
   folios.forEach( folioID => {
     // ignore hidden directories

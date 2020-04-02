@@ -149,6 +149,7 @@ async function main() {
   const folioPath = `${configData.targetDir}/folio`;
   const searchIndexPath = `${configData.targetDir}/search-idx`;
   const contentTargetPath = `${configData.targetDir}/content`;
+  const figureBaseURL = `${configData.editionDataURL}/figures`
   if( !dirExists(configData.workingDir) ||
       !dirExists(configData.targetDir) ||
       !dirExists(folioPath) || 
@@ -183,7 +184,7 @@ async function main() {
   copyFolioXMLs( correctFormatDir, folioPath );
 
   console.log('Convert folios to HTML...');
-  convert.convertFolios(folioPath);
+  convert.convertFolios(folioPath,figureBaseURL);
 
   console.log('Convert entries to JSON...');
   await convertEntries.convert(entriesCSV, targetEntriesFile);
