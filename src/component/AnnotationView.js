@@ -40,7 +40,7 @@ class AnnotationView extends Component {
     }
 
     // Configure parser to replace certain tags with components
-    htmlToReactParserOptions(annoAuthors, authors) {
+    htmlToReactParserOptions(anno, authors) {
 		var parserOptions =  {
 			 replace: (domNode) => {
                 // drop these
@@ -73,24 +73,42 @@ class AnnotationView extends Component {
                         </div>                        
                     )
                 }
-                // TODO:Commented out AnnotationByline code until docs can be update to remove the hand-type by line 
-                //      (see comments in issue: https://github.com/cu-mkp/making-knowing-edition/issues/394)
-                // if( domNode.name === 'h1'){
-                //     return (
-                //         <div className="title-byline-container">
-                //             <h1>{domToReact(domNode.children, parserOptions)}</h1>
-                            
-                //             {
-                //                 annoAuthors ?
-                //                 <div>
-                //                     <AnnotationByLine annoAuthors={annoAuthors} authors={authors} /> 
-                //                 </div>
-                //                 :
-                //                 ""
-                //             }
-                //         </div>
-                //     );
-                // }
+                if ( domNode.name === 'h1' ) {
+                    const isAbstract = (!anno.abstract || anno.abstract.length === 0) ? false : true;
+                    const title = domToReact([domNode])
+                    const byLine = domToReact([domNode.next.next])
+                    return (
+                        <div>
+                            <div className="title-byline-container">
+                                {title}
+                                {
+                                    // TODO: Commented out the below AnnotationByline code to replace byLine code  
+                                    //       derrived from google docs once by lines are removed from google docs
+                                    //       (see comments in issue: https://github.com/cu-mkp/making-knowing-edition/issues/394)
+                                    // anno.authors ?
+                                    //     <div style={{marginBottom: 30}}>
+                                    //         <AnnotationByLine annoAuthors={anno.authors} authors={authors} />
+                                    //     </div>
+                                    //     :
+                                    //     ""
+                                }
+                                {byLine} 
+                            </div>
+                            {isAbstract &&
+                                <div className="annotation-abstract">
+                                    <h2 style={{marginTop: 0}}>Abstract</h2>
+                                    {Parser(anno.abstract)}
+                                </div>
+                            }
+                        </div>
+                    )
+                }
+
+                // The following is intended to remove by-line derived from google doc since it's rendered in the above. 
+                // TODO: Can be removed when byLine code above is replaced by AnnotationByline component
+                if ( domNode.name === 'h4' && domNode.prev.prev.name === 'h1') {
+                    return <div></div>;
+                }
 
 				 switch (domNode.name) {
                     case 'p':
@@ -128,7 +146,7 @@ class AnnotationView extends Component {
         let anno = this.props.annotations.loaded ? this.props.annotations.annotations[this.state.annoID] : null;
         if( !anno || !anno.loaded ) return null;
         
-        let htmlToReactParserOptions = this.htmlToReactParserOptions(anno.authors, this.props.authors.authors);
+        let htmlToReactParserOptions = this.htmlToReactParserOptions(anno, this.props.authors.authors);
         const modeClass = this.props.inSearchMode ? 'search-mode' : 'view-mode';
 
         // Mark any found search terms

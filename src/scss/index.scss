@@ -55,6 +55,12 @@ $image-xl: 900px;
    }
 }
 
+@mixin first-child() {
+  &:first-of-type {
+    @content
+  }
+}
+
 @import "base";
 @import "globalNavigation";
 

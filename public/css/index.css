@@ -323,8 +323,7 @@ figure.current {
   #annotation-view .title-byline-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px; }
+    align-items: center; }
     #annotation-view .title-byline-container span {
       color: #000000b8;
       font-family: 'OpenSans', sans-serif;
@@ -334,6 +333,10 @@ figure.current {
       line-height: 1.5rem; }
       #annotation-view .title-byline-container span:hover {
         cursor: default; }
+  #annotation-view .annotation-abstract {
+    border: 1px dashed #b3b2b2;
+    padding: 1rem;
+    margin-bottom: 30px; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }
@@ -402,7 +405,8 @@ figure.current {
       border: 1px solid #AAAAAA;
       padding: 5px;
       line-height: 1.2;
-      vertical-align: top; }
+      vertical-align: top;
+      min-width: 85px; }
     #annotation-view table tr:nth-child(even) {
       background-color: #f2f2f2; }
     #annotation-view table th {
@@ -521,20 +525,58 @@ figure.current {
               color: white; }
 
 #entry-list-view {
-  margin: 40px 10% 40px 10%;
-  max-width: 700px; }
+  position: relative;
+  margin: 40px 10% 40px 10%; }
   @media (min-width: 960px) {
     #entry-list-view {
-      margin: 80px; } }
+      overflow: auto;
+      height: 900px;
+      margin: 40px 2% 40px 2%; } }
+  @media (min-width: 1280px) {
+    #entry-list-view {
+      margin: 40px 2% 40px 5%; } }
   #entry-list-view h3 {
-    font-size: 2.5rem; }
+    font-size: 2rem; }
     @media (min-width: 960px) {
       #entry-list-view h3 {
-        font-size: 3rem; } }
-  #entry-list-view .filterBy {
+        font-size: 2.25rem; } }
+  @media (min-width: 960px) {
+    #entry-list-view .header {
+      width: 62%;
+      margin-left: 38%;
+      max-width: 900px; }
+      #entry-list-view .header p {
+        padding-right: 10px; } }
+  @media (min-width: 1280px) {
+    #entry-list-view .header {
+      width: 70%;
+      margin-left: 30%; } }
+  @media (min-width: 960px) {
+    #entry-list-view .filter-bar {
+      width: 33%;
+      background-color: #faf8f8;
+      position: fixed;
+      top: 150px;
+      padding: 10px;
+      border-radius: 0.3rem;
+      border: 1px solid #d6d6d6; } }
+  @media (min-width: 1280px) {
+    #entry-list-view .filter-bar {
+      width: 25%; } }
+  @media (min-width: 960px) {
+    #entry-list-view .entries {
+      width: 62%;
+      margin-left: 38%;
+      margin-bottom: 40px;
+      max-width: 900px; } }
+  @media (min-width: 1280px) {
+    #entry-list-view .entries {
+      width: 70%;
+      margin-left: 30%; } }
+  #entry-list-view .filterBy:first-of-type {
     margin-bottom: 20px; }
   #entry-list-view .entry {
-    margin-top: 10px; }
+    margin: 10px 13px 1px 2px; }
     #entry-list-view .entry .entry-chips {
       margin-top: 10px; }
     #entry-list-view .entry .entry-categories {
@@ -549,13 +591,11 @@ figure.current {
       width: 100%;
       padding: 0;
       margin-right: 30px; }
-    #entry-list-view .entry .detail-header {
-      content: "TEST"; }
-      @media (min-width: 0px) {
-        #entry-list-view .entry .detail-header {
-          display: flex;
-          margin: 8px 0px;
-          text-align: center; } }
+    @media (min-width: 0px) {
+      #entry-list-view .entry .detail-header {
+        display: flex;
+        margin: 8px 0px;
+        text-align: center; } }
     #entry-list-view .entry .detail-row {
       display: flex;
       flex-wrap: wrap;
@@ -697,7 +737,8 @@ figure.current {
       padding: 5px;
       line-height: 1.2;
       text-indent: 0px;
-      vertical-align: top; }
+      vertical-align: top;
+      min-width: 85px; }
     #content-view table tr:nth-child(even) {
       background-color: #f2f2f2; }
     #content-view table th {

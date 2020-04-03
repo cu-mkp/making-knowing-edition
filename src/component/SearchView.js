@@ -143,7 +143,15 @@ class SearchView extends Component {
         if( !this.props.document.loaded || 
             !this.props.search.index ||
             !this.props.search.index.loaded ||
-            !this.props.search.results ) { return null; }
+            !this.props.search.results ) { 
+                return (
+                    <div style={{display: "flex", justifyContent: "center", padding: "150px 0 150px 0"}}>
+                        <div className="loading" style={{width: "fit-content"}}>
+                            <img alt="Loading, please wait." src="/img/spinner.gif"></img>
+                        </div>
+                    </div>
+                ); 
+            }
         if(isWidthUp('md', this.props.width)){
             return(
                 <div>

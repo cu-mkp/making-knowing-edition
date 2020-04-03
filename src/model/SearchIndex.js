@@ -248,8 +248,6 @@ export default SearchIndex;
 ////
 
 // const MAX_FRAGMENT_LENGTH = 12;
-const HIGHLIGHT_START = '<mark>';
-const HIGHLIGHT_END = '</mark>';
 
 // function offsetToWordIndex( words, wordOffset ) {
 //   var offset = 0;

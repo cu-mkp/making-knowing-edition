@@ -218,31 +218,51 @@ class EntryListView extends Component {
 
             return (
                   <div id="entry-list-view">
-                        <div className='entries'>
+                        <div className="header">
                               <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
-                              <Typography>Ms. Fr. 640 consists almost entirely of units of text under titles, which the Project has called “entries.” The List of Entries forms an index in order to browse the manuscript.</Typography><br/>
-                              <Typography>Relevant terms in each entry have been encoded using fourteen semantic tags that include materials, tools, and places. For a full list of the tags and their usage, see the <a href="#/content/research+resources/principles">Principles of Encoding</a>.</Typography><br/>
-                              <Typography>The list can be filtered by the semantic tags found in the entries, which can be further refined by clicking on multiple tag types.</Typography><br/>
-                              <div className="filterBy">
-                                    <h2>Filter by Category:</h2>
-                                    { this.renderNavigationChips(categories, 'categories', filterCategories) }
+                              <Typography>Ms. Fr. 640 consists almost entirely of units of text under titles, which the Project has called “entries.” The List of Entries forms an index in order to browse the manuscript.</Typography><br />
+                              <Typography>Relevant terms in each entry have been encoded using fourteen semantic tags that include materials, tools, and places. For a full list of the tags and their usage, see the <a href="#/content/research+resources/principles">Principles of Encoding</a>.</Typography><br />
+                              <Typography>The list can be filtered by the semantic tags found in the entries, which can be further refined by clicking on multiple tag types.</Typography><br />
+                        </div>
+                        <div className="filter-bar">
+                              <div className="filters">
+                                    <div className="filterBy">
+                                          <h2>Filter by Category:</h2>
+                                          {this.renderNavigationChips(categories, 'categories', filterCategories)}
+                                    </div>
+                                    <div className="filterBy">
+                                          <h2>Filter by Tag:</h2>
+                                          {this.renderNavigationChips(tags, 'tags', filterTags)}
+                                    </div>
                               </div>
-                              <div className="filterBy">
-                                    <h2>Filter by Tag:</h2>
-                                    { this.renderNavigationChips(tags, 'tags', filterTags ) }
-                              </div>
-                              <div className="sort-container">
-                                   <FormLabel className="sort-label">Sorted:</FormLabel>
-                                    <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
-                                          <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
-                                          <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
-                                    </RadioGroup>
-                              </div> 
-                              <ReactList
-                                    itemRenderer={this.renderEntryCard}
-                                    length={entryList.length}
-                                    type='variable'
-                              />
+                        </div>
+                        <div className='entries'>
+                              {(entryList.length > 0)
+                                    ?
+                                    <div>
+                                          {(entryList.length > 1) 
+                                                ?
+                                                <div className="sort-container">
+                                                      <FormLabel className="sort-label">Sort:</FormLabel>
+                                                      <RadioGroup  row aria-label="Sort By" value={this.state.sortBy} onChange={this.handleSelectSort} >
+                                                            <FormControlLabel value="folio" control={<Radio className="sort-radio"  />} label="By Folio Number" />
+                                                            <FormControlLabel value="alpha" control={<Radio className="sort-radio" />} label="Alphabetically" />
+                                                      </RadioGroup>
+                                                </div>
+                                                :
+                                                ''
+                                          }
+                                          <div className="entry-list" >
+                                                <ReactList
+                                                      itemRenderer={this.renderEntryCard}
+                                                      length={entryList.length}
+                                                      type='variable'
+                                                />         
+                                          </div>
+                                    </div>
+                                    :
+                                    <Typography variant="h5">No entries found.</Typography>
+                              }
                         </div>
                   </div>
             );
