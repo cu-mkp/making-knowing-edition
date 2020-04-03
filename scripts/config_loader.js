@@ -1,8 +1,9 @@
 const fs = require('fs');
 
-function load() {
+function load(targetName) {
     const configJSON = fs.readFileSync('edition_data/config.json', "utf8");
-    return JSON.parse(configJSON);
+    const targets = JSON.parse(configJSON);
+    return targets[targetName];
 }
 
 // EXPORTS /////////////

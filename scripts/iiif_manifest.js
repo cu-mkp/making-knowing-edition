@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const configLoader = require('./config_loader');
-
 
 function dirExists( dir ) {
   if( !fs.existsSync(dir) ) {
@@ -13,7 +11,7 @@ function dirExists( dir ) {
   }  
 }
 
-function generate_iiif_files(config) {
+const generate = function generate(config) {
   let manifestJSON = fs.readFileSync(`edition_data/bnf_manifest.json`, "utf8");
   let manifest = JSON.parse(manifestJSON);
   let canvases = manifest["sequences"][0]["canvases"];
@@ -106,18 +104,5 @@ function generateFolioID( bnfLabel ) {
   return `p${zeros.concat(id)}${rectoOrVerso}`;
 }
 
-function main() {
-
-  // load the config
-  const config = configLoader.load();
-  if( !config ) {
-    console.log("Unable to load configuration file. Expected it in edition_data/config.json");
-    process.exit(-1);   
-  }
-
-  generate_iiif_files(config);
-  console.log('IIIF Manifest created.');
-}
-
-///// RUN THE SCRIPT
-main();
+// EXPORTS /////////////
+module.exports.generate = generate;
