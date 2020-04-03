@@ -15,9 +15,6 @@ const assetServer = require('./asset_server');
 // config data
 let configData;
 
-// publication stage
-let publicationStage;
-
 // rclone configuration
 let rCloneServiceName;
 let rCloneSharedDrive;
@@ -397,15 +394,8 @@ function filterForDownload(annotationMetadata, annotationAssets) {
             const {status, refresh} = metadata
             // ignore items with no status
             if( status === 'published' || status === 'staging' ) {
-                if( publicationStage === 'production') {
-                    // download everything to make sure we have the latest
-                    selectedAssets.push(annotationAsset)
-                } else {
-                    // only if user requests refresh 
-                    if(refresh) {
-                        selectedAssets.push(annotationAsset)
-                    }
-                }    
+                // download everything to make sure we have the latest
+                selectedAssets.push(annotationAsset)
             }
         }
     }
@@ -957,10 +947,7 @@ function loadConfig(targetName) {
     configData.editionDataURL = `${configData.editionDataURL}/${configData.buildID}`
     configData.targetDir = `${configData.targetDir}/${configData.buildID}`
 
-    const { sourceDir, targetDir, workingDir, editionDataURL, rclone, stage } = configData
-
-    // publication stage
-    publicationStage = stage;
+    const { sourceDir, targetDir, workingDir, editionDataURL, rclone } = configData
 
     // source dir
     annotationMetaDataCSV = `${sourceDir}/metadata/annotation-metadata.csv`;
