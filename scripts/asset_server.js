@@ -119,29 +119,22 @@ function nextInterval() {
     return nextIntervalMs;
 }
 
-async function main() {
+const generate = async function generate(configData) {
 
-  let mode;
-  if (process.argv.length <= 2) {
-      mode = 'pull'
-  } else {
-      mode = process.argv[2];
-  }
+  // let mode;
+  // if (process.argv.length <= 2) {
+  //     mode = 'pull'
+  // } else {
+  //     mode = process.argv[2];
+  // }
 
-  if( mode === 'help' ) {
-    console.log(`Usage: asset_server.js <command>` );
-    console.log("The asset server responds to the following commands:")
-    console.log("\tlocal: Don't pull from github and only run once.");
-    console.log("\thelp: Display this help.");
-    process.exit(-1);
-  }  
-
-  // load the config
-  const configData = configLoader.load();
-  if( !configData ) {
-    console.log("Unable to load configuration file. Expected it in edition_data/config.json");
-    process.exit(-1);   
-  }
+  // if( mode === 'help' ) {
+  //   console.log(`Usage: asset_server.js <command>` );
+  //   console.log("The asset server responds to the following commands:")
+  //   console.log("\tlocal: Don't pull from github and only run once.");
+  //   console.log("\thelp: Display this help.");
+  //   process.exit(-1);
+  // }  
 
   // make sure the necessary dirs exist
   const inputDir = configData.sourceDir;
@@ -149,6 +142,7 @@ async function main() {
   const folioPath = `${configData.targetDir}/folio`;
   const searchIndexPath = `${configData.targetDir}/search-idx`;
   const contentTargetPath = `${configData.targetDir}/content`;
+  const figureBaseURL = `${configData.editionDataURL}/figures`
   if( !dirExists(configData.workingDir) ||
       !dirExists(configData.targetDir) ||
       !dirExists(folioPath) || 
@@ -170,11 +164,11 @@ async function main() {
   const now = new Date();
   console.log( `Asset Pipeline started at: ${now.toString()}`);
 
-  if( mode !== 'local' ) {
-    console.log('Download files from Github...');
-    downloadFiles(inputDir);  
-    downloadFiles(configData.contentDir);
-  }
+  // if( mode !== 'local' ) {
+  //   console.log('Download files from Github...');
+  //   downloadFiles(inputDir);  
+  //   downloadFiles(configData.contentDir);
+  // }
 
   console.log('Reorganize files...');
   reorganizeFiles(inputDir, correctFormatDir);
@@ -183,7 +177,7 @@ async function main() {
   copyFolioXMLs( correctFormatDir, folioPath );
 
   console.log('Convert folios to HTML...');
-  convert.convertFolios(folioPath);
+  convert.convertFolios(folioPath,figureBaseURL);
 
   console.log('Convert entries to JSON...');
   await convertEntries.convert(entriesCSV, targetEntriesFile);
@@ -200,13 +194,13 @@ async function main() {
   console.log('Generate Comments...');
   await comments.generate(commentsCSV, targetCommentsFile);
 
-  if( mode === 'local' ) {
-    console.log('Done.');
-    return
-  }
-  console.log('sleeping');
-  sleep(nextInterval());
-
+  // if( mode === 'local' ) {
+  //   console.log('Done.');
+  //   return
+  // }
+  // console.log('sleeping');
+  // sleep(nextInterval());
 }
 
-main();
+// EXPORTS /////////////
+module.exports.generate = generate;

@@ -76,14 +76,14 @@ class ImageView extends Component {
 	}
 
 	onZoomFixed_1 = (e) => {
-		this.viewer.viewport.fitVertically();
+		this.viewer.viewport.zoomTo(this.viewer.viewport.getMaxZoom());
 	}
 	onZoomFixed_2 = (e) => {
 		this.viewer.viewport.zoomTo((this.viewer.viewport.getMaxZoom()/2));
 
 	}
 	onZoomFixed_3 = (e) => {
-		this.viewer.viewport.zoomTo(this.viewer.viewport.getMaxZoom());
+		this.viewer.viewport.fitVertically();
 
 	}
 

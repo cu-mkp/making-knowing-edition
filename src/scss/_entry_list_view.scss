@@ -1,23 +1,72 @@
 #entry-list-view {
-
+    position: relative;
     margin: 40px 10% 40px 10%;
-    max-width: 700px;
+
     @include md {
-        margin: 80px;
+        overflow: auto;
+        height: 900px;
+        margin: 40px 2% 40px 2%;
     }
+    @include lg {
+        margin: 40px 2% 40px 5%;
+    }
+
     h3 {
-        font-size: 2.5rem;
+        font-size: 2rem;
         @include md {
-            font-size: 3rem;;
+            font-size: 2.25rem;;
+        }
+    }
+
+    .header {
+        @include md {
+            width: 62%;
+            margin-left: 38%;
+            max-width: 900px;
+            p {
+                padding-right: 10px;
+            }
+        }
+        @include lg {
+            width: 70%;
+            margin-left: 30%;
+        }
+    }
+    .filter-bar {
+        @include md {
+            width: 33%;
+            background-color: rgb(250, 248, 248);
+            position: fixed;
+            top: 150px;
+            padding: 10px;
+            border-radius: 0.3rem;
+            border: 1px solid rgb(214, 214, 214)
+        }
+        @include lg {
+            width: 25%;
+        }
+    }
+
+    .entries {
+        @include md {
+            width: 62%;
+            margin-left: 38%;
+            margin-bottom: 40px;
+            max-width: 900px;
+        }
+        @include lg {
+            width: 70%;
+            margin-left: 30%;
         }
     }
 
     .filterBy {
-        margin-bottom: 20px;
+        @include first-child {
+            margin-bottom: 20px;
+        }
     }
-
     .entry {
-        margin-top: 10px;
+        margin: 10px 13px 1px 2px;
 
         .entry-chips {
             margin-top: 10px;
@@ -38,7 +87,6 @@
               margin-right: 30px;
         }
         .detail-header {
-            content: "TEST";
             @include xs {
                 display:flex;
                 margin: 8px 0px;
