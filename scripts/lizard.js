@@ -749,7 +749,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
                 figureRefEl.innerHTML = anchorTag.innerHTML; 
                 replacements.push([anchorTag,figureRefEl]);
                 const expectedType = (imageID) ? 'fig' : 'vid'
-                let figureNumber = extractFigureNumber(anchorTag.innerHTML,expectedType);
+                let figureNumber = extractFigureNumber(anchorTag.text,expectedType);
                 if( figureNumber !== invalidFigureNumber ) {
                     let figureEl = doc.createElement('figure'); 
                     const caption = captions[figureNumber];
@@ -819,6 +819,8 @@ function findParentParagraph( node ) {
 }
 
 function extractFigureNumber( figureText, expectedType ) {
+    if( !figureText ) return invalidFigureNumber
+
     const figureMatch = figureText.match(figureCitation)
     const videoMatch = figureText.match(videoCitation)
 
@@ -1038,7 +1040,7 @@ function main() {
     logSeperator();    
 
     run(mode).then(() => {
-        logger.info(`Lizard finised at ${date.toLocaleTimeString()}.`)
+        logger.info(`Lizard finished at ${date.toLocaleTimeString()}.`)
     }, (err) => {
         logger.info(`Lizard stopped at ${date.toLocaleTimeString()}.`)
         logger.error(`${err}: ${err.stack}`)  
