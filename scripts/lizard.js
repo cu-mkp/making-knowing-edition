@@ -28,6 +28,7 @@ let targetImageDir;
 let targetSearchIndexDir;
 let targetAnnotationThumbnailDir;
 let targetAnnotationDir;
+let targetFigureDir;
 let tempCaptionDir;
 let tempAbstractDir;
 let tempBiblioDir;
@@ -56,6 +57,8 @@ const videoCitation = /[V|v]id(\.|eo[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
 const invalidFigureNumber = "XX";
 const thumbnailFolderName = "DCE Annotation Thumbnails";
+const figureSourceDir = `./edition_data_example/figures`
+
 
 async function loadAnnotationMetadata() {
     const csvData = fs.readFileSync(annotationMetaDataCSV).toString();
@@ -847,6 +850,17 @@ function extractFigureNumber( figureText, expectedType ) {
     return invalidFigureNumber;
 }
 
+function copyFigures() {
+    dirExists(targetFigureDir)
+    execSync(`cp -r ${figureSourceDir} ${targetFigureDir}`, (error, stdout, stderr) => {
+        console.log(`${stdout}`);
+        console.log(`${stderr}`);
+        if (error !== null) {
+            throw `ERROR: Unable to copy figures from targetDir: ${targetFigureDir}`;
+        }
+    }); 
+}
+
 function writeEnvFile() {
     const { buildID, editionDataURL, googleTrackingID, releaseMode } = configData
 
@@ -933,6 +947,9 @@ async function run(mode) {
         case 'assets':
             await assetServer.generate(configData)
             break;
+        case 'figures':
+            copyFigures()
+            break;
         case 'env':
             writeEnvFile()
             break;
@@ -941,6 +958,7 @@ async function run(mode) {
             await run('assets')
             await run('process')
             await run('index')
+            await run('figures')
             await run('env')
             break;
     }    
@@ -969,6 +987,7 @@ function loadConfig(targetName) {
     targetSearchIndexDir = `${targetDir}/search-idx`;
     targetAnnotationDir = `${targetDir}/annotations`;
     targetAnnotationThumbnailDir = `${targetDir}/annotations-thumbnails`;
+    targetFigureDir = targetDir
 
     dirExists(targetDir)
     dirExists(targetImageDir)
@@ -1024,9 +1043,13 @@ function main() {
         console.log("\tdownload-thumbs: Download essay thumbnails from Google Drive via rclone.");
         console.log("\tdownload: Download only essays marked with 'refresh'.");
         console.log("\tprocess: Process the downloaded files and place them on the asset server.");
+        console.log("\tmanifest: Create the IIIF Manifest and associated files.");
+        console.log("\tassets: Process the manuscript data and edition webpages and index them.");
+        console.log("\tfigures: Copy the manuscript figures into the target directory.");
+        console.log("\tenv: Create the environment files for development and production.");
         console.log("\tindex: Create a search index of the essays.");
-        console.log("\trun: Download, process, and index.")
-        console.log("\tinit: Download all, download thumbs, process, and index.")
+        console.log("\trun: Download, process, manifest, assets, figures, env, and index.")
+        console.log("\tinit: Download all, download thumbs, and run.")
         console.log("\thelp: Displays this help. ");
         console.log("<target> is the target key from the edition_data/config.json file. Defaults to 'local'.");
         process.exit(-1);

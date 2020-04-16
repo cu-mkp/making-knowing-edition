@@ -41,29 +41,29 @@ brew install pandoc
 cp -R edition_data_example edition_data
 ```
 
-5. Edit the config.json file, if necessary. The default version will work fine for a local installation.
+5. Edit the config.json file, if necessary. The default version will work fine for a local installation, but you will need to specify a build ID and a working directory. We recommend using a formatted date for both, MM=Month, DD=Date, YY=Year, N=builds on that date.
 
 ```
-{
-    "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
-    "targetDir": "public/bnf-ms-fr-640",
-    "sourceDir": "edition_data/m-k-manuscript-data",
-    "contentDir": "edition_data/edition-webpages",
-    "workingDir": "edition_data/working",
-    "rclone": {
-        "serviceName": "mk-annotations",
-        "folderName": "Annotations",
-        "sharedDrive": true
-    },
-    "stage": "production"
-}
+"local": {
+        "buildID": "stagingMMDDYY-N",
+        "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
+        "targetDir": "public/bnf-ms-fr-640",
+        "sourceDir": "edition_data/m-k-manuscript-data",
+        "contentDir": "edition_data/edition-webpages",
+        "workingDir": "edition_data/working/MMDDYY",
+        "rclone": {
+            "serviceName": "mk-annotations",
+            "folderName": "Annotations",
+            "sharedDrive": true
+        },
+        "releaseMode": "staging"
+    }
 ```
 
 6. Setup the necessary directory structure. 
 
 ```
 mkdir public/bnf-ms-fr-640
-mv edition_data/figures public/bnf-ms-fr-640 
 mkdir edition_data/working
 ```
 
@@ -75,34 +75,11 @@ git clone https://github.com/cu-mkp/m-k-manuscript-data.git
 git clone https://github.com/cu-mkp/edition-webpages.git
 ```
 
-8. Create a .env.development file with the following:
-
-```
-REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
-REACT_APP_EDITION_DATA_URL=http://localhost:4000/bnf-ms-fr-640
-PORT=4000
-REACT_APP_RELEASE_MODE=staging
-REACT_APP_BUILD_ID=dev
-```
-
-9. Create a .env.production file with the following:
-
-```
-REACT_APP_FOLIO_URL_PREFIX=https://gallica.bnf.fr/iiif/ark:/12148/btv1b10500001g/canvas/
-REACT_APP_EDITION_DATA_URL=http://edition-staging.makingandknowing.org/bnf-ms-fr-640
-REACT_APP_RELEASE_MODE=staging
-REACT_APP_BUILD_ID=DDMMYY-N
-```
-
 Processing Edition Data
 ----------
 Now, you are ready to process some data!
 
-1. Run `scripts/asset_server.js local` to populate the folios, search, glossary, content pages, and comments.
-
-2. Run `scripts/lizard.js init` to download and process all of the research essays.
-
-3. Run `scripts/iiif_manifest.js` to generate a IIIF manifest file and associated Open Annotation JSON files with your edition data URL baked in.
+Run `scripts/lizard.js init` to download and prepare a build for your local machine.
 
 
 Running Locally
@@ -117,10 +94,9 @@ yarn start
 Deploying to a Server
 ---------------
 
-1. Modify the editionDataURL to point at where you are hosting on the web
-(you must have .ssh key setup for server, modify Makefile to change IP)
+Run the following commands and then take the resulting build directory and deploy it to your server. 
 
 ```
+scripts/lizard.js run staging
 yarn build
-make deploy-staging
 ```
