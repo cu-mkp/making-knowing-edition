@@ -59,6 +59,23 @@
 		}
 	}
 
+
+	.subtitle {
+		white-space: nowrap;
+		position: relative;
+		width: calc(100% - 1.7rem);
+		text-align: center;
+		top: -2em;
+		font-style: italic;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		@include md {
+			top: -1em;
+		}
+	}
+
 	#glossaryContent {
 		padding: 5rem 0 0;
 		min-height: 100vh;
