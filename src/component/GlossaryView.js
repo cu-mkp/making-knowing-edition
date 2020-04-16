@@ -98,6 +98,7 @@ class GlossaryView extends Component {
                   <div id="glossaryViewInner">
                         <div id="glossaryContent">
                               <Typography variant='h2' className="title">Glossary</Typography>
+                              <Typography className="subtitle">For short titles, e.g., [COT1611], see <a href="#/content/resources/bibliography">Bibliography</a>.</Typography>
                               { this.renderGlossary() }
                         </div>
                   </div>

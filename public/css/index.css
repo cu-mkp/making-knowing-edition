@@ -1233,6 +1233,21 @@ figure.current {
     #glossaryView .title {
       top: -1em; } }
 
+#glossaryView .subtitle {
+  white-space: nowrap;
+  position: relative;
+  width: calc(100% - 1.7rem);
+  text-align: center;
+  top: -2em;
+  font-style: italic;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  @media (min-width: 960px) {
+    #glossaryView .subtitle {
+      top: -1em; } }
+
 #glossaryView #glossaryContent {
   padding: 5rem 0 0;
   min-height: 100vh;
