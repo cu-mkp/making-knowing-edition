@@ -319,7 +319,11 @@ figure.current {
   #annotation-view .pull-left {
     text-indent: 0px; }
   #annotation-view .annotation-nav {
-    margin-bottom: 1rem; }
+    position: absolute;
+    top: 140px;
+    left: 10px; }
+    #annotation-view .annotation-nav i {
+      color: #333; }
   #annotation-view .title-byline-container {
     display: flex;
     flex-direction: column;
@@ -333,10 +337,19 @@ figure.current {
       line-height: 1.5rem; }
       #annotation-view .title-byline-container span:hover {
         cursor: default; }
+  #annotation-view .anno-byline {
+    text-align: center;
+    margin-bottom: 30px; }
+    #annotation-view .anno-byline p {
+      max-width: 450px;
+      text-indent: 0px;
+      margin-bottom: 20px; }
   #annotation-view .annotation-abstract {
     border: 1px dashed #b3b2b2;
     padding: 1rem;
     margin-bottom: 30px; }
+    #annotation-view .annotation-abstract h2 {
+      margin-top: 0px; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }

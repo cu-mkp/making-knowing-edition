@@ -59,8 +59,14 @@
     }
     
     .annotation-nav {
-        margin-bottom: 1rem;
+        position: absolute;
+        top: 140px;
+        left: 10px;
+        i {
+            color: #333;
+        }
     }
+
     .title-byline-container {
         display: flex;
         flex-direction: column;
@@ -77,10 +83,23 @@
             line-height: 1.5rem;
         }
     }
+    .anno-byline {
+        text-align: center;
+        margin-bottom: 30px;
+        p {
+            max-width: 450px;
+            text-indent: 0px;
+            margin-bottom: 20px;
+        }
+    }
+
     .annotation-abstract {
         border: 1px dashed rgb(179, 178, 178);
         padding: 1rem;
         margin-bottom: 30px;
+        h2 {
+            margin-top: 0px;
+        }
     }
     .footnote-ref, .footnote-back {
         color: blue;
