@@ -67,6 +67,7 @@ async function loadAnnotationMetadata() {
     tableObj.forEach( entry => {
         let metaData = {
             id: entry['annotation-ID'],
+            doi: entry['doi'],
             driveID: entry['UUID'],
             thumbnailURL: entry['thumbnail_url'],
             name: entry['thumbnail-title'],

@@ -38,7 +38,7 @@ class AnnotationView extends Component {
         }
     }
 
-    renderByLine(annoAuthors, authors) {
+    renderByLine(annoAuthors, authors, doi) {
         if( !annoAuthors ) return null
 
         const authorEntries = []
@@ -54,7 +54,7 @@ class AnnotationView extends Component {
         return (
             <div className="anno-byline">
                 { authorEntries }
-                <p><a href="#">doi link</a></p>
+                { doi && <p>DOI: <a href={doi}>{doi}</a></p> }
             </div>
         )
     }
@@ -100,7 +100,7 @@ class AnnotationView extends Component {
                         <div>
                             <div className="title-byline-container">
                                 {title}
-                                { this.renderByLine(anno.authors, authors) }
+                                { this.renderByLine(anno.authors, authors, anno.doi) }
                             </div>
                             {isAbstract &&
                                 <div className="annotation-abstract">
