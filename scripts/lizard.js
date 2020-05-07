@@ -69,7 +69,7 @@ async function loadAnnotationMetadata() {
             id: entry['annotation-ID'],
             doi: entry['doi'],
             academicCommonsURL: entry['academic-commons-URL'],
-            authorID: entry['author-id'],
+            authorIDs: entry['author-id'].split(';'),
             driveID: entry['UUID'],
             thumbnailURL: entry['thumbnail_url'],
             fullTitle: entry['full-title'],
@@ -554,12 +554,7 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
     let annotationContent = []
     for( const metadata of Object.values(annotationMetadata)) {        
         // record the authors
-        let annotationAuthors = []
-        Object.values(authors).forEach( author => {
-            if( author.annotations.includes(metadata.id) ) {
-                annotationAuthors.push( author.id )
-            }
-        })
+        let annotationAuthors = metadata.authorIDs
 
         const asset = annotationAssets[metadata.driveID]
         let annotation
