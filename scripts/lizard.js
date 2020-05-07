@@ -68,14 +68,18 @@ async function loadAnnotationMetadata() {
         let metaData = {
             id: entry['annotation-ID'],
             doi: entry['doi'],
+            academicCommonsURL: entry['academic-commons-URL'],
+            authorID: entry['author-id'],
             driveID: entry['UUID'],
             thumbnailURL: entry['thumbnail_url'],
+            fullTitle: entry['full-title'],
             name: entry['thumbnail-title'],
             semester: entry['semester'],
             year: entry['year'],
             theme: entry['theme'],
             entryIDs: entry['entry-id'],
             status: entry['status-DCE'],
+            citeAs: entry['cite-as'],
             refresh: (entry['refresh-DCE'] === 'refresh')
         }
         annotationMetadata[metaData.driveID] = metaData;

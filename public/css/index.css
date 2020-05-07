@@ -344,11 +344,12 @@ figure.current {
       max-width: 450px;
       text-indent: 0px;
       margin-bottom: 20px; }
-  #annotation-view .annotation-abstract {
+  #annotation-view .header-section {
     border: 1px dashed #b3b2b2;
     padding: 1rem;
     margin-bottom: 30px; }
-    #annotation-view .annotation-abstract h2 {
+    #annotation-view .header-section h2 {
+      font-size: 1em;
       margin-top: 0px; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;

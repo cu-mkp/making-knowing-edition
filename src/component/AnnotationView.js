@@ -44,10 +44,12 @@ class AnnotationView extends Component {
         const authorEntries = []
         for( const annoAuthor of annoAuthors ) {
             const { fullName, semester, year, authorType, degree, yearAtTime, department } = authors[annoAuthor]
-            const bylineArray = [ fullName, semester, year, authorType, degree, yearAtTime, department ].filter( a => (a && a.length > 0) )
+            const bylineArray = [ semester, year, authorType, degree, yearAtTime, department ].filter( a => (a && a.length > 0) )
             const byline = bylineArray.join(', ')
             authorEntries.push(
-                <p>{byline}</p>
+                <div key={`author-byline-${fullName}`}>
+                    <p><b>{fullName}</b><br/>{byline}</p>
+                </div>
             )
         }
 
@@ -94,20 +96,18 @@ class AnnotationView extends Component {
                     )
                 }
                 if ( domNode.name === 'h1' ) {
-                    const isAbstract = (!anno.abstract || anno.abstract.length === 0) ? false : true;
-                    const title = domToReact([domNode])
                     return (
                         <div>
                             <div className="title-byline-container">
-                                {title}
+                                <h1>{anno.fullTitle}</h1>
                                 { this.renderByLine(anno.authors, authors, anno.doi) }
                             </div>
-                            {isAbstract &&
-                                <div className="annotation-abstract">
-                                    <h2>Abstract</h2>
-                                    {Parser(anno.abstract)}
-                                </div>
-                            }
+                            <div className="header-section">
+                                <h2>Abstract</h2>
+                                {Parser(anno.abstract)}
+                                <br/><h2>Cite As</h2>
+                                {Parser(anno.citeAs)}
+                            </div>
                         </div>
                     )
                 }
