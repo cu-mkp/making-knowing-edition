@@ -42,15 +42,18 @@
         margin-top: 1.5em;
     }
     h4 {
-        text-align: center;
         margin-bottom: 30px;
     }
 
-    h4 + p {
+    h2 + p {
         text-indent: 0px;
     }
 
-    h2 + p {
+    h3 + p {
+        text-indent: 0px;
+    }
+
+    h4 + p {
         text-indent: 0px;
     }
 
@@ -100,6 +103,12 @@
         h2 {
             font-size: 1em;
             margin-top: 0px;
+        }
+        div {
+            line-height: 1em;
+        }
+        p { 
+            text-indent: 0px;
         }
     }
     .footnote-ref, .footnote-back {

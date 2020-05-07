@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import { CardActionArea } from '@material-ui/core';
 import CardMedia from '@material-ui/core/CardMedia';
+import Parser from 'html-react-parser';
 
 class AnnotationThumb extends Component {
 
@@ -14,7 +15,7 @@ class AnnotationThumb extends Component {
 
         const cardMedia = (
             <CardMedia className="thumb-media" image={thumbnailURL}>
-                <Typography className="title">{title}</Typography>
+                <Typography className="title">{Parser(title)}</Typography>
             </CardMedia>
         )
 

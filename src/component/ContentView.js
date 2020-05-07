@@ -70,7 +70,7 @@ class ContentView extends Component {
                     <div className="intro">
                         <h1>Secrets of Craft and Nature in Renaissance France</h1>
                         <h2>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h2>
-                        <p>A production of the Making and Knowing Project, this edition provides a transcription and English translation of Ms. Fr. 640, composed by an anonymous “author-practitioner” in 1580s Toulouse and now held by the Bibliothèque nationale de France. This manuscript offers unique firsthand insight into making and materials from a time when artists were scientists. The research resources in this edition explore the manuscript’s context and diverse topics. For tips, please see <a href="#/content/how-to-use">How to Use</a>. <i>Check back over the coming months as we add new content and features.</i></p>                        
+                        <p>A production of the Making and Knowing Project, this edition provides a transcription and English translation of Ms. Fr. 640, composed by an anonymous “author-practitioner” in 1580s Toulouse and now held by the Bibliothèque nationale de France. This manuscript offers unique firsthand insight into making and materials from a time when artists were scientists. <b>The research resources in this edition explore the manuscript’s context and diverse topics. For tips, please see <a href="#/content/how-to-use">How to Use</a>. Check back over the coming months as we add new content and features that are <a href="#/content/resources/coming-soon">coming soon</a>.</b></p>
                     </div>
                     <div className="video-iframe-wrapper">
                         <iframe className="homepage-intro-video"

@@ -99,23 +99,22 @@ class AnnotationView extends Component {
                     return (
                         <div>
                             <div className="title-byline-container">
-                                <h1>{anno.fullTitle}</h1>
+                                <h1>{Parser(anno.fullTitle)}</h1>
                                 { this.renderByLine(anno.authors, authors, anno.doi) }
                             </div>
                             <div className="header-section">
                                 <h2>Abstract</h2>
-                                {Parser(anno.abstract)}
+                                <div>{Parser(anno.abstract)}</div>
                                 <br/><h2>Cite As</h2>
-                                {Parser(anno.citeAs)}
+                                <div>{Parser(anno.citeAs)}</div>
                             </div>
                         </div>
                     )
                 }
 
                 // The following is intended to remove by-line derived from google doc since it's rendered in the above. 
-                // TODO: Can be removed when byLine code above is replaced by AnnotationByline component
                 if ( domNode.name === 'h4' && domNode.prev.prev.name === 'h1') {
-                    return <div></div>;
+                    return <h4></h4>;
                 }
 
 				 switch (domNode.name) {
