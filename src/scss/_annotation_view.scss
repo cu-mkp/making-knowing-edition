@@ -42,15 +42,18 @@
         margin-top: 1.5em;
     }
     h4 {
-        text-align: center;
         margin-bottom: 30px;
     }
 
-    h4 + p {
+    h2 + p {
         text-indent: 0px;
     }
 
-    h2 + p {
+    h3 + p {
+        text-indent: 0px;
+    }
+
+    h4 + p {
         text-indent: 0px;
     }
 
@@ -59,8 +62,14 @@
     }
     
     .annotation-nav {
-        margin-bottom: 1rem;
+        position: absolute;
+        top: 140px;
+        left: 10px;
+        i {
+            color: #333;
+        }
     }
+
     .title-byline-container {
         display: flex;
         flex-direction: column;
@@ -77,10 +86,30 @@
             line-height: 1.5rem;
         }
     }
-    .annotation-abstract {
+    .anno-byline {
+        text-align: center;
+        margin-bottom: 30px;
+        p {
+            max-width: 450px;
+            text-indent: 0px;
+            margin-bottom: 20px;
+        }
+    }
+
+    .header-section {
         border: 1px dashed rgb(179, 178, 178);
         padding: 1rem;
         margin-bottom: 30px;
+        h2 {
+            font-size: 1em;
+            margin-top: 0px;
+        }
+        div {
+            line-height: 1em;
+        }
+        p { 
+            text-indent: 0px;
+        }
     }
     .footnote-ref, .footnote-back {
         color: blue;

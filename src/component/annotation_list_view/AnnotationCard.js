@@ -38,7 +38,7 @@ class AnnotationCard extends Component {
         return (
             <Card className='anno'>
                 <CardHeader 
-                    title={title} 
+                    title={Parser(title)} 
                     subheader={annotation.authors ? <AnnotationByLine annoAuthors={annotation.authors} authors={authors.authors} />  : ""}
                 >            
                 </CardHeader>

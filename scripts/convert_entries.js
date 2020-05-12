@@ -1,14 +1,14 @@
 const fs = require('fs');
 const csv = require('csvtojson');
 
-const tagTypes = [ "al", "bp", "cn", "env", "m", "ms", "pa", "pl", "pn", "pro", "sn", "tl", "md", "mu" ];
+const tagTypes = [ "al", "bp", "cn", "df", "env", "m", "md", "ms", "mu", "pa", "pl", "pn", "pro", "sn", "tl", "tmp", "wp", "de", "el", "it", "oc", "po" ];
 
 async function convert( entriesCSV, targetEntriesFile ) {
 
     const csvData = fs.readFileSync(entriesCSV, "utf8").toString()
     let entries = [];
     let ordinalID = 1;
-    const tableObj = await csv({ delimiter: '\t' }).fromString(csvData)        
+    const tableObj = await csv({ delimiter: ',' }).fromString(csvData)        
     tableObj.forEach( entry => {
         let { div_id, folio, folio_display, heading_tc, heading_tcn, heading_tl, categories } = entry;
 
@@ -16,8 +16,9 @@ async function convert( entriesCSV, targetEntriesFile ) {
         let mentions = {};
         let text_references = {};
         tagTypes.forEach( tagType => {
-            mentions[tagType] = entry[tagType].length === 0 ? 0 : entry[tagType].split(';').length;
-            const references = entry[tagType].replace( /;/g, "; ");
+            const tagKey = `${tagType}_tc`
+            mentions[tagType] = entry[tagKey].length === 0 ? 0 : entry[tagKey].split(';').length;
+            const references = entry[tagKey].replace( /;/g, "; ");
             text_references[tagType] = references;
         });
         

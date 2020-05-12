@@ -97,9 +97,14 @@
      }
 
     p {
-        margin-bottom: .75em;
+        padding-bottom: 1em;
+        line-height: 1em;
         margin-block-start: 0;
         margin-block-end: 0;
+    }
+
+    br {
+        padding-bottom: 1em;
     }
 
     a {

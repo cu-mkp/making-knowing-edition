@@ -6,7 +6,6 @@ import { Link } from 'react-scroll';
 import { Link as ReactLink } from 'react-router-dom';
 import { dispatchAction } from '../model/ReduxStore';
 import FigureImage from './FigureImage'
-import AnnotationByLine from './AnnotationByLine';
 
 class AnnotationView extends Component {
 
@@ -37,6 +36,29 @@ class AnnotationView extends Component {
         else {
             return domNode;
         }
+    }
+
+    renderByLine(annoAuthors, authors, doi) {
+        if( !annoAuthors ) return null
+
+        const authorEntries = []
+        for( const annoAuthor of annoAuthors ) {
+            const { fullName, semester, year, authorType, degree, yearAtTime, department } = authors[annoAuthor]
+            const bylineArray = [ semester, year, authorType, degree, yearAtTime, department ].filter( a => (a && a.length > 0) )
+            const byline = bylineArray.join(', ')
+            authorEntries.push(
+                <div key={`author-byline-${fullName}`}>
+                    <p><b>{fullName}</b><br/>{byline}</p>
+                </div>
+            )
+        }
+
+        return (
+            <div className="anno-byline">
+                { authorEntries }
+                { doi && <p>DOI: <a href={doi}>{doi}</a></p> }
+            </div>
+        )
     }
 
     // Configure parser to replace certain tags with components
@@ -74,40 +96,25 @@ class AnnotationView extends Component {
                     )
                 }
                 if ( domNode.name === 'h1' ) {
-                    const isAbstract = (!anno.abstract || anno.abstract.length === 0) ? false : true;
-                    const title = domToReact([domNode])
-                    const byLine = domToReact([domNode.next.next])
                     return (
                         <div>
                             <div className="title-byline-container">
-                                {title}
-                                {
-                                    // TODO: Commented out the below AnnotationByline code to replace byLine code  
-                                    //       derrived from google docs once by lines are removed from google docs
-                                    //       (see comments in issue: https://github.com/cu-mkp/making-knowing-edition/issues/394)
-                                    // anno.authors ?
-                                    //     <div style={{marginBottom: 30}}>
-                                    //         <AnnotationByLine annoAuthors={anno.authors} authors={authors} />
-                                    //     </div>
-                                    //     :
-                                    //     ""
-                                }
-                                {byLine} 
+                                <h1>{Parser(anno.fullTitle)}</h1>
+                                { this.renderByLine(anno.authors, authors, anno.doi) }
                             </div>
-                            {isAbstract &&
-                                <div className="annotation-abstract">
-                                    <h2 style={{marginTop: 0}}>Abstract</h2>
-                                    {Parser(anno.abstract)}
-                                </div>
-                            }
+                            <div className="header-section">
+                                <h2>Abstract</h2>
+                                <div>{Parser(anno.abstract)}</div>
+                                <br/><h2>Cite As</h2>
+                                <div>{Parser(anno.citeAs)}</div>
+                            </div>
                         </div>
                     )
                 }
 
                 // The following is intended to remove by-line derived from google doc since it's rendered in the above. 
-                // TODO: Can be removed when byLine code above is replaced by AnnotationByline component
                 if ( domNode.name === 'h4' && domNode.prev.prev.name === 'h1') {
-                    return <div></div>;
+                    return <h4></h4>;
                 }
 
 				 switch (domNode.name) {
@@ -137,7 +144,7 @@ class AnnotationView extends Component {
         if( this.props.inSearchMode ) return '';
         return (
             <div className='annotation-nav'>
-                <ReactLink to='/essays'>Back to List</ReactLink>
+                <ReactLink to='/essays'><i className="fa fa-2x fa-arrow-circle-left"></i></ReactLink>
             </div>
         );
     }

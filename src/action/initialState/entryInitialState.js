@@ -34,19 +34,27 @@ export default {
     ],
     tagNameMap: { 
         "al": "animal",
+        "wp": "arms and armor",
         "bp": "bodypart",
         "cn": "currency",
+        "df": "definition",
         "env": "environment",
+        "de": "german",
+        "el": "greek",
+        "it": "italian",
         "m": "material",
         "ms": "measurement",
         "md": "medical",
         "mu": "music",
+        "oc": "occitan",
         "pn": "personal name",
         "pl": "place",
         "pa": "plant",
+        "po": "poitevin",
         "pro": "profession",
         "sn": "sensory",
-        "tl": "tool"
+        "tmp": "temporal",
+        "tl": "tool",
     },
     loaded: false
 }	

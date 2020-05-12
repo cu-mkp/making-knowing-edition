@@ -310,16 +310,21 @@ figure.current {
     line-height: 1em;
     margin-top: 1.5em; }
   #annotation-view h4 {
-    text-align: center;
     margin-bottom: 30px; }
-  #annotation-view h4 + p {
-    text-indent: 0px; }
   #annotation-view h2 + p {
+    text-indent: 0px; }
+  #annotation-view h3 + p {
+    text-indent: 0px; }
+  #annotation-view h4 + p {
     text-indent: 0px; }
   #annotation-view .pull-left {
     text-indent: 0px; }
   #annotation-view .annotation-nav {
-    margin-bottom: 1rem; }
+    position: absolute;
+    top: 140px;
+    left: 10px; }
+    #annotation-view .annotation-nav i {
+      color: #333; }
   #annotation-view .title-byline-container {
     display: flex;
     flex-direction: column;
@@ -333,10 +338,24 @@ figure.current {
       line-height: 1.5rem; }
       #annotation-view .title-byline-container span:hover {
         cursor: default; }
-  #annotation-view .annotation-abstract {
+  #annotation-view .anno-byline {
+    text-align: center;
+    margin-bottom: 30px; }
+    #annotation-view .anno-byline p {
+      max-width: 450px;
+      text-indent: 0px;
+      margin-bottom: 20px; }
+  #annotation-view .header-section {
     border: 1px dashed #b3b2b2;
     padding: 1rem;
     margin-bottom: 30px; }
+    #annotation-view .header-section h2 {
+      font-size: 1em;
+      margin-top: 0px; }
+    #annotation-view .header-section div {
+      line-height: 1em; }
+    #annotation-view .header-section p {
+      text-indent: 0px; }
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }
@@ -701,9 +720,12 @@ figure.current {
   #content-view img[alt^="extra-large"] {
     max-width: 900px; }
   #content-view p {
-    margin-bottom: .75em;
+    padding-bottom: 1em;
+    line-height: 1em;
     margin-block-start: 0;
     margin-block-end: 0; }
+  #content-view br {
+    padding-bottom: 1em; }
   #content-view a {
     word-wrap: break-word; }
   #content-view h1 {

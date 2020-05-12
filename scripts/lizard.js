@@ -67,14 +67,19 @@ async function loadAnnotationMetadata() {
     tableObj.forEach( entry => {
         let metaData = {
             id: entry['annotation-ID'],
+            doi: entry['doi'],
+            academicCommonsURL: entry['academic-commons-URL'],
+            authorIDs: entry['author-id'].split(';'),
             driveID: entry['UUID'],
             thumbnailURL: entry['thumbnail_url'],
+            fullTitle: entry['full-title'],
             name: entry['thumbnail-title'],
             semester: entry['semester'],
             year: entry['year'],
             theme: entry['theme'],
             entryIDs: entry['entry-id'],
             status: entry['status-DCE'],
+            citeAs: entry['cite-as'],
             refresh: (entry['refresh-DCE'] === 'refresh')
         }
         annotationMetadata[metaData.driveID] = metaData;
@@ -549,12 +554,7 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
     let annotationContent = []
     for( const metadata of Object.values(annotationMetadata)) {        
         // record the authors
-        let annotationAuthors = []
-        Object.values(authors).forEach( author => {
-            if( author.annotations.includes(metadata.id) ) {
-                annotationAuthors.push( author.id )
-            }
-        })
+        let annotationAuthors = metadata.authorIDs
 
         const asset = annotationAssets[metadata.driveID]
         let annotation
