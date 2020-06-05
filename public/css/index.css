@@ -319,6 +319,8 @@ figure.current {
     text-indent: 0px; }
   #annotation-view .pull-left {
     text-indent: 0px; }
+  #annotation-view span .underline {
+    text-decoration: underline; }
   #annotation-view .annotation-nav {
     position: absolute;
     top: 140px;
