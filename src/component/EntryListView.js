@@ -220,8 +220,8 @@ class EntryListView extends Component {
                   <div id="entry-list-view">
                         <div className="header">
                               <Typography variant='h3' gutterBottom>Entries ({entryList.length})</Typography>
-                              <Typography>Ms. Fr. 640 consists almost entirely of units of text under titles, which the Project calls "entries" and has grouped into <a href="#/content/resources/categories">categories</a>. Within entries, meaningful terms have been <a href="#/content/resources/principles-encoding">tagged</a>.</Typography><br />
-                              <Typography>Filter the list by selecting one or more "category" and/or "tag" buttons.</Typography><br />
+                              <Typography>Ms. Fr. 640 consists almost entirely of distinct “entries,” i.e., units of text with titles. They have been grouped into <a href="#/content/resources/categories">categories</a> to help browse the manuscript. Within entries, meaningful terms have been <a href="#/content/resources/principles-encoding">tagged</a>.</Typography><br />
+                              <Typography>Filter the List of Entries by selecting one or more "category" and/or "tag" buttons.</Typography><br />
                         </div>
                         <div className="filter-bar">
                               <div className="filters">

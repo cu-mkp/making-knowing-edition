@@ -42,6 +42,7 @@ export default {
         "de": "german",
         "el": "greek",
         "it": "italian",
+        "la": "latin",
         "m": "material",
         "ms": "measurement",
         "md": "medical",
