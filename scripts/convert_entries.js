@@ -1,7 +1,7 @@
 const fs = require('fs');
 const csv = require('csvtojson');
 
-const tagTypes = [ "al", "bp", "cn", "df", "env", "m", "md", "ms", "mu", "pa", "pl", "pn", "pro", "sn", "tl", "tmp", "wp", "de", "el", "it", "oc", "po" ];
+const tagTypes = [ "al", "bp", "cn", "df", "env", "la", "m", "md", "ms", "mu", "pa", "pl", "pn", "pro", "sn", "tl", "tmp", "wp", "de", "el", "it", "oc", "po" ];
 
 async function convert( entriesCSV, targetEntriesFile ) {
 
