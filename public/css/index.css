@@ -398,8 +398,6 @@ figure.current {
       width: 300px; }
     #annotation-view figure .video-iframe-wrapper + figcaption {
       width: 560px; }
-  #annotation-view i {
-    font-style: normal; }
   #annotation-view li {
     margin-bottom: 15px; }
     #annotation-view li p {
