@@ -342,7 +342,6 @@ figure.current {
     text-align: center;
     margin-bottom: 30px; }
     #annotation-view .anno-byline p {
-      max-width: 450px;
       text-indent: 0px;
       margin-bottom: 20px; }
   #annotation-view .header-section {
