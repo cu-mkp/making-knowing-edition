@@ -21,7 +21,8 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 class EntryListView extends Component {
 
       state={
-            sortBy: 'folio'
+            sortBy: 'folio',
+            transcriptionType: 'tc'
       }
 
       componentWillMount() {
@@ -71,6 +72,11 @@ class EntryListView extends Component {
             }
       }
 
+      onSelectTranscription = (e) => {
+            const value = e.target.value
+            this.setState({...this.state, transcriptionType: value})
+      }
+
       renderEntryCard = (index, key) => {        
             const { entryList, tagNameMap, filterCategories } = this.props.entries
             const sortedList = this.sortEntryList(entryList);
@@ -87,6 +93,7 @@ class EntryListView extends Component {
             }
 
             let categoryChips = this.renderNavigationChips(categories, 'categories', filterCategories)
+            let textReferenceType = `text_references_${this.state.transcriptionType}`
             let mentionRow = ( tags.length > 0 ) ? this.renderCardChips(tags) : '';
             let chips = this.renderCardChips(tags)
             const folioURL = `/folios/${entry.folio.replace(/^[0|\D]*/,'')}`
@@ -105,8 +112,8 @@ class EntryListView extends Component {
                               <div className={"detail-container"}>
                                     <div style={{marginBottom:'32px'}}>
                                           <InputLabel htmlFor="document-source">View Words Found In: </InputLabel>
-                                          <Select value={'tc'} style={{marginLeft:'12px',width:'170px'}} disabled={true}>
-                                                <MenuItem value={'tc'} selected={true}>Diplomatic (FR)</MenuItem>
+                                          <Select onChange={this.onSelectTranscription} value={this.state.transcriptionType} style={{marginLeft:'12px',width:'170px'}}>
+                                                <MenuItem value={'tc'}>Diplomatic (FR)</MenuItem>
                                                 <MenuItem value={'tcn'}>Normalized (FR)</MenuItem>
                                                 <MenuItem value={'tl'}>Translation (EN)</MenuItem>
                                           </Select>
@@ -127,7 +134,7 @@ class EntryListView extends Component {
                                                                         <div className={"detail-row"}> 
                                                                               <div className={"chip-column"}> {chips[index]} </div> 
                                                                               <div className={"reference-column"}>
-                                                                                    <Typography variant="subtitle2">{entry.text_references[tag.id]} </Typography>
+                                                                                    <Typography variant="subtitle2">{entry[textReferenceType][tag.id]} </Typography>
                                                                               </div>
                                                                         </div>
                                                                   <div className={"row-divider"} ></div>

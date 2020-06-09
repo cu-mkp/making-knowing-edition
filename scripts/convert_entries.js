@@ -14,12 +14,14 @@ async function convert( entriesCSV, targetEntriesFile ) {
 
         // count up the number of mentions for each type
         let mentions = {};
-        let text_references = {};
+        const text_references = { text_references_tc: {}, text_references_tcn: {}, text_references_tl: {}};
         tagTypes.forEach( tagType => {
-            const tagKey = `${tagType}_tc`
-            mentions[tagType] = entry[tagKey].length === 0 ? 0 : entry[tagKey].split(';').length;
-            const references = entry[tagKey].replace( /;/g, "; ");
-            text_references[tagType] = references;
+            for( const transcriptionType of ['tc','tcn','tl'] ) {
+                const tagKey = `${tagType}_${transcriptionType}`
+                mentions[tagType] = entry[tagKey].length === 0 ? 0 : entry[tagKey].split(';').length;
+                const references = entry[tagKey].replace( /;/g, "; ");
+                text_references[`text_references_${transcriptionType}`][tagType] = references;    
+            }
         });
         
         const categoryNames = categories.split(';');
@@ -33,7 +35,7 @@ async function convert( entriesCSV, targetEntriesFile ) {
             heading_tcn, 
             heading_tl,
             mentions,
-            text_references,
+            ...text_references,
             categories: categoryNames
         });
     })
