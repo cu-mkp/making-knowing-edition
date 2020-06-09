@@ -360,9 +360,11 @@ figure.current {
   #annotation-view .footnote-ref, #annotation-view .footnote-back {
     color: blue;
     text-decoration: underline blue; }
-  #annotation-view blockquote p {
-    text-indent: 0px;
-    line-height: 1.1; }
+  #annotation-view blockquote {
+    margin-inline-start: 25px; }
+    #annotation-view blockquote p {
+      text-indent: 0px;
+      line-height: 1.1; }
   #annotation-view .figure-container {
     align-items: center;
     display: flex;
