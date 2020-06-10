@@ -56,6 +56,13 @@ h4 {
   width: 100%;
   height: auto; }
 
+a:hover {
+  text-decoration: underline; }
+
+a {
+  color: red;
+  text-decoration: none; }
+
 #globalNavigation {
   display: flex;
   align-items: center;
