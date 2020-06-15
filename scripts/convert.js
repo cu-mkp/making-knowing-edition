@@ -127,6 +127,10 @@ function findAndReplaceElementName( htmlDoc, parent, oldElementName, newElementN
 function convertPhraseLevelMarkup( htmlDoc, el, elementName ) {
   let newEl = htmlDoc.createElement(elementName);
   newEl.innerHTML = el.innerHTML;
+  const elMargin = el.getAttribute('margin')
+  const elRender = el.getAttribute('render')
+  if(elMargin) newEl.setAttribute('margin', elMargin)
+  if(elRender) newEl.setAttribute('render', elRender)
 
   let elements = newEl.querySelectorAll( 'figure' );
   for (let i = 0; i < elements.length; i++) {
