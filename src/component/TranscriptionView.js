@@ -30,7 +30,7 @@ class TranscriptionView extends Component {
 			}
 		}
   	  return term.trim();
-      }
+    }
 
 	loadFolio(folio) {
 		if(typeof folio === 'undefined'){
@@ -106,176 +106,176 @@ class TranscriptionView extends Component {
 		return el.concat(`</div>`);
 	}
 
-      layoutMargin( html ) {
+	layoutMargin( html ) {
 
-      // load the surface into a DOM element to retrieve the grid data
-      let folioDiv = document.createElement("div");
-      folioDiv.innerHTML = html;
-      let zones = folioDiv.children;
+		// load the surface into a DOM element to retrieve the grid data
+		let folioDiv = document.createElement("div");
+		folioDiv.innerHTML = html;
+		let zones = folioDiv.children;
 
-      const emptyZoneFrame = [
-                  [ '.', '.', '.' ],
-                  [ '.', '.', '.' ],
-                  [ '.', '.', '.' ]
-      ];
+		const emptyZoneFrame = [
+			[ '.', '.', '.' ],
+			[ '.', '.', '.' ],
+			[ '.', '.', '.' ]
+		];
 
-      const emptyMarginFrame = {
-            'middle': false,
-            'top': false,
-            'left-middle': false,
-            'right-middle': false,
-            'bottom': false,
-            'left-top': false,
-            'right-top': false,
-            'left-bottom': false,
-            'right-bottom': false
-            };
+	      const emptyMarginFrame = {
+			'middle': false,
+			'top': false,
+			'left-middle': false,
+			'right-middle': false,
+			'bottom': false,
+			'left-top': false,
+			'right-top': false,
+			'left-bottom': false,
+			'right-bottom': false
+		};
                   
-            const hintCodes = [
-                  'tall',
-                  'extra-tall',
-                  'wide',
-                  'extra-wide'
-            ];
+		const hintCodes = [
+			'tall',
+			'extra-tall',
+			'wide',
+			'extra-wide'
+		];
 
-      let validLayoutCode = function( layoutCode ) {
+		let validLayoutCode = function( layoutCode ) {
             if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
             return layoutCode;
             } else {
             return 'middle';
             }
-            };
+		};
                   
-            function validLayoutHint( layoutHint ) {
-                  if( hintCodes.includes(layoutHint) ) {
-                        return layoutHint;
-                  } else {
-                        return null;
-                  }
-            }
+		function validLayoutHint( layoutHint ) {
+			if( hintCodes.includes(layoutHint) ) {
+				return layoutHint;
+			} else {
+				return null;
+			}
+		}
 
-      let zoneGrid = [];
-      let gridContent = "";
-      let zoneIndex = 0;
-      let rowIndex = 0;
-      // for each zone, take its margin data and populate the grid
-      try {
-            for (let zone of zones) {
-            // create a rolling frame that is ORed on to grid with each step
-            let zoneFrame = copyObject( emptyZoneFrame );
-                  let marginFrame = copyObject( emptyMarginFrame );
-                  let entryID = zone.id;
-            let blocks = zone.children;
+		let zoneGrid = [];
+		let gridContent = "";
+		let zoneIndex = 0;
+		let rowIndex = 0;
+		// for each zone, take its margin data and populate the grid
+		try {
+			for (let zone of zones) {
+				// create a rolling frame that is ORed on to grid with each step
+				let zoneFrame = copyObject( emptyZoneFrame );
+						let marginFrame = copyObject( emptyMarginFrame );
+						let entryID = zone.id;
+				let blocks = zone.children;
 
-            for( let block of blocks ) {
-                        let layoutCode = validLayoutCode(block.dataset.layout);
-						let hint = validLayoutHint(block.dataset.layoutHint);
-						block.setAttribute('data-entry-id', entryID);
+				for( let block of blocks ) {
+					let layoutCode = validLayoutCode(block.dataset.layout);
+					let hint = validLayoutHint(block.dataset.layoutHint);
+					block.setAttribute('data-entry-id', entryID);
 
-                        // group all the blocks together that share a layout code
-                        if( marginFrame[layoutCode] ) {
-                              block.id = marginFrame[layoutCode][0].id;
-                              marginFrame[layoutCode].push(block);
-                        } else {
-                              zoneIndex++;
-                              block.id = `z${zoneIndex}`;
-                              marginFrame[layoutCode] = [block];
-                        }
+					// group all the blocks together that share a layout code
+					if( marginFrame[layoutCode] ) {
+						block.id = marginFrame[layoutCode][0].id;
+						marginFrame[layoutCode].push(block);
+					} else {
+						zoneIndex++;
+						block.id = `z${zoneIndex}`;
+						marginFrame[layoutCode] = [block];
+					}
 
-                        // decode the layout
-                        switch(layoutCode) {
-                              case 'top':
-                                    zoneFrame[0][1] = block.id;
-                                    break;
-                              case 'left-middle':
-                                    zoneFrame[1][0] = block.id;
-                                    if( hint === 'tall')
-                                          zoneFrame[2][0] = block.id;
-                                    else if( hint === 'wide') {
-                                          zoneFrame[1][1] = block.id;
-                                          zoneFrame[1][2] = block.id;
-                                    }
-                                    break;
-                              case 'right-middle':
-                                    zoneFrame[1][2] = block.id;
-                                    if( hint === 'tall')
-                                          zoneFrame[2][2] = block.id;
-                                    break;
-                              case 'bottom':
-                                    zoneFrame[2][1] = block.id;
-                                    break;
-                              case 'left-top':
-                                    zoneFrame[0][0] = block.id;
-                                    if( hint === 'tall')
-                                          zoneFrame[1][0] = block.id;
-                                    else if( hint === 'wide') {
-                                          zoneFrame[0][1] = block.id;
-                                          zoneFrame[0][2] = block.id;
-                                    }
-                                    break;
-                              case 'right-top':
-                                    zoneFrame[0][2] = block.id;
-                                    if( hint === 'tall')
-                                          zoneFrame[1][2] = block.id;
-                                    break;
-                              case 'left-bottom':
-                                    zoneFrame[2][0] = block.id;
-                                    if( hint === 'wide') {
-                                          zoneFrame[2][1] = block.id;
-                                          zoneFrame[2][2] = block.id;
-                                    }
-                                    break;
-                              case 'right-bottom':
-                                    zoneFrame[2][2] = block.id;
-                                    break;
-                              default:
-                                    zoneFrame[1][1] = block.id;
-                                    zoneFrame[1][2] = block.id;
-                        }
-                  }
+					// decode the layout
+					switch(layoutCode) {
+						case 'top':
+							zoneFrame[0][1] = block.id;
+							break;
+						case 'left-middle':
+							zoneFrame[1][0] = block.id;
+							if( hint === 'tall')
+								zoneFrame[2][0] = block.id;
+							else if( hint === 'wide') {
+								zoneFrame[1][1] = block.id;
+								zoneFrame[1][2] = block.id;
+							}
+							break;
+						case 'right-middle':
+							zoneFrame[1][2] = block.id;
+							if( hint === 'tall')
+								zoneFrame[2][2] = block.id;
+							break;
+						case 'bottom':
+							zoneFrame[2][1] = block.id;
+							break;
+						case 'left-top':
+							zoneFrame[0][0] = block.id;
+							if( hint === 'tall')
+								zoneFrame[1][0] = block.id;
+							else if( hint === 'wide') {
+								zoneFrame[0][1] = block.id;
+								zoneFrame[0][2] = block.id;
+							}
+							break;
+						case 'right-top':
+							zoneFrame[0][2] = block.id;
+							if( hint === 'tall')
+								zoneFrame[1][2] = block.id;
+							break;
+						case 'left-bottom':
+							zoneFrame[2][0] = block.id;
+							if( hint === 'wide') {
+								zoneFrame[2][1] = block.id;
+								zoneFrame[2][2] = block.id;
+							}
+							break;
+						case 'right-bottom':
+							zoneFrame[2][2] = block.id;
+							break;
+						default:
+							zoneFrame[1][1] = block.id;
+							zoneFrame[1][2] = block.id;
+					}
+				}
 
-            for( let blockSet of Object.values(marginFrame) ) {
-                        if( blockSet ) {
-                              gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
-                        }
-            }
+				for( let blockSet of Object.values(marginFrame) ) {
+					if( blockSet ) {
+						gridContent = gridContent.concat( this.renderBlockSet(blockSet) );
+					}
+				}
 
-            // integrate frame into grid
-            zoneGrid[rowIndex] = this.mergeRow( zoneFrame[0], zoneGrid[rowIndex] );
-            zoneGrid[rowIndex+1] = this.mergeRow( zoneFrame[1], zoneGrid[rowIndex+1] );
-            zoneGrid[rowIndex+2] = this.mergeRow( zoneFrame[2], zoneGrid[rowIndex+2] );
-            rowIndex = rowIndex + 1;
-                  }
-      }
-      catch(error) {
-            console.log(error);
-      }
+				// integrate frame into grid
+				zoneGrid[rowIndex] = this.mergeRow( zoneFrame[0], zoneGrid[rowIndex] );
+				zoneGrid[rowIndex+1] = this.mergeRow( zoneFrame[1], zoneGrid[rowIndex+1] );
+				zoneGrid[rowIndex+2] = this.mergeRow( zoneFrame[2], zoneGrid[rowIndex+2] );
+				rowIndex = rowIndex + 1;
+			}
+      	}
+		catch(error) {
+			console.log(error);
+		}
 
-      let gridLayout = this.zoneGridToLayout( zoneGrid );
+      	let gridLayout = this.zoneGridToLayout( zoneGrid );
 
-      // set the grid-template-areas
-      return {
-                  content: gridContent,
-                  layout: gridLayout
-      };
-      }
-
-  mergeRow( sourceRow, targetRow ) {
-    if( targetRow ) {
-      let result = [];
-      for( let i = 0; i < 3; i++ ) {
-        // if the source isn't blank, copy it, otherwise use existing
-        if( sourceRow[i] !== '.' ) {
-          result[i] = sourceRow[i];
-        } else {
-          result[i] = targetRow[i];
-        }
-      }
-      return result;
-    } else {
-      return sourceRow;
+		// set the grid-template-areas
+		return {
+			content: gridContent,
+			layout: gridLayout
+		};
     }
-  }
+
+	mergeRow( sourceRow, targetRow ) {
+		if( targetRow ) {
+			let result = [];
+			for( let i = 0; i < 3; i++ ) {
+				// if the source isn't blank, copy it, otherwise use existing
+				if( sourceRow[i] !== '.' ) {
+				result[i] = sourceRow[i];
+				} else {
+				result[i] = targetRow[i];
+				}
+			}
+			return result;
+		} else {
+			return sourceRow;
+		}
+	}
 
   layoutGrid( html ) {
     // load the surface into a DOM element to retrieve the grid data
