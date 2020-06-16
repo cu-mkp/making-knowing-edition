@@ -119,7 +119,7 @@ class TranscriptionView extends Component {
 			[ '.', '.', '.' ]
 		];
 
-	      const emptyMarginFrame = {
+	    const emptyMarginFrame = {
 			'middle': false,
 			'top': false,
 			'left-middle': false,
@@ -140,9 +140,9 @@ class TranscriptionView extends Component {
 
 		let validLayoutCode = function( layoutCode ) {
             if( Object.keys(emptyMarginFrame).includes(layoutCode) ) {
-            return layoutCode;
+            	return layoutCode;
             } else {
-            return 'middle';
+            	return 'middle';
             }
 		};
                   
@@ -160,14 +160,14 @@ class TranscriptionView extends Component {
 		let rowIndex = 0;
 		// for each zone, take its margin data and populate the grid
 		try {
-			for (let zone of zones) {
+			for(let zone of zones) {
 				// create a rolling frame that is ORed on to grid with each step
 				let zoneFrame = copyObject( emptyZoneFrame );
-						let marginFrame = copyObject( emptyMarginFrame );
-						let entryID = zone.id;
+				let marginFrame = copyObject( emptyMarginFrame );
+				let entryID = zone.id;
 				let blocks = zone.children;
 
-				for( let block of blocks ) {
+				for(let block of blocks ) {
 					let layoutCode = validLayoutCode(block.dataset.layout);
 					let hint = validLayoutHint(block.dataset.layoutHint);
 					block.setAttribute('data-entry-id', entryID);
@@ -266,9 +266,9 @@ class TranscriptionView extends Component {
 			for( let i = 0; i < 3; i++ ) {
 				// if the source isn't blank, copy it, otherwise use existing
 				if( sourceRow[i] !== '.' ) {
-				result[i] = sourceRow[i];
+					result[i] = sourceRow[i];
 				} else {
-				result[i] = targetRow[i];
+					result[i] = targetRow[i];
 				}
 			}
 			return result;
