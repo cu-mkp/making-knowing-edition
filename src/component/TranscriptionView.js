@@ -114,9 +114,9 @@ class TranscriptionView extends Component {
 		let zones = folioDiv.children;
 
 		const emptyZoneFrame = [
-			[ '.', '.', '.' ],
-			[ '.', '.', '.' ],
-			[ '.', '.', '.' ]
+			[ '.', '.', '.', '.' ],
+			[ '.', '.', '.', '.' ],
+			[ '.', '.', '.', '.' ]
 		];
 
 	    const emptyMarginFrame = {
@@ -197,12 +197,13 @@ class TranscriptionView extends Component {
 							}
 							break;
 						case 'right-middle':
-							zoneFrame[1][2] = block.id;
+							zoneFrame[1][3] = block.id;
 							if( hint === 'tall')
-								zoneFrame[2][2] = block.id;
+								zoneFrame[2][3] = block.id;
 							break;
 						case 'bottom':
 							zoneFrame[2][1] = block.id;
+							zoneFrame[2][2] = block.id;
 							break;
 						case 'left-top':
 							zoneFrame[0][0] = block.id;
@@ -214,9 +215,9 @@ class TranscriptionView extends Component {
 							}
 							break;
 						case 'right-top':
-							zoneFrame[0][2] = block.id;
+							zoneFrame[0][3] = block.id;
 							if( hint === 'tall')
-								zoneFrame[1][2] = block.id;
+								zoneFrame[1][3] = block.id;
 							break;
 						case 'left-bottom':
 							zoneFrame[2][0] = block.id;
@@ -226,7 +227,7 @@ class TranscriptionView extends Component {
 							}
 							break;
 						case 'right-bottom':
-							zoneFrame[2][2] = block.id;
+							zoneFrame[2][3] = block.id;
 							break;
 						default:
 							zoneFrame[1][1] = block.id;
@@ -263,7 +264,7 @@ class TranscriptionView extends Component {
 	mergeRow( sourceRow, targetRow ) {
 		if( targetRow ) {
 			let result = [];
-			for( let i = 0; i < 3; i++ ) {
+			for( let i = 0; i < 4; i++ ) {
 				// if the source isn't blank, copy it, otherwise use existing
 				if( sourceRow[i] !== '.' ) {
 					result[i] = sourceRow[i];
