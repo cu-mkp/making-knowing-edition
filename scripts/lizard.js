@@ -65,11 +65,13 @@ async function loadAnnotationMetadata() {
     let annotationMetadata = {};
     const tableObj = await csv().fromString(csvData)        
     tableObj.forEach( entry => {
+        const authorIDs = entry['author-id'] && entry['author-id'].length > 0 ? entry['author-id'].split(';') : []
+
         let metaData = {
             id: entry['annotation-ID'],
             doi: entry['doi'],
             academicCommonsURL: entry['academic-commons-URL'],
-            authorIDs: entry['author-id'].split(';'),
+            authorIDs,
             driveID: entry['UUID'],
             thumbnailURL: entry['thumbnail_url'],
             fullTitle: entry['full-title'],
