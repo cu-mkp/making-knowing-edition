@@ -232,6 +232,9 @@ class TranscriptionView extends Component {
 						default:
 							zoneFrame[1][1] = block.id;
 							zoneFrame[1][2] = block.id;
+							if( hint === 'wide') {
+								zoneFrame[1][3] = block.id;
+							}
 					}
 				}
 
