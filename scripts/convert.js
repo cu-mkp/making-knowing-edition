@@ -238,13 +238,14 @@ function convertXML(xml, fileID) {
   for( let div of divs ) {
     let zoneDiv = htmlDoc.createElement('div');
     zoneDiv.id = div.getAttribute('id')
-    if( div.getAttribute('continues') === 'yes' ) {
-      zoneDiv.appendChild( divMessage(htmlDoc, '...Continued') );
-    }
+    processDivContinuation( 'continues', div, zoneDiv, htmlDoc )
 
     for( let child of div.children ) {
       if( child.nodeName === 'ab') {
-        zoneDiv.appendChild( convertAB(htmlDoc, child) );
+        const ab = convertAB(htmlDoc, child)
+        processABContinuation( 'continues', child, ab, htmlDoc )
+        processABContinuation( 'continued', child, ab, htmlDoc )
+        zoneDiv.appendChild( ab );
       }
       else if( child.nodeName === 'figure' ) {
         zoneDiv.appendChild( convertFigure(htmlDoc, child) );
@@ -254,15 +255,54 @@ function convertXML(xml, fileID) {
       }      
     }
 
-    if( div.getAttribute('continued') === 'yes' ) {
-      zoneDiv.appendChild( divMessage(htmlDoc, 'Continued...') );
-    }
+    processDivContinuation( 'continued', div, zoneDiv, htmlDoc )
 
     // create a zone in the htmlDOM
     folio.appendChild(zoneDiv);
   }
 
   return htmlDOM.serialize();
+}
+
+function hasContinuation(el,continuationType) {
+  return el.getAttribute(continuationType) === 'yes'
+}
+
+function continueMarker(continuationType, htmlDoc) {
+  if( continuationType === 'continues' ) {
+    return divMessage(htmlDoc, '...Continued')         
+  } else {
+    return divMessage(htmlDoc, 'Continued...')
+  }
+}
+
+function processDivContinuation( continuationType, div, zoneDiv, htmlDoc ) {
+  if( hasContinuation(div,continuationType) ) {
+
+    // does it also have a continuation in ab?
+    for( let child of div.children ) {
+      if( child.nodeName === 'ab') {
+        if( hasContinuation(child,continuationType) ) {
+          // don't render, handle in ab
+          return 
+        }
+      }
+    }
+
+    // append marker 
+    zoneDiv.appendChild( continueMarker(continuationType, htmlDoc) )
+  }
+}
+
+function processABContinuation( continuationType, child, ab, htmlDoc ) {
+  if( hasContinuation(child,continuationType) ) {
+    // position dependent on type
+    if( continuationType === "continues") {
+      ab.insertBefore( continueMarker( continuationType, htmlDoc ), ab.firstChild)
+    } else {
+      ab.appendChild( continueMarker( continuationType, htmlDoc ))
+    }
+  }
 }
 
 function convertFile( folioID, transcriptionType, xmlFile, htmlFile ) {
