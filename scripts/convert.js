@@ -59,7 +59,7 @@ function validFigureSize( figureSize ) {
   }
 }
 
-function htmlTemplate(xmlFilename) {
+function htmlTemplate(xmlFilename, layoutMode ) {
   // set title to the folio id
   let docTitle = path.basename(xmlFilename).split(".")[0];
 
@@ -70,7 +70,7 @@ function htmlTemplate(xmlFilename) {
   template += 			'<title>'+docTitle+'</title>';
   template += 		'</head>';
   template += 		'<body>';
-  template +=			'<folio layout=\"margin\">';
+  template +=			'<folio layout=\"'+layoutMode+'\">';
   template +=			'</folio>';
   template += 		'</body>';
   template +=	'</html>';
@@ -228,10 +228,14 @@ function convertXML(xml, fileID) {
   let xmlDOM = new JSDOM(`<xml>${xml}</xml>`, { contentType: "text/xml" });
   let xmlDoc = xmlDOM.window.document;
 
-  // create a parallel HTML DOM and move elements from xml dom to html
-  let htmlDOM = new JSDOM( htmlTemplate(fileID) );
-  let htmlDoc = htmlDOM.window.document;
+  let root = xmlDoc.querySelector('root');
+  let rootLayout = root.getAttribute('layout');
+  let layoutMode = (rootLayout) ? rootLayout : 'three-column'
 
+  // create a parallel HTML DOM and move elements from xml dom to html
+  let htmlDOM = new JSDOM( htmlTemplate(fileID, layoutMode) );
+  let htmlDoc = htmlDOM.window.document;
+  
   let folio = htmlDoc.querySelector('folio');
   let divs = xmlDoc.querySelectorAll('div');
 
