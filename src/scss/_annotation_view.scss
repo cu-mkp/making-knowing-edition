@@ -61,7 +61,7 @@
         text-indent: 0px;
     }
 
-    span .underline {
+    .underline {
         text-decoration: underline;
     }
     
@@ -121,6 +121,7 @@
 
 
     blockquote {
+        margin-inline-start: 25px;
         p {
             text-indent: 0px;
             line-height: 1.1;

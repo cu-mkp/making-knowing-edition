@@ -164,11 +164,11 @@ const generate = async function generate(configData) {
   const now = new Date();
   console.log( `Asset Pipeline started at: ${now.toString()}`);
 
-  // if( mode !== 'local' ) {
-  //   console.log('Download files from Github...');
-  //   downloadFiles(inputDir);  
-  //   downloadFiles(configData.contentDir);
-  // }
+  console.log('Download files from Github...');
+  if( configData.pullSource ) {
+    downloadFiles(inputDir);  
+    downloadFiles(configData.contentDir);  
+  }
 
   console.log('Reorganize files...');
   reorganizeFiles(inputDir, correctFormatDir);

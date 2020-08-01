@@ -27,8 +27,9 @@ class GlossaryView extends Component {
            
             const refString = meaning.references ? `[${meaning.references}]` : ''
             const numString = (entry.meanings.length > 1) ? `${i+1}. ` : ''
+            const space = i < entry.meanings.length - 1 ? '' : ''
             meaningList.push( 
-                `${numString} ${meaning.partOfSpeech} ${meaning.meaning} ${refString}`
+                `${numString} ${meaning.partOfSpeech} ${meaning.meaning} ${refString}${space}`
             )
         }
         return meaningList
@@ -70,7 +71,7 @@ class GlossaryView extends Component {
                     <Typography gutterBottom key={`gloss-${entry.headWord}`} ><u>{entry.headWord}</u>{altString}{modString}: {
                           meanings.map(meaningful=>{
                                 return Parser(meaningful)
-                          })} {Parser(seeAlso)} {Parser(synonym)} {Parser(antonym)}</Typography>
+                          })}{Parser(seeAlso)}{Parser(synonym)}{Parser(antonym)}</Typography>
                 )    
             }
         }
