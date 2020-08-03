@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import { CardActionArea } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
+import Grid from '@material-ui/core/Grid';
 
 class ContentView extends Component {
 
@@ -20,13 +21,13 @@ class ContentView extends Component {
 		var parserOptions =  {
 			 replace: (domNode) => {
                 // drop these
-                if( domNode.name === 'body' || 
+                if( domNode.name === 'body' ||
                     domNode.name === 'head' ||
                     domNode.name === 'html'     ) {
-                    return ( 
+                    return (
                     <div className={`anno-${domNode.name}`}>
                         {domToReact(domNode.children, parserOptions)}
-                    </div> 
+                    </div>
                     );
                 }
                 // Puts wrapper around iframe (so vimeo video embeds can be styled for responsivness)
@@ -50,46 +51,86 @@ class ContentView extends Component {
 
     renderGridCard(title, graphic, link) {
         return (
-            <Card className="homepage-grid-item">
-                <CardActionArea 
+            <Card style={{overflow: "hidden", objectFit: "cover",  width: "100%", height: 185}}>
+                <CardActionArea
                     onClick={ e => {this.props.history.push(link)}}
                 >
-                    <CardMedia className={"homepage-card-image"} image={graphic}/>
-                    <CardHeader title={title} />
+                    <CardMedia className={"homepage-card-image"}>
+                      <img src={graphic} alt=""/>
+                    </CardMedia>
+                    <CardHeader title={title} style={{color: 'transparent', textShadow: '-0.5px 0.5px 0 #fff, 0.5px 0.5px 0 #fff, 0.5px -0.5px 0 #fff, -0.5px -0.5px 0 #fff'}}/>
                 </CardActionArea>
             </Card>
         )
     }
 
     renderHomePage() {
-        const {imagesBaseURL} = this.props.contents
-        const introVideoURL = 'https://player.vimeo.com/video/389763699' 
-        return (
-            <div id="content-view" className='home-page'>
-                <div className="homepage-header" >
-                    <div className="intro">
-                        <h1>Secrets of Craft and Nature in Renaissance France</h1>
-                        <h2>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h2>
-                        <p>A production of the Making and Knowing Project, this edition provides a transcription and English translation of Ms. Fr. 640, composed by an anonymous “author-practitioner” in 1580s Toulouse and now held by the Bibliothèque nationale de France. This manuscript offers unique firsthand insight into making and materials from a time when artists were scientists. <b>The research resources in this edition explore the manuscript’s context and diverse topics. For tips, please see <a href="#/content/how-to-use">How to Use</a>. Check back over the coming months as we add new content and features that are <a href="#/content/resources/coming-soon">coming soon</a>.</b></p>
-                    </div>
-                    <div className="video-iframe-wrapper">
-                        <iframe className="homepage-intro-video"
-                            title="Introduction Video"
-                            src={introVideoURL}
-                            frameBorder="0"
-                            allow="autoplay; fullscreen"
-                            allowFullScreen>
-                        </iframe>
-                    </div>
+        // const {imagesBaseURL} = this.props.contents
 
+        // TEMP CHANGE
+        const imagesBaseURL = `${process.env.PUBLIC_URL}/img`
+
+        const introVideoURL = 'https://player.vimeo.com/video/389763699'
+        return (
+          <React.Fragment>
+            <div id="banner"/>
+            <div id="content-view">
+              <div className="homepage-header intro">
+                <h2>Secrets of Craft and Nature in Renaissance France</h2>
+                <h3>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h3>
+              </div>
+              <Grid container spacing={16} style={{margin: 0, marginTop: 45, width: "100%", height: "75%"}}>
+
+              {/* Left column */}
+                <Grid container item xs={4}>
+                  <Grid item xs={12} style={{height: "50%", marginBottom: 8}}>
+                    <p>Ms. Fr. 640 is a unique manuscript composed in 1580s Toulouse. It offers firsthand insight into making and materials from a time when artists were scientists.</p>
+
+                    <p><i>Secrets of Craft and Nature in Renaissance France</i> offers a transcription and a translation of the manuscript, and provides many research resources to explore its context.</p>
+                  </Grid>
+                  <Grid item xs={12} style={{display: "flex", flexDirection: "column", height: "50%", justifyContent: "space-between"}}>
+                    <div className="video-iframe-wrapper">
+                      <iframe className="homepage-intro-video"
+                      title="Introduction Video"
+                      src={introVideoURL}
+                      frameBorder="0"
+                      allow="autoplay; fullscreen"
+                      allowFullScreen>
+                      </iframe>
+                    </div>
+                  </Grid>
+                </Grid>
+
+              {/* Middle column */}
+                <Grid container item xs={4}>
+                  <Grid item xs={12} style={{height: "50%", marginBottom: 8}}>
+                    { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.png`, '/folios')}
+                  </Grid>
+                  <Grid item xs={12} style={{height: "50%"}}>
+                    { this.renderGridCard('STUDY',`${imagesBaseURL}/homepage-study.jpg`, '/essays')}
+                  </Grid>
+                </Grid>
+
+              {/* Right column */}
+                <Grid container item xs={4}>
+                  <Grid item xs={12} style={{height: "50%", marginBottom: 8}}>
+                    { this.renderGridCard('EXPLORE',`${imagesBaseURL}/homepage-explore.png`, '/content/resources/overview')}
+                  </Grid>
+                  <Grid item xs={12} style={{height: "50%"}}>
+                    { this.renderGridCard('ABOUT',`${imagesBaseURL}/lizard.png`, '/content/about/overview')}
+                  </Grid>
+                </Grid>
+              </Grid>
+
+              {/* Bottom row */}
+                <div style={{display: "flex", justifyContent: "space-between", paddingRight: 8, marginBottom: 20}}>
+                  <p>For tips, please see <a href="#/content/how-to-use">How to Use</a>.</p>
+                  <p>Check back over the coming months as we add new content and features that are <a href="#/content/resources/coming-soon">coming soon</a>.</p>
                 </div>
-                <div className="homepage-grid">
-                    { this.renderGridCard('READ',`${imagesBaseURL}/homepage-read.jpeg`, '/folios')}
-                    { this.renderGridCard('STUDY',`${imagesBaseURL}/homepage-study-tiles.PNG`, '/essays')}
-                    { this.renderGridCard('EXPLORE',`${imagesBaseURL}/homepage-filter.png`, '/content/resources/overview')}
-                    { this.renderGridCard('ABOUT',`${imagesBaseURL}/homepage-about.jpg`, '/content/about/overview')}
-                </div>
+
+
             </div>
+          </React.Fragment>
         )
     }
 
@@ -102,7 +143,7 @@ class ContentView extends Component {
         }
 
         const content = contents[contentID]
-        
+
         if( !content ) {
             return (
                 <div id="content-view">
@@ -110,7 +151,7 @@ class ContentView extends Component {
                         <img alt="Loading, please wait." src="/img/spinner.gif"></img>
                     </div>
                 </div>
-            )     
+            )
         } else if( content === 404 ) {
             return (
                 <div id="content-view">
@@ -123,7 +164,7 @@ class ContentView extends Component {
                 <div id="content-view">
                     {Parser(content,this.htmlToReactParserOptions())}
                 </div>
-            )    
+            )
         }
     }
 
