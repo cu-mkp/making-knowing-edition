@@ -663,12 +663,16 @@ figure.current {
 
 #content-view {
   width: 80%;
+  /* viewport height less header less footer less banner/margin */
+  /* height: auto; */
+  min-height: calc(100vh - 6.5rem - 4.5rem - 120px);
   margin: auto;
   max-width: 960px;
   font-family: 'Oswald', sans-serif;
-  color: #5d4f36;
-  border: 1px solid white; }
-
+  color: #5d4f36; }
+    @media (max-width: 765px) {
+      #content-view {
+        height: auto; } }
   #content-view .video-iframe-wrapper {
     position: relative;
     padding-bottom: 56.25%;
@@ -729,13 +733,47 @@ figure.current {
     max-width: 600px; }
   #content-view img[alt^="extra-large"] {
     max-width: 900px; }
+  #content-view .card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    object-fit: cover;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; }
+  #content-view .card-title {
+    font-size: 1.75em;
+    font-weight: bold;
+    text-align: left;
+    width: 50%;
+    padding-left: 30px;
+    background-color: white;
+    opacity: 0.8;
+    margin-left: 50px; }
+  @media (max-width: 600px) {
+    #content-view .card {
+      justify-content: center; }
+    #content-view .card-title {
+      text-align: center;
+      margin: 0;
+      width: 30%;
+      padding: 5px;
+      font-size: 1em; }}
   #content-view p {
     padding-bottom: 1em;
     line-height: 1.15;
     margin-block-start: 0;
     margin-block-end: 0;
-    font-size: 14px;
+    font-size: 0.9em;
     font-weight: 200; }
+    @media (min-width: 701px) and (max-width: 900px) {
+      #content-view p {
+        font-size: 0.75em; } }
+    @media (min-width: 601px) and (max-width: 700px)  {
+      #content-view p {
+        font-size: 0.5em; } }
   #content-view br {
     padding-bottom: 1em; }
   #content-view a {
@@ -782,12 +820,24 @@ figure.current {
       background: #838383;
       font-size: 15px;
       color: white; }
+    @media (max-width: 600px) {
+      #content-view .responsive-row {
+        flex-direction: column-reverse;
+        padding: 8px; } }
     #banner {
       height: 80px;
       width: 100%;
       margin-bottom: 20px;
       background-image: url("/img/homepage-banner.png");
       background-position: 0px 36%;}
+    #video-div {
+      display: none;
+      margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      #video-grid {
+      display: none; }
+      #video-div {
+        display: flex;}}
 
 #diplomatic #header {
   margin: 0;
