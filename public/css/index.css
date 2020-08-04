@@ -786,11 +786,15 @@ figure.current {
         flex-direction: column-reverse;
         padding: 8px; } }
     #banner {
-      height: 80px;
+      height: 65px;
       width: 100%;
       margin-bottom: 20px;
       background-image: url("/img/homepage-banner.png");
-      background-position: 0px 36%; }
+      background-position: 95% 42%;
+      background-size: 68%; }
+    @media (max-width: 600px) {
+      #banner {
+      background-size: 100%; } }
     #grid-container {
       margin: 20px 0px 0px 0px;
       width: 100%; }
