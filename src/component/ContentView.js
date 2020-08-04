@@ -51,10 +51,10 @@ class ContentView extends Component {
 
     renderGridCard(title, graphic, link) {
         return (
-            <Card style={{height: "100%"}}>
+            <Card className="full-height">
                 <CardActionArea
+                    className="full-height"
                     onClick={ e => {this.props.history.push(link)}}
-                    style={{height: "100%"}}
                 >
                     <div className="card" style={{backgroundImage: `url("${graphic}")`}}>
                       <div className="card-title">
@@ -74,21 +74,21 @@ class ContentView extends Component {
           <React.Fragment>
             <div id="banner"/>
             <div id="content-view">
-              <div className="homepage-header intro">
+              <div className="homepage-header">
                 <h2>Secrets of Craft and Nature in Renaissance France</h2>
                 <h3>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h3>
               </div>
 
-              <Grid container spacing={16} style={{margin: 0, marginTop: 20, width: "100%"}}>
+              <Grid container id="grid-container" spacing={16}>
 
               {/* Left column */}
-                <Grid container item sm={4} xs={12}>
-                  <Grid item xs={12} style={{height: "50%", marginBottom: 8}}>
+                <Grid container item  sm={4} xs={12}>
+                  <Grid item  className="grid top" xs={12}>
                     <p>Ms. Fr. 640 is a unique manuscript composed in 1580s Toulouse. It offers firsthand insight into making and materials from a time when artists were scientists.</p>
 
                     <p><i>Secrets of Craft and Nature in Renaissance France</i> offers a transcription and a translation of the manuscript, and provides many research resources to explore its context.</p>
                   </Grid>
-                  <Grid item id="video-grid" xs={12} style={{flexDirection: "column", marginBottom: 40, height: "50%"}}>
+                  <Grid item id="video-grid" className="grid" xs={12}>
                     <div className="video-iframe-wrapper">
                       <iframe className="homepage-intro-video"
                       title="Introduction Video"
@@ -102,32 +102,33 @@ class ContentView extends Component {
                 </Grid>
 
               {/* Middle column */}
-                <Grid container item sm={4} xs={12}>
-                  <Grid item xs={12} style={{height: "50%", marginBottom: 8}}>
+                <Grid container item className="column" sm={4} xs={12}>
+                  <Grid item xs={12} className="grid top">
                     { this.renderGridCard('Read',`${imagesBaseURL}/homepage-read.png`, '/folios')}
                   </Grid>
-                  <Grid item xs={12} style={{height: "50%"}}>
+                  <Grid item xs={12} className="grid">
                     { this.renderGridCard('Study',`${imagesBaseURL}/homepage-study.jpg`, '/essays')}
                   </Grid>
                 </Grid>
 
               {/* Right column */}
-                <Grid container item sm={4} xs={12}>
-                  <Grid item xs={12} style={{height: "50%", marginBottom: 8}}>
+                <Grid container item className="column" sm={4} xs={12}>
+                  <Grid item xs={12} className="grid top">
                     { this.renderGridCard('Explore',`${imagesBaseURL}/homepage-explore.png`, '/content/resources/overview')}
                   </Grid>
-                  <Grid item xs={12} style={{height: "50%"}}>
+                  <Grid item xs={12} className="grid">
                     { this.renderGridCard('About',`${imagesBaseURL}/lizard.png`, '/content/about/overview')}
                   </Grid>
                 </Grid>
               </Grid>
 
               {/* Bottom row */}
-                <div className="responsive-row" style={{display: "flex", justifyContent: "space-between", paddingRight: 8, marginTop: 20}}>
+                <div className="responsive-row">
                   <p>For tips, please see <a href="#/content/how-to-use">How to Use</a>.</p>
                   <p>Check back over the coming months as we add new content and features that are <a href="#/content/resources/coming-soon">coming soon</a>.</p>
                 </div>
 
+              {/* Only displays in mobile */}
                 <div id="video-div" className="video-iframe-wrapper">
                   <iframe className="homepage-intro-video"
                   title="Introduction Video"
@@ -137,7 +138,6 @@ class ContentView extends Component {
                   allowFullScreen>
                   </iframe>
                 </div>
-
 
             </div>
           </React.Fragment>
