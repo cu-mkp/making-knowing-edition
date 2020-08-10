@@ -45,6 +45,9 @@ function layoutDecoder4(layoutCode,zoneFrame,hint,block) {
     switch(layoutCode) {
         case 'top':
             zoneFrame[0][1] = block.id;
+            if( hint === 'wide') {
+                zoneFrame[0][2] = block.id;
+            }
             break;
         case 'left-middle':
             zoneFrame[1][0] = block.id;
@@ -63,6 +66,9 @@ function layoutDecoder4(layoutCode,zoneFrame,hint,block) {
         case 'bottom':
             zoneFrame[2][1] = block.id;
             zoneFrame[2][2] = block.id;
+            if( hint === 'wide') {
+                zoneFrame[2][3] = block.id;
+            }
             break;
         case 'left-top':
             zoneFrame[0][0] = block.id;
@@ -101,6 +107,9 @@ function layoutDecoder3(layoutCode,zoneFrame,hint,block) {
     switch(layoutCode) {
         case 'top':
             zoneFrame[0][1] = block.id;
+            if( hint === 'wide') {
+                zoneFrame[0][2] = block.id;
+            }
             break;
         case 'left-middle':
             zoneFrame[1][0] = block.id;
@@ -118,6 +127,9 @@ function layoutDecoder3(layoutCode,zoneFrame,hint,block) {
             break;
         case 'bottom':
             zoneFrame[2][1] = block.id;
+            if( hint === 'wide') {
+                zoneFrame[2][2] = block.id;
+            }
             break;
         case 'left-top':
             zoneFrame[0][0] = block.id;
