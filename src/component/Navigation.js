@@ -186,8 +186,8 @@ class Navigation extends React.Component {
                                                 <span title="Toggle XML mode" onClick={this.toggleXMLMode} 
                                                       className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
                                                 &nbsp;
-                                                <span title="Toggle single column mode"  onClick={this.toggleColumns} 
-                                                      className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span>
+                                                {/* <span title="Toggle single column mode"  onClick={this.toggleColumns} 
+                                                      className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span> */}
                                                 &nbsp;
                                                 <span 	title = "Go back"
                                                             onClick={this.changeCurrentFolio}
