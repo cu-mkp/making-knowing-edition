@@ -32,7 +32,8 @@ class AnnotationCard extends Component {
         const { annotation, diplomatic, authors } = this.props
         const { releaseMode } = diplomatic
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
-        const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
+        const displayOrderReadout = releaseMode !== 'production' ? ` <small style="color: grey">(${annotation.displayOrder})</small>` : ""
+        const title = annotation.name.length > 0 ? `${annotation.name}${displayOrderReadout}` : `No Title (${annotation.id})`
         const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
 
         return (

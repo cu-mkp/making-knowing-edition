@@ -72,6 +72,7 @@ async function loadAnnotationMetadata() {
             doi: entry['doi'],
             academicCommonsURL: entry['academic-commons-URL'],
             authorIDs,
+            displayOrder: entry['display-order'],
             driveID: entry['UUID'],
             thumbnailURL: entry['thumbnail_url'],
             fullTitle: entry['full-title'],

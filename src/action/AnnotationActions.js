@@ -39,7 +39,7 @@ AnnotationActions.loadAnnotationManifest = function loadAnnotationManifest( stat
     let i = 0
     for( let section of annotationSections ) {
         section.id = `section-${i++}`
-        section.annotations = section.annotations.sort(alphaSort);
+        section.annotations = section.annotations.sort(displayOrderSort);
     }
 
     return {
@@ -69,6 +69,20 @@ const alphaSort = function(a, b) {
     }
     
     // names must be equal
+    return 0;
+}
+
+const displayOrderSort = function(a, b) {
+    var ordA = +a.displayOrder
+    var ordB = +b.displayOrder
+    if (ordA < ordB) {
+        return -1;
+    }
+    if (ordA > ordB) {
+        return 1;
+    }
+    
+    // same ord
     return 0;
 }
 
