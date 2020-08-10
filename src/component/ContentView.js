@@ -5,8 +5,6 @@ import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 import Card from '@material-ui/core/Card';
 import { CardActionArea } from '@material-ui/core';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 
 class ContentView extends Component {

@@ -163,8 +163,8 @@ class Navigation extends React.Component {
                   let imageViewActive = this.props.documentView[this.props.side].transcriptionType === 'f';
                   let bookIconClass = (this.props.documentView.bookMode)?'fa fa-book active':'fa fa-book';
                   let xmlIconClass = (this.props.documentView[this.props.side].isXMLMode)?'fa fa-code active':'fa fa-code';
-                  let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
-                        columnIconClass += (imageViewActive)?' hidden':'';
+                  // let columnIconClass = (this.props.documentView[this.props.side].isGridMode)?'fa fa-columns active':'fa fa-columns';
+                  //       columnIconClass += (imageViewActive)?' hidden':'';
                   let folioName = this.props.document.folioNameByIDIndex[this.props.documentView[this.props.side].iiifShortID];
                   let jumpToIconStyle = (imageViewActive) ? { color: 'white'} : { color: 'black' };
                   // this is messy but faster for the moment then figuring out why the sides dont behave the same
