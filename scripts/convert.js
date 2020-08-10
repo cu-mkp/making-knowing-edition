@@ -32,7 +32,7 @@ const hintCodes = [
   'tall',
   'extra-tall',
   'wide',
-  'extra-wide'
+  'full'
 ];
 
 function validLayoutCode( layoutCode ) {

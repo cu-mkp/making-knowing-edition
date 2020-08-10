@@ -18,7 +18,7 @@ const hintCodes = [
     'tall',
     'extra-tall',
     'wide',
-    'extra-wide'
+    'full'
 ];
 
 export function layoutMargin4( html ) {
@@ -48,6 +48,11 @@ function layoutDecoder4(layoutCode,zoneFrame,hint,block) {
             if( hint === 'wide') {
                 zoneFrame[0][2] = block.id;
             }
+            if( hint === 'full') {
+                zoneFrame[0][0] = block.id;
+                zoneFrame[0][2] = block.id;
+                zoneFrame[0][3] = block.id;
+            }
             break;
         case 'left-middle':
             zoneFrame[1][0] = block.id;
@@ -67,6 +72,10 @@ function layoutDecoder4(layoutCode,zoneFrame,hint,block) {
             zoneFrame[2][1] = block.id;
             zoneFrame[2][2] = block.id;
             if( hint === 'wide') {
+                zoneFrame[2][3] = block.id;
+            }
+            if( hint === 'full') {
+                zoneFrame[2][0] = block.id;
                 zoneFrame[2][3] = block.id;
             }
             break;
@@ -100,6 +109,10 @@ function layoutDecoder4(layoutCode,zoneFrame,hint,block) {
             if( hint === 'wide') {
                 zoneFrame[1][3] = block.id;
             }
+            if( hint === 'full') {
+                zoneFrame[1][0] = block.id;
+                zoneFrame[1][3] = block.id;
+            }
     }
 }
 
@@ -108,6 +121,10 @@ function layoutDecoder3(layoutCode,zoneFrame,hint,block) {
         case 'top':
             zoneFrame[0][1] = block.id;
             if( hint === 'wide') {
+                zoneFrame[0][2] = block.id;
+            }
+            if( hint === 'full') {
+                zoneFrame[0][0] = block.id;
                 zoneFrame[0][2] = block.id;
             }
             break;
@@ -128,6 +145,10 @@ function layoutDecoder3(layoutCode,zoneFrame,hint,block) {
         case 'bottom':
             zoneFrame[2][1] = block.id;
             if( hint === 'wide') {
+                zoneFrame[2][2] = block.id;
+            }
+            if( hint === 'full') {
+                zoneFrame[2][0] = block.id;
                 zoneFrame[2][2] = block.id;
             }
             break;
@@ -158,6 +179,9 @@ function layoutDecoder3(layoutCode,zoneFrame,hint,block) {
         default:
             zoneFrame[1][1] = block.id;
             zoneFrame[1][2] = block.id;
+            if( hint === 'full') {
+                zoneFrame[1][0] = block.id;
+            }
     }
 }
 
