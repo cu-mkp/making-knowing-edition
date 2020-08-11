@@ -1299,6 +1299,15 @@ figure.current {
     #glossaryView #glossaryViewInner {
       margin: 52px 0 0 0; } }
 
+#glossaryView .cite-header {
+  text-align: center;
+  margin-bottom: 5px; }
+
+#glossaryView .cite-instructions {
+  margin: 20px;
+  margin-left: 15%;
+  margin-right: 15%; }
+
 #glossaryView .navigationComponent {
   position: sticky;
   top: 0; }
