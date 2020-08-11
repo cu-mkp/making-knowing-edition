@@ -25,11 +25,11 @@ class GlossaryView extends Component {
         for( let i=0; i < entry.meanings.length; i++ ) { 
             const meaning = entry.meanings[i];
            
-            const refString = meaning.references ? `[${meaning.references}]` : ''
+            const refString = meaning.references ? ` [${meaning.references}]` : ''
             const numString = (entry.meanings.length > 1) ? `${i+1}. ` : ''
             const space = i < entry.meanings.length - 1 ? ' ' : ''
             meaningList.push( 
-                `${numString} ${meaning.partOfSpeech} ${meaning.meaning} ${refString}${space}`
+                `${numString} ${meaning.partOfSpeech} ${meaning.meaning}${refString}${space}`
             )
         }
         return meaningList
@@ -62,9 +62,11 @@ class GlossaryView extends Component {
                 (filterTerm.length !== 0 && lowerCaseAltSpellings.includes(filterTerm))
             ) {
                 const meanings = this.renderMeanings(entry)
+                const meaningsEndWithPeriod = meanings[ meanings.length-1 ].endsWith('.')
                 const altString = entry.alternateSpellings? `, ${entry.alternateSpellings}` : '';
                 const modString = entry.modernSpelling? ` (mod. ${entry.modernSpelling})` :'';
-                const seeAlso = entry.seeAlso? `, see also <span>&#8594;</span>${entry.seeAlso} `:'';
+                const comma = meaningsEndWithPeriod ? '' : ','
+                const seeAlso = entry.seeAlso? `${comma} see also <span>&#8594;</span>${entry.seeAlso} `:'';
                 const synonym = entry.synonym? `, syn. <span>&#8594;</span>${entry.synonym}`:'';
                 const antonym = entry.antonym? `, ant. <span>&#8594;</span>${entry.antonym}`:'';
                 glossaryEntries.push( 
