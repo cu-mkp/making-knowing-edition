@@ -27,7 +27,7 @@ class GlossaryView extends Component {
            
             const refString = meaning.references ? `[${meaning.references}]` : ''
             const numString = (entry.meanings.length > 1) ? `${i+1}. ` : ''
-            const space = i < entry.meanings.length - 1 ? '' : ''
+            const space = i < entry.meanings.length - 1 ? ' ' : ''
             meaningList.push( 
                 `${numString} ${meaning.partOfSpeech} ${meaning.meaning} ${refString}${space}`
             )
