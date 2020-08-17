@@ -48,7 +48,7 @@ class Annotation extends React.Component {
 		const comingSoon = "This essay is under revision."
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
         const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
-		const annotationLink = annotation.status ? <Link to={`/essays/${annotation.id}`}>{annotation.name}</Link> : annotation.name
+		const annotationLink = annotation.status ? <Link to={`/essays/${annotation.id}`}>{Parser(annotation.name)}</Link> : annotation.name
 
 		return (
 			  <div className="annotation">
