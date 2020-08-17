@@ -111,7 +111,7 @@ class SearchResultView extends Component {
 				<div key={idx} className="searchResult" data-type={type} data-folioname={result.friendlyFolioName} onClick={this.transcriptionResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
-						<span className="name">{result.name.replace(/^\s+|\s+$/g, '')}</span>
+						<span className="name">{Parser(result.name.replace(/^\s+|\s+$/g, ''))}</span>
                                     (<span className="folio">{result.friendlyFolioName}</span>)
 					</div>
 					<div className="contextFragments">
@@ -126,7 +126,7 @@ class SearchResultView extends Component {
 				<div key={idx} className="searchResult" data-type={type} data-annoid={annotation.id} onClick={this.annotationResultClicked}>
 					<div className="fa fa-file-alt icon"></div>
 					<div className="title">
-						<span className="name">{annotation.name}</span>
+						<span className="name">{Parser(annotation.name)}</span>
 					</div>
 					<div className="contextFragments">
 						<span>{annotation.theme}, {annotation.semester} {annotation.year}</span>
