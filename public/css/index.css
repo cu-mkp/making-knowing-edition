@@ -326,6 +326,8 @@ figure.current {
     text-indent: 0px; }
   #annotation-view .pull-left {
     text-indent: 0px; }
+  #annotation-view i .underline {
+    font-style: normal; }
   #annotation-view .underline {
     text-decoration: underline; }
   #annotation-view .annotation-nav {
