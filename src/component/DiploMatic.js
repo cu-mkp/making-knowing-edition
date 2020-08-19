@@ -64,6 +64,7 @@ class DiploMatic extends Component {
 		const searchEl = (isWidthUp('md', this.props.width)) ? <Search /> : <SearchIconButton />
 		return (
 			<div id="header" className={fixedFrameModeClass}>
+				<img className="lizard-logo" alt="Project Logo" src="/img/banner-lizard.png"></img>
 				<div className="title"><Link to='/' className='home-link'>Secrets of Craft and Nature<br/> in Renaissance France</Link></div>
 				<div className="compactTitle">Secrets of Craft and Nature in Renaissance France</div>
 				<div className="tagline">A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</div>
@@ -181,7 +182,7 @@ class DiploMatic extends Component {
 	renderFooter(fixedFrameModeClass) {
 		return (
 			<div id="footer" className={fixedFrameModeClass}>
-				<div className="copyright">&copy; Making and Knowing Project.</div>
+				<div className="copyright">DOI: <a href="https://doi.org/10.7916/78yt-2v41">https://doi.org/10.7916/78yt-2v41</a> &copy; Making and Knowing Project.</div>
 				<div className="footer-links">
 					<a target="_blank" rel="noopener noreferrer" href="https://cuit.columbia.edu/privacy-notice">
 						Privacy Notice

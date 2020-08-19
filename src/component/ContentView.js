@@ -122,7 +122,7 @@ class ContentView extends Component {
 
               {/* Bottom row */}
                 <div className="responsive-row">
-                  <p>For tips, please see <a href="#/content/how-to-use">How to Use</a>. Cliquez ici pour la <a href="#/content/how-to-use-fr">version française</a></p>
+                  <p>For tips, please see <a href="#/content/how-to-use">How to Use</a>. <br/>Cliquez ici pour la <a href="#/content/how-to-use-fr">version française</a>.</p>
                   <p>Check back over the coming months as we add new content and features that are <a href="#/content/resources/coming-soon">coming soon</a>.</p>
                 </div>
 
