@@ -669,6 +669,8 @@ figure.current {
   margin: auto;
   max-width: 960px;
   color: #5d4f36; }
+  #content-view strong {
+    font-weight: bold; }
 
 #content-view .video-iframe-wrapper {
   position: relative;

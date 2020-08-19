@@ -4,11 +4,19 @@
   margin: auto;
   max-width: 960px;
   // font-family: 'Oswald', sans-serif;
-  color: #5d4f36; }
+  color: #5d4f36; 
+
+  strong {
+    font-weight: bold;
+  }
+}
+
+
   #content-view .video-iframe-wrapper {
     position: relative;
     padding-bottom: 56.25%;
-    height: 0; }
+    height: 0; 
+  }
   #content-view .video-iframe-wrapper iframe {
     position: absolute;
     top: 0;
