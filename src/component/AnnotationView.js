@@ -28,7 +28,7 @@ class AnnotationView extends Component {
         if( tagClass === 'footnote-ref' || tagClass === 'footnote-back' ) {
             const scrollTo = domNode.attribs.href.substr(1);
             return (
-                <Link className='footnote-ref' id={domNode.attribs.id} activeClass="active" to={scrollTo} offset={-100} >
+                <Link className='footnote-ref' id={domNode.attribs.id} activeClass="active" to={scrollTo} offset={-115} >
                 {domToReact(domNode.children, parserOptions)}
                 </Link>
             );
