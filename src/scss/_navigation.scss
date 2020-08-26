@@ -87,9 +87,22 @@
 
 .helpContainer {
       padding:12px;
-      width:235px;
-      height:375px;
+      width:335px;
+      height:740px;
+
+      .readingGuide {
+            
+            td {
+                  padding: 8px;
+            }
+
+            h2 {
+                  margin-top: 16px;
+                  margin-bottom: 10px;
+            }
+      }
 }
+
 
 .searchHelpContainer {
       padding:5px;
