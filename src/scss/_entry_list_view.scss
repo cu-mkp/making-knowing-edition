@@ -40,7 +40,9 @@
             top: 150px;
             padding: 10px;
             border-radius: 0.3rem;
-            border: 1px solid rgb(214, 214, 214)
+            border: 1px solid rgb(214, 214, 214);
+            max-height: 80%;
+            overflow: auto;
         }
         @include lg {
             width: 25%;
