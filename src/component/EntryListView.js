@@ -32,7 +32,6 @@ class EntryListView extends Component {
       renderAnnotationList( entry ) {
             const { annotationsByEntry, annotations } = this.props.annotations
             const annotationList = []
-            debugger
             const entryAnnotations = annotationsByEntry[`p${entry['div_id']}`]
             if( entryAnnotations ) {
                   let odd = 0
