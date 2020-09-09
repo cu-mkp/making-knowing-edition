@@ -40,6 +40,14 @@ class GlossaryView extends Component {
         const filterTerm = this.state.filterTerm.toLowerCase()
         const entryList = Object.values(glossary)
 
+        const checkHeadwords = (headword,term, delimiter) => { 
+            const words = headword.split(delimiter)
+            for( const word of words ) {
+                if( word.startsWith(term) ) return true
+            }
+            return false
+        }
+
         // {head-word}, {alternate-spelling}: {meaning-number}. {part-of-speech} {meaning} [{references}]        
         const glossaryEntries = []
         let alphaIndex = 0
@@ -54,12 +62,13 @@ class GlossaryView extends Component {
                 alphaIndex++
             }
             const lowerCaseHeadword = entry.headWord.toLowerCase()
+
             const lowerCaseAltSpellings = entry.alternateSpellings.toLowerCase()
             const lowerCaseModSpellings = entry.modernSpelling.toLowerCase()
             if( filterTerm.length === 0 ||
-                (filterTerm.length !== 0 && lowerCaseHeadword.startsWith(filterTerm)) ||
-                (filterTerm.length !== 0 && lowerCaseModSpellings.includes(filterTerm)) ||
-                (filterTerm.length !== 0 && lowerCaseAltSpellings.includes(filterTerm))
+                (filterTerm.length !== 0 && checkHeadwords(lowerCaseHeadword, filterTerm, ' ')) ||
+                (filterTerm.length !== 0 && checkHeadwords(lowerCaseModSpellings,filterTerm, ' ')) ||
+                (filterTerm.length !== 0 && checkHeadwords(lowerCaseAltSpellings, filterTerm, ', '))
             ) {
                 const meanings = this.renderMeanings(entry)
                 const meaningsEndWithPeriod = meanings[ meanings.length-1 ].endsWith('.')
