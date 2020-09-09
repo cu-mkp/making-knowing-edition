@@ -315,11 +315,7 @@ function locateAnnotationAssets() {
     let annotationDriveJSON;
     
     const shared = rCloneSharedDrive ? "--drive-shared-with-me" : ""
-    const buffer = execSync(`rclone lsjson ${shared} -R ${rCloneServiceName}:"${googleShareName}"`, (error, stdout, stderr) => {
-        if (error !== null) {
-            throw `ERROR: Unable to list Google Drive: ${googleShareName}`;
-        } 
-    });      
+    const buffer = execSync(`rclone lsjson ${shared} -R ${rCloneServiceName}:"${googleShareName}"`, { maxBuffer: 1024 * 1024 * 2 })
     annotationDriveJSON = buffer.toString();
     const annotationDriveMap = JSON.parse(annotationDriveJSON);
     const driveTreeRoot = createDriveTree(annotationDriveMap);
