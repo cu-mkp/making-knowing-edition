@@ -93,7 +93,7 @@ class XMLView extends Component {
 							<Pagination side={this.props.side} className="pagination_upper" documentView={this.props.documentView} documentViewActions={this.props.documentViewActions}/>
 
 							<div className="xmlContentInner">
-								{ transcriptionType === 'tl' ? xmlContent : <pre>{xmlContent}</pre> }
+								<pre>{xmlContent}</pre>
 							</div>
 
 						</div>
