@@ -42,7 +42,6 @@ h4 {
   font-family: 'OpenSans', sans-serif;
   font-weight: 700;
   padding: 0;
-  margin: 0 0 0.3rem;
   line-height: 1.5rem; }
 
 .invisible {
@@ -772,7 +771,6 @@ figure.current {
   font-weight: bold; }
 
 #content-view h1 {
-  text-align: center;
   font-size: 2.5em;
   line-height: 1.5em; }
 
