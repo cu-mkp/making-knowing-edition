@@ -218,8 +218,8 @@ class SearchResultView extends Component {
 
 		return (
 			<div className="searchResultsComponent" >
-				<div className="navigation" ref={e=>{this.helpRef = e}}>
-					<div onClick={this.exitSearch}><span className="fa fa-th"></span> exit search</div> 
+				<div className="navigation" style={{paddingTop: 8}} ref={e=>{this.helpRef = e}}>
+					<div style={{display: 'inline' }}onClick={this.exitSearch}><span className="fa fa-th"></span> exit search</div>
 					<span style={{ float: 'right' }} title="Toggle folio help" onClick={this.toggleHelp}  >
 						<i className="fas fa-lg fa-question-circle"></i>
 					</span> 
