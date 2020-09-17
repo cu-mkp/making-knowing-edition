@@ -70,10 +70,14 @@ class Navigation extends React.Component {
 	}
 
 	toggleXMLMode = function(event){
-		this.props.documentViewActions.setXMLMode(
-			this.props.side, 
-			!this.props.documentView[this.props.side].isXMLMode
-		);
+            if(this.props.documentView.inSearchMode) {
+                  this.props.documentViewActions.toggleXMLMode()
+            } else {
+                  this.props.documentViewActions.setXMLMode(
+                        this.props.side, 
+                        !this.props.documentView[this.props.side].isXMLMode
+                  );      
+            }
 	}
 
 	// aka gridMode
@@ -184,7 +188,7 @@ class Navigation extends React.Component {
                                                       className={(this.props.documentView.inSearchMode)?'invisible':bookIconClass}></span>
                                                 &nbsp;
                                                 <span title="Toggle XML mode" onClick={this.toggleXMLMode} 
-                                                      className={(this.props.documentView.inSearchMode || imageViewActive )?'invisible':xmlIconClass}></span>
+                                                      className={(this.props.documentView.inSearchMode | imageViewActive )?'invisible':xmlIconClass}></span>
                                                 &nbsp;
                                                 {/* <span title="Toggle single column mode"  onClick={this.toggleColumns} 
                                                       className={(this.props.documentView.inSearchMode)?'invisible':columnIconClass}></span> */}
@@ -225,12 +229,12 @@ class Navigation extends React.Component {
                                                 <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
                                                 <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>
                                                 <MenuItem value="tcn">{DocumentHelper.transcriptionTypeLabels['tcn']}</MenuItem>
-                                                <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem>
-                                                <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem>
+                                                { !this.props.documentView.inSearchMode && <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem> }
+                                                { !this.props.documentView.inSearchMode && <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem> }
                                           </Select>
-                                          <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
+                                          { !this.props.documentView.inSearchMode && <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
                                                 <i className="fas fa-question-circle"></i>
-                                          </span> 
+                                          </span> }
                                           <HelpPopper marginStyle={helpMarginStyle} anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
                                     </div>
 

@@ -7,6 +7,8 @@ import {dispatchAction} from '../model/ReduxStore';
 import SearchResultView from './SearchResultView';
 import TranscriptionView from './TranscriptionView';
 import AnnotationView from './AnnotationView';
+import DocumentHelper from '../model/DocumentHelper';
+
 import { withWidth } from '@material-ui/core';
 import { isWidthUp } from '@material-ui/core/withWidth';
 
@@ -24,6 +26,8 @@ class SearchView extends Component {
             changeTranscriptionType: this.changeTranscriptionType.bind(this),
             changeCurrentFolio: this.changeCurrentFolio.bind(this),
             changeCurrentAnnotation: this.changeCurrentAnnotation.bind(this),
+            toggleXMLMode: this.toggleXMLMode.bind(this),
+            jumpToFolio: this.jumpToFolio.bind(this),
             exitSearch: this.exitSearch.bind(this)
         }
     }
@@ -33,10 +37,27 @@ class SearchView extends Component {
     }
 
     onWidth = ( left, right ) => {
-        this.setState({
+        this.setState({ ...this.state,
             leftWidth: left,
             rightWidth: right
         });
+    }
+
+    toggleXMLMode() {
+        const { xmlMode } = this.state
+        this.setState({...this.state, xmlMode: !xmlMode })
+    }
+
+    jumpToFolio( folioName, side ) {
+        // Convert folioName to ID (and confirm it exists)
+        const validFolioName = DocumentHelper.validFolioName(folioName)
+        if( validFolioName ) {
+            let folioID = this.props.document.folioIDByNameIndex[validFolioName];
+            if(typeof folioID !== 'undefined'){
+                let longID = DocumentHelper.folioURL(folioID);
+                this.changeCurrentFolio(longID,side,this.props.transcriptionType);
+            }    
+        }
     }
 
     exitSearch() {
@@ -159,6 +180,7 @@ class SearchView extends Component {
                         leftPane={this.renderSearchResultView()}
                         rightPane={this.renderSearchDetail()}
                         inSearchMode={true}
+                        onWidth={this.onWidth.bind(this)}
                     />
                 </div>
             )

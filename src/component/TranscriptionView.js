@@ -282,7 +282,8 @@ class TranscriptionView extends Component {
 				let surfaceClass = "surface";
 				let surfaceStyle = {};
 				// Handle grid mode
-				if(this.props.documentView[this.props.side].isGridMode) {
+				const isGridMode = (this.props.documentView.inSearchMode) ? true : this.props.documentView[this.props.side].isGridMode
+				if(isGridMode) {
 					surfaceClass += " grid-mode";
 					surfaceStyle.gridTemplateAreas = transcriptionData.layout;
 				}
