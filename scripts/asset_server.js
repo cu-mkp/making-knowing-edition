@@ -155,7 +155,7 @@ const generate = async function generate(configData) {
   }
 
   const commentsCSV = `${configData.sourceDir}/metadata/DCE_comment-tracking-Tracking.csv`;
-  const glossaryCSV = `${configData.sourceDir}/glossary/DCE-glossary-table.csv`;
+  const glossaryCSV = `${configData.sourceDir}/metadata/DCE-glossary-table.csv`;
   const entriesCSV = `${configData.sourceDir}/metadata/entry_metadata.csv`;
   const targetCommentsFile = `${configData.targetDir}/comments.json`;
   const targetGlossaryFile = `${configData.targetDir}/glossary.json`;
