@@ -332,6 +332,8 @@ figure.current {
     text-indent: 0px; }
   #annotation-view i .underline {
     font-style: normal; }
+  #annotation-view i u {
+    font-style: normal; }
   #annotation-view .underline {
     text-decoration: underline; }
   #annotation-view .annotation-nav {
@@ -494,6 +496,8 @@ figure.current {
     display: flex; }
     #annotation-list-view .contentArea h6 {
       padding: 10px; }
+    #annotation-list-view .contentArea i u {
+      font-style: normal; }
     #annotation-list-view .contentArea .tocbar {
       min-width: 250px; }
       #annotation-list-view .contentArea .tocbar .category {
