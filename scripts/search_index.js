@@ -117,7 +117,7 @@ function parseAnnotation( html ) {
 }
 
 var generateAnnotationIndex = function generateAnnotationIndex( annotationPath, indexPath ) {
-
+  console.log('Generating search index...');
   // open an index for writing, output to searchIndexDir dir
   var searchIndex = lunr(function () {
     this.ref('id')

@@ -95,26 +95,28 @@ class AnnotationView extends Component {
                         </div>                        
                     )
                 }
-                if ( domNode.name === 'h1' ) {
+                if ( domNode.name === 'h1' & anno.dataSource === 'gdrive' ) {
                     return (
-                        <div>
+                        <>
                             <div className="title-byline-container">
                                 <h1>{Parser(anno.fullTitle)}</h1>
                                 { this.renderByLine(anno.authors, authors, anno.doi) }
                             </div>
-                            <div className="header-section">
-                                <h2>Abstract</h2>
-                                <div>{Parser(anno.abstract)}</div>
-                                <br/><h2>Cite As</h2>
-                                <div>{Parser(anno.citeAs)}</div>
-                            </div>
-                        </div>
-                    )
+                            {anno.dataSource === 'gdrive' &&
+                                <div className="header-section">
+                                    <h2>Abstract</h2>
+                                    <div>{Parser(anno.abstract)}</div>
+                                    <br/><h2>Cite As</h2>
+                                    <div>{Parser(anno.citeAs)}</div>
+                                </div>
+                            }
+                        </>
+                    );
                 }
 
                 // The following is intended to remove by-line derived from google doc since it's rendered in the above. 
                 if ( domNode.name === 'h4' && domNode.prev.prev.name === 'h1') {
-                    return <h4> </h4>;
+                    return <span/>;
                 }
 
 				 switch (domNode.name) {
@@ -168,6 +170,12 @@ class AnnotationView extends Component {
         return (
             <div id="annotation-view" className={modeClass}>
                 { this.renderAnnotationNav() }
+                {anno.dataSource === 'gh' &&
+                    <div className="title-byline-container">
+                        <h1>{Parser(anno.fullTitle)}</h1>
+                        { this.renderByLine(anno.authors, this.props.authors.authors, anno.doi) }
+                    </div>
+                }
                 {Parser(content,htmlToReactParserOptions)}
             </div>
         );

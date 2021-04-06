@@ -6,6 +6,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const csv = require('csvtojson');
 const winston = require('winston');
+const beautify = require('js-beautify').html;
 
 const searchIndex = require('./search_index');
 const configLoader = require('./config_loader');
@@ -28,6 +29,7 @@ let targetImageDir;
 let targetSearchIndexDir;
 let targetAnnotationThumbnailDir;
 let targetAnnotationDir;
+let ghAnnotationDir = 'edition_data/m-k-annotation-data/html';
 let targetFigureDir;
 let tempCaptionDir;
 let tempAbstractDir;
@@ -52,6 +54,7 @@ const videoEmbedRegX2 = /^https:\/\/player\.vimeo\.com/;
 const videoWidth = 560;
 const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
+const absoluteMkDomainUrl = /https?:\/\/.+?\.makingandknowing.org/;
 const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const videoCitation = /[V|v]id(\.|eo[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
@@ -83,7 +86,9 @@ async function loadAnnotationMetadata() {
             entryIDs: entry['entry-id'],
             status: entry['status-DCE'],
             citeAs: entry['cite-as'],
-            refresh: (entry['refresh-DCE'] === 'refresh')
+            refresh: (entry['refresh-DCE'] === 'refresh'),
+            dataSource: entry['data_source'],
+            s3ThumbUrl: entry['s3_thumbnail_url']
         }
         annotationMetadata[metaData.driveID] = metaData;
     });    
@@ -267,7 +272,7 @@ function locateThumbnails() {
     let thumbnailDriveJSON = buffer.toString();
     const thumbnailDriveMap = JSON.parse(thumbnailDriveJSON);
     const driveTreeRoot = createDriveTree(thumbnailDriveMap);
-
+    
     let thumbnailAssets = {};
 
     driveTreeRoot.children.forEach( thumbnail => {
@@ -288,7 +293,7 @@ function syncThumbnails(thumbnailAssets, annotationMetadata ) {
         // parse out the ID from the thumbnail URL and see if we have it
         const thumbnailID = findImageID(thumbnailURL)
         const thumbnailNode = thumbnailAssets[thumbnailID]
-
+        
         if( thumbnailNode ) {
             const thumbnailSource = `${googleShareName}/${thumbnailFolderName}${nodeToPath(thumbnailNode)}`
             const thumbnailTarget = `${tempThumbnailDir}/${thumbnailNode.name}`
@@ -688,6 +693,125 @@ async function processAnnotation( annotationAsset, metadata, authors ) {
     };    
 }
 
+function recursiveRemoveDir(path){
+    if(fs.existsSync(path)){
+        fs.rmdirSync(path, { recursive: true });
+        console.log(`Removed ${path} dir`);
+    }
+}
+
+function migrateAnnotations(annotationMetadata) {
+    logger.info("Migrating Annotations...")
+    logSeperator()
+    dirExists( targetAnnotationDir )
+    dirExists( targetImageDir )
+    const existingFiles = fs.readdirSync(ghAnnotationDir);
+    
+    fs.readdirSync(targetAnnotationDir).forEach(file => {
+        const annoId = file.substr(0, file.indexOf('.'));
+        const metaData = Object.values(annotationMetadata).find(data => data.id === annoId);
+        const fileOnGithub = existingFiles.find(f => f === file);
+        const annoImageDir = `${targetImageDir}/${annoId}`
+
+        if(!!fileOnGithub){
+            // Replaces auto-generated html with existing html file from m-k-annotation-data repo
+            fs.copyFileSync(`${ghAnnotationDir}/${file}`, `${targetAnnotationDir}/${file}`)
+            console.log(`${file} already exists in m-k-annotation-data repo so copied it to public dir.`);
+
+            // Removes annotation image dir if it exists (so it doesn't end up in build)
+            recursiveRemoveDir(annoImageDir)
+
+        } else if(!!metaData){
+            if(metaData.dataSource === 'gh'){
+
+                migrateAnnotation(file, annoId)
+                console.log(`Migrated ${file} to m-k-annotation-data repo and copied to public dir`);
+
+
+                migrateImages(annoId)
+
+                // Removes annotation image dir if it exists (so it doesn't end up in build)
+                recursiveRemoveDir(annoImageDir)
+
+            }
+        } else {
+            console.log(`No metadata found for ${file}`);
+        }
+    });
+}
+
+function migrateImages(annoId) {
+    fs.readdirSync(`${targetImageDir}/${annoId}`).forEach(file => {
+        const destinationDir = `edition_data/s3-images/${annoId}`;
+        const sourcePath = `${targetImageDir}/${annoId}/${file}`;
+        
+        // Copies images to be uploaded to s3
+        if (!fs.existsSync(destinationDir)){
+            fs.mkdirSync(destinationDir);
+        }
+        fs.copyFileSync(sourcePath, `${destinationDir}/${file}`);
+        console.log(`Migrated ${file} to edition/data/s3-images for uploading to aws`);
+
+    })
+}
+
+function migrateAnnotation(file, annoId) {
+    console.log(`Processing / prettifying ${file} for m-k-annotation-data repo...`);
+    const defaultAnnoPath = `${targetAnnotationDir}/${file}`;
+    const ghAnnoPath = `${ghAnnotationDir}/${file}`;
+    let html = fs.readFileSync( defaultAnnoPath, "utf8");
+
+    // replaces all src attribute url w/ aws url
+    html = html.replace(
+        /(src=")https?(:\/\/).+?\/.+?\/.+?\/images\//gm,
+        '$1https$2mk-annotation-images.s3.amazonaws.com/'
+    )
+        
+    let htmlDOM = new JSDOM(html);
+    let doc = htmlDOM.window.document;
+
+    const annoArray = JSON.parse(fs.readFileSync(`${targetAnnotationDir}/annotations.json`)).content
+    const anno = annoArray.find(a => a.id === annoId);
+    const headerSection = doc.getElementsByClassName('header-section')[0];
+    let body = doc.getElementsByTagName('body')[0];
+
+    // Removes h1 && h4 generated via the google drive process
+    let h1 = doc.getElementsByTagName('h1')[0];
+    let h4 = doc.getElementsByTagName('h4')[0];
+    body.removeChild(h1);
+    body.removeChild(h4);
+
+    // Adds abstract / cite as elements if not already present
+    if( (anno.abstract || anno.citeAs) && !headerSection ) {
+
+        let container = doc.createElement('div'); 
+
+        container.className = "header-section";
+
+        container.innerHTML = `
+            <h2>Abstract</h2><div>
+            ${anno.abstract ? anno.abstract : ''}
+            </div><br/><h2>Cite As</h2><div>
+            ${anno.citeAs ? anno.citeAs : ''}
+            </div>
+        `;
+
+        body.prepend(container);
+    }
+
+    const prettyHtml = beautify( htmlDOM.serialize(), { 
+        wrap_line_length: 80, 
+        wrap_attributes:'force-aligned', 
+        inline: ['span'] 
+    });
+
+    // writes processed html to m-k-annotation-data repo
+    fs.writeFileSync(ghAnnoPath, prettyHtml)
+
+    // Replaces auto-generated html with newly created html file from m-k-annotation-data repo
+    fs.copyFileSync(ghAnnoPath, defaultAnnoPath)
+}
+
 // returns a hash of the captions keyed to figure number
 function processCaptions( captionHTMLFile ) {
     let html = fs.readFileSync( captionHTMLFile, "utf8");
@@ -782,7 +906,7 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         } else {
             if( anchorTag.href.match( wikischolarRegX ) ) {
                 logger.info(`Wikischolars link detected: ${anchorTag.href}`)
-            } 
+            }
         }
     }
 
@@ -952,6 +1076,11 @@ async function run(mode) {
         case 'env':
             writeEnvFile()
             break;
+        case 'migrate':
+            const annotationMetadata = await loadAnnotationMetadata()
+            migrateAnnotations(annotationMetadata)
+            await run('index')
+            break;
         case 'run': 
             await run('manifest')
             await run('assets')
@@ -1048,6 +1177,7 @@ function main() {
         console.log("\tenv: Create the environment files for development and production.");
         console.log("\tindex: Create a search index of the essays.");
         console.log("\trun: Download, process, manifest, assets, figures, env, and index.")
+        console.log("\tmigrate: Migrates annotations to/from github and preps images for upload to s3 (see README).")
         console.log("\tinit: Download all, download thumbs, and run.")
         console.log("\thelp: Displays this help. ");
         console.log("<target> is the target key from the edition_data/config.json file. Defaults to 'local'.");

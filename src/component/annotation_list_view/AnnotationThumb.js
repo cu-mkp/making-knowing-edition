@@ -11,10 +11,14 @@ class AnnotationThumb extends Component {
     render() {
         const { annotation } = this.props
         const title = annotation.name.length > 0 ? annotation.name : `No Title (${annotation.id})`
-        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
+        const localUrl = annotation.thumbnail ? 
+            `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` 
+            : "/img/watermark.png"
+        const s3Url = annotation.s3Url;
+        const thumbnailUrl = annotation.dataSource === 'gh' ? s3Url : localUrl;
 
         const cardMedia = (
-            <CardMedia className="thumb-media" image={thumbnailURL}>
+            <CardMedia className="thumb-media" image={thumbnailUrl}>
                 <Typography className="title">{Parser(title)}</Typography>
             </CardMedia>
         )
