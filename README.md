@@ -73,6 +73,7 @@ mkdir edition_data/working
 cd edition_data
 git clone https://github.com/cu-mkp/m-k-manuscript-data.git
 git clone https://github.com/cu-mkp/edition-webpages.git
+git clone https://github.com/cu-mkp/m-k-annotation-data.git
 ```
 
 Processing Edition Data
@@ -100,3 +101,42 @@ Run the following commands and then take the resulting build directory and deplo
 scripts/lizard.js run staging
 yarn build
 ```
+Detailed Deployment Guide
+---------------
+This guide assumes you've successfully set up you local development environment
+1) `git pull` the latest from the `./edition_data/...`
+    * `m-k-manuscript-data`
+    * `m-k-annotation-data`
+    * `edition-webpages`
+2) Run `scripts/lizard.js run`
+    * This uses the edition_data/working/MMDDYY-N directory to generate all annotation html, process images from Google Drive, and create a local build in `./public`
+3) Run `scripts/lizard.js migrate` 
+    * If the annotation's `data_source` column is marked as `"gh"` in `annotation-metadata.csv` **and** the annotation's html file does **not** already exist in `./edition_data/m-k-annotation-data/html` then...
+        * This script prepares all those annotation for migration away from the Google Drive workflow and to the Github / Amazon S3 workflow by...
+            * Processing the html generated in step 2 (changes all `img` `src` attributes to an s3 url, injects the annotation's 'Abstract' & 'Cite As' elements, removes unnecessary elements, and makes html human readable)
+            * Saving the newly processed html to `./edition_data/m-k-annotation-data/html` and replaces the annotation's html file in `./public`
+            * Moving images from `./public` to a holding directory (`./edition_data/s3-images`) for later upload to the s3 bucket and deleting from `./public`
+    * If the annotation is marked as `"gh"` **and** already exists in `./edition_data/m-k-annotation-data/html`, then the annotation is simply copied from `./edition_data/m-k-annotation-data/html` to `./public`
+4) Run `yarn start` to test locally
+5) Repeat steps 2 & 3 but run `scripts/lizard.js run [staging/production]` and `scripts/lizard.js migrate [staging/production]` instead
+6) Upload all images moved to `./edition_data/s3-images` to the aws s3 bucket either through the ui or by running the following:
+    ```
+    aws s3 cp ./edition_data/s3-images/ s3://mk-annotation-images --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile [PROFILE NAME]
+    ```
+    * Then clear out contents of `./edition_data/s3-images`
+7) Run `yarn build` (this will effectively copy `./public` to the `./build` directory)
+8) Remove any unwanted builds from `./build/bnf-ms-fr-640`
+9) Upload `./build` to the aws s3 bucket either through the ui or by running the following:
+    ```
+    aws s3 cp . s3://edition640-dist/[BUILD ID] --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile [PROFILE NAME]
+    ```
+10) Update Amazon CloudFront (https://console.aws.amazon.com/cloudfront/home)
+    * Find the desired environment by looking at the CNAMEs column and click its distribution ID
+        * edition640... === production
+        * edition-staging... === staging
+        * edition-dev... === development
+    * Click the `Origins and Origin Groups` tab
+    * Check the only listed origin and then click the `Edit` button
+    * Change the `Origin Path` to the new build id (i.e., the name of the directory in `./build` that you uploaded to aws)
+    * Save that change, click the `Yes, Edit` button
+11) After a minute or so, the site should be deployed!

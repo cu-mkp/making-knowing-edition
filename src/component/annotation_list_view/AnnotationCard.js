@@ -34,7 +34,12 @@ class AnnotationCard extends Component {
         const abstract = (!annotation.abstract || annotation.abstract.length === 0 ) ? comingSoon : annotation.abstract;
         const displayOrderReadout = releaseMode !== 'production' ? ` <small style="color: grey">(${annotation.displayOrder})</small>` : ""
         const title = annotation.name.length > 0 ? `${annotation.name}${displayOrderReadout}` : `No Title (${annotation.id})`
-        const thumbnailURL = annotation.thumbnail ? `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` : "/img/watermark.png"
+
+        const localUrl = annotation.thumbnail ? 
+            `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` 
+            : "/img/watermark.png"
+        const s3Url = annotation.s3ThumbUrl;
+        const thumbnailUrl = annotation.dataSource === 'gh' ? s3Url : localUrl;
 
         return (
             <Card className='anno'>
@@ -43,7 +48,7 @@ class AnnotationCard extends Component {
                     subheader={annotation.authors ? <AnnotationByLine annoAuthors={annotation.authors} authors={authors.authors} />  : ""}
                 >            
                 </CardHeader>
-                <CardMedia style={{height: 200}} image={thumbnailURL}>
+                <CardMedia style={{height: 200}} image={thumbnailUrl}>
                 </CardMedia>
                 <CardContent>
                     <span className='abstract'>{Parser(abstract)}</span>
