@@ -22,11 +22,8 @@ class EntryListView extends Component {
 
       state={
             sortBy: 'folio',
-            transcriptionType: 'tc'
-      }
-
-      componentWillMount() {
-            dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
+            transcriptionType: 'tc',
+            currentWidth: this.props.width
       }
 
       renderAnnotationList( entry ) {

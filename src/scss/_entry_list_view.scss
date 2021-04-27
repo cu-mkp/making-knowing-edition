@@ -68,7 +68,10 @@
         }
         h2{
             margin-bottom: 10px;
-            color: white;
+            color: black;
+            @include md {
+                color: white
+            }
         }
     }
     .entry {

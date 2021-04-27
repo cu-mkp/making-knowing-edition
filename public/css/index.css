@@ -857,7 +857,10 @@ figure.current {
     margin-bottom: 20px; }
   #entry-list-view .filterBy h2 {
     margin-bottom: 10px;
-    color: white; }
+    color: black; }
+    @media (min-width: 960px) {
+      #entry-list-view .filterBy h2 {
+        color: white; } }
   #entry-list-view .entry {
     margin: 10px 13px 1px 2px; }
     #entry-list-view .entry .entry-chips {
