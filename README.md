@@ -126,7 +126,7 @@ This guide assumes you've successfully set up you local development environment
     * Then clear out contents of `./edition_data/s3-images`
 7) Run `yarn build` (this will effectively copy `./public` to the `./build` directory)
 8) Remove any unwanted builds from `./build/bnf-ms-fr-640`
-9) Upload `./build` to the aws s3 bucket either through the ui or by running the following:
+9) `cd build` then upload `./build` to the aws s3 bucket either through the ui or by running the following:
     ```
     aws s3 cp . s3://edition640-dist/[BUILD ID] --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile [PROFILE NAME]
     ```

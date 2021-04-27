@@ -391,7 +391,7 @@ figure.current {
 .watermark_contents {
   width: 10rem;
   height: 10rem;
-  background-image: url("../img/spinner.gif");
+  background-image: url("../img/lizard-no-bg.png");
   background-size: 100%;
   background-repeat: no-repeat;
   margin: auto auto auto auto; }
