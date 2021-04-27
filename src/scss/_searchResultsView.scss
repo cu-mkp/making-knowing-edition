@@ -1,8 +1,8 @@
 .searchResultsComponent {
-	background-color: #f3f3f3;
 	height: 100vh;
 	padding: 1rem;
-	width: calc(100% - 2rem);
+	width: 100%;
+	background-color: $cream;
 
 	.navigation {
 		position: relative;
@@ -26,23 +26,33 @@
 	
 	.resultSectionHeader {
 		font-weight: 900;
-		font-size: 0.75rem;
+		font-size: .90rem;
 		padding: 2rem 0 0;
 		margin: 0;
 	}
 
 	.textField {
-		font-size: 1.5rem;
-		height: 1.9rem;
+		font-size: 1.80rem;
+		height: 2.05rem;
 		border-radius: 0.3rem;
 		border: 1px solid #eae6e6;
 		width: 60%;
 	}
 
 	.searchFilters {
-		margin: 6px 0px;
-		font-size: 12px;
-		font-weight: 500;	
+		div{
+			margin-bottom: 10px;
+			input{
+				cursor: pointer;
+			}
+		}
+		span{
+			font-family: 'Lato', sans-serif;
+			margin: 0 15px 0 3px;
+			font-size: 13px;
+			font-weight: 500;
+			white-space: nowrap;
+		}
 	}
 
 	.searchResultControls {
@@ -62,42 +72,46 @@
 		border-bottom: 1px solid rgba(0, 0, 0, 0.0509804);
 	}	
 	
-	.searchResult {
-		font-weight: 100 !important;
-		height: 3.5rem;
-		padding: 0 1rem 0 0;
-		overflow: hidden;
-	}
-	
-	.searchResult:not(:nth-of-type(1)) {
-		padding: 1rem 0 0;
-	}
-	
-	.searchResult .title {
-		font-weight: 900;
-		color: #708690 !important;
-	}
-	
-	.searchResult .fa {
-		float: left;
-		font-size: 2.5rem;
-		padding: 0.3rem 0 0;
-		margin: 0;
-		width: 3.5rem;
-		height: 3.5rem;
-		color: rgba(112, 134, 144, 0.27) !important;
+	.resultSection{
+		.searchResult {
+			font-weight: 100 !important;
+			height: 4.2rem;
+			padding: 0 1rem 0 0;
+			overflow: hidden;
+			font-size: .9rem;
+		}
+		
+		.searchResult:not(:nth-of-type(1)) {
+			padding: 1rem 0 0;
+		}
+		
+		.searchResult .title {
+			font-weight: 900;
+			color: #708690 !important;
+		}
+		
+		.searchResult .fa {
+			float: left;
+			font-size: 2.65rem;
+			padding: 0.3rem 0 0;
+			margin: 0;
+			width: 3.5rem;
+			height: 3.5rem;
+			color: rgba(112, 134, 144, 0.27) !important;
+		}
+		.noResultsFound {
+			text-align: center;
+			font-size: 1.35rem;
+			padding: 5rem;
+			color: rgba(112, 134, 144, 0.52);
+		}
 	}
 	
 	.resultSection:not(:nth-of-type(1)) {
 		opacity: 0.6 !important;
 	}
 	
-	.noResultsFound {
-		text-align: center;
-		font-size: 1.2rem;
-		padding: 5rem;
-		color: rgba(112, 134, 144, 0.52);
-	}
+
 	
 	.contextFragments {
 		font-style: italic;

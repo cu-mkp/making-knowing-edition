@@ -400,12 +400,14 @@ function filterForDownload(annotationMetadata, annotationAssets) {
 
     // filter out assets that aren't marked to be refreshed
     const selectedAssets = []
+    const filesAlreadyInWorkingDir = fs.readdirSync(baseDir);
     for( const annotationAsset of annotationAssets ) {
         const metadata = annotationMetadata[annotationAsset.id]
         if( metadata ) {        
             const {status, refresh} = metadata
+            const downloaded = filesAlreadyInWorkingDir.includes(metadata.driveID);
             // ignore items with no status
-            if( status === 'published' || status === 'staging' ) {
+            if( status === 'published' || status === 'staging' || (status === 'done' && !downloaded) ) {
                 // download everything to make sure we have the latest
                 selectedAssets.push(annotationAsset)
             }
@@ -764,7 +766,7 @@ function migrateAnnotation(file, annoId) {
     // replaces all src attribute url w/ aws url
     html = html.replace(
         /(src=")https?(:\/\/).+?\/.+?\/.+?\/images\//gm,
-        '$1https$2mk-annotation-images.s3.amazonaws.com/'
+        '$1https$2edition-assets.makingandknowing.org/'
     )
         
     let htmlDOM = new JSDOM(html);

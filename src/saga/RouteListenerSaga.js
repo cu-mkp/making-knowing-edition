@@ -20,7 +20,11 @@ function *userNavigation(action) {
 
     const pathname = action.payload.params[0].pathname;
     const pathSegments = pathname.split('/');
-
+    if( pathname === '/' ) {
+        yield resolveAuthors();
+        yield resolveComments();
+        yield resolveAnnotationManifest();
+    }
     if( pathSegments.length > 1 ) {
         switch(pathSegments[1]) {
             case 'content':

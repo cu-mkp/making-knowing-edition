@@ -1,16 +1,149 @@
 #content-view {
-  width: 80%;
-  min-height: calc(100vh - 6.5rem - 4.5rem - 120px);
-  margin: auto;
-  max-width: 960px;
-  // font-family: 'Oswald', sans-serif;
-  color: #5d4f36; 
+  .hero, .about-panel{
+    p{
+      line-height: 26px;
+      font-size: 16px;
+      @include sm {
+        line-height: 26px;
+        font-size: 16px;
+      }
+      @include md {
+        line-height: 28px;
+        font-size: 18px;
+      }
+    }
+  }
+  .hero{
+    width: 100%;
+    .hero-text{
+      text-align: center;
+    }
+    .hero-left{
+      padding: 50px 20px;
+      @include md{
+        padding: 50px 30px 50px 100px;
+      }
+      @include lg{
+        padding: 50px 30px 50px 160px;
+      }
 
-  strong {
-    font-weight: bold;
+    }
+    .site-title-graphic{
+      margin-bottom: 30px;
+      align-self: center;
+    }
+    .subtitle{
+      margin-bottom: 30px;
+    }
+    .subtext{
+      margin-bottom: 60px;
+    }
+    .mk-logo{
+      margin-bottom: 40px;
+      width: 80%;
+      align-self: center;
+    }
+  }
+
+  .about-panel{
+    padding: 45px 15px;
+    @include sm{
+      padding: 45px 75px;
+    }
+    @include md{
+      padding: 45px 160px;
+    }
+    .about-left{
+      .about-image{
+        height: 150px;
+        @include sm {
+          height: 300px;
+        }
+        @include md {
+          height: 500px;
+        }
+      }
+      .cover{
+      }
+      .spine{
+        margin-right: 5px;
+        @include sm{
+          margin-right: 30px;
+        }
+      }
+
+    }
+    .about-right{
+      padding-left: 10px;   
+      @include sm{
+        padding-left: 30px;
+      }   
+      @include md{
+        padding-left: 100px;
+      }   
+      .title{
+        margin-bottom: 10px;
+        font-size: 14px;
+        @include sm {
+          font-size: 16px;
+        }
+        @include md {
+          font-size: 22px;
+        }
+      }
+      p{
+        font-size: 14px;
+        @include sm {
+          font-size: 16px;
+        }
+        @include md{
+          font-size: 18px;
+        }
+      }
+    }
+    .links-container{
+      margin-top: 30px;
+      justify-content: space-around;
+    }
+  }
+
+  .featured-essays-panel{
+    padding: 30px 20px 100px;
+    @include sm{
+      padding: 50px 160px 160px;
+    }
+    .essay-card-container{
+      justify-content: center;
+      @include md{
+        justify-content: space-between;
+      }
+    }
+    .title{
+      margin-bottom: 20px;
+      font-size: 16px;
+      align-self: center;
+      @include sm{
+        font-size: 22px;
+        margin-bottom: 35px;
+      }
+      @include md{
+        align-self: flex-start;
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  .site-title-graphic{
+    width: fit-content;
+    .lizard-logo{
+      width: 50px;
+      height: 50px;
+    }
+    .text{
+      width: 400px;
+    }
   }
 }
-
 
   #content-view .video-iframe-wrapper {
     position: relative;
@@ -22,141 +155,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%; 
+  }
   #content-view .loading {
-    margin-left: 40%; }
-  #content-view .homepage-header h2, .homepage-header h3 {
-    margin-top: 0px;
-    text-align: center; }
-  #content-view .homepage-header {
-    margin: 10px; }
-  #content-view .grid {
-    height: 50%; }
-  #content-view .column {
-    min-height: 300px; }
-  #content-view .top {
-    margin-bottom: 8px; }
-  #content-view .full-height {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; }
-  #content-view .card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    object-fit: cover;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    flex-grow: 1;
-    flex-basis: 100%; }
-  #content-view .card-title {
-    font-size: 1.75em;
-    font-weight: bold;
-    text-align: center;
-    width: 30%;
-    padding: 5px;
-    background-color: white;
-    opacity: 0.8; }
-  @media (max-width: 600px) {
-    #content-view .card-title {
-      font-size: 2em; }}
-  #content-view p {
-    padding-bottom: 1em;
-    line-height: 1.25;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    font-size: 1em;
-    font-weight: 200; }
-    @media (min-width: 701px) and (max-width: 900px) {
-      #content-view p {
-        font-size: 0.75em; } }
-    @media (min-width: 601px) and (max-width: 700px)  {
-      #content-view p {
-        font-size: 0.5em; } }
-    @media (max-width: 600px)  {
-      #content-view p {
-        font-size: 1.15em; } }
-  #content-view br {
-    padding-bottom: 1em; }
-  #content-view a {
-    word-wrap: break-word;
-    color: #BF4D28;
-    text-decoration: underline;
-    font-weight: bold; }
-  #content-view h1 {
-    font-size: 2.5em;
-    line-height: 1.5em; }
-  #content-view h2 {
-    font-size: 1.6em;
-    margin-top: 40px;
-    line-height: 1.25em; }
-  #content-view h3 {
-    font-size: 1.1em;
-    line-height: 1em; }
-  #content-view h4 {
-    text-align: center; }
-  #content-view blockquote p {
-    line-height: 1.1; }
-  #content-view ul ul {
-    padding-inline-start: 30px; }
-  #content-view ol ol {
-    padding-inline-start: 30px; }
-  #content-view table {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: left;
-    border-collapse: collapse; }
-    #content-view table td, #content-view table th {
-      border: 1px solid #AAAAAA;
-      padding: 5px;
-      line-height: 1.2;
-      text-indent: 0px;
-      vertical-align: top;
-      min-width: 85px; }
-    #content-view table tr:nth-child(even) {
-      background-color: #f2f2f2; }
-    #content-view table th {
-      padding-left: 5px;
-      background: #838383;
-      font-size: 15px;
-      color: white; }
-    #content-view .responsive-row {
-      display: flex;
-      justify-content: space-between;
-      padding-right: 8px;
-      margin-top: 20px; }
-    @media (max-width: 600px) {
-      #content-view .responsive-row {
-        flex-direction: column-reverse;
-        padding: 8px; } }
-    #banner {
-      height: 65px;
-      width: 100%;
-      margin-bottom: 20px;
-      background-image: url("/img/homepage-banner.png");
-      background-position: 95% 42%;
-      background-size: 68%; }
-    @media (max-width: 600px) {
-      #banner {
-      background-size: 100%; } }
-    #grid-container {
-      margin: 20px 0px 0px 0px;
-      width: 100%; }
-    #video-div {
-      display: none;
-      margin-bottom: 20px; }
-    #video-grid {
-      flex-direction: column;
-      margin-bottom: 40px; }
-    @media (max-width: 600px) {
-      #video-grid {
-      display: none; }
-      #video-div {
-        display: flex; }
-      #text-blocks-grid {
-        height: fit-content; } }
+    margin-left: 40%; 
+  }

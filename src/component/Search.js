@@ -1,7 +1,7 @@
+import withWidth from '@material-ui/core/withWidth';
 import React from 'react';
-import {connect} from 'react-redux';
-import { withRouter } from 'react-router-dom'
-import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class Search extends React.Component {
 
@@ -23,8 +23,8 @@ class Search extends React.Component {
 
 	onSubmit(event) {
 		event.preventDefault();
-		if(!isWidthUp('md', this.props.width)) {this.props.onSearchDialogClose()}
 		this.doSearch(this.state.searchTerm);
+		this.props.toggleSearchBar();
 	}
 
 	render() {
@@ -34,10 +34,10 @@ class Search extends React.Component {
 					<input 
 						autoFocus={this.props.autoFocus}
 						className="searchBox" 
-						placeholder="Search the Edition"
+						placeholder="Enter Keyword"
 						onChange={this.onSearchTermChange}
 						value={this.state.searchTerm}
-						/>
+					/>
 				</form>
 			</div>
 		);

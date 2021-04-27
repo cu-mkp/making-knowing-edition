@@ -49,7 +49,7 @@ class EditorComment extends Component {
     
     render() {
         const style = { display: 'inline'}
-        const asteriskStyle = { fontStyle: 'bold', fontSize: '20pt', color: 'red' }
+        const asteriskStyle = { fontStyle: 'bold', fontSize: '18pt', color: 'red' }
                   return (
                         <div style={style}>
                               <span  onClick={(e) =>this.onOpen(e)} style={asteriskStyle}>*</span>

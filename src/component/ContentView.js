@@ -1,21 +1,38 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {dispatchAction} from '../model/ReduxStore';
+import { Button, Dialog, Fab, isWidthUp, withWidth } from '@material-ui/core';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
-import Card from '@material-ui/core/Card';
-import { CardActionArea } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { HashLink } from 'react-router-hash-link';
+import { dispatchAction } from '../model/ReduxStore';
+import AnnotationCard from './annotation_list_view/AnnotationCard';
+import ContentPage from './ContentPage';
 
 class ContentView extends Component {
+
+    constructor(props, context) {
+		super(props, context);
+		this.state = {
+            isVideoDialogOpen: false
+        };
+	}
 
     componentWillMount() {
         dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
     }
 
+    onVideoDialogOpen = () => {
+        this.setState({isVideoDialogOpen: true})
+    };
 
+    
     // Configure parser to replace certain tags with components
     htmlToReactParserOptions() {
+        const scrollWithOffset = (el) => {
+            const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
+            const yOffset = -120; 
+            window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' }); 
+        };
 		var parserOptions =  {
 			 replace: (domNode) => {
                 // drop these
@@ -35,9 +52,23 @@ class ContentView extends Component {
                     domNode.attribs['allowFullScreen'] = domNode.attribs['allowfullscreen']
                     delete domNode.attribs['allowfullscreen']
                     return(
-                        <div className="video-iframe-wrapper">
+                        <div className='video-iframe-wrapper'>
                             {React.createElement(domNode.name, domNode.attribs, domNode.children)}
                         </div>
+                    )
+                }
+
+                if( // change anchor tag to hash link if href is relative (does not start w/ "http")
+                    domNode.name === 'a'
+                    && !domNode.attribs.href.match(/^http/)
+                ){
+                    return(
+                        <HashLink
+                            to={domNode.attribs.href}
+                            scroll={el => scrollWithOffset(el)}
+                        >
+                            {domNode.children.length ? domNode.children[0].data : ''}
+                        </HashLink>
                     )
                 }
 
@@ -47,106 +78,143 @@ class ContentView extends Component {
 		 return parserOptions;
     }
 
-    renderGridCard(title, graphic, link) {
-        return (
-            <Card className="full-height">
-                <CardActionArea
-                    className="full-height"
-                    onClick={ e => {this.props.history.push(link)}}
-                >
-                    <div className="card" style={{backgroundImage: `url("${graphic}")`}}>
-                      <div className="card-title">
-                        {title}
-                      </div>
-                    </div>
-                </CardActionArea>
-            </Card>
-        )
-    }
-
     renderHomePage() {
-        const imagesBaseURL = `${process.env.PUBLIC_URL}/img`
-        const introVideoURL = 'https://player.vimeo.com/video/389763699'
+        const imagesBaseURL = `${process.env.PUBLIC_URL}/img`;
+        const bookBackgroundStyle = {
+            backgroundColor: 'transparent', 
+            backgroundImage: `url(${imagesBaseURL}/book-open-cropped.png)`,
+            backgroundSize: 'cover'
+        };
+        const heroWidthStyle = {
+            width: isWidthUp('sm', this.props.width) ? '50%' : '100%',
+        }
+        const featuredEssayIds = [
+            'ann_300_ie_19',
+            'ann_336_ie_19',
+            'ann_329_ie_19',
+            'ann_321_ie_19',
+            'ann_022_sp_15',
+            'ann_308_ie_19',
+        ]
+        const annotationsArray = Object.values(this.props.annotations.annotations);
 
         return (
-          <React.Fragment>
-            <div id="banner"/>
             <div id="content-view">
-              <div className="homepage-header">
-                <h2>Secrets of Craft and Nature in Renaissance France</h2>
-                <h3>A Digital Critical Edition and English Translation of BnF Ms. Fr. 640</h3>
-              </div>
-
-              <Grid container id="grid-container" spacing={16}>
-
-              {/* Left column */}
-                <Grid container item  sm={4} xs={12}>
-                  <Grid item  className="grid top" xs={12}>
-                    <p>Ms. Fr. 640 is a unique manuscript composed in 1580s Toulouse. It offers firsthand insight into making and materials from a time when artists were scientists.</p>
-
-                    <p>Created by the <a href="#/content/about/m-k-project">Making and Knowing Project</a>, <i>Secrets of Craft and Nature in Renaissance France</i> offers a transcription and a translation of the manuscript, and provides many research resources to explore its context.</p>
-                  </Grid>
-                  <Grid item id="video-grid" className="grid" xs={12}>
-                    <div className="video-iframe-wrapper">
-                      <iframe className="homepage-intro-video"
-                      title="Introduction Video"
-                      src={introVideoURL}
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      allowFullScreen>
-                      </iframe>
+                <div className='bg-maroon-gradient accent-bar'/>
+                <div className='hero flex-parent bg-light-cream-gradient-bt'>
+                    <div 
+                        className='flex-parent column hero-left'
+                        style={ isWidthUp('sm', this.props.width) 
+                            ? heroWidthStyle 
+                            : {
+                                ...heroWidthStyle,
+                                background: `linear-gradient(0deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url(${imagesBaseURL}/book-open-cropped.png)`,
+                                backgroundSize: 'cover',
+                            }
+                        }
+                    >
+                        <img className='mk-logo' src={`${imagesBaseURL}/mk-homepage-logo.png`} alt='Making and Knowing Secrets of Craft and Nature Logo'/>
+                        <div className='hero-text'>
+                            <p className='subtext'>Ms. Fr. 640 is a unique manuscript composed in 1580s Toulouse. It offers firsthand insight into making and materials from a time when artists were scientists.</p>
+                        </div>
+                        <div className='flex-parent jc-space-around'>
+                            <a className='cta-link with-icon video-link' onClick={this.onVideoDialogOpen}>Watch Video</a>
+                            <a className='cta-link with-icon' href='#/content/about'>Learn More</a>
+                        </div>
                     </div>
-                  </Grid>
-                </Grid>
+                    {isWidthUp('sm', this.props.width) &&
+                        <div style={{width: '50%', ...bookBackgroundStyle}}/>
+                    }
+                </div>
+                <div className='about-panel column flex-parent bg-dark-cream-gradient-bt'>
+                    <div className='flex-parent'>
 
-              {/* Middle column */}
-                <Grid container item className="column" sm={4} xs={12}>
-                  <Grid item xs={12} className="grid top">
-                    { this.renderGridCard('Read',`${imagesBaseURL}/homepage-read.png`, '/folios')}
-                  </Grid>
-                  <Grid item xs={12} className="grid">
-                    { this.renderGridCard('Study',`${imagesBaseURL}/homepage-study.jpg`, '/essays')}
-                  </Grid>
-                </Grid>
-
-              {/* Right column */}
-                <Grid container item className="column" sm={4} xs={12}>
-                  <Grid item xs={12} className="grid top">
-                    { this.renderGridCard('Explore',`${imagesBaseURL}/homepage-explore.png`, '/content/resources/overview')}
-                  </Grid>
-                  <Grid item xs={12} className="grid">
-                    { this.renderGridCard('About',`${imagesBaseURL}/lizard.png`, '/content/about/overview')}
-                  </Grid>
-                </Grid>
-              </Grid>
-
-              {/* Bottom row */}
-                <div className="responsive-row">
-                  <p>For tips, please see <a href="#/content/how-to-use">How to Use</a>. <br/>Cliquez ici pour la <a href="#/content/how-to-use-fr">version française</a>.</p>
-                  <p>Check back over the coming months as we add new content and features that are <a href="#/content/resources/coming-soon">coming soon</a>.</p>
+                        <div className='about-left jc-center flex-parent'>
+                            <img className='about-image spine' src={`${imagesBaseURL}/book-spine.png`} alt='manuscript spine'/>
+                            <img className='about-image cover' src={`${imagesBaseURL}/bookcover-cropped.png`} alt='manuscript cover'/>
+                        </div>
+                        <div className='about-right flex-parent column jc-center '>
+                            <h3 className='title'>Created by the Making and Knowing Project</h3>
+                            <p>
+                                <strong>
+                                    Secrets of Craft and Nature in Renaissance France,{' '}
+                                </strong>
+                                offers a transcription and a translation of the manuscript, and provides many research resources to explore its context.
+                            </p>
+                            {isWidthUp('sm', this.props.width) &&
+                                <div className='flex-parent links-container full-width'>
+                                    <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
+                                    <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    {!isWidthUp('sm', this.props.width) &&
+                        <div className='flex-parent links-container full-width'>
+                            <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
+                            <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
+                        </div>
+                    }
+                </div>
+                <div className='featured-essays-panel flex-parent column bg-light-cream-gradient-tb'>
+                    <h2 className='title'>Featured Essays</h2>
+                    {annotationsArray.length &&
+                        <div className='flex-parent wrap essay-card-container'>
+                            {featuredEssayIds.map(annoId => {
+                                const anno = annotationsArray.find(a => a.id === annoId);
+                                return <AnnotationCard annotation={anno} key={`featured-anno-${anno.id}`} history={this.props.history} />
+                            })}
+                        </div>
+                    }
+                    <div className='flex-parent jc-center'>
+                        <Button 
+                            variant='contained' 
+                            color='primary' 
+                            className='cta-button'
+                            href='/#/essays'
+                        >
+                            VIEW ALL ESSAYS
+                        </Button>
+                    </div>
                 </div>
 
-              {/* Only displays in mobile */}
-                <div id="video-div" className="video-iframe-wrapper">
-                  <iframe className="homepage-intro-video"
-                  title="Introduction Video"
-                  src={introVideoURL}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen>
-                  </iframe>
-                </div>
-
+                <Dialog 
+                    onClose={() => this.setState({isVideoDialogOpen: false})} 
+                    open={this.state.isVideoDialogOpen}
+                    fullWidth
+                    maxWidth='lg'
+                    PaperProps={{
+                        style: {
+                            backgroundColor: 'transparent',
+                            boxShadow: 'none',
+                        },
+                    }}
+                >
+                    <Fab
+                        size='small'
+                        style={{alignSelf: 'flex-end'}}
+                        onClick={() => this.setState({isVideoDialogOpen: false})}
+                    >
+                        <i className='fas fa-times'></i>
+                    </Fab>
+                    <iframe 
+                        className='videoEmbed' 
+                        src='https://player.vimeo.com/video/389763699' 
+                        frameBorder='0' 
+                        allowFullScreen
+                        autoPlay
+                        width={'100%'}
+                        height={'600'}
+                    />
+                </Dialog>
             </div>
-          </React.Fragment>
         )
     }
 
     render() {
         const {contentID} = this.props
         const {contents} = this.props.contents
-
-        if( contentID === 'index') {
+        if( contentID === 'index' ) {
             return this.renderHomePage()
         }
 
@@ -154,23 +222,28 @@ class ContentView extends Component {
 
         if( !content ) {
             return (
-                <div id="content-view">
-                    <div className="loading" >
-                        <img alt="Loading, please wait." src="/img/spinner.gif"></img>
+                <div id='content-view'>
+                    <div className='loading' >
+                        <img alt='Loading, please wait.' src='/img/spinner.gif'></img>
                     </div>
                 </div>
             )
         } else if( content === 404 ) {
             return (
-                <div id="content-view">
+                <div id='content-view'>
                     <h1>Content Not Found</h1>
                     <p>Unable to load content for route: <b>/content/{contentID}</b></p>
                 </div>
             )
         } else {
             return (
-                <div id="content-view">
-                    {Parser(content,this.htmlToReactParserOptions())}
+                <div id='content-view' >
+                    <ContentPage
+                        menuNode={this.props.contents.menuStructure.find(n => n.content_id === contentID)}
+                        contentId={this.props.contentID}
+                    >
+                        {Parser(content,this.htmlToReactParserOptions())}
+                    </ContentPage>
                 </div>
             )
         }
@@ -180,8 +253,9 @@ class ContentView extends Component {
 
 function mapStateToProps(state) {
     return {
-        contents: state.contents
+        contents: state.contents,
+        annotations: state.annotations
     };
 }
 
-export default connect(mapStateToProps)(ContentView);
+export default withWidth() (connect(mapStateToProps)(ContentView));

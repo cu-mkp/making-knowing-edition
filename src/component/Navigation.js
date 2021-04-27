@@ -159,6 +159,7 @@ class Navigation extends React.Component {
                         ((this.props.documentView[this.props.side].width<500)? {display:'none'} : {display:'flex'}) :
                         {}
                   let selectColorStyle = this.props.documentView[this.props.side].transcriptionType === "f" ? {color: 'white'}:{color:'black'};
+                  let selectClass = this.props.documentView[this.props.side].transcriptionType === "f" ? 'dark' : 'light';
                   let showButtonsStyle = this.props.documentView[this.props.side].transcriptionType === "glossary" ? {visibility:'hidden'} : {visibility:'visible'}
                   let lockIconClass = (this.props.documentView.linkedMode)?'fa fa-lock':'fa fa-lock-open';
                   if(!this.props.documentView.bookMode){
@@ -224,7 +225,7 @@ class Navigation extends React.Component {
 
 
                                     <div id="doc-type-help" style={selectContainerStyle} ref={e=>{this.helpRef = e}}>
-                                          <Select className="dropdownV2" style={selectColorStyle} 
+                                          <Select className={selectClass} style={{...selectColorStyle, marginRight: 15}} 
                                                 value={this.props.documentView[this.props.side].transcriptionType} id="doc-type" onClick={this.changeType}>
                                                 <MenuItem value="tl">{DocumentHelper.transcriptionTypeLabels['tl']}</MenuItem>
                                                 <MenuItem value="tc">{DocumentHelper.transcriptionTypeLabels['tc']}</MenuItem>

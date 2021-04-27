@@ -6,7 +6,6 @@
 }
 
 .split-pane-view > .divider {
-	z-index:$z-index-ui;
     grid-area: divider;
     width: 1rem;
     background: #BBB;
@@ -26,4 +25,10 @@
 
 .split-pane-view > .divider > .hidden {
   display: none;
+}
+
+.split-pane-view {
+  #annotation-view{
+    font-size: 16px;
+  }
 }

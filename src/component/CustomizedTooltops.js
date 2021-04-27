@@ -52,7 +52,7 @@ function arrowGenerator(color) {
 
 const styles = theme => ({
     button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(),
     },
     lightTooltip: {
     backgroundColor: theme.palette.common.white,

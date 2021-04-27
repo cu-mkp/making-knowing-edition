@@ -1,6 +1,9 @@
 .navigationComponent {
+      #tool-bar-buttons{
+            font-size: 15px;
+      }
       position: fixed;
-      z-index:800;
+      z-index: 2;
       height:48px;
 	white-space: nowrap;
 	-webkit-user-select: none;
@@ -8,14 +11,17 @@
 	-ms-user-select: none;
       user-select: none;
       padding:4px;
-      top: 135px;
+      top: 75px;
       background-color: white;
       border-radius: 0.3rem;
       @include sm {
-            top: 165px;
+            top: 80px;
       }
       @include md {
             top: initial;
+      }
+      button{
+            cursor: pointer;
       }
 }
 
@@ -46,7 +52,7 @@
       border-radius: 0.3rem;
       opacity: 0.8;
       @include md {
-            background-color: rgba(0,0,0,1);
+            background-color: $dark-maroon;
             color: #ffffff;
             border-radius: 0;
             opacity: 1;
@@ -60,6 +66,13 @@
 
 #doc-type-help:after {
       color: red;
+}
+#doc-type-help{
+      .dark{
+            .MuiSvgIcon-root.MuiSelect-icon{
+                  color: white;
+            }
+      }
 }
 
 .breadcrumbs {
@@ -105,9 +118,8 @@
 
 
 .searchHelpContainer {
-      padding:5px;
+      padding: 10px 15px 10px 0;
       width:335px;
-      height:250px;
 }
 
 .helpHeader{

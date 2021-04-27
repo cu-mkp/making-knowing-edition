@@ -44,7 +44,7 @@ class JumpToFolio extends React.Component {
 	render() {
 		let divStyle = {
 	  		position:'fixed',
-			zIndex:9000,
+			zIndex: 1,
 			top:this.props.positionY,
 			left:this.props.positionX,
 			display:this.props.isVisible?'inline':'none'

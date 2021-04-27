@@ -1,15 +1,16 @@
-import React from 'react'
-import {connect} from 'react-redux';
-import { Link, withRouter } from 'react-router-dom'
-import { Menu, MenuItem } from '@material-ui/core'
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-import MobileMenu from './MobileMenu'
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+
 
 class MainMenu extends React.Component {
 
     constructor(props,context) {
         super(props,context);
-
         this.state = {
             activeMenuEl: null,
             activeMenu: null
@@ -34,7 +35,7 @@ class MainMenu extends React.Component {
     renderTopNav() {
         const {menuStructure} = this.props.contents
         const topNavItems = [], subMenus = []
-
+        const currentRoute = window.location.hash.replace('#', '');
         let i = 0
         for( const topNavItem of menuStructure ) {
             const itemKey = `top-nav-item-${i++}`
@@ -45,20 +46,58 @@ class MainMenu extends React.Component {
             if( topNavItem.menuItems ) {
                 topNavItems.push( <span key={itemKey} onClick={activateMenu} >{topNavItem.label}</span> )
                 subMenus.push( this.renderSubMenu(topNavItem.menuItems, itemKey) )
-            } else {
-                topNavItems.push( <span key={itemKey} onClick={()=>{this.navTo(topNavItem.route)}}>{topNavItem.label}</span> )
+            } else if(topNavItem.label) {
+                const activeClass = currentRoute === topNavItem.route ? 'active' : ''
+                topNavItems.push( 
+                <a 
+                    className={`cta-link nav-item ${activeClass}`} 
+                    key={itemKey} 
+                    onClick={()=>{this.navTo(topNavItem.route)}}
+                >
+                    {topNavItem.label}
+                </a> 
+                )
             }
         }
         if (isWidthUp('md', this.props.width)){
+            const searchNavItem = <a 
+                key='search-button'
+                className='cta-link nav-item search-link' 
+                onClick={this.props.onToggleSearch}
+            >
+                Search 
+            </a>;
+
             return (
-                <div className="expandedViewOnly">
-                    {topNavItems}
+                <div className="expandedViewOnly flex-parent jc-space-btw ai-end row-reverse">
+                    {[...topNavItems, searchNavItem].reverse()}
                     {subMenus}
+                    <Link to='/' className='home-link' >
+                        <img className="" alt="Project Logo" src="/img/mk-banner-logo.png"></img>
+                    </Link>
                 </div>
             )
         } else {
             return (
-                <MobileMenu menuStructure={menuStructure} history={this.props.history}/>
+                <>
+                    <Link to='/' onClick={this.props.isMobileMenuOpen ? this.props.onToggleMobileMenu : null} className='home-link' >
+                        <img className="" alt="Project Logo" src="/img/mk-banner-logo.png"></img>
+                    </Link>
+                    <div className='flex-parent'>
+                        <IconButton 
+                            style={{width: 54, height: 54, color: 'black'}}
+                            onClick={this.props.onToggleMobileMenu}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <IconButton 
+                            style={{width: 54, height: 54, color: 'black'}}
+                            onClick={this.props.onToggleSearch}
+                        >
+                            <SearchIcon />
+                        </IconButton>
+                    </div>
+                </>
             )
         }
     }

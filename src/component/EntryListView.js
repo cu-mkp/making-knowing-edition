@@ -26,7 +26,7 @@ class EntryListView extends Component {
       }
 
       componentWillMount() {
-            dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', false );
+            dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
       }
 
       renderAnnotationList( entry ) {
@@ -168,7 +168,7 @@ class EntryListView extends Component {
                         tagid={tag.id}
                         key={`chip-${tag.id}`}
                         color= { filterTags.includes(tag.id) ? "primary" : "default"}
-                        avatar={ tag.count > 0 ? <Avatar>{tag.count}</Avatar> : null }
+                        avatar={ tag.count > 0 ? <Avatar style={filterTags.includes(tag.id) ? {backgroundColor: '#792421'} : {backgroundColor: '#EBE3DD'}} >{tag.count}</Avatar> : null }
                         onClick={this.onClick}
                         variant="outlined"
                         label={tag.name}
@@ -195,7 +195,7 @@ class EntryListView extends Component {
                               filtertype={filterType}
                               tagid={term.id}
                               key={`chip-${term.id}`}
-                              color= { filterList.includes(term.id) ? "primary" : "default"}
+                              color= { filterList.includes(term.id) ? "primary" : "secondary"}
                               avatar={ term.count > 0 ? <Avatar>{term.count}</Avatar> : null }
                               onClick={this.onClickNavigationChip}
                               label={term.name}

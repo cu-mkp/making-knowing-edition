@@ -1,151 +1,25 @@
 #annotation-list-view {
+    .section-title{
+        font-size: 22px;
+        font-weight: 400;
+    }
+    .annothumb {
+    margin-top: 20px;
+    margin-left: 20px;
+    max-width: 225px;
+    min-width: 225px;
 
-    margin: 10px;
+        .thumb-media {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
 
-    .titlebar {
-        margin-top: 90px;
-        position: relative;;
-        h4 {
-            padding: 16px;
-            width: 60%;
-            font-size: 1rem;
-            @include sm {
-                font-size: 1.2rem;
-                width: 70%;
-
-            }
-            @include md {
+            .title {
+                background: $maroon;
                 width: 100%;
-                font-size: 2rem;
-            }
-            @include lg {
-                font-size: 2.125rem;
-            }
+                padding: 8px;
+                color: white
+            }                
         }
-
-        .list-mode-buttons {
-            margin: 3px;
-            @include md {
-                margin: 10px;
-            }
-            position: absolute;
-            right: 20px;
-            top: 0;
-
-            span {
-                color: black;
-            }
-        }    
-    }
-    
-    .seperator {
-        display: inline;
-        border: 2px solid grey;
-        margin: 6px;
-    }
-
-    .contentArea {
-        display: flex;
-
-        h6 {
-            padding: 10px;
-        }
-        i{
-            u {
-                font-style: normal;
-            }
-        }
-
-        .tocbar {
-            min-width: 250px;
-            
-            .category {
-                margin-top: 20px;
-                padding: 5px;
-            }
-
-            .active-section p {
-                color: white;
-                background: black;   
-                width: 100%;
-            }
-        }
-
-        .sections {
-            overflow-y: scroll;
-            height: calc( 100vh - 165px);
-            @include sm {
-                height: calc( 100vh - 196px);
-            }
-            @include md {
-                height: calc( 100vh - 215px);
-            }
-            @include lg {
-                height: calc( 100vh - 280px);
-            }
-
-            .section {
-                
-                .section-header {
-                    .title {
-                        padding: 5px;
-                        color: white;
-                        background: black;    
-                    }
-                    width: 100%;
-                }
-        
-                .annotations {
-                    display: flex;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    background:#eee;
-                    padding-right: 20px;        
-                    padding-bottom: 20px;
-                    @include md {
-                        justify-content: flex-start;
-                    }
-
-                    .anno {                        
-                        margin-top: 20px;
-                        margin-left: 20px;
-                        width: 350px;
-
-                        .status-indicator {
-                            color: red;
-                        }
-                
-                        .entries {
-                            float: right;
-                        }
-                        
-                        .details {
-                            margin-bottom: 10px;
-                            float: right;
-                        }
-                    }       
-                    
-                    .annothumb {
-                        margin-top: 20px;
-                        margin-left: 20px;
-                        max-width: 225px;
-                        min-width: 225px;
-        
-                        .thumb-media {
-                            height: 200px;
-                            display: flex;
-                            align-items: flex-end;
-            
-                            .title {
-                                background: grey;
-                                width: 100%;
-                                padding: 8px;
-                                color: white
-                            }                
-                        }
-                    }        
-                }
-            }
-        }
-    }
+    }        
 }

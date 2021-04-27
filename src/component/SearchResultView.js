@@ -186,11 +186,23 @@ class SearchResultView extends Component {
 
 	renderSearchFilters(results) {
 		return (
-			<div className="searchFilters">
-				<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/><span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
-				<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/><span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
-				<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/><span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
-				<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/><span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
+			<div className="searchFilters flex-parent wrap">
+				<div>
+					<input checked={!(this.state.typeHidden['tl'])} type="checkbox" data-id='tl' onChange={this.handleCheck}/>
+					<span>{DocumentHelper.transcriptionTypeLabels['tl']} ({results["tl"].length})</span>
+				</div>
+				<div>
+					<input checked={!(this.state.typeHidden['tc'])} type="checkbox" data-id='tc'onChange={this.handleCheck}/>
+					<span data-id='tc'>{DocumentHelper.transcriptionTypeLabels['tc']} ({results["tc"].length})</span>
+				</div>
+				<div>
+					<input checked={!(this.state.typeHidden['tcn'])} type="checkbox" data-id='tcn' onChange={this.handleCheck}/>
+					<span data-id='tcn'>{DocumentHelper.transcriptionTypeLabels['tcn']} ({results["tcn"].length})</span>
+				</div>
+				<div>
+					<input checked={!(this.state.typeHidden['anno'])} type="checkbox" data-id='anno' onChange={this.handleCheck}/>
+					<span data-id='anno'>{DocumentHelper.transcriptionTypeLabels['anno']} ({results["anno"].length})</span>
+				</div>
 			</div>
 		)
 	}
@@ -219,16 +231,16 @@ class SearchResultView extends Component {
 		return (
 			<div className="searchResultsComponent" >
 				<div className="navigation" style={{paddingTop: 8}} ref={e=>{this.helpRef = e}}>
-					<div style={{display: 'inline' }}onClick={this.exitSearch}><span className="fa fa-th"></span> exit search</div>
-					<span style={{ float: 'right' }} title="Toggle folio help" onClick={this.toggleHelp}  >
+					<div style={{display: 'inline', fontFamily: 'Lato, san-serif', cursor: 'pointer' }}onClick={this.exitSearch}><span className="fa fa-th"></span> Exit Search</div>
+					<span style={{ float: 'right', cursor: 'pointer' }} title="Toggle folio help" onClick={this.toggleHelp}  >
 						<i className="fas fa-lg fa-question-circle"></i>
 					</span> 
 					<SearchHelpPopper anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
 				</div>
 				<form onSubmit={this.handleSubmit} id="searchView" action="/" method="post">
 					<div className="searchBox">
-						<div className="searchField">
-							<input name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/>
+						<div className="searchField flex-parent">
+							<input style={{marginRight: 10}} name="searchTerm"  key={results.searchQuery} className="textField" defaultValue={results.searchQuery}/>
 							<Button type="submit" variant="contained"><span className="fa fa-search"></span></Button>
 						</div>
 					</div>

@@ -1,126 +1,93 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import { Paper, Typography, IconButton } from '@material-ui/core';
+import { Paper, Typography, IconButton, Divider, Button, Popover, Tooltip } from '@material-ui/core';
 import { Icon } from "react-font-awesome-5";
 import { Link } from 'react-scroll';
 import { dispatchAction } from '../../model/ReduxStore';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-
+import CardViewIcon from '@material-ui/icons/ViewModule';
+import ThumbViewIcon from '@material-ui/icons/ViewComfy';
 import AnnotationCard from './AnnotationCard';
 import AnnotationThumb from './AnnotationThumb';
+import ContentPage from '../ContentPage';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-class AnnotationListView extends Component {
+const AnnotationListView = props => {
 
-    constructor(props) {
-        super(props)
+    const [listMode, setListMode] = useState(isWidthUp('md', props.width) ? 'cards' : 'thumbs')
 
-        this.state = {
-            listMode: (isWidthUp('md', this.props.width)) ? 'cards' : 'thumbs'
-        }
-    }
+    useEffect(()=>{
+        dispatchAction( props, 'DiplomaticActions.setFixedFrameMode', false )
+    },[])
 
-    componentWillMount() {
-        dispatchAction( this.props, 'DiplomaticActions.setFixedFrameMode', true );
-    }
+    const handleToggleListMode = (e, value) => {
+        if(value) setListMode(value);
+    };
 
-    renderTableOfContents(sectionList) {
-        
-        const sectionHeadings = []
-        for( let section of sectionList ) {
-            sectionHeadings.push( 
-                <Link key={`link-to-${section.id}`} to={section.id} activeClass="active-section" spy={true} containerId="sections-area" smooth="true" offset={-175}>
-                    <Typography key={`nav-${section.id}`}  className="category" >
-                        {section.name}              
-                    </Typography> 
-                </Link>      
-            )
-        }
+    const {annotationSections} = props.annotations;
+    const annotationCount = Object.keys(props.annotations.annotations).length;
 
-        return (
-            <Paper className="tocbar">
-                <Typography variant='h6' gutterBottom>Research Essay Themes</Typography>
-                <div>
-                    { sectionHeadings }
-                </div>
-            </Paper>
-        );
-    }
-
-    onDisplayCards = () => {
-        this.setState( { ...this.state, listMode: 'cards' } )
-    }
-
-    onDisplayThumbs = () => {
-        this.setState( { ...this.state, listMode: 'thumbs' } )
-    }
-
-    renderSection(section) {
-        let annoComponents = []
-        for( let annotation of section.annotations ) {
-            if( this.state.listMode === 'cards' ) {
-                annoComponents.push(<AnnotationCard history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationCard>);            
+    if( !props.annotations.loaded ) return null;
+	return(
+        <ContentPage
+            menuNode={{
+                page_heading: <h1 className='page-heading'>Research Essays for BnF Ms. Fr. 640 <span>({annotationCount})</span></h1>, 
+                header_graphic_filename: 'banner-essays.png',
+                sections: annotationSections.map(s => ({title: s.name, id: s.id}))
+            }}
+            actionComponent={
+                <ToggleButtonGroup
+                    value={listMode}
+                    exclusive
+                    onChange={handleToggleListMode}
+                    size='small'
+                    style={{marginTop: 20}}
+                >
+                        <ToggleButton value='cards' >
+                            <Tooltip title='Card View' >
+                            <CardViewIcon className='view-icon' fontSize='large'/>
+                            </Tooltip>
+                        </ToggleButton>
+                        <ToggleButton value='thumbs' >
+                            <Tooltip title='Thumbnail View' >
+                            <ThumbViewIcon className='view-icon' fontSize='large' />
+                            </Tooltip>
+                        </ToggleButton>
+                </ToggleButtonGroup>
             }
-            else {
-                annoComponents.push(<AnnotationThumb history={this.props.history} key={`anno-${annotation.id}`} annotation={annotation}></AnnotationThumb>)
-            }     
-        }
+        >
+            <div id='annotation-list-view'>
+                {annotationSections.map(s => {
+                    return(
+                        <div key={`section-${s.id}`}>
+                            <h3 className='section-title' id={s.id}>{s.name}</h3>
+                            <Divider style={{marginBottom: 20, marginTop: 5}}/>
+                            <div className='flex-parent wrap jc-space-around' >
+                                {s.annotations.map(a => {
+                                    return(
+                                        listMode === 'cards' ?
+                                        <AnnotationCard 
+                                            history={props.history} 
+                                            key={`anno-${a.id}`} 
+                                            annotation={a}
+                                        /> :
+                                        <AnnotationThumb 
+                                            history={props.history} 
+                                            key={`anno-${a.id}`} 
+                                            annotation={a}>
+                                        </AnnotationThumb>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    )
+                })
 
-        return (
-            <div id={section.id} key={section.id} className="section">
-                <div className="section-header">
-                    <Typography className="title">{section.name}</Typography>
-                </div>
-                <div className="annotations">
-                    { annoComponents }
-                </div>
-            </div> 
-        )
-    }
-
-    renderSections(sectionList) {
-        let sectionComponents = []
-        for( let section of sectionList ) {
-            const sectionComponent = this.renderSection(section)
-            sectionComponents.push(sectionComponent)
-        }
-        return (
-            <div id="sections-area" className="sections">
-                { sectionComponents }
+                }
             </div>
-        )
-    }
-
-	render() {
-        if( !this.props.annotations.loaded ) return null;
-
-        const {annotationSections} = this.props.annotations
-        const annotationCount = Object.keys(this.props.annotations.annotations).length
-        let tableOfContentsEl;
-        let sectionsEl;
-        if (isWidthUp('md', this.props.width)){
-            tableOfContentsEl = this.renderTableOfContents(annotationSections);
-            sectionsEl = this.renderSections(annotationSections)
-        } else {
-            tableOfContentsEl = null;
-            sectionsEl = this.renderSections(annotationSections)
-        }
-        return (
-            <div id="annotation-list-view">
-                <Paper className="titlebar">
-                    <div className="list-mode-buttons">
-                        <IconButton onClick={this.onDisplayCards}><span title="Display Cards" ><Icon.ThLarge /></span></IconButton>   
-                        <div className="seperator"></div>
-                        <IconButton onClick={this.onDisplayThumbs}><span title="Display Thumbnails" ><Icon.Th /></span></IconButton>   
-                    </div>
-                    <Typography variant='h4' gutterBottom>Research Essays for BnF Ms. Fr. 640 ({annotationCount})</Typography>
-                </Paper>
-                <div className="contentArea">
-                    { tableOfContentsEl }
-                    { sectionsEl }
-                </div>
-            </div>
-        );
-	}
+        </ContentPage>
+    )
 }
 
 function mapStateToProps(state) {
