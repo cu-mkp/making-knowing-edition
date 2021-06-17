@@ -52,7 +52,7 @@
       border-radius: 0.3rem;
       opacity: 0.8;
       @include md {
-            background-color: $dark-maroon;
+            background-color: rgba(0,0,0,1);
             color: #ffffff;
             border-radius: 0;
             opacity: 1;
@@ -65,7 +65,7 @@
 }
 
 #doc-type-help:after {
-      color: red;
+      color: rgb(151, 142, 142);
 }
 #doc-type-help{
       .dark{

@@ -17,7 +17,7 @@ const ContentPage = props => {
     }, [isMobileView])
 
     return (
-        <div className='content-page'>
+        <div id='content-page'>
 
                 {/* MOBILE VIEW SIDE NAV */}
                 <Slide in={mobileNavOpen && isMobileView} direction='right' >

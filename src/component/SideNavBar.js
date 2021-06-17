@@ -9,11 +9,11 @@ const SideNavBar = (props) => {
 
     return (
         <div
-            className='navbar' style={scrollTrigger ? {position: 'sticky'} : {}}
+            id='navbar' style={scrollTrigger ? {position: 'sticky'} : {}}
         >
             {sections.map((s, i) => {
                 return(
-                    <div key={`section-${s.id}`}>
+                    <div key={`section-${s.id}`} className='sections-container'>
                         <Link 
                             to={s.id}
                             onClick={toggleMobileNav ? toggleMobileNav : null}

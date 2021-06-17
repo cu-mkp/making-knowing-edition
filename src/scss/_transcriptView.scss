@@ -3,8 +3,6 @@
 	overflow: scroll;
     height:calc(100vh - 7rem);
 	.transcriptContent {
-		font-size: 16px;
-		font-family: 'Martel', serif;
 		padding: 50px 16px;
 		@include md {
 			padding: 5px 16px;

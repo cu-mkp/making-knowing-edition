@@ -101,7 +101,7 @@ class ContentView extends Component {
         return (
             <div id="content-view">
                 <div className='bg-maroon-gradient accent-bar'/>
-                <div className='hero flex-parent bg-light-cream-gradient-bt'>
+                <div id='hero' className='flex-parent bg-light-cream-gradient-bt'>
                     <div 
                         className='flex-parent column hero-left'
                         style={ isWidthUp('sm', this.props.width) 
@@ -126,7 +126,7 @@ class ContentView extends Component {
                         <div style={{width: '50%', ...bookBackgroundStyle}}/>
                     }
                 </div>
-                <div className='about-panel column flex-parent bg-dark-cream-gradient-bt'>
+                <div id='about-panel' className='column flex-parent bg-dark-cream-gradient-bt'>
                     <div className='flex-parent'>
 
                         <div className='about-left jc-center flex-parent'>
@@ -156,10 +156,10 @@ class ContentView extends Component {
                         </div>
                     }
                 </div>
-                <div className='featured-essays-panel flex-parent column bg-light-cream-gradient-tb'>
+                <div id='featured-essays-panel' className='flex-parent column bg-light-cream-gradient-tb'>
                     <h2 className='title'>Featured Essays</h2>
                     {annotationsArray.length &&
-                        <div className='flex-parent wrap essay-card-container'>
+                        <div id='essay-card-container' className='flex-parent wrap'>
                             {featuredEssayIds.map(annoId => {
                                 const anno = annotationsArray.find(a => a.id === annoId);
                                 return <AnnotationCard annotation={anno} key={`featured-anno-${anno.id}`} history={this.props.history} />

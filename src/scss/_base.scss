@@ -20,6 +20,7 @@ $grey: #858585;
 div{
 	width: auto;
 }
+
 body {
 	padding: 0;
 	margin: 0;
@@ -52,66 +53,6 @@ body {
 .fa.fa-lock,
 .fa.fa-lock-open {
 	border-radius: 2rem 0 0 2rem;
-}
-
-h1,
-h2,
-h3,
-h4 {
-	font-family: 'Lato', sans-serif;
-	color: black;
-	padding: 0;
-	margin: 0;
-}
-
-h1{
-	font-family: 'Taviraj', serif;
-	font-size: 32px;
-}
-
-h2,h3{
-	font-weight: 700;
-}
-
-h2{
-	font-size: 22px;
-}
-
-h3{
-	font-size: 18px;
-}
-
-h4{
-	font-size: 18px;
-	font-weight: 700;
-}
-
-p {
-	font-family: "Martel", serif;
-	line-height: 1.25;
-	margin: 0;
-}
-span {
-	font-family: "Martel", serif;
-	line-height: 1.25;
-	margin: 0;
-}
-
-a.MuiButton-containedPrimary.cta-button {
-	padding: 10px 70px;
-	border-radius: 0;
-	span{
-		font-family: 'Lato', sans-serif;
-		font-size: 20px;	
-	}
-}
-
-a{
-	font-family: 'Lato', sans-serif;
-	color: $maroon;
-	&:hover{
-		color: $dark-cream;
-	}
 }
 
 .flex-parent { 
@@ -200,7 +141,16 @@ a{
 		height: auto;
     }
 }
-  
+
+a:hover {
+	text-decoration: underline;
+}
+
+a {
+	color: red;
+	text-decoration: none;
+}
+
 @include keyframes(slide-down) {
 	0% { 
 		height: 2px;
@@ -209,95 +159,5 @@ a{
 	100% { 
 		height: 6px;
 		bottom: -9px;
-	}
-}
-
-.cta-link.MuiLink-underlineHover:hover{
-	text-decoration: none;
-}
-a.cta-link {
-	color: black;
-	text-align: center;
-	width: fit-content;
-	text-decoration: none;
-	font-size: 16px;
-	font-weight: 700;
-	position: relative;
-	cursor: pointer;
-	margin-bottom: 5px;
-	@include md {
-		font-size: 18px;
-	}
-	&.with-icon{
-		&:after{
-			font-family: "Font Awesome 5 Free"; 
-			margin-left: 7px;
-			font-weight: 600;
-			content: "\f054";
-			font-size: 15px;
-		}
-	}
-	&:before{
-		position: absolute;
-		content: "";
-		height: 2px;
-		background-color: black;
-		width: 50%;
-		right: 30%;
-		bottom: -5px;
-		border-radius: 2px;
-	}
-	&:hover{
-		&:before{
-			background-color: $maroon;
-			text-decoration: none;
-			height: 6px;
-			bottom: -9px;
-			@include animation('slide-down .2s');
-		}
-		&:after{
-			color: $maroon;
-		}
-	}
-}
-
-a.cta-link.active{
-	&:before{
-		background-color: $maroon;
-		text-decoration: none;
-		height: 6px;
-		bottom: -9px;
-		@include animation('slide-down .2s');
-	}
-	&:after{
-		color: $maroon;
-	}
-}
-
-a.cta-link.light{
-	color: #444444;
-	&:before{
-		background-color: #444444;
-	}
-	&:hover{
-		&:before{
-			background-color: $maroon;
-		}
-	}
-}
-
-a.cta-link.video-link{
-	&:after{
-		content: "\f04b";
-		font-size: 12px;
-		margin-bottom: -2px;
-	}
-}
-
-a.cta-link.search-link{
-	&:after{
-		font-family: 'Material Icons';
-		content: "search";
-		font-size: 16px;
 	}
 }

@@ -1,5 +1,5 @@
 #content-view {
-  .hero, .about-panel{
+  #hero, #about-panel{
     p{
       line-height: 26px;
       font-size: 16px;
@@ -13,7 +13,7 @@
       }
     }
   }
-  .hero{
+  #hero{
     width: 100%;
     .hero-text{
       text-align: center;
@@ -45,7 +45,7 @@
     }
   }
 
-  .about-panel{
+  #about-panel{
     padding: 45px 15px;
     @include sm{
       padding: 45px 75px;
@@ -107,12 +107,12 @@
     }
   }
 
-  .featured-essays-panel{
+  #featured-essays-panel{
     padding: 30px 20px 100px;
     @include sm{
       padding: 50px 160px 160px;
     }
-    .essay-card-container{
+    #essay-card-container{
       justify-content: center;
       @include md{
         justify-content: space-between;
