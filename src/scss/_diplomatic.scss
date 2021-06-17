@@ -246,6 +246,7 @@
 			font-size: 16px;
 			color: #FAFAFA;
 			line-height: 1.5;
+			margin: 0;
 		}
 		a{
 			&:hover{
@@ -253,13 +254,17 @@
 				fill: $dark-cream;
 			}
 		}
-		.copyright {
-			text-align: center;
-			margin-bottom: 30px;
+		.top{
 			p{
+				margin: 0 5px;
 				white-space: nowrap;
-				margin: 0 10px;
 			}
+			margin-bottom: 10px;
+		}
+		.doi{
+			text-align: center;
+		}
+		.copyright {
 			.symbols{
 				text-decoration: none;
 			}
@@ -268,8 +273,8 @@
 				height: 14px;
 			}
 		}
-		.logos {
-			margin-right: 1rem;
+		.logos{
+			margin-bottom: 10px;
 			img {
 				width: 150px;
 				@include sm {
@@ -277,11 +282,12 @@
 				}
 				@include sm {
 					width: 250px;
-				}
-				margin-bottom: 10px;
+				}	
 			}
-		}	
+		}
 		.footer-links {
+			width: 100%;
+			text-align: center;
 			font-size: 12px;
 			line-height: 2;
 		}

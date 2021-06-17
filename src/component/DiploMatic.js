@@ -233,33 +233,42 @@ class DiploMatic extends Component {
 
 	renderFooter(fixedFrameModeClass) {
 		return (
-			<div id="footer" className={fixedFrameModeClass}>
-				<div className="copyright flex-parent wrap jc-space-btw">
-					<div>
-					<p><a className='symbols' target="_blank" href='https://creativecommons.org/licenses/by-nc-sa/4.0/'><CcIcon/> <ByIcon/> <NcIcon/> <SaIcon/></a> Making and Knowing Project.</p>
-					<p>Licenced under <a target="_blank" href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a></p>
+			<div id="footer" className={fixedFrameModeClass} >
+				<div className='flex-parent wrap jc-space-around top' >
+					<div className="copyright">
+						<p>
+							<a className='symbols' target="_blank" href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>
+								<CcIcon/> <ByIcon/> <NcIcon/> <SaIcon/>
+							</a> 
+							{` `}Making and Knowing Project.
+						</p>
 					</div>
-					<p>DOI: <a target="_blank" href="https://doi.org/10.7916/78yt-2v41">https://doi.org/10.7916/78yt-2v41</a></p>
+					<p>Licensed under <a target="_blank" href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a></p>
 				</div>
-				<div className='flex-parent wrap jc-space-btw'>
-					<div className="logos">
-						<img style={{marginBottom: 14, marginRight: 10}} alt="Columbia Logo" src="img/logo_columbia.png"/>
-						<img alt="Center Logo" src="img/logo_center_multi_line.png"/>
-					</div>
-					<div className="footer-links">
-						<a target="_blank" rel="noopener noreferrer" href="https://cuit.columbia.edu/privacy-notice">
-							Privacy Notice
-						</a>
-						<span> | </span>
-						<a target="_blank" rel="noopener noreferrer" href="http://health.columbia.edu/disability-services">
-							Disability Services
-						</a>
-						<span> | </span>
-						<a target="_blank" rel="noopener noreferrer" href="http://eoaa.columbia.edu/columbia-university-non-discrimination-statement-and-policy">
-							Non-Discrimination
-						</a>
-					</div>
+				<div className='flex-parent wrap jc-space-around logos'>
+					<img style={{marginBottom: 14, marginRight: 10}} alt="Columbia Logo" src="img/logo_columbia.png"/>
+					<img alt="Center Logo" src="img/logo_center_multi_line.png"/>
 				</div>
+				<div className="footer-links">
+					<a target="_blank" rel="noopener noreferrer" href="https://cuit.columbia.edu/privacy-notice">
+						Privacy Notice
+					</a>
+					<span> | </span>
+					<a target="_blank" rel="noopener noreferrer" href="http://health.columbia.edu/disability-services">
+						Disability Services
+					</a>
+					<span> | </span>
+					<a target="_blank" rel="noopener noreferrer" href="http://eoaa.columbia.edu/columbia-university-non-discrimination-statement-and-policy">
+						Non-Discrimination
+					</a>
+				</div>
+				<p className='doi' >
+					DOI: 
+					<a target="_blank" href="https://doi.org/10.7916/78yt-2v41">
+						https://doi.org/10.7916/78yt-2v41
+					</a>
+				</p>
+
 			</div>
 		);
 	}
