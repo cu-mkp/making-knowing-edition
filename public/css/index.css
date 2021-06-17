@@ -99,17 +99,17 @@ body {
 .bg-maroon-gradient {
   background-image: linear-gradient(to right, #792421, #66211c, #531d17, #411912, #30140d); }
 
-.bg-light-cream-gradient-bt {
-  background-image: linear-gradient(to bottom, #E8DFD8, #F3EEEB, #FFFFFF); }
+.bg-dark-gradient-bt {
+  background-image: linear-gradient(to bottom, #f2e6d9, #e6e0c1, #e4d2a5); }
 
-.bg-light-cream-gradient-tb {
-  background-image: linear-gradient(to bottom, #FFFFFF, #F3EEEB, #E8DFD8); }
+.bg-dark-gradient-tb {
+  background-image: linear-gradient(to bottom, #e4d2a5, #e6e0c1, #f2e6d9); }
 
-.bg-dark-cream-gradient-bt {
-  background-image: linear-gradient(to bottom, #FFEBD6, #D6B794, #CBA374); }
+.bg-light-gradient-bt {
+  background-image: linear-gradient(to bottom, #fefcfb, #f0eddb, #ede2c4); }
 
-.bg-dark-cream-gradient-tb {
-  background-image: linear-gradient(to bottom, #CBA374, #D6B794, #FFEBD6); }
+.bg-light-gradient-tb {
+  background-image: linear-gradient(to bottom, #ede2c4, #f0eddb, #fefcfb); }
 
 .accent-bar {
   height: 10px;
@@ -960,6 +960,7 @@ figure.current {
       #diplomatic #content-page .page-header .heading-text {
         margin-left: 160px; } }
     #diplomatic #content-page .page-header .heading-text .page-heading {
+      font-weight: normal;
       font-size: 20px;
       text-align: center; }
       @media (min-width: 600px) {

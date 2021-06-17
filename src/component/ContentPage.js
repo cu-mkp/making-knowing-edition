@@ -21,7 +21,7 @@ const ContentPage = props => {
 
                 {/* MOBILE VIEW SIDE NAV */}
                 <Slide in={mobileNavOpen && isMobileView} direction='right' >
-                    <Paper elevation={3} className='bg-dark-cream-gradient-tb mobile-nav-container' >
+                    <Paper elevation={3} className='bg-yellow-tan-gradient-tb mobile-nav-container' >
                         <SideNavBar 
                             sections={sections} 
                             actionComponent={props.actionComponent}
@@ -32,7 +32,7 @@ const ContentPage = props => {
                 <div className='bg-maroon-gradient accent-bar' />
 
                 {/* PAGE HEADER */}
-                <Paper elevation={2} className='flex-parent jc-space-btw page-header bg-light-cream-gradient-bt'>
+                <Paper elevation={2} className='flex-parent jc-space-btw page-header bg-light-gradient-tb'>
                     <div className='heading-text flex-parent wrap column jc-center'>
                         {typeof page_heading === 'string' ?
                             <h1 className='page-heading'>
@@ -59,7 +59,7 @@ const ContentPage = props => {
                     {/* NON-MOBILE VIEW SIDE NAV */}
                     {!isMobileView &&
                         <>
-                            <div className='bg-dark-cream-gradient-tb nav-bg'/>
+                            <div className='bg-dark-gradient-bt nav-bg'/>
                             <div>
                                 <SideNavBar 
                                     sections={sections} 

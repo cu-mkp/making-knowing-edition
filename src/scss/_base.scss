@@ -109,18 +109,19 @@ body {
 .bg-maroon-gradient{
 	background-image: linear-gradient(to right, #792421, #66211c, #531d17, #411912, #30140d);
 }
-.bg-light-cream-gradient-bt{
-	background-image: linear-gradient(to bottom, #E8DFD8, #F3EEEB, #FFFFFF);
+.bg-dark-gradient-bt{
+	background-image: linear-gradient(to bottom, hsl(30, 50%, 90%), hsl(50, 43%, 83%), hsl(43, 54%, 77%));
 }
-.bg-light-cream-gradient-tb{
-	background-image: linear-gradient(to bottom, #FFFFFF, #F3EEEB, #E8DFD8);
+.bg-dark-gradient-tb{
+	background-image: linear-gradient(to bottom, hsl(43, 54%, 77%), hsl(50, 43%, 83%), hsl(30, 50%, 90%));
 }
-.bg-dark-cream-gradient-bt{
-	background-image: linear-gradient(to bottom, #FFEBD6, #D6B794, #CBA374);
+.bg-light-gradient-bt{
+	background-image: linear-gradient(to bottom, hsl(30, 50%, 99%), hsl(50, 43%, 90%), hsl(43, 54%, 85%));
 }
-.bg-dark-cream-gradient-tb{
-	background-image: linear-gradient(to bottom, #CBA374, #D6B794, #FFEBD6);
+.bg-light-gradient-tb{
+	background-image: linear-gradient(to bottom, hsl(43, 54%, 85%), hsl(50, 43%, 90%), hsl(30, 50%, 99%));
 }
+
 .accent-bar{
 	height: 10px;
 	width: 100%;
