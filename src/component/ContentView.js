@@ -126,7 +126,7 @@ class ContentView extends Component {
                         <div style={{width: '50%', ...bookBackgroundStyle}}/>
                     }
                 </div>
-                <div id='about-panel' className='column flex-parent bg-dark-gradient-bt'>
+                <div id='about-panel' className='column flex-parent text-bg-gradient-dark-bt'>
                     <div className='flex-parent'>
 
                         <div className='about-left jc-center flex-parent'>

@@ -111,6 +111,14 @@ body {
 .bg-light-gradient-tb {
   background-image: linear-gradient(to bottom, #ede2c4, #f0eddb, #fefcfb); }
 
+.text-bg-gradient-dark-bt {
+  background-image: linear-gradient(to bottom, rgba(242, 230, 217, 0.9), rgba(230, 224, 193, 0.9), rgba(228, 210, 165, 0.9)), url("../img/text-bg.png");
+  background-size: cover; }
+
+.text-bg-gradient-light-tb {
+  background-image: linear-gradient(to bottom, rgba(228, 210, 165, 0.9), rgba(230, 224, 193, 0.9), rgba(242, 230, 217, 0.9)), url("../img/text-bg.png");
+  background-size: cover; }
+
 .accent-bar {
   height: 10px;
   width: 100%; }
@@ -813,7 +821,9 @@ figure.current {
       font-size: 18px; } }
 
 #content-view #hero {
-  width: 100%; }
+  width: 100%;
+  position: relative;
+  box-shadow: 0 5px 7px -2px grey; }
   #content-view #hero .hero-text {
     text-align: center; }
   #content-view #hero .hero-left {
@@ -987,8 +997,7 @@ figure.current {
         color: #792421; }
   #diplomatic #content-page .page-header .image-container {
     width: 30%;
-    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75), black, black, black, black, black, black);
-    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75), black, black, black, black, black, black); }
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75), black, black, black, black, black, black); }
     #diplomatic #content-page .page-header .image-container img {
       height: 100%; }
 

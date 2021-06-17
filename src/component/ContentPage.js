@@ -32,7 +32,7 @@ const ContentPage = props => {
                 <div className='bg-maroon-gradient accent-bar' />
 
                 {/* PAGE HEADER */}
-                <Paper elevation={2} className='flex-parent jc-space-btw page-header bg-light-gradient-tb'>
+                <Paper elevation={2} className='flex-parent jc-space-btw page-header text-bg-gradient-light-tb'>
                     <div className='heading-text flex-parent wrap column jc-center'>
                         {typeof page_heading === 'string' ?
                             <h1 className='page-heading'>
