@@ -55,6 +55,16 @@ body {
 	border-radius: 2rem 0 0 2rem;
 }
 
+.line-clamp {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;  
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	&.two-lines{
+		-webkit-line-clamp: 2;
+	}
+  }
+
 .flex-parent { 
 	display:flex;
 	&.half-width{
@@ -161,7 +171,7 @@ a:hover {
 }
 
 a {
-	color: red;
+	color: $maroon;
 	text-decoration: none;
 }
 

@@ -41,6 +41,14 @@ body {
 .fa.fa-lock-open {
   border-radius: 2rem 0 0 2rem; }
 
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3; }
+  .line-clamp.two-lines {
+    -webkit-line-clamp: 2; }
+
 .flex-parent {
   display: flex; }
   .flex-parent.half-width {
@@ -138,7 +146,7 @@ a:hover {
   text-decoration: underline; }
 
 a {
-  color: red;
+  color: #792421;
   text-decoration: none; }
 
 @-webkit-keyframes slide-down {
@@ -666,7 +674,7 @@ figure.current {
 #featured-essays-panel #essay-card-container .annotation-card .anno-abstract, #annotation-list-view .annotation-card .anno-abstract {
   color: #858585;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   font-family: 'Taviraj', serif;
   color: #444444; }
 
@@ -1199,57 +1207,60 @@ figure.current {
 #diplomatic .header-wrapper h4, #diplomatic #entry-list-view h1,
 #diplomatic #entry-list-view h2,
 #diplomatic #entry-list-view h3,
-#diplomatic #entry-list-view h4 {
+#diplomatic #entry-list-view h4, #diplomatic #annotation-list-view h1,
+#diplomatic #annotation-list-view h2,
+#diplomatic #annotation-list-view h3,
+#diplomatic #annotation-list-view h4 {
   font-family: 'Lato', sans-serif;
   color: black;
   padding: 0;
   margin: 0; }
 
-#diplomatic #content-view h1, #diplomatic .header-wrapper h1, #diplomatic #entry-list-view h1 {
+#diplomatic #content-view h1, #diplomatic .header-wrapper h1, #diplomatic #entry-list-view h1, #diplomatic #annotation-list-view h1 {
   font-family: 'Taviraj', serif;
   font-size: 32px; }
 
-#diplomatic #content-view h2, #diplomatic #content-view h3, #diplomatic .header-wrapper h2, #diplomatic .header-wrapper h3, #diplomatic #entry-list-view h2, #diplomatic #entry-list-view h3 {
+#diplomatic #content-view h2, #diplomatic #content-view h3, #diplomatic .header-wrapper h2, #diplomatic .header-wrapper h3, #diplomatic #entry-list-view h2, #diplomatic #entry-list-view h3, #diplomatic #annotation-list-view h2, #diplomatic #annotation-list-view h3 {
   font-weight: 700; }
 
-#diplomatic #content-view h2, #diplomatic .header-wrapper h2, #diplomatic #entry-list-view h2 {
+#diplomatic #content-view h2, #diplomatic .header-wrapper h2, #diplomatic #entry-list-view h2, #diplomatic #annotation-list-view h2 {
   font-size: 22px; }
 
-#diplomatic #content-view h3, #diplomatic .header-wrapper h3, #diplomatic #entry-list-view h3 {
+#diplomatic #content-view h3, #diplomatic .header-wrapper h3, #diplomatic #entry-list-view h3, #diplomatic #annotation-list-view h3 {
   font-size: 18px; }
 
-#diplomatic #content-view h4, #diplomatic .header-wrapper h4, #diplomatic #entry-list-view h4 {
+#diplomatic #content-view h4, #diplomatic .header-wrapper h4, #diplomatic #entry-list-view h4, #diplomatic #annotation-list-view h4 {
   font-size: 18px;
   font-weight: 700; }
 
-#diplomatic #content-view p, #diplomatic .header-wrapper p, #diplomatic #entry-list-view p {
+#diplomatic #content-view p, #diplomatic .header-wrapper p, #diplomatic #entry-list-view p, #diplomatic #annotation-list-view p {
   font-family: "Martel", serif;
   line-height: 1.25;
   margin: 0; }
 
-#diplomatic #content-view span, #diplomatic .header-wrapper span, #diplomatic #entry-list-view span {
+#diplomatic #content-view span, #diplomatic .header-wrapper span, #diplomatic #entry-list-view span, #diplomatic #annotation-list-view span {
   font-family: "Martel", serif;
   line-height: 1.25;
   margin: 0; }
 
-#diplomatic #content-view a.MuiButton-containedPrimary.cta-button, #diplomatic .header-wrapper a.MuiButton-containedPrimary.cta-button, #diplomatic #entry-list-view a.MuiButton-containedPrimary.cta-button {
+#diplomatic #content-view a.MuiButton-containedPrimary.cta-button, #diplomatic .header-wrapper a.MuiButton-containedPrimary.cta-button, #diplomatic #entry-list-view a.MuiButton-containedPrimary.cta-button, #diplomatic #annotation-list-view a.MuiButton-containedPrimary.cta-button {
   color: white;
   padding: 10px 70px;
   border-radius: 0; }
-  #diplomatic #content-view a.MuiButton-containedPrimary.cta-button span, #diplomatic .header-wrapper a.MuiButton-containedPrimary.cta-button span, #diplomatic #entry-list-view a.MuiButton-containedPrimary.cta-button span {
+  #diplomatic #content-view a.MuiButton-containedPrimary.cta-button span, #diplomatic .header-wrapper a.MuiButton-containedPrimary.cta-button span, #diplomatic #entry-list-view a.MuiButton-containedPrimary.cta-button span, #diplomatic #annotation-list-view a.MuiButton-containedPrimary.cta-button span {
     font-family: 'Lato', sans-serif;
     font-size: 20px; }
 
-#diplomatic #content-view a, #diplomatic .header-wrapper a, #diplomatic #entry-list-view a {
+#diplomatic #content-view a, #diplomatic .header-wrapper a, #diplomatic #entry-list-view a, #diplomatic #annotation-list-view a {
   font-family: 'Lato', sans-serif;
   color: #792421; }
-  #diplomatic #content-view a:hover, #diplomatic .header-wrapper a:hover, #diplomatic #entry-list-view a:hover {
+  #diplomatic #content-view a:hover, #diplomatic .header-wrapper a:hover, #diplomatic #entry-list-view a:hover, #diplomatic #annotation-list-view a:hover {
     color: #CBA374; }
 
-#diplomatic #content-view .cta-link.MuiLink-underlineHover:hover, #diplomatic .header-wrapper .cta-link.MuiLink-underlineHover:hover, #diplomatic #entry-list-view .cta-link.MuiLink-underlineHover:hover {
+#diplomatic #content-view .cta-link.MuiLink-underlineHover:hover, #diplomatic .header-wrapper .cta-link.MuiLink-underlineHover:hover, #diplomatic #entry-list-view .cta-link.MuiLink-underlineHover:hover, #diplomatic #annotation-list-view .cta-link.MuiLink-underlineHover:hover {
   text-decoration: none; }
 
-#diplomatic #content-view a.cta-link, #diplomatic .header-wrapper a.cta-link, #diplomatic #entry-list-view a.cta-link {
+#diplomatic #content-view a.cta-link, #diplomatic .header-wrapper a.cta-link, #diplomatic #entry-list-view a.cta-link, #diplomatic #annotation-list-view a.cta-link {
   color: black;
   text-align: center;
   width: fit-content;
@@ -1260,15 +1271,15 @@ figure.current {
   cursor: pointer;
   margin-bottom: 5px; }
   @media (min-width: 960px) {
-    #diplomatic #content-view a.cta-link, #diplomatic .header-wrapper a.cta-link, #diplomatic #entry-list-view a.cta-link {
+    #diplomatic #content-view a.cta-link, #diplomatic .header-wrapper a.cta-link, #diplomatic #entry-list-view a.cta-link, #diplomatic #annotation-list-view a.cta-link {
       font-size: 18px; } }
-  #diplomatic #content-view a.cta-link.with-icon:after, #diplomatic .header-wrapper a.cta-link.with-icon:after, #diplomatic #entry-list-view a.cta-link.with-icon:after {
+  #diplomatic #content-view a.cta-link.with-icon:after, #diplomatic .header-wrapper a.cta-link.with-icon:after, #diplomatic #entry-list-view a.cta-link.with-icon:after, #diplomatic #annotation-list-view a.cta-link.with-icon:after {
     font-family: "Font Awesome 5 Free";
     margin-left: 7px;
     font-weight: 600;
     content: "\f054";
     font-size: 15px; }
-  #diplomatic #content-view a.cta-link:before, #diplomatic .header-wrapper a.cta-link:before, #diplomatic #entry-list-view a.cta-link:before {
+  #diplomatic #content-view a.cta-link:before, #diplomatic .header-wrapper a.cta-link:before, #diplomatic #entry-list-view a.cta-link:before, #diplomatic #annotation-list-view a.cta-link:before {
     position: absolute;
     content: "";
     height: 2px;
@@ -1277,7 +1288,7 @@ figure.current {
     right: 30%;
     bottom: -5px;
     border-radius: 2px; }
-  #diplomatic #content-view a.cta-link:hover:before, #diplomatic .header-wrapper a.cta-link:hover:before, #diplomatic #entry-list-view a.cta-link:hover:before {
+  #diplomatic #content-view a.cta-link:hover:before, #diplomatic .header-wrapper a.cta-link:hover:before, #diplomatic #entry-list-view a.cta-link:hover:before, #diplomatic #annotation-list-view a.cta-link:hover:before {
     background-color: #792421;
     text-decoration: none;
     height: 6px;
@@ -1287,10 +1298,10 @@ figure.current {
     -ms-animation: slide-down .2s;
     -o-animation: slide-down .2s;
     animation: slide-down .2s; }
-  #diplomatic #content-view a.cta-link:hover:after, #diplomatic .header-wrapper a.cta-link:hover:after, #diplomatic #entry-list-view a.cta-link:hover:after {
+  #diplomatic #content-view a.cta-link:hover:after, #diplomatic .header-wrapper a.cta-link:hover:after, #diplomatic #entry-list-view a.cta-link:hover:after, #diplomatic #annotation-list-view a.cta-link:hover:after {
     color: #792421; }
 
-#diplomatic #content-view a.cta-link.active:before, #diplomatic .header-wrapper a.cta-link.active:before, #diplomatic #entry-list-view a.cta-link.active:before {
+#diplomatic #content-view a.cta-link.active:before, #diplomatic .header-wrapper a.cta-link.active:before, #diplomatic #entry-list-view a.cta-link.active:before, #diplomatic #annotation-list-view a.cta-link.active:before {
   background-color: #792421;
   text-decoration: none;
   height: 6px;
@@ -1301,42 +1312,42 @@ figure.current {
   -o-animation: slide-down .2s;
   animation: slide-down .2s; }
 
-#diplomatic #content-view a.cta-link.active:after, #diplomatic .header-wrapper a.cta-link.active:after, #diplomatic #entry-list-view a.cta-link.active:after {
+#diplomatic #content-view a.cta-link.active:after, #diplomatic .header-wrapper a.cta-link.active:after, #diplomatic #entry-list-view a.cta-link.active:after, #diplomatic #annotation-list-view a.cta-link.active:after {
   color: #792421; }
 
-#diplomatic #content-view a.cta-link.light, #diplomatic .header-wrapper a.cta-link.light, #diplomatic #entry-list-view a.cta-link.light {
+#diplomatic #content-view a.cta-link.light, #diplomatic .header-wrapper a.cta-link.light, #diplomatic #entry-list-view a.cta-link.light, #diplomatic #annotation-list-view a.cta-link.light {
   color: #444444; }
-  #diplomatic #content-view a.cta-link.light:before, #diplomatic .header-wrapper a.cta-link.light:before, #diplomatic #entry-list-view a.cta-link.light:before {
+  #diplomatic #content-view a.cta-link.light:before, #diplomatic .header-wrapper a.cta-link.light:before, #diplomatic #entry-list-view a.cta-link.light:before, #diplomatic #annotation-list-view a.cta-link.light:before {
     background-color: #444444; }
-  #diplomatic #content-view a.cta-link.light:hover:before, #diplomatic .header-wrapper a.cta-link.light:hover:before, #diplomatic #entry-list-view a.cta-link.light:hover:before {
+  #diplomatic #content-view a.cta-link.light:hover:before, #diplomatic .header-wrapper a.cta-link.light:hover:before, #diplomatic #entry-list-view a.cta-link.light:hover:before, #diplomatic #annotation-list-view a.cta-link.light:hover:before {
     background-color: #792421; }
 
-#diplomatic #content-view a.cta-link.video-link:after, #diplomatic .header-wrapper a.cta-link.video-link:after, #diplomatic #entry-list-view a.cta-link.video-link:after {
+#diplomatic #content-view a.cta-link.video-link:after, #diplomatic .header-wrapper a.cta-link.video-link:after, #diplomatic #entry-list-view a.cta-link.video-link:after, #diplomatic #annotation-list-view a.cta-link.video-link:after {
   content: "\f04b";
   font-size: 12px;
   margin-bottom: -2px; }
 
-#diplomatic #content-view a.cta-link.search-link:after, #diplomatic .header-wrapper a.cta-link.search-link:after, #diplomatic #entry-list-view a.cta-link.search-link:after {
+#diplomatic #content-view a.cta-link.search-link:after, #diplomatic .header-wrapper a.cta-link.search-link:after, #diplomatic #entry-list-view a.cta-link.search-link:after, #diplomatic #annotation-list-view a.cta-link.search-link:after {
   font-family: 'Material Icons';
   content: "search";
   font-size: 16px; }
 
 #diplomatic #header {
   width: 100%;
-  padding: 10px 20px;
+  padding: 0px 20px;
   background-color: white;
   border-radius: 0; }
   @media (min-width: 1280px) {
     #diplomatic #header {
-      padding: 20px 50px; } }
+      padding: 5px 50px; } }
   #diplomatic #header img {
-    width: 200px; }
+    width: 210px; }
     @media (min-width: 600px) {
       #diplomatic #header img {
         width: 300px; } }
     @media (min-width: 960px) {
       #diplomatic #header img {
-        width: 360px; } }
+        width: 300px; } }
   #diplomatic #header .expandedViewOnly {
     width: 100%; }
   #diplomatic #header .nav-item {

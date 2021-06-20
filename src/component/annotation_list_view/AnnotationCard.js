@@ -68,7 +68,7 @@ class AnnotationCard extends Component {
                     <CardMedia style={{height: 200}} image={thumbnailUrl}/>
                     <div className='card-lr-padding theme-title-container'>
                         <p className='anno-theme'>{theme}</p>
-                        <p className='anno-title'>{(Parser(title))}</p>
+                        <p className='anno-title line-clamp'>{(Parser(title))}</p>
                         { (annotation.status === 'staging' && releaseMode !== 'production') ? 
                             <span style={{color: 'green'}}>
                                 <b>** IN STAGING **</b>
@@ -90,8 +90,8 @@ class AnnotationCard extends Component {
                         <span className='anno-abstract'>
                             {Parser(abstract)}
                         </span> :
-                        <span className='anno-abstract'>
-                            {abstract.length > 30 ?  truncateByWordCount(removeTags(abstract), 15) : abstract}
+                        <span className='anno-abstract line-clamp three-lines'>
+                            {removeTags(abstract)}
                         </span>
                     }
                     {abstract.length > 30 &&
