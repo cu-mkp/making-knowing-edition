@@ -1247,7 +1247,7 @@ figure.current {
   color: white;
   padding: 10px 70px;
   border-radius: 0; }
-  #diplomatic #content-view a.MuiButton-containedPrimary.cta-button span, #diplomatic .header-wrapper a.MuiButton-containedPrimary.cta-button span, #diplomatic #entry-list-view a.MuiButton-containedPrimary.cta-button span, #diplomatic #annotation-list-view a.MuiButton-containedPrimary.cta-button span {
+  #diplomatic #content-view a.MuiButton-containedPrimary.cta-button .MuiButton-label span, #diplomatic .header-wrapper a.MuiButton-containedPrimary.cta-button .MuiButton-label span, #diplomatic #entry-list-view a.MuiButton-containedPrimary.cta-button .MuiButton-label span, #diplomatic #annotation-list-view a.MuiButton-containedPrimary.cta-button .MuiButton-label span {
     font-family: 'Lato', sans-serif;
     font-size: 20px; }
 
@@ -1355,6 +1355,9 @@ figure.current {
     margin-right: 5px;
     white-space: nowrap;
     margin-bottom: 15px; }
+  #diplomatic #header .search-btn {
+    margin-bottom: 10px;
+    font-size: 18px; }
 
 #diplomatic .maroon-dropdown {
   background-color: #460C0A;

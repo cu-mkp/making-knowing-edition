@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -60,13 +61,17 @@ class MainMenu extends React.Component {
             }
         }
         if (isWidthUp('md', this.props.width)){
-            const searchNavItem = <a 
-                key='search-button'
-                className='cta-link nav-item search-link' 
-                onClick={this.props.onToggleSearch}
-            >
-                Search 
-            </a>;
+            const searchNavItem = <Button
+            variant='contained' 
+            color='primary' 
+            className='cta-button search-btn'
+            onClick={this.props.onToggleSearch}
+        >
+           <span style={{fontFamily: 'Lato, sans-serif', textTransform: 'none'}}>
+               Search
+            </span>
+            <SearchIcon fontSize='small' />
+        </Button>        
 
             return (
                 <div className="expandedViewOnly flex-parent jc-space-btw ai-end row-reverse">
