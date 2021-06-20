@@ -3,7 +3,7 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import CloseIcon from '@material-ui/icons/Close';
 import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import ReactGA from 'react-ga';
 import { connect, Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
@@ -18,10 +18,12 @@ import MobileMenu from './MobileMenu';
 import RouteListener from './RouteListener';
 import Search from './Search';
 import SearchView from './SearchView';
-import ByIcon from '../icons/ByIcon'
-import CcIcon from '../icons/CcIcon'
-import NcIcon from '../icons/NcIcon'
-import SaIcon from '../icons/SaIcon'
+import ByIcon from '../icons/ByIcon';
+import CcIcon from '../icons/CcIcon';
+import NcIcon from '../icons/NcIcon';
+import SaIcon from '../icons/SaIcon';
+import HelpIcon from '@material-ui/icons/Help';
+import SearchHelpPopper from './SearchHelpPopper';
 
 class DiploMatic extends Component {
 
@@ -30,6 +32,7 @@ class DiploMatic extends Component {
 		this.state = { 
 			searchOpen: false,
 			mobileMenuOpen: false,
+			searchHelpAnchor: null,
 		};
 	}
 
@@ -79,6 +82,12 @@ class DiploMatic extends Component {
 	renderHeader(fixedFrameModeClass) {
 		const handleToggleSearchBar = () => this.setState({searchOpen: !this.state.searchOpen, mobileMenuOpen: false});
 		const handleToggleMobileMenu = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen, searchOpen: false});
+		const handleClickHelp = (e) => {
+			e.stopPropagation()
+			this.setState({
+				searchHelpAnchor: this.state.searchHelpAnchor ? null : e.currentTarget
+			})
+		} ;
 		return (
 			<div className={`${fixedFrameModeClass} header-wrapper`} >
 				<Paper id="header" className={`flex-parent jc-space-btw ai-center`} >
@@ -96,7 +105,17 @@ class DiploMatic extends Component {
 							<div className='flex-parent wrap jc-space-around content'>
 								<h4 className='label' >Search the Edition</h4>
 								<img style={{width: 50, marginBottom: 5}} src='/img/lizard-no-bg.png'/>
-								<Search toggleSearchBar={handleToggleSearchBar} />
+								<div className='flex-parent ai-center' >
+									<Search toggleSearchBar={handleToggleSearchBar} />
+									<IconButton color='secondary' onClick={handleClickHelp} >
+										<HelpIcon  />
+									</IconButton>
+									<SearchHelpPopper
+										anchorEl={this.state.searchHelpAnchor} 
+										open={this.state.searchHelpAnchor} 
+										onClose={handleClickHelp}
+									/>
+								</div>
 								<IconButton
 									onClick={handleToggleSearchBar}
 									style={{position: 'absolute', right: 10, top: 10}}

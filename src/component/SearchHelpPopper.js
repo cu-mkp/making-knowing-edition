@@ -3,14 +3,15 @@ import Popper from '@material-ui/core/Popper';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
+import CloseIcon from '@material-ui/icons/Cancel';
 
 const SearchHelpPopper=(props)=>{            
     return ( 
-        <Popper anchorEl={props.anchorEl} open={props.open}>
+        <Popper style={{zIndex: 2}} anchorEl={props.anchorEl} open={props.open}>
             <Fade in={props.open} >
                 <Paper className="searchHelpContainer">
                     <div onClick={props.onClose} className="closeX">
-                        <span className="fa fa-window-close" ></span>
+                        <CloseIcon />
                     </div>
                     <div className="helpHeader">
                         <Typography variant="subtitle1">Quick Search Tips</Typography>

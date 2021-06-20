@@ -96,6 +96,9 @@
       float: right;
       padding: 3px;
       font-style: bold;
+      &:hover {
+            cursor: pointer;
+      }
 }
 
 .helpContainer {

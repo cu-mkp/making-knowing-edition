@@ -233,9 +233,15 @@ class Navigation extends React.Component {
                                                 { !this.props.documentView.inSearchMode && <MenuItem value="f">{DocumentHelper.transcriptionTypeLabels['f']}</MenuItem> }
                                                 { !this.props.documentView.inSearchMode && <MenuItem value="glossary">{DocumentHelper.transcriptionTypeLabels['glossary']}</MenuItem> }
                                           </Select>
-                                          { !this.props.documentView.inSearchMode && <span title="Toggle folio help" onClick={this.toggleHelp} className="helpIcon" >
-                                                <i className="fas fa-question-circle"></i>
-                                          </span> }
+                                          { !this.props.documentView.inSearchMode 
+                                                && <span 
+                                                      title="Toggle folio help" 
+                                                      onClick={this.toggleHelp} 
+                                                      className="helpIcon" 
+                                                >
+                                                      <i className="fas fa-question-circle"></i>
+                                                </span> 
+                                          }
                                           <HelpPopper marginStyle={helpMarginStyle} anchorEl={this.helpRef} open={this.state.openHelp}  onClose={this.toggleHelp}   />
                                     </div>
 

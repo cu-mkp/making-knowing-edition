@@ -376,6 +376,8 @@ figure.current {
   float: right;
   padding: 3px;
   font-style: bold; }
+  .closeX:hover {
+    cursor: pointer; }
 
 .helpContainer {
   padding: 12px;
