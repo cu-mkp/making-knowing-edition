@@ -219,6 +219,9 @@ class ContentView extends Component {
         }
 
         const content = contents[contentID]
+        const menuNode = this.props.contents.menuStructure
+            ? this.props.contents.menuStructure.find(n => n.content_id === contentID)
+            : false;
 
         if( !content ) {
             return (
@@ -228,9 +231,9 @@ class ContentView extends Component {
                     </div>
                 </div>
             )
-        } else if( content === 404 ) {
+        } else if( content === 404 || !menuNode ) {
             return (
-                <div id='content-view'>
+                <div id='content-view' className='not-found'>
                     <h1>Content Not Found</h1>
                     <p>Unable to load content for route: <b>/content/{contentID}</b></p>
                 </div>
@@ -239,7 +242,7 @@ class ContentView extends Component {
             return (
                 <div id='content-view' >
                     <ContentPage
-                        menuNode={this.props.contents.menuStructure.find(n => n.content_id === contentID)}
+                        menuNode={menuNode}
                         contentId={this.props.contentID}
                     >
                         {Parser(content,this.htmlToReactParserOptions())}

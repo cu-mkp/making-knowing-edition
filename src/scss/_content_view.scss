@@ -1,4 +1,11 @@
+.not-found {
+    padding: 20px;
+}
+
 #content-view {
+  &.not-Found {
+    padding: 20px;
+  }
   #hero, #about-panel{
     p{
       line-height: 26px;

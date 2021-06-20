@@ -816,6 +816,12 @@ figure.current {
   #entry-list-view .tag-nav-item {
     margin: 3px; }
 
+.not-found {
+  padding: 20px; }
+
+#content-view.not-Found {
+  padding: 20px; }
+
 #content-view #hero p, #content-view #about-panel p {
   line-height: 26px;
   font-size: 16px; }
@@ -1067,8 +1073,7 @@ figure.current {
   #diplomatic #content-page #navbar .sections-container .section-link {
     font-weight: 700;
     font-size: 18px;
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
     #diplomatic #content-page #navbar .sections-container .section-link:hover {
       color: #792421;
       cursor: pointer; }
