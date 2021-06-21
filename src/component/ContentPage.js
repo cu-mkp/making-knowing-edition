@@ -21,7 +21,7 @@ const ContentPage = props => {
 
                 {/* MOBILE VIEW SIDE NAV */}
                 <Slide in={mobileNavOpen && isMobileView} direction='right' >
-                    <Paper elevation={3} className='bg-yellow-tan-gradient-tb mobile-nav-container' >
+                    <Paper elevation={3} className='bg-dark-gradient-bt mobile-nav-container' >
                         <SideNavBar 
                             sections={sections} 
                             actionComponent={props.actionComponent}
