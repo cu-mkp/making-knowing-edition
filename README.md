@@ -106,14 +106,17 @@ Detailed Deployment Guide
 This guide assumes you've successfully set up you local development environment
 1) `git pull` the latest from the `./edition_data/...`
     * `m-k-manuscript-data`
+        - **If this repo has changed**, run the following to add a new directory to the `edition_data/working/` director. The name of the directory will match the `MMDDYY-N` value of `edition_data/config.json.local.workingDir`. It's good practice to keep a copy of old `MMDDYY-N` directory as a back-up (but rename it).
+		    * `scripts/lizard.js download`
+			* `scripts/lizard.js download-thumbs`
     * `m-k-annotation-data`
     * `edition-webpages`
 2) Run `scripts/lizard.js run`
-    * This uses the edition_data/working/MMDDYY-N directory to generate all annotation html, process images from Google Drive, and create a local build in `./public`
+    * This uses the `edition_data/working/MMDDYY-N` directory to generate all annotation html, process images from Google Drive, and create a local build in `./public/bnf-ms-fr-640`
 3) Run `scripts/lizard.js migrate` 
     * If the annotation's `data_source` column is marked as `"gh"` in `annotation-metadata.csv` **and** the annotation's html file does **not** already exist in `./edition_data/m-k-annotation-data/html` then...
         * This script prepares all those annotation for migration away from the Google Drive workflow and to the Github / Amazon S3 workflow by...
-            * Processing the html generated in step 2 (changes all `img` `src` attributes to an s3 url, injects the annotation's 'Abstract' & 'Cite As' elements, removes unnecessary elements, and makes html human readable)
+            * Processing the html generated in step 2 (changes all `img` `src` attributes to an s3 url (via `edition-assets.makingandknowing.org` subdomain), injects the annotation's 'Abstract' & 'Cite As' elements, removes unnecessary elements, and makes html human readable)
             * Saving the newly processed html to `./edition_data/m-k-annotation-data/html` and replaces the annotation's html file in `./public`
             * Moving images from `./public` to a holding directory (`./edition_data/s3-images`) for later upload to the s3 bucket and deleting from `./public`
     * If the annotation is marked as `"gh"` **and** already exists in `./edition_data/m-k-annotation-data/html`, then the annotation is simply copied from `./edition_data/m-k-annotation-data/html` to `./public`
