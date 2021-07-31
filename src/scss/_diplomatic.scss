@@ -54,7 +54,6 @@
 		}
 		
 		a{
-			font-family: 'Lato', sans-serif;
 			color: $maroon;
 			&:hover{
 				color: $dark-cream;
@@ -68,6 +67,7 @@
 			text-align: center;
 			width: fit-content;
 			text-decoration: none;
+			font-family: 'Lato', sans-serif;
 			font-size: 16px;
 			font-weight: 700;
 			position: relative;
