@@ -137,9 +137,9 @@ class ContentView extends Component {
                             <h3 className='title'>Created by the Making and Knowing Project</h3>
                             <p>
                                 <strong>
-                                    Secrets of Craft and Nature in Renaissance France,{' '}
+                                    Secrets of Craft and Nature in Renaissance France{' '}
                                 </strong>
-                                offers a transcription and a translation of the manuscript, and provides many research resources to explore its context.
+                                offers a transcription and an English translation of the manuscript, and provides many research resources to explore its content and context.
                             </p>
                             {isWidthUp('sm', this.props.width) &&
                                 <div className='flex-parent links-container full-width'>
