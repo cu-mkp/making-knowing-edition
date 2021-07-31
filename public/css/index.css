@@ -662,22 +662,22 @@ figure.current {
     padding-bottom: 0px; }
 
 #featured-essays-panel #essay-card-container .annotation-card p.anno-theme, #annotation-list-view .annotation-card p.anno-theme {
-  font-size: 12px;
+  font-size: 12px !important;
   text-transform: uppercase;
   font-family: 'Lato', sans-serif;
   color: #3B3B3B; }
 
-#featured-essays-panel #essay-card-container .annotation-card .anno-title, #annotation-list-view .annotation-card .anno-title {
+#featured-essays-panel #essay-card-container .annotation-card p.anno-title, #annotation-list-view .annotation-card p.anno-title {
   margin-top: 25px;
   margin-bottom: 10px;
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 700; }
 
 #featured-essays-panel #essay-card-container .annotation-card .anno-abstract, #annotation-list-view .annotation-card .anno-abstract {
   color: #858585;
   font-size: 16px;
   font-weight: 400;
-  font-family: 'Taviraj', serif;
+  font-family: 'Taviraj', serif !important;
   color: #444444; }
 
 #featured-essays-panel #essay-card-container .annotation-card .abstract-container, #annotation-list-view .annotation-card .abstract-container {
@@ -1242,8 +1242,7 @@ figure.current {
 
 #diplomatic #content-view p, #diplomatic .header-wrapper p, #diplomatic #entry-list-view p, #diplomatic #annotation-list-view p {
   font-family: "Martel", serif;
-  line-height: 1.25;
-  margin: 0; }
+  line-height: 1.25; }
 
 #diplomatic #content-view span, #diplomatic .header-wrapper span, #diplomatic #entry-list-view span, #diplomatic #annotation-list-view span {
   font-family: "Martel", serif;

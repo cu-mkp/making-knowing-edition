@@ -24,22 +24,22 @@
         }
     }
     p.anno-theme{
-        font-size: 12px;
+        font-size: 12px !important;
         text-transform: uppercase;
         font-family: 'Lato', sans-serif;
         color: #3B3B3B;
     }
-    .anno-title{
+    p.anno-title{
         margin-top: 25px;
         margin-bottom: 10px;
-        font-size: 18px;
+        font-size: 18px !important;
         font-weight: 700;
     }
     .anno-abstract{
         color: $grey;
         font-size: 16px;
         font-weight: 400;
-        font-family: 'Taviraj', serif;
+        font-family: 'Taviraj', serif !important;;
         color: #444444;
     }
     .abstract-container{
