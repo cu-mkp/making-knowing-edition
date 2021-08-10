@@ -641,7 +641,7 @@ figure.current {
 
 #featured-essays-panel #essay-card-container .annotation-card.MuiPaper-rounded, #annotation-list-view .annotation-card.MuiPaper-rounded {
   border-radius: 0px;
-  height: 500px;
+  height: 550px;
   position: relative;
   width: 350px;
   margin-bottom: 25px; }
@@ -650,7 +650,7 @@ figure.current {
       margin-bottom: 65px; } }
 
 #featured-essays-panel #essay-card-container .annotation-card.MuiPaper-rounded.expanded, #annotation-list-view .annotation-card.MuiPaper-rounded.expanded {
-  height: fit-content; }
+  height: 100%; }
 
 #featured-essays-panel #essay-card-container .annotation-card .card-lr-padding, #annotation-list-view .annotation-card .card-lr-padding {
   padding-left: 25px;
