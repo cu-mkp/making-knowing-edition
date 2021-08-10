@@ -11,7 +11,7 @@ const SideNavBar = (props) => {
         <div
             id='navbar' style={scrollTrigger ? {position: 'sticky'} : {}}
         >
-            {sections.map((s, i) => {
+            {sections && sections.map((s, i) => {
                 return(
                     <div key={`section-${s.id}`} className='sections-container'>
                         <Link 
