@@ -672,6 +672,8 @@ figure.current {
   margin-bottom: 10px;
   font-size: 18px !important;
   font-weight: 700; }
+  #featured-essays-panel #essay-card-container .annotation-card p.anno-title i, #annotation-list-view .annotation-card p.anno-title i {
+    margin-left: 0px !important; }
 
 #featured-essays-panel #essay-card-container .annotation-card .anno-abstract, #annotation-list-view .annotation-card .anno-abstract {
   color: #858585;
