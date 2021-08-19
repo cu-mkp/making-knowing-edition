@@ -14,7 +14,7 @@ class AnnotationThumb extends Component {
         const localUrl = annotation.thumbnail ? 
             `${process.env.REACT_APP_EDITION_DATA_URL}/annotations-thumbnails/${annotation.thumbnail}` 
             : "/img/watermark.png"
-        const s3Url = annotation.s3Url;
+        const s3Url = annotation.s3ThumbUrl;
         const thumbnailUrl = annotation.dataSource === 'gh' ? s3Url : localUrl;
 
         const cardMedia = (
