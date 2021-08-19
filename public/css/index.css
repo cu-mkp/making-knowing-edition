@@ -440,7 +440,7 @@ figure.current {
 #annotation-view p {
   margin: 0px;
   text-indent: 50px;
-  line-height: 1.75; }
+  line-height: 1.5; }
 
 #annotation-view a {
   word-wrap: break-word; }
@@ -612,7 +612,7 @@ figure.current {
   #annotation-view table p {
     text-indent: 0px; }
 
-#annotation-view .footnotes {
+#annotation-view .footnotes p {
   line-height: 1; }
 
 #annotation-view .bibliography p {
