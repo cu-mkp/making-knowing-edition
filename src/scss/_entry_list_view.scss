@@ -3,8 +3,6 @@
     margin: 40px 10% 40px 10%;
 
     @include md {
-        overflow: auto;
-        height: 900px;
         margin: 40px 2% 40px 2%;
     }
     @include lg {
@@ -32,13 +30,13 @@
         @include md {
             width: 33%;
             background-color: $dark-cream;
+            float: left;
             position: fixed;
             top: 150px;
             padding: 10px;
             border-radius: 0.3rem;
             border: 1px solid $maroon;
             max-height: 80%;
-            overflow: auto;
         }
         @include lg {
             width: 25%;
@@ -63,7 +61,7 @@
             margin-bottom: 20px;
         }
         h2{
-            margin-bottom: 10px;
+            margin-bottom: 10px !important;
             color: black;
             @include md {
                 color: white

@@ -710,8 +710,6 @@ figure.current {
   margin: 40px 10% 40px 10%; }
   @media (min-width: 960px) {
     #entry-list-view {
-      overflow: auto;
-      height: 900px;
       margin: 40px 2% 40px 2%; } }
   @media (min-width: 1280px) {
     #entry-list-view {
@@ -733,13 +731,13 @@ figure.current {
     #entry-list-view .filter-bar {
       width: 33%;
       background-color: #CBA374;
+      float: left;
       position: fixed;
       top: 150px;
       padding: 10px;
       border-radius: 0.3rem;
       border: 1px solid #792421;
-      max-height: 80%;
-      overflow: auto; } }
+      max-height: 80%; } }
   @media (min-width: 1280px) {
     #entry-list-view .filter-bar {
       width: 25%; } }
@@ -756,7 +754,7 @@ figure.current {
   #entry-list-view .filterBy:first-of-type {
     margin-bottom: 20px; }
   #entry-list-view .filterBy h2 {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
     color: black; }
     @media (min-width: 960px) {
       #entry-list-view .filterBy h2 {
