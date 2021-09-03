@@ -730,13 +730,10 @@ figure.current {
   @media (min-width: 960px) {
     #entry-list-view .filter-bar {
       width: 33%;
-      background-color: #CBA374;
       float: left;
       position: fixed;
-      top: 150px;
+      top: 100px;
       padding: 10px;
-      border-radius: 0.3rem;
-      border: 1px solid #792421;
       max-height: 80%; } }
   @media (min-width: 1280px) {
     #entry-list-view .filter-bar {

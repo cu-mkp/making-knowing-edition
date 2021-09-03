@@ -29,13 +29,10 @@
     .filter-bar {
         @include md {
             width: 33%;
-            background-color: $dark-cream;
             float: left;
             position: fixed;
-            top: 150px;
+            top: 100px;
             padding: 10px;
-            border-radius: 0.3rem;
-            border: 1px solid $maroon;
             max-height: 80%;
         }
         @include lg {

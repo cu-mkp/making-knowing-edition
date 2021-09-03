@@ -74,6 +74,21 @@ class EntryListView extends Component {
             this.setState({...this.state, transcriptionType: value})
       }
 
+      renderFilterPanel = (categories, navChipType, filterCategories, filterType, defaultExpanded) => {
+            return (
+                  <ExpansionPanel defaultExpanded={true}>
+                        <ExpansionPanelSummary expandIcon={ <div><ExpandMoreIcon className="colapse-button" /></div>}>
+                              <Typography variant='h2'>Filter by {filterType}</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                              <div className='filterBy'>
+                                    {this.renderNavigationChips(categories, navChipType, filterCategories)}
+                              </div>
+                        </ExpansionPanelDetails> 
+                  </ExpansionPanel>                  
+            )
+      }
+
       renderEntryCard = (index, key) => {        
             const { entryList, tagNameMap, filterCategories } = this.props.entries
             const sortedList = this.sortEntryList(entryList);
@@ -229,14 +244,8 @@ class EntryListView extends Component {
                         </div>
                         <div className="filter-bar">
                               <div className="filters">
-                                    <div className="filterBy">
-                                          <h2>Filter by Category:</h2>
-                                          {this.renderNavigationChips(categories, 'categories', filterCategories)}
-                                    </div>
-                                    <div className="filterBy">
-                                          <h2>Filter by Tag:</h2>
-                                          {this.renderNavigationChips(tags, 'tags', filterTags)}
-                                    </div>
+                                    { this.renderFilterPanel( categories, 'categories', filterCategories, 'Category')}
+                                    { this.renderFilterPanel( tags, 'tags', filterTags, 'Tag')}
                               </div>
                         </div>
                         <div className='entries'>
