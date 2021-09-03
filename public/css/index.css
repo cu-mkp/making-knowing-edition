@@ -1071,6 +1071,7 @@ figure.current {
       color: #792421;
       cursor: pointer; }
     #diplomatic #content-page #navbar .sections-container a p {
+      margin: .3em;
       font-family: "Lato", sans-serif; }
   #diplomatic #content-page #navbar .sections-container .section-link {
     font-weight: 700;
@@ -1146,6 +1147,7 @@ figure.current {
   padding-bottom: 1em; }
 
 #diplomatic #content-page #content a {
+  font-weight: bold;
   word-wrap: break-word; }
 
 #diplomatic #content-page #content blockquote p {

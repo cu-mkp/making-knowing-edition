@@ -67,7 +67,7 @@ class ContentView extends Component {
                             to={domNode.attribs.href}
                             scroll={el => scrollWithOffset(el)}
                         >
-                            {domNode.children.length ? domNode.children[0].data : ''}
+                            {domToReact(domNode.children, parserOptions)}
                         </HashLink>
                     )
                 }
@@ -137,7 +137,7 @@ class ContentView extends Component {
                             <h3 className='title'>Created by the Making and Knowing Project</h3>
                             <p>
                                 <strong>
-                                    Secrets of Craft and Nature in Renaissance France{' '}
+                                    <i>Secrets of Craft and Nature in Renaissance France{' '}</i>
                                 </strong>
                                 offers a transcription and an English translation of the manuscript, and provides many research resources to explore its content and context.
                             </p>
