@@ -1052,7 +1052,6 @@ figure.current {
   @media (min-width: 960px) {
     #diplomatic #content-page #navbar {
       height: calc(100vh - 103px);
-      top: 95px;
       width: 300px;
       padding: 20px; } }
   @media (min-width: 1280px) {
@@ -1068,7 +1067,7 @@ figure.current {
       color: #792421;
       cursor: pointer; }
     #diplomatic #content-page #navbar .sections-container a p {
-      margin: .3em;
+      margin: 0;
       font-family: "Lato", sans-serif; }
   #diplomatic #content-page #navbar .sections-container .section-link {
     font-weight: 700;

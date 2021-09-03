@@ -129,7 +129,6 @@
     }
     @include md{
       height: calc(100vh - 103px);
-      top: 95px;
       width: 300px;
       padding: 20px
     }
@@ -149,7 +148,7 @@
           cursor: pointer;
         }
         p {
-          margin: .3em;
+          margin: 0;
           font-family: "Lato", sans-serif;
         }
       }
