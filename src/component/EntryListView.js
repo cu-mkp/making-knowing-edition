@@ -264,7 +264,7 @@ class EntryListView extends Component {
                                                 :
                                                 ''
                                           }
-                                          <div className="entry-list" >
+                                          <div className="entry-list" style={{marginBottom: 200}}>
                                                 <ReactList
                                                       itemRenderer={this.renderEntryCard}
                                                       length={entryList.length}
