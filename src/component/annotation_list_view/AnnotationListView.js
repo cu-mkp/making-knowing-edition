@@ -32,7 +32,7 @@ const AnnotationListView = props => {
 	return(
         <ContentPage
             menuNode={{
-                page_heading: <h1 className='page-heading'>Research Essays for BnF Ms. Fr. 640 <span>({annotationCount})</span></h1>, 
+                page_heading: <h1 className='page-heading'>Research Essays for BnF Ms. Fr. 640</h1>, 
                 header_graphic_filename: 'banner-essays.png',
                 sections: annotationSections.map(s => ({title: s.name, id: s.id}))
             }}
