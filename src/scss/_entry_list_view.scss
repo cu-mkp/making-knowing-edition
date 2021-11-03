@@ -3,16 +3,16 @@
     margin: 40px 10% 40px 10%;
 
     @include md {
-        margin: 40px 2% 40px 2%;
+        margin: 40px 2% 40px 1%;
     }
     @include lg {
-        margin: 40px 2% 40px 5%;
+        margin: 40px 2% 40px 1%;
     }
 
     #list-header {
         @include md {
             width: 62%;
-            margin-left: 38%;
+            margin-left: 39%;
             max-width: 900px;
             p {
                 padding-right: 10px;
@@ -20,7 +20,7 @@
         }
         @include lg {
             width: 70%;
-            margin-left: 30%;
+            margin-left: 31.5%;
         }
         #entry-header {
             margin-bottom: 10px;
@@ -28,7 +28,8 @@
     }
     .filter-bar {
         @include md {
-            width: 33%;
+            margin-top: -20px;
+            width: 36%;
             float: left;
             position: fixed;
             top: 100px;
@@ -36,20 +37,21 @@
             max-height: 80%;
         }
         @include lg {
-            width: 25%;
+            margin-top: -20px;
+            width: 29%;
         }
     }
 
     .entries {
         @include md {
             width: 62%;
-            margin-left: 38%;
+            margin-left: 39%;
             margin-bottom: 40px;
             max-width: 900px;
         }
         @include lg {
             width: 70%;
-            margin-left: 30%;
+            margin-left: 31.5%;
         }
     }
 
