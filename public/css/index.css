@@ -710,26 +710,27 @@ figure.current {
   margin: 40px 10% 40px 10%; }
   @media (min-width: 960px) {
     #entry-list-view {
-      margin: 40px 2% 40px 2%; } }
+      margin: 40px 2% 40px 1%; } }
   @media (min-width: 1280px) {
     #entry-list-view {
-      margin: 40px 2% 40px 5%; } }
+      margin: 40px 2% 40px 1%; } }
   @media (min-width: 960px) {
     #entry-list-view #list-header {
       width: 62%;
-      margin-left: 38%;
+      margin-left: 39%;
       max-width: 900px; }
       #entry-list-view #list-header p {
         padding-right: 10px; } }
   @media (min-width: 1280px) {
     #entry-list-view #list-header {
       width: 70%;
-      margin-left: 30%; } }
+      margin-left: 31.5%; } }
   #entry-list-view #list-header #entry-header {
     margin-bottom: 10px; }
   @media (min-width: 960px) {
     #entry-list-view .filter-bar {
-      width: 33%;
+      margin-top: -20px;
+      width: 36%;
       float: left;
       position: fixed;
       top: 100px;
@@ -737,17 +738,18 @@ figure.current {
       max-height: 80%; } }
   @media (min-width: 1280px) {
     #entry-list-view .filter-bar {
-      width: 25%; } }
+      margin-top: -20px;
+      width: 29%; } }
   @media (min-width: 960px) {
     #entry-list-view .entries {
       width: 62%;
-      margin-left: 38%;
+      margin-left: 39%;
       margin-bottom: 40px;
       max-width: 900px; } }
   @media (min-width: 1280px) {
     #entry-list-view .entries {
       width: 70%;
-      margin-left: 30%; } }
+      margin-left: 31.5%; } }
   #entry-list-view .filterBy:first-of-type {
     margin-bottom: 20px; }
   #entry-list-view .filterBy h2 {
