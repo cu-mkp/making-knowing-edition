@@ -765,7 +765,7 @@ function migrateAnnotation(file, annoId) {
 
     // replaces all src attribute url w/ aws url
     html = html.replace(
-        /(src=")https?(:\/\/).+?\/.+?\/.+?\/images\//gm,
+        /(src=")https?(:\/\/)([a-zA-Z0-9\.\-\_\:\/]+)\/+images\//gm,
         '$1https$2edition-assets.makingandknowing.org/'
     )
         
