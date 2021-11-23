@@ -780,8 +780,8 @@ function migrateAnnotation(file, annoId) {
     // Removes h1 && h4 generated via the google drive process
     let h1 = doc.getElementsByTagName('h1')[0];
     let h4 = doc.getElementsByTagName('h4')[0];
-    body.removeChild(h1);
-    body.removeChild(h4);
+    if (h1) body.removeChild(h1);
+    if (h4) body.removeChild(h4);
 
     // Adds abstract / cite as elements if not already present
     if( (anno.abstract || anno.citeAs) && !headerSection ) {
@@ -927,8 +927,42 @@ function processAnnotationHTML( annotationHTMLFile, annotationID, captions, bibl
         body.append(biblioEl);
     }
 
-    // TODO Tables
-    // - change first row of the table to be a th instead of tr
+    // set first row of table to header, then set even and odd rows appropriately
+    const moveRowToBody = function(row, body, className) {
+        const newRow = doc.createElement('tr');
+        newRow.className = className;
+        for (let i = 0; i < row.children.length; i++) {
+            const td = doc.createElement('td');
+            const child = row.children[i];
+            td.innerHTML = child.innerHTML;
+            td.colSpan = child.colSpan;
+            newRow.appendChild(td);
+        }
+        body.appendChild(newRow);
+    }
+    const tables = doc.getElementsByTagName('table');
+    for(let table of tables){
+        const header = table.tHead;
+        const body = table.tBodies[0];
+        body.innerHtml = '';
+        const rows = header.children;
+        let rowsToRemove = [];
+        for(let i = 0; i < rows.length; i++) {
+            const row = rows[i];
+            if (i === 0) {
+                row.className = 'header';
+            } else if (i % 2 === 0) {
+                rowsToRemove.push(row);
+                moveRowToBody(row, body, 'even');
+            } else {
+                rowsToRemove.push(row);
+                moveRowToBody(row, body, 'odd');
+            }
+        }
+        for(let j = 0; j < rowsToRemove.length; j++) {
+            header.removeChild(rowsToRemove[j]);
+        }
+    };
 
     // TODO Links
     // - Links to field notes should go to field notes
