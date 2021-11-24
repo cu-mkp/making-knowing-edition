@@ -804,7 +804,7 @@ function migrateAnnotation(file, annoId) {
     const prettyHtml = beautify( htmlDOM.serialize(), { 
         wrap_line_length: 80, 
         wrap_attributes:'force-aligned', 
-        inline: ['span'] 
+        inline: ['span', 'a', 'sup', 'u', 'em']
     });
 
     // writes processed html to m-k-annotation-data repo
