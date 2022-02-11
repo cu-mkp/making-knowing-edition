@@ -801,11 +801,16 @@ function migrateAnnotation(file, annoId) {
         body.prepend(container);
     }
 
+    // beautify html
     const prettyHtml = beautify( htmlDOM.serialize(), { 
         wrap_line_length: 80, 
         wrap_attributes:'force-aligned', 
-        inline: ['span', 'a', 'sup', 'u', 'em']
+        inline: ['span', 'a', 'sup', 'u', 'em', 'i']
     });
+
+    // regex to strip leading/trailing whitespace from within parentheses
+    // seemingly not needed, but provided in case of future use
+    // replaceAll(/\(\s?(<\w>)?\s?(<\w>)?\s?([\w<>\/\., ]+)\s?(<\/\w>)?\s?(<\/\w>)?\s?\))/g, "($1$2$3$4$5)");
 
     // writes processed html to m-k-annotation-data repo
     fs.writeFileSync(ghAnnoPath, prettyHtml)
