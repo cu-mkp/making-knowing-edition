@@ -76,6 +76,8 @@ cp -R edition_data_example edition_data
     }
 ```
 
+If setting up a production build, ensure the `googleTrackingID` is set to a working Google Analytics ID.
+
 6. Setup the necessary directory structure. 
 
 ```
