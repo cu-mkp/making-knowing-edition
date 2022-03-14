@@ -20,16 +20,32 @@ Steps:
 yarn 
 cd scripts
 yarn
+cd ..
 ```
 
-2. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a service called 'mk-annotations' which is authorized to access the shared 'Annotations' directory (see step 5 below). On MacOS with [homebrew](https://brew.sh/) the commands are:  
+2. You will need to set up and configure [rclone](https://rclone.org/) which provides rsync-like functionality. Set up rclone to have a service called 'mk-annotations' which is authorized to access the shared 'Annotations' directory (see step 5 below). On MacOS with [homebrew](https://brew.sh/):  
 
 ```
-brew install rclone  
-rclone config
+brew install rclone
 ```
 
-3. Install [PANDOC](https://pandoc.org/) .
+To configure rclone to access Google Drive, you will need to do the following:
+
+- Follow the [instructions to make a Google Drive client ID](https://rclone.org/drive/#making-your-own-client-id)
+- In a terminal, run the config wizard with the command `rclone config`
+- Enter `n` for "New config"
+- Enter `mk-annotations` for the name
+- Enter `15` for Google Drive
+- Enter your client ID from Google
+- Enter your client secret from Google
+- Enter `1` for "drive" scope
+- Keep pressing enter to leave the rest as defaults
+- You should get to a step that opens a browser window with Google authorization. Authorize rclone for the requested permissions. Then, back in the config wizard, continue pressing enter to leave the rest as defaults.
+- You should see a list with one remote, named `mk-annotations` and type `drive`
+- Enter `q` to quit the config wizard
+
+
+3. Install [PANDOC](https://pandoc.org/) (last tested with version 2.16.1).
 
 ```
 brew install pandoc
