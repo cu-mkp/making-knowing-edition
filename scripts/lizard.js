@@ -287,6 +287,9 @@ function locateThumbnails() {
 function syncThumbnails(thumbnailAssets, annotationMetadata ) {
 
     const thumbnails = {}
+    // find files already processed and in GitHub
+    const ghProcessedAnnotations = fs.readdirSync(ghAnnotationDir);
+
     for( const metadata of Object.values(annotationMetadata) ) {
         const {refresh, thumbnailURL} = metadata
 
@@ -298,9 +301,10 @@ function syncThumbnails(thumbnailAssets, annotationMetadata ) {
             const thumbnailSource = `${googleShareName}/${thumbnailFolderName}${nodeToPath(thumbnailNode)}`
             const thumbnailTarget = `${tempThumbnailDir}/${thumbnailNode.name}`
             
-            if( refresh || !fs.existsSync(thumbnailTarget) ) {
+            const alreadyInGh = ghProcessedAnnotations.includes(`${metadata.id}.html`);
+            if (refresh || (!fs.existsSync(thumbnailTarget) && !alreadyInGh)) {
                 syncDriveFile(thumbnailSource, tempThumbnailDir);
-            }     
+            }
             thumbnails[thumbnailID] = thumbnailNode.name
         }
     }
@@ -401,14 +405,24 @@ function filterForDownload(annotationMetadata, annotationAssets) {
     // filter out assets that aren't marked to be refreshed
     const selectedAssets = []
     const filesAlreadyInWorkingDir = fs.readdirSync(baseDir);
-    for( const annotationAsset of annotationAssets ) {
+
+    // find files already processed and in GitHub
+    const ghProcessedAnnotations = fs.readdirSync(ghAnnotationDir);
+
+    for (const annotationAsset of annotationAssets) {
         const metadata = annotationMetadata[annotationAsset.id]
-        if( metadata ) {        
-            const {status, refresh} = metadata
+        if (metadata) {
+            const { status, refresh } = metadata
             const downloaded = filesAlreadyInWorkingDir.includes(metadata.driveID);
-            // ignore items with no status
-            if( status === 'published' || status === 'staging' || (status === 'done' && !downloaded) ) {
-                // download everything to make sure we have the latest
+            const alreadyInGh = ghProcessedAnnotations.includes(`${metadata.id}.html`);
+
+            if (
+                // ignore items with no status
+                ["staging", "published", "done"].includes(status)
+                // download anything misisng from github or marked for refresh
+                && (!alreadyInGh || refresh)
+                // don't download things twice
+                && !downloaded) {
                 selectedAssets.push(annotationAsset)
             }
         }
@@ -546,6 +560,22 @@ function syncDriveFile( source, dest ) {
     });  
 }
 
+function getAbstract(id) {
+    // Extract the abstract from the GitHub-processed HTML file
+    const html = fs.readFileSync(`${ghAnnotationDir}/${id}.html`, "utf8");
+    const htmlDOM = new JSDOM(html);
+    const doc = htmlDOM.window.document;
+    const headerSection = doc.getElementsByClassName('header-section')[0];
+    let abstract = null;
+    // make sure there is a header section and an abstract
+    if (headerSection &&
+        headerSection.getElementsByTagName("h2")[0].textContent.includes("Abstract") &&
+        headerSection.getElementsByTagName("div")[0]) {
+            // use the innerHTML of the abstract as abstract to save into json
+            abstract = headerSection.getElementsByTagName("div")[0].innerHTML;
+    }
+    return abstract;
+}
 
 async function processAnnotations(annotationAssets, annotationMetadata, authors, thumbnails ) {
 
@@ -557,41 +587,46 @@ async function processAnnotations(annotationAssets, annotationMetadata, authors,
     dirExists( tempCaptionDir )
     dirExists( tempAbstractDir )
 
+    let ghProcessedAnnotations =  fs.readdirSync(ghAnnotationDir);
+
     let annotationContent = []
     for( const metadata of Object.values(annotationMetadata)) {        
         // record the authors
-        let annotationAuthors = metadata.authorIDs
+        let authors = metadata.authorIDs
 
         const asset = annotationAssets[metadata.driveID]
-        let annotation
+        let annotation;
+        let inGithub = ghProcessedAnnotations.includes(`${metadata.id}.html`);
         if( asset ) {
             // if we have the asset, but it isn't marked for publication, just publish metadata
             if( metadata.status === 'staging' || metadata.status === 'published' || metadata.status === 'done') {
-                annotation = await processAnnotation(asset,metadata,annotationAuthors)
+                annotation = await processAnnotation(asset,metadata,authors)
             } else {
                 annotation = {
                     ...metadata,
-                    annotationAuthors,
-                    abstract: null,
-                    contentURL: null
+                    authors,
+                    // include abstract and content URL if in github
+                    abstract: inGithub ? getAbstract(metadata.id) : null,
+                    contentURL: inGithub ? `${annotationRootURL}/${metadata.id}.html` : null,
                 };  
             }
         } else {
             // if we don't have the asset, just publish metadata
             annotation = {
                 ...metadata,
-                annotationAuthors,
-                abstract: null,
-                contentURL: null
+                authors,
+                // include abstract and content URL if in github
+                abstract: inGithub ? getAbstract(metadata.id) : null,
+                contentURL: inGithub ? `${annotationRootURL}/${metadata.id}.html` : null,
             };  
         }
 
         // process the thumbnail for this entry
         const thumbnailID = findImageID(metadata.thumbnailURL)
         const thumbnailFile = thumbnails[thumbnailID]
-        if( thumbnailFile ) {
-            const thumbnailSource = `${tempThumbnailDir}/${thumbnailFile}`
-            const thumbnailTarget = `${targetAnnotationThumbnailDir}/${thumbnailFile}`
+        const thumbnailSource = `${tempThumbnailDir}/${thumbnailFile}`
+        const thumbnailTarget = `${targetAnnotationThumbnailDir}/${thumbnailFile}`
+        if( thumbnailFile && fs.existsSync(thumbnailSource) ) {
             fs.copyFileSync( thumbnailSource, thumbnailTarget )    
             annotation.thumbnail = thumbnailFile
         } 
@@ -740,6 +775,15 @@ function migrateAnnotations(annotationMetadata) {
             console.log(`No metadata found for ${file}`);
         }
     });
+
+    existingFiles.forEach(file => {
+        const annoId = file.substr(0, file.indexOf('.'));
+        const annoImageDir = `${targetImageDir}/${annoId}`
+        // Replaces auto-generated html with existing html file from m-k-annotation-data repo
+        fs.copyFileSync(`${ghAnnotationDir}/${file}`, `${targetAnnotationDir}/${file}`)
+        // Removes annotation image dir if it exists (so it doesn't end up in build)
+        recursiveRemoveDir(annoImageDir)
+    })
 }
 
 function migrateImages(annoId) {
