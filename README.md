@@ -92,13 +92,14 @@ cd edition_data
 git clone https://github.com/cu-mkp/m-k-manuscript-data.git
 git clone https://github.com/cu-mkp/edition-webpages.git
 git clone https://github.com/cu-mkp/m-k-annotation-data.git
+cd ..
 ```
 
 Processing Edition Data
 ----------
 Now, you are ready to process some data!
 
-Run `scripts/lizard.js init` to download and prepare a build for your local machine.
+Run `scripts/lizard.js sync` to download and prepare a build for your local machine.
 
 
 Running Locally

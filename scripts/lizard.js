@@ -30,6 +30,7 @@ let targetSearchIndexDir;
 let targetAnnotationThumbnailDir;
 let targetAnnotationDir;
 let ghAnnotationDir = 'edition_data/m-k-annotation-data/html';
+let s3ImageDir = 'edition_data/s3-images';
 let targetFigureDir;
 let tempCaptionDir;
 let tempAbstractDir;
@@ -788,7 +789,7 @@ function migrateAnnotations(annotationMetadata) {
 
 function migrateImages(annoId) {
     fs.readdirSync(`${targetImageDir}/${annoId}`).forEach(file => {
-        const destinationDir = `edition_data/s3-images/${annoId}`;
+        const destinationDir = `${s3ImageDir}/${annoId}`;
         const sourcePath = `${targetImageDir}/${annoId}/${file}`;
         
         // Copies images to be uploaded to s3
@@ -796,7 +797,7 @@ function migrateImages(annoId) {
             fs.mkdirSync(destinationDir);
         }
         fs.copyFileSync(sourcePath, `${destinationDir}/${file}`);
-        console.log(`Migrated ${file} to edition/data/s3-images for uploading to aws`);
+        console.log(`Migrated ${file} to ${s3ImageDir} for uploading to aws`);
 
     })
 }
@@ -1144,10 +1145,11 @@ async function run(mode) {
             // TODO only index the annotations published at this stage
             searchIndex.generateAnnotationIndex(targetAnnotationDir, targetSearchIndexDir);
             break;
-        case 'init':
+        case 'sync':
             await run('download')
             await run('download-thumbs')
             await run('run')
+            await run('migrate')
             break;
         case 'manifest':
             iiifManifest.generate(configData)
@@ -1224,6 +1226,7 @@ function loadConfig(targetName) {
     dirExists(tempAbstractDir)
     dirExists(tempBiblioDir)
     dirExists(tempThumbnailDir)
+    dirExists(s3ImageDir);
 
     // edition URL
     annotationRootURL = `${editionDataURL}/annotations`;
@@ -1263,7 +1266,7 @@ function main() {
         console.log("\tindex: Create a search index of the essays.");
         console.log("\trun: Download, process, manifest, assets, figures, env, and index.")
         console.log("\tmigrate: Migrates annotations to/from github and preps images for upload to s3 (see README).")
-        console.log("\tinit: Download all, download thumbs, and run.")
+        console.log("\tsync: Download all, download thumbs, run, and migrate.")
         console.log("\thelp: Displays this help. ");
         console.log("<target> is the target key from the edition_data/config.json file. Defaults to 'local'.");
         process.exit(-1);
