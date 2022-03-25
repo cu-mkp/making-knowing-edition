@@ -772,7 +772,7 @@ function migrateAnnotations(annotationMetadata) {
                 recursiveRemoveDir(annoImageDir)
 
             }
-        } else {
+        } else if(!file.toString().includes(".json")) {
             console.log(`No metadata found for ${file}`);
         }
     });
