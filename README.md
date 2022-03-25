@@ -107,7 +107,8 @@ In order to get the project running on your local machine, follow the steps belo
 5. From the project root directory, set up the necessary directory structure:
 
     ```sh
-    mkdir public/bnf-ms-fr-640 && mkdir edition_data/working
+    mkdir public/bnf-ms-fr-640
+    mkdir edition_data/working
     ```
 
 6. In the `edition_data` directory, clone the needed repositories. The third will require a GitHub authentication token or SSH key as it is a private repo.
@@ -117,17 +118,17 @@ In order to get the project running on your local machine, follow the steps belo
     git clone https://github.com/cu-mkp/m-k-manuscript-data.git
     git clone https://github.com/cu-mkp/edition-webpages.git
     git clone https://github.com/cu-mkp/m-k-annotation-data.git
-    cd ..
+    cd .. # return to the project root
     ```
 
-### Processing Edition Data
+### Processing edition data
 
 Now, you are ready to process some data!
 
 Run `scripts/lizard.js sync` to download and prepare the edition data for your local machine.
 
 
-### Running Locally
+### Running locally
 
 Once you have generated some data for the edition, you can start it locally:
 
@@ -135,9 +136,9 @@ Once you have generated some data for the edition, you can start it locally:
 yarn start
 ```
 
-### Deploying to a Server
+### Deploying to a server
 
-Run the following commands to prepare a build for deployment. You may replace "staging" with "production" for a production server.
+Run the following commands to prepare a build for your first deployment. You may replace "staging" with "production" for a production server.
 
 ```
 scripts/lizard.js run staging
@@ -160,44 +161,97 @@ Note also that values are pulled from `edition_data/config.json` to populate `.e
 </details>
 
 ## Deployment guide
-This guide assumes you've successfully set up your local development environment.
 
-1) `git pull` the latest from the `./edition_data/...`
-    * `m-k-manuscript-data`
-        - **If this repo has changed**, run the following to add a new directory to the `edition_data/working/` director. The name of the directory will match the `MMDDYY-N` value of `edition_data/config.json.local.workingDir`. It's good practice to keep a copy of old `MMDDYY-N` directory as a back-up (but rename it).
-		    * `scripts/lizard.js download`
-			* `scripts/lizard.js download-thumbs`
-    * `m-k-annotation-data`
-    * `edition-webpages`
-2) Run `scripts/lizard.js run`
-    * This uses the `edition_data/working/MMDDYY-N` directory to generate all annotation html, process images from Google Drive, and create a local build in `./public/bnf-ms-fr-640`
-3) Run `scripts/lizard.js migrate` 
-    * If the annotation's `data_source` column is marked as `"gh"` in `annotation-metadata.csv` **and** the annotation's html file does **not** already exist in `./edition_data/m-k-annotation-data/html` then...
-        * This script prepares all those annotation for migration away from the Google Drive workflow and to the Github / Amazon S3 workflow by...
-            * Processing the html generated in step 2 (changes all `img` `src` attributes to an s3 url (via `edition-assets.makingandknowing.org` subdomain), injects the annotation's 'Abstract' & 'Cite As' elements, removes unnecessary elements, and makes html human readable)
-            * Saving the newly processed html to `./edition_data/m-k-annotation-data/html` and replaces the annotation's html file in `./public`
-            * Moving images from `./public` to a holding directory (`./edition_data/s3-images`) for later upload to the s3 bucket and deleting from `./public`
-    * If the annotation is marked as `"gh"` **and** already exists in `./edition_data/m-k-annotation-data/html`, then the annotation is simply copied from `./edition_data/m-k-annotation-data/html` to `./public`
-4) Run `yarn start` to test locally
-5) Repeat steps 2 & 3 but run `scripts/lizard.js run [staging/production]` and `scripts/lizard.js migrate [staging/production]` instead
-6) Upload all images moved to `./edition_data/s3-images` to the aws s3 bucket either through the ui or by running the following:
+This guide assumes you've followed the instructions above and successfully set up your local development environment. This guide should be used for all future deployments after initial setup.
+
+### Preparing a build
+
+1. Pull the latest data from each repo:
+    ```sh
+    cd edition_data
+    cd m-k-annotation-data && git pull && cd ..
+    cd m-k-manuscript-data && git pull && cd ..
+    cd edition-webpages && git pull && cd ..
+    cd .. # return to the project root
     ```
-    aws s3 cp ./edition_data/s3-images/ s3://mk-annotation-images --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile [PROFILE NAME]
+
+2. For each repo, check out the tagged release you want to use for the deployment. Otherwise, you will be using code and data from the `master` branch. For example. to use a tag named `v1.2.3` on the `m-k-annotation-data` repo:
+
+    ```sh
+    cd edition_data
+    cd m-k-annotation-data
+    git fetch --all --tags
+    git checkout v1.2.3
+    cd ../.. # return to the project root 
     ```
-    * Then clear out contents of `./edition_data/s3-images`
-7) Run `yarn build` (this will effectively copy `./public` to the `./build` directory)
-8) Remove any unwanted builds from `./build/bnf-ms-fr-640`
-9) `cd build` then upload `./build` to the aws s3 bucket either through the ui or by running the following:
+
+    > Note: This will put you in "detached HEAD" state for this repo, meaning you are not on a branch, so any commits made here will be lost. Be sure to switch to a branch before making any commits.
+    >
+    > If you want to immediately start working on a new branch, you can use `git checkout v1.2.3 -b new-branch-name` instead. This might be useful if you are, for example, migrating new annotations to GitHub from Google Drive.
+
+3. Run the sync script from the project root:
+    ```sh
+    scripts/lizard.js sync
     ```
-    aws s3 cp . s3://edition640-dist/[BUILD ID] --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --profile [PROFILE NAME]
+    * This uses the `./edition_data/working/MMDDYY-N` directory to generate all annotation html, process images from Google Drive, and create a local build in `./public/bnf-ms-fr-640`.
+        <details>
+        <summary>Details on how this works</summary>
+
+        * If the annotation's `data_source` column is marked as `"gh"` in `annotation-metadata.csv` **and** the annotation's html file does **not** already exist in `./edition_data/m-k-annotation-data/html` then...
+            * This script prepares all those annotation for migration away from the Google Drive workflow and to the GitHub workflow by...
+                * Processing the html generated in step 2 (changes all `img` `src` attributes to an asset url (via `assetServerURL`), injects the annotation's 'Abstract' & 'Cite As' elements, removes unnecessary elements, and makes html human readable)
+                * Saving the newly processed html to `./edition_data/m-k-annotation-data/html` and replaces the annotation's html file in `./public`
+                * Moving images from `./public` to a holding directory (`./edition_data/s3-images`) for later upload to the s3 bucket and deleting from `./public`
+        * If the annotation is marked as `"gh"` **and** already exists in `./edition_data/m-k-annotation-data/html`, then the annotation is simply copied from `./edition_data/m-k-annotation-data/html` to `./public`
+        </details>
+4. Run the start script to test locally:
+    ```sh
+    yarn start
     ```
-10) Update Amazon CloudFront (https://console.aws.amazon.com/cloudfront/home)
+5. Run the `run` and `migrate` scripts for the environment you are deploying to, i.e. for staging:
+    ```sh
+    scripts/lizard.js run staging
+    scripts/lizard.js migrate staging
+    ```
+    or for production:
+    ```sh
+    scripts/lizard.js run production
+    scripts/lizard.js migrate production
+    ```
+6. Run the build script to produce a bundle built from your files in `./public` and output to the `./build` directory:
+    ```sh
+    yarn build
+    ```
+7. Remove any unwanted builds from `./build/bnf-ms-fr-640` (i.e. any that aren't for the date and the environment you are currently building for).
+
+### Uploading to S3 and deploying with CloudFront
+
+The following steps may differ if you are deploying on your own server, but these are the exact steps needed for S3 and CloudFront. To use the AWS CLI, you must [install it](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) and [set it up](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html). Though, it is also possible to do the following in the S3 user interface.
+
+1. Upload all images in `./edition_data/s3-images` to the `mk-annotation-images` AWS S3 bucket, either through the S3 UI or by running the following in the AWS CLI:
+    ```sh
+    aws s3 cp ./edition_data/s3-images/ s3://mk-annotation-images --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+    ```
+    Then clear out the contents of `s3-images`:
+    ```sh
+    rm -rf ./edition_data/s3-images/*
+    ```
+
+2. Upload the contents of the `./build` directory to the `edition640-dist` AWS S3 bucket with a key identical to your build ID, either through the UI, or by running the following.
+
+    Note: `[staging/production]MMDDYY-N` is your Build ID, and should be identical to the folder name in `./build`.
+    ```sh
+    cd build
+    aws s3 cp . s3://edition640-dist/[staging/production]MMDDYY-N --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+    cd .. # return to the project root 
+    ```
+3. Update the appropriate Amazon CloudFront (https://console.aws.amazon.com/cloudfront/home) distribution with the new build:
     * Find the desired environment by looking at the CNAMEs column and click its distribution ID
         * edition640... === production
         * edition-staging... === staging
         * edition-dev... === development
     * Click the `Origins and Origin Groups` tab
     * Check the only listed origin and then click the `Edit` button
-    * Change the `Origin Path` to the new build id (i.e., the name of the directory in `./build` that you uploaded to aws)
+    * Change the `Origin Path` to the new build id (i.e., the name of the directory in `./build` that you uploaded to S3)
     * Save that change, click the `Yes, Edit` button
-11) After a minute or so, the site should be deployed!
+4. After a few minutes or so, the site should be deployed!
