@@ -15,6 +15,8 @@ This repository contains the website code and scripts to process the XML of the 
 - [Deployment guide](#deployment-guide)
   - [Preparing a build](#preparing-a-build)
   - [Uploading to S3 and deploying with CloudFront](#uploading-to-s3-and-deploying-with-cloudfront)
+- [Publishing Google Drive content to GitHub](#publishing-google-drive-content-to-github)
+
 ## Getting started
 
 ### Requirements
@@ -276,3 +278,28 @@ The following steps may differ if you are deploying on your own server, but thes
    4. Change the `Origin Path` to the new build id (i.e., the name of the directory in `./build` that you uploaded to S3)
    5. Save that change, click the `Yes, Edit` button
 4. After a few minutes or so, the site should be deployed!
+
+## Publishing Google Drive content to GitHub
+
+If you have followed the above guides, and there were any essays marked as "github" in `metadata.csv` that had not yet been migrated from Google Drive, you will have populated `./edition_data/m-k-annotation-data` with new content.
+
+It is recommended to publish this content to GitHub so that it will not have to be pulled from Google Drive again in the future. First, to check if there are indeed changes, run the following from the project root:
+
+```sh
+cd ./edition_data/m-k-annotation-data
+git status
+```
+
+This should show any files that have changed: if working properly, and migrations were required, it should list new HTML files corresponding to any newly migrated Google Drive essays. You may want to open these files to make sure they look correct at a glance.
+
+> Note: recall the [above note about `assetServerURL`](#deploying-to-a-server). If you changed this setting in your configuration, ensure that *all* URLs for images in the essays you are about to publish use the same asset server URL as those already in the `m-k-annotation-data` repo. If they do not match, update the new essays' HTML to use the old URLs before continuing; or vice versa. These must at least be consistent across the repo, even if not all using the `https://edition-assets.makingandknowing.org/` URL.
+
+If all looks good, and you are ready to publish, you can do the following:
+```sh
+git checkout master && git pull # just to make sure we are on the latest master branch
+git add .
+git commit -m "Add new migrated essays from Google Drive"
+git push origin master
+```
+
+This will publish them to the master branch on GitHub.
