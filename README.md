@@ -78,8 +78,7 @@ In order to get the project running on your local machine, follow the steps belo
     vi edition_data/config.json
     ```
 
-    You will need to specify a build ID and a working directory. We recommend using a formatted date for both: `MMDDYY-N` where MM=Month, DD=Date, YY=Year, N=builds on that date.
-
+    Edit the configuration for each environment, for example, the local environment:
     ```json
     "local": {
             "buildID": "stagingMMDDYY-N",
@@ -98,12 +97,12 @@ In order to get the project running on your local machine, follow the steps belo
         }
     ```
 
-    - Notes: 
-        - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
-        - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
-            - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
-        - If your Google Drive account is the owner of the "Annotations" folder (i.e. General Editor), set `sharedDrive` to `false`. Otherwise, leave it as `true`.
-        - If setting up a production build, ensure the `googleTrackingID` is set to a working Google Analytics ID.
+    - You will need to specify a build ID (`buildID`) and a working directory (`workingDir`). We recommend using a formatted date for both: `MMDDYY-N` where MM=Month, DD=Date, YY=Year, N=builds on that date.
+    - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
+    - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
+        - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
+    - If your Google Drive account is the owner of the "Annotations" folder (i.e. General Editor), set `sharedDrive` to `false`. Otherwise, leave it as `true`.
+    - If setting up a production build, ensure the `googleTrackingID` is set to a working Google Analytics ID.
 
 5. From the project root directory, set up the necessary directory structure:
 
@@ -146,12 +145,12 @@ scripts/lizard.js migrate staging
 yarn build
 ```
 
-This should create a directory called `build` in the project root, which is the bundled, built project (i.e. `build/index.html` is the site root) that you can deploy to your server.
+This should create a directory called `build` in the project root, which is the bundled, built project that you can deploy to your server (i.e. `build/index.html` is the site root).
 
 <details>
 <summary>Note on asset URLs and internal links</summary>
 
-If you need to alter the `assetServerURL`, note that all essays already in the GitHub `m-k-annotation-data` repo will still retain the original S3/CloudFront asset server URL (`https://edition-assets.makingandknowing.org`) setting from their initial migration. Thus, after running the `yarn build` script, you will need to search for all instances of that URL in the `build` directory, and replace it with your new URL. 
+If you need to alter the `assetServerURL`, note that all essays already in the GitHub `m-k-annotation-data` repo will still retain the original S3/CloudFront asset server URL (`https://edition-assets.makingandknowing.org`) setting from their initial migration. Thus, after running the `yarn build` script, you will need to search for all instances of that URL in the `build` directory, and replace it with your new URL. Otherwise, you may run into CORS issues.
 
 To permanently migrate essays to a new `assetServerURL`, you will need to make the same change across all essays in the `m-k-annotation-data` repo, as those are not overwritten or modified by any code here after initial migration.
 
