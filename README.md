@@ -239,19 +239,19 @@ The following steps may differ if you are deploying on your own server, but thes
 
 2. Upload the contents of the `./build` directory to the `edition640-dist` AWS S3 bucket with a key identical to your build ID, either through the UI, or by running the following.
 
-    Note: `[staging/production]MMDDYY-N` is your Build ID, and should be identical to the folder name in `./build`.
+    > Note: `[staging/production]MMDDYY-N` is your Build ID, and should be identical to the folder name in `./build`.
     ```sh
     cd build
     aws s3 cp . s3://edition640-dist/[staging/production]MMDDYY-N --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
     cd .. # return to the project root 
     ```
 3. Update the appropriate Amazon CloudFront (https://console.aws.amazon.com/cloudfront/home) distribution with the new build:
-    * Find the desired environment by looking at the CNAMEs column and click its distribution ID
+    1. Find the desired environment by looking at the CNAMEs column and click its distribution ID
         * edition640... === production
         * edition-staging... === staging
         * edition-dev... === development
-    * Click the `Origins and Origin Groups` tab
-    * Check the only listed origin and then click the `Edit` button
-    * Change the `Origin Path` to the new build id (i.e., the name of the directory in `./build` that you uploaded to S3)
-    * Save that change, click the `Yes, Edit` button
+    2. Click the `Origins and Origin Groups` tab
+    3. Check the only listed origin and then click the `Edit` button
+    4. Change the `Origin Path` to the new build id (i.e., the name of the directory in `./build` that you uploaded to S3)
+    5. Save that change, click the `Yes, Edit` button
 4. After a few minutes or so, the site should be deployed!
