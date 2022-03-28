@@ -1232,8 +1232,8 @@ function loadConfig(targetName) {
     annotationRootURL = `${editionDataURL}/annotations`;
     imageRootURL = `${editionDataURL}/images`;
 
-    // asset URL
-    annotationAssetRootURL = assetServerURL;
+    // asset URL, hardcode default if undefined
+    annotationAssetRootURL = assetServerURL || 'https://edition-assets.makingandknowing.org';
 
     // rclone configuration
     rCloneServiceName = rclone.serviceName;
