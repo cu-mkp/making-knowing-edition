@@ -40,6 +40,7 @@ let thumbnailListFile;
 let convertAnnotationLog;
 let annotationRootURL;
 let imageRootURL;
+let annotationAssetRootURL;
 
 let logger = null;
 const maxDriveTreeDepth = 20;
@@ -55,7 +56,6 @@ const videoEmbedRegX2 = /^https:\/\/player\.vimeo\.com/;
 const videoWidth = 560;
 const videoHeight = 315;
 const wikischolarRegX = /wikischolars/;
-const absoluteMkDomainUrl = /https?:\/\/.+?\.makingandknowing.org/;
 const figureCitation = /[F|f]ig(\.|ure[\.]*)[\s]*[0-9]+/;
 const videoCitation = /[V|v]id(\.|eo[\.]*)[\s]*[0-9]+/;
 const figureNumber = /[0-9]+/;
@@ -772,7 +772,7 @@ function migrateAnnotations(annotationMetadata) {
                 recursiveRemoveDir(annoImageDir)
 
             }
-        } else {
+        } else if(!file.toString().includes(".json")) {
             console.log(`No metadata found for ${file}`);
         }
     });
@@ -808,10 +808,10 @@ function migrateAnnotation(file, annoId) {
     const ghAnnoPath = `${ghAnnotationDir}/${file}`;
     let html = fs.readFileSync( defaultAnnoPath, "utf8");
 
-    // replaces all src attribute url w/ aws url
+    // replaces all src attribute url w/ asset server URL
     html = html.replace(
         /(src=")https?(:\/\/)([a-zA-Z0-9\.\-\_\:\/]+)\/+images\//gm,
-        '$1https$2edition-assets.makingandknowing.org/'
+        `$1${annotationAssetRootURL}/`
     )
         
     let htmlDOM = new JSDOM(html);
@@ -1191,7 +1191,7 @@ function loadConfig(targetName) {
     configData.editionDataURL = `${configData.editionDataURL}/${configData.buildID}`
     configData.targetDir = `${configData.targetDir}/${configData.buildID}`
 
-    const { sourceDir, targetDir, workingDir, editionDataURL, rclone } = configData
+    const { sourceDir, targetDir, workingDir, editionDataURL, assetServerURL, rclone } = configData
 
     // source dir
     annotationMetaDataCSV = `${sourceDir}/metadata/annotation-metadata.csv`;
@@ -1231,6 +1231,9 @@ function loadConfig(targetName) {
     // edition URL
     annotationRootURL = `${editionDataURL}/annotations`;
     imageRootURL = `${editionDataURL}/images`;
+
+    // asset URL, hardcode default if undefined
+    annotationAssetRootURL = assetServerURL || 'https://edition-assets.makingandknowing.org';
 
     // rclone configuration
     rCloneServiceName = rclone.serviceName;
