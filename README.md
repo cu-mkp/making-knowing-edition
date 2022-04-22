@@ -112,9 +112,10 @@ In order to get the project running on your local machine, follow the steps belo
    ```
 
    - You will need to specify a build ID (`buildID`) and a working directory (`workingDir`). We recommend using a formatted date for both: `MMDDYY-N` where MM=Month, DD=Date, YY=Year, N=builds on that date.
-   - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
-   - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
-     - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
+   - Explanations of other `config.json` content:
+        - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
+        - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
+          - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
    - If your Google Drive account is the owner of the "Annotations" folder (i.e. General Editor), set `sharedDrive` to `false`. Otherwise, leave it as `true`.
    - If setting up a production build, ensure the `googleTrackingID` is set to a working Google Analytics ID.
 
@@ -180,7 +181,10 @@ This guide assumes you've followed the instructions above and successfully set u
 
 ### Preparing a build
 
-1. Pull the latest data from each repo:
+1. Navigate to the `edition_data` directory
+2. Update `config.json` 
+     1. Specify a build ID (`buildID`) and a working directory (`workingDir`). We recommend using a formatted date for both: `MMDDYY-N` where MM=Month, DD=Date, YY=Year, N=builds on that date.
+3. Pull the latest data from each repo:
 
    ```sh
    cd edition_data
@@ -190,7 +194,7 @@ This guide assumes you've followed the instructions above and successfully set u
    cd .. # return to the project root
    ```
 
-2. For each repo, check out the tagged release you want to use for the deployment. Otherwise, you will be using code and data from the `master` branch. For example. to use a tag named `v1.2.3` on the `m-k-annotation-data` repo:
+4. For each repo, check out the tagged release you want to use for the deployment. Otherwise, you will be using code and data from the `master` branch. For example. to use a tag named `v1.2.3` on the `m-k-annotation-data` repo:
 
    ```sh
    cd edition_data
@@ -204,7 +208,7 @@ This guide assumes you've followed the instructions above and successfully set u
    >
    > If you want to immediately start working on a new branch, you can use `git checkout v1.2.3 -b new-branch-name` instead. This might be useful if you are, for example, migrating new annotations to GitHub from Google Drive.
 
-3. Run the sync script from the project root:
+5. Run the sync script from the project root:
 
    ```sh
    scripts/lizard.js sync
@@ -222,11 +226,11 @@ This guide assumes you've followed the instructions above and successfully set u
      - If the annotation is marked as `"gh"` **and** already exists in `./edition_data/m-k-annotation-data/html`, then the annotation is simply copied from `./edition_data/m-k-annotation-data/html` to `./public`
      </details>
 
-4. Run the start script to test locally:
+6. Run the start script to test locally:
    ```sh
    yarn start
    ```
-5. Run the `run` and `migrate` scripts for the environment you are deploying to, i.e. for staging:
+7. Run the `run` and `migrate` scripts for the environment you are deploying to, i.e. for staging:
    ```sh
    scripts/lizard.js run staging
    scripts/lizard.js migrate staging
@@ -236,11 +240,11 @@ This guide assumes you've followed the instructions above and successfully set u
    scripts/lizard.js run production
    scripts/lizard.js migrate production
    ```
-6. Run the build script to produce a bundle built from your files in `./public` and output to the `./build` directory:
+8. Run the build script to produce a bundle built from your files in `./public` and output to the `./build` directory:
    ```sh
    yarn build
    ```
-7. Remove any unwanted builds from `./build/bnf-ms-fr-640` (i.e. any that aren't for the date and the environment you are currently building for).
+9. Remove any unwanted builds from `./build/bnf-ms-fr-640` (i.e. any that aren't for the date and the environment you are currently building for).
 
 ### Uploading to S3 and deploying with CloudFront
 
