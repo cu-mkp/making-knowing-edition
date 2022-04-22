@@ -61,7 +61,7 @@ In order to get the project running on your local machine, follow the steps belo
    yarn install && yarn --cwd scripts install
    ```
 
-2. You will need to set up and configure rclone, which provides rsync-like functionality. Set up rclone to have a service called "mk-annotations" which is authorized to access the shared "Annotations" directory:
+2. You will need to set up and configure rclone, which provides rsync-like functionality. Set up rclone to have a service called "mk-annotations" which is authorized to access the shared "Annotations" directory by following the directions below. To check if you have previously done this (and thus do not need to set up and configure again), run `rclone mk-annotations:` to make sure rclone is able to connect to the Google Drive. This will give a listing of folders if successful. Otherwise, set up and configure the service:
 
    1. Follow the [instructions to make a Google Drive client ID](https://rclone.org/drive/#making-your-own-client-id) (ensure that the user account performing these actions has access to the "Annotations" folder in Google Drive)
    2. In a terminal, run the config wizard with the command
@@ -78,7 +78,7 @@ In order to get the project running on your local machine, follow the steps belo
    10. You should get to a step that opens a browser window with Google authorization. Authorize rclone for the requested permissions. Then, back in the config wizard, continue pressing enter to leave the rest as defaults.
    11. You should see a list with one remote of "drive" type, named "mk-annotations"
    12. Enter `q` to quit the config wizard
-
+ 
 3. In the project root directory, copy the `edition_data_example` directory to `edition_data`
 
    ```sh
