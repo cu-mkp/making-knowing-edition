@@ -112,20 +112,21 @@ In order to get the project running on your local machine, follow the steps belo
    ```
 
    - You will need to specify a build ID (`buildID`) and a working directory (`workingDir`). We recommend using a formatted date for both: `MMDDYY-N` where MM=Month, DD=Date, YY=Year, N=builds on that date.
-   - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
-   - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
-     - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
+   - Explanations of other `config.json` content:
+        - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
+        - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
+          - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
    - If your Google Drive account is the owner of the "Annotations" folder (i.e. General Editor), set `sharedDrive` to `false`. Otherwise, leave it as `true`.
    - If setting up a production build, ensure the `googleTrackingID` is set to a working Google Analytics ID.
 
-5. From the project root directory, set up the necessary directory structure:
+5. If you do not already have them: from the project root directory, set up the necessary directory structure:
 
    ```sh
    mkdir public/bnf-ms-fr-640
    mkdir edition_data/working
    ```
 
-6. In the `edition_data` directory, clone the needed repositories. The third will require a GitHub authentication token or SSH key as it is a private repo.
+6. In the `edition_data` directory, clone the needed repositories. The third will require a GitHub authentication token or SSH key as it is a private repo. If you have previously cloned these repos, just do a `git fetch` and then `git pull` for each repo.
 
    ```sh
    cd edition_data
