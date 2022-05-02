@@ -4,7 +4,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import React, { Component, useRef } from 'react';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import { connect, Provider } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { dispatchAction } from '../model/ReduxStore';
@@ -46,7 +46,7 @@ class DiploMatic extends Component {
 			history.listen((location) => {
 				const page = location.hash.slice(1)
 				ReactGA.set({ page });
-				ReactGA.pageview(page)
+				ReactGA.send({ hitType: "pageview", page });
 				// console.log('GA: '+page)
 				window.scrollTo(0, 0);
 			})	

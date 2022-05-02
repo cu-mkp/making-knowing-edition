@@ -1,4 +1,4 @@
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 var DiplomaticActions = {};
 
@@ -11,7 +11,7 @@ DiplomaticActions.setFixedFrameMode = function setFixedFrameMode( state, mode ) 
 
 DiplomaticActions.recordLanding = function recordLanding(state) {
     const firstPage = window.location.hash.slice(1)
-    ReactGA.pageview(firstPage);  
+    ReactGA.send({ hitType: "pageview", page: firstPage });  
     // console.log('initial GA: '+firstPage)
 
     return {
