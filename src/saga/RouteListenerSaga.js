@@ -118,7 +118,7 @@ function *resolveAnnotationManifest() {
             const response = yield axios.get(annotations.annotationManifestURL);
             yield putResolveAction( 'AnnotationActions.loadAnnotationManifest', response.data );
         } catch (e) {
-            // do nothing
+            console.error(e);
         }
     }
 }
@@ -130,7 +130,7 @@ function *resolveMenuStructure() {
             const response = yield axios.get(contents.menuStructureURL);
             yield putResolveAction( 'ContentActions.loadMenuStructure', response.data );
         } catch (e) {
-            // do nothing
+            console.error(e);
         }
     }
 }
@@ -142,7 +142,7 @@ function *resolveAuthors() {
             const response = yield axios.get(authors.authorsURL);
             yield putResolveAction( 'AuthorActions.loadAuthors', response.data );
         } catch (e) {
-            // do nothing
+            console.error(e);
         }
     }
 }
@@ -154,7 +154,7 @@ function *resolveGlossary() {
             const response = yield axios.get(glossary.glossaryURL);
             yield putResolveAction( 'GlossaryActions.loadGlossary', response.data );
         } catch (e) {
-            // do nothing
+            console.error(e);
         }
     }
 }
@@ -166,7 +166,7 @@ function *resolveComments() {
             const response = yield axios.get(comments.commentsURL);
             yield putResolveAction( 'CommentActions.loadComments', response.data );
         } catch (e) {
-            // do nothing
+            console.error(e);
         }
     }
 }
@@ -178,7 +178,7 @@ function *resolveEntryManifest() {
             const response = yield axios.get(entries.entryManifestURL);
             yield putResolveAction( 'EntryActions.loadEntryManifest', response.data );
         } catch (e) {
-            // do nothing
+            console.error(e);
         }
     }
 }
@@ -191,8 +191,8 @@ function *resolveContent(contentID) {
             const contentURL = `${contents.contentBaseURL}/${contentID}.html`
             const response = yield axios.get(contentURL);
             yield putResolveAction( 'ContentActions.loadContent', contentID, response.data );
-        } catch(e) {
-            // do nothing
+        } catch (e) {
+            console.error(e);
         }
     }
 }
@@ -204,8 +204,8 @@ function *resolveAnnotation(annotationID) {
         try {
             const response = yield axios.get(annotation.contentURL);
             yield putResolveAction( 'AnnotationActions.loadAnnotation', annotationID, response.data );
-        } catch(e) {
-            // do nothing
+        } catch (e) {
+            console.error(e);
         }
     }
 }
