@@ -79,7 +79,7 @@ class DiploMatic extends Component {
 		}, 200);
 	}
 
-	renderHeader(fixedFrameModeClass) {
+	renderHeader({fixedFrameModeClass, searchEnabled}) {
 		const handleToggleSearchBar = () => this.setState({searchOpen: !this.state.searchOpen, mobileMenuOpen: false});
 		const handleToggleMobileMenu = () => this.setState({mobileMenuOpen: !this.state.mobileMenuOpen, searchOpen: false});
 		const handleClickHelp = (e) => {
@@ -98,33 +98,35 @@ class DiploMatic extends Component {
 					/>
 				</Paper>
 				<div style={{position: 'relative', width: '100%'}}>
-					<Collapse
-						in={this.state.searchOpen}
-					>
-						<Paper elevation={24} className={`search-bar maroon-dropdown flex-parent ai-center jc-center`} >
-							<div className='flex-parent wrap jc-space-around content'>
-								<h4 className='label' >Search the Edition</h4>
-								<img style={{width: 50, marginBottom: 5}} src='/img/lizard-no-bg.png'/>
-								<div className='flex-parent ai-center' >
-									<Search toggleSearchBar={handleToggleSearchBar} />
-									<IconButton color='secondary' onClick={handleClickHelp} >
-										<HelpIcon  />
+					{searchEnabled && (
+						<Collapse
+							in={this.state.searchOpen}
+						>
+							<Paper elevation={24} className={`search-bar maroon-dropdown flex-parent ai-center jc-center`} >
+								<div className='flex-parent wrap jc-space-around content'>
+									<h4 className='label' >Search the Edition</h4>
+									<img style={{width: 50, marginBottom: 5}} src='/img/lizard-no-bg.png'/>
+									<div className='flex-parent ai-center' >
+										<Search toggleSearchBar={handleToggleSearchBar} />
+										<IconButton color='secondary' onClick={handleClickHelp} >
+											<HelpIcon  />
+										</IconButton>
+										<SearchHelpPopper
+											anchorEl={this.state.searchHelpAnchor} 
+											open={this.state.searchHelpAnchor} 
+											onClose={handleClickHelp}
+										/>
+									</div>
+									<IconButton
+										onClick={handleToggleSearchBar}
+										style={{position: 'absolute', right: 10, top: 10}}
+									>
+										<CloseIcon style={{color: 'white'}} />
 									</IconButton>
-									<SearchHelpPopper
-										anchorEl={this.state.searchHelpAnchor} 
-										open={this.state.searchHelpAnchor} 
-										onClose={handleClickHelp}
-									/>
 								</div>
-								<IconButton
-									onClick={handleToggleSearchBar}
-									style={{position: 'absolute', right: 10, top: 10}}
-								>
-									<CloseIcon style={{color: 'white'}} />
-								</IconButton>
-							</div>
-						</Paper> 
-					</Collapse>
+							</Paper> 
+						</Collapse>
+					)}
 					<Collapse
 						in={this.state.mobileMenuOpen}
 					>
@@ -229,22 +231,43 @@ class DiploMatic extends Component {
 		);
 	}
 
-	renderContent() {
+	renderContent({
+		contentEnabled,
+		essaysEnabled,
+		manuscriptEnabled,
+		searchEnabled,
+	}) {
 		return (
 			<div id="content">
 				<Switch>
 					<Route path="/" render={this.renderIndexPage} exact/>
-					<Route path="/content" render={this.renderContentView}/>
-					<Route path="/entries" component={EntryListView}/>
-					<Route path="/essays" component={AnnotationListView} exact/>
-					<Route path="/essays/:annoID" render={this.renderAnnotationView}/>
-					<Route path="/folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2" render={this.renderDocumentView} exact/>
-					<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
-					<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>
-					<Route path="/folios" render={this.renderDocumentView} exact/>
-					<Route path="/search/annotation/:annotationID" render={this.renderSearchView} exact/> 
-					<Route path="/search/folio/:folioID/:transcriptionType" render={this.renderSearchView} exact/> 
-					<Route path="/search" component={this.renderSearchView}/>
+					{contentEnabled && (
+						<Route path="/content" render={this.renderContentView}/>
+					)}
+					{manuscriptEnabled && (
+						<Route path="/entries" component={EntryListView}/>
+					)}
+					{essaysEnabled && (
+						<>
+							<Route path="/essays" component={AnnotationListView} exact/>
+							<Route path="/essays/:annoID" render={this.renderAnnotationView}/>
+						</>
+					)}
+					{manuscriptEnabled && (
+						<>
+							<Route path="/folios/:folioID/:transcriptionType/:folioID2/:transcriptionType2" render={this.renderDocumentView} exact/>
+							<Route path="/folios/:folioID/:transcriptionType" render={this.renderDocumentView} exact/>
+							<Route path="/folios/:folioID" render={this.renderDocumentView} exact/>
+							<Route path="/folios" render={this.renderDocumentView} exact/>
+						</>
+					)}
+					{searchEnabled && (
+						<>
+							<Route path="/search/annotation/:annotationID" render={this.renderSearchView} exact/> 
+							<Route path="/search/folio/:folioID/:transcriptionType" render={this.renderSearchView} exact/> 
+							<Route path="/search" component={this.renderSearchView}/>
+						</>
+					)}
 				</Switch>
 			</div>
 		);
@@ -293,7 +316,15 @@ class DiploMatic extends Component {
 	}
 
 	render() {
-		const { firstPageLoad, fixedFrameMode, googleAnalyticsTrackingID } = this.props.diplomatic
+		const {
+			contentEnabled,
+			essaysEnabled,
+			firstPageLoad,
+			fixedFrameMode,
+			googleAnalyticsTrackingID,
+			manuscriptEnabled,
+			searchEnabled,
+		} = this.props.diplomatic
 		const fixedFrameModeClass = fixedFrameMode ? 'fixed' : 'sticky';
 
 		if( googleAnalyticsTrackingID && firstPageLoad ) {
@@ -304,8 +335,13 @@ class DiploMatic extends Component {
 				<HashRouter>
 					<div id="diplomatic" className={fixedFrameModeClass}>
 						<RouteListener/>
-						{ this.renderHeader(fixedFrameModeClass) }
-						{ this.renderContent() }
+						{ this.renderHeader({ fixedFrameModeClass, searchEnabled }) }
+						{ this.renderContent({
+							contentEnabled,
+							essaysEnabled,
+							manuscriptEnabled,
+							searchEnabled,
+						}) }
 						{ this.renderFooter(fixedFrameModeClass) }
 					</div>	
 				</HashRouter>
