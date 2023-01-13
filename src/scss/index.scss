@@ -96,12 +96,6 @@ animation: #{$str};
 @import "navigation";
 @import "pagination";
 
-@import "annotation_view";
-@import "annotation_list_view";
-@import "annotation_card";
-@import "entry_list_view";
-@import "content_view";
-@import "content_page";
 @import "diplomatic";
 @import "imageGridView";
 @import "splitPaneView";
@@ -110,7 +104,5 @@ animation: #{$str};
 @import "transcriptView";
 @import "xmlView";
 @import "glossary";
-@import "annotation";
 @import "jumpbox";
 
-@import "searchResultsView";
