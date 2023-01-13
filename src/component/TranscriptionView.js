@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import Navigation from '../component/Navigation';
 import Pagination from '../component/Pagination';
 import EditorComment from '../component/EditorComment';
-import Annotation from '../component/Annotation';
 import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 import DocumentHelper from '../model/DocumentHelper';
@@ -143,27 +142,7 @@ class TranscriptionView extends Component {
 							return (
 								<u>{domToReact(domNode.children, parserOptions)}</u>
 							);
-							
-						case 'h2':
-							let entryID = domNode.attribs['data-entry-id'];
-							const annotations = this2.props.annotations.annotationsByEntry[entryID];
-							if( annotations ) { 
-								const annotationID = annotations[0]; // for now, just take the first one
-								const annotation = this2.props.annotations.annotations[annotationID];
-								let annotationType = "annotation"; // fieldNotes | annotation | video
-								return (
-									<div>
-										<Annotation headerContent={domToReact(domNode.children, parserOptions)}
-											side={side}
-											type={annotationType}
-											annotation={annotation}>
-										</Annotation>
-									</div>
-								);
-							} else {
-								return domNode;
-							}
-
+													
 						case 'unc':
 							return (
 								<span>[{domToReact(domNode.children, parserOptions)}?]</span>
