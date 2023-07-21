@@ -126,13 +126,13 @@ In order to get the project running on your local machine, follow the steps belo
    mkdir edition_data/working
    ```
 
-6. In the `edition_data` directory, clone the needed repositories. The third will require a GitHub authentication token or SSH key as it is a private repo.
+6. In the `edition_data` directory, clone the needed repositories. The third is a private repo, so it will require an SSH key.
 
    ```sh
    cd edition_data
    git clone https://github.com/cu-mkp/m-k-manuscript-data.git
    git clone https://github.com/cu-mkp/edition-webpages.git
-   git clone https://github.com/cu-mkp/m-k-annotation-data.git
+   git clone git@github.com:cu-mkp/m-k-annotation-data.git
    cd .. # return to the project root
    ```
 
