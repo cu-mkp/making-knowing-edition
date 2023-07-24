@@ -22,6 +22,7 @@ This repository contains the website code and scripts to process the XML of the 
 ### Requirements
 
 - [Node](https://nodejs.org/en/download/package-manager/) v14.x with NPM v7.x
+     - e.g., nvm 14.21.3 with npm 7.24.2 (these are both the latest versions in those major versions)
 - [Yarn](https://classic.yarnpkg.com/lang/en/docs/install) v1.22.x (recommended: 1.22.18)
   - It is recommended to install this with npm: `npm install --global yarn@1.22.x`
 - [Rclone](https://rclone.org/install/) v1.56+ (recommended: 1.58.0)
