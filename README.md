@@ -231,7 +231,7 @@ This guide assumes you've followed the instructions above and successfully set u
    ```sh
    yarn start
    ```
-7. Run the `run` and `migrate` scripts for the environment you are deploying to, i.e. for staging:
+7. Run the `run` and `migrate` scripts [WHAT DO THESE TWO DO? What is `migrate` migrating to?] for the environment you are deploying to, i.e. for staging:
    ```sh
    scripts/lizard.js run staging
    scripts/lizard.js migrate staging
@@ -284,7 +284,10 @@ The following steps may differ if you are deploying on your own server, but thes
    5. Save that change, click the `Yes, Edit` button
 4. After a few minutes or so, the site should be deployed!
 
-## Publishing Google Drive content to GitHub
+## Add generated HTML to Github m-k-annotation-data repo
+Generated HTML needs to be added to https://github.com/cu-mkp/m-k-annotation-data `HTML/` directory -- you must do this manually (e.g., by upload).
+
+## Publishing Google Drive content to GitHub <-- NEEDS TO BE FIXED: this does not add generated HTML to the `/cloned edition_data/m-k-annotation-data`
 
 If you have followed the above guides, and there were any essays marked as "github" in `metadata.csv` that had not yet been migrated from Google Drive, you will have populated `./edition_data/m-k-annotation-data` with new content.
 
