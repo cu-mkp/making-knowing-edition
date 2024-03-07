@@ -89,7 +89,7 @@ In order to get the project running on your local machine, follow the steps belo
 4. Open `edition_data/config.json` in your preferred text editor, for example:
 
    ```sh
-   vi edition_data/config.json
+   nano edition_data/config.json
    ```
 
    Edit the configuration for each environment, for example, the local environment:
