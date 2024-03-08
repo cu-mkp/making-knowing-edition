@@ -288,7 +288,7 @@ The following steps may differ if you are deploying on your own server, but thes
 Generated HTML needs to be added to https://github.com/cu-mkp/m-k-annotation-data `HTML/` directory -- you must do this manually (e.g., by upload).
 
 ## Publishing Google Drive content to GitHub 
-<-- NEEDS TO BE FIXED: this does not add generated HTML to the `/cloned edition_data/m-k-annotation-data` -->
+<!-- NEEDS TO BE FIXED: this does not add generated HTML to the `/cloned edition_data/m-k-annotation-data` -->
 
 If you have followed the above guides, and there were any essays marked as "github" in `metadata.csv` that had not yet been migrated from Google Drive, you will have populated `./edition_data/m-k-annotation-data` with new content.
 
