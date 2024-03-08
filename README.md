@@ -127,7 +127,7 @@ In order to get the project running on your local machine, follow the steps belo
    mkdir edition_data/working
    ```
 
-6. In the `edition_data` directory, clone the needed repositories. The third is a private repo, so it will require an SSH key.
+6. In the `edition_data` directory, clone the needed repositories. The third is a private repo, so it will require an SSH key. Note: if you have previously cloned these repos, you can do `git pull` inside each rather than cloning.
 
    ```sh
    cd edition_data
