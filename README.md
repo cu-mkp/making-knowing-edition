@@ -17,7 +17,7 @@ This repository contains the website code and scripts to process the XML of the 
   - [Uploading to S3 and deploying with CloudFront](#uploading-to-s3-and-deploying-with-cloudfront)
 - [Publishing Google Drive content to GitHub](#publishing-google-drive-content-to-github)
 
-## Getting started
+## Getting started (first install)
 
 ### Requirements
 
@@ -176,7 +176,7 @@ Note also that values are pulled from `edition_data/config.json` to populate `.e
 
 </details>
 
-## Deployment guide
+## Deployment guide (with existing installation)
 
 This guide assumes you've followed the instructions above and successfully set up your local development environment. This guide should be used for all future deployments after initial setup.
 
