@@ -269,9 +269,23 @@ The following steps may differ if you are deploying on your own server, but thes
 
    ```sh
    cd build
-   aws s3 cp . s3://edition640-dist/[staging/production]MMDDYY-N --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-   cd .. # return to the project root
    ```
+
+Then - DO NOT HIT RETURN AFTER THIS COMMAND. REPLACE "MMDDYY-N" WITH THE DATE AND NUMBER (in order to have the proper Build ID)
+```
+aws s3 cp . s3://edition640-dist/stagingMMDDYY-N --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+```
+
+OR - DO NOT HIT RETURN AFTER THIS COMMAND. REPLACE "MMDDYY-N" WITH THE DATE AND NUMBER (in order to have the proper Build ID)
+```
+aws s3 cp . s3://edition640-dist/productionMMDDYY-N --recursive --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+```
+
+Then 
+```
+cd .. # return to the project root
+```
+
 
 3. Update the appropriate Amazon CloudFront (https://console.aws.amazon.com/cloudfront/home) distribution with the new build:
    1. Find the desired environment by looking at the CNAMEs column and click its distribution ID
