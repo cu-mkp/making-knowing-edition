@@ -6,13 +6,13 @@ This repository contains the website code and scripts to process the XML of the 
 
 ## Contents
 
-- [Getting started](#getting-started)
+- [Getting started](#getting-started) (first install)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Processing edition data](#processing-edition-data)
   - [Running locally](#running-locally)
   - [Deploying to a server](#deploying-to-a-server)
-- [Deployment guide](#deployment-guide)
+- [Deployment guide](#deployment-guide) (for running existing installation)
   - [Preparing a build](#preparing-a-build)
   - [Uploading to S3 and deploying with CloudFront](#uploading-to-s3-and-deploying-with-cloudfront)
 - [Publishing Google Drive content to GitHub](#publishing-google-drive-content-to-github)
