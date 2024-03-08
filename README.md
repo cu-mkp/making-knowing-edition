@@ -289,6 +289,7 @@ Generated HTML needs to be added to https://github.com/cu-mkp/m-k-annotation-dat
 
 ## Publishing Google Drive content to GitHub 
 >Note NEEDS TO BE FIXED: this does not add generated HTML to the `/cloned edition_data/m-k-annotation-data` -->
+> As of 2024-03-08 the only way to add newly converted essays (i.e., those generated from Google Drive for the 1st time) is to download the html files from s3 in the new build directory and add the files to the m-k-annotation-data Github repo
 
 If you have followed the above guides, and there were any essays marked as "github" in `metadata.csv` that had not yet been migrated from Google Drive, you will have populated `./edition_data/m-k-annotation-data` with new content.
 
