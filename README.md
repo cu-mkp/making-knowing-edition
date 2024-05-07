@@ -302,6 +302,7 @@ cd .. # return to the project root
 Generated HTML needs to be added to https://github.com/cu-mkp/m-k-annotation-data `HTML/` directory -- you must do this manually (e.g., by upload).
 
 **2024-05-07 UPDATE**
+
 Once you are ready make the move from gdrive to github:
 - Edit [annotation-metadata](https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/annotation-metadata.csv) so that all essays you would like to add to github are marked as "published" and "gh"
 - Do a build to `production` -- this will create html versions of these essays that are formatted properly to be added to the annotations repo
