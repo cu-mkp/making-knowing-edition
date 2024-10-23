@@ -41,20 +41,22 @@ class DiploMatic extends Component {
 
 		if( googleAnalyticsTrackingID ) {
 			ReactGA.initialize(googleAnalyticsTrackingID);
+			const page = location.hash.slice(1)
+			ReactGA.send({ hitType: "pageview", page });
 
 			const history = createBrowserHistory()
 			history.listen((location) => {
 				const page = location.hash.slice(1)
 				ReactGA.set({ page });
 				ReactGA.send({ hitType: "pageview", page });
-				// console.log('GA: '+page)
+				console.log(`GA: ${page}`);
 				window.scrollTo(0, 0);
-			})	
+			});
 		} else {
 			const history = createBrowserHistory()
 			history.listen(() => {
 				window.scrollTo(0, 0);
-			})	
+			});
 			console.log('Google Analytics is not enabled.')
 		}
 
