@@ -299,11 +299,22 @@ cd .. # return to the project root
 4. After a few minutes or so, the site should be deployed!
 
 ## Add generated HTML to Github m-k-annotation-data repo
-Generated HTML needs to be added to https://github.com/cu-mkp/m-k-annotation-data `HTML/` directory -- you must do this manually (e.g., by upload).
+Generated HTML needs to be added to [Annotation Data repo](https://github.com/cu-mkp/m-k-annotation-data) `html/` directory -- you must do this manually (e.g., by upload).
+
+**2024-05-07 UPDATE**
+
+When you are ready to switch the source of the annotation essays from Google Drive to Github:
+- Edit [annotation-metadata](https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/annotation-metadata.csv) so that all essays you would like to add to github are marked as column `status-DCE` (currently column AJ) is set to	"published" and column `data_source` (currently column AK) is set to "gh"
+- Do a build to `production` as described above in [Preparing a build](#preparing-a-build) -- this will create properly-formatted html versions of these essays which you will need to be add to the annotations repo
+    - NOTE: html versions of these essays are always generated whenever a build is done, even when they are marked as "gdrive" and for builds to `staging`. HOWEVER, these are not formatted fully for subsequent maintenance in Annotation Data github repo (i.e., do NOT add them to that repo)
+    - If you add them after `staging`, for example, they will not have their frontmatter and their image `src` paths will be to the local `build/` directory rather than to the asset server URLs
+    - See https://github.com/cu-mkp/making-knowing-edition/issues/508, https://github.com/cu-mkp/making-knowing-edition/issues/509, and https://github.com/cu-mkp/making-knowing-edition/issues/510
+- Download the new `html` files (for the essays you would like to now maintain in github) from the `production` directory in S3 and upload to the `html/` directory of [Annotation Data repo](https://github.com/cu-mkp/m-k-annotation-data)
+- These essays will now be maintained in the github repo, so any edits, revisions, etc. should be made to the `html` files there and their `data_source` value in [annotation-metadata](https://github.com/cu-mkp/m-k-manuscript-data/blob/master/metadata/annotation-metadata.csv) should remain as "gh"      
 
 ## Publishing Google Drive content to GitHub 
 >Note NEEDS TO BE FIXED: this does not add generated HTML to the `/cloned edition_data/m-k-annotation-data` -->
-> As of 2024-03-08 the only way to add newly converted essays (i.e., those generated from Google Drive for the 1st time) is to download the html files from s3 in the new build directory and add the files to the m-k-annotation-data Github repo
+> As of 2024-03-08 the only way to add newly converted essays (i.e., those generated from Google Drive for the 1st time) is to download the html files from S3 in the new build directory and add the files to the m-k-annotation-data Github repo
 
 If you have followed the above guides, and there were any essays marked as "github" in `metadata.csv` that had not yet been migrated from Google Drive, you will have populated `./edition_data/m-k-annotation-data` with new content.
 
