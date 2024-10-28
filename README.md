@@ -96,27 +96,38 @@ In order to get the project running on your local machine, follow the steps belo
 
    ```json
    "local": {
-           "buildID": "stagingMMDDYY-N",
-           "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
-           "assetServerURL": "https://edition-assets.makingandknowing.org",
-           "targetDir": "public/bnf-ms-fr-640",
-           "sourceDir": "edition_data/m-k-manuscript-data",
-           "contentDir": "edition_data/edition-webpages",
-           "workingDir": "edition_data/working/MMDDYY",
-           "rclone": {
-               "serviceName": "mk-annotations",
-               "folderName": "Annotations",
-               "sharedDrive": true
-           },
-           "releaseMode": "staging"
-       }
+      "buildID": "stagingMMDDYY-N",
+      "editionDataURL": "http://localhost:4000/bnf-ms-fr-640",
+      "assetServerURL": "https://edition-assets.makingandknowing.org",
+      "targetDir": "public/bnf-ms-fr-640",
+      "sourceDir": "edition_data/m-k-manuscript-data",
+      "contentDir": "edition_data/edition-webpages",
+      "workingDir": "edition_data/working/MMDDYY",
+      "rclone": {
+         "serviceName": "mk-annotations",
+         "folderName": "Annotations",
+         "sharedDrive": true
+      },
+      "website": {
+         "contentEnabled": true,
+         "essaysEnabled": true,
+         "manuscriptEnabled": true,
+         "searchEnabled": true
+      },
+      "releaseMode": "staging"
+   }
    ```
 
    - You will need to specify a build ID (`buildID`) and a working directory (`workingDir`). We recommend using a formatted date for both: `MMDDYY-N` where MM=Month, DD=Date, YY=Year, N=builds on that date.
-   - Explanations of other `config.json` content:
-        - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
-        - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
-          - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
+   - Depending on what kinds of content you would like to make available in the edition, you may provide values of `true` or `false` to the four options under `"website"`.
+      - `contentEnabled` refers to static site markdown content in the directory specified for the `contentDir` option.
+      - `essaysEnabled` refers to the annotations in the Google Drive data pulled by rclone.
+      - `manuscriptEnabled` refers to the manuscript data in the directory specified for the `sourceDir` option.
+      - `searchEnabled` refers to the search features in the edition.
+   - Explanations of other `config.json` options:
+      - The `editionDataURL` setting is used to insert the root URL of the hosted edition. The defaults for staging and production assume deployment to S3 with existing CloudFront distributions. These may be changed if deploying elsewhere.
+      - Similarly, the `assetServerURL` setting is used to build image asset URLs to refer their locations on the asset server. The default setting refers to the Making and Knowing S3 asset CloudFront distribution, but this may be changed if hosting images elsewhere.
+         - Note that this will only affect new migrations from Google Drive. Essays already in GitHub will retain the `assetServerURL` that was in place when they were first migrated. See the [note on asset URLs](#deploying-to-a-server) for more info.
    - If your Google Drive account is the owner of the "Annotations" folder (i.e. General Editor), set `sharedDrive` to `false`. Otherwise, leave it as `true`.
    - If setting up a production build, ensure the `googleTrackingID` is set to a working Google Analytics ID.
 

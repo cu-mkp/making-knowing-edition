@@ -78,7 +78,7 @@ class ContentView extends Component {
 		 return parserOptions;
     }
 
-    renderHomePage() {
+    renderHomePage({ essaysEnabled, manuscriptEnabled }) {
         const imagesBaseURL = `${process.env.PUBLIC_URL}/img`;
         const bookBackgroundStyle = {
             backgroundColor: 'transparent', 
@@ -141,7 +141,7 @@ class ContentView extends Component {
                                 </strong>
                                 offers a transcription and an English translation of the manuscript, and provides many research resources to explore its content and context.
                             </p>
-                            {isWidthUp('sm', this.props.width) &&
+                            {manuscriptEnabled && isWidthUp('sm', this.props.width) &&
                                 <div className='flex-parent links-container full-width'>
                                     <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
                                     <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
@@ -149,34 +149,36 @@ class ContentView extends Component {
                             }
                         </div>
                     </div>
-                    {!isWidthUp('sm', this.props.width) &&
+                    {manuscriptEnabled && !isWidthUp('sm', this.props.width) &&
                         <div className='flex-parent links-container full-width'>
                             <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
                             <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
                         </div>
                     }
                 </div>
-                <div id='featured-essays-panel' className='flex-parent column bg-light-gradient-tb'>
-                    <h2 className='title'>Featured Essays</h2>
-                    {annotationsArray.length &&
-                        <div id='essay-card-container' className='flex-parent wrap'>
-                            {featuredEssayIds.map(annoId => {
-                                const anno = annotationsArray.find(a => a.id === annoId);
-                                return <AnnotationCard annotation={anno} key={`featured-anno-${anno.id}`} history={this.props.history} />
-                            })}
+                {essaysEnabled && (
+                    <div id='featured-essays-panel' className='flex-parent column bg-light-gradient-tb'>
+                        <h2 className='title'>Featured Essays</h2>
+                        {annotationsArray.length &&
+                            <div id='essay-card-container' className='flex-parent wrap'>
+                                {featuredEssayIds.map(annoId => {
+                                    const anno = annotationsArray.find(a => a.id === annoId);
+                                    return <AnnotationCard annotation={anno} key={`featured-anno-${anno.id}`} history={this.props.history} />
+                                })}
+                            </div>
+                        }
+                        <div className='flex-parent jc-center'>
+                            <Button 
+                                variant='contained' 
+                                color='primary' 
+                                className='cta-button'
+                                href='/#/essays'
+                            >
+                                VIEW ALL ESSAYS
+                            </Button>
                         </div>
-                    }
-                    <div className='flex-parent jc-center'>
-                        <Button 
-                            variant='contained' 
-                            color='primary' 
-                            className='cta-button'
-                            href='/#/essays'
-                        >
-                            VIEW ALL ESSAYS
-                        </Button>
                     </div>
-                </div>
+                )}
 
                 <Dialog 
                     onClose={() => this.setState({isVideoDialogOpen: false})} 
@@ -214,8 +216,9 @@ class ContentView extends Component {
     render() {
         const {contentID} = this.props
         const {contents} = this.props.contents
+        const { essaysEnabled, manuscriptEnabled } = this.props.diplomatic;
         if( contentID === 'index' ) {
-            return this.renderHomePage()
+            return this.renderHomePage({ essaysEnabled, manuscriptEnabled })
         }
 
         const content = contents[contentID]
@@ -257,7 +260,8 @@ class ContentView extends Component {
 function mapStateToProps(state) {
     return {
         contents: state.contents,
-        annotations: state.annotations
+        annotations: state.annotations,
+        diplomatic: state.diplomatic
     };
 }
 
