@@ -119,7 +119,7 @@ class ContentView extends Component {
                         </div>
                         <div className='flex-parent jc-space-around'>
                             <a className='cta-link with-icon video-link' onClick={this.onVideoDialogOpen}>Watch Video</a>
-                            <a className='cta-link with-icon' href='#/content/about'>Learn More</a>
+                            <a className='cta-link with-icon' href='/content/about'>Learn More</a>
                         </div>
                     </div>
                     {isWidthUp('sm', this.props.width) &&
@@ -143,16 +143,16 @@ class ContentView extends Component {
                             </p>
                             {isWidthUp('sm', this.props.width) &&
                                 <div className='flex-parent links-container full-width'>
-                                    <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
-                                    <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
+                                    <a className='cta-link with-icon' href='/folios'>Read the Edition</a>
+                                    <a className='cta-link with-icon' href='/content/resources'>Resources</a>
                                 </div>
                             }
                         </div>
                     </div>
                     {!isWidthUp('sm', this.props.width) &&
                         <div className='flex-parent links-container full-width'>
-                            <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
-                            <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
+                            <a className='cta-link with-icon' href='/folios'>Read the Edition</a>
+                            <a className='cta-link with-icon' href='/content/resources'>Resources</a>
                         </div>
                     }
                 </div>

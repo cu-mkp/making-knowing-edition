@@ -50,13 +50,13 @@ class MainMenu extends React.Component {
             } else if(topNavItem.label) {
                 const activeClass = currentRoute === topNavItem.route ? 'active' : ''
                 topNavItems.push( 
-                <a 
+                <Link 
                     className={`cta-link nav-item ${activeClass}`} 
                     key={itemKey} 
-                    onClick={()=>{this.navTo(topNavItem.route)}}
+                    to={topNavItem.route}
                 >
                     {topNavItem.label}
-                </a> 
+                </Link> 
                 )
             }
         }
