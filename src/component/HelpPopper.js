@@ -74,7 +74,7 @@ const HelpPopper=(props)=>{
                                                 </table>
                                           </div>
                                     </List>
-                                    <Typography>See <a href="#/content/how-to-use">How to Use</a> for more information.</Typography>
+                                    <Typography>See <a href="/content/how-to-use">How to Use</a> for more information.</Typography>
                               </div>                             
                         </Paper>
                         </Fade>

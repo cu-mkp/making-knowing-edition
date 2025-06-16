@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React, { Component, useRef } from 'react';
 import ReactGA from 'react-ga4';
 import { connect, Provider } from 'react-redux';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { dispatchAction } from '../model/ReduxStore';
 import AnnotationView from './AnnotationView';
 import AnnotationListView from './annotation_list_view/AnnotationListView';
@@ -235,6 +235,17 @@ class DiploMatic extends Component {
 		return (
 			<div id="content">
 				<Switch>
+					<Route
+						path="/"
+						exact
+						render={(props) =>
+						props.location.hash ? (
+							<Redirect to={props.location.hash.replace("#", "")} />
+						) : (
+							this.renderIndexPage(props)
+						)
+						}
+					/>
 					<Route path="/" render={this.renderIndexPage} exact/>
 					<Route path="/content" render={this.renderContentView}/>
 					<Route path="/entries" component={EntryListView}/>
@@ -303,14 +314,14 @@ class DiploMatic extends Component {
 		}
 		return (
 			<Provider store={this.props.store}>
-				<HashRouter>
+				<Router>
 					<div id="diplomatic" className={fixedFrameModeClass}>
 						<RouteListener/>
 						{ this.renderHeader(fixedFrameModeClass) }
 						{ this.renderContent() }
 						{ this.renderFooter(fixedFrameModeClass) }
 					</div>	
-				</HashRouter>
+				</Router>
 			</Provider>
 		);
 	}

@@ -3,10 +3,10 @@ import Parser from 'html-react-parser';
 import domToReact from 'html-react-parser/lib/dom-to-react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashLink } from 'react-router-hash-link';
 import { dispatchAction } from '../model/ReduxStore';
 import AnnotationCard from './annotation_list_view/AnnotationCard';
 import ContentPage from './ContentPage';
+import { Link } from 'react-router-dom';
 
 class ContentView extends Component {
 
@@ -58,17 +58,17 @@ class ContentView extends Component {
                     )
                 }
 
-                if( // change anchor tag to hash link if href is relative (does not start w/ "http")
+                if( // change anchor tag to react router link if href is relative (does not start w/ "http")
                     domNode.name === 'a'
                     && !domNode.attribs.href.match(/^http/)
                 ){
                     return(
-                        <HashLink
+                        <Link
                             to={domNode.attribs.href}
                             scroll={el => scrollWithOffset(el)}
                         >
                             {domToReact(domNode.children, parserOptions)}
-                        </HashLink>
+                        </Link>
                     )
                 }
 
@@ -119,7 +119,7 @@ class ContentView extends Component {
                         </div>
                         <div className='flex-parent jc-space-around'>
                             <a className='cta-link with-icon video-link' onClick={this.onVideoDialogOpen}>Watch Video</a>
-                            <a className='cta-link with-icon' href='#/content/about'>Learn More</a>
+                            <a className='cta-link with-icon' href='/content/about'>Learn More</a>
                         </div>
                     </div>
                     {isWidthUp('sm', this.props.width) &&
@@ -143,16 +143,16 @@ class ContentView extends Component {
                             </p>
                             {isWidthUp('sm', this.props.width) &&
                                 <div className='flex-parent links-container full-width'>
-                                    <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
-                                    <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
+                                    <a className='cta-link with-icon' href='/folios'>Read the Edition</a>
+                                    <a className='cta-link with-icon' href='/content/resources'>Resources</a>
                                 </div>
                             }
                         </div>
                     </div>
                     {!isWidthUp('sm', this.props.width) &&
                         <div className='flex-parent links-container full-width'>
-                            <a className='cta-link with-icon' href='#/folios'>Read the Edition</a>
-                            <a className='cta-link with-icon' href='#/content/resources'>Resources</a>
+                            <a className='cta-link with-icon' href='/folios'>Read the Edition</a>
+                            <a className='cta-link with-icon' href='/content/resources'>Resources</a>
                         </div>
                     }
                 </div>
