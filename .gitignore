@@ -6,7 +6,7 @@
 
 # testing
 /coverage
-/testing
+/testing/venv
 
 # production
 /build
