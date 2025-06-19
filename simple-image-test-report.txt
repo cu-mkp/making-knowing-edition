@@ -1,0 +1,44 @@
+Simple Image Test Report
+Generated: 2025-06-19T14:20:28.178Z
+Base URL: https://edition-staging.makingandknowing.org
+Method: Simple HTML parsing + HTTP HEAD requests
+============================================================
+
+SUMMARY
+- Pages tested: 6
+- Total images found: 0
+- Missing images: 0
+- Pages with errors: 0
+
+LIMITATIONS
+- This script only tests static HTML content
+- JavaScript-rendered images may not be detected
+- React client-side rendering may not be fully captured
+- Some dynamic content may be missed
+
+PAGE-BY-PAGE RESULTS
+----------------------------------------
+/:
+  - Total images: 0
+  - Missing: 0
+
+/essays:
+  - Total images: 0
+  - Missing: 0
+
+/content/about/overview:
+  - Total images: 0
+  - Missing: 0
+
+/content/about/manuscript:
+  - Total images: 0
+  - Missing: 0
+
+/entries:
+  - Total images: 0
+  - Missing: 0
+
+/folios:
+  - Total images: 0
+  - Missing: 0
+

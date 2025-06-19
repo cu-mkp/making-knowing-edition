@@ -1,0 +1,49 @@
+Build Image Test Report
+Generated: 2025-06-19T15:03:05.252Z
+Test Type: Local Public Directory Test
+Build Directory: /Users/thc4/Github/making-knowing-edition/public
+Local URL: http://localhost:3001
+============================================================
+
+SUMMARY
+- Pages tested: 4
+- Total images: 0
+- Total missing: 0
+- Local build issues: 0
+- Remote asset issues: 0
+- Pages with errors: 0
+
+PAGE-BY-PAGE RESULTS
+----------------------------------------
+/:
+  - IMG tags: 0
+  - Background images: 0
+  - Total images: 0
+  - Missing: 0
+  - Local requests: 0
+  - Remote requests: 0
+
+/essays:
+  - IMG tags: 0
+  - Background images: 0
+  - Total images: 0
+  - Missing: 0
+  - Local requests: 0
+  - Remote requests: 0
+
+/entries:
+  - IMG tags: 0
+  - Background images: 0
+  - Total images: 0
+  - Missing: 0
+  - Local requests: 0
+  - Remote requests: 0
+
+/folios:
+  - IMG tags: 0
+  - Background images: 0
+  - Total images: 0
+  - Missing: 0
+  - Local requests: 0
+  - Remote requests: 0
+

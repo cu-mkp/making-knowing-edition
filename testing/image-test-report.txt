@@ -1,0 +1,709 @@
+Image Test Report
+Generated: 2025-06-19T14:43:27.028Z
+Base URL: https://edition-staging.makingandknowing.org
+User Agent: Playwright Chromium
+============================================================
+
+SUMMARY
+- Pages tested: 4
+- Total images: 205
+- Missing images: 133
+- Pages with errors: 0
+
+MISSING IMAGES DETAILS
+----------------------------------------
+1. URL: https://edition-assets.makingandknowing.org/thumbnails/Smith_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+2. URL: https://edition-assets.makingandknowing.org/thumbnails/Context-Toulouse-TL_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+3. URL: https://edition-assets.makingandknowing.org/thumbnails/Smith_Thumbnail-people.jpg
+   Page: https://edition-staging.makingandknowing.org/
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+4. URL: https://edition-assets.makingandknowing.org/thumbnails/Kirby-Spring_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+5. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_155r-v_fig001.jpg
+   Page: https://edition-staging.makingandknowing.org/
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+6. URL: https://edition-assets.makingandknowing.org/thumbnails/Tavares_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+7. URL: https://edition-assets.makingandknowing.org/thumbnails/Smith_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+8. URL: https://edition-assets.makingandknowing.org/thumbnails/Hagadorn_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+9. URL: https://edition-assets.makingandknowing.org/thumbnails/Contexte-Toulousain_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+10. URL: https://edition-assets.makingandknowing.org/thumbnails/Context-Toulouse-TL_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+11. URL: https://edition-assets.makingandknowing.org/thumbnails/Dukes-of-Bethune-TL_Thumbail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+12. URL: https://edition-assets.makingandknowing.org/thumbnails/Smith_Thumbnail-people.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+13. URL: https://edition-assets.makingandknowing.org/thumbnails/Masse-TL_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+14. URL: https://edition-assets.makingandknowing.org/thumbnails/Munoz_Thumbnail-Fraysse.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+15. URL: https://edition-assets.makingandknowing.org/thumbnails/Bertin-TL_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+16. URL: https://edition-assets.makingandknowing.org/thumbnails/FA18_Faulkner_Jewell%20House.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+17. URL: https://edition-assets.makingandknowing.org/thumbnails/DebuicheMunoz_Thumbnail_Artisans.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+18. URL: https://edition-assets.makingandknowing.org/thumbnails/Munoz_Thumbnail.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+19. URL: https://edition-assets.makingandknowing.org/thumbnails/MSmith_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+20. URL: https://edition-assets.makingandknowing.org/thumbnails/Oltrogge_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+21. URL: https://edition-assets.makingandknowing.org/thumbnails/Kirby-Spring_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+22. URL: https://edition-assets.makingandknowing.org/thumbnails/StolsWitloxBoulboulle_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+23. URL: https://edition-assets.makingandknowing.org/thumbnails/Bol_Thumbnail.png
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+24. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_LandsmanRowen_fig001_FlaxmanRedWaxFromPhiladelphiaMuseumOfArt.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+25. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_CarlsonKatz_118v_fig012_CastingInABoxMold.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+26. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_LandsmanRowen_92r_fig020a_Pouring.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+27. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_FuZhang_142v_fig030.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+28. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_155r-v_fig001.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+29. URL: https://edition-assets.makingandknowing.org/thumbnails/Pascal_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+30. URL: https://edition-assets.makingandknowing.org/thumbnails/Noirot_Thumbnail_EN.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+31. URL: https://edition-assets.makingandknowing.org/thumbnails/ann_506_ad_20_PalframanBoyd_Cuttle-Fish_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+32. URL: https://edition-assets.makingandknowing.org/thumbnails/Thumbnail_ann_511_ad_20.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+33. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_80v_fig025_VentingFailure.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+34. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_CarlsonKatz_131r_fig010_MoldedLetterPaper.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+35. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_Gans_83r_fig005_PackingMolds.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+36. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_CataldoVisco_82r84v_fig001_SandsAndBinders.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+37. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_CataldoVisco_84v_fig011_CalcinedOysters.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+38. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Zhao_64v_fig001_ManuscriptPage.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+39. URL: https://edition-assets.makingandknowing.org/thumbnails/Perspective%20thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+40. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Nisse_65r66r93v_fig014_ApplicationOfSecondCarnationLayer.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+41. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Ndungu_66r_fig005_ModifiedT3Gilding.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+42. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_Carr_66v_fig004.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+43. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_BowenLou_42v_fig004.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+44. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2017_Yar_42v%2010v_fig008_Alltests.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+45. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_BowenLou_10v_fig010.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+46. URL: https://edition-assets.makingandknowing.org/thumbnails/Zhao_Painting_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+47. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_Kok_158r_fig015.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+48. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_Foyer_29v57r_fig007.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+49. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2017_Garris_11r_fig002_levigated%20azur.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+50. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Bertozzi_19v-42v-51r_fig014_PouncingOnSilkSatin.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+51. URL: https://edition-assets.makingandknowing.org/thumbnails/ann_507_ad_20_Palframan_Gold-Color_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+52. URL: https://edition-assets.makingandknowing.org/thumbnails/McClure_Thumbnail.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+53. URL: https://edition-assets.makingandknowing.org/thumbnails/Thumbnail_ann_517_ad_20_UchaczRosenkranz.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+54. URL: https://edition-assets.makingandknowing.org/thumbnails/VA_Varnish_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+55. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_Lores-ChavezKang_Imitating%20Raw%20Nature_fig.001_sawing.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+56. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_Estrades_10r_fig016.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+57. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_KremnitzerShah_100r-101r_fig003_Pierrerie.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+58. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_KremnitzerShah_100v_fig011_Emerald.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+59. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_KremnitzerShah_Ruby_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+60. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_ChangShi_40v_fig006_DifferenceBetweenSilverGesso.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+61. URL: https://edition-assets.makingandknowing.org/thumbnails/SP16_ChangsClemensShi_Esmail_39v.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+62. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Soley_56r_fig009_Comparison1stand2ndSessionPaintColors.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+63. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Goldenberg_10v29v_fig005.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+64. URL: https://edition-assets.makingandknowing.org/thumbnails/Price_Thumbnail.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+65. URL: https://edition-assets.makingandknowing.org/thumbnails/20170510_Wang_Fish-Glue_007.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+66. URL: https://edition-assets.makingandknowing.org/thumbnails/AnantharamanSmith_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+67. URL: https://edition-assets.makingandknowing.org/thumbnails/ann_505_ad_20_BoydPalframan_GoldRun_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+68. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Lim_140v_fig005_MoldShrinkage.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+69. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2017_Elizondo-Garza_29r_1_fig006_PaintedStucco.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+70. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2017_Dongchung_81r_%20fig0010_finalobjects.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+71. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Jiang_11v_fig007_EngravingStone.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+72. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Olson_42r_fig010_OlsonModelingWax.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+73. URL: https://edition-assets.makingandknowing.org/thumbnails/Taape_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+74. URL: https://edition-assets.makingandknowing.org/thumbnails/Taape_Thumbnail_Sense.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+75. URL: https://edition-assets.makingandknowing.org/thumbnails/Keller_experience_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+76. URL: https://edition-assets.makingandknowing.org/thumbnails/Oosterhoff_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+77. URL: https://edition-assets.makingandknowing.org/thumbnails/Demeter_Thumbnail.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+78. URL: https://edition-assets.makingandknowing.org/thumbnails/Munoz,_natural-philos_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+79. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_Wang_89r_fig003_OxBoneAndRockSalt.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+80. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_Lee_84r_fig002_Magistry.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+81. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_LandsmanRowen_140v12r_fig002_BreadMoldPouring.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+82. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_MarrisPope_84v_fig002.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+83. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Buckley_6v_fig003_tinafterhammering.jpeg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+84. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Jiang_Stone.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+85. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_CataldoVisco_109r_fig001_Wax-Tallow.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+86. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_Chessa_3r_fig002_ImitationCoral.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+87. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Reich_29v38v_fig011_DragonsBloodStains.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+88. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_Sellar_120v121r_fig011_GroupedFlowers-NEW.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+89. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Clemens_46v_fig003_writingwithoutink.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+90. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_KangLores-Chavez_139v_fig004_PouringBlackSulfuredWax.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+91. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2017_Basile_7v_fig004_StoraxPowder.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+92. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2017_Liu_46r_fig003_teeth.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+93. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2017_Liu_66v_fig008_plaster.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+94. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2017_Eom_3v_fig020_3vAuthorLabelled.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+95. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Assis_75r_fig004_AquafortisComparison.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+96. URL: https://edition-assets.makingandknowing.org/thumbnails/Pitman_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+97. URL: https://edition-assets.makingandknowing.org/thumbnails/Keller_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+98. URL: https://edition-assets.makingandknowing.org/thumbnails/Keller_thumbnail-gold.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+99. URL: https://edition-assets.makingandknowing.org/thumbnails/Brioist_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+100. URL: https://edition-assets.makingandknowing.org/thumbnails/Tavares_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+101. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_Fong_23r23v_fig016_ReconstructedSausage.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+102. URL: https://edition-assets.makingandknowing.org/thumbnails/SP17_Liu_Collecting%20Cure_103r.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+103. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2017_Liu_103r_fig003_salve.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+104. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_DeVinney_77r_fig002_Pipe.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+105. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2017_Grafit_53v_fig010_SilkwormsReconstructionWorms.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+106. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_CarlsonKatz_129r155r-v_fig001_MoldedRoses.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+107. URL: https://edition-assets.makingandknowing.org/thumbnails/SP15_Gans_Knowledge%20Exchange_63r.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+108. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Pitman_38v_fig017_WoodCochinealAndDragonsBloodInLye.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+109. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2016_Barwich_43v_fig019_wine.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+110. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_LePouesard_Bread%20in%20Early%20Modern%20Europe.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+111. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2014_Mellon_48r_fig007_ExcellentMustard.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+112. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_Durkin_126r_fig004.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+113. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_MarrisPope_10r_fig005.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+114. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_MarrisPope_98r_fig007.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+115. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2015_Yi_15r_fig007.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+116. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_Hiebert_104v_fig009_FinalProduct.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+117. URL: https://edition-assets.makingandknowing.org/thumbnails/FA16_Le+Pou%C3%A9sard_29r114v129v130r_Bread.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+118. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2016_Donefer-Hickie_6v_fig014_Coveringtrial.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+119. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2017_Ullman_40r_fig007_ImitationRock.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+120. URL: https://edition-assets.makingandknowing.org/thumbnails/FA18_Bergen_HouseholdManuals.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+121. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Bostock_15v_fig015_BoxwoodWritten.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+122. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Camps_4v_fig018_TranslucentVarnish.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+123. URL: https://edition-assets.makingandknowing.org/thumbnails/FA2018_Bertozzi_19v-42v-51r_fig005_ReinforcedTearVersusNonReinforcedTear.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+124. URL: https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_20r_fig009.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+125. URL: https://edition-assets.makingandknowing.org/thumbnails/Mukherjee_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+126. URL: https://edition-assets.makingandknowing.org/thumbnails/CampsLyautey_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+127. URL: https://edition-assets.makingandknowing.org/thumbnails/Wacha-Dyon_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+128. URL: https://edition-assets.makingandknowing.org/thumbnails/Klein_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+129. URL: https://edition-assets.makingandknowing.org/thumbnails/Beentjes_thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+130. URL: https://edition-assets.makingandknowing.org/thumbnails/Lacey_Thumbnail.JPG
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+131. URL: https://edition-assets.makingandknowing.org/thumbnails/Bilak_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+132. URL: https://edition-assets.makingandknowing.org/thumbnails/Godbarge_Thumbnail.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+133. URL: https://edition-assets.makingandknowing.org/thumbnails/FA18_Branscum_Necessary%20Particulars.jpg
+   Page: https://edition-staging.makingandknowing.org/essays
+   Type: BACKGROUND_IMG
+   Reason: Failed to load: Image failed to load
+
+PAGE-BY-PAGE RESULTS
+----------------------------------------
+/:
+  - IMG tags: 8
+  - Background images: 8
+  - Total images: 16
+  - Missing: 6
+  - Network requests: 17
+
+/essays:
+  - IMG tags: 6
+  - Background images: 132
+  - Total images: 138
+  - Missing: 127
+  - Network requests: 142
+
+/entries:
+  - IMG tags: 5
+  - Background images: 0
+  - Total images: 5
+  - Missing: 0
+  - Network requests: 4
+
+/folios:
+  - IMG tags: 45
+  - Background images: 1
+  - Total images: 46
+  - Missing: 0
+  - Network requests: 45
+

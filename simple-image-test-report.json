@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-06-19T14:20:28.178Z",
+  "baseUrl": "https://edition-staging.makingandknowing.org",
+  "method": "Simple HTML parsing + HTTP HEAD requests",
+  "summary": {
+    "totalPages": 6,
+    "totalImages": 0,
+    "totalMissingImages": 0,
+    "pagesWithErrors": 0
+  },
+  "pageResults": {
+    "/": {
+      "totalImages": 0,
+      "missingImages": 0
+    },
+    "/essays": {
+      "totalImages": 0,
+      "missingImages": 0
+    },
+    "/content/about/overview": {
+      "totalImages": 0,
+      "missingImages": 0
+    },
+    "/content/about/manuscript": {
+      "totalImages": 0,
+      "missingImages": 0
+    },
+    "/entries": {
+      "totalImages": 0,
+      "missingImages": 0
+    },
+    "/folios": {
+      "totalImages": 0,
+      "missingImages": 0
+    }
+  },
+  "missingImages": [],
+  "errors": [],
+  "limitations": [
+    "This script only tests static HTML content",
+    "JavaScript-rendered images may not be detected",
+    "React client-side rendering may not be fully captured",
+    "Some dynamic content may be missed"
+  ]
+}

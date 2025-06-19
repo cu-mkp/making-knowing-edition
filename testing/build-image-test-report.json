@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-06-19T15:03:05.252Z",
+  "testType": "Local Public Directory Test",
+  "buildDirectory": "/Users/thc4/Github/making-knowing-edition/public",
+  "localUrl": "http://localhost:3001",
+  "summary": {
+    "totalPages": 4,
+    "totalImages": 0,
+    "totalMissingImages": 0,
+    "localIssues": 0,
+    "remoteIssues": 0,
+    "pagesWithErrors": 0
+  },
+  "pageResults": {
+    "/": {
+      "totalImages": 0,
+      "backgroundImages": 0,
+      "missingImages": 0,
+      "networkRequests": 0,
+      "localRequests": 0,
+      "remoteRequests": 0
+    },
+    "/essays": {
+      "totalImages": 0,
+      "backgroundImages": 0,
+      "missingImages": 0,
+      "networkRequests": 0,
+      "localRequests": 0,
+      "remoteRequests": 0
+    },
+    "/entries": {
+      "totalImages": 0,
+      "backgroundImages": 0,
+      "missingImages": 0,
+      "networkRequests": 0,
+      "localRequests": 0,
+      "remoteRequests": 0
+    },
+    "/folios": {
+      "totalImages": 0,
+      "backgroundImages": 0,
+      "missingImages": 0,
+      "networkRequests": 0,
+      "localRequests": 0,
+      "remoteRequests": 0
+    }
+  },
+  "missingImages": [],
+  "errors": []
+}

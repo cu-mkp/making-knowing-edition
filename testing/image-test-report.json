@@ -1,0 +1,1503 @@
+{
+  "timestamp": "2025-06-19T14:43:27.028Z",
+  "baseUrl": "https://edition-staging.makingandknowing.org",
+  "userAgent": "Playwright Chromium",
+  "summary": {
+    "totalPages": 4,
+    "totalImages": 205,
+    "totalMissingImages": 133,
+    "pagesWithErrors": 0
+  },
+  "pageResults": {
+    "/": {
+      "totalImages": 8,
+      "backgroundImages": 8,
+      "missingImages": 6,
+      "networkRequests": 17
+    },
+    "/essays": {
+      "totalImages": 6,
+      "backgroundImages": 132,
+      "missingImages": 127,
+      "networkRequests": 142
+    },
+    "/entries": {
+      "totalImages": 5,
+      "backgroundImages": 0,
+      "missingImages": 0,
+      "networkRequests": 4
+    },
+    "/folios": {
+      "totalImages": 45,
+      "backgroundImages": 1,
+      "missingImages": 0,
+      "networkRequests": 45
+    }
+  },
+  "missingImages": [
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Smith_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Context-Toulouse-TL_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Smith_Thumbnail-people.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Kirby-Spring_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_155r-v_fig001.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Tavares_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Smith_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Hagadorn_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Contexte-Toulousain_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Context-Toulouse-TL_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Dukes-of-Bethune-TL_Thumbail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Smith_Thumbnail-people.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Masse-TL_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Munoz_Thumbnail-Fraysse.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Bertin-TL_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA18_Faulkner_Jewell%20House.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/DebuicheMunoz_Thumbnail_Artisans.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Munoz_Thumbnail.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/MSmith_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Oltrogge_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Kirby-Spring_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/StolsWitloxBoulboulle_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Bol_Thumbnail.png",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_LandsmanRowen_fig001_FlaxmanRedWaxFromPhiladelphiaMuseumOfArt.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_CarlsonKatz_118v_fig012_CastingInABoxMold.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_LandsmanRowen_92r_fig020a_Pouring.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_FuZhang_142v_fig030.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_155r-v_fig001.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Pascal_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Noirot_Thumbnail_EN.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/ann_506_ad_20_PalframanBoyd_Cuttle-Fish_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Thumbnail_ann_511_ad_20.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_80v_fig025_VentingFailure.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_CarlsonKatz_131r_fig010_MoldedLetterPaper.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_Gans_83r_fig005_PackingMolds.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_CataldoVisco_82r84v_fig001_SandsAndBinders.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_CataldoVisco_84v_fig011_CalcinedOysters.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Zhao_64v_fig001_ManuscriptPage.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Perspective%20thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Nisse_65r66r93v_fig014_ApplicationOfSecondCarnationLayer.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Ndungu_66r_fig005_ModifiedT3Gilding.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_Carr_66v_fig004.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_BowenLou_42v_fig004.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2017_Yar_42v%2010v_fig008_Alltests.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_BowenLou_10v_fig010.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Zhao_Painting_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_Kok_158r_fig015.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_Foyer_29v57r_fig007.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2017_Garris_11r_fig002_levigated%20azur.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Bertozzi_19v-42v-51r_fig014_PouncingOnSilkSatin.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/ann_507_ad_20_Palframan_Gold-Color_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/McClure_Thumbnail.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Thumbnail_ann_517_ad_20_UchaczRosenkranz.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/VA_Varnish_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_Lores-ChavezKang_Imitating%20Raw%20Nature_fig.001_sawing.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_Estrades_10r_fig016.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_KremnitzerShah_100r-101r_fig003_Pierrerie.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_KremnitzerShah_100v_fig011_Emerald.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_KremnitzerShah_Ruby_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_ChangShi_40v_fig006_DifferenceBetweenSilverGesso.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP16_ChangsClemensShi_Esmail_39v.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Soley_56r_fig009_Comparison1stand2ndSessionPaintColors.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Goldenberg_10v29v_fig005.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Price_Thumbnail.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/20170510_Wang_Fish-Glue_007.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/AnantharamanSmith_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/ann_505_ad_20_BoydPalframan_GoldRun_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Lim_140v_fig005_MoldShrinkage.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2017_Elizondo-Garza_29r_1_fig006_PaintedStucco.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2017_Dongchung_81r_%20fig0010_finalobjects.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Jiang_11v_fig007_EngravingStone.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Olson_42r_fig010_OlsonModelingWax.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Taape_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Taape_Thumbnail_Sense.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Keller_experience_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Oosterhoff_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Demeter_Thumbnail.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Munoz,_natural-philos_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_Wang_89r_fig003_OxBoneAndRockSalt.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_Lee_84r_fig002_Magistry.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_LandsmanRowen_140v12r_fig002_BreadMoldPouring.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_MarrisPope_84v_fig002.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Buckley_6v_fig003_tinafterhammering.jpeg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Jiang_Stone.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_CataldoVisco_109r_fig001_Wax-Tallow.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_Chessa_3r_fig002_ImitationCoral.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Reich_29v38v_fig011_DragonsBloodStains.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_Sellar_120v121r_fig011_GroupedFlowers-NEW.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Clemens_46v_fig003_writingwithoutink.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_KangLores-Chavez_139v_fig004_PouringBlackSulfuredWax.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2017_Basile_7v_fig004_StoraxPowder.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2017_Liu_46r_fig003_teeth.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2017_Liu_66v_fig008_plaster.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2017_Eom_3v_fig020_3vAuthorLabelled.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Assis_75r_fig004_AquafortisComparison.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Pitman_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Keller_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Keller_thumbnail-gold.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Brioist_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Tavares_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_Fong_23r23v_fig016_ReconstructedSausage.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP17_Liu_Collecting%20Cure_103r.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2017_Liu_103r_fig003_salve.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_DeVinney_77r_fig002_Pipe.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2017_Grafit_53v_fig010_SilkwormsReconstructionWorms.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_CarlsonKatz_129r155r-v_fig001_MoldedRoses.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP15_Gans_Knowledge%20Exchange_63r.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Pitman_38v_fig017_WoodCochinealAndDragonsBloodInLye.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2016_Barwich_43v_fig019_wine.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_LePouesard_Bread%20in%20Early%20Modern%20Europe.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2014_Mellon_48r_fig007_ExcellentMustard.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_Durkin_126r_fig004.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_MarrisPope_10r_fig005.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_MarrisPope_98r_fig007.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2015_Yi_15r_fig007.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_Hiebert_104v_fig009_FinalProduct.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA16_Le+Pou%C3%A9sard_29r114v129v130r_Bread.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2016_Donefer-Hickie_6v_fig014_Coveringtrial.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2017_Ullman_40r_fig007_ImitationRock.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA18_Bergen_HouseholdManuals.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Bostock_15v_fig015_BoxwoodWritten.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Camps_4v_fig018_TranslucentVarnish.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA2018_Bertozzi_19v-42v-51r_fig005_ReinforcedTearVersusNonReinforcedTear.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/SP2015_ChiostriniPalframan_20r_fig009.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Mukherjee_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/CampsLyautey_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Wacha-Dyon_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Klein_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Beentjes_thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Lacey_Thumbnail.JPG",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Bilak_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/Godbarge_Thumbnail.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    },
+    {
+      "type": "BACKGROUND_IMG",
+      "url": "https://edition-assets.makingandknowing.org/thumbnails/FA18_Branscum_Necessary%20Particulars.jpg",
+      "reason": "Failed to load: Image failed to load",
+      "page": "https://edition-staging.makingandknowing.org/essays",
+      "element": "DIV",
+      "classes": [
+        "MuiCardMedia-root"
+      ],
+      "testMethod": "Image element simulation"
+    }
+  ],
+  "errors": []
+}
