@@ -1,0 +1,2415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Producing the Digital Edition of BnF Ms. Fr. 640 - Making and Knowing</title>
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+<body>
+    <div id="content-page">
+        <div class="bg-maroon-gradient accent-bar"></div>
+        <div class="MuiPaper-root MuiPaper-elevation2 MuiPaper-rounded flex-parent jc-space-btw page-header text-bg-gradient-light-tb">
+            <h1 class="page-title">Producing the Digital Edition of BnF Ms. Fr. 640</h1>
+            <div class="page-meta">
+                <span class="page-author">By , </span>
+                <span class="page-doi">DOI: https://www.doi.org/10.7916/fzw8-wn05</span>
+            </div>
+        </div>
+        <div id="content">
+            <div id="annotation-view">
+                <div class="annotation-view-container">
+                    <a href="index.html" class="back-link">← Back to Essays</a>
+                    <div class="annotation-content">
+                        <html><head></head><body><h1 id="producing-the-digital-edition-of-bnf-ms.-fr.-640">Producing the
+Digital Edition of BnF Ms. Fr. 640</h1>
+<h4 id="naomi-rosenkranz-and-terry-catapano">Naomi Rosenkranz and Terry
+Catapano</h4>
+<h2 id="introduction">Introduction</h2>
+<p>How-to texts and technical treatises such as Ms. Fr. 640 elude
+traditional methods of editing and historical analysis. Ms. Fr. 640
+contains entries on a wide range of making practices from the sixteenth
+century, requiring the expertise from numerous domains to decipher the
+text. Understanding the material may involve historians of science and
+art, curators, and practitioners familiar with the manuscript’s
+described processes. The Making and Knowing Project thus employed
+historical textual research, object-based study, and hands-on
+experiments to reconstruct the processes and materials of Ms. Fr. 640 to
+better understand the content. These methodologies are perhaps most
+obvious in the research essays that detail historical reconstruction of
+the manuscript’s entries, but they are present throughout all aspects of
+the Edition, including the editorial and digital development. The
+transcription and translation of the manuscript requires deeper
+understanding of the artisanal/technical processes in order to produce
+an accurate and informed digital text, as discussed in Soersha Dyon and
+Heather Wacha, “Turning Turtle: The Process of Translating BnF Ms. Fr.
+640.” Similarly, as detailed in Celine Camps and Margot Lyautey,
+“Ma&lt;r&gt;king and Knowing: Encoding BnF Ms. Fr. 640,” the process of
+encoding the text was not a straightforward application of a predefined
+set of XML tags.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The Project’s encoding emerged in
+light of additional insights gained about the manuscript’s contents as
+the interpretation of the text continuously evolved. The texts’ markup
+became clearer, more precise, and consistent and, like the translation,
+required editors who were able to integrate historical, technical, and
+practical information. This methodology is described in further detail
+by Pamela Smith in “Making the Edition of Ms. Fr. 640.”</p>
+<p>The methodologies, decisions, and data management strategies employed
+by the Making and Knowing Project emerged and were refined continuously
+throughout the development of the Edition. The nature of Ms. Fr. 640’s
+technical subject matter and of the Project’s non-traditional research
+methods, as well as time constraints, defied working according to any
+pre-ordained plans for the Edition. The collaborative editing and
+integration of training throughout the research process resulted in
+digital development that itself was iterative, interdisciplinary, and
+collaborative. The transcription, translation, and encoding of the
+manuscript text were completed in yearly summer training workshops for
+graduate students. The research essays were composed by students in
+semester-long graduate laboratory seminars. Expert guidance, peer
+review, and contextual essays were provided by a wide range of scholars
+in yearly Working Group Meetings. Early digital development took place
+in text workshops and new course offerings in the digital humanities at
+Columbia University (<i><u>Fig.
+1</u></i>, <i><u>Fig.
+2</u></i>, <i><u>Fig.
+3</u></i>, and <i><u>Fig.
+4</u></i>). The design and development of the Edition site was a
+collaboration between Performant Software Solutions and the Making and
+Knowing Project team. All components and aspects were under continuous
+review, consideration, and revision by the core team of the Making and
+Knowing Project.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/145-FoHv_wYD6_LhloEuQhhrcFfwl-8XW.jpg" alt="fig. 1"><figcaption>Fig. 1. The 2015 Text Workshop working on transcription assignments
+in pairs. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1v1SzYTbdkQcoMa6XcaRiFt9fttn2j0e4.jpg" alt="fig. 2"><figcaption>Fig. 2. The 2016 Text Workshop learning about textual editing from
+Terry Catapano. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1epb6cfZkfuqDg2XyrY1w_wl03lqZYYzd.jpg" alt="fig. 3"><figcaption>Fig. 3. The 2017 Text Workshop, one group working on the translation
+of related entries of Ms. Fr. 640 and their partner group working on the
+markup of those entries. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/19fQw5M5I7vrBPK9Q9sshZ_uXLLBLrf7x.jpg" alt="fig. 4"><figcaption>Fig. 4. The 2018 Text Workshop working on the arms and armor entries
+of Ms. Fr. 640. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h3 id="background-the-making-and-knowing-project">Background: The
+Making and Knowing Project</h3>
+<p>Through the creation of <em>Secrets of Craft and Nature</em>, the
+Making and Knowing Project aimed to:</p>
+<ul>
+<li><blockquote>
+<p>Bring researchers together from different disciplinary backgrounds to
+work collaboratively</p>
+</blockquote></li>
+<li><blockquote>
+<p>Train students and participants</p>
+</blockquote></li>
+<li><blockquote>
+<p>Create an iterative flow of research to continuously revise the
+interpretation of Ms. Fr. 640</p>
+</blockquote></li>
+</ul>
+<p>The Project involved students, scholars of the humanities and social
+sciences (such as historians of science and art, anthropologists, and
+museum curators), natural scientists (chemists, physicists, and
+conservation scientists), practitioners (conservators, metalworkers,
+taxidermists, and painters), and digital technology specialists
+(computer scientists and digital librarians and developers). Teaching
+and knowledge exchange took place in summer workshops, semester-long
+seminars, annual working group meetings, conferences, hands-on sessions,
+studio classes, and locations such as archives, laboratories, kitchens,
+classrooms, and even foundries and marble quarries.</p>
+<p>In each year of development, the Project’s schedule of activities to
+iteratively study Ms. Fr. 640 was guided by an annual thematic topic
+such as Metalworking and Moldmaking (2014–15).<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The
+cycle would begin with an intensive summer Text Workshop, a graduate
+training workshop in paleography, translation, and encoding, during
+which students gained skills in middle French script and textual study
+by transcribing, translating, and encoding the manuscript. The draft
+transcriptions and translations produced in the Workshop formed the
+basis for textual, object-based, and hands-on laboratory research
+carried out by students in the Laboratory Seminar, a graduate-level
+course at Columbia offered each fall and spring semester. Each student
+would compose an extended annotation on one or more passages in the
+manuscript, resulting in the Edition’s <a href="https://edition640.makingandknowing.org/#/essays"><u>Research
+Essays</u></a>. At the end of each academic year, the Project convened a
+Working Group Meeting with invited experts and the Lab Seminar
+participants to discuss and critique the students’ work. The Meetings
+provided critical expert review and brought rich new insights from the
+scholars’ varied disciplines. In the same way, the year’s laboratory
+research informed the encoding schema and the transcription and
+translation activities of the next summer’s Text Workshop. The
+interpretation of the manuscript evolved continually, drawing from the
+material reconstructions of the Lab Seminar and knowledge exchange of
+the Working Group Meetings. Beginning in 2017, the Project offered new
+semester-long Digital Seminars for preliminary prototyping and textual
+analysis of Ms. Fr. 640. Through each cycle from Text Workshop through
+Lab Seminar to Working Group Meeting to Digital Seminar and prototyping,
+new insights were gained, generating questions and shaping research and
+development in the next phase in the cycle.</p>
+<h2 id="digital-development">Digital Development</h2>
+<h3 id="introduction-1">Introduction</h3>
+<p>Given the goals and methodologies of the Project, it was clear from
+the onset in 2014 that a flexible and gradual approach was required for
+the Edition’s digital development. The form of the Edition emerged from
+the Project’s iterative research design. It would have been impractical
+to make upfront decisions about particular technologies, software, or
+the encoding schema and nearly impossible to conceive of all component
+features. Instead, the Project began with two guiding principles that
+informed all decisions and modes of work for digital development:</p>
+<ol type="1">
+<li><blockquote>
+<p>Generate and and preserve the Edition and key Project data in
+sustainable forms through commitments to minimal computing and open
+formats and technologies wherever possible; and</p>
+</blockquote></li>
+<li><blockquote>
+<p>Prioritize and facilitate the Project’s multifaceted collaborative
+research process</p>
+</blockquote></li>
+</ol>
+<h4 id="digital-sustainability-and-minimal-computing">Digital
+Sustainability and Minimal Computing</h4>
+<p>The Edition’s development was firmly grounded in the principles of
+minimal computing, which generally refers to work that is undertaken
+with significant technical, financial, or social constraints such as
+limitations in resources, funding, personnel, hardware, or software.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> For the Project and other colleagues
+at Columbia University, minimal computing is closely tied to digital
+sustainability: emphasizing durability of digital publications through
+reduced complexity and the use of fundamental technologies and workflows
+that have a greater likelihood of persisting. This commitment is founded
+on the conviction that the Edition should serve as a resource to a wide
+and diverse audience, enabling knowledge exchange now and into the
+future.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> To publish a digital product like
+the Edition, this means creating static web sites that minimize
+server-side technology (see Static Site Generation below). This approach
+reduces maintenance overhead, security risks, and exposure to
+technological obsolescence. The Project committed to using a small,
+common, and well-established technology stack: HTML/HTML5 with CSS and
+JavaScript served statically from a webserver. This stack harnesses
+fundamental technologies—ones that have existed and endured since the
+early days of the web—so that products created with them are more likely
+to persist into the future.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> The Project’s
+technological considerations reduced the need for continued resource
+expenditure on active maintenance, addressing issues such as security
+vulnerabilities or version upgrades of components and their
+dependencies. For example, without the use of (proprietary) databases or
+Content Management Systems (such as WordPress or Drupal), creators are
+better able to maintain control of their publications because they are
+not reliant on third-party products or platforms. This foregrounded the
+Project’s emphasis on the separation of prepared data from its
+representation via interfaces, which are highly subject to technical
+change and obsolescence.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Data format and storage decisions
+prioritized the ability for that data to be readily transformed to
+multiple target formats so that content could be routinely exported and
+converted to open standard formats, maximizing reuse and
+persistence.</p>
+<h4 id="facilitating-the-research-process">Facilitating the Research
+Process</h4>
+<p>The digital development of the Edition took place in tandem with
+content development in a workflow which maintained a dialog between
+technical and editorial activities. This was (and, to some degree, still
+is) an unusual mode of work for a publication, particularly for digital
+scholarship. A more usual practice found across academic institutions
+and editorial projects is to separate the “scholarly” from the
+“technical” work.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Researchers produce scholarly
+information and style it in written form, at which point they hand it
+over to digital technicians who prepare it for publication. Experts work
+within their own domains until they pass their part along to the next
+set of experts. For the digital critical edition of Ms. Fr. 640,
+following this traditional model might have meant the transcription was
+completed by Lead Paleographer Marc Smith, whose transcribed text would
+have subsequently been translated by Director Pamela Smith. She would
+then have provided Digital Lead Terry Catapano with plaintext that he
+would have encoded using a very basic TEI tagset, which would have then
+been given to Designer-Developer Nick Laiacona for rendering online.
+Critical commentary could have come from the transcription and
+translation processes, and additional research (through reconstruction,
+for example) would have been conducted from the static French or English
+versions of the text. Each of these steps would have been completed with
+little input or crossover between them.</p>
+<p>As the Project has shown, this traditional approach would have
+prevented the deep engagement and understanding required for the study
+of Ms. Fr. 640 and similar technical, artisanal, or instructional how-to
+texts.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> The manuscript codifies procedures
+that are often difficult or impossible to understand without the
+appropriate technical knowledge, hands-on experience, and historical
+understanding to carefully decipher terminology and processes of
+historical making practices. This applies to the study and presentation
+of Ms. Fr. 640 from both the editorial and digital perspectives. The
+interdisciplinarity of the Project’s historical and material research
+extended into the digital development to take better advantage of
+digital technology (and scholarship) for the study of historical
+artifacts and texts.</p>
+<p>How, then, to best facilitate such an integrated research process
+while maintaining careful management of the evolving digital research
+assets? Every yearly cycle (of Text Workshop to Lab Seminar to Working
+Group Meeting) resulted in additional and revised transcribed,
+translated, and encoded versions of Ms. Fr. 640, student essays,
+associated images and videos, and commentary to be incorporated from new
+insights. The Project’s strategy needed to support several
+conditions:</p>
+<ul>
+<li><blockquote>
+<p>Digital development taking place in tandem with new and revised
+content produced in multiple editing campaigns, requiring workflows that
+could adapt accordingly</p>
+</blockquote></li>
+<li><blockquote>
+<p>Growing volume of data in various formats</p>
+</blockquote></li>
+<li><blockquote>
+<p>An encoding schema that evolved over the course of years</p>
+</blockquote></li>
+<li><blockquote>
+<p>Data edited collaboratively by up to 50 people at once (sometimes
+more)</p>
+</blockquote></li>
+<li><blockquote>
+<p>Access to data in development by Project team members as well as
+collaborators from different disciplinary backgrounds, possessing
+varying degrees of expertise, from inside and outside the Columbia
+community, domestically and internationally</p>
+</blockquote></li>
+</ul>
+<p><span class="pull-left"></span>The treatment of Ms. Fr. 640 as a digital text was thus not just a
+technical or digital matter, but a social one, involving coordination of
+people and of scholarly inquiry.</p>
+<p>The Project’s approach also had to be consistent with the commitment
+to minimal computing. Many technologies that best enable exploratory and
+collaborative work are not always congruent with best practices for
+long-term sustainability of data. Additionally, some kinds of scholarly
+content and experimental work developed in an educational setting cannot
+adequately conform to minimal computing standards and thus require a
+different approach.</p>
+<p>The Project had no set plan for creating the digital critical edition
+from start to finish, thus there were no precise workflows, sets of
+tools, management systems, or concrete instructions laid down in
+advance. Instead, the Project was adaptive and flexible, developing
+strategies and methodologies that were responsive to participants’ needs
+as they arose. The development of creative workflows and workarounds
+occupied much effort and time on the part of the core team. Protocols
+had to be reviewed frequently, with much revising, adjusting, and
+sometimes outright reversal. Most critically, the entire team
+collaborating at any one time needed to understand that all work was
+part of a larger endeavor and thus that modes of work should serve the
+Project’s overarching goals and needs. This often required compromise
+and negotiation, especially in the face of policies developed to ensure
+longer term consistency, which seemed tedious to the individuals who
+participated perhaps for only a few weeks in the Project activities (see
+examples below).</p>
+<p>Collaboration and a flattened hierarchy were key elements in making
+this halting and sometimes ad hoc process work. The manuscript at the
+core of the Project was an intriguing and puzzling research object and
+it attracted participants who were eager, motivated, and passionate to
+unravel more of its knots. Moreover, Project staff, students,
+participants, and collaborators were all equally unfamiliar with much of
+the content of the manuscript. They thus felt comfortable raising
+questions and suggesting new workflows. Students and team members were
+hungry to learn new skills through the Project. The variety of
+disciplinary backgrounds and skill levels led to an extremely generative
+atmosphere of enthusiastic sharing and learning from one another.
+Students and instructors had to be equally courageous in admitting
+ignorance, being open to experimenting and learning together, and
+potentially to failing, which led to new approaches.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a></p>
+<h3 id="early-visions-of-the-edition">Early Visions of the Edition</h3>
+<p>While the Project avoided making “final” commitments for the Edition,
+its development was informed by a vision of the purposes it should serve
+as well as a few key features. The first feature was a side-by-side dual
+pane interface that would allow a user to view any combination of two
+versions of the manuscript, choosing from the facsimile images, the
+French transcription, the lightly normalized transcription, and the
+English translation. Partly inspired by the fluid text edition of Herman
+Melville’s Typee (<i><u>Fig.
+5</u></i>),<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> the Project felt that this viewing
+experience would enable a reader to better comprehend the experiential
+knowledge contained in the writings of the author-practitioner. The
+dual-pane view also maximizes the transparency of translation decisions,
+presenting the graphical and textual sources for comparison.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1fScA7YCpYUG27QKX2-IEOV3f6zW4aTbF.jpg" alt="fig. 5"><figcaption>Fig. 5. “The viewing device” of “Herman Melville's ‘Typee’: a
+Fluid-Text Edition,” which shows a facsimile image, its transcription,
+and editorial commentary, <a href="https://rotunda.upress.virginia.edu/melville/site.xqy"><u>https://rotunda.upress.virginia.edu/melville/site.xqy</u></a>,
+2006. © Rector and Visitors of the University of Virginia (<a href="https://www.virginia.edu/siteinfo/copyright#copyright"><u>Copyright
+Policy</u></a>).</figcaption></figure></div>
+<p>Another key feature was the integration of critical commentary
+alongside the rendering of the manuscript text, making editorial notes
+and links to the multimedia research essays readily accessible. Taking
+inspiration from the digital essay “Kafka’s Wound” by Will Self (<i><u>Fig.
+6</u></i> and <i><u>Fig.
+7</u></i>), the embedding of relevant resources into the manuscript
+presentation would offer immediate illumination of technical processes,
+materials, language, and translation decisions.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>
+Finally, it was felt crucial that the manuscript be searchable to
+quickly find specific results and draw new connections across Ms. Fr.
+640’s contents. Together, these features would open the manuscript’
+content and allow others to engage with its rich record of making
+practices and exploration of the natural world.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1FHm8-ayN8d6VePsTmBPxsRSd2au0v5Ur.png" alt="fig. 6"><figcaption>Fig. 6. Excerpt from “Kafka’s Wound | A Digital Literary Essay by
+Will Self.” Icons along the right margin of the digital essay indicate
+critical commentary that can be viewed by clicking on them. Archived
+from the original on August 5, 2020, <a href="https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/"><u>https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/</u></a>.</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1bv-pXpuRR2QdCWWnPxfVXsU-oCgRGEx5.png" alt="fig. 7"><figcaption>Fig. 7. Example of user-engaged content from an excerpt of “Kafka’s
+Wound | A Digital Literary Essay by Will Self.” By clicking on the
+yellow icon found in the right margin, the video “Scenes from Will
+Self’s Kafka Journey” is revealed. Archived from the original on August
+5, 2020, <a href="https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/"><u>https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/</u></a>.</figcaption></figure></div>
+<p>To help envision the eventual elements of the Edition, the Project
+created early wireframes, mockups, and prototypes. Some of these were
+one-off projects developed in brainstorming sessions with digital
+humanists and textual scholarship colleagues. In 2014, a fruitful
+session with Columbia’s Group for Experimental Methods in Humanistic
+Research (<a href="https://xpmethod.columbia.edu/about.html"><u>xpmethods</u></a>)
+led by Dennis Tenen helped the Project team visualize ways in which the
+text of the manuscript could be represented.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>
+These proof-of-concept mockups modeled ways in which the layout of the
+transcribed text could mirror the layout of the manuscript page itself
+(<i><u>Fig.
+8</u></i>) as well as how field notes taken by students as part of their
+research on the manuscript could be represented (<i><u>Fig.
+9</u></i>). To test some of the desired features seen in Herman
+Melville’s Typee and “Kafka’s Wound,” Research Associate Claire Sabel
+created a few webpage wireframes with dual-pane views and a variety of
+multimedia resources associated with manuscript pages (<i><u>Fig.
+10</u></i> and <i><u>Fig.
+11</u></i>). When Rosenkranz joined the Project in 2015, she and Sabel
+further refined these mockups (<i><u>Fig.
+12</u></i>). Notably, these early wireframes stacked the viewing panes
+one atop the other rather than side by side. The side-by-side layout,
+which would later become a hallmark of the Edition, was explored by
+Project Digital Programming Assistant Bingyan Hu in a 2015 Wordpress
+prototype that incorporated the Project’s preliminary transcription of
+the manuscript as well as the facsimile images of Ms. Fr. 640 (<i><u>Fig.
+13</u></i>). All of these prototypes helped to visualize and spur
+discussion about the Edition and its components as well as to convey
+these ideas to team members, collaborators, and potential funders.
+Additional working prototypes, including two minimal editions
+implementing the Ed Jekyll theme and the Prototype Edition created by
+the Project’s Designer-Developer, would play a more integral role in the
+editorial process, as described in further sections below.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1yAyh1XzW2eK03UWCs05nKbpODQ9qP_E1.png" alt="fig. 8"><figcaption>Fig. 8. 2014 mockup of a folio page of the manuscript created by
+Columbia’s <a href="https://xpmethod.columbia.edu/about.html"><u>xpmethods</u></a>
+group, led by Dennis Tenen. The transcribed text mirrors the layout of
+the facsimile image. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1-VbdiXPOb8cpBDbx4mFKSCIWqJuxwxaZ.png" alt="fig. 9"><figcaption>Fig. 9. 2014 mockup of student reconstruction field notes created by
+Columbia’s <a href="https://xpmethod.columbia.edu/about.html"><u>xpmethods</u></a>
+group, led by Dennis Tenen. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1HBEj7qd98HESdO2C62ICYwbFAfFGTGs9.jpg" alt="fig. 10"><figcaption>Fig. 10. Wireframe prototype of fol. 109r as an early conception of
+the Edition, created by Research Associate Claire Sabel, 2014. © Making
+and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1hsHv4YtFzgK595T6S6nxTVUcexqCkLQ3.jpg" alt="fig. 11"><figcaption>Fig. 11. Wireframe prototype of fol. 124r as an early conception of
+the Edition, created by Claire Sabel, 2014. © Making and Knowing Project
+(<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1u6oLd38UrXeTSNKrc-4mpuwbEhKpoJjb.jpg" alt="fig. 12"><figcaption>Fig. 12. A simplified wireframe prototype as an early conception of
+the Edition, created by Naomi Rosenkranz and Claire Sabel, 2015. ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1h1GdYDc2aAEFv5d_xkL89AKf6GjfuiLy.png" alt="fig. 13"><figcaption>Fig. 13. 2015 Wordpress prototype created by Project Digital
+Programming Assistant Bingyan Hu with a side-by-side layout of two
+viewing panes with different versions of the manuscript text. The
+prototype used the facsimile images of Ms. Fr. 640 provided by Gallica
+and the Project’s preliminary transcription of the manuscript. © Making
+and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h3 id="preliminary-digital-development">Preliminary Digital
+Development</h3>
+<p>Before the Making and Knowing Project’s work on Ms. Fr. 640, access
+to the manuscript was limited to microfilm files or physical viewing of
+the object at the Bibliothèque nationale de France (BnF) in Paris. In
+2013–14, Project Director Pamela Smith worked from these black and white
+facsimile copies with Research Associate Claire Sabel and a few
+collaborators to create preliminary draft transcriptions.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>
+Smith launched the Making and Knowing Project in 2014, with the first
+Text Workshop held in the summer. Then called the “Paleography
+Workshop,” it took in applicants interested in gaining skills in the
+study of historical writing and letterforms (paleography) by working on
+the transcription, translation, and basic digital encoding of the Middle
+French text of Ms. Fr. 640. The Project called upon the Columbia
+Libraries’ Digital Scholarship Coordinator for the Humanities, Alex Gil.
+Gil helped develop early strategies for representing the manuscript as
+digital text, bringing in Terry Catapano (then Special Collections
+Analyst, Libraries Digital Program Division) to consult on the textual
+encoding.</p>
+<p>To begin, the Project needed to transform the handwritten script on
+paper of Ms. Fr. 640 from a physical historical object into a digital
+one. Housed at the BnF, the manuscript is a bound book of 170 folios,
+where one folio is the front (recto) and back (verso) of one half a
+folded physical piece of paper, resulting in 340 pages of written
+text.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> For example, the first folio
+includes both 1r (recto) and 1v (verso). For each of the 340 pages of
+Ms. Fr. 640, a separate Google Doc was created for the three separate
+versions of its text: diplomatic French transcription,
+lightly-normalized French, and English translation. The Google Drive
+folder housing these Docs was organized by page through folders and
+standardized naming conventions (<i><u>Fig.
+14</u></i> and <i><u>Fig.
+15</u></i>).<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> With three Docs per folder and 340
+folders, the manuscript was represented by 1,020 text files. The
+organization system allowed the Project to manage the digital surrogates
+of the pages and easily introduce editors and participants to the
+files.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1TNFdIPlKo_62GGw8Ubs0KIKnkXfR2tjo.png" alt="fig. 14"><figcaption>Fig. 14. Organization of the manuscript folios in folders in the
+Project’s Google Drive in list layout. Screenshot Celine Camps and
+Margot Lyautey, 2019. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1U763qDUOdR4W5d_YkSw-0otd18_2aPvV.png" alt="fig. 15"><figcaption>Fig. 15. The four versions of folio 3r in the Project’s Google Drive.
+Screenshot Celine Camps and Margot Lyautey, 2019. From top to bottom:
+Files 1 and 2. High definition color and black and white scans of the
+manuscript page; File 3. Diplomatic transcription (TC); File 4.
+Normalized transcription (TCN); File 5. English translation (TL). ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h3 id="google-drive">Google Drive</h3>
+<p>The editing of the manuscript text largely took place in pedagogical
+settings: a series of summer training Text Workshops. The editing
+workflow needed to facilitate two important activities: 1) collaborative
+work on the same document at the same time, and 2) the transcription,
+translation, and encoding of the manuscript to make productive progress
+towards establishment of the text.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> Rather than gain
+literacy in specific applications or tools that they may not use outside
+of the Workshop, participants were encouraged to spend as much time as
+possible engaged with Ms. Fr. 640 and build transferable skills in
+paleography and textual editing.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> Accordingly, Google
+Drive and its application suite (Google Docs, Google Sheets, Google
+Slides) were chosen for their low entry-barrier to simultaneous,
+internationally distributed digital collaboration. The advantage of
+Google Drive’s free, cloud-based editing platform with sophisticated
+commenting and collaboration features offered sufficient benefits to
+offset the disadvantage of proprietary technology. Crucially, Google
+Drive enabled collective editorial and scholarly work—a task
+traditionally undertaken by only one person—as participants worked
+simultaneously on the same text and saw edits in real time, also
+permitting all collaborators to write and view comments on any part of
+the shared documents. Participants left questions, citations, and notes
+about their decisions, which fed the iterative process and informed
+future avenues of research. Furthermore, prior to their work on the
+Project, many participants had become comfortable using similar
+applications, such as Microsoft Word, or were already familiar with
+Google Drive. To this day, the Project has yet to find any other viable
+alternatives to Google Drive that would so well meet the peculiar
+demands of its research process.</p>
+<p>Through additional customization, the Project was able to adapt the
+Google Drive workspace to account for some of the friction resulting
+from using an environment that was not “XML aware” to encode text.
+Earlier Text Workshops (2014, 2015, 2016) focused more on paleography
+and translation than on encoding. Training in TEI markup was ad-hoc and
+minimized. Because the workshops involved 20 people for only 2–3 weeks a
+year, dedicated training in an XML editor such as oXygen was
+impractical, so simpler tools to assist in markup were needed. These
+tools had to work within the context of Google Drive to fully exploit
+its key feature at this time—the ability for participants to
+collaboratively work on and see the current state of actively evolving
+texts in real time. Therefore, the Project had to compensate for the
+lack of the advantages of “XML aware” features such as validation, which
+ensures that the markup is correct. Toward this end, Programming
+Assistant Philip Cherian created Google Docs Add-ons<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a>
+that provided lightweight validation of the markup. The tools addressed
+some key markup features prone to error such as start tags and end tags
+correctly matched to prevent overlap, and consistency in element names.
+This solution minimally affected the core workflow of the transcription
+and translation, but ensured that data would be clean for later stages
+of development.</p>
+<p>The Project’s commitment to Google Drive might seem to lie in
+opposition to its commitment to minimal computing. Google Drive is a
+proprietary, feature-rich application with frequent updates, limited
+transparency and documentation, and focus on consumer usability and
+interactive experience. Using Google Drive as an editing platform was an
+unusual decision for an editing project that planned to encode the text
+with XML markup. Google Docs are “rich” text (as opposed to plain text)
+documents containing styling, formatting, and other information beyond
+the text itself. In order to produce the core data of the Edition, the
+encoded transcriptions and translations had to be exported from Google
+Drive, stripped of any rich text features introduced by the platform,
+and transformed into encoded plain text. Working in Google Drive
+introduced a number of unique challenges that each required customized
+solutions. Reliance on Google Drive thus caused the Project to
+accumulate “technical debt,” preferring to employ a solution to save
+time in the present and deferring the costs and time to implement a
+longer term solution. Manipulation of the text within and out of Google
+Drive was a significant area of work for the digital team, especially a
+number of creative programming assistants and interns.</p>
+<p>While the debt incurred was certainly not minimal from a technical
+perspective, the Project did hew to the principles of minimal computing
+in another sense: minimizing and easing the overall <em>human</em> work
+of the editorial process. Textual editing, encoding, and manipulation—or
+even simply working within an XML-aware environment—requires training
+and a specialized knowledge base. The paleographic, lexical, and
+historical work requires its own domain-specific expertise, which the
+Project decided to prioritize over the technical skills, accepting
+“significant constraints” in technical training in order to facilitate
+the scholarly and editorial work of the Edition’s creation.</p>
+<h3 id="tracking-and-maintaining-iterative-work">Tracking and
+Maintaining Iterative Work</h3>
+<p>At the onset of the editing process, an iterative workflow was
+foreseen, but not to the full extent realized by the Project over the
+course of almost six years. The idiosyncrasy of Ms. Fr. 640 and its
+collective editing would require several passes to produce its
+transcription, translation, and encoding, particularly if insights from
+laboratory and archival research were to be integrated. At least three
+Text Workshops were planned from 2014 through 2016, and each of those
+years saw continuous progress. However, the necessity of additional time
+for more advanced treatment of the manuscript became evident, so
+Workshops were planned for 2017, then again in 2018, and intensive
+sprints were peppered throughout 2018 and 2019. Milestones toward
+completion were pushed forward, as “final” became second, third, and
+fourth “drafts.” This was the result of methodology (rather than just
+the text) evolving through each cycle. As described by Dyon and Wacha:
+“Only through the act of transcribing and translating did the team of
+directors and paleographers begin to understand how best to accomplish
+the task at hand.”<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a></p>
+<p>Tracking work became integral to assessing collective progress and
+the status of each version of the manuscript text. This required greater
+control of “administrative metadata”—information about the creation and
+management of digital objects (rather than about the data itself).<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> For the Project, this included
+dates and times of when a file was last modified, the number and
+identity of the people who did so, and what application or program they
+used to make changes.</p>
+<p>In 2014 and 2015, the Project relied on information contained in file
+and folder names for tracking purposes. Workshop participants added
+their initials to the folder name as they completed transcription,
+translation, and markup work (<i><u>Fig.
+14</u></i>, <i><u>Fig.
+15</u></i>, <i><u>Fig.
+16</u></i>). This alerted the Lead Paleographer and Project Director
+that it was ready for their review, after which they would add plus
+signs (+) to let the participants know the files had been reviewed. As
+the encoding of the manuscript advanced and the Project’s data
+management strategies matured, it became increasingly clear that
+overloading the file names with administrative metadata had significant
+limitations. The Project needed to be able to assess and analyze that
+information more often and more accurately than what was possible when
+it was locked in file names.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1TNFdIPlKo_62GGw8Ubs0KIKnkXfR2tjo.png" alt="fig. 14"><figcaption>Fig. 14. Organization of the manuscript folios in folders in the
+Project’s Google Drive in list layout. Screenshot Celine Camps and
+Margot Lyautey, 2019. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1U763qDUOdR4W5d_YkSw-0otd18_2aPvV.png" alt="fig. 15"><figcaption>Fig. 15. The four versions of folio 3r in the Project’s Google Drive.
+Screenshot Celine Camps and Margot Lyautey, 2019. From top to bottom:
+Files 1 and 2. High definition color and black and white scans of the
+manuscript page; File 3. Diplomatic transcription (TC); File 4.
+Normalized transcription (TCN); File 5. English translation (TL). ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1YPHUcH9e1hmyXJh28Uu--rPBIjIJn1MV.jpg" alt="fig. 16"><figcaption>Fig. 16. Organization of the manuscript folios in folders in the
+Project’s Google Drive in grid layout. Screenshot Soersha Dyon and
+Heather Wacha, 2019. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>A different strategy for keeping track of each folio’s status was
+implemented in preparation for the 2016 summer Workshop. In the spring
+of 2016, the Project was fortunate to be joined by two exceptional
+interns, Philip Cherian and Margot Lyautey, from École Polytechnique
+through a partnership with Columbia’s Alliance Program. With their
+assistance, progress tracking was moved to a spreadsheet, “BnF Ms. Fr.
+640 Index Tracking” (<i><u>Fig.
+17</u></i>). Going folio by folio, Margot and Philip assessed each
+version of the text (transcription, normalized, and translation) and
+recorded its status for both editing and encoding. It allowed the
+Project to determine the remaining transcription and translation work to
+be completed as well as whether any encoding had been applied to the
+folio and which version of the schema (the 2014 version or the updated
+one from 2015). The enhanced data informed a work plan for the 2016
+workshop and a way for the participants to see their assignments and log
+their progress. The participants were broken up into groups and assigned
+sections of the manuscript (i.e., a range of folios) to be worked on
+sequentially. By the end of 2016, the transcription of the manuscript
+was largely complete, so the majority of the work to be done in the
+following year’s workshop was translation and encoding across all
+versions of the manuscript.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1dvrJnTKtfQqQf_ZKvNZiJ-10gfPPTdsk.jpg" alt="fig. 17"><figcaption>Fig. 17. The Tracking Spreadsheet for the 2016 Text Workshop.
+Screenshot Naomi Rosenkranz and Terry Catapano, 2024. Each row
+represents one folio of the manuscript, tracking the status of that
+folio’s transcription, translation, and encoding. The first few columns
+record information that was previously tracked by changing the name of
+the folders in Google Drive. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>Beginning in 2017, the “BnF Ms. Fr. 640 Index Tracking” spreadsheet
+was transformed by Assistant Director Naomi Rosenkranz into a
+multipurpose management hub for progress tracking, record keeping,
+planning, version control, and metadata (<i><u>Fig.
+18</u></i>). The Index Tracking spreadsheet now listed the manuscript by
+<em>entry</em> rather than by folio, a major conceptual shift.<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> Up to this point, the Project
+organized the manuscript by folio and this dominated the way that work
+on the transcription (and, by extension, the translation and encoding)
+was managed. The organization of the manuscript files in the Project
+Google Drive inadvertently prioritized one conception of the manuscript,
+emphasizing the <em>folio</em> as a significant unit of text. Reference
+to folio arrangement is standard for bound manuscripts and mirrors the
+manuscript’s physical construction. This may not seem particularly
+significant. After all, this breakdown follows the conventions we
+associate with books. Text on the same page usually discusses the same
+topic and thus generally goes together, perhaps organized into
+paragraphs or separated by titles and headers. Books are cited by page
+number, as opposed to paragraph, sentence, line number, or some other
+unit. However, as discussed previously and elsewhere, Ms. Fr. 640 is not
+a traditional book. Its text is fragmented: a collection of recipes,
+instructions, observations, and experimental records. One folio can
+contain multiple entries, each treating distinct topics as far-ranging
+as medical remedies, varnish applications, and cannonball calibers, and
+the relation between these entries is not always clear. When categorized
+by folio, the text on each folio is considered as a unit, inadvertently
+obscuring the fact that it may contain topically unrelated textual
+units. The folio organization, therefore, can impede many avenues of
+investigation.<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a> While the Project generally
+discussed “entries” as the significant textual components—for example,
+it was entries (or “recipes”) that were reconstructed and analyzed in
+the Lab Seminar—all references to the manuscript were by folio.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1WgDl2vR224fJWwbz_rfr5GfgNiYgL4Us.jpg" alt="fig. 18"><figcaption>Fig. 18. The Tracking Spreadsheet for the 2018 Text Workshop.
+Screenshot Naomi Rosenkranz and Terry Catapano, 2024. The status of the
+manuscript’s transcription, translation, and encoding is tracked by
+folio entry. Participants log their initials and date as they review
+each entry and add notes about, for example, certain words to be left
+untranslated in French (cells BB469 to BC473) or the encoding of certain
+words as “professions” (cells BG477 to BJ477). © Making and Knowing
+Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>As the markup of the manuscript progressed and its XML markup schema
+stabilized at the end of the 2016 Text Workshop, the Project benefited
+from the shift to an entry-centric view of the manuscript from a
+folio-centric view, resulting in methodological changes and productivity
+improvement. In preparation for the 2017 Text Workshop, the Index
+Tracking spreadsheet listed the manuscript not by folio but by entry,
+recording each entry’s unique “div” (i.e., textual division) ID and
+heading (in both the original transcription and translation for quick
+reference). Each entry was assigned a general theme such as casting or
+painting to enable workshop participants to work on topically related
+entries (rather than sequentially by folio) as well as develop expertise
+and a more consistent translation voice in entries treating similar
+subject matter. The participants were also divided into separate groups
+of translators and encoders.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a> The translators worked
+ahead of the encoders, tracking and dating their work in the spreadsheet
+so that the encoders could follow closely behind them. Columns in the
+spreadsheet recorded which groups of translators and encoders had worked
+on each entry and when they had last made revisions. The groups also
+used the spreadsheet to enter notes, questions, or open issues for
+further review.</p>
+<p>The more granular and detailed tracking provided the Project
+Director, Lead Paleographer, Assistant Director, and Digital Lead with a
+rich, coherent dataset to assess the new workflow’s efficacy and the
+Project’s overall progress. It was becoming ever clearer that the
+translation and encoding process could proceed indefinitely as the
+Project worked towards an improved, more scholarly and accurate product
+in the digital text of Ms. Fr. 640. As the two weeks of the 2017
+Workshop were underway, the Project needed to begin thinking
+pragmatically about how much longer “completion” would take. Separate
+tabs were created in the “BnF Ms. Fr. 640 Index Tracking” Google Sheet
+to track completion totals (<i><u>Fig.
+19</u></i>) and daily completion rates (<i><u>Fig.
+20</u></i>). These let the team gain a sense of how many entries could
+be updated and reviewed, and the effects of factors such as number of
+participants, group size, and thematic category of the entries they were
+editing. Towards the end of the 2017 Workshop, the team used this data
+to approximate the length and capacity needed for future workshops. As a
+result of these projections, the Project held a week-long
+“mini-workshop” with a handful of experienced participants in March 2018
+and then another full two-week workshop in the summer. In October 2018,
+the final workshop was held, a “micro” version with just Senior
+Translation Participants Heather Wacha and Soersha Dyon, encoders Celine
+Camps and Melissa Reynolds, and the core Project team. This brought an
+end to the larger “crowd-sourced” phase of transcription, translation,
+and encoding of the manuscript.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1wtkjcvNg62bCGBvdxC4zbunFAcCIA86B.jpg" alt="fig. 19"><figcaption>Fig. 19. The Tracking Spreadsheet showing completion totals at the
+end of summer 2018. Screenshot Naomi Rosenkranz and Terry Catapano,
+2024. Broken down by entry category, the completion of the translation
+of the manuscript as well as the markup across all three versions of the
+manuscript was tallied as Text Workshop participants reviewed and signed
+off on the state of the entries. By the end of the summer, final review
+was needed for the translation of only 50 entries (less than 5% of the
+manuscript, categorized as “alchemy” and “casting”) and the markup of
+only 340 entries (less than 12% of the manuscript, categorized as
+“alchemy,” “casting,” “tool,” and “weapons”). © Making and Knowing
+Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1stGC9zp_LZ16l_jY2aoDZrV2leIjpCUU.jpg" alt="fig. 20"><figcaption>Fig. 20. The Tracking Spreadsheet showing daily completion rates for
+summer 2018. Screenshot Naomi Rosenkranz and Terry Catapano, 2024.
+Broken down by entry category, the completion of the translation of the
+manuscript as well as the markup across all three versions of the
+manuscript was tallied as Text Workshop participants reviewed and signed
+off on the state of the entries. Fluctuations in the daily rates of
+completion were noted, such as when a small group of Workshop
+participants put in additional time on a Saturday or when a group member
+was absent which slowed progress. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h3 id="move-to-github">Move to Github</h3>
+<p>The Making and Knowing Project maintained the texts of Ms. Fr. 640 in
+Google Drive from 2014 to 2019. In February 2019, the Project moved all
+revision of the manuscript texts to a repository in the software
+development platform Github, a version control system for code
+management and issue tracking.<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> Throughout the years
+of editing the manuscript text in Google Drive, the Project considered
+utilizing Github to track and maintain the folio files and an XML-aware
+environment (such as oXygen XML Editor) to edit the files. With so many
+changes and so many editors making those changes, however, Google Drive
+still seemed to serve as the best platform for the Project well into
+2019. Making the change to Github was repeatedly postponed because it
+never seemed like the right time for the ongoing editorial activity. For
+the core editorial team, it was also difficult for them to envision how
+making the move would actually enable an editorial workflow that, once
+enacted, would greatly improve the process for producing an accurate and
+consistent digital text of Ms. Fr. 640. The workflows developed for
+Google Drive were easy to learn regardless of technical expertise and
+had become familiar to the editorial team. Because moving away from
+Google Drive would require training in unfamiliar tools and modes of
+work, there was fear of losing time that was better spent on engaging
+directly with the manuscript. On the other hand, it was hard to see how
+to reduce the growing technical debt accumulated by the many
+accommodations made in order to facilitate work in the Drive (which was
+largely invisible to those working in the Drive).</p>
+<p>By February 2019, the focus of the editorial work shifted towards
+enhancing consistency, accuracy, and readability of the encoded texts:
+the Project’s “consistency campaign.” Dyon and Wacha describe the
+efforts of the later years of the Text Workshops to make translation
+decisions consistent throughout the manuscript to remove competing
+interpretations of similar words or subject matter. Similarly, Camps and
+Lyautey detail the work undertaken to ensure consistent application of
+the tagset not just throughout the translation but across the encoding
+of all three versions of the text (diplomatic, normalized, and
+translation).<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> Until the move to Github, checking
+for compliance with these decisions was extremely difficult and time
+consuming: each manuscript page was housed in a separate Google Doc and
+all checks had to be completed by a human reading through all textual
+passages. Even a seemingly simple string-matching search (i.e., the kind
+of pattern matching function familiar to most as “find in page”: Ctrl+F
+or Command+F) could not be performed easily across the manuscript as a
+whole in Google Drive. The decisions and workflows previously employed
+to aid and enable the editing of the text were preventing other
+important editing and development tasks. As the digital development of
+the Edition intensified, continuously extracting the manuscript files
+from Google Drive and converting them to XML documents for use and
+rendering in a development/prototype website was also becoming
+impractical.</p>
+<p>The costs of using Google Drive had started to greatly outweigh the
+benefits. At this stage in the editing of Ms. Fr. 640, it was clearly
+time for computational intervention. The Google Docs of each folio were
+exported and transformed to XML files one final time. The XML files were
+housed in a directory, <a href="https://github.com/cu-mkp/m-k-manuscript-data/tree/master/ms-xml"><u>ms-mxl/</u></a>,
+of the Project’s <a href="https://github.com/cu-mkp/m-k-manuscript-data"><u>m-k-manuscript-data
+Github repository</u></a>, and became the active working files. The
+Google Drive was frozen by removing write permissions to most Project
+participants, and Github replaced Google Drive as the public and working
+environment of the manuscript pages.</p>
+<p>The Project team as a whole had limited experience with Git and
+Github as well as with text editors such as <a href="https://www.sublimetext.com/"><u>Sublime Text</u></a>, <a href="https://atom.io/"><u>Atom</u></a>, or the XML-aware <a href="https://www.oxygenxml.com/"><u>oXygen</u></a>.<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a>
+Under the guidance of the Digital Lead, the core editorial team
+(Director, Assistant Director, and the current three postdocs) developed
+a <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/master/docs/fa21-github-digital-workflow.md"><u>protocol
+for editing</u></a> the text of Ms. Fr. 640 as true XML—at the same time
+as training in using Github, the command line, and oXygen (the kind of
+hands-on, learning-by-doing methodology typical of the Project). During
+an intensive, dedicated sprint, the team eased into this new workflow of
+editing and data management.</p>
+<p>Github’s built-in project management and issue tracking features
+served as the new hub of activity and documentation. For each
+consistency task already identified by the previous editing campaigns
+(over a hundred), a new issue was opened and added to the <a href="https://github.com/cu-mkp/m-k-manuscript-data/projects/3"><u>“Consistency
+issues in ms text” Project</u></a> (<i><u>Fig.
+21</u></i> and <i><u>Fig.
+22</u></i> and <i><u>Fig.
+23</u></i>). As new consistency tasks were identified, additional issues
+were opened. The team organically developed a number of issue “labels”
+to help classify and manage the tasks. “Translation” and “markup”
+distinguished between the type of consistency issue: for example, <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/96"><u>issue
+#96</u></a> (“translation”) called for <em>empreinte</em> to be
+translated as “imprint,” while <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/105"><u>issue
+#105</u></a> called for the instances of smoke to be tagged as
+&lt;material&gt;. To help manage time and allocation of tasks example,
+<a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/165"><u>issue
+#165</u></a> to confirm that all symbols, such as ʒ (dram), were not
+tagged as &lt;mark&gt;. The “problematic” label helped identify issues
+which were more complex because there were outstanding questions about
+how something should be translated or marked up, or further research was
+needed. For example, see <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/125"><u>issue
+#125</u></a> and the discussion about how to encode (and, ultimately,
+translate) languages other than French that appear in the manuscript;
+and <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/599"><u>issue
+#599</u></a> about how to treat <em>bain</em> (bath) in the context of
+metalworking.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1Fcpk9zwNbJO6EQVTG_95u3qAlHX8Ci5s.jpg" alt="fig. 21"><figcaption>Fig. 21. “<a href="https://github.com/cu-mkp/m-k-manuscript-data/projects/3"><u>Consistency
+issues in ms text</u></a>” project board in the Making and Knowing
+Project’s m-k-manuscript-data Github repository, showing representative
+issues as of May 18, 2024. Screenshot Naomi Rosenkranz and Terry
+Catapano, 2024. Based on a kanban board to help manage tasks, the
+project board contains the columns “To do” (for all new open issues),
+“Next” (issues that are next up in the pipeline), “In progress” (ongoing
+tasks), “Blocked” (issues that cannot be completed as planned and
+require additional attention), and “Done” (completed and closed issues).
+© Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1sTtV12GH1QxJy-FwGGCVpo40Cj4stqZl.jpg" alt="fig. 22"><figcaption>Fig. 22. “<a href="https://github.com/cu-mkp/m-k-manuscript-data/projects/3"><u>Consistency
+issues in ms text</u></a>” project board in the Making and Knowing
+Project’s m-k-manuscript-data Github repository, showing representative
+issues as of October 14, 2019. Screenshot Naomi Rosenkranz and Terry
+Catapano, 2024.</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1r_vXdDcjHZLwbdVRimjBqgY3PycUBOrM.jpg" alt="fig. 23"><figcaption>Fig. 23. Representative issues in the Project’s Github repository, <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues"><u>m-k-manuscript-data</u></a>.
+Screenshot Naomi Rosenkranz and Terry Catapano, 2024. © Making and
+Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>After the move to Github in February 2019, the team worked on almost
+500 issues labeled as “consistency.” The issue tracker served as a
+project management tool, but also as a place to collaborate, share
+information, cross-check, document, and record methods of work.<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> A demonstration of this is
+exemplified in <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/92"><u>issue
+#92</u></a>, a task to make consistent the spelling of “eau-de-vie”
+(distilled wine or spirits), which had been irregularly styled
+throughout the translation (e.g., “eau de vie,” “eau de vye,”
+“eau-de-vie”). The comments to this issue capture how the task was first
+undertaken in oXygen with a simple search, then, as the team became more
+familiar with the tools available, employing search patterns (“regular
+expressions” or regex) to find all instances. The issue records our
+early trials and errors as the team gained more skills in utilizing
+digital tools: discovering that the search did not capture all desired
+results; crafting an initial regular expression pattern that was also
+eventually found to be not fully effective; and finally calling in a
+more experienced user to help create another regex pattern (which then
+served as a model for other consistency tasks).</p>
+<p>Issue #92 was one of the earliest issues the team opened and
+undertook as part of the consistency campaign. It shows the Project
+developing standards for how to record what interventions were made and
+what methods were employed. It was important to continue documenting the
+Project’s process for our own editorial workflow as well as for larger
+transparency of editorial interventions (and in the spirit of open
+scholarship). Issue #92 exemplifies the Project’s pragmatic approach to
+learning digital tools for editorial work. Training was practical and
+gradual, driven by the problems or needs as they arose and devising best
+ways to tackle or solve them. As discussed elsewhere, this
+learning-through-practice philosophy is characteristic of the Project’s
+iterative, research-driven pedagogy (and pedagogy-driven research),
+reflected throughout almost all aspects of the Project.</p>
+<h4 id="github-as-the-digital-lab">Github as the “Digital Lab”</h4>
+<p>In Spring 2017, the Project offered a new course modeled on its Lab
+Seminar, the “Digital Seminar” <em>What Is a Book in the 21st Century?
+Working with Historical Texts in a Digital Environment</em>. The goal of
+the Digital Seminar was to provide students with the intellectual,
+technical, and organizational skills to prepare text for digital
+presentation and analysis through the collective creation of a <a href="https://cu-mkp.github.io/GR8975-edition/"><u>minimal digital
+edition of the Project’s preliminary English translation of Ms. Fr.
+640</u></a> (<i><u>Fig.
+24</u></i> and <i><u>Fig.
+25</u></i>).<a href="#fn28" class="footnote-ref" id="fnref28" role="doc-noteref"><sup>28</sup></a> Minimal digital editions are an
+application of minimal computing: a textual edition of a manuscript (or
+other forms of text) that utilizes a small technology stack, emphasizing
+durability and reduced technical dependency over richness of interface
+features. In partnership with the Project’s collaborators at the
+Columbia University Libraries, including long-time consultant Alex Gil,
+the seminar’s minimal digital edition used “<a href="https://elotroalex.github.io/ed/about/"><u>Ed</u></a>,”<a href="#fn29" class="footnote-ref" id="fnref29" role="doc-noteref"><sup>29</sup></a> a theme for the Jekyll static site
+generator.<a href="#fn30" class="footnote-ref" id="fnref30" role="doc-noteref"><sup>30</sup></a> <em>What Is a Book in the 21st
+Century?</em> built upon Gil and Catapano’s experience working with
+Susanna Allés Torrent in 2016 on her Columbia course, <em>Creating a
+Minimal Edition: From the Manuscript to the Web</em>, which produced one
+of the first student-led collaborative digital editions using Ed, <a href="http://minilazarillo.github.io/"><em><u>Mini lazarillo: edición
+mínima del Lazarillo de Tormes</u></em></a>.<a href="#fn31" class="footnote-ref" id="fnref31" role="doc-noteref"><sup>31</sup></a>
+The minimal edition developed during the <em>What Is a Book in the 21st
+Century?</em> course (the “GR8975 Edition”) in Spring 2017 informed the
+creation of a minimal edition in the summer 2017 Text Workshop that
+included all three versions of the manuscript text (the “<a href="https://cu-mkp.github.io/2017-workshop-edition/"><u>Workshop
+Edition</u></a>”) (<i><u>Fig.
+26</u></i>).</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/11fmvoqLA8ePvfRoLKYvEsXGhqTsJxqZQ.jpg" alt="fig. 24"><figcaption>Fig. 24. Homepage of the <a href="https://cu-mkp.github.io/GR8975-edition/"><u>GR8975
+Edition</u></a> of the Project’s preliminary English translation of Ms.
+Fr. 640 created collectively in the Spring 2017 Digital Seminar.
+Screenshot Naomi Rosenkranz and Terry Catapano, 2024. © Making and
+Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1YmfmTYWAsO2wg_pwdNBIm9luduomBeGc.jpg" alt="fig. 25"><figcaption>Fig. 25. Folio 6v of the <a href="https://cu-mkp.github.io/GR8975-edition/"><u>GR8975
+Edition</u></a> of the Project’s preliminary English translation of Ms.
+Fr. 640 as of 2017. Screenshot Naomi Rosenkranz and Terry Catapano,
+2024. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1Wiyyxwrn4dwv-mrEESm6PeqU-BgvDOfm.jpg" alt="fig. 26"><figcaption>Fig. 26. Folio 129v of the <a href="https://cu-mkp.github.io/2017-workshop-edition/"><u>Workshop
+Edition</u></a> presents the diplomatic transcription, normalized
+transcription, and working English translation of BnF Ms. Fr. 640 as of
+the Fall 2017. Screenshot Naomi Rosenkranz and Terry Catapano, 2024. ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>In the Digital Seminar, the Project’s Github repository emerged as a
+“digital laboratory.” In the same way that the Project’s chemical
+laboratory provided a place for hands-on experimentation with the
+methods and materials of the past, the Project’s Github repository
+created a platform for knowledge-sharing, collaboration, and pedagogy
+(<i><u>Fig.
+27</u></i> and <i><u>Fig.
+28</u></i>). Since 2014, the Project’s chemical lab, a laboratory space
+among the labs of Columbia’s Chemistry Department, served as a meeting
+place for introductions to the unfamiliar: hands-on experimentation,
+safety protocols, documentation of process through laboratory “field
+notes,” and collective investigation and understanding. Github was not
+unlike the chemical lab, a place for collaboration, communication, and
+experimentation enabled by safety management: “a virtual space providing
+tools for coordinated work and designed to contain damage related to
+failure so as to foster experimentation.”<a href="#fn32" class="footnote-ref" id="fnref32" role="doc-noteref"><sup>32</sup></a></p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1e2Inh7QAj97hlKBZAm0F1k_BK3QB84zg.jpg" alt="fig. 27"><figcaption>Fig. 27. The Making and Knowing Project’s chemical laboratory, where
+students and instructors learn side-by-side through hands-on
+reconstructions. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1oZrsE3b1zyuhw3YSdZ6We43tBdeelGk-.jpg" alt="fig. 28"><figcaption>Fig. 28. One example of the Making and Knowing Project’s “digital
+laboratory,” where students, participants, and team members learn and
+create side-by-side. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>To understand the affordances provided by Git and the issue tracker,
+it is helpful to review the way files are managed, maintained, and
+revised in Github. Github maintains a remote “main” set of files (a
+“branch”) that serves as the definitive version of the repository (<i><u>Fig.
+29</u></i>). Collaborators “pull” the repository to duplicate it on
+their local machine. To make changes without affecting the work of
+others, they can then check out a “branch,” creating a snapshot of the
+repository with which to work. Revisions, additions, and other
+contributions are made to the user’s branch and do not change the main
+branch. When complete, the user “commits” their work, enabling the work
+done in the local branch to be tracked and shared with other
+collaborators. The next step towards integrating these changes into the
+main branch is the opening of a “pull request” which enables review of
+the work and additional testing to ensure that no errors or conflicts
+are introduced. This is also the opportunity for a team to confirm that
+internal standards and protocols are followed in the new work before it
+is deployed. An approved pull request is then “merged” into the main
+branch, and the main branch reflects the updates undertaken in the local
+branch.<a href="#fn33" class="footnote-ref" id="fnref33" role="doc-noteref"><sup>33</sup></a></p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1iGrDjvU7-wImAXfCQU5GGCNe5GXaUFyi.png" alt="fig. 29"><figcaption>Fig. 29. Diagram of the branching features of Github, <a href="https://docs.github.com/en/get-started/start-your-journey/hello-world"><u>https://docs.github.com/en/get-started/start-your-journey/hello-world</u></a>.
+© 2024 GitHub, Inc.</figcaption></figure></div>
+<p>The workflow and versioning capabilities provided by Git enabled the
+Making and Knowing team—who were largely inexperienced and unfamiliar
+with Github—to feel comfortable jumping into the new method of editing
+the manuscript in XML. Using branches and pull requests provided a
+degree of safety by minimizing damage to the main files. As described
+above, the Project developed a workflow for the consistency campaign of
+editing the manuscript texts, described in <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/master/docs/fa21-github-digital-workflow.md"><u>M&amp;K’s
+Github &amp; Digital Workflows</u></a> documentation.<a href="#fn34" class="footnote-ref" id="fnref34" role="doc-noteref"><sup>34</sup></a>
+Under the guidance of Catapano, the team created step-by-step tutorials
+and guides specific to the Project’s utilization of Github and oXygen,
+from the commands to open a new branch to regular expression searching
+tips. As issues were opened, a team member created a new branch to work
+on it in isolation. When ready, that member initiated a pull request for
+review by Catapano or Rosenkranz who, as repository administrators,
+merged or rejected the changes. With oXygen’s built-in well-formedness
+checks and validation against the schema, the integrity of the XML files
+was easily preserved.<a href="#fn35" class="footnote-ref" id="fnref35" role="doc-noteref"><sup>35</sup></a> Eventually, the Project also
+employed the services of automated well-formedness checks, instilling
+even more confidence in merging pull requests.<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a></p>
+<p>The workflow and various checkpoints for editing the manuscript texts
+acted much like the safety protocols prepared by Lab Seminar students in
+order to undertake experimental work in the lab. Clear steps and areas
+of potential risk were set out not just for the main user (or
+experimenter) but for the larger community. In the chemical lab, the
+safety protocols were always reviewed and overseen by Project team
+members with requisite knowledge (often in communication with Columbia’s
+Office of Environmental Health and Safety) to ensure the physical safety
+of people, the space, and materials at hand. Similarly, the digital
+protocol served to maximize the comfort and readiness of editors to work
+(the people), the integrity of the Github repository (the space), and
+the “safety” of the XML files (the materials). The lab safety protocols
+always served as open reference materials for future generations of lab
+students or team members who would undertake similar work. The editing
+workflow documentation similarly served as a continuous reference for
+subsequent editors. Far from inhibiting, these safety checks can be
+powerfully liberating for those who might not otherwise feel comfortable
+contributing or participating in collaborative digital work. One is more
+likely to give something a try if there is assurance that one will not
+actually “break” anything to the detriment of the group.<a href="#fn37" class="footnote-ref" id="fnref37" role="doc-noteref"><sup>37</sup></a>
+The check points also provide feedback as one works (for example,
+running a well-formedness check in oXygen will highlight common
+mistakes, such as a missing closing tag) and proved to be effective
+tools for learning and gaining confidence with a new skill.</p>
+<p>The Github repository issue tracker offers another parallel to the
+Project’s offline work: it is analogous to the Project’s <a href="https://fieldnotes.makingandknowing.org/"><u>laboratory Field
+Notes</u></a>. Field notes are kept for all activity in the Project’s
+chemical laboratory (largely the skill building activities and
+historical reconstruction experiments of students in the Lab Seminar).
+They are modeled on both scientific lab notes (analytical, documentary,
+and reproducible) and anthropological field notes (reflective,
+narrative, and descriptive). Field Notes are key for documenting the
+preliminary research process, bringing together protocols, hands-on
+work, textual references, and object study. They encourage the
+experimenter to be as transparent and descriptive as possible about
+their process. Critically, they enable others to provide feedback,
+include their own work or recommendations, and take part in the
+discussion.<a href="#fn38" class="footnote-ref" id="fnref38" role="doc-noteref"><sup>38</sup></a></p>
+<p>The issue tracker is one of the fundamental features associated with
+project management in Github.<a href="#fn39" class="footnote-ref" id="fnref39" role="doc-noteref"><sup>39</sup></a> Issues are online
+discussion threads and can be used to report bugs, identify tasks, and
+collect feature requests. Each issue can be added to a Project board
+(such as the Project’s <a href="https://github.com/cu-mkp/m-k-manuscript-data/projects/3"><u>“Consistency
+issues in ms text”</u></a>), assigned to specific team members, labeled
+with topical tags, and linked to pull requests—all of which are
+filterable and searchable. For the Project’s consistency campaign, the
+issue tracker was fully integrated into the workflow—it is even the very
+first step of the protocol, as discussed above. Some of the Project’s
+issues are fairly straightforward, like <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/1524"><u>issue
+#1524</u></a>: “change figure id in tc, tcn, tl (fig_p130r --&gt;
+fig_p130r_1)” which identifies an error in the ID of a manuscript figure
+and tasks the assigned Rosenkranz to correct it across all versions of
+the manuscript. As recorded in the issue, the error is fixed and
+Rosenkranz references her commit of this change as well as the pull
+request that integrates the change before commenting that it has been
+completed and closing the issue. Other issues are much more complex,
+involving discussion, additional research, and sometimes even the
+creation of related issues to parse the problem into more discrete
+tasks. For example, <a href="https://github.com/cu-mkp/m-k-manuscript-data/issues/1112"><u>issue
+#1112</u></a>: “Scope black / charcoal / coal / charbon, etc.” begins as
+a task to gather information about how the Project had treated the
+translation of words associated with “coal.” The comments between team
+members show the methods undertaken to scope the problem, summaries of
+the results of that research, ways in which the Project had or had not
+been consistent, suggestions for what should be done, and discussions
+about the “right” decisions to be made (referencing the Translation and
+Encoding Protocols, secondary literature about “coal,” and questions of
+grammar and sense). While the issue was complex, the issue tracker
+structured, focused, and recorded the work and discussion to resolve it.
+This kind of record of collaboration, practice, experience, and decision
+making serves a very similar purpose to the Laboratory Field Notes.</p>
+<h2 id="design-and-development-of-the-edition">Design and Development of
+the Edition</h2>
+<p>While the content for <em>Secrets of Craft and Nature</em> was being
+prepared in Text Workshops, Lab Seminars, and Working Group Meetings,
+the development of the Edition’s website got underway in 2017 with the
+selection of Nick Laiacona as the Project’s Digital Designer-Developer.
+Laiacona, President and Founder of Performant Software Solutions, came
+to the Project with a strong background in developing and designing
+applications for projects in the digital humanities.<a href="#fn40" class="footnote-ref" id="fnref40" role="doc-noteref"><sup>40</sup></a>
+Laiacona worked with the core Making and Knowing Project team to create
+the infrastructure, interface, and deployment method for the Edition
+website.</p>
+<p>To develop the site, the Project presented Laiacona and his team with
+the challenge of constructing an engaging, multifaceted, and
+resource-rich online scholarly publication that utilized a minimal
+(i.e., common and well-established) technology stack comprising
+HTML/HTML5 with CSS and JavaScript served statically from a webserver.
+The commitment to such fundamental web technologies strives to reduce
+obsolescence and the need for active maintenance, as discussed above.
+Early brainstorming sessions quickly determined that the Edition would
+be developed as a static site.</p>
+<h3 id="static-site-generation">Static Site Generation</h3>
+<p>Static sites are distinguished from dynamic sites which generate
+webpages each time a user accesses them according to specific settings
+or environment. For example, news sites change their content as time
+passes, updating headlines or stories featured on their homepage every
+day (and often every hour). Social media sites, as another example,
+adjust the content presented to a user based on their login information,
+customizing the user experience based on relevance (e.g., location,
+interests, or the activity of other connected users). Most websites
+familiar to anyone browsing the internet are dynamic sites, featuring
+interactive components such as responsive animation, commenting
+features, or customized searching.</p>
+<p>The majority of dynamic sites are typically created using a content
+management system (CMS) in which the site's content is kept in a
+database and rendered into HTML when requested.<a href="#fn41" class="footnote-ref" id="fnref41" role="doc-noteref"><sup>41</sup></a>
+This approach often requires the employment of proprietary software as
+well as a large number of resources, broader institutional support, or
+constant maintenance. The two key features of dynamic sites—database
+storage and the underlying server-side scripting language (such as Ruby
+or PHP)—are particularly difficult to maintain due to the advanced
+technological expertise/training they require, the complex dependencies
+they introduce, and their large digital footprint. There are a number of
+popular platforms, such as Wordpress or Drupal, which offer
+user-friendly templates and solutions for creating a dynamic website
+regardless of technical proficiency.<a href="#fn42" class="footnote-ref" id="fnref42" role="doc-noteref"><sup>42</sup></a> These sites, however,
+are not immune to obsolescence or costly maintenance, evident most
+obviously in the challenges presented every time there is a software
+update or even a change in navigation or sitemap. Linked pages are no
+longer available or have moved, sometimes resulting in lost content if
+those pages or features are not preserved and migrated. Many services
+and any associated content are discontinued altogether, such as Yahoo
+GeoCities, Google Play, and Apple Aperture (not to mention social
+networking sites like Vine and Friendster).<a href="#fn43" class="footnote-ref" id="fnref43" role="doc-noteref"><sup>43</sup></a></p>
+<p>Static sites, unlike CMS or database-driven projects, deliver static
+webpages where all content and styling is created in advance. Content is
+served in its final form and sent as-is to a user—there is no dynamic
+creation or presentation of content through server-side scripts querying
+databases. To change or update what a user sees, the static file itself
+is revised or regenerated with new content as opposed to relying on
+software that dynamically and responsively changes the site based on new
+content.</p>
+<p>Brian Rinaldi defines a static site as one which meets the following
+four requirements:</p>
+<ol type="1">
+<li><blockquote>
+<p>Static site files are delivered to the end user exactly as they are
+on the server</p>
+</blockquote></li>
+<li><blockquote>
+<p>There is no server-side language</p>
+</blockquote></li>
+<li><blockquote>
+<p>There is no database</p>
+</blockquote></li>
+<li><blockquote>
+<p>Static sites are HTML, CSS, and JavaScript<a href="#fn44" class="footnote-ref" id="fnref44" role="doc-noteref"><sup>44</sup></a></p>
+</blockquote></li>
+</ol>
+<p><span class="pull-left"></span>A very helpful illustrative analogy is offered by Eduardo Bouças,
+who compares visiting a website to visiting a newsstand for a
+newspaper.<a href="#fn45" class="footnote-ref" id="fnref45" role="doc-noteref"><sup>45</sup></a> A static site generator would have
+compiled in advance all of the content into a newspaper provided to the
+newsstand. A visitor can then take a newspaper immediately and it will
+be the exact same newspaper obtained by the previous and subsequent
+visitors that day. On the other hand, a dynamic site creates the
+newspaper from scratch each and every time a visitor comes to the
+newsstand. The newsstand would alert a slew of phone operators to
+contact news agencies to get the content for the newspaper—representing
+the way that a server-side script queries multiple databases for site
+content. The information collected by the operators is then sent to a
+publisher—playing the role of a templating engine—who formats and
+presents the results as a newspaper (the HTML webpage). Dynamic sites
+are thus much more laborious on the backend, collecting information and
+presenting the content anew for each visitor. There are many moving
+parts and dependencies, and increased potential for something to go
+wrong, change, update, require attention, or simply break, creating a
+chain reaction of maintenance for all parts in the system.</p>
+<p>Generating a static site offers a number of advantages. Because
+static sites use well-established, fundamental web technology, the
+techniques for serving static sites are likely to persist into the
+future as well as be universally understood by IT professionals tasked
+with keeping the assets online. Critically, static site generation
+allows websites to be created with significantly fewer dependencies, and
+reduces maintenance overhead, as well as minimizes the risk of
+technological obsolescence. Furthermore, open source web servers like
+Apache and Nginx<a href="#fn46" class="footnote-ref" id="fnref46" role="doc-noteref"><sup>46</sup></a> can very efficiently serve large
+amounts of static data and respond to increased user traffic, leading to
+lower server costs.</p>
+<p>The biggest challenge in developing a website using this approach is
+the need to adopt or build an appropriate static site generator for the
+project. There are a number of existing static site generators<a href="#fn47" class="footnote-ref" id="fnref47" role="doc-noteref"><sup>47</sup></a> including the most well known, Hugo
+and Jekyll, as well as Github’s service, Github Pages, which allow a
+user to easily turn a Github repository into a static website featuring
+integration with Jekyll.<a href="#fn48" class="footnote-ref" id="fnref48" role="doc-noteref"><sup>48</sup></a> The Making and Knowing
+Project had employed Jekyll and the Ed theme for two minimal digital
+editions (the <a href="https://cu-mkp.github.io/GR8975-edition/"><u>GR8975
+Edition</u></a> of the preliminary English translation and the follow-on
+<a href="https://cu-mkp.github.io/2017-workshop-edition/"><u>Workshop
+Edition</u></a> of all three versions of the manuscript, described
+above). While Jekyll was initially considered for the <em>Secrets of
+Craft and Nature</em> Edition, the specific requirements and desired
+features of the Edition led to the decision to build a custom generator
+instead of adopting an existing system.<a href="#fn49" class="footnote-ref" id="fnref49" role="doc-noteref"><sup>49</sup></a></p>
+<p>Creating our own static site generator allowed the Project to
+accommodate simultaneously the ongoing editorial and digital
+development. Designer-Developer Laiacona created a static site generator
+using Node.js. The Project’s infrastructure was developed and maintained
+using Apache HTTP Server, React JavaScript Library, Github, AWS
+CloudFront and S3, and DigitalOcean virtual servers.<a href="#fn50" class="footnote-ref" id="fnref50" role="doc-noteref"><sup>50</sup></a>
+The Project has developed a generalized, community version of the
+Edition infrastructure, <a href="https://editioncrafter.org/"><u>EditionCrafter</u></a>, that is
+openly accessible to any user interested in employing our static site
+generator in their own settings or for their own editions.</p>
+<h3 id="the-edition-prototype-as-editorial-tool">The Edition Prototype
+as Editorial Tool</h3>
+<p>The working prototype of the Edition became another tool in the
+editing process, providing an additional layer of review and an
+additional method to check consistency and accuracy. The Project had
+conceived of the Edition as comprising 1) the textual core—the text of
+Ms. Fr. 640, 2) the critical apparatus—the essays on the manuscript’s
+content, and 3) additional resources, not yet defined, that would emerge
+as part of the research process. The areas of focus for digital
+development followed this progression. Designer-Developer Laiacona thus
+began with development of the dual-pane display of the manuscript pages
+(<i><u>Fig.
+30</u></i>). For each page of the manuscript, the user would be
+presented with two side-by-side viewing panes from which any combination
+of two of the four versions of the manuscript (the diplomatic
+transcription, the normalized transcription, the English translation, or
+the facsimile images of the folios) could be chosen. Because the text
+was at the core of the Edition, the functionality of these viewing panes
+consumed much of the attention of both the “editorial team” (Director
+Smith, Assistant Director Rosenkranz, and the postdoctoral scholars) and
+the “digital team” (Developer Laiacona, Digital Lead Catapano, and
+Rosenkranz). Furthermore, because the development of the content (i.e.,
+the translation and encoding of the manuscript text) was still underway
+during the digital development of the content’s rendering, an important
+workflow emerged, affecting both the editorial and digital work: the
+ability to see real-time changes of the content in place.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1drbVuXBIkD6dFJaQpailu9X0kladMW_j.jpg" alt="fig. 30"><figcaption>Fig. 30. Dual-pane display of Ms. Fr. 640, fol. <a href="https://edition640.makingandknowing.org/#/folios/4r/f/4r/tl"><u>4r</u></a>:
+side-by-side reading panes of any version of the manuscript text
+(facsimile images, transcription, normalized transcription, and English
+translation). Screenshot Naomi Rosenkranz and Terry Catapano, 2024. ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h4 id="rendering-of-the-folio-pages">Rendering of the Folio Pages</h4>
+<p>In order to render the transcription and translation as close as
+possible to the layout of the text in the original manuscript, it was
+necessary to see how the transcribed XML looked in the diplomatic
+rendering on the website. A “staging site” was set up using DigitalOcean
+and AWS Cloudfront which enabled almost real-time updates from the XML
+files in Github by automatically refreshing the folio views every few
+minutes. This allowed the Project team to commit changes to the XML
+files in Github and then see the effect of those changes “in situ” in
+the rendering of the manuscript texts in the Edition site.</p>
+<p>The reason for such emphasis on the diplomatic rendering of Ms. Fr.
+640’s folios comes from the manuscript’s composition itself and the
+Project’s commitment to echo this composition in the transcribed and
+translated texts as part of the Edition’s reading experience. Ms. Fr.
+640 is not a “clean” text: almost every page contains some combination
+of authorial additions and deletions, marginalia, sketches, and
+indications of continuation. Through the process of transcription,
+translation, and encoding of the manuscript, the encoding schema had
+grown to accommodate these elements and the Project’s deep understanding
+of the relationship between them (such as how to relate marginal notes
+with the entries to which they belonged).<a href="#fn51" class="footnote-ref" id="fnref51" role="doc-noteref"><sup>51</sup></a>
+The encoding of these elements as well as their visual presentation are
+critical for direct engagement with the primary source
+material—something that is often lost in printed as well as existing
+digital editions. How-to texts especially benefit from consideration of
+their composition—what can be learned or deduced about the
+author-practitioner from the words he crossed out or added? Why does an
+entry continue in the margin, fitted awkwardly around the text of the
+entry below it? Were these added notes appended to entries after a trial
+of the technique?</p>
+<p>The rendering of the physical placement of each page’s elements began
+with an assessment of the manuscript as whole. The manuscript consists
+mostly of units of text under headings, which the Project has called
+“entries.” Each page of the manuscript typically contains a few entries
+(a notable exception is “Furbisher” which begins on fol. <a href="https://edition640.makingandknowing.org/#/folios/94r/tl"><u>94r</u></a>
+and ends five pages later on fol. <a href="https://edition640.makingandknowing.org/#/folios/96r/f/96r/tl"><u>96r</u></a>).
+The headings of these entries are written in an italic script larger
+than the handwriting of the entry’s main body and are usually centered
+on the page (<i><u>Fig.
+31</u></i>). Some entries have what the Project has characterized as
+marginalia, text that appears outside of the main body (approximately
+90% appear in the left-hand margin) (<i><u>Fig.
+32</u></i>). To translate these patterns of placement in the Edition,
+Laiacona developed the Grid Layout rendering, designed to faithfully
+render the layout of a single column of text, consisting of multiple
+entries, surrounded by marginalia (<i><u>Fig.
+33</u></i>). The encoding of the text dictates how the Grid Layout
+should render it:</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/17sjiwVBeNugymV8b94Ikjs7oeMcF8LHS.jpg" alt="fig. 31"><figcaption>Fig. 31. Fol. <a href="https://edition640.makingandknowing.org/#/folios/49r/f/49r/tl"><u>49r</u></a>.
+Top: dual-pane display. Bottom: annotated display to highlight the entry
+heading. Screenshot Naomi Rosenkranz and Terry Catapano, 2024. © Making
+and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1QXIhGRcmgTVy3ZS0fxv-HLzGdGBoIf5K.jpg" alt="fig. 32"><figcaption>Fig. 32. Fol. <a href="https://edition640.makingandknowing.org/#/folios/49r/f/49r/tl"><u>49r</u></a>.
+Top: dual-pane display annotated to highlight the entry's main text.
+Bottom: dual-pane display annotated to highlight the entry’s marginalia.
+Screenshot Naomi Rosenkranz and Terry Catapano, 2024. © Making and
+Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1d5HPZkTEQ_MWSmNbzB1-hcLqZa1ONKz5.jpg" alt="fig. 33"><figcaption>Fig. 33. Dual-pane display of fol. <a href="https://edition640.makingandknowing.org/#/folios/133r/f/133r/tc"><u>133r</u></a>.
+The rendering of the transcribed text mirrors the facsimile image.
+Screenshot Naomi Rosenkranz and Terry Catapano, 2024. © Making and
+Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<ul>
+<li><blockquote>
+<p>Headings: &lt;head&gt; is large, bolded, and centered</p>
+</blockquote></li>
+<li><blockquote>
+<p>Entry (main body): text inside the &lt;ab&gt; (an “anonymous block”
+of text) is smaller and centered under the &lt;head&gt;</p>
+</blockquote></li>
+<li><blockquote>
+<p>Marginalia: &lt;margin&gt; attribute of an &lt;ab&gt; with valid
+values, such as “left-middle” or “right-top”<a href="#fn52" class="footnote-ref" id="fnref52" role="doc-noteref"><sup>52</sup></a></p>
+</blockquote></li>
+</ul>
+<p><span class="pull-left"></span>To produce renderings that were as close to the facsimile page as
+possible, the editorial team worked iteratively and in tandem with
+Laiacona. Adjustments were made to both the encoding of the manuscript
+texts and to the Grid Layout behavior. Still, there are limitations to
+perfectly rendering the manuscript’s irregular composition, especially
+for more complex pages such as fols. <a href="https://edition640.makingandknowing.org/#/folios/3r/f/3r/tl"><u>3r</u></a>
+(with marginal notes above, to the left, and to the right of entries),
+<a href="https://edition640.makingandknowing.org/#/folios/66r/f/66r/tl"><u>66r</u></a>
+(which has an entry with its own heading in the margin), and <a href="https://edition640.makingandknowing.org/#/folios/124v/f/124v/tl"><u>124v</u></a>
+(where the drawing that gave the Project its lizard logo is found, <i><u>Fig.
+34</u></i>)—despite meticulous work spearheaded by indefatigable postdoc
+Tianna Uchacz. This work would have been incredibly difficult without
+the ability to see newly enacted changes in (almost) real time.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1HSxb-yTqwHI_vFLJo09oxwg16z5HJTN3.jpg" alt="fig. 34"><figcaption>Fig. 34. The Making and Knowing Project’s logo adapted by Tiana
+Uchacz (left) from its origin as a sketch by the author-practitioner on
+fol. <a href="https://edition640.makingandknowing.org/#/folios/124v/f/124v/tl"><u>124v</u></a>
+(right). Screenshot Naomi Rosenkranz and Terry Catapano, 2024. © Making
+and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>The representation of more granular textual features was another area
+of focus. These textual features include both authorial (i.e., made by
+the author-practitioner) and editorial (i.e., made by the Project)
+interventions which the Project felt were important to indicate visually
+to the reader. The rendering decisions aimed to make clear what type of
+intervention was being represented (authorial or editorial), to minimize
+overwhelming each page with too many different visual elements, and to
+strive to deliver a familiar scholarly reading experience that also
+meets W3C Web Content Accessibility Guidelines (WCAG).<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a></p>
+<p>After much discussion and review of different options in the Edition
+prototype, the current rendering elements were finalized. Authorial
+features are exemplified in this excerpt from fol. <a href="https://edition640.makingandknowing.org/#/folios/3v/f/3v/tl"><u>3v</u></a>:</p>
+<p>But on wood &amp; on colors which <del>have</del> <sup>do not
+have</sup> gum or distemper glue</p>
+<p><span class="pull-left"></span>Where the author-practitioner struck through a word (“have”) to
+delete it, the text is rendered in red and struck through. Where he
+added words to the main body text, the text is rendered in blue, in a
+smaller font, and superscript. The editorial features—commentary on the
+manuscript text by the Project—needed to be represented in a manner that
+made clear that these resources were a layer apart from the manuscript
+text itself. In-line editorial comments which provide insight into the
+translation, meaning, or composition of the manuscript’s contents are
+accessed by clicking on red asterisks found on the folio page. Research
+essays that discuss the reconstruction of an entry or its place in the
+larger sixteenth century context are indicated by flask icons to the
+right of an entry’s heading. All textual features are fully summarized
+in a table in <a href="https://edition640.makingandknowing.org/#/content/how-to-use"><u>How
+to Use the Edition</u></a> and <a href="https://edition640.makingandknowing.org/#/content/resources/principles"><u>Principles
+of Transcription, Translation, and Encoding</u></a> (<i><u>Fig.
+35</u></i>).</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1hEK6zC9Cawb2tz_HTMtYo-SN-sbBzEzN.jpg" alt="fig. 35"><figcaption>Fig. 35. Fol. <a href="https://edition640.makingandknowing.org/#/folios/7v/tcn/7v/tl"><u>7v</u></a>:
+Editorial commentary is integrated into the dual-pane display, including
+both the <a href="https://edition640.makingandknowing.org/#/essays"><u>Research
+Essays</u></a> and shorter pop-up comments. Screenshot Naomi Rosenkranz
+and Terry Catapano, 2024. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h4 id="prototyping-for-consistency-and-agenda-setting">Prototyping for
+Consistency and Agenda-Setting</h4>
+<p>During the intensive consistency campaign, the editorial team worked
+to uniformly apply the encoding schema across and within all versions of
+the manuscript transcriptions and translation. These tasks were greatly
+eased by the ability to see the text in the prototype’s dual-pane
+display, enabling side-by-side comparison of versions. This setup was
+what Project members had been trying to emulate for years, with multiple
+computer windows, screens, and devices (<i><u>Fig.
+36</u></i>). The team’s active editing also resulted in a feature
+request that has since remained a feature available to all users: the
+folio XML view (<i><u>Fig.
+37</u></i>). For the Project, quickly pulling up the encoding of the
+text greatly aided the consistency work and saved incredible amounts of
+time previously spent toggling between applications and manuscript
+pages. For users of the Edition, this feature provides further
+transparency about the Project’s encoding as well as insight into the
+manuscript’s text.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1TpKgUCpOcoLDasq2G9gAQwlJ4zS2VNrS.jpg" alt="fig. 36"><figcaption>Fig. 36. A 2016 work setup to translate the manuscript, including the
+manuscript page, the translation in progress, and a page from Randle
+Cotgrave, <em>A Dictionarie of the French and English Tongues</em>
+(London: Adam Islip, 1611). © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1IFJOFziEpoZ-pfJDiMjRQc4Apw4kM269.jpg" alt="fig. 37"><figcaption>Fig. 37. Fol. <a href="https://edition640.makingandknowing.org/#/folios/4v/tl/4v/tl"><u>4v</u></a>:
+“XML view” in the dual-pane display, showing the Project’s encoding of
+that page. Screenshot Naomi Rosenkranz and Terry Catapano, 2024. ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>The features and workflows discussed here focus on the Edition’s
+display of the manuscript folios. A similar method was utilized for
+rendering the Research Essays, working back and forth between digital
+affordances and particular editorial desires for a familiar scholarly
+essay (akin to a journal article) with multimedia elements.</p>
+<h3 id="setting-intellectual-agendas-as-minimal-viable-products">Setting
+Intellectual Agendas as Minimal Viable Products</h3>
+<p>As digital development of the Edition site was underway by
+Performant, the Making and Knowing Project was faced with making
+decisions about the site’s interface and features as a whole. Since the
+team was still generating and preparing content for the Edition, there
+was a sense that the Project had a very clear vision for what the
+Edition was. The translation and encoding protocols—now in states
+reflecting over five years of development—were being applied to the
+manuscript text. All essays produced during eight semesters of the Lab
+Seminar were being intensively edited and styled according to a model
+that had evolved over just as many years. This kind of “consistency”
+work gave the team a sense of “finalizing” this content and, by
+extension, the Edition itself.</p>
+<p>While this was a critical part of the development of the Edition, it
+did not, however, address larger questions about what the Edition should
+do and how it should do it. The time had come for the team to again zoom
+out from the details and re-contemplate the intellectual agenda of the
+Edition as a scholarly and digital object. What information should the
+Edition provide? What questions should it answer? How could it be used
+for textual criticism, analysis, and interpretation of the manuscript?
+What audiences should the Edition serve and what should users be able to
+take away? The answers to these questions, which had been considered and
+refined successively throughout the Project’s years of research, now
+required translation into features and interfaces. Scholarly ambitions
+also had to be weighed against the technical applications available and
+the defined timeline. User experiences and desired features had to be
+identified and prioritized in order to set milestones and clear
+deliverables.<a href="#fn54" class="footnote-ref" id="fnref54" role="doc-noteref"><sup>54</sup></a></p>
+<p>This process shows the “dark side” of collaborative and open-ended
+work, where the affordances made possible by digital publication also
+become potential pitfalls. Undertaking a project requires resources,
+personnel, and time, but <em>completing</em> a project also requires a
+definition of “complete.”<a href="#fn55" class="footnote-ref" id="fnref55" role="doc-noteref"><sup>55</sup></a> The Project had
+committed to funders and collaborators to publish the Edition by late
+2019 which was pushed to February 2020 in order to avoid launching
+during the holiday season as well as to coincide with New York City
+Digital Humanities Week.<a href="#fn56" class="footnote-ref" id="fnref56" role="doc-noteref"><sup>56</sup></a> Within this timeline,
+what needed to be completed? One way to answer this question was to move
+away from traditional modes of scholarship in the humanities and towards
+cultures of group work found in the technology industry: defining the
+minimum viable product (MVP), an approach to project management from
+agile software development and Lean Startup.<a href="#fn57" class="footnote-ref" id="fnref57" role="doc-noteref"><sup>57</sup></a>
+While an MVP is typically defined as “the smallest amount of
+functionality [a project] can deliver,” it is also useful as a tool for
+the team to elicit feedback both internally and externally in order to
+focus work and adjust the development plan accordingly.</p>
+<p>Defining a “good enough” version of the Edition for its first release
+(the MVP) was a difficult task for the Project. In order to move
+forward, however, it was imperative that the features and functionality
+of the MVP be identified so that the Project’s collective workforce
+could be focused and strategically directed. While the team desperately
+wanted to include as many Research Essays as possible and also continue
+to refine the content and markup of the manuscript texts, there were
+fundamental elements that still needed to be defined: navigation,
+landing pages, the homepage, and search functionality.</p>
+<p>The process of determining how and what to prioritize was “a
+negotiation between thoroughness and expediency, idealism and
+pragmatism, [with a] generated collective buy-in to a vision.”<a href="#fn58" class="footnote-ref" id="fnref58" role="doc-noteref"><sup>58</sup></a> In the summer of 2019, the team
+established MVP conditions for editing of the manuscript texts and the
+Research Essays to help curb the scholarly instinct to continue working
+on these tasks that could (and would) proceed indefinitely. For the
+manuscript texts, the MVP versions would reflect the state of the XML
+after any consistency campaign tasks (determined and tracked as Github
+issues) that were completed by September, followed by two full
+copyediting read-throughs of the versions and a thorough check of the
+encoding across the versions to ensure they all contained comparable
+number and type of tags. For the Research Essays, the team agreed to
+prepare a select number of essays, choosing essays composed in the most
+recent offerings of the Lab Seminar (Fall 2016 through Fall 2018) which
+more closely aligned with the developed editorial style, as well as a
+few essays composed by Project team members or invited scholars that
+were crucial for the first release (such as Smith’s “<a href="https://edition640.makingandknowing.org/#/essays/ann_300_ie_19"><u>Introduction
+to the Edition</u></a>”) or that were in a more completed state. Setting
+these “restrictions” (as they were perceived by much of the editorial
+team) was critical for allowing the team to work within the timeline and
+with the available resources to prepare all elements for the first MVP
+release.</p>
+<p>The MVP plan also needed to include definitions for the navigation
+and content of the Edition’s webpages. What information would a user
+need and how would they access this information? Brainstorming sessions
+resulted in a number of ideas and wireframes which the team used to come
+to a consensus about what resources the Edition would provide and how
+they should be organized and presented to the user (<i><u>Fig.
+38</u></i> and <i><u>Fig.
+39</u></i> and <i><u>Fig.
+40</u></i>). Anticipating that the editorial team would continue to
+revise the content of the site’s webpages and their organization, the
+Project developed a flexible/agile approach that would enable collective
+work on these resources. The Github repository <a href="https://github.com/cu-mkp/edition-webpages"><u>cu-mkp/edition-webpages</u></a>
+was created to house and maintain the pages in Markdown so that they
+could be edited by any Project team member, as could the JSON file that
+dictated the site’s menu.<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a> Whenever the Edition
+site was regenerated, the Markdown files were converted to HTML and the
+JSON file provided the layout for the main menu and defined the path
+that each Markdown file should take.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1OgKKkhUwT3ZVWf-4ho_iGDZ-z4exssYX.jpg" alt="fig. 38"><figcaption>Fig. 38. Schematic by Tianna Uchacz of the Edition’s homepage,
+created in the process of designing the Edition. © Making and Knowing
+Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/13uZG7oaNNtcaYDZoNR7KzfaspriB77gi.jpg" alt="fig. 39"><figcaption>Fig. 39. Schematics by Naomi Rosenkranz of the Edition’s homepage,
+created in the process of designing the Edition. © Making and Knowing
+Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1heD9ql1X4k5D6HHGPW9ChYqm0LhSKd--.jpg" alt="fig. 40"><figcaption>Fig. 40. Schematic by Tillmann Taape of the Edition’s homepage,
+created in the process of designing the Edition. © Making and Knowing
+Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h4 id="collaborative-and-open-ended-work-the-dark-side">Collaborative
+and Open Ended Work: The Dark Side</h4>
+<p>Working together to produce a digital object is not something that
+humanists often experience or are rewarded for. Typically, an article is
+written, submitted, and published; a CV grows by one citation, and it is
+done. The work is solitary and final. However, our world abounds with
+products, particularly digital products and ventures which are, for
+reasons of complexity or scale, the results necessarily of the work by
+groups of people. These products, additionally, have open-ended
+lifecycles, requiring ongoing updates, maintenance, and support. A
+challenge for the development of the digital critical edition of Ms. Fr.
+640 was to bring the participants out of the domain where solitary and
+final work dominates, to one in which involves collaborative and
+open-ended work (<i><u>Fig.
+41</u></i>).<a href="#fn60" class="footnote-ref" id="fnref60" role="doc-noteref"><sup>60</sup></a></p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1WGvthDCHae5mwOwGHI8hqPkslWSYWFJe.jpg" alt="fig. 41"><figcaption>Fig. 41. Graph representing cultures of work, solitary vs.
+collaborative (horizontal) and open-ended vs. final (vertical). The
+diagonal line through the center of the graph depicts the movement that
+many Project participants experienced, from a domain where solitary and
+final work dominates to one which involves collaboration and
+open-endedness. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>The “cultures of work” characteristic of each of these domains are
+not inherently superior or inferior to one another but have emerged in
+response to the differing circumstances, demands, and rewards. Each,
+however, has their own virtues and vices. While the collaborative and
+open-ended culture of work was more appropriate and offered more
+advantages conducive to the development of a digital critical edition,
+it has its own pathologies that tend toward failure and must be
+recognized and avoided.<a href="#fn61" class="footnote-ref" id="fnref61" role="doc-noteref"><sup>61</sup></a></p>
+<h3 id="the-mvp-and-subsequent-releases">The MVP and Subsequent
+Releases</h3>
+<p>The first public release of the Edition was launched on February 6,
+2020 using the tagged releases of the Project’s repositories: <a href="https://github.com/cu-mkp/m-k-manuscript-data/releases/tag/v1.0.4"><u>m-k-manuscript-data
+v1.0.4</u></a>, <a href="https://github.com/cu-mkp/edition-webpages/releases/tag/v2.2.0"><u>edition-webpages
+v2.2.0</u></a>, and <a href="https://github.com/cu-mkp/making-knowing-edition/releases/tag/v1.0.0"><u>making-knowing-edition
+v1.0.0</u></a>. As of June 16, 2025, there have been twenty three
+subsequent tagged releases of m-k-manuscript-data (and an additional 756
+commits), twenty releases of edition-webpages (366 commits), and
+thirteen releases of making-knowing-edition (236 commits). Each of these
+releases is tied to a site build with new content and/or new features,
+where the website was regenerated and packaged as a static site. From
+the frontend (i.e., for a user accessing the site), there is no
+interruption or even indication that a new build has occurred; users
+need only refresh the page in their browser to see the new content. The
+majority of these releases are tied to new content, specifically the
+publication of additional research essays, which is where the bulk of
+editorial work was required after the initial February 2020 release.</p>
+<p>For the next four months, the editorial team created a two-week
+release schedule as a way to structure work on the essays, using another
+Github project to manage the tasks (<i><u>Fig.
+42</u></i>). For every essay under editorial review, a separate Github
+issue was opened with the essay’s unique identification number and short
+title. They were then added to the project board with custom
+editing-specific columns, where a number of Github features were
+employed. The essays were grouped into bundles, indicated by a specific
+issue label (“bundle 1,” “bundle 2,” etc.), to signal their review order
+and release to the Edition. The primary editor was “assigned” to the
+issue, making clear what was actively being worked on and who was
+responsible. The editors moved the issue through the project board
+columns as work was completed, such as content review and stylesheet
+adjustments. When ready, the primary editor handed the essay off to a
+formatter (another team member) to complete formatting, accessibility,
+and media checks. These were also tracked with issue labels; the
+associated task was completed when the label was added. For example,
+“fol links” marked that references to Ms. Fr. 640 folios were linked
+properly in the text; “figures” indicated that the essay’s media was not
+only formatted correctly but also indexed in the Project’s master media
+list. As the essay moved further along in the board columns, another
+editor was added for secondary review and copy editing. After two
+editors completed a pass through the essays, a release to the staging
+site was built for all essays in the “Ready for staging” column. As with
+the folio pages, each essay underwent multiple “render checks” by the
+team in situ in the internal staging site, also tracked by board
+columns. Finally, when the essay reached the “Done” column, it was
+released to the Edition on the public-facing site. This cycle repeated
+every two weeks, publishing each batch of new essays. Essays that
+required further review were held back from publication until editorial
+revisions were completed.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1DQRhhv5sv0rIBNHLV7zmWM0rfo_dzpeg.jpg" alt="fig. 42"><figcaption>Fig. 42. “<a href="https://github.com/cu-mkp/m-k-annotation-data/projects/1"><u>Annotations
+workflow</u></a>” project board in M&amp;K’s m-k-annotation-data Github
+repository, showing representative issues as of March 2021. Screenshot
+Naomi Rosenkranz and Terry Catapano, 2024. Each Research Essay (known
+originally as “annotations”) is assigned an issue, and the columns as
+well as the labels are used to track the editorial status of each essay.
+© Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<h3 id="feedback-and-site-redesign">Feedback and Site Redesign</h3>
+<p>As discussed above, significant time and resources went towards the
+rendering of the folio pages and the Research Essays. Consequently, with
+less time available for the design and features of the homepage, section
+landing pages, and other pages framing the edition content, the Project
+accepted the limitations of a simple markdown-based HTML authoring in
+order to take advantage of its efficiency. Editing this content as
+markdown files in <a href="https://github.com/cu-mkp/edition-webpages"><u>cu-mkp/edition-webpages</u></a>
+and subsequently converting the files to HTML for presentation in the
+Edition allowed for some formatting and design elements, such as the use
+of headings, emphasized text (bold, italics, underlined), and embedded
+images and videos. Basic styling was agreed upon by the editorial team
+(such as font, spacing, and sizing) and implemented through a CSS
+stylesheet (<i><u>Fig.
+43</u></i>).</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1Y9r71oh88Uid6tJoW1n5rUIgbhfR584U.jpg" alt="fig. 43"><figcaption>Fig. 43. The homepage of the Edition before its redesign in August
+2021 which saw changes to the interface and navigation. Screenshot Naomi
+Rosenkranz and Terry Catapano, 2024. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>While this approach was effective, it left room for more “dynamic”
+design features. In the fall of 2020, Designer-Developer Laiacona
+brought in one of Performant’s in-house graphic designers, Christyan
+Cadena, to take in feedback from the editorial team and present a few
+design options for the landing pages. The homepage of the Edition was
+redesigned to show facsimile images of Ms. Fr. 640 more prominently, to
+encourage users to visit resources intended to help them get started,
+and to feature pages that provide background about the manuscript, the
+Edition, and the Project (<i><u>Fig.
+44</u></i>). A new logo for the Edition was also workshopped (<i><u>Fig.
+45</u></i>) and eventually chosen (<i><u>Fig.
+46</u></i> and <i><u>Fig.
+47</u></i>). The other landing pages were changed so that the content of
+all subsections of a menu item (e.g., “The Manuscript” and “The Edition”
+under the menu item “About”) are shown in one page as opposed to
+requiring the user to click away or into the sections as a new page (<i><u>Fig.
+48</u></i>). These design decisions were motivated by the desire to
+create a website that is welcoming and inviting to visiting users. The
+goal is to have clear points of entry for engagement with the material
+and to present the (sometimes overwhelming amount of) information
+contained in the Edition in a digestible way that clarifies instead of
+confuses.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1p6cZ8EY5gJdZjuIHDY-Er_oOZkLqPA7s.png" alt="fig. 44"><figcaption>Fig. 44. The homepage of the Edition after it was redesigned in
+August 2021. Screenshot Naomi Rosenkranz and Terry Catapano, 2024. ©
+Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1xPAFGjWYd0EcgIddQdXlGCMm4-_x0VwE.jpg" alt="fig. 45"><figcaption>Fig. 45. Mockups of the Edition’s logo for its redesign in 2021
+created by Megan Lennon. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1n35Sfp5M0xGb86lsBOsLFZKNu20MTTWK.png" alt="fig. 46"><figcaption>Fig. 46. The Edition logo for the homepage finalized by Christyan
+Cadena in 2021. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1LEfkAVgdmbS8ZZGvOH5KVeuoUT9BG5an.png" alt="fig. 47"><figcaption>Fig. 47. The Edition banner logo finalized by Christyan Cadena in
+2021. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1f0RCyG6ZHMLy6ieRgB8JuLZIGiEk-RYk.jpg" alt="fig. 48"><figcaption>Fig. 48. The About page of the Edition, showing that all subsections
+of the page, such as “The Manuscript” or “The Edition” display on the
+same page rather than requiring the user to click into new separate
+pages for each section. Screenshot Naomi Rosenkranz and Terry Catapano,
+2024. © Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>User testing of the Edition throughout its digital development was
+conducted in a number of settings. Ongoing review by the editorial team,
+especially during the period when the internal staging site was used as
+part of the editorial process (as described above), identified bugs and
+errors as well as generated new feature requests. Targeted user testing
+took place in the Project’s Working Group Meetings where collaborators
+could offer feedback about the Edition. In numerous presentations and
+workshops, Project team members have showcased the Edition to new
+audiences to encourage its use and elicit feedback for continued
+improvement. Regular meetings of the digital team reviewed the feedback
+and implemented changes. One of the most effective forms of evaluation
+has been through the active use of the Edition by collaborators in their
+research and by students in courses at Columbia and other
+institutions.</p>
+<h2 id="beyond-the-edition-the-sandbox-fieldnotes-the-research-and-teaching-companion-and-editioncrafter">Beyond
+the Edition: the Sandbox, Fieldnotes, the Research and Teaching
+Companion, and EditionCrafter</h2>
+<p>One of the guiding principles for the digital development of the
+Edition was to trade feature richness and functionality in favor of
+greater longevity. Complex web applications are inherently more
+vulnerable to both security and technical risks. Additionally, as more
+features and functionality are introduced, the costs required to
+maintain these elements increase. However, not all scholarly and
+pedagogical work is adequately served by a minimal feature set and tech
+stack. To address this dilemma, the Project adopted a “barbell” strategy
+(often used in investment and risk management)<a href="#fn62" class="footnote-ref" id="fnref62" role="doc-noteref"><sup>62</sup></a>
+for managing and publishing our digital work. Our use of this strategy
+posits an inverse relationship between functionality and persistence (<i><u>Fig.
+49</u></i> and <i><u>Fig.
+50</u></i>). On one end of the barbell are projects such as the Edition
+where sustainability is prioritized over the feature set. On the other
+end are projects where rich feature sets are gained at the price of
+their sustainability. Ability to engage in projects on this end of the
+barbell—where the cost to do so is high—is increased if the commitment
+to maintaining them is minimized or completely eliminated: if something
+breaks, it breaks. It is understood that projects on this end of the
+barbell are potentially ephemeral and costs are saved because no work or
+time is expected to be spent to fix it; maintenance is minimal, and
+failure is tolerated. This strategy deliberately avoids projects with
+moderate functionality and sustainability, as these tend to be less
+successful overall.</p><div class="figure-container"><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1ItnRlZeyylTqUJNIvyOlzxPiJog7sNqg.jpg" alt="fig. 49"><figcaption>Fig. 49. Graph showing the inverse relationship between persistence
+and functionality. Created by Naomi Rosenkranz and Terry Catapano, 2024.
+© Making and Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure><figure><img src="http://localhost:4000/bnf-ms-fr-640/staging061825-0/images/ann_310_ie_19/1tKzOOboyFalCiJUzZHWl7pGjf18xj7lv.jpg" alt="fig. 50"><figcaption>Fig. 50. The Project’s adaptation of the “barbell strategy”: in the
+Edition, lower functionality is accepted to ensure longer term
+persistence, while lesser persistence is traded for greater
+functionality in shorter term projects and alternative interfaces.
+Created by Naomi Rosenkranz and Terry Catapano, 2024. © Making and
+Knowing Project (<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+BY-NC-SA</u></a>).</figcaption></figure></div>
+<p>For the Project, the Edition sits on the “sustainability” end of the
+barbell (Fig. 50) and a separate publication, the <a href="https://cu-mkp.github.io/sandbox/"><u>Making and Knowing Project
+Sandbox</u></a>, was developed to sit at the other end of
+“functionality.” Publicly launched in January 2021, about a year after
+the public launch of the Edition, the Sandbox is an environment and area
+of activity for exploration and experimentation, allowing the Project to
+investigate new avenues of analysis, rapidly prototype, and share
+preliminary research or methods of work. Innovative and exploratory
+research would be best served by reducing the commitment to preservation
+of the results in favor of maximizing freedom to experiment with and
+implement diverse tools, technologies, and methods. Many of the elements
+now made public through the Sandbox had been made, used, and referenced
+by the Project throughout the making of the Edition. These include
+mockups and wireframes, visualizations and analysis of Ms. Fr. 640’s
+text, and syllabi and lesson plans from the Project’s courses In
+addition to the Sandbox, the Project published the <a href="https://teaching640.makingandknowing.org/"><u>Research and
+Teaching Companion</u></a> to the <em>Secrets of Craft and Nature</em>
+in 2024. It makes available resources created in the process of studying
+Ms. Fr. 640 and creating the Edition for teachers, researchers, and
+makers who wish to integrate hands-on and digital components into their
+classes, research projects, and art practice.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We are finishing this essay in March 2025, more than five years after
+the initial launch of the Edition in 2020. As a form of conclusion, we
+thought it might be useful to articulate some of our thoughts on the
+overall development process since that initial launch.</p>
+<p>Our process was necessarily iterative and collaborative—continuously
+adapting to the circumstances as they changed, weighing tradeoffs in
+moving the project forward, particularly before and after each intensive
+work sprint. For example, not requiring specialized technical expertise
+and choosing familiar and general applications such as Google Docs,
+lowered the bar for participation and expanded opportunities for
+collaboration. This was an intentional deferment of costs such as
+technical debts due to workarounds and workflows. There were, of course,
+also unintended outcomes. Despite our efforts to minimize future
+maintenance demands, they could not be fully eliminated. There was also
+still a temptation and a need to make changes and fixes to both the
+content (twenty three releases since the initial launch!) and to
+unanticipated technical issues. There was no textbook to be followed in
+undertaking a project such as this, nor did a textbook emerge from it
+(although this very lengthy essay is a contender for such a title!).
+What did emerge was a recognition that opportunities and demands will
+present themselves continually, requiring constant careful consideration
+of their costs and benefits. It would have been naive, and futile, to
+determine upfront a set of TEI elements to use, develop specs, find
+developers, deploy a web application to display the edition, then expect
+to hand it off to someone to host somewhere in perpetuity as a web
+application, and move on. For the reasons discussed, this would never
+have been possible! Ultimately, the Making and Knowing Project's
+approach demonstrates the potential of digital tools and methods to
+transform scholarly practice. By embracing collaboration, iteration, and
+flexibility, the Project successfully created a digital edition that
+reflects the multifaceted nature of Ms. Fr. 640 and facilitates ongoing
+research and engagement with this unique historical text.</p>
+<p>Note on citations and bibliography: We have included stable URLs
+(such as DOIs or permalinks) for resources outside this Edition to ease
+navigation and access to readers. As is discussed throughout this essay,
+however, even the most stable digital objects are inherently ephemeral.
+Thus, it is likely that some of the links provided to external sites
+will begin to break after the publication of this essay in June
+2025.</p>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Soersha Dyon and Heather Wacha, “Turning Turtle: The
+Process of Translating BnF Ms. Fr. 640,” ed. Making and Knowing Project
+et al. (New York: Making and Knowing Project, 2020), <a href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>,
+and Celine Camps and Margot Lyautey, “Ma&lt;r&gt;king and Knowing:
+Encoding BnF Ms. Fr. 640,” ed. Making and Knowing Project et al. (New
+York: Making and Knowing Project, 2020), <a href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</u></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is fully discussed in Pamela H. Smith, “Making the
+Edition,” ed. Making and Knowing Project et al. (New York: Making and
+Knowing Project, 2020), <a href="http://edition640.makingandknowing.org/#/essays/ann_329_ie_19"><u>http://edition640.makingandknowing.org/#/essays/ann_329_ie_19</u></a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>“About Minimal Computing,” Minimal Computing (GO::DH
+(Global Outlook::Digital Humanities) Minimal Computing Working Group),
+<a href="https://go-dh.github.io/mincomp/"><u>https://go-dh.github.io/mincomp/</u></a>.
+More detail can be found in Alex Gil, “The User, the Learner and the
+Machines We Make,” Minimal Computing, May 21, 2015, <a href="http://go-dh.github.io/mincomp/thoughts/2015/05/21/user-vs-learner/"><u>http://go-dh.github.io/mincomp/thoughts/2015/05/21/user-vs-learner/</u></a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For another discussion of the Making and Knowing Project
+and the open access movement, please see Pamela H. Smith, Tianna Helena
+Uchacz, Naomi Rosenkranz, and Claire Conklin Sabel, “The Making of
+Empirical Knowledge: Recipes, Craft, and Scholarly Communication,” in
+<em>Reassembling Scholarly Communications: Histories, Infrastructures,
+and Global Politics of Open Access</em>, ed. Martin Paul Eve and
+Jonathan Gray (Cambridge, MA: The MIT Press, 2020), pp. 125-144, <a href="https://doi.org/10.7551/mitpress/11885.003.0014"><u>https://doi.org/10.7551/mitpress/11885.003.0014</u></a>.
+For more on open access, see Peter Suber, <em>Open Access</em>
+(Cambridge: The MIT Press, 2012), <a href="http://muse.jhu.edu/book/46989"><u>http://muse.jhu.edu/book/46989</u></a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>For a larger discussion of basic technologies and
+infrastructure, see Gil’s discussion of the static site generator
+<em>Ed</em> in Alex Gil, “Design for Diversity: The Case of Ed,” The
+Design for Diversity Toolkit (Northeastern University</p>
+<p>Library, publ. June 20, 2019), <a href="https://des4div.library.northeastern.edu/design-for-diversity-the-case-of-ed-alex-gil"><u>https://des4div.library.northeastern.edu/design-for-diversity-the-case-of-ed-alex-gil</u></a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>See, for instance, the discontinuation by the Library of
+Congress of its Viewshare service (<a href="https://www.loc.gov/item/lcwaN0018821/"><u>https://www.loc.gov/item/lcwaN0018821/</u></a>).
+Though the “Views” generated by the service may be lost, the data that
+drove them are distinct and thus can be redeployed today in other data
+representation apps.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>This is similar to the “Throw it Over the Wall”
+management “antipattern.” While this is well understood in the domain of
+software development and technology project management, it is unfamiliar
+in academia, to its detriment. See Rob Broadhead, “The Throw It Over The
+Wall Anti-Pattern,” <em>Building Better Developers</em>, July 12, 2019,
+<a href="https://develpreneur.com/the-throw-it-over-the-wall-anti-pattern/"><u>https://develpreneur.com/the-throw-it-over-the-wall-anti-pattern/</u></a>.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>See Pamela H. Smith, and the Making and Knowing Project,
+“Historians in the Laboratory: Reconstruction of Renaissance Art and
+Technology in the Making and Knowing Project,” <em>Art History, special
+issue on Art and Technology</em>, 39.2 (2016): 210–233; Donna Bilak,
+Jenny Boulboullé, Joel Klein, Pamela H. Smith, “The Making and Knowing
+Project—Reflections, Methods, and New Directions,” in <em>New Directions
+in Making and Knowing</em>, a special issue of <em>West 86th: A Journal
+of Decorative Arts, Design History, and Material Culture</em>, 23.1
+(2016): 35–55, <a href="https://doi.org/10.1086/688199"><u>https://doi.org/10.1086/688199</u></a>;
+and Smith, “Making the Edition,” <a href="http://edition640.makingandknowing.org/#/essays/ann_329_ie_19"><u>http://edition640.makingandknowing.org/#/essays/ann_329_ie_19</u></a>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>Tianna Helena Uchacz, “Reconstructing Early Modern
+Artisanal Epistemologies and an ‘Undisciplined’ Mode of Inquiry,”
+<em>Isis</em> 111, no. 3 (2020): 606–13. <a href="https://dx.doi.org/10.1086/711100"><u>https://dx.doi.org/10.1086/711100</u></a>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>“This Site: An Elementary Guide,” Herman Melville's
+'Typee': a Fluid-Text Edition, ed. John Bryant (Charlottesville, Va.:
+University of Virginia Press, 2006), <a href="https://rotunda.upress.virginia.edu/melville/site.xqy"><u>https://rotunda.upress.virginia.edu/melville/site.xqy</u></a>.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>“Kafka’s Wound | A Digital Literary Essay by Will
+Self,” archived from the original August 5, 2020, <a href="https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/"><u>https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/</u></a>.
+Unfortunately, the original site seems to no longer be supported,
+highlighting the fragility of digital publication.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>“About xpmethod,” xpmethod | Group for experimental
+methods in the humanities, accessed March 16, 2021, <a href="https://xpmethod.columbia.edu/about.html"><u>https://xpmethod.columbia.edu/about.html</u></a>.
+See also “A Digital Critical Edition for the Making and Knowing
+Project,” xpmethod | Group for experimental methods in the humanities,
+accessed March 16, 2021, <a href="https://xpmethod.columbia.edu/knowledge-design-studio/2014-11-14-pamela-smith.html"><u>https://xpmethod.columbia.edu/knowledge-design-studio/2014-11-14-pamela-smith.html</u></a>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>At first, only black and white copies of microfilm were
+available, but by 2014, high-definition JPG images were published by
+BnF’s digital library service Gallica.<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>For more information about the manuscript’s
+construction, please see Alexis Hagadorn, “The Physical Construction of
+Ms. Fr. 640,” ed. Making and Knowing Project et al. (New York: Making
+and Knowing Project, 2020), <a href="http://edition640.makingandknowing.org/#/essays/ann_328_ie_19"><u>http://edition640.makingandknowing.org/#/essays/ann_328_ie_19</u></a>,
+and Marc Smith, “Making Ms. Fr. 640,” ed. Making and Knowing Project et
+al. (New York: Making and Knowing Project, 2020), <a href="http://edition640.makingandknowing.org/#/essays/ann_326_ie_19"><u>http://edition640.makingandknowing.org/#/essays/ann_326_ie_19</u></a>.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>The top level folder contained 340 folders named
+uniquely for each page of the manuscript (for example, “p002r,” with the
+“p” meaning “page”). Each folder contained all files associated with
+that page: facsimile images of the page and the three Google Docs, one
+for each version of the manuscript (i.e., transcription, normalized,
+translated). The Google Docs were named with their parent folder’s
+“page” name and a shorthand that made clear the content of the file for
+ease of use, while maintaining computer friendly regularity. Google Docs
+for the diplomatic transcription were appended with “_tc,” normalized
+transcription with “_tcn,” and translation files with “_tl” (for
+example, the folder for 1r contained the Docs named p001r_tc, p001r_tcn,
+and p001r_tl).<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>Google Drive also allowed in-progress dissemination of
+the Project’s work: The Google Drive folder housing the encoded
+transcription and translation files as well as some accompanying
+resources was shared directly through Google Drive’s built-in sharing
+features with over 400 students, collaborators, participants, outside
+researchers, and other interested parties. This does not include dozens
+of additional people who may have accessed this folder by following a
+provided (and secured) link.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>The difficulties of balancing learning editorial
+practice and learning specific tools or software is discussed further by
+Christopher Ohge starting on page 118 of <em>Publishing Scholarly
+Editions: Archives, Computing, and Experience</em> (Cambridge University
+Press, 2021), <a href="https://doi.org/10.1017/9781108766739"><u>https://doi.org/10.1017/9781108766739</u></a>.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18"><p>Google Drive Add-ons allow users to extend the
+available features and tools with customized third-party applications,
+<a href="https://developers.google.com/workspace/add-ons/editors/docs"><u>https://developers.google.com/workspace/add-ons/editors/docs</u></a>.<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19"><p>Dyon and Wacha, “Turning Turtle: The Process of
+Translating BnF Ms. Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20"><p>Administrative metadata “relates to the management of
+an object in a particular server or repository. Some examples of
+information stored in administrative data is [<em>sic</em>] date of last
+modification, date of creation, and the administrator's identity,” Carl
+Lagoze, Clifford A. Lynch, and Ron Daniel, “The Warwick Framework: A
+Container Architecture for Aggregating Sets Of Metadata,” June 1996, p.
+8, <a href="https://hdl.handle.net/1813/7248"><u>https://hdl.handle.net/1813/7248</u></a>.
+For a comprehensive definition of administrative metadata, see Steven
+Puglia, Jeffrey Reed, and Erin Rhodes, “Technical Guidelines for
+Digitizing Archival Materials for Electronic Access: Creation of
+Production Master Files – Raster Images” (College Park, MD: National
+Archives and Records Administration, June 2004), p. 8, <a href="https://perma.cc/4MRL-X5BF"><u>https://perma.cc/4MRL-X5BF</u></a>.
+See also Jerome P. McDonough, “METS: Standardized Encoding for Digital
+Library Objects,” <em>International Journal on Digital Libraries</em> 6,
+no. 2 (April 1, 2006): 148–58, <a href="https://doi.org/10.1007/s00799-005-0132-1"><u>https://doi.org/10.1007/s00799-005-0132-1</u></a>.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21"><p>For more about reconceptualizing books in a digital
+environment, see Smith, Uchacz, Rosenkranz, and Sabel, “The Making of
+Empirical Knowledge,” 125–144, <a href="https://doi.org/10.7551/mitpress/11885.003.0014"><u>https://doi.org/10.7551/mitpress/11885.003.0014</u></a>.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn22"><p>It should be noted that this is the case for any text
+on a material object, where the text can be understood within its
+physical organization (e.g., folios) as well as within its
+“intellectual” hierarchy (e.g., entries or “recipes”). Both XML and TEI
+often prioritize the intellectual over the physical structure. See
+“Document and their structures,” in “What Is XML and Why Should
+Humanists Care? An Even Gentler Introduction to XML,” <a href="http://dh.obdurodon.org/what-is-xml.xhtml"><u>http://dh.obdurodon.org/what-is-xml.xhtml</u></a>;
+Section 2., “Textual Structures,” in chapter V. “A Gentle Introduction
+to XML,” of “Guidelines for Electronic Text Encoding and Interchange,”
+<a href="https://tei-c.org/release/doc/tei-p5-doc/en/html/SG.html#SG12"><u>https://tei-c.org/release/doc/tei-p5-doc/en/html/SG.html#SG12</u></a>;
+and Syd Bauman and Terry Catapano, “TEI and the Encoding of the Physical
+Structure of Books,” <em>Computers and the Humanities</em> 33, no. 1/2
+(1999): 113–27, <a href="http://www.jstor.org/stable/30200491"><u>http://www.jstor.org/stable/30200491</u></a>.<a href="#fnref22" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn23"><p>These two experiences are detailed further in Dyon and
+Wacha, “Turning Turtle: The Process of Translating BnF Ms. Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>,
+and Camps and Lyautey, “Ma&lt;r&gt;king and Knowing: Encoding BnF Ms.
+Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</u></a>.<a href="#fnref23" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn24"><p>Github (<a href="https://github.com/"><u>https://github.com/</u></a>) is a hosting
+platform for software development that utilizes Git, the open source
+system for distributed version control and source code management (<a href="https://git-scm.com/"><u>https://git-scm.com/</u></a>). Github
+allows large-scale and international collaboration on thousands of
+projects. While Git was originally intended for software development, it
+can be used in any collaborative working setup where maintenance of
+versioning is desirable.<a href="#fnref24" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn25"><p>For example, the consistent translation of
+<em>après</em> = “next” and <em>car</em> = “for,” and the tagging of
+<em>eau</em> (water) as a material only when used comparatively or with
+a qualifier: Dyon and Wacha, “Turning Turtle: The Process of Translating
+BnF Ms. Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>,
+and Camps and Lyautey, “Ma&lt;r&gt;king and Knowing: Encoding BnF Ms.
+Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</u></a>.
+The difficulty of making some of these decisions and the complexity of
+interpretation is also discussed in Smith, “Making the Edition,” <a href="http://edition640.makingandknowing.org/#/essays/ann_329_ie_19"><u>http://edition640.makingandknowing.org/#/essays/ann_329_ie_19</u></a>
+and in the “Principles of Translation,” <a href="https://edition640.makingandknowing.org/#/content/resources/principles"><u>https://edition640.makingandknowing.org/#/content/resources/principles</u></a>.<a href="#fnref25" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn26"><p>See Sublime Text (<a href="https://www.sublimetext.com/"><u>https://www.sublimetext.com/</u></a>),
+the open-source Atom (<a href="https://atom.io/"><u>https://atom.io/</u></a>), and oXygen (<a href="https://www.oxygenxml.com/"><u>https://www.oxygenxml.com/</u></a>).<a href="#fnref26" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn27"><p>A similar use of the issue tracker as a place for
+reflection and documentation took place during the Project’s Spring 2017
+course. See Tianna Helena Uchacz, Naomi Rosenkranz, and Terry Catapano,
+“Digital Competencies, Collaborations, and Cultures of Work: A Case
+Study in Extending the Research-Driven Pedagogy of The Making and
+Knowing Project,” in <em>Digital Pedagogy in Early Modern Studies:
+Method and Praxis</em>, ed. Andie Silva and Scott Schofield, New
+Technologies in Medieval and Renaissance Studies (Iter Press, 2024),
+157–218, <a href="https://press.uchicago.edu/ucp/books/book/distributed/D/bo151927625.html"><u>https://press.uchicago.edu/ucp/books/book/distributed/D/bo151927625.html</u></a>.<a href="#fnref27" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn28"><p>Developing and teaching the Digital Seminar resulted in
+a number of important outcomes, not only for the student participants
+but for the Project at large. These are discussed in full in Uchacz,
+Rosenkranz, and Catapano, “Digital Competencies, Collaborations, and
+Cultures of Work;” and Smith, Uchacz, Rosenkranz, and Sabel, “The Making
+of Empirical Knowledge,” 125-144, <a href="https://doi.org/10.7551/mitpress/11885.003.0014"><u>https://doi.org/10.7551/mitpress/11885.003.0014</u></a>.
+These two articles also highlight the impact of the course on Columbia’s
+digital humanities and teaching communities, including the Digital
+Literacy Competency Calculator developed with Columbia’s Center for
+Teaching and Learning; see CTL (Center for Teaching and Learning at
+Columbia University), “The Digital Literacy Competency Calculator
+(DLCC),” The Digital Literacy Competency Calculator, accessed February
+24, 2021, <a href="https://ccnmtl.github.io/digital-literacy/"><u>https://ccnmtl.github.io/digital-literacy/</u></a>,
+and the linked White Paper, Lucy Appert, “White Paper: Digital Literacy
+Competency Calculator: Rationale and Process,” Google Docs, last
+modified June 2017.<a href="#fnref28" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn29"><p>“About.,” Ed., <a href="https://minicomp.github.io/ed/about/"><u>https://minicomp.github.io/ed/about/</u></a>.
+For more on minimal computing and textual scholarship, see Alex Gil,
+“The User, the Learner and the Machines We Make,” Minimal Computing, May
+21, 2015, <a href="http://go-dh.github.io/mincomp/thoughts/2015/05/21/user-vs-learner/"><u>http://go-dh.github.io/mincomp/thoughts/2015/05/21/user-vs-learner/</u></a>.<a href="#fnref29" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn30"><p>“Jekyll - Simple, Blog-Aware, Static Sites,” Jekyll -
+Simple, blog-aware, static sites, <a href="https://jekyllrb.com/"><u>https://jekyllrb.com/</u></a>. For more
+about static site generation using Jekyll (particularly for textual
+scholarship), see Prof. Hacker and Alex Gil, “How (and Why) to Generate
+a Static Website Using Jekyll, Part 1,” The Chronicle of Higher
+Education (CHE), August 31, 2015, <a href="https://www.chronicle.com/blogs/profhacker/jekyll1"><u>https://www.chronicle.com/blogs/profhacker/jekyll1</u></a>;
+and Ryan Cordell, “Build a Class, Project, or Other Website Using Jekyll
++ GitHub Pages,” The Chronicle of Higher Education (CHE), December 12,
+2017, <a href="https://www.chronicle.com/blogs/profhacker/build-a-class-project-or-other-website-using-jekyll-github-pages"><u>https://www.chronicle.com/blogs/profhacker/build-a-class-project-or-other-website-using-jekyll-github-pages</u></a>.<a href="#fnref30" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn31"><p>The success of the Project’s 2017 course owes much to
+the groundbreaking work of Susanna Allés Torrent and Alex Gil. More
+information about their course edition: Mini Lazarillo Team, “About the
+Project,” Mini lazarillo: edición mínima del Lazarillo de Tormes, 2016,
+<a href="https://minilazarillo.github.io/project.html"><u>https://minilazarillo.github.io/project.html</u></a>.
+A very useful summary of the experience: Susana Allés Torrent and Alex
+Gil, “Minimal Editions in the Classroom: A Pedagogical Proposal,” in
+<em>Digital Humanities 2016: Conference Abstracts</em> (Jagiellonian
+University &amp; Pedagogical University, Kraków), pp. 426-428, <a href="https://dh2016.adho.org/abstracts/412"><u>https://dh2016.adho.org/abstracts/412</u></a>.
+For deeper discussions of teaching and digital editions in Spanish, see
+Susana Allés Torrent and Gimena del Rio Riande, “Enseñar edición digital
+con TEI en español. Aprendizaje situado y transculturación” (Humanidades
+Digitales: Construcciones locales en contextos globales, Asociación
+Argentina de Humanidades Digitales, 2016), <a href="https://www.aacademica.org/aahd.congreso/36"><u>https://www.aacademica.org/aahd.congreso/36</u></a>;
+and Susanna Allés Torrent and Gimena del Rio Riande, “The Switchover:
+Teaching and Learning the Text Encoding Initiative in Spanish,”
+<em>Journal of the Text Encoding Initiative</em>, no. Issue 12 (May 28,
+2020), <a href="https://doi.org/10.4000/jtei.2994"><u>https://doi.org/10.4000/jtei.2994</u></a>.<a href="#fnref31" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn32"><p>Uchacz, Rosenkranz, and Catapano, “Digital
+Competencies, Collaborations, and Cultures of Work,” 172.<a href="#fnref32" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn33"><p>“GitHub Flow,” GitHub Docs, accessed May 21, 2024, <a href="https://docs.github.com/en/get-started/using-github/github-flow"><u>https://docs.github.com/en/get-started/using-github/github-flow</u></a>
+and “Hello World,” GitHub Docs, accessed May 19, 2022, <a href="https://guides.github.com/activities/hello-world/"><u>https://guides.github.com/activities/hello-world/</u></a>.<a href="#fnref33" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn34"><p>The full workflow is described in <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/master/docs/fa21-github-digital-workflow.md"><u>https://github.com/cu-mkp/m-k-manuscript-data/blob/master/docs/fa21-github-digital-workflow.md</u></a>.<a href="#fnref34" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn35"><p>“XML Validation and Well-Formedness Check,” <a href="https://www.oxygenxml.com/xml_editor/validation.html"><u>https://www.oxygenxml.com/xml_editor/validation.html</u></a>.<a href="#fnref35" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn36"><p>Initially, the Project used “Travis CI - Test and
+Deploy with Confidence,” <a href="https://www.travis-ci.com/"><u>https://www.travis-ci.com/</u></a>
+and, as of February 2021, the Project replaced this functionality with
+“GitHub Actions,” <a href="https://github.com/features/actions"><u>https://github.com/features/actions</u></a>.<a href="#fnref36" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn37"><p>Invitations to investigate, fail, and enhance the
+results are also discussed in Donna Bilak, “Making and Knowing
+Pedagogy,” ed. Making and Knowing Project et al. (New York: Making and
+Knowing Project, 2020), <a href="https://edition640.makingandknowing.org/#/essays/ann_305_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_305_ie_19</u></a>.<a href="#fnref37" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn38"><p>In the section “Skill Building in the Laboratory
+Seminar,” Smith describes field notes in very similar terms; see Smith,
+“Making the Edition,” <a href="http://edition640.makingandknowing.org/#/essays/ann_329_ie_19"><u>http://edition640.makingandknowing.org/#/essays/ann_329_ie_19</u></a>.<a href="#fnref38" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn39"><p>Github’s own promotional and educational materials list
+opening an issue as the first step towards utilizing all available
+project management tools: “GitHub Features: Integrated Project
+Management Tools,” GitHub, accessed February 27, 2021, <a href="https://github.com/features/project-management/"><u>https://github.com/features/project-management/</u></a>.
+For more information, see also “About Issues - GitHub Docs,” accessed
+February 27, 2021, <a href="https://docs.github.com/en/github/managing-your-work-on-github/about-issues"><u>https://docs.github.com/en/github/managing-your-work-on-github/about-issues</u></a>;
+and “Mastering Issues - GitHub Guides,” accessed February 27, 2021, <a href="https://guides.github.com/features/issues/"><u>https://guides.github.com/features/issues/</u></a>.<a href="#fnref39" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn40"><p>Performant Software Solutions LLC, <a href="https://www.performantsoftware.com/"><u>https://www.performantsoftware.com/</u></a>.
+Performant has worked across a variety of disciplines, including the
+digital humanities, clinical psychology, and green technology. Examples
+of the applications they have developed can be explored at <a href="https://www.performantsoftware.com/projects/"><u>https://www.performantsoftware.com/projects/</u></a>.<a href="#fnref40" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn41"><p>Brian Rinaldi, <em>Static Site Generators</em>
+(O’Reilly Media Inc., 2015), <a href="https://www.oreilly.com/content/static-site-generators/"><u>https://www.oreilly.com/content/static-site-generators/</u></a>.
+See also Raymond Camden and Brian Rinaldi, <em>Working with Static
+Sites</em> (O’Reilly Media, Inc., 2017), <a href="https://www.oreilly.com/library/view/working-with-static/9781491960936/"><u>https://www.oreilly.com/library/view/working-with-static/9781491960936/</u></a>;
+Tom Greenwood, <em>Sustainable Web Design</em> (A Book Apart, 2021), <a href="https://www.oreilly.com/library/view/sustainable-web-design/9781098128807/"><u>https://www.oreilly.com/library/view/sustainable-web-design/9781098128807/</u></a>;
+and Chris Diaz, “Using Static Site Generators for Scholarly Publications
+and Open Educational Resources,” <em>The Code4Lib Journal</em>, no. 42
+(November 8, 2018), <a href="https://journal.code4lib.org/articles/13861"><u>https://journal.code4lib.org/articles/13861</u></a>.<a href="#fnref41" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn42"><p>“WordPress.Com: Create a Free Website or Blog,”
+WordPress.com, <a href="https://wordpress.com/"><u>https://wordpress.com/</u></a>, and
+“Drupal - Open Source CMS,” Drupal.org, April 5, 2018, <a href="https://www.drupal.org/home"><u>https://www.drupal.org/home</u></a>.<a href="#fnref42" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn43"><p>See the discussion by Jeff Huang, “This Page Is
+Designed to Last: A Manifesto for Preserving Content on the Web,” Jeff
+Huang, August 24, 2021, <a href="https://jeffhuang.com/designed_to_last/"><u>https://jeffhuang.com/designed_to_last/</u></a>.<a href="#fnref43" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn44"><p>Brian Rinaldi, <em>Static Site Generators</em>
+(O’Reilly Media Inc., 2015), <a href="https://www.oreilly.com/content/static-site-generators/"><u>https://www.oreilly.com/content/static-site-generators/</u></a>.<a href="#fnref44" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn45"><p>Eduardo Bouças, “An Introduction to Static Site
+Generators,” David Walsh Blog (blog), May 20, 2015, <a href="https://davidwalsh.name/introduction-static-site-generators"><u>https://davidwalsh.name/introduction-static-site-generators</u></a>.<a href="#fnref45" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn46"><p>“The Apache HTTP Server Project,” The Apache HTTP
+Server Project, <a href="https://httpd.apache.org/"><u>https://httpd.apache.org/</u></a>,
+and “NGINX: High Performance Load Balancer, Web Server, &amp; Reverse
+Proxy,” NGINX, <a href="https://www.nginx.com/"><u>https://www.nginx.com/</u></a>.<a href="#fnref46" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn47"><p>As of March 2021, the most exhaustive collection of
+available generators, “Static Site Generators,” <a href="https://staticsitegenerators.net/"><u>https://staticsitegenerators.net/</u></a>,
+lists 460 different generators. Notably, this shows an increase in
+applications of approximately 15% since Rinaldi’s article in 2015 (<a href="https://www.oreilly.com/content/static-site-generators/"><u>https://www.oreilly.com/content/static-site-generators/</u></a>),
+perhaps demonstrating their increased demand. There has also been an
+explosion of accompanying resources such as out-of-the-box themes and
+templates (e.g., <a href="https://elotroalex.github.io/ed/about/"><u>Ed</u></a> for Jekyll)
+as well as architectures, deployment platforms, and workflow solutions
+(e.g., Netlify and Jamstack).<a href="#fnref47" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn48"><p>“Hugo: The World’s Fastest Framework for Building
+Websites,” <a href="https://gohugo.io/"><u>https://gohugo.io/</u></a>;
+“Jekyll - Simple, Blog-Aware, Static Sites,” <a href="https://jekyllrb.com/"><u>https://jekyllrb.com/</u></a>; and
+“About GitHub Pages - GitHub Docs,” <a href="https://docs.github.com/en/github/working-with-github-pages/about-github-pages"><u>https://docs.github.com/en/github/working-with-github-pages/about-github-pages</u></a>.<a href="#fnref48" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn49"><p>Jekyll’s advantages became clear through the Project’s
+experience utilizing it, but its disadvantages were also highlighted.
+Columbia University’s digital humanities community has created a number
+of Jekyll templates, including Ed (for text-heavy projects) and <a href="https://minicomp.github.io/wax/"><u>Wax</u></a> (for images, <a href="https://minicomp.github.io/wax/"><u>https://minicomp.github.io/wax/</u></a>),
+and has offered yearly public workshops such as <em>Making a Minimal
+Digital Edition of a Historical or Literary Text</em> (2017),
+<em>Introduction to Minimal Computing</em> (2018), and <em>Introduction
+to Jekyll</em> (2019). As participants in these workshops, the authors
+of this essay noted Jekyll’s complications. For example, Windows users
+were prevented from fully participating because workflows had been
+developed for OSX (Mac) or Linux users (an obstacle that has since been
+reduced by the Windows Subsystem for Linux). Another barrier is the need
+to download and install a Ruby development environment in order to run
+Jekyll locally, an overwhelming task for novice (and even some expert)
+users of the command line.<a href="#fnref49" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn50"><p>“Node.js — Run JavaScript Everywhere,” <a href="https://nodejs.org/en"><u>https://nodejs.org/en</u></a>; “The
+Apache HTTP Server Project,” The Apache HTTP Server Project, <a href="https://httpd.apache.org/"><u>https://httpd.apache.org/</u></a>;
+“React – A JavaScript Library for Building User Interfaces,” <a href="https://reactjs.org/"><u>https://reactjs.org/</u></a>; “Amazon Web
+Services (AWS) - Cloud Computing Services,” Amazon Web Services, Inc.,
+<a href="https://aws.amazon.com/"><u>https://aws.amazon.com/</u></a>;
+and “DigitalOcean – The Developer Cloud,” <a href="https://www.digitalocean.com/"><u>https://www.digitalocean.com/</u></a>.<a href="#fnref50" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn51"><p>Full details and examples are provided in both Dyon and
+Wacha, “Turning Turtle: The Process of Translating BnF Ms. Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>,
+and Camps and Lyautey, “Ma&lt;r&gt;king and Knowing: Encoding BnF Ms.
+Fr. 640,” <a href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</u></a>.<a href="#fnref51" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn52"><p>For full description of rendering behavior, see “About
+- Digital Development,” <a href="https://edition640.makingandknowing.org/#/content/about/digital"><u>https://edition640.makingandknowing.org/#/content/about/digital</u></a>.
+Valid attribute values are also detailed in the encoding schema, <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/master/schema/ms-transcription.rng"><u>https://github.com/cu-mkp/m-k-manuscript-data/blob/master/schema/ms-transcription.rng</u></a>.<a href="#fnref52" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn53"><p>W3C Web Accessibility Initiative (WAI), “Web Content
+Accessibility Guidelines (WCAG) Overview,” Web Accessibility Initiative
+(WAI), <a href="https://www.w3.org/WAI/standards-guidelines/wcag/"><u>https://www.w3.org/WAI/standards-guidelines/wcag/</u></a>;
+and W3C Web Accessibility Initiative (WAI), “Authoring Tool
+Accessibility Guidelines (ATAG) Overview,” Web Accessibility Initiative
+(WAI), <a href="https://www.w3.org/WAI/standards-guidelines/atag/"><u>https://www.w3.org/WAI/standards-guidelines/atag/</u></a>.
+Thanks to Caroline Surman (Project and Communications Manager) for her
+guidance and tireless advocacy for understanding the importance of and
+implementing steps towards compliance.<a href="#fnref53" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn54"><p>See Uchacz, Rosenkranz, and Catapano, “Digital
+Competencies, Collaborations, and Cultures of Work.”<a href="#fnref54" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn55"><p>“Definition of Done,” <em>Agile Alliance</em> (blog),
+December 17, 2015, <a href="https://www.agilealliance.org/glossary/definition-of-done/"><u>https://www.agilealliance.org/glossary/definition-of-done/</u></a>.<a href="#fnref55" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn56"><p>“NYC Digital Humanities | a Site for the NYC Digital
+Humanities Community,” <a href="https://nycdh.org/"><u>https://nycdh.org/</u></a>. Each year,
+“NYCDH Week gives individuals who are interested in digital humanities
+an opportunity to learn new techniques and skills, hear about DH
+projects, and become part of a vibrant and diverse community of scholars
+and practitioners,” <a href="https://nycdh.org/dhweek/"><u>https://nycdh.org/dhweek/</u></a>.<a href="#fnref56" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn57"><p>Agile Alliance, “What Is a Minimum Viable Product
+(MVP)?,” June 27, 2017, <a href="https://www.agilealliance.org/glossary/mvp/"><u>https://www.agilealliance.org/glossary/mvp/</u></a>.
+On agile development, see Kent Beck et al., <em>Manifesto for Agile
+Software Development</em>, 2001, <a href="http://www.agilemanifesto.org/"><u>http://www.agilemanifesto.org/</u></a>;
+and “What Is Agile Software Development?,” <em>Agile Alliance</em>
+(blog), June 29, 2015, <a href="https://www.agilealliance.org/agile101/"><u>https://www.agilealliance.org/agile101/</u></a>.
+On Lean Startup, see Eric Ries, <em>The Lean Startup: How Today’s
+Entrepreneurs Use Continuous Innovation to Create Radically Successful
+Businesses</em> (New York: Currency, 2011), <a href="http://theleanstartup.com/book"><u>http://theleanstartup.com/book</u></a>;
+and Dan Olsen, <em>The Lean Product Playbook: How to Innovate with
+Minimum Viable Products and Rapid Customer Feedback</em>, 2015, <a href="http://leanproductplaybook.com/resources/"><u>http://leanproductplaybook.com/resources/</u></a>.<a href="#fnref57" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn58"><p>Uchacz, Rosenkranz, and Catapano, “Digital
+Competencies, Collaborations, and Cultures of Work,” 170.<a href="#fnref58" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn59"><p>John Gruber and Aaron Swartz, “Markdown,” Daring
+Fireball, <a href="https://daringfireball.net/projects/markdown/"><u>https://daringfireball.net/projects/markdown/</u></a>;
+and “JSON,” <a href="https://www.json.org/json-en.html"><u>https://www.json.org/json-en.html</u></a>.
+See also Dennis Tenen and Grant Wythoff, “Sustainable Authorship in
+Plain Text Using Pandoc and Markdown,” <em>Programming Historian</em>,
+March 19, 2014, <a href="https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown"><u>https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown</u></a>.<a href="#fnref59" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn60"><p>See Uchacz, Rosenkranz, and Catapano, “Digital
+Competencies, Collaborations, and Cultures of Work.”<a href="#fnref60" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn61"><p>As complex, large-scale organizations and projects came
+to predominate in the last century, a quasi-folkloric “wisdom
+literature” emerged in the form of mostly satiric commentary,
+cataloguing and characterizing the observed pathologies and dysfunctions
+of the cultures of work which came with them. E.g., see Laurence J.
+Peter and Raymond Hull, <em>The Peter Principle</em> (New York, NY:
+Bantam Books, 1970); Jerry B. Harvey, <em>The Abilene Paradox and Other
+Meditations on Management</em>, First Edition (San Francisco:
+Jossey-Bass, 1988); John Gall, <em>Systemantics: How Systems Work and
+Especially How They Fail</em>, First Edition (Quadrangle, 1977); William
+J. Brown, Hays W. “Skip” McCormick III, and Scott W. Thomas,
+<em>AntiPatterns in Project Management</em>, 1st ed. (New York, NY and
+Weinheim: Wiley, 2000).<a href="#fnref61" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn62"><p>See Nassim Nicholas Taleb, <em>Antifragile: Things That
+Gain from Disorder</em>, Reprint ed. (New York: Random House Trade
+Paperbacks, 2014) on general application of the barbell strategy in
+areas beyond finance: “A barbell can be any dual strategy composed of
+extremes, without the corruption of the middle — somehow they all result
+in favorable asymmetries” p. 162.<a href="#fnref62" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+<div class="bibliography"><h2 id="bibliography"><strong>Bibliography</strong></h2>
+<p>Agile Alliance. “Definition of Done,” December 17, 2015. <a href="https://www.agilealliance.org/glossary/definition-of-done/"><em>Agile
+Alliance.</em>
+<u>https://www.agilealliance.org/glossary/definition-of-done/</u></a>.</p>
+<p>Agile Alliance. “What Is a Minimum Viable Product (MVP)?,” June 27,
+2017. <a href="https://www.agilealliance.org/glossary/definition-of-done/"><em>Agile
+Alliance.</em></a> <a href="https://www.agilealliance.org/glossary/mvp/"><u>https://www.agilealliance.org/glossary/mvp/</u></a>.</p>
+<p>Agile Alliance. “What Is Agile Software Development?,” June 29, 2015.
+<a href="https://www.agilealliance.org/glossary/definition-of-done/"><em>Agile
+Alliance.</em></a> <a href="https://www.agilealliance.org/agile101/"><u>https://www.agilealliance.org/agile101/</u></a>.</p>
+<p>Allés Torrent, Susana, and Alex Gil. “Minimal Editions in the
+Classroom: A Pedagogical Proposal.” In <em>Digital Humanities 2016:
+Conference Abstracts</em>, 426-428. Kraków: Jagiellonian University
+&amp; Pedagogical University, 2016. <a href="https://dh2016.adho.org/abstracts/412"><u>https://dh2016.adho.org/abstracts/412</u></a>.</p>
+<p>Allés Torrent, Susana, and Gimena del Rio Riande. "Enseñar edición
+digital con TEI en español. Aprendizaje situado y transculturación." In
+<em>Humanidades Digitales: Construcciones locales en contextos
+globales</em>. Asociación Argentina de Humanidades Digitales, 2016. <a href="https://www.aacademica.org/aahd.congreso/36"><u>https://www.aacademica.org/aahd.congreso/36</u></a>.</p>
+<p>Allés Torrent, Susanna, and Gimena del Rio Riande. "The Switchover:
+Teaching and Learning the Text Encoding Initiative in Spanish."
+<em>Journal of the Text Encoding Initiative</em>, no. 12 (May 28, 2020).
+<a href="https://doi.org/10.4000/jtei.2994"><u>https://doi.org/10.4000/jtei.2994</u></a>.</p>
+<p>Amazon Web Services, Inc. “Amazon Web Services (AWS) - Cloud
+Computing Services.” Accessed March 11, 2021. <a href="https://aws.amazon.com/"><u>https://aws.amazon.com/</u></a>.</p>
+<p>Apache HTTP Server Project. “The Apache HTTP Server Project.”
+Accessed February 27, 2021. <a href="https://httpd.apache.org/"><u>https://httpd.apache.org/</u></a>.</p>
+<p>Appert, Lucy. “White Paper: Digital Literacy Competency Calculator:
+Rationale and Process.” Google Docs, last modified June 2017. <a href="https://docs.google.com/document/d/11Em2vX-jJw_4QoP62STwVo1i5cNi81ARft9j7gOQsoA/edit?usp=sharing"><u>https://docs.google.com/document/d/11Em2vX-jJw_4QoP62STwVo1i5cNi81ARft9j7gOQsoA/edit?usp=sharing</u></a>.</p>
+<p>Atom. “A Hackable Text Editor for the 21st Century.” Accessed
+February 25, 2021. <a href="https://atom-editor.cc"><u>https://atom-editor.cc</u></a>.</p>
+<p>Bauman, Syd, and Terry Catapano. “TEI and the Encoding of the
+Physical Structure of Books.” <em>Computers and the Humanities</em> 33,
+no. 1/2 (1999): 113–27. <a href="http://www.jstor.org/stable/30200491"><u>http://www.jstor.org/stable/30200491</u></a>.</p>
+<p>Beck, Kent, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward
+Cunningham, Martin Fowler, James Grenning, Jim Highsmith, Andrew Hunt,
+Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor,
+Ken Schwaber, Jeff Sutherland, Dave Thomas. <em>Manifesto for Agile
+Software Development</em>. 2001. <a href="https://agilemanifesto.org/"><u>https://agilemanifesto.org/</u></a>.</p>
+<p>Bilak, Donna. “Making and Knowing Pedagogy.” In <em>Secrets of Craft
+and Nature in Renaissance France. A Digital Critical Edition and English
+Translation of BnF Ms. Fr. 640</em>, edited by Making and Knowing
+Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena Uchacz,
+Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny Boulboullé, Joel
+Klein, Donna Bilak, Marc Smith, and Terry Catapano. New York: Making and
+Knowing Project, 2020. <a href="https://edition640.makingandknowing.org/#/essays/ann_305_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_305_ie_19</u></a>.
+DOI: <a href="https://www.doi.org/10.7916/n0x6-j545"><u>https://www.doi.org/10.7916/n0x6-j545</u></a>.</p>
+<p>Bilak, Donna, Jenny Boulboullé, Joel Klein, and Pamela H. Smith. “The
+Making and Knowing Project—Reflections, Methods, and New Directions.” In
+<em>New Directions in Making and Knowing</em>, special issue of <em>West
+86th: A Journal of Decorative Arts, Design History, and Material
+Culture</em> 23, no. 1 (2016): 35–55. <a href="https://doi.org/10.1086/688199"><u>https://doi.org/10.1086/688199</u></a>.</p>
+<p>Bouças, Eduardo. “An Introduction to Static Site Generators.”
+<em>David Walsh Blog</em>, May 20, 2015. <a href="https://davidwalsh.name/introduction-static-site-generators"><u>https://davidwalsh.name/introduction-static-site-generators</u></a>.</p>
+<p>Broadhead, Rob. “The Throw It Over The Wall Anti-Pattern.” Building
+Better Developers, July 12, 2019. <a href="https://develpreneur.com/the-throw-it-over-the-wall-anti-pattern/"><u>https://develpreneur.com/the-throw-it-over-the-wall-anti-pattern/</u></a>.</p>
+<p>Brown, William J., Hays W. “Skip” McCormick III, and Scott W. Thomas.
+<em>AntiPatterns in Project Management</em>. 1st edition. New York, NY
+and Weinheim: Wiley, 2000.</p>
+<p>Camden, Raymond, and Brian Rinaldi. <em>Working with Static
+Sites</em>. Sebastopol, CA: O’Reilly Media, Inc., 2017. <a href="https://www.oreilly.com/library/view/working-with-static/9781491960936/"><u>https://www.oreilly.com/library/view/working-with-static/9781491960936/</u></a>.</p>
+<p>Camps, Celine and Margot Lyautey. “Ma&lt;r&gt;king and Knowing:
+Encoding BnF Ms. Fr. 640.” In <em>Secrets of Craft and Nature in
+Renaissance France. A Digital Critical Edition and English Translation
+of BnF Ms. Fr. 64</em>0, edited by Making and Knowing Project, Pamela H.
+Smith, Naomi Rosenkranz, Tianna Helena Uchacz, Tillmann Taape, Clément
+Godbarge, Sophie Pitman, Jenny Boulboullé, Joel Klein, Donna Bilak, Marc
+Smith, and Terry Catapano. New York: Making and Knowing Project, 2020.
+<a href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</u></a>.
+DOI: <a href="https://www.doi.org/10.7916/cjhd-wh90"><u>https://www.doi.org/10.7916/cjhd-wh90</u></a>.</p>
+<p>Center for Teaching and Learning at Columbia University. “The Digital
+Literacy Competency Calculator (DLCC).” Accessed February 24, 2021. <a href="https://ccnmtl.github.io/digital-literacy/"><u>https://ccnmtl.github.io/digital-literacy/</u></a>.</p>
+<p>Cordell, Ryan. “Build a Class, Project, or Other Website Using Jekyll
++ GitHub Pages.” The Chronicle of Higher Education (CHE), December 12,
+2017. <a href="https://www.chronicle.com/blogs/profhacker/build-a-class-project-or-other-website-using-jekyll-github-pages"><u>https://www.chronicle.com/blogs/profhacker/build-a-class-project-or-other-website-using-jekyll-github-pages</u></a>.</p>
+<p>Diaz, Chris. “Using Static Site Generators for Scholarly Publications
+and Open Educational Resources.” <em>The Code4Lib Journal</em>, no. 42
+(November 8, 2018). <a href="https://journal.code4lib.org/articles/13861"><u>https://journal.code4lib.org/articles/13861</u></a>.</p>
+<p>DigitalOcean. “DigitalOcean | Cloud Infrastructure for Developers.”
+Accessed February 25, 2021. <a href="https://www.digitalocean.com"><u>https://www.digitalocean.com</u></a>.</p>
+<p>Drupal. Accessed February 27, 2021. <a href="https://www.drupal.org/home"><u>https://www.drupal.org/home</u></a>.</p>
+<p>Dyon, Soersha and Heather Wacha. “Turning Turtle: The Process of
+Translating BnF Ms. Fr. 640.” In <em>Secrets of Craft and Nature in
+Renaissance France. A Digital Critical Edition and English Translation
+of BnF Ms. Fr. 640</em>, edited by Making and Knowing Project, Pamela H.
+Smith, Naomi Rosenkranz, Tianna Helena Uchacz, Tillmann Taape, Clément
+Godbarge, Sophie Pitman, Jenny Boulboullé, Joel Klein, Donna Bilak, Marc
+Smith, and Terry Catapano. New York: Making and Knowing Project, 2020.
+<a href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>.
+DOI: <a href="https://www.doi.org/10.7916/1pw7-ax09"><u>https://www.doi.org/10.7916/1pw7-ax09</u></a>.</p>
+<p>Ed. “About.” Accessed May 19, 2022. <a href="https://minicomp.github.io/ed/about/"><u>https://minicomp.github.io/ed/about/</u></a>.</p>
+<p>Gall, John. <em>Systemantics: How Systems Work and Especially How
+They Fail</em>. First Edition. New York: Quadrangle, 1977.</p>
+<p>Gil, Alex. “Design for Diversity: The Case of Ed.” <em>The Design for
+Diversity Learning Toolkit</em>, June 20, 2019. <a href="https://des4div.library.northeastern.edu/design-for-diversity-the-case-of-ed-alex-gil/"><u>https://des4div.library.northeastern.edu/design-for-diversity-the-case-of-ed-alex-gil/</u></a>.</p>
+<p>Gil, Alex. “The User, the Learner and the Machines We Make.”
+<em>Minimal Computing</em>. May 21, 2015. <a href="http://go-dh.github.io/mincomp/thoughts/2015/05/21/user-vs-learner/"><u>http://go-dh.github.io/mincomp/thoughts/2015/05/21/user-vs-learner/</u></a>.</p>
+<p>“Git.” Accessed February 23, 2021. <a href="https://git-scm.com/"><u>https://git-scm.com/</u></a>.</p>
+<p>GitHub. "About GitHub Pages." GitHub Docs. Accessed February 27,
+2021. <a href="https://docs.github.com/en/github/working-with-github-pages/about-github-pages"><u>https://docs.github.com/en/github/working-with-github-pages/about-github-pages</u></a>.</p>
+<p>GitHub. "About Issues." GitHub Docs. Accessed February 27, 2021. <a href="https://docs.github.com/en/github/managing-your-work-on-github/about-issues"><u>https://docs.github.com/en/github/managing-your-work-on-github/about-issues</u></a>.</p>
+<p>GitHub. “Build and Ship Software on a Single, Collaborative Platform”
+Accessed February 25, 2025. <a href="https://github.com/"><u>https://github.com/</u></a>.</p>
+<p>GitHub. “GitHub Actions.” Accessed February 27, 2021. <a href="https://github.com/features/actions"><u>https://github.com/features/actions</u></a>.</p>
+<p>GitHub. “GitHub Features: Integrated Project Management Tools.”
+Accessed February 27, 2021. <a href="https://github.com/features/project-management/"><u>https://github.com/features/project-management/</u></a>.</p>
+<p>GitHub. “GitHub Flow.” GitHub Docs. Accessed May 21, 2024. <a href="https://docs.github.com/en/get-started/using-github/github-flow"><u>https://docs.github.com/en/get-started/using-github/github-flow</u></a>.</p>
+<p>GitHub. “Hello World.” GitHub Guides. Accessed May 19, 2022. <a href="https://guides.github.com/activities/hello-world/"><u>https://guides.github.com/activities/hello-world/</u></a>.</p>
+<p>GitHub. “Mastering Issues.” GitHub Guides. Accessed February 27,
+2021. <a href="https://guides.github.com/features/issues/"><u>https://guides.github.com/features/issues/</u></a>.</p>
+<p>Google for Developers. “Extending Google Docs with Add-Ons | Google
+Workspace Add-Ons.” Accessed February 23, 2021. <a href="https://developers.google.com/workspace/add-ons/editors/docs"><u>https://developers.google.com/workspace/add-ons/editors/docs</u></a>.</p>
+<p>Greenwood, Tom. <em>Sustainable Web Design</em>. New York: A Book
+Apart, 2021. <a href="https://www.oreilly.com/library/view/sustainable-web-design/9781098128807/"><u>https://www.oreilly.com/library/view/sustainable-web-design/9781098128807/</u></a>.</p>
+<p>Gruber, John, and Aaron Swartz. “Markdown.” Daring Fireball. Accessed
+February 27, 2021. <a href="https://daringfireball.net/projects/markdown/"><u>https://daringfireball.net/projects/markdown/</u></a>.</p>
+<p>Hagadorn, Alexis. “The Physical Construction of Ms. Fr. 640.” In
+<em>Secrets of Craft and Nature in Renaissance France. A Digital
+Critical Edition and English Translation of BnF Ms. Fr. 640</em>, edited
+by Making and Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna
+Helena Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano. New
+York: Making and Knowing Project, 2020. <a href="https://edition640.makingandknowing.org/#/essays/ann_328_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_328_ie_19</u></a>.
+DOI: <a href="https://www.doi.org/10.7916/ar0p-h544"><u>https://www.doi.org/10.7916/ar0p-h544</u></a>.</p>
+<p>Harvey, Jerry B. <em>The Abilene Paradox and Other Meditations on
+Management</em>. First Edition. San Francisco: Jossey-Bass, 1988.</p>
+<p>Huang, Jeff. “This Page Is Designed to Last: A Manifesto for
+Preserving Content on the Web.” August 24, 2021. <a href="https://jeffhuang.com/designed_to_last/"><u>https://jeffhuang.com/designed_to_last/</u></a>.</p>
+<p>Hugo. “The World’s Fastest Framework for Building Websites.” Accessed
+February 25, 2025. <a href="https://gohugo.io/"><u>https://gohugo.io/</u></a>.</p>
+<p>Jekyll. “Jekyll - Simple, Blog-Aware, Static Sites.” Accessed
+February 24, 2021. <a href="https://jekyllrb.com/"><u>https://jekyllrb.com/</u></a>.</p>
+<p>JSON. "Introducing JSON." Accessed February 27, 2021. <a href="https://www.json.org/json-en.html"><u>https://www.json.org/json-en.html</u></a>.</p>
+<p>Lagoze, Carl, Clifford A. Lynch, and Ron Daniel. “The Warwick
+Framework: A Container Architecture for Aggregating Sets Of Metadata.”
+June 1996. <a href="https://hdl.handle.net/1813/7248"><u>https://hdl.handle.net/1813/7248</u></a>.</p>
+<p>Making and Knowing Project. “About - Digital Development.” In
+<em>Secrets of Craft and Nature in Renaissance France. A Digital
+Critical Edition and English Translation of BnF Ms. Fr. 640</em>, edited
+by Making and Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna
+Helena Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano. New
+York: Making and Knowing Project, 2020. <a href="https://edition640.makingandknowing.org/#/content/about"><u>https://edition640.makingandknowing.org/#/content/about</u></a>.</p>
+<p>Making and Knowing Project. “Encoding Schema.” GitHub repository.
+Accessed March 16, 2021. <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/master/schema/ms-transcription.rng"><u>https://github.com/cu-mkp/m-k-manuscript-data/blob/master/schema/ms-transcription.rng</u></a>.</p>
+<p>Making and Knowing Project. “GitHub Digital Workflow.” GitHub
+repository. Accessed March 16, 2021. <a href="https://github.com/cu-mkp/m-k-manuscript-data/blob/master/docs/fa21-github-digital-workflow.md"><u>https://github.com/cu-mkp/m-k-manuscript-data/blob/master/docs/fa21-github-digital-workflow.md</u></a>.</p>
+<p>Making and Knowing Project. “Principles of Translation.” In
+<em>Secrets of Craft and Nature in Renaissance France. A Digital
+Critical Edition and English Translation of BnF Ms. Fr. 640</em>, edited
+by Making and Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna
+Helena Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano. New
+York: Making and Knowing Project, 2020. <a href="https://edition640.makingandknowing.org/#/content/resources/principles"><u>https://edition640.makingandknowing.org/#/content/resources/principles</u></a>.</p>
+<p>McDonough, Jerome P. “METS: Standardized Encoding for Digital Library
+Objects.” <em>International Journal on Digital Libraries</em> 6, no. 2
+(April 1, 2006): 148–58. <a href="https://doi.org/10.1007/s00799-005-0132-1"><u>https://doi.org/10.1007/s00799-005-0132-1</u></a>.</p>
+<p>Mini Lazarillo Team. “About the Project.” Mini lazarillo: edición
+mínima del Lazarillo de Tormes. 2016. <a href="https://minilazarillo.github.io/project.html"><u>https://minilazarillo.github.io/project.html</u></a>.</p>
+<p>Minimal Computing. “About Minimal Computing.” GO::DH (Global
+Outlook::Digital Humanities) Minimal Computing Working Group. Accessed
+March 16, 2021. <a href="https://go-dh.github.io/mincomp/"><u>https://go-dh.github.io/mincomp/</u></a>.</p>
+<p>NGINX. “NGINX: High Performance Load Balancer, Web Server, &amp;
+Reverse Proxy.” Accessed March 9, 2021. <a href="https://www.nginx.com/"><u>https://www.nginx.com/</u></a>.</p>
+<p>Node.js. “Node.Js — Run JavaScript Everywhere.” Accessed February 25,
+2021. <a href="https://nodejs.org/en"><u>https://nodejs.org/en</u></a>.</p>
+<p>“NYC Digital Humanities | a Site for the NYC Digital Humanities
+Community.” NYC Digital Humanities. Accessed March 16, 2021. <a href="https://nycdh.org/"><u>https://nycdh.org/</u></a>.</p>
+<p>“NYCDH Week.” NYC Digital Humanities. Accessed March 16, 2021. <a href="https://nycdh.org/dhweek/"><u>https://nycdh.org/dhweek/</u></a>.</p>
+<p>Obdurodon. “What Is XML and Why Should Humanists Care? An Even
+Gentler Introduction to XML.” Accessed February 27, 2021. <a href="http://dh.obdurodon.org/what-is-xml.xhtml"><u>http://dh.obdurodon.org/what-is-xml.xhtml</u></a>.</p>
+<p>Ohge, Christopher. <em>Publishing Scholarly Editions: Archives,
+Computing, and Experience</em>. Cambridge: Cambridge University Press,
+2021. <a href="https://doi.org/10.1017/9781108766739"><u>https://doi.org/10.1017/9781108766739</u></a>.</p>
+<p>Olsen, Dan. <em>The Lean Product Playbook: How to Innovate with
+Minimum Viable Products and Rapid Customer Feedback</em>. Hoboken, NJ:
+Wiley, 2015. <a href="http://leanproductplaybook.com/resources/"><u>http://leanproductplaybook.com/resources/</u></a>.</p>
+<p>Oxygen XML Editor. “Oxygen XML Editor.” Accessed February 27, 2021.
+<a href="https://www.oxygenxml.com/"><u>https://www.oxygenxml.com/</u></a>.</p>
+<p>Oxygen XML Editor. “XML Validation and Well-Formedness Check.”
+Accessed February 27, 2021. <a href="https://www.oxygenxml.com/xml_editor/validation.html"><u>https://www.oxygenxml.com/xml_editor/validation.html</u></a>.</p>
+<p>Performant Software Solutions LLC. “About Performant Software.”
+Accessed February 27, 2021. <a href="https://www.performantsoftware.com/"><u>https://www.performantsoftware.com/</u></a>.</p>
+<p>Performant Software Solutions LLC. “Projects.” Accessed February 27,
+2021. <a href="https://www.performantsoftware.com/projects/"><u>https://www.performantsoftware.com/projects/</u></a>.</p>
+<p>Peter, Laurence J., and Raymond Hull. <em>The Peter Principle</em>.
+New York, NY: Bantam Books, 1970.</p>
+<p>Prof. Hacker and Alex Gil. “How (and Why) to Generate a Static
+Website Using Jekyll, Part 1.” The Chronicle of Higher Education (CHE),
+August 31, 2015. <a href="https://www.chronicle.com/blogs/profhacker/jekyll1"><u>https://www.chronicle.com/blogs/profhacker/jekyll1</u></a>.</p>
+<p>Puglia, Steven, Jeffrey Reed, and Erin Rhodes. “Technical Guidelines
+for Digitizing Archival Materials for Electronic Access: Creation of
+Production Master Files – Raster Images.” College Park, MD: National
+Archives and Records Administration, June 2004. <a href="https://perma.cc/4MRL-X5BF"><u>https://perma.cc/4MRL-X5BF</u></a>.</p>
+<p>React. “React - the Library for Web and Native User Interfaces.”
+Accessed February 25, 2024. <a href="https://react.dev/"><u>https://react.dev/</u></a>.</p>
+<p>Ries, Eric. <em>The Lean Startup: How Today's Entrepreneurs Use
+Continuous Innovation to Create Radically Successful Businesses</em>.
+New York: Currency, 2011. <a href="http://theleanstartup.com/book"><u>http://theleanstartup.com/book</u></a>.</p>
+<p>Rinaldi, Brian. <em>Static Site Generators</em>. Sebastopol, CA:
+O'Reilly Media Inc., 2015. <a href="https://www.oreilly.com/content/static-site-generators/"><u>https://www.oreilly.com/content/static-site-generators/</u></a>.</p>
+<p>Self, Will. “Kafka's Wound | A Digital Literary Essay by Will Self.”
+Archived from the original August 5, 2020. <a href="https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/"><u>https://web.archive.org/web/20200805065657/https://thespace.lrb.co.uk/</u></a>.</p>
+<p>Smith, Marc. “Making Ms. Fr. 640.” In <em>Secrets of Craft and Nature
+in Renaissance France. A Digital Critical Edition and English
+Translation of BnF Ms. Fr. 640</em>, edited by Making and Knowing
+Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena Uchacz,
+Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny Boulboullé, Joel
+Klein, Donna Bilak, Marc Smith, and Terry Catapano. New York: Making and
+Knowing Project, 2020. <a href="https://edition640.makingandknowing.org/#/essays/ann_326_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_326_ie_19</u></a>.
+DOI: <a href="https://www.doi.org/10.7916/1wmr-2t14"><u>https://www.doi.org/10.7916/1wmr-2t14</u></a>.</p>
+<p>Smith, Pamela H. “Making the Edition of Ms. Fr. 640.” In <em>Secrets
+of Craft and Nature in Renaissance France. A Digital Critical Edition
+and English Translation of BnF Ms. Fr. 640</em>, edited by Making and
+Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano. New
+York: Making and Knowing Project, 2020. <a href="https://edition640.makingandknowing.org/#/essays/ann_329_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_329_ie_19</u></a>.
+DOI: <a href="https://www.doi.org/10.7916/zdaf-cv31"><u>https://www.doi.org/10.7916/zdaf-cv31</u></a>.</p>
+<p>Smith, Pamela H., and the Making and Knowing Project. “Historians in
+the Laboratory: Reconstruction of Renaissance Art and Technology in the
+Making and Knowing Project.” <em>Art History, special issue on Art and
+Technology</em> 39, no. 2 (2016): 210–233. <a href="https://doi.org/10.1111/1467-8365.12235"><u>https://doi.org/10.1111/1467-8365.12235</u></a>.</p>
+<p>Smith, Pamela H., Tianna Helena Uchacz, Naomi Rosenkranz, and Claire
+Conklin Sabel. “The Making of Empirical Knowledge: Recipes, Craft, and
+Scholarly Communication.” In <em>Reassembling Scholarly Communications:
+Histories, Infrastructures, and Global Politics of Open Access</em>,
+edited by Martin Paul Eve and Jonathan Gray, 125-144. Cambridge, MA: The
+MIT Press, 2020. <a href="https://doi.org/10.7551/mitpress/11885.003.0014"><u>https://doi.org/10.7551/mitpress/11885.003.0014</u></a>.</p>
+<p>Static Site Generators. “StaticSiteGenerators.net.” Accessed March
+16, 2021. <a href="https://staticsitegenerators.net/"><u>https://staticsitegenerators.net/</u></a>.</p>
+<p>Suber, Peter. <em>Open Access</em>. Cambridge: The MIT Press, 2012.
+<a href="http://muse.jhu.edu/book/46989"><u>http://muse.jhu.edu/book/46989</u></a>.</p>
+<p>Sublime. “Sublime Text - the Sophisticated Text Editor for Code,
+Markup and Prose.” Accessed February 25, 2021. <a href="https://www.sublimetext.com/"><u>https://www.sublimetext.com/</u></a>.</p>
+<p>Taleb, Nassim Nicholas. <em>Antifragile: Things That Gain from
+Disorder</em>. Reprint edition. New York: Random House Trade Paperbacks,
+2014.</p>
+<p>TEI Consortium. "Guidelines for Electronic Text Encoding and
+Interchange." Accessed February 27, 2021. <a href="https://tei-c.org/release/doc/tei-p5-doc/en/html/SG.html#SG12"><u>https://tei-c.org/release/doc/tei-p5-doc/en/html/SG.html#SG12</u></a>.</p>
+<p>Tenen, Dennis, and Grant Wythoff. “Sustainable Authorship in Plain
+Text Using Pandoc and Markdown.” <em>Programming Historian</em>, March
+19, 2014. <a href="https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown"><u>https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown</u></a>.</p>
+<p>“This Site: An Elementary Guide.” In <em>Herman Melville's ‘Typee’: a
+Fluid-Text Edition</em>, edited by John Bryant. Charlottesville, VA:
+University of Virginia Press, 2006. <a href="https://rotunda.upress.virginia.edu/melville/site.xqy"><u>https://rotunda.upress.virginia.edu/melville/site.xqy</u></a>.</p>
+<p>Travis CI. “Travis CI - Test and Deploy with Confidence.” Accessed
+February 27, 2021. <a href="https://www.travis-ci.com/"><u>https://www.travis-ci.com/</u></a>.</p>
+<p>Uchacz, Tianna Helena. “Reconstructing Early Modern Artisanal
+Epistemologies and an ‘Undisciplined’ Mode of Inquiry.” <em>Isis</em>
+111, no. 3 (2020): 606–13. <a href="https://dx.doi.org/10.1086/711100"><u>https://dx.doi.org/10.1086/711100</u></a>.</p>
+<p>Uchacz, Tianna Helena, Naomi Rosenkranz, and Terry Catapano. “Digital
+Competencies, Collaborations, and Cultures of Work: A Case Study in
+Extending the Research-Driven Pedagogy of The Making and Knowing
+Project.” In <em>Digital Pedagogy in Early Modern Studies: Method and
+Praxis</em>, edited by Andie Silva and Scott Schofield, 157–218. New
+Technologies in Medieval and Renaissance Studies. Toronto: Iter Press,
+2024. <a href="https://press.uchicago.edu/ucp/books/book/distributed/D/bo151927625.html"><u>https://press.uchicago.edu/ucp/books/book/distributed/D/bo151927625.html</u></a>.</p>
+<p>W3C Web Accessibility Initiative. “Authoring Tool Accessibility
+Guidelines (ATAG) Overview.” Accessed February 27, 2021. <a href="https://www.w3.org/WAI/standards-guidelines/atag/"><u>https://www.w3.org/WAI/standards-guidelines/atag/</u></a>.</p>
+<p>W3C Web Accessibility Initiative. “Web Content Accessibility
+Guidelines (WCAG) Overview.” Accessed February 27, 2021. <a href="https://www.w3.org/WAI/standards-guidelines/wcag/"><u>https://www.w3.org/WAI/standards-guidelines/wcag/</u></a>.</p>
+<p>“Wax.” Accessed February 25, 2021. <a href="https://minicomp.github.io/wax/"><u>https://minicomp.github.io/wax/</u></a>.</p>
+<p>WordPress.com. “WordPress.Com: Create a Free Website or Blog.”
+Accessed February 27, 2021. <a href="https://wordpress.com/"><u>https://wordpress.com/</u></a>.</p>
+<p>xpmethod. “About xpmethod.” Group for experimental methods in the
+humanities. Accessed March 16, 2021. <a href="https://xpmethod.columbia.edu/about.html"><u>https://xpmethod.columbia.edu/about.html</u></a>.</p>
+<p>xpmethod. “A Digital Critical Edition for the Making and Knowing
+Project.” Group for experimental methods in the humanities. Accessed
+March 16, 2021. <a href="https://xpmethod.columbia.edu/knowledge-design-studio/2014-11-14-pamela-smith.html"><u>https://xpmethod.columbia.edu/knowledge-design-studio/2014-11-14-pamela-smith.html</u></a>.</p>
+</div></body></html>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* Essay-specific image styling to match React version */
+        #annotation-view figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #DDDDDD;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 601px) and (max-width: 960px) {
+            #annotation-view figure img {
+                max-width: 500px;
+            }
+        }
+        
+        @media (min-width: 961px) {
+            #annotation-view figure img {
+                max-width: 600px;
+            }
+        }
+        
+        #annotation-view figure {
+            margin: 20px 0;
+            max-width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        #annotation-view figure .figure-image-container {
+            padding: 0;
+            margin: 0 auto;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        #annotation-view figure figcaption {
+            line-height: 1.4;
+            font-size: 11pt;
+            text-align: left;
+            max-width: 100%;
+            margin-top: 8px;
+            padding: 0 10px;
+            color: #666;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Essay loaded: ann_310_ie_19');
+            
+            // Handle internal links  
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ma&lt;r&gt;king and Knowing: Encoding BnF Ms. Fr. 640 - Making and Knowing</title>
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+<body>
+    <div id="content-page">
+        <div class="bg-maroon-gradient accent-bar"></div>
+        <div class="MuiPaper-root MuiPaper-elevation2 MuiPaper-rounded flex-parent jc-space-btw page-header text-bg-gradient-light-tb">
+            <h1 class="page-title">Ma&lt;r&gt;king and Knowing: Encoding BnF Ms. Fr. 640</h1>
+            <div class="page-meta">
+                <span class="page-author">By , </span>
+                <span class="page-doi">DOI: https://www.doi.org/10.7916/cjhd-wh90</span>
+            </div>
+        </div>
+        <div id="content">
+            <div id="annotation-view">
+                <div class="annotation-view-container">
+                    <a href="index.html" class="back-link">← Back to Essays</a>
+                    <div class="annotation-content">
+                        <html>
+
+<head></head>
+
+<body>
+    <div class="header-section">
+        <h2>Abstract</h2>
+        <div>
+            <p>This essay reflects on the process of marking up Ms. Fr. 640.
+                While it is tempting to think of encoding as a straightforward
+                process, this essay argues that encoding Ms. Fr. 640 was more
+                than a matter of simply reading a text, identifying categories,
+                and implementing tags. Rather, it was a complex and messy
+                process which required close reading, continuous reflection and
+                alteration, collective expertise, and collaboration between
+                humanists and computers. This essay highlights the flexible,
+                volatile, and non-finite nature of markup, and it illustrates
+                that encoding was not a linear process, but rather was
+                characterized by moving back and forth between pages, constantly
+                implementing new and correcting old markup in an attempt to
+                adhere to new decisions and safeguard consistency. Finally, it
+                shows how solutions to markup problems were frequently sought by
+                considering a user’s perspective. We conclude that encoding Ms.
+                Fr. 640 not only required knowledge but also produced it.</p>
+
+        </div>
+        <br>
+        <h2>Cite As</h2>
+        <div>
+            Camps, Celine and Margot Lyautey. “Ma&lt;r&gt;king and Knowing:
+            Encoding BnF Ms. Fr. 640.” In <i>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</i>, edited by Making and Knowing
+            Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena Uchacz,
+            Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny Boulboullé,
+            Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano. New York:
+            Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19">https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</a>.
+            DOI: <a
+               href="https://www.doi.org/10.7916/cjhd-wh90">https://www.doi.org/10.7916/cjhd-wh90</a>
+        </div>
+    </div>
+
+    <blockquote>
+        <p><em>The Making and Knowing Project is a research and pedagogical
+                initiative in the Center for Science and Society at Columbia
+                University that explores the intersections between artistic
+                making and scientific knowing. Today these realms are regarded
+                as separate, yet in the earliest phases of the Scientific
+                Revolution, nature was investigated primarily by skilled
+                artisans by means of continuous and methodical experimentation
+                in the making of objects – the time when “making” was
+                “knowing.”</em></p>
+        <p>&nbsp;— “About,” Making and Knowing Project website<a href="#fn1"
+               class="footnote-ref"
+               id="fnref1"
+               role="doc-noteref"><sup>1</sup></a></p>
+    </blockquote>
+    <p><span class="pull-left"></span>The authors of this article, two PhD
+        students in the history of science, joined the Making and Knowing
+        Project in the Summer of 2016 to participate in a Middle French
+        Paleography Workshop held at Columbia University. Organized twice
+        before, in the Summer of 2014 and 2015, this three-week workshop aimed
+        to provide participants intensive training in the reading,
+        transcription, translation, and XML encoding of Ms. Fr. 640. Not long
+        after this workshop, the Making and Knowing team sent out an email
+        requesting returning paleographers to indicate their preference for one
+        of two tasks: translation or markup.<a href="#fn2"
+           class="footnote-ref"
+           id="fnref2"
+           role="doc-noteref"><sup>2</sup></a> As native Dutch and French
+        speakers with no professional translation experience, neither of us felt
+        sufficiently equipped to translate an early modern manuscript into
+        English, and we thus both leaned toward markup. Moreover, we believed
+        the task of encoding would be more straightforward, manageable, and
+        demand less expertise of two ambitious but relatively inexperienced
+        graduate students than that of translating. We would soon come to
+        revise—and at times even regret—that thought. Our choice for markup was
+        the beginning of a long-term and intense collaboration, devoted entirely
+        to the encoding of the manuscript—that is, tagging words, phrases, and
+        features of the manuscript’s text with a custom set of XML tags. This
+        essay is a reflection on that collaboration, or, more specifically, on
+        the complex, messy, and non-finite, but historically instructive and
+        intellectually rewarding process of marking up Ms. Fr. 640.<a
+           href="#fn3"
+           class="footnote-ref"
+           id="fnref3"
+           role="doc-noteref"><sup>3</sup></a> First, we will briefly discuss
+        the foundations and conceptualisation of the markup for Ms. Fr. 640.
+        Then we will explain the principle steps of encoding the manuscript, and
+        finally we will reflect on the nature of that process and elaborate on
+        some of the problems we encountered in it.</p>
+    <h2
+        id="the-foundation-and-conceptualization-of-markup-categories-for-ms.-fr.-640">
+        The Foundation and Conceptualization of Markup Categories for Ms. Fr.
+        640</h2>
+    <p>When we joined the project in 2016, neither of us had any experience with
+        XML and TEI markup.<a href="#fn4"
+           class="footnote-ref"
+           id="fnref4"
+           role="doc-noteref"><sup>4</sup></a> In fact, we had never even heard
+        of it. Yet, while our markup journey only began in 2016, that of the
+        project did not. Indeed, the foundations of the manuscript’s markup,
+        upon which our encoding work would ultimately rely, had already been
+        laid by the Making and Knowing team and former student paleographers
+        working in 2014 and 2015.<a href="#fn5"
+           class="footnote-ref"
+           id="fnref5"
+           role="doc-noteref"><sup>5</sup></a> It is therefore necessary to
+        briefly discuss those early stages of markup development before we
+        reflect on our own encoding work.</p>
+    <h3 id="the-foundations-of-markup">The Foundations of Markup</h3>
+    <p><span class="pull-left"></span>While the main aim of the Summer 2016
+        workshop was to transcribe and translate the manuscript, one of its
+        other goals was to “conceptualize and complete the markup.”
+        “Conceptualize” here meant that we had to think about the “intellectual
+        agenda” of the data that markup generates about the manuscript. In other
+        words, what information about the text of Ms. Fr. 640 did we want markup
+        to provide users of the Digital Critical Edition (DCE)? As we will show
+        later, this required us to put ourselves in the shoes of potential users
+        of the DCE and envision what specific information in Ms. Fr. 640 they
+        might be interested in. In answering this question, a distinction was
+        made between three types of information and its corresponding markup:
+        structural, editorial, and semantic.</p>
+    <p>The transcribed and translated Google documents that we began working
+        with in 2016 were already partially encoded with structural, editorial,
+        and semantic markup developed in 2014 and 2015—hence the task to
+        “complete” the markup. Editorial markup indicates the intervention of
+        the editors (i.e., the Making and Knowing team or paleographers) to the
+        text of the manuscript. Abbreviations offer a good example. The
+        author-practitioner frequently wrote words like <em>premierement</em> or
+        <em>communement</em> in an abbreviated form, by spelling out
+        “<em>premierem</em>” and “<em>communem</em>” and supplying the
+        “<em>ent</em>” by means of a supralinear tilde (<i><u>Fig. 1</u></i>).
+        When transcribing these words, Project paleographers typed curly
+        brackets around the implied abbreviations: premierem{ent}. In cases
+        where the author-practitioner forgot to add the tilde, we “supplied” the
+        missing abbreviation using a “sup” tag:
+        premierem&lt;sup&gt;{ent}&lt;/sup&gt;. Both the curly brackets and sup
+        tag are forms of editorial markup.</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1c7CDseCWod6FZQ7tYxqbBy7CvPD6C-m-.png"
+                 alt="fig. 1">
+            <figcaption>Fig. 1. Detail of Ms. Fr. 640, fol. 12r. Bibliothèque
+                nationale de France, Paris. An example of a tilde (top right
+                corner), showing how the author abbreviated the “ent” in the
+                word <em>premierement</em>. Source: gallica.bnf.fr.</figcaption>
+        </figure>
+    </div>
+    <p>The difference between the structural and semantic markup can be
+        explained with part of a 2014 translation of the entry <em>Pintiers</em>
+        (Pewterers) on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/28v/f/28v/tl"><u>28v</u></a>:
+    </p>
+    <blockquote>
+        <p>&lt;title id=”p028v_a1”&gt;Pewterers&lt;/title&gt;</p>
+        <p>&lt;ab id=”p028v_b1a”&gt;They think that the best <strong>pewter
+            </strong> is in a great sow that has not been melted again since the
+            mine, for <em>masters</em> melt it again on a grille weighing two or
+            three pounds in order to cut it in bits and sell it by pieces. And
+            they usually mingle it with some soldering pieces’ rests and
+            ordinary <strong>pewter</strong>. And the best most shiny, as if
+            polished for it is softer. Sometimes in their sows they find
+            <strong>iron</strong>. Pieces, stones and similar things to dip in
+            to some <strong>pitch</strong>. <strong><u>English</u> pewter
+            </strong> is so hard that <em>minerons</em> add some <strong>lead
+            </strong> to soften it. The one coming from <strong><u>German</u>
+                coasts</strong> is softer. Usually the <em>
+                <strong>pewter</strong> masters wardens
+            </em> in <strong>good cities</strong> add six pounds of fine
+            <strong>lead</strong> or eight sith a quintal of fine <strong>pewter
+            </strong>. The <em>others who work in mines</em> add fifteen or 20
+            or the more they can and to cover the <strong>lead</strong> black
+            color and its softness, they add some <strong>ice pewter</strong> 4
+            pounds with a quintal. &lt;/ab&gt;</p>
+    </blockquote>
+    <p><span class="pull-left"></span>Structural markup provides information
+        about the layout, organization, or structural logic of a text on a
+        page—for example, what part of a text constitutes a title, paragraph,
+        subheader, etc.—and how single blocks of text on a page relate to each
+        other. In the example above, structural divisions are made with the help
+        of tags—that is, complementary snippets of machine-readable code
+        inserted on either side of the text in question. Notice, for instance,
+        how the word “Pewterers” on the first line is surrounded by information
+        contained between angle brackets (&lt;title id=”p028v_a1”&gt; and
+        &lt;/title&gt;), including the structural element “title.” This denotes
+        that the text contained between the opening tag (&lt;title
+        id=”p028v_a1”&gt;) and closing tag (&lt;/title&gt;) is a title, as
+        opposed to, for example, a paragraph. Similarly, the text block that
+        follows the title is nested inside “ab” tags (i.e., “anonymous block”),
+        which describes the text between the opening and closing ab tags as an
+        undefined, but coherent block of text, thereby distinguishing it from
+        other structural elements on the page, such as the title.</p>
+    <p>Structural markup differs from semantic markup in that the latter aims to
+        provide information about the <em>meaning</em> of the text on a page.
+        For instance, while the structural markup on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/28v/f/28v/tl"><u>28v</u></a>
+        informs the reader that “Pewterers” is a title, that same encoding does
+        not tell us anything about its semantics, i.e., what “pewterers”
+        <em>signifies</em>. Semantic markup is needed to convey that
+        information. In 2014, the Making and Knowing team and workshop
+        participants had conceptualized three semantic markup
+        categories—materials, place names, and professions—and marked up all
+        occurrences of these categories in the manuscript. As the entry on
+        Pewterers illustrates, unlike the structural markup, these categories
+        were not denoted by tags. Rather, they were indicated with simple
+        formatting: <strong>materials</strong> were set in boldface, <u>place
+            names</u> were underlined, and <em>professions</em> italicized. A
+        reader familiar with how each category was formatted, could understand,
+        for instance, that “lead,” “iron,” and “pitch,” on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/28v/f/28v/tl"><u>28v</u></a>
+        are materials. Although it was very easy for paleographers unfamiliar
+        with XML markup to work with this type of formatting, it had obvious
+        limitations. First, it only allowed for a limited number of categories
+        (i.e., three), and therefore equally curbed the amount of semantic
+        information that could be conveyed to users of the DCE. Second, it was
+        very easy to accidentally remove the markup by formatting the text
+        differently. So, in 2015, this method of encoding semantic elements was
+        abandoned and replaced with the use of tags, matching the style of the
+        structural markup. Similarly, the use of curly brackets to indicate
+        abbreviations was substituted by “expansion” tags (e.g.,
+        premierem&lt;exp&gt;ent&lt;/exp&gt;).</p>
+    <p>Coming back to the goal of the 2016 workshop, when we were tasked to
+        “conceptualize and complete the markup,” this meant: first, to remove
+        remnants of the old formatting; and second, to further develop semantic
+        categories and continue to implement the new XML markup. The remainder
+        of this paper will focus on the latter task of conceptualizing and
+        implementing markup. We will reflect on our efforts to encode Ms. Fr.
+        640, identify some of the countless problems we encountered in the
+        process, and highlight our key takeaways.</p>
+    <h3 id="conceptualizing-semantic-markup-categories">Conceptualizing Semantic
+        Markup Categories </h3>
+    <p><span class="pull-left"></span>At the end of the 2016 workshop, we made a
+        start on developing new semantic markup categories to extend beyond the
+        three existing ones. Strictly speaking, our brainstorming sessions were
+        geographically and intellectually situated, in that they took place
+        within the walls of Columbia University in New York and as part of a
+        discussion among participants in an academic workshop. However, in
+        developing new semantic categories we pushed ourselves to think outside
+        of those confines. Rather than conceptualizing what we, the Making and
+        Knowing team and Text Workshop participants, wanted to learn about the
+        manuscript, we framed this question in terms of “user stories.” That is,
+        we asked ourselves, who would be interested in using the DCE, reading
+        Ms. Fr. 640, and for what purposes? There were obviously infinite ways
+        to answer these questions and account for all possible scenarios, yet
+        some possibilities are illustrated in Table 1.<a href="#fn6"
+           class="footnote-ref"
+           id="fnref6"
+           role="doc-noteref"><sup>6</sup></a></p>
+    <h3 id="table-1-user-stories-from-2016-summer-text-workshop">Table 1: User
+        Stories from 2016 Summer Text Workshop</h3>
+    <table>
+        <colgroup>
+            <col style="width: 31%">
+            <col style="width: 35%">
+            <col style="width: 33%">
+        </colgroup>
+        <thead>
+            <tr class="header">
+                <th>
+                    <strong>As a _____________</strong>
+                </th>
+                <th>
+                    <strong>I want _____________</strong>
+                </th>
+                <th>
+                    <strong>so that _____________</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="odd">
+                <td colspan="1">Conservator</td>
+                <td colspan="1">Info on enamels</td>
+                <td colspan="1">To restore objects in museums</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Curator</td>
+                <td colspan="1">Info on enamels</td>
+                <td colspan="1">Larger understanding for art historical
+                    catalogue</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Monolinguist (English)</td>
+                <td colspan="1">Read the text [in translation]</td>
+                <td colspan="1">Curiosity, relevant to interest</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Graduate student</td>
+                <td colspan="1">See the work done at CU</td>
+                <td colspan="1">Dissertation research in early modern period
+                </td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Teacher</td>
+                <td colspan="1">A model of the project (Info about combining
+                    material and text)</td>
+                <td colspan="1">I can teach unrelated subject matter using this
+                    pedagogy</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Historian</td>
+                <td colspan="1">Word search</td>
+                <td colspan="1">Particular process/info instances</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historian</td>
+                <td colspan="1">Index</td>
+                <td colspan="1">See all processes in the manuscript</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Digital Humanist</td>
+                <td colspan="1">Know what TEI and how to use TEI (open access to
+                    raw XML files, or statement of methods)</td>
+                <td colspan="1">I can make my own</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historian</td>
+                <td colspan="1">Trade</td>
+                <td colspan="1">Info to study inventories and archival evidence
+                </td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Linguist</td>
+                <td colspan="1">Search (both tagged and untagged). Analyze this
+                    text for lexicographical info</td>
+                <td colspan="1">To know about technical vocab to create
+                    dictionary of EM french terms - words in context</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Art History of images</td>
+                <td colspan="1">Images/text relationship</td>
+                <td colspan="1">To understand relationship</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Cultural Art Historian</td>
+                <td colspan="1">Search for particular technique or material,
+                    component etc</td>
+                <td colspan="1">To learn about [e.g., lifecasting]</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historian</td>
+                <td colspan="1">Search for place names</td>
+                <td colspan="1">To learn about location of manuscript</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Scientist</td>
+                <td colspan="1">Search for recipes</td>
+                <td colspan="1">Chemical knowledge of 16th century</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Translator</td>
+                <td colspan="1"></td>
+                <td colspan="1">Particular choices of translation</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Historian of natural history</td>
+                <td colspan="1">Search for plants and animals</td>
+                <td colspan="1">Understand their uses at the time</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historian of science</td>
+                <td colspan="1">Units of measurements (temporal, weight, mass,
+                    volume, qualitative) ratios?</td>
+                <td colspan="1">Learn about quantitative thinking in 16th c</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Etymologist</td>
+                <td colspan="1">Word search</td>
+                <td colspan="1">word use and context</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historical epistemologist</td>
+                <td colspan="1">Knowledge and experience and observational
+                    reports in handwritten docs</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Historian of wars of religion</td>
+                <td colspan="1">Weapons used</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Art historian</td>
+                <td colspan="1">Mention of workshop practice/boutique (tools,
+                    workers, instrument), space, daily life -- immediate
+                    surroundings? Marketplace? “Do outside because of fumes”?
+                </td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Literary historian</td>
+                <td colspan="1">Look at structure of unpublished book</td>
+                <td colspan="1">Map literary trends in late 16th c</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Medical historian</td>
+                <td colspan="1">Medical info - recipes and gen health
+                    recommendations</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Linguist</td>
+                <td colspan="1">Rationale behind translation</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historical fiction writer</td>
+                <td colspan="1">Search, critical commentary</td>
+                <td colspan="1">Info about 16th c laboratory</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Paleographer, codicologist</td>
+                <td colspan="1">Handshift, block text changes</td>
+                <td colspan="1">Manuscript culture, script, temporality</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Critical edition editors</td>
+                <td colspan="1">Changes in ink, hand; relationship of notes to
+                    text</td>
+                <td colspan="1">Figure out composition/genesis of text</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Cultural historian</td>
+                <td colspan="1">Info on agriculture, food</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1"></td>
+                <td colspan="1">Prices, economy, marketplace/region - MAP
+                    economic things, pricing comparisons</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">Numismatist</td>
+                <td colspan="1">To know about coins mentioned in the manuscript,
+                    MAPPING</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Photographer</td>
+                <td colspan="1">Historical documentation of images</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1"></td>
+                <td colspan="1">MAPPING people</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">Historian of the book</td>
+                <td colspan="1">Places of the physical manuscript, substrate,
+                    discoloration, changes to physical object</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1"></td>
+                <td colspan="1"><em>Emai</em> vs <em>esmai</em> VARIANTS search
+                    through controlled vocabulary we create</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1"></td>
+                <td colspan="1">Names and authors</td>
+                <td colspan="1"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><span class="pull-left"></span>To take just one example, we imagined that
+        historians of science interested in learning about quantitative thinking
+        in the sixteenth century might want to know when the author-practitioner
+        mentions units of measurement. Because it would be difficult, if not
+        impossible, for scholars to think of all possible occurrences of such
+        units and then use the DCE search function to look for those units, a
+        tag to indicate units of measurement might be useful for those users.
+    </p>
+    <p>At the close of the Summer 2016 workshop, the Making and Knowing team
+        crystallized these ideas into the twenty-one semantic markup categories,
+        described in Table 2.<a href="#fn7"
+           class="footnote-ref"
+           id="fnref7"
+           role="doc-noteref"><sup>7</sup></a></p>
+    <h3
+        id="table-2-semantic-markup-categories-defined-in-2016-summer-text-workshop">
+        Table 2: Semantic Markup Categories Defined in 2016 Summer Text Workshop
+    </h3>
+    <table>
+        <colgroup>
+            <col style="width: 8%">
+            <col style="width: 36%">
+            <col style="width: 54%">
+        </colgroup>
+        <thead>
+            <tr class="header">
+                <th>
+                    <strong>Tag</strong>
+                </th>
+                <th>
+                    <strong>Description</strong>
+                </th>
+                <th>
+                    <strong>Example</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="odd">
+                <td colspan="1">&lt;al&gt;</td>
+                <td colspan="1">Animal</td>
+                <td colspan="1">not “cochenille”</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;bp&gt;</td>
+                <td colspan="1">Body part being used as a tool (not when body
+                    part is being used metaphorically)</td>
+                <td colspan="1">example:
+                    &lt;tl&gt;&lt;bp&gt;finger&lt;/bp&gt;&lt;/tl&gt;</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;cn&gt;</td>
+                <td colspan="1">coins and currency (only type of coin, not
+                    amount) [if it is a price without being a coin, let an
+                    instructor know]</td>
+                <td colspan="1">Example:
+                    &lt;cn&gt;&lt;fr&gt;sols&lt;/fr&gt;&lt;/cn&gt;</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;env&gt;</td>
+                <td colspan="1">Reference to a physical space or environment,
+                    such as workshop space, mountains, forest, etc.</td>
+                <td colspan="1">
+                    <strong>Keep an eye on this for consistency and usefulness.
+                    </strong>
+                </td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;fr&gt;</td>
+                <td colspan="1">French (text to be maintained in the original
+                    French)</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;gk&gt;</td>
+                <td colspan="1">Greek (in Greek or Latin script)</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;it&gt;</td>
+                <td colspan="1">Italian (text to be rendered in Italian)</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;la&gt;</td>
+                <td colspan="1">Latin (text to be rendered in Latin)</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;m&gt;</td>
+                <td colspan="1">
+                    <p>Material</p>
+                    <p>and verbified materials</p>
+                </td>
+                <td colspan="1">Include plants being used as material, as in:
+                    &lt;m&gt;&lt;pa&gt;herb&lt;/pa&gt;&lt;/m&gt;</td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;md&gt;</td>
+                <td colspan="1">medical and health-related terms or phrases,
+                    such as disease terms, as plague and mange, or medical
+                    advice, if possible (ask about this).</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;ms&gt;</td>
+                <td colspan="1">measurement of any sort (temporal [including
+                    pater noster], volume, mass, length)</td>
+                <td colspan="1">
+                    <p>1. &lt;ms&gt; element should be used on units of
+                        measurement, and on phrases such as &lt;ms&gt;troisieme
+                        partie&lt;/ms&gt;</p>
+                    <p>2. &lt;ms&gt; tags on fractions with units (e.g.,
+                        &lt;ms&gt;half an hour&lt;/&gt;) but NOT multiples
+                        (e.g., “2 &lt;ms&gt;hours&lt;/ms&gt;”)</p>
+                    <p>3. Non-specific spans (e.g., make colours the night
+                        before and paint the next day) take NO &lt;ms&gt; tags
+                    </p>
+                    <p>4. In rare cases, you might mark
+                        &lt;ms&gt;&lt;bp&gt;hand&lt;/bp&gt;&lt;/ms&gt;</p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;mu&gt;</td>
+                <td colspan="1">musical instruments</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;oc&gt;</td>
+                <td colspan="1">Occitan Dialect</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;pa&gt;</td>
+                <td colspan="1">plant</td>
+                <td colspan="1">not plant-derived gums</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;pl&gt;</td>
+                <td colspan="1">Place Name</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;pn&gt;</td>
+                <td colspan="1">Personal Name (including authors)</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;po&gt;</td>
+                <td colspan="1">Poitevin Dialect</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;pro&gt;</td>
+                <td colspan="1">Profession</td>
+                <td colspan="1">in the early modern sense of “identity”, so mark
+                    up “riches” and “those who work in the fields”</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;sn&gt;</td>
+                <td colspan="1">Uses of the 5 senses to make qualitative
+                    assessment, but generally <strong>not</strong> visual, e.g.,
+                    “<em>luisant</em>”</td>
+                <td colspan="1">
+                    <strong>Keep an eye on this for consistency and usefulness.
+                    </strong>
+                </td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">&lt;tl&gt;</td>
+                <td colspan="1">Tools (including mirrors being used as tool, so
+                    any instrument used to perform a process, including fingers,
+                    hands, etc) AND verbified tools</td>
+                <td colspan="1"></td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">&lt;tmp&gt;</td>
+                <td colspan="1">References to time, e.g., hour, day, season,
+                    holiday, span of time, time of day, etc</td>
+                <td colspan="1">
+                    <p>Only mark up units of time (e.g., “8 to 10
+                        &lt;tmp&gt;days&lt;/tmp&gt;”.</p>
+                    <p>
+                        <strong>Keep an eye on this for consistency and
+                            usefulness.</strong>
+                    </p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><span class="pull-left"></span>We can see, for example, that the user
+        story of the historians of science interested in units of measurement
+        has been translated into a “measurement” tag (&lt;ms&gt;), to be applied
+        to words or phrases implying “measurement of any sort (temporal
+        [including pater noster], volume, mass, length).” Similarly, to
+        accommodate numismatists, we developed a coin and currency tag
+        (&lt;cn&gt;).</p>
+    <p>Not all suggestions or ideas made it to the list. For example, there was
+        no “agricultural” tag for cultural historians interested in word- and
+        phrase-level references to rural food production and land use, though
+        “cultivation” and “animal husbandry” would become one of the twenty-six
+        categories by which the Project classified the entries of the manuscript
+        by thematic content.<a href="#fn8"
+           class="footnote-ref"
+           id="fnref8"
+           role="doc-noteref"><sup>8</sup></a> Likewise, there was talk of a
+        “fun tag,” to catch content like the method for training your dog
+        described on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/131r/f/131r/tl"><u>131r</u></a>,
+        and a “WOW!” tag. In the end, neither of these categories made it on the
+        list, although we, the authors of this essay, are still in favor of
+        implementing them. Even after having worked on this project for several
+        years, the manuscript never ceases to amaze us and in many ways a WOW!
+        tag seems an appropriate response to its marvelous content. Just as
+        important as the final set and meaning of these tags was when and how to
+        use them. As will be discussed below, this was by no means fixed or
+        straightforward.</p>
+    <p>The remaining question was how to implement these twenty-one categories
+        or, in other words, how to mark up Ms. Fr. 640. In the next section, we
+        will first lay out the principle steps of marking up the manuscript and
+        will then reflect on our process.</p>
+    <h2 id="encoding-ms.-fr.-640">Encoding Ms. Fr. 640</h2>
+    <p>In the Summer of 2017, we convened daily for two weeks at the University
+        Jean Jaurès in Toulouse with a group of eighteen people.<a href="#fn9"
+           class="footnote-ref"
+           id="fnref9"
+           role="doc-noteref"><sup>9</sup></a> By this time, all participants
+        were returning (i.e., experienced) paleographers, translators, and
+        encoders who had attended at least one of the three previous workshops.
+        Based on preferences and competencies, the group was split up into two
+        teams with each working exclusively on translation or markup. The latter
+        was made up of five individuals, divided over two groups: the first
+        consisted of Making and Knowing postdoctoral scholars Donna Bilak and
+        Tianna Uchacz and graduate student Celine Camps; the second included PhD
+        student Sebestian Kroupa and graduate student Margot Lyautey. In
+        contrast to 2016, when we progressed through Ms. Fr. 640 sequentially,
+        folio by folio, from 2017 onward, work proceeded thematically. The
+        manuscript’s entries had been divided up into categories (<i><u>Fig. 2</u></i>), for instance, alchemy, casting, dyeing, painting,
+        metal, weapons, etc.<a href="#fn10"
+           class="footnote-ref"
+           id="fnref10"
+           role="doc-noteref"><sup>10</sup></a> Each group was assigned to work
+        on particular themes to cultivate specialization and facilitate the
+        workflow.<a href="#fn11"
+           class="footnote-ref"
+           id="fnref11"
+           role="doc-noteref"><sup>11</sup></a> To keep track of our progress,
+        the Project’s Assistant Director Naomi Rosenkranz had helpfully created
+        a spreadsheet using Google Sheets, to track progress. Inserted dates and
+        initials indicated an entry had been finished by one of the groups (<i><u>Fig. 3</u></i>).</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1_I5uLRAkLXGsaDocWqywJzXafs2zxIaU.png"
+                 alt="fig. 2">
+            <figcaption>Fig. 2. Organization of the manuscript by entry
+                categories. Screenshot Celine Camps and Margot Lyautey, 2019.
+                Spreadsheet created by Naomi Rosenkranz. © Making and Knowing
+                Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1gnXZR69kmqtBbyyWVBoQxMjwVdzKV5Cg.png"
+                 alt="fig. 3">
+            <figcaption>Fig. 3. Spreadsheet to track work progress across the
+                Project’s Text Workshops. Screenshot Celine Camps and Margot
+                Lyautey, 2019. Spreadsheet created by Naomi Rosenkranz. © Making
+                and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>The first step in encoding the manuscript was to decide which entries (or
+        rather processes) to work on. This decision depended on the progress of
+        the translation groups, as a folio would generally only be marked up
+        once its translation had been finalized—i.e., signed off in the
+        spreadsheet. Once an entry was ready for markup work, we would open the
+        three corresponding transcription and translation documents in the
+        Google Drive and go through the entire text from beginning to end to
+        mark it up (<i><u>Fig. 4</u></i>, <i><u>Fig. 5</u></i>).</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1vR_iMvOSH01l_oAM9wuzdZOUILA9rgur.png"
+                 alt="fig. 4">
+            <figcaption>Fig. 4. Organization of the manuscript folios in folders
+                in the Project’s Google Drive. Screenshot Celine and Margot
+                Lyautey, 2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1mg8WTFvFIiHkSRus4wzSFktsA51oztC_.png"
+                 alt="fig. 5">
+            <figcaption>Fig. 5. The four versions of folio 3r in the Project’s
+                Google Drive. Screenshot Celine Camps and Margot Lyautey, 2019.
+                From top to bottom: Files 1 and 2. High definition color and
+                black and white scans of the manuscript page; File 3. Diplomatic
+                transcription (TC); File 4. Normalized transcription (TCN); File
+                5. English translation (TL). © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Like many components of the Making and Knowing Project, our working
+        method was highly collective. We soon realised that we worked best in
+        groups of two and ideally three people. This was in part because we had
+        to check and mark up three versions of the manuscript simultaneously—the
+        diplomatic transcription (TC), the normalized transcription (TCN), and
+        the translation (TL)—to guarantee uniformity and consistency. While it
+        was theoretically possible for one person to mark up all three versions,
+        toggling between multiple documents was extremely strenuous and
+        demanding on a single person’s eyes and mind, not to mention time
+        consuming and inefficient, something we found out firsthand over a few
+        days in the Summer 2018 Text Workshop.<a href="#fn12"
+           class="footnote-ref"
+           id="fnref12"
+           role="doc-noteref"><sup>12</sup></a> Therefore, each person would
+        ideally only check and encode one document. When a group consisted of
+        only two people, one person would work on the two French versions (TC
+        and TCN) while the other looked at the English translation (TL).</p>
+    <p>In encoding the text and verifying and unifying existing markup, we
+        mirrored the working method of the translation team: one person would
+        read the text from the English translation out loud—also uttering the
+        tags—and once a letter, word, sentence, or textblock had to be encoded
+        or its markup corrected, we paused and conferred with each other. We
+        then inserted and corrected the relevant tags. When we had completed the
+        markup of an entry, we would double check our work, put our initials and
+        the date in the spreadsheet, and move on to the next entry (always
+        checking the progress of the translation team first).</p>
+    <p>Now that we have discussed the principle steps of the encoding process,
+        the next sections will reflect in more detail on the nature of markup
+        and the problems we encountered and tried to overcome in the process,
+        drawing on examples and experiences across the various years.</p>
+    <h2 id="reflections-on-encoding-ms.-fr.-640">Reflections on Encoding Ms. Fr.
+        640</h2>
+    <p>As mentioned in the introduction to this essay, when we indicated our
+        preference to concentrate on markup for the 2017 Text Workshop, we
+        believed encoding the manuscript would be a fairly straightforward,
+        unproblematic, and manageable process that would not demand much
+        expertise. After all, a full tag set had been finalized in 2016, and it
+        seemed a simple matter of implementing those tags. Nothing proved
+        further from the truth. Encoding Ms. Fr. 640 was not a matter of simply
+        reading the text, identifying categories, and implementing tags. Rather,
+        as the following sections show, it was a highly complex and messy
+        process which required close reading, continuous reflection and
+        alteration, and collective expertise on a wide variety of subjects.</p>
+    <h3 id="close-reading-and-collective-expertise">Close Reading and Collective
+        Expertise</h3>
+    <p><span class="pull-left"></span>Fundamentally, markup takes the way that
+        humanists read and interpret a text and makes it “readable” to a
+        computer. So, a humanist marking up a text first needs to understand it.
+        Take for example the sentence, “The surgeon reached for a scalpel.” If
+        we were to mark this up according to our list of semantic categories,
+        the encoded sentence would look like this: “The
+        &lt;pro&gt;surgeon&lt;/pro&gt; reached for a
+        &lt;tl&gt;scalpel&lt;/tl&gt;.” Notice how “surgeon” is nested in “pro”
+        tags (“profession”) and “scalpel” in “tl” tags (“tool”). For anyone who
+        does not know that “surgeon” is a profession or “scalpel” denotes a
+        tool, it would be impossible to encode these words accordingly. In other
+        words, encoding the manuscript was not just a mechanical but also an
+        intellectual act. It required close reading and a level of knowledge
+        about and understanding of a wide range of subjects that we neither
+        possessed nor could have foreseen needing when we joined the Project.
+        Most importantly, our ability to understand and mark up the text of Ms.
+        Fr. 640 significantly depended on a collective of people and sources
+        well beyond the manuscript or the Making and Knowing team itself.</p>
+    <p>Part of the difficulty in encoding the manuscript lay in the fact that
+        many terms and processes described by the author-practitioner have
+        become obscured over time and by modern historical terminology. For
+        example, <em>or mat</em> on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/66r/f/66r/tl"><u>66r</u></a>
+        means “mordant gilding” in modern English, but this translation obscures
+        the sense of the sixteenth-century term. Anachronistic translations and
+        interpretations might have problematic consequences for markup. While a
+        term may be classified as a material from a modern perspective, it may
+        not have been in the sixteenth century. For instance, “coral” (fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/3r/f/3r/tl"><u>3r</u></a>)
+        is nowadays understood as an animal, but was it also classified as such
+        in the sixteenth century? We aimed, both in translation and markup, to
+        bring the historical meaning of terms and processes (or actors’
+        categories) back into view by avoiding (as much as possible) to impose a
+        modern understanding of categories (such as materials) onto the
+        manuscript, except where those historical meanings might engender
+        confusion in modern readers.<a href="#fn13"
+           class="footnote-ref"
+           id="fnref13"
+           role="doc-noteref"><sup>13</sup></a> This was easier said than done.
+        While some entries were fairly straightforward, others were hard to
+        understand, even for native French speakers or seasoned historians. More
+        specifically, it was often difficult to grasp the meaning of terms or
+        processes described by the author-practitioner. Our ignorance thus made
+        it equally difficult to know if and how words should be tagged. For
+        instance, we had to understand what <em>azur d’esmail</em> (fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/11r/f/11r/tl"><u>11r</u></a>)
+        meant in order to determine if it should be marked up as a material or
+        not.<a href="#fn14"
+           class="footnote-ref"
+           id="fnref14"
+           role="doc-noteref"><sup>14</sup></a></p>
+    <p>In some cases the manuscript itself provided more insight: while the
+        meaning of a word was sometimes unclear in one entry, it was clarified
+        or intelligible in another. For instance, the terms <em>paillette</em>
+        (fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/134v/f/134v/tl"><u>134v</u></a>)
+        and <em>or de paillelle</em> (fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/149r/f/149r/tl"><u>149r</u></a>)
+        were translated as “spangle” and “spangle gold” respectively, due to the
+        explanation on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/104v/f/104v/tl"><u>104v</u></a>
+        that <em>pailleterie</em> (spangling work) is the application of “scales
+        of pure silver &amp; of gilt silver.” As a result, only <em>or de
+            paillelle</em> was marked up as a material, since <em>paillette</em>
+        could apply to either silver or gold and seemed to denote, in this
+        instance, more of a “format” for a material than a material proper.
+        Reading multiple entries alongside each other could thus help unravel
+        the meaning of certain terms and determine their appropriate markup. In
+        other cases, we had to consult early modern dictionaries and reference
+        works, use the glossary that was being developed and refined by the
+        translation teams, gloss entries and terms with relevant academic
+        literature, or mine other contemporaneous technical writings (e.g., Hugh
+        Plat’s <em>The Jewell House of Art and Nature</em> from 1594) to make
+        sense of a term or process.<a href="#fn15"
+           class="footnote-ref"
+           id="fnref15"
+           role="doc-noteref"><sup>15</sup></a></p>
+    <p>In addition to written sources, we frequently consulted other people,
+        including the translation teams, who had often already been able to
+        demystify a process or concept through their translation work. Certain
+        entries, however, were so esoteric that we needed the help of
+        specialists. A case in point are the recipes pertaining to weapons,
+        which contained numerous technical terms and processes with which none
+        of us were familiar. In the Summer of 2018, Jonathan Tavares and Pascal
+        Brioist—two experts on arms and armor—joined our workshop. To help us
+        all make sense of the chapter on the “Furbisher” (fols. <a
+           href="https://edition640.makingandknowing.org/#/folios/94r/f/94r/tl"><u>94r</u></a>
+        to <a
+           href="https://edition640.makingandknowing.org/#/folios/96r/f/96r/tl"><u>96r</u></a>)
+        or the entry on “Grey guards” (fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/96r/f/96r/tl"><u>96r</u></a>)
+        Tavares and Brioist drew out and named the individual parts of a sword
+        and harness (<i><u>Fig. 6</u></i>, <i><u>Fig. 7</u></i>). Through these
+        drawings, we were able to understand the author-practitioner’s
+        vocabulary and determine if a word should be marked up as a tool,
+        material, or not at all. Similarly, Making and Knowing postdoctoral
+        scholar Sophie Pitman, an expert on early modern dress and material
+        culture, helped us distinguish when <em>cotton</em> denoted a plant or a
+        specific type of cloth. Additionally, by consulting experts outside of
+        the Making and Knowing team, we were able to determine that <em>azur
+            d’esmail</em> may mean “smalt” (blue glass that was ground and used
+        as a colorant in pigments) or azurite.<a href="#fn16"
+           class="footnote-ref"
+           id="fnref16"
+           role="doc-noteref"><sup>16</sup></a></p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1P3e73PsmVPphGU2OiwukRfuUqEi0pS2D.jpg"
+                 alt="fig. 6">
+            <figcaption>Fig. 6. Pascal Brioist lending his expertise for the
+                weapons entries, 2018. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1_TslSzRMccUOMXgkjsla2Blg7Vm5bLCA.jpg"
+                 alt="fig. 7">
+            <figcaption>Fig. 7. A drawing by arms and armor experts Pascal
+                Brioist and Jonathan Tavares showing the individual parts of a
+                sword (left) and harness (right), 2018. © Making and Knowing
+                Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <h3 id="to-tag-or-not-to-tag">To Tag or Not to Tag</h3>
+    <p><span class="pull-left"></span>In the previous section we illustrated how
+        our ignorance of certain words and processes problematized the process
+        of implementing markup. Yet even as we accumulated knowledge, the act of
+        encoding did not necessarily become less complicated. For, as we worked
+        our way through the manuscript, new markup problems arose. On numerous
+        occasions, it was not the meaning of a word or process but rather the
+        meaning of a markup category—i.e., its boundaries, possibilities, and
+        limits—and how best to implement it became the subject of debate. This
+        section will highlight the flexible, volatile, and non-finite nature of
+        markup and its categories. In doing so, it will show that encoding the
+        manuscript was not a linear process in which we moved in a straight line
+        from fol. 1r to 170v. Rather it was characterized by moving back and
+        forth between pages, constantly implementing new and correcting old
+        markup in an attempt to adhere to new decisions and safeguard
+        consistency. In other words, we will discuss some of the problems we
+        encountered in working with markup categories and illustrate how
+        solutions to them were frequently sought by approaching issues from a
+        user’s perspective.</p>
+    <p>While understanding the meaning of a term certainly helped us to know how
+        it could be marked up, this was not always sufficient. Even when we
+        understood a term, and knew it could be marked up, the question
+        frequently was: should it be? Materials, for example, often occurred
+        with such frequency or their meaning was so vague that we decided to
+        only mark them up in very specific cases: <em>eau</em> (water), for
+        instance, would only be encoded as a material when qualified (e.g.,
+        <em>eau de pluie</em> (rain water)) or when used comparatively (e.g.,
+        “liquid like water”). Fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/50r/f/50r/tl"><u>50r</u></a>
+        offers another good example: take the following clause: “If you want to
+        promptly mold something in half relief that comes to hand, [...].”<a
+           href="#fn17"
+           class="footnote-ref"
+           id="fnref17"
+           role="doc-noteref"><sup>17</sup></a> The word “hand” denotes a body
+        part and, strictly speaking, could be marked up. However, because it is
+        only used metaphorically and the phrase “that comes to hand” does not
+        mean the actual use of one's hands, we chose not to tag it.</p>
+    <p>On other occasions, the reverse was the case. Though some words did not
+        strictly fall under one of our markup categories, we believed they
+        deserved to be marked up nevertheless. For example, although words like
+        <em>halene</em> (breath), <em>salive</em> (saliva), and <em>urine</em>
+        (urine) do not denote body parts, they do imply parts (or rather,
+        fluids) of the body being used in making processes. We therefore decided
+        that these words had to be marked up as body parts too. Similarly, when
+        a material was implied in a word for a process, technique, or tool, the
+        word was to be encoded as well: e.g., <em>pot plombé</em> (leaded pot)
+        or <em>huiler</em> (oiling).</p>
+    <p>These examples also point to another question commonly raised in our
+        encoding work: what is the scope of a tag, or how much do we mark up?
+        This question was especially pertinent in the case of materials. For on
+        numerous occasions the author-practitioner further defines and
+        distinguishes between materials by adding a qualifier. On fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/94v/f/94v/tl"><u>94v</u></a>,
+        for instance, he explains that the gold grips of sword guards are made
+        with “thin yellow canvas or a different canvas yellowed with chalk.”<a
+           href="#fn18"
+           class="footnote-ref"
+           id="fnref18"
+           role="doc-noteref"><sup>18</sup></a> While it would have been correct
+        (and most easy) to mark up “canvas” (in both instances) and “chalk” as
+        materials and proceed to the next sentence; the instructions do not call
+        for just <em>any</em> canvas, but rather for “thin yellow canvas”
+        <em>or</em> “canvas yellowed with chalk.” In other words, the
+        author-practitioner has added qualifiers (“thin yellow”; and “yellowed
+        with chalk”) to distinguish between various types of canvas. The
+        question therefore was: should we expand the scope of the material tag
+        to include qualifiers too? Because we considered it important to capture
+        the distinctions made by the author-practitioner between various types
+        of (the same) materials, we chose to mark up qualifiers as well. In
+        accord with that decision, the TL markup of the example on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/94v/f/94v/tl"><u>94v</u></a>
+        resulted in: &lt;m&gt;thin yellow canvas&lt;/m&gt; or a different
+        &lt;m&gt;canvas yellowed with chalk&lt;/m&gt;.</p>
+    <p>Though, as was the case with canvas, marking up qualifiers often only
+        required us to add a few words more, the example of <em>tuiles</em>
+        (“tiles”) on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/106v/f/106v/tl"><u>106v</u></a>
+        illustrates that our decision to expand the scope of a tag meant that it
+        would sometimes span several lines. Take for instance the entry
+        <em>tuiles</em> (“tiles”) on fol. 106v, which opens with the remark
+        that: “Tiles with which one covers houses, the hardest &amp; firmest,
+        and purged of stones &amp; coarse gravel, are used to mix in with the
+        sand for molding.”<a href="#fn19"
+           class="footnote-ref"
+           id="fnref19"
+           role="doc-noteref"><sup>19</sup></a> Following our rule to mark up
+        qualifiers, the material tag for this particular sentence starts with
+        “tiles” (the qualified word) and runs all the way to “coarse gravel,”
+        one line down, where the qualifier ends and the material tag closes:
+        “&lt;m&gt;Tiles with which one covers houses, the hardest &amp; firmest,
+        and purged of stones &amp; coarse gravel&lt;/m&gt;, are used to mix in
+        with the sand for molding.”</p>
+    <p>Examples like that of canvas or tiles were easy to encode given that the
+        qualifier immediately preceded or succeeded the qualified word. But what
+        do you do when a qualifier and the term to be qualified are separated by
+        a long string of words, or, worse, when they are not even part of the
+        same text block on a page? Directing our attention to another part of
+        the entry <em>tuiles</em> on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/106v/f/106v/tl"><u>106v</u></a>
+        can help illustrate the problem here. In a marginal note, written on the
+        right-hand side of the entry’s title, the author-practitioner remarks
+        that: “Those of the houses that are not sandy seem to withstand fire
+        better.”<a href="#fn20"
+           class="footnote-ref"
+           id="fnref20"
+           role="doc-noteref"><sup>20</sup></a> Notice that the
+        author-practitioner here is qualifying a different type of tile: not
+        “tiles with which one covers houses, the hardest &amp; firmest, and
+        purged of stones &amp; coarse gravel”—described in the text block
+        immediately below the entry title (and used in the previous example)—but
+        rather tiles “of the houses that are not sandy.” Note especially,
+        however, that the qualified word “tiles” has been substituted by the
+        demonstrative pronoun “those”, thereby referring the reader back to the
+        title of the entry (<em>tuiles</em>) and its accompanying textblock. In
+        other words, the qualified word (tiles) and the qualifier (“of the
+        houses that are not sandy seem to withstand fire better”) are not just
+        separated from each other by a string of words. Rather, they are not
+        even part of the same text block (the former being the title, the latter
+        having been nested in a marginal note). So what should the scope of the
+        material tag be here? Do you only mark up the qualified word (“tile”) or
+        its substitute (“those”); only the qualifier (“of the houses that are
+        not sandy.”); both the qualifier and the qualified word, or nothing at
+        all? After much debate, we reasoned that because the word “tiles” had
+        already been marked up as a material at least once before in this entry
+        (namely in the title), fol. 106v would definitely come up when filtering
+        the manuscript for occurances of tiles and any reader interested in this
+        material would probably read the entire entry either way—thus equally
+        noticing the marginal note. We therefore decided not to mark up the
+        marginal note with an m-tag (except for the “material” not sandy).</p>
+    <p>As this example shows, questions of scope were not always easy to answer.
+        They often had to be dealt with on a case-by-case basis and required
+        lengthy group discussions (<i><u>Fig. 8</u></i>). To expedite the markup
+        process and make it more efficient, we capped our discussion time at
+        five minutes. If a markup issue could not be solved within that time,
+        either because we could not reach an immediate agreement or the problem
+        was too complex, we would make a note of it and move on.</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1tLEMRY6khqh5uxCy07EBGSUIhzjlzt3u.jpg"
+                 alt="fig. 8">
+            <figcaption>Fig. 8. Clockwise from top left: Margot Lyautey, Celine
+                Camps, Pamela H. Smith, Sophie Pitman, and Tianna Uchacz having
+                a markup group discussion, March 2018 Text Workshop. © Making
+                and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Because the boundaries of markup categories were constantly in flux,
+        rules had numerous exceptions to them, and new decisions were made on a
+        daily basis, it was difficult to remember all markup rules. This was
+        especially true from workshop to workshop: since we typically met for
+        only two weeks each summer, by the time we reconvened, the decisions of
+        previous years had almost been forgotten. An encoding protocol was
+        therefore kept in the Project’s Google Drive that recorded all markup
+        rules and decisions (<i><u>Fig. 9</u></i>).<a href="#fn21"
+           class="footnote-ref"
+           id="fnref21"
+           role="doc-noteref"><sup>21</sup></a> This protocol contained a handy
+        “to tag or not to tag” table with a list of commonly encountered
+        problems and current solutions in categories like materials, places, and
+        body parts (<i><u>Fig. 10</u></i>, <i><u>Fig. 11</u></i>). Moreover,
+        when new decisions were made during one of the workshops, these were
+        also written on a whiteboard in our workspace, which was visible to all
+        groups and prevented us from having to toggle between multiple documents
+        while working (<i><u>Fig. 12</u></i>).</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/15efXMABXEyF-JLM13Rug7pcntwH-0gUC.png"
+                 alt="fig. 9">
+            <figcaption>Fig. 9. An example of how new markup decisions were
+                communicated to readers of the markup protocol in the Project’s
+                Google Drive. Screenshot Celine Camps and Margot Lyautey, 2019.
+                © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1ZXF2llqfKg9iYliFS8YOZTMN7NH4BxU-.png"
+                 alt="fig. 10">
+            <figcaption>Fig. 10. A list of the “to do and not to do” for
+                encoding places and body parts in the 2017 markup protocol in
+                the Project’s Google Drive. Screenshot Celine Camps and Margot
+                Lyautey, 2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1OQ7RUR8t2pBFb0NOOko4_wYAKgJpkJ3b.png"
+                 alt="fig. 11">
+            <figcaption>Fig. 11. A “to tag and not to tag” table for encoding
+                materials in the 2017 markup protocol in the Project’s Google
+                Drive. Screenshot Celine Camps and Margot Lyautey, 2019. ©
+                Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/15DjlwPdcY_t8BTTh1-ps2fCvWKqX1zxz.jpg"
+                 alt="fig. 12">
+            <figcaption>Fig. 12. Keeping track of new markup decisions on a
+                whiteboard, June 2017 Text Workshop. © Making and Knowing
+                Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Finally, in many instances the question was not only should a term be
+        tagged, but also, if yes, how best to do so. This latter question was
+        mainly raised due to first, the difference in language between the
+        transcriptions and the translation, and second, our aim to ensure a
+        consistent, useful, and unified markup across all three versions (i.e.,
+        TC, TCN, TL). The remaining examples in this section will show that
+        answers to these questions were frequently sought by approaching
+        problems from a user’s perspective.</p>
+    <p>In terms of encoding, the 2017 Summer Text Workshop was devoted to
+        completing the markup of all versions of the manuscript. By that time,
+        the markup was the product of three previous workshops (held in 2014,
+        2015, and 2016), in which different people had worked on the entries of
+        the manuscript with continuously changing markup procedures. The
+        resulting markup was therefore in various stages and inconsistent. The
+        aim from 2017 onward was to update the encoding and to ensure a
+        consistent and unified markup of the manuscript. In other words, we
+        strove to keep the structural, editorial, and semantic markup the same
+        across all three versions. This was not always possible and in certain
+        cases concessions had to be made.</p>
+    <p>The difference in language between the TC (and TCN) and the TL made it
+        difficult to carry over all the markup from one version to the other.
+        Take for instance expansions. We have already explained that we used
+        expansion tags to indicate expanded abbreviations (e.g., in
+        <em>premierement</em> or <em>communement</em>) in the TC and TCN. Markup
+        protocol required us to maintain a consistent markup. Yet how do you
+        carry over an expansion to the translation when the difference in
+        language does not allow you to indicate in English which part of the
+        source word is abbreviated? Specifically, how do you communicate to the
+        English reader that the “<em>ent</em>” in <em>premierement</em> is
+        abbreviated when they encounter Ms. Fr. 640 through the TL, whether
+        first or exclusively? In such cases, we chose to deviate from our rule
+        of consistency—expansion tags are not represented in the TL.</p>
+    <p>Deletions offer another good example. Protocol stipulated that deletions
+        were to be maintained across all three versions. In many cases this
+        could be done with ease. For instance, on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/4v/f/4v/tl"><u>4v</u></a>
+        the author-practitioner first wrote <em>oignons</em>, but then corrected
+        himself and crossed it out. All it took to carry over the deletion to
+        the TL was to translate the word <em>oignons</em> to “onions” and nest
+        the latter in deletion tags: &lt;del&gt;onions&lt;/del&gt;. Yet in other
+        instances, adhering to consistency demanded creativity because of the
+        nature of the deletion. Especially problematic were cases where only a
+        string of letters, which could not be translated, were deleted. A case
+        in point is a deletion on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/36v/f/36v/tl"><u>36v</u></a>.
+        In the first entry on this page, the author-practitioner originally
+        wrote: “Il est vray que pour les rendre plus vendables les
+        <em>fondables</em> y meslent plus de letton.”<a href="#fn22"
+           class="footnote-ref"
+           id="fnref22"
+           role="doc-noteref"><sup>22</sup></a> He then realized he had made a
+        mistake and crossed out “<em>ables</em>” in <em>fondables</em> and
+        replaced it with (i.e., added) “eurs,” thus changing <em>fondables</em>
+        to <em>fondeurs</em> (<i><u>Fig. 13</u></i>). Our markup in the TC and
+        TCN attempted to render the author-practitioner’s partial deletion and
+        addition as well as the fact that the word <em>fondeurs</em> indicates a
+        profession (<i><u>Fig. 14</u></i>). In accord with our markup protocol
+        and aim to unify the three versions, all deletions had to be carried
+        over from the TC to the TCN and the TL. However, the word “founders,”
+        the English translation of <em>fondeurs</em>, does not include an
+        “ables,” and the latter string of letters cannot be translated into
+        English either. So the question was, how do we include a deletion tag
+        here? The answer came from our asking what would be most beneficial to
+        potential users of the DCE. We reasoned that a great number of users
+        (perhaps especially those without French skills) might not read the
+        translation alongside the transcription and, as a result, would be
+        unaware of the deletion if not marked up in the TL. We therefore found
+        it important to flag in the TL that the author-practitioner had
+        corrected himself in the source text—in case users might be interested
+        in this information. Concretely, our solution was to carry over the
+        corrected letters, words, or strings of them, to the TL and, in cases
+        where they could not be translated, nest them in “fr” (French) tags to
+        indicate the difference in language (<i><u>Fig. 15</u></i>).</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/18c5J32j5dOQA_MJeUirMvHu7foPDukfn.png"
+                 alt="fig. 13">
+            <figcaption>Fig. 13. Detail of Ms. Fr. 640, fol. 36v. Bibliothèque
+                nationale de France, Paris. The deletion and replacement of
+                “ables” with “eurs”, thereby changing <em>fondables</em> into
+                <em>fondeurs</em>. Source: gallica.bnf.fr.</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1Nh7fXOXRQK5dWztPvb5S68rJ0KQfYSaK.png"
+                 alt="fig. 14">
+            <figcaption>Fig. 14. The word <em>fondeurs</em> (fol. 36v), marked
+                up in the TCN in the Project’s Google Drive. Screenshot Celine
+                Camps and Margot Lyautey, 2019. The “pro” tag stands for
+                profession; “del” for deletion; and “add” for addition. Boldface
+                and colors were added here for legibility. © Making and Knowing
+                Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>)</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1cyxYNyD9-xMhRQiFbQ5f3XsjsNv3joYI.png"
+                 alt="fig. 15">
+            <figcaption>Fig. 15. The word “founders” (fol. 36v), marked up in
+                the TL in the Project’s Google Drive. Screenshot Celine Camps
+                and Margot Lyautey, 2019. The “pro” tag stands for profession;
+                “del” for deletion; “fr” for French; and “add” for addition.
+                Boldface and colors were added here for legibility. © Making and
+                Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>)</figcaption>
+        </figure>
+    </div>
+    <p>A paragraph in the entry “Pewterers” on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/28v/f/28v/tl"><u>28v</u></a>,
+        which contains various types of deletions, helpfully illustrates how we
+        generally dealt with carrying over omitted words or strings of letters
+        from the TC and TCN to the TL:</p>
+    <blockquote>
+        <p><em>French transcription (TC):</em></p>
+        <p>Pour mouler de plats &amp; escuelles ilz les font de pierre <del>
+                porte</del> morte qui est grais &amp; les tournent &amp;
+            polissent <del>aultour</del> au tour Ils fondent leur estaim dans
+            une cassolle <del>dest</del> de fer a feu de charbons Et avecq une
+            cueillere de fer qui tient <del>presque</del> la quantite suffisante
+            pour un plat ilz gectent <del>leu</del> dans leurs moules froids
+            quilz tiennnent joincts &amp; serres entre les genoils</p>
+    </blockquote>
+    <p>*</p>
+    <blockquote>
+        <p><em>English translation (TL):</em></p>
+        <p>To mold platters &amp; dishes, they make them out of <em>pierre <del>
+                    porte</del> morte</em>, which is <em>grais</em>, &amp; they
+            turn &amp; polish <del>around</del> them on the wheel. They melt
+            their tin in an <em>
+                <del>dest</del>
+            </em> iron pot on a charcoal fire, and with an iron spoon that holds
+            <del>almost</del> a sufficient quantity for a platter, they cast
+            <em>
+                <del>leu</del>
+            </em> in their cold molds, which they keep joined &amp; tight
+            between their knees.</p>
+    </blockquote>
+    <p><span class="pull-left"></span>Table 3 shows how each of these deletions
+        was marked up and how we encoded deletions, however simple or
+        problematic, across the three versions of the manuscript text more
+        generally.</p>
+    <h3
+        id="table-3-encoding-of-the-author-practitioners-deletions-in-tc-tcn-and-tl">
+        Table 3: Encoding of the Author-Practitioner’s Deletions in TC, TCN, and
+        TL</h3>
+    <table>
+        <colgroup>
+            <col style="width: 15%">
+            <col style="width: 16%">
+            <col style="width: 20%">
+            <col style="width: 20%">
+            <col style="width: 26%">
+        </colgroup>
+        <thead>
+            <tr class="header">
+                <th></th>
+                <th>
+                    <strong>Deletion in original French</strong>
+                </th>
+                <th>
+                    <strong>English translation</strong>
+                </th>
+                <th>
+                    <strong>Markup in TC and TCN</strong>
+                </th>
+                <th>
+                    <strong>Markup in TL</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="odd">
+                <td colspan="1">
+                    <strong>Full word (translation clear)</strong>
+                </td>
+                <td colspan="1">
+                    <p>aultour</p>
+                    <p>presque</p>
+                </td>
+                <td colspan="1">
+                    <p>around</p>
+                    <p>almost</p>
+                </td>
+                <td colspan="1">
+                    <p>&lt;del&gt;aultour&lt;/del&gt;</p>
+                    <p>&lt;del&gt;presque&lt;/del&gt;</p>
+                </td>
+                <td colspan="1">
+                    <p>&lt;del&gt;around&lt;/del&gt;</p>
+                    <p>&lt;del&gt;almost&lt;/del&gt;</p>
+                </td>
+            </tr>
+            <tr class="even">
+                <td colspan="1">
+                    <strong>Full word
+                        <br>
+                        (translation unclear)
+                    </strong>
+                </td>
+                <td colspan="1">porte</td>
+                <td colspan="1">?<a href="#fn23"
+                       class="footnote-ref"
+                       id="fnref23"
+                       role="doc-noteref"><sup>23</sup></a></td>
+                <td colspan="1">&lt;del&gt;porte&lt;/del&gt;</td>
+                <td colspan="1">
+                    &lt;del&gt;&lt;fr&gt;porte&lt;/fr&gt;&lt;/del&gt;</td>
+            </tr>
+            <tr class="odd">
+                <td colspan="1">
+                    <strong>String of letters
+                        <br>
+                        (translation unclear)
+                    </strong>
+                </td>
+                <td colspan="1">
+                    <p>dest</p>
+                    <p>leu</p>
+                </td>
+                <td colspan="1">
+                    <p>?</p>
+                    <p>? (based on context probably leurs)</p>
+                </td>
+                <td colspan="1">
+                    <p>&lt;del&gt;dest&lt;/del&gt;</p>
+                    <p>&lt;del&gt;leu&lt;/del&gt;</p>
+                </td>
+                <td colspan="1">
+                    <p>&lt;del&gt;&lt;fr&gt;dest&lt;/fr&gt;&lt;/del&gt;</p>
+                    <p>&lt;del&gt;&lt;fr&gt;leu&lt;/fr&gt;&lt;/del&gt;</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p><span class="pull-left"></span>Usability rather than consistency also
+        became the goal in marking up fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/16r/f/16r/tl"><u>16r</u></a>.
+        In the entry “Founding of soft iron,” the author-practitioner explains
+        that miners use <em>deulx ou trois poignees</em> (two or three handfuls)
+        of wallwort “to make the iron run.” The English “handfuls” denotes a
+        body part—the hand—and, following our markup protocol, should thus be
+        marked up with a &lt;bp&gt; tag. Yet, the implied use of the hand is
+        less obvious in the French <em>poignees</em> and tagging it as a body
+        part could be considered illogical and potentially confusing to the
+        reader. Should it therefore be tagged in the TC and TCN at all? While it
+        would have been logical to omit the tag in the French, marking up only
+        the English would lead to an inconsistency in tags. Yet, more important
+        to our decision than a unified markup, were the implications our
+        encoding practices might have for potential users of the DCE. Unless
+        marked up, the entry “Founding of soft iron” on fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/16r/f/16r/tl"><u>16r</u></a>
+        would not appear when filtering the transcription for mention of body
+        parts, and users might not think of searching for the word
+        <em>poignees</em> themselves. It was these assumptions about potential
+        users and usability that ultimately made us decide to mark up
+        <em>poignees</em> as a body part in the TC and TCN as well.</p>
+    <p>In sum, even though we had already developed our markup categories, their
+        rules and the practice of implementation were not straightforward, their
+        conceptual boundaries never fixed but rather constantly tested and
+        redefined as we moved through and gained knowledge of the manuscript.
+        Moreover, it was precisely because of the ever-changing, flexible, and
+        non-finite nature of our markup categories that we constantly had to
+        move back and forth between pages, either correcting existing or
+        inserting new markup on previously completed folios, in accordance with
+        the latest encoding protocols. In the next and final section, we will
+        show that although we have focused primarily on the role of the human
+        intellect in this paper, encoding always depended on a collaboration
+        between humans and computers.</p>
+    <h3 id="encoding-a-collaboration-between-humanists-and-computers">Encoding:
+        A Collaboration Between Humanists and Computers </h3>
+    <p><span class="pull-left"></span>Although marking up Ms. Fr. 640 was
+        primarily a human endeavor, computers and digital tools were
+        nevertheless essential to our work. For instance, we already saw how the
+        digital tracking spreadsheet made by Naomi Rosenkranz and the markup
+        protocols made our efforts more efficient. Besides the fact that our
+        markup work was done in the Google Drive, computers and digital tools
+        also played a role in a different way.</p>
+    <p>Our markup ultimately had to be read by a computer, and any failure or
+        error on our part when inserting tags would problematize this process. A
+        commonly made mistake, for example, was to forget to close a tag. Let us
+        explain this briefly: in order for a computer to read our markup
+        language, each semantic category requires a tag that opens with the form
+        &lt;element name&gt; and closes with the form &lt;/element name&gt;
+        (note the forward slash here). For instance, when we want a computer to
+        interpret the word “fish” in the entry “Fish glue or isinglass (and
+        mouth glue)” (fol. <a
+           href="https://edition640.makingandknowing.org/#/folios/7r/f/7r/tl"><u>7r</u></a>)
+        as an animal, it requires an opening &lt;al&gt; tag and a closing
+        &lt;/al&gt; tag. The proper markup would result in:
+        &lt;al&gt;fish&lt;/al&gt;. Yet the forward slash is easily forgotten (or
+        confused with a backward slash) when inserting tags manually, thereby
+        hampering a computer’s ability to understand the markup. Another
+        frequent error was to confuse the order of multiple tags and create an
+        asymmetry. For example, the word “fish glue” denotes both a material and
+        an animal and has to be marked up as follows:
+        &lt;m&gt;&lt;al&gt;Fish&lt;/al&gt; glue&lt;/m&gt;. Note the order of the
+        tags: the word “fish” is nested inside an opening and closing “al” tag,
+        thus encoding it as an animal; the term “fish glue” is surrounded by
+        opening and closing “m” tags, thus indicating it as a material. It looks
+        straightforward, but mistakes are easily made. Compare, for instance,
+        the order of the tags in the previous example with that in the
+        following: &lt;al&gt;&lt;m&gt;Fish&lt;/al&gt; glue&lt;/m&gt;. The
+        elements are the same, but their order has changed significantly. The
+        “m” tag (&lt;m&gt;) opens inside another element (the “al” tag), but it
+        does not close before the outer element (i.e., &lt;al&gt;) does. In
+        other words, these two tag sets overlap rather than nest. Nesting tags
+        are permitted; overlapping are not. As a result, the markup in this
+        latter example will cause errors when the computer tries to read it.</p>
+    <p>Though these mistakes are not hard to spot in isolated examples, they can
+        be easily overlooked in a text as heavily marked up as that of the entry
+        “For gilding with gold color and tinsel” on fol. <a
+           href="https://edition-staging.makingandknowing.org/#/folios/7r/f/7r/tl"><u>7r</u></a>
+        (<i><u>Fig. 16</u></i>). To reduce the risk of such errors and
+        facilitate and expedite the process of encoding and identifying
+        mistakes, Philip Cherian, an MSc student in physics and philosophy of
+        science at the École Polytechnique and returning participant in the Text
+        Workshops, developed two ingenious Google Docs add-ons (which he
+        eventually consolidated into a single multipurpose tool), for the markup
+        team: one for inserting tags (<i><u>Vid. 1</u></i>), and another for
+        validating encoded documents (<i><u>Vid. 2</u></i>, <i><u>Vid. 3</u></i>). Video 1 illustrates how the first add-on enabled us to mechanically
+        insert tags without having to type them out ourselves, reducing the risk
+        of forgetting, for instance, a forward slash in the closing tag or of
+        inserting the wrong element. Videos 2 and 3 show how we could validate
+        our encoded documents—i.e., check for errors—by using the second add-on.
+        This tool would not only notify us of mistakes (e.g., an imbalance in
+        tags) and inform us about the type of error made (e.g., missing end
+        tag), but also help us locate it on the page (e.g., on line nine).
+        Notice also how this tool changes the format and color of the markup,
+        making it easier to distinguish from the manuscript’s text.</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1m9CTJRWgYmVStusuS85Os6oWepnO8pMy.png"
+                 alt="fig. 16">
+            <figcaption>Fig. 16. The marked up translation in the Project’s
+                Google Drive of the entry “Fish glue or isinglass and mouth
+                glue” on fol. 7r of Ms. Fr. 640. Screenshot Celine Camps and
+                Margot Lyautey, 2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <iframe width="560"
+                    height="315"
+                    src="https://player.vimeo.com/video/398011630"
+                    frameborder="0"
+                    allowfullscreen=""></iframe>
+            <figcaption>Vid. 1. The process of marking up the entry “Lettering
+                of gold on paper” using Philip Cherian’s tag insertion add-on
+                tool in the TL (translation) document for fol. 8r in the
+                Project’s Google Drive. Screen recording Celine Camps, 2019. ©
+                Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <iframe width="560"
+                    height="315"
+                    src="https://player.vimeo.com/video/398012069"
+                    frameborder="0"
+                    allowfullscreen=""></iframe>
+            <figcaption>Vid. 2. The process of formatting and validating the
+                entry “For gilding with gold color and tinsel” using Philip
+                Cherian’s validation add-on tool in the TL (translation)
+                document for fol. 7r in the Project’s Google Drive. Screen
+                recording Celine Camps, 2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <iframe width="560"
+                    height="315"
+                    src="https://player.vimeo.com/video/398012624"
+                    frameborder="0"
+                    allowfullscreen=""></iframe>
+            <figcaption>Vid. 3. The process of validating and correcting markup
+                errors in the entry “For gilding with gold color and tinsel”
+                using Philip Cherian’s validation add-on tool in the TL
+                (translation) document for fol. 7r in the Project’s Google
+                Drive. Screen recording Celine Camps, 2019. © Making and Knowing
+                Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Since markup mistakes would make the text impossible for a computer to
+        process, validating our work was no mere formality, and we developed
+        strategies to remind and incentivize ourselves to get the encoding
+        right. If the markup team should ever have a mascot, it would have to be
+        dancing Kermit, his hands flailing about upon seeing an error-free
+        markup (<i><u>Vid. 4</u></i>). In fact, validating was so important that
+        it not only became the group’s watchword—with both markup and
+        translation teams being reminded in many ways to check their work before
+        proceeding to the next entry or folio—but even became a song, aimed to
+        keep the spirits high (<i><u>Fig. 17</u></i>, <i><u>Fig. 18</u></i>).
+        Indeed, encoding Ms. Fr. 640 was a very demanding task, and by 2017 we
+        got so immersed in it that, upon leaving the Text Workshop at the end of
+        the day, we started mentally marking up the produce we encountered as we
+        walked through the supermarkets of Toulouse, planning our dinners.</p>
+    <div class="figure-container">
+        <figure>
+            <iframe width="560"
+                    height="315"
+                    src="https://player.vimeo.com/video/398012912"
+                    frameborder="0"
+                    allowfullscreen=""></iframe>
+            <figcaption>Vid. 4. A dancing Kermit in Philip Cherian’s validation
+                add-on tool in the Project’s Google Drive, which appears once an
+                encoded document is validated as error-free. Screen recording
+                Celine Camps, 2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1SeVYsGssst5hHAduZFTV8A2RyGRKKzWI.png"
+                 alt="fig. 17">
+            <figcaption>Fig. 17. A detail from the digital tools built by Philip
+                Cherian, reminding the markup team to validate their work for
+                well-formedness. Screenshot Celine Camps and Margot Lyautey,
+                2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_335_ie_19/1EaAqfG1W2CcYWQ7zZRxXc2Gzf0r1m7Y2.jpg"
+                 alt="fig. 18">
+            <figcaption>Fig. 18. A whiteboard reminder for the markup team to
+                validate their work for well-formedness with musical notes
+                alluding to the validation song. Screenshot Celine Camps and
+                Margot Lyautey, 2019. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>In sum, though largely a human affair, marking up Ms. Fr. 640 could not
+        have been done without the help of computers and digital tools.</p>
+    <h2 id="conclusion">Conclusion</h2>
+    <p>When we joined the Project in the summer of 2016 and indicated our
+        preference for markup, we assumed the task of encoding Ms. Fr. 640 would
+        be straightforward, manageable, and require minimal knowledge and
+        expertise. This essay has demonstrated the opposite. Although much is
+        left unsaid and this paper cannot do full justice to our work or that of
+        others on whom we depended, we hope to have identified some of the most
+        important characteristics and problems of encoding Ms. Fr. 640.</p>
+    <p>We have shown that marking up Ms. Fr. 640 was a complex and messy
+        endeavor, which required close reading, continuous reflection and
+        alteration, and collective expertise on a wide variety of subjects. We
+        have equally highlighted the non-finite nature of markup. Indeed even
+        now, as the Project has met its first major objective with the
+        publication of <em>Secrets of Craft and Nature in Renaissance France. A
+            Digital Critical Edition and English Translation of BnF Ms. Fr.
+            640</em>, and the markup of the manuscript is, in that sense,
+        complete, the encoding can still be considered unfinished. There are
+        always more tags to add or remove; conceptual boundaries to redefine,
+        and new categories to be developed. In that way, markup truly is a
+        never-ending process.</p>
+    <p>Above all, we hope to have shown that—contrary to what we initially
+        believed—it took knowledge to mark up Ms. Fr. 640. Knowledge of the
+        manuscript and its structure. Knowledge of the historical terms and
+        processes contained within it and of the sources and experts who could
+        help us obtain it. Knowledge of how computers and humanists read a text.
+        And knowledge of how our work could benefit users. Most importantly,
+        encoding Ms. Fr. 640 not only required knowledge, but through the very
+        process of obtaining that knowledge, also produced it. In a sense, the
+        resulting markup can be considered a mirror of the Project’s collective
+        knowledge—both its acquisition and production. In other words—in the
+        spirit of the Project and its mission as conveyed in this essay’s
+        epigraph—ma&lt;r&gt;king was knowing.</p>
+    <section class="footnotes footnotes-end-of-document"
+             role="doc-endnotes">
+        <hr>
+        <ol>
+            <li id="fn1"
+                role="doc-endnote">
+                <p>“About,” Making and Knowing Project, accessed December 24,
+                    2019, <a
+                       href="https://www.makingandknowing.org/about-the-project/"><u>https://www.makingandknowing.org/about-the-project/</u></a>.<a
+                       href="#fnref1"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn2"
+                role="doc-endnote">
+                <p>We treat the verb “to mark up” as synonymous with “to encode”
+                    and “to tag” throughout this essay.<a href="#fnref2"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn3"
+                role="doc-endnote">
+                <p>While the processes of transcription and translation are key
+                    components of the Making and Knowing project, our essay will
+                    only reflect on these processes when it serves our
+                    discussion of markup. For a reflection on the translation of
+                    Ms. Fr. 640, see Soersha Dyon and Heather Wacha, “Turning
+                    Turtle: The Process of Translating BnF Ms. Fr. 640,” in
+                    <em>Secrets of Craft and Nature in Renaissance France. A
+                        Digital Critical Edition and English Translation of BnF
+                        Ms. Fr. 640</em>, ed. Making and Knowing Project, et al.
+                    (New York: Making and Knowing Project, 2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>.
+                    On the text and codicology of Ms. Fr. 640 and its
+                    transcription, see Marc Smith, “Making Ms. Fr. 640,” in
+                    <em>Secrets of Craft and Nature in Renaissance France. A
+                        Digital Critical Edition and English Translation of BnF
+                        Ms. Fr. 640</em>, ed. Making and Knowing Project, et al.
+                    (New York: Making and Knowing Project, 2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_326_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_326_ie_19</u></a>.<a
+                       href="#fnref3"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn4"
+                role="doc-endnote">
+                <p>For an explanation of the meaning and use of XML (Extensible
+                    Markup Language) and TEI (Text Encoding Initiative) markup
+                    see Terry Catapano and Naomi Rosenkranz, “BnF Ms. Fr. 640 as
+                    a Digital Text,” in <em>Secrets of Craft and Nature in
+                        Renaissance France. A Digital Critical Edition and
+                        English Translation of BnF Ms. Fr. 640</em>, ed. Making
+                    and Knowing Project, et al. (New York: Making and Knowing
+                    Project, 2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_310_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_310_ie_19</u></a>.<a
+                       href="#fnref4"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn5"
+                role="doc-endnote">
+                <p>For the participants in the 2014 and 2015 Text Workshops, see
+                    “People and Credits,” Secrets of Craft and Nature in
+                    Renaissance France, Making and Knowing Project, <a
+                       href="https://edition640.makingandknowing.org/#/content/about/credits"><u>https://edition640.makingandknowing.org/#/content/about/credits</u></a>.<a
+                       href="#fnref5"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn6"
+                role="doc-endnote">
+                <p>Some user stories in this unredacted table are not related to
+                    the development of markup categories but to questions of
+                    what other features might have been useful for the DCE.<a
+                       href="#fnref6"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn7"
+                role="doc-endnote">
+                <p>These markup categories exclude structural and editorial
+                    markup. See Catapano and Rosenkranz, “BnF Ms. Fr. 640 as a
+                    Digital Text,” <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_310_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_310_ie_19</u></a>.<a
+                       href="#fnref7"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn8"
+                role="doc-endnote">
+                <p>For more on these categories, see “Entry Categories,” Secrets
+                    of Craft and Nature in Renaissance France, Making and
+                    Knowing Project, <a
+                       href="https://edition640.makingandknowing.org/#/content/research+resources/categories"><u>https://edition640.makingandknowing.org/#/content/resources/categories</u></a>.<a
+                       href="#fnref8"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn9"
+                role="doc-endnote">
+                <p>For the participants in the 2017 Text Workshop, see “People
+                    and Credits,” Secrets of Craft and Nature in Renaissance
+                    France, Making and Knowing Project, <a
+                       href="https://edition640.makingandknowing.org/#/content/about/credits"><u>https://edition640.makingandknowing.org/#/content/about/credits</u></a>.<a
+                       href="#fnref9"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn10"
+                role="doc-endnote">
+                <p>The full set of recipe categories developed for 2017 were:
+                    alchemy, casting, cultivation, dyeing, glass, medicine,
+                    metal, NA, not grouped, painting, printing, soh (sleight of
+                    hand), stones, sulfuric, tool, varnish weapons, wood.<a
+                       href="#fnref10"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn11"
+                role="doc-endnote">
+                <p>In 2018, Celine and Margot worked on all entries together.<a
+                       href="#fnref11"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn12"
+                role="doc-endnote">
+                <p>In 2018, the number of participants was reduced and there was
+                    only one markup group left, consisting of the authors of
+                    this essay. When Margot left the workshop for two days to
+                    join a conference in Germany, Celine was left to encode the
+                    manuscript by herself. Because this proved slow and
+                    inefficient, it was decided to postpone the markup work
+                    until Margot returned and they could encode together.<a
+                       href="#fnref12"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn13"
+                role="doc-endnote">
+                <p>See, for instance, the issue of “pencil” and “paintbrush”
+                    discussed in “Principles of Translation,” Secrets of Craft
+                    and Nature in Renaissance France, Making and Knowing
+                    Project, <a
+                       href="https://edition640.makingandknowing.org/#/content/research+resources/principles-translation"><u>https://edition640.makingandknowing.org/#/content/resources/principles-translation</u></a>.<a
+                       href="#fnref13"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn14"
+                role="doc-endnote">
+                <p>Because we are unsure if <em>azur d’esmail</em> is smalt,
+                    azurite, or something else, it is left untranslated in the
+                    DCE.<a href="#fnref14"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn15"
+                role="doc-endnote">
+                <p>The most commonly consulted dictionaries were Randle
+                    Cotgrave, <em>A Dictionarie of the French and English
+                        Tongues</em> (London: Adam Islip, 1611); and <em>DMF:
+                        Dictionnaire du Moyen Français</em>, version 2015 (DMF
+                    2015). ATILF. (CNRS and Université de Lorraine), accessed
+                    December 24, 2019, <a
+                       href="http://www.atilf.fr/dmf/"><u>http://www.atilf.fr/dmf/</u></a>.
+                    For the full list of translation resources see, “Linguistic
+                    Resources,” Secrets of Craft and Nature in Renaissance
+                    France, Making and Knowing Project, <a
+                       href="https://edition640.makingandknowing.org/#/content/research+resources/dictionaries"><u>https://edition640.makingandknowing.org/#/content/resources/dictionaries</u></a>.
+                    For the Glossary, see “Glossary,” Secrets of Craft and
+                    Nature in Renaissance France, Making and Knowing Project, <a
+                       href="https://edition640.makingandknowing.org/#/folios/1r/f/1r/glossary"><u>https://edition640.makingandknowing.org/#/folios/1r/f/1r/glossary</u></a>;
+                    see also, Dyon and Wacha, “Turning Turtle: The Process of
+                    Translating BnF Ms. Fr. 640,” <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>.
+                    For a comparison between Ms. Fr. 640 and Hugh Plat’s <em>The
+                        Jewell House of Art and Nature</em> (1594) see Amanda
+                    Faulkner, “Ms. Fr. 640 and <em>The Jewell House of Art and
+                        Nature</em> (1594),” in <em>Secrets of Craft and Nature
+                        in Renaissance France. A Digital Critical Edition and
+                        English Translation of BnF Ms. Fr. 640</em>, ed. Making
+                    and Knowing Project, et al. (New York: Making and Knowing
+                    Project, 2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_072_fa_18"><u>https://edition640.makingandknowing.org/#/essays/ann_072_fa_18</u></a>.<a
+                       href="#fnref15"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn16"
+                role="doc-endnote">
+                <p>Our particular thanks to Jo Kirby and Marika Spring, who also
+                    discuss <em>azur d’esmail</em> in their essay, “Ms. Fr. 640
+                    in the World of Pigments in Sixteenth-Century Europe,” in
+                    <em>Secrets of Craft and Nature in Renaissance France. A
+                        Digital Critical Edition and English Translation of BnF
+                        Ms. Fr. 640</em>, ed. Making and Knowing Project, et al.
+                    (New York: Making and Knowing Project, 2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_321_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_321_ie_19</u></a>.<a
+                       href="#fnref16"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn17"
+                role="doc-endnote">
+                <p>French transcription (TC): “Si promptement tu veulx mouler
+                    quelque chose de demy relief qui te vient en main.”<a
+                       href="#fnref17"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn18"
+                role="doc-endnote">
+                <p>French transcription (TC): “toile deliee jaulne ou aultre
+                    jaulnye avecq de la croye.”<a href="#fnref18"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn19"
+                role="doc-endnote">
+                <p>French transcription (TC): “Les tuilles de quoy on couvre les
+                    maisons des plus dures &amp; plus fermes et repurgees de
+                    pierres &amp; gros gravier se prenent pour mesler parmy le
+                    sable.” Two deletions have been omitted for legibility.<a
+                       href="#fnref19"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn20"
+                role="doc-endnote">
+                <p>French transcription (TC): “celles des maisons qui sont de
+                    terre aulcunement areneuse semblent tenir plus au foeu.”<a
+                       href="#fnref20"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn21"
+                role="doc-endnote">
+                <p>It is worth mentioning that our essay could not have been
+                    written without this protocol, as it enabled us to
+                    retroactively reconstruct our reasoning and decision making
+                    processes.<a href="#fnref21"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn22"
+                role="doc-endnote">
+                <p>Our italics. English translation (TL): “It is true that
+                    founders mix in more latten to make them yellower, to make
+                    them more vendable” (we have omitted the deletion for
+                    legibility here).<a href="#fnref22"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn23"
+                role="doc-endnote">
+                <p>While <em>porte</em> can be translated as “door” and
+                    <em>morte</em> as “dead,” it would hide the fact that
+                    <em>porte</em> (the original word) and <em>morte</em> (the
+                    correction) sound alike. This rhyme may indicate something
+                    of the author-practitioner’s habits of mind when writing and
+                    could be interesting for users of the DCE. The rhyme could
+                    also indicate he was taking dictation and misheard, as seems
+                    to be the case with some entries in Ms. Fr. 640 written by
+                    the scribe known as “Hand D.” See Smith, “Making Ms. Fr.
+                    640,” <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_326_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_326_ie_19</u></a>.<a
+                       href="#fnref23"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+        </ol>
+    </section>
+    <div class="bibliography">
+        <h2 id="bibliography">Bibliography</h2>
+        <p>Catapano, Terry, and Naomi Rosenkranz. “BnF Ms. Fr. 640 as a Digital
+            Text.” In <em>Secrets of Craft and Nature in Renaissance France. A
+                Digital Critical Edition and English Translation of BnF Ms. Fr.
+                640</em>, edited by Making and Knowing Project, Pamela H. Smith,
+            Naomi Rosenkranz, Tianna Helena Uchacz, Tillmann Taape, Clément
+            Godbarge, Sophie Pitman, Jenny Boulboullé, Joel Klein, Donna Bilak,
+            Marc Smith, and Terry Catapano. New York: Making and Knowing
+            Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_310_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_310_ie_19</u></a>.
+        </p>
+        <p>Cotgrave, Randle. <em>A Dictionarie of the French and English
+                Tongues</em>. London: Adam Islip, 1611. Online. <a
+               href="http://www.pbm.com/~lindahl/cotgrave/"><u>http://www.pbm.com/~lindahl/cotgrave/</u></a>.
+        </p>
+        <p><em>Dictionnaire du Moyen Français</em>. Version 2015. ATILF - CNRS
+            &amp; Université de Lorraine. Online. <a
+               href="http://www.atilf.fr/dmf"><u>http://www.atilf.fr/dmf</u></a>.
+        </p>
+        <p>Dyon, Soersha, and Heather Wacha. “Turning Turtle: The Process of
+            Translating BnF Ms. Fr. 640.” In <em>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</em>, edited by Making and
+            Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+            Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+            Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano.
+            New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_318_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_318_ie_19</u></a>.
+        </p>
+        <p>Faulkner, Amanda. “Ms. Fr. 640 and <em>The Jewell House of Art and
+                Nature</em> (1594).” In <em>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</em>, edited by Making and
+            Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+            Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+            Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano.
+            New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_072_fa_18"><u>https://edition640.makingandknowing.org/#/essays/ann_072_fa_18</u></a>.
+        </p>
+        <p>Kirby, Jo, and Marika Spring. “Ms. Fr. 640 in the World of Pigments
+            in Sixteenth-Century Europe.” In <em>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640,</em> edited by Making and
+            Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+            Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+            Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano.
+            New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_321_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_321_ie_19</u></a>.
+        </p>
+        <p>Making and Knowing Project. “About.” Accessed December 24, 2019. <a
+               href="https://www.makingandknowing.org/about-the-project/"><u>https://www.makingandknowing.org/about-the-project/</u></a>.
+        </p>
+        <p>Smith, Marc. “Making Ms. Fr. 640.” In <em>Secrets of Craft and Nature
+                in Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</em>, edited by Making and
+            Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+            Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+            Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano.
+            New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_326_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_326_ie_19</u></a>.
+        </p>
+    </div>
+</body>
+
+</html>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* Essay-specific image styling to match React version */
+        #annotation-view figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #DDDDDD;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 601px) and (max-width: 960px) {
+            #annotation-view figure img {
+                max-width: 500px;
+            }
+        }
+        
+        @media (min-width: 961px) {
+            #annotation-view figure img {
+                max-width: 600px;
+            }
+        }
+        
+        #annotation-view figure {
+            margin: 20px 0;
+            max-width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        #annotation-view figure .figure-image-container {
+            padding: 0;
+            margin: 0 auto;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        #annotation-view figure figcaption {
+            line-height: 1.4;
+            font-size: 11pt;
+            text-align: left;
+            max-width: 100%;
+            margin-top: 8px;
+            padding: 0 10px;
+            color: #666;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Essay loaded: ann_335_ie_19');
+            
+            // Handle internal links  
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

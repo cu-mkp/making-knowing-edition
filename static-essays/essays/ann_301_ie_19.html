@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Manuscript Seen from Afar: A Computational Approach to Ms. Fr. 640 - Making and Knowing</title>
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+<body>
+    <div id="content-page">
+        <div class="bg-maroon-gradient accent-bar"></div>
+        <div class="MuiPaper-root MuiPaper-elevation2 MuiPaper-rounded flex-parent jc-space-btw page-header text-bg-gradient-light-tb">
+            <h1 class="page-title">The Manuscript Seen from Afar: A Computational Approach to Ms. Fr. 640</h1>
+            <div class="page-meta">
+                <span class="page-author">By </span>
+                <span class="page-doi">DOI: https://www.doi.org/10.7916/nnyc-gd81</span>
+            </div>
+        </div>
+        <div id="content">
+            <div id="annotation-view">
+                <div class="annotation-view-container">
+                    <a href="index.html" class="back-link">← Back to Essays</a>
+                    <div class="annotation-content">
+                        <html>
+
+<head></head>
+
+<body>
+    <div class="header-section">
+        <h2>Abstract</h2>
+        <div>
+            <p>Using the abundant data made available by the Making and Knowing
+                Project, this essay examines some of the rhetorical features of
+                Ms. Fr. 640, with a focus on <em>dispositio</em>. It argues
+                that, when applied to a single document, careful visualization
+                of statistical data can promote a “synthetic” approach to texts.
+                Applied to Ms. Fr. 640, these computational methods provide
+                readers with tools to assess relations between the manuscript’s
+                constitutive parts and its cohesion as a whole. In doing so,
+                this essay contributes to broadening the scope of
+                computer-assisted hermeneutics in data-rich editions.</p>
+
+        </div>
+        <br>
+        <h2>Cite As</h2>
+        <div>
+            Godbarge, Clément. “The Manuscript Seen from Afar: A Computational
+            Approach to Ms. Fr. 640.” In <i>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</i>, edited by Making and Knowing
+            Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena Uchacz,
+            Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny Boulboullé,
+            Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano. New York:
+            Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_301_ie_19">https://edition640.makingandknowing.org/#/essays/ann_301_ie_19</a>.
+            DOI: <a
+               href="https://www.doi.org/10.7916/nnyc-gd81">https://www.doi.org/10.7916/nnyc-gd81</a>
+        </div>
+    </div>
+
+    <p>The code underlying digital editions raises the prospect of radically new
+        approaches to the text.<a href="#fn1"
+           class="footnote-ref"
+           id="fnref1"
+           role="doc-noteref"><sup>1</sup></a> This alluring vision has prompted
+        numerous attempts at incorporating data science into the study of the
+        written word. Indeed, not indifferent to the quantitative trend that
+        transformed many of the social and natural sciences over the past
+        decades, scholars in the humanities have pondered in turn how the
+        statistical data collected from digital editions could inform their
+        approach to textual analysis and, by extension, renew their discipline.
+        The latter motive, in particular, galvanized literary historians to jump
+        on the digital bandwagon and head for the hills, so to speak, from where
+        they hoped to observe sceneries until then never perceived. Franco
+        Moretti and Matthew Jockers are often cited as typical examples of this
+        movement, respectively coining their approaches “distant reading” and
+        “macroanalysis.”<a href="#fn2"
+           class="footnote-ref"
+           id="fnref2"
+           role="doc-noteref"><sup>2</sup></a></p>
+    <p>These approaches were meant, at least at their inception, to propose a
+        radical departure from the tradition of literary criticism by tapping
+        into the potential of digitization and statistics to vastly increase the
+        scale of textual analysis. According to Jockers, the development of
+        macro-analysis is in a sense comparable to that of macroeconomics,
+        insofar as the two disciplines focus on aggregates rather than
+        individual parts.<a href="#fn3"
+           class="footnote-ref"
+           id="fnref3"
+           role="doc-noteref"><sup>3</sup></a> Distant readers, in other words,
+        think big. They are drawn to gargantuan corpora made of hundreds of
+        texts, and tend to leave aside the older and more conventional scale of
+        philology, namely the single text or the oeuvre. According to Franco
+        Moretti, dealing with extreme scales has become the very signature of
+        the digital humanities.<a href="#fn4"
+           class="footnote-ref"
+           id="fnref4"
+           role="doc-noteref"><sup>4</sup></a></p>
+    <p>Such taste for extremes can be misleading, however, as the notion of
+        scale is relative and not always well defined. The literature of the
+        Spanish Golden Age, for example, would make an indisputably lengthy
+        corpus to examine. But in no way would a fraction of that corpus, say
+        one limited to the works of Lope de Vega, the period’s most prolific
+        author, be necessarily less daunting or difficult to apprehend by an
+        individual using conventional methods. His comedies alone extend over
+        fifteen volumes, and his complete works would no doubt fill an entire
+        shelf. In fact, the main difference between the two examples is less in
+        the length of the corpora than in their alleged scope: one would
+        authorize scholars to discuss a single oeuvre, whereas the other would
+        entitle them (assuming they devise a statistically representative sample
+        of texts) to make claims about much broader literary and historical
+        categories. This distinction between length and scope would suffice if
+        one assumed that characters, words, and sentences work as reliable units
+        of measurement across different textual media.</p>
+    <p>However, this assumption overlooks a third dimension of textual data,
+        namely, its density.<a href="#fn5"
+           class="footnote-ref"
+           id="fnref5"
+           role="doc-noteref"><sup>5</sup></a> The density of a digital edition
+        can be easily understood if one compares it to digital images. Some
+        digital images use more pixels per square inch and record a wider
+        spectrum of colors than others. Similarly, while some digital editions
+        are made of unstructured plain-text files, others are formatted in a
+        language that enables corpora to integrate much more information about
+        the text, its material, linguistic, semantic, and genetic aspects, such
+        as layout, structure, variants, marginal notes, paper, ink, watermarks,
+        fonts, part of speech, lexical fields, etc.<a href="#fn6"
+           class="footnote-ref"
+           id="fnref6"
+           role="doc-noteref"><sup>6</sup></a> Crucially, variables such as
+        density, scope, and length do not necessarily form a proportional
+        relationship, as data-rich corpora can be smaller in scope, and/or
+        length and yet provide considerably more information to process. As a
+        consequence, many of the invisible patterns, trends, and structures that
+        distant readers seek to uncover experimenting with very large corpora
+        can also be pursued at smaller, more “anthropocentric” scales.</p>
+    <p>The question remains, however, as to what kind of scholarly insights
+        statistical methods may yield at lesser magnitudes. Using the abundant
+        and expertly-curated data made available by the Making and Knowing
+        Project, this essay argues that, when applied to a single manuscript,
+        visualization of statistical data promotes a synthetic approach to the
+        text, by virtue of which readers can fathom the relations between the
+        document as a whole and its constitutive parts. In this regard, BnF
+        Ms.&nbsp;Fr.&nbsp;640 is particularly germane, since the manuscript
+        document is hard to grasp as a coherent ensemble. At first sight, the
+        information the author-practitioner apparently compiled looks fragmented
+        and randomly distributed. Yet, is this apparent lack of structure a sign
+        of rhetorical neglect? In other words, is Ms.&nbsp;Fr.&nbsp;640
+        approachable as a literary object: with its voices, intentions,
+        addressees, and persuasive strategies? To answer these questions, I will
+        first briefly situate early modern technical literature in its broader
+        rhetorical context. Second, I will show how visualization methods based
+        on the edition’s own metadata enable a synthetic approach to the
+        manuscript that addresses some of the questions raised above. Third, I
+        will argue that, while data-rich editions greatly facilitate this kind
+        of synthetic interpretation, they should not rely on editorial markup or
+        on algorithms alone but rather on a dialectic relation between the two.
+    </p>
+    <h2
+        id="rhetoric-tacit-knowledge-and-the-development-of-technical-literature">
+        Rhetoric, Tacit Knowledge, and the Development of Technical Literature
+    </h2>
+    <p>How does one communicate technical knowledge effectively? For many
+        sixteenth-century practitioners, book learning may have appeared
+        unsuited or at least poorly equipped to transmit know-how, since words
+        alone can hardly convey the many intricacies and contingencies of
+        practice.<a href="#fn7"
+           class="footnote-ref"
+           id="fnref7"
+           role="doc-noteref"><sup>7</sup></a> Even today, in practice-oriented
+        settings, verbal instruction is rarely considered sufficient in and of
+        itself if disconnected from the sensorial experience of the workshop:
+        apprentices tend to learn the appropriate gestures from masters by
+        seeing them in action, and practitioners like to supplement their
+        understanding of materials with a visual, tactile, and olfactive
+        approach.<a href="#fn8"
+           class="footnote-ref"
+           id="fnref8"
+           role="doc-noteref"><sup>8</sup></a> However, as ineffable as
+        practical knowledge may be, the desire to lay it down on paper and to
+        share it with a broader public has persisted across the centuries. In
+        the early modern period, the development of the printing press only
+        exacerbated these literary aspirations, accelerating the development of
+        a best selling genre: the book of secrets.<a href="#fn9"
+           class="footnote-ref"
+           id="fnref9"
+           role="doc-noteref"><sup>9</sup></a> In Ms.&nbsp;Fr.&nbsp;640, the
+        author-practitioner provides some clues as to why such secrets should
+        ultimately be set down in words. In the commonplaces he gathered with an
+        eye, most likely, to composing the preface of a book, he explains that,
+        by sharing the techniques he tested in his own workshop, his hope is to
+        transmit this knowledge to new audiences and to benefit from a “common
+        commerce of letters” with like-minded interlocutors.<a href="#fn10"
+           class="footnote-ref"
+           id="fnref10"
+           role="doc-noteref"><sup>10</sup></a> In the author-practitioner’s
+        mind, then, the written word remains, in spite of its limitations, the
+        primary channel through which a community of practitioners can thrive
+        over time.</p>
+    <p>What looks like a publication project, however, never came to fruition,
+        and the extant manuscript, on which the present edition is based, while
+        probably containing most of its building blocks, hardly resembles a
+        finished book. Indeed, contrary to most of the printed compilations of
+        secrets consulted for this essay, whose <em>copia</em> is visibly
+        contained by thematic boundaries, the entries of Ms.&nbsp;Fr.&nbsp;640
+        do not seem to be arranged in a systematic way.<a href="#fn11"
+           class="footnote-ref"
+           id="fnref11"
+           role="doc-noteref"><sup>11</sup></a> A quick browse through the
+        facsimile gives the reader a sense of how the entries contrast between
+        one another, and follow in quick succession without reason or rhyme. On
+        fol.&nbsp;104v, for example, the author-practitioner deals with topics
+        as varied as curing a dog’s mange, wax casting, goldsmithing, and
+        building a musical instrument.</p>
+    <p>This seemingly nonchalant approach to the arrangement of ideas and
+        arguments (<em>dispositio</em>), one of the central tenets of rhetoric,
+        may reinforce the impression that practitioners, because of their
+        uncertain social extraction, or because of their often limited exposure
+        to the <em>studia humanitatis</em>, were unconcerned with questions of
+        eloquence. The potter Bernard Palissy, in the preface to his <em>Recepte
+            véritable</em>, makes a claim in this direction when he defines his
+        own plain style as unrhetorical:</p>
+    <blockquote>
+        <p>I am no Greek, Hebrew, poet, or rhetorician; just a simple and
+            illiterate artisan. However, for that very reason, the topic at
+            matter has no less virtue than if it were told by a more eloquent
+            man. I prefer saying the truth in my rustic language, rather than
+            lies in a rhetorical language.<a href="#fn12"
+               class="footnote-ref"
+               id="fnref12"
+               role="doc-noteref"><sup>12</sup></a></p>
+    </blockquote>
+    <p><span class="pull-left"></span>Disdainful rejections of rhetoric such as
+        Palissy’s should be taken with a pinch of salt, however. For a start,
+        and contrary to a persistent belief, the art of “saying well” (<em>ars
+            bene dicendi</em>) was not entirely reserved to the privilege of an
+        elite. Many of its principles had long permeated the different strata of
+        society, as manuals of eloquence were widely available in the vernacular
+        and provided a very practical kind of knowledge in the contexts of
+        letter writing, preaching, or sustaining polite conversations, to name
+        but a few.<a href="#fn13"
+           class="footnote-ref"
+           id="fnref13"
+           role="doc-noteref"><sup>13</sup></a> In many parts of Europe,
+        furthermore, verbal jousting and poetic eloquence were sources of civic
+        pride. In cities like Toulouse, where the author-practitioner lived,
+        these arts were celebrated in yearly contests and festivities by a
+        diverse population who regarded them as major sources of
+        entertainment.<a href="#fn14"
+           class="footnote-ref"
+           id="fnref14"
+           role="doc-noteref"><sup>14</sup></a> Probably influenced by Pierre de
+        la Ramée’s radical reformation of rhetoric, Palissy’s <em>captatio
+            benevolentiae</em> uses the conventional display of modesty that one
+        would expect in a preface, but he does so to present rhetoric, not as
+        the ancient art of civic conversation that many humanists cherished, but
+        as a technique of verbal embellishment at best or, at worst, as an
+        elitist art of deception.</p>
+    <p>Not all technical writers viewed eloquence this way, however. Girolamo
+        Ruscelli, for example, author of immensely popular pseudonymous books of
+        secrets, was also deeply committed to promoting vernacular language and
+        literature.<a href="#fn15"
+           class="footnote-ref"
+           id="fnref15"
+           role="doc-noteref"><sup>15</sup></a> He composed several books on the
+        subject and edited important collections of lyric poetry, such as the
+        complete works of Vittoria Colonna.<a href="#fn16"
+           class="footnote-ref"
+           id="fnref16"
+           role="doc-noteref"><sup>16</sup></a> He also took part in lively
+        controversies regarding the <em>questione della lingua</em>; a debate
+        regarding the place of vernaculars in culture and society.<a
+           href="#fn17"
+           class="footnote-ref"
+           id="fnref17"
+           role="doc-noteref"><sup>17</sup></a> Another example is Leonardo
+        Fioravanti, an empirical doctor who relied extensively on the printing
+        press to promote his unconventional approach to medicine, inspired by
+        alchemy.<a href="#fn18"
+           class="footnote-ref"
+           id="fnref18"
+           role="doc-noteref"><sup>18</sup></a> Fioravanti was keenly aware of
+        the rhetorical challenges posed by the transmission of technical
+        knowledge. In his <em>Capricci medicinali</em>, a book of medical
+        secrets, he explains that the subject at hand necessitated “a new way of
+        writing” in which “beautiful proofs” have to be complemented with
+        indisputable ones drawn from “hands-on experience.”<a href="#fn19"
+           class="footnote-ref"
+           id="fnref19"
+           role="doc-noteref"><sup>19</sup></a> Likewise, Leonardo da Vinci’s
+        well-known emphasis on experience should not be read as an outright
+        rejection of all things literary, but rather as the observation that
+        ancient models of eloquence are seldom adapted to technical and
+        empirical matters, and that these matters ultimately require new
+        wordsmiths. In one of his oft-quoted manuscript prefaces, he warns
+        readers against presumptuous naysayers who:</p>
+    <blockquote>
+        <p>will claim that, since I do not have a literary background, I am
+            incapable of saying well what I want to cover. Yet these people
+            don’t know that my writing is drawn from experience rather than from
+            someone else’s words. Experience has been the teacher of those who
+            used to write well, and thus I choose her as my teacher, and I will
+            plead to her every time.<a href="#fn20"
+               class="footnote-ref"
+               id="fnref20"
+               role="doc-noteref"><sup>20</sup></a></p>
+    </blockquote>
+    <p><span class="pull-left"></span>Although Leonardo recognizes that he is no
+        expert in classical culture, he does not turn his back on literature per
+        se, nor does he renounce his ambition to communicate effectively. If
+        Leonardo relied on literary models, these belonged mostly to the
+        vernacular tradition and the mercantile world, which included the Tuscan
+        <em>ricordanze</em> books, records of important things merchants and
+        their families ought to remember, and the <em>zibaldoni</em>, working
+        notebooks containing miscellaneous topics and commonplaces.<a
+           href="#fn21"
+           class="footnote-ref"
+           id="fnref21"
+           role="doc-noteref"><sup>21</sup></a> Leonardo’s manuscripts suggest,
+        in fact, a great familiarity with the short form: writings characterized
+        by their brevity and portability, such as poems, jokes, riddles,
+        recipes, fables, prophecies, and aphorisms. These short forms circulated
+        orally, in letters, and in printed compilations. Readers would also
+        write down selections in their own commonplace books, and in this sense
+        such books are at the crossroads of public and private writing. On the
+        one hand, they do not seem to follow a predetermined order nor a clear
+        logical structure, since their main vocation is to record diverse things
+        as they come to hand, mostly for mnemonic purposes. Yet on the other
+        hand, they may contain fragments of potential publications, experimental
+        writings, including, in the cases of Leonardo’s manuscripts and
+        Ms.&nbsp;Fr.&nbsp;640, draft prefaces for prospective books. They
+        betray, sometimes, attempts at organizing information according to a
+        certain logic. In the section below, I will show that a data-driven
+        approach to the text lets us visualize this textual ambivalence, and
+        that this visualization ultimately helps to understand the manuscript,
+        not only as a random repository of short forms, but potentially also as
+        an organic whole.</p>
+    <h2 id="visualizing-copia">Visualizing <em>Copia</em></h2>
+    <p>Taking a step back from Ms.&nbsp;Fr.&nbsp;640, one can accurately picture
+        the way information is distributed in the document. Scatterplots, in
+        this regard, offer a straightforward method to represent the manuscript
+        (<i><u>Fig. 1</u></i>).<a href="#fn22"
+           class="footnote-ref"
+           id="fnref22"
+           role="doc-noteref"><sup>22</sup></a> Primarily used to establish a
+        correlation between two variables, and eventually to draw predictive
+        models, scatterplots are also well suited for the more modest purpose of
+        producing basic visual abstractions of written documents in a familiar
+        and legible format. In this Cartesian coordinate system, the
+        <em>x</em>-axis represents the manuscript’s folios from 1r to 170v. The
+        <em>y</em>-axis indicates the length of each entry, which is measured in
+        words. Fig. 1 shows that the majority of entries average a length of
+        less than 134 words. They constitute, so to speak, the “norm” in this
+        manuscript, and typically consist in brief procedural descriptions. More
+        importantly, while the “norm” is rather stable throughout the
+        manuscript, the proportion of exceptionally longer entries increases
+        toward the last third of the document, especially those between the
+        average (134) and maximal (2,721) word count per entry. This trend,
+        while not impossible to guess reading the text in a conventional way,
+        would be hard to communicate without this type of visual evidence.
+        Scatterplots offer, in this sense, a standard visual language to
+        represent and discuss some of the structural features of a text. By
+        adding a third variable, moreover, they allow scholars to test some
+        hypothetical correlations. <i><u>Fig. 2</u></i>, for example, highlights
+        with blue triangles entries that have been categorized as “Casting” by
+        the Making and Knowing Project editorial team. This scatterplot shows
+        that entries about casting remain for the most part grouped into
+        distinguishable clusters—particularly around fols.&nbsp;<a
+           href="https://edition640.makingandknowing.org/#/folios/12r/f/12r/tl"><u>12r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/12v/f/12v/tl"><u>v</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/28v/f/28v/tl"><u>28v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/30r/f/30r/tl"><u>30r</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/80v/f/80v/tl"><u>80v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/93r/f/93r/tl"><u>93r</u></a>
+        and <a
+           href="https://edition640.makingandknowing.org/#/folios/106r/f/106r/tl"><u>106r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/170r/f/170r/tl"><u>170r</u></a>.
+    </p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1pXes3b3RB7M-CoZVVv3cH9p2qzdrRH85.png"
+                 alt="fig. 1">
+            <figcaption>Fig. 1. Ms. Fr. 640 at a glance: word count per entry
+                (<em>y</em>) for each folio of the Ms (<em>x</em>). Note the
+                increase in the average size of entries from fol. 105r to 170v.
+                © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1vtIuVS0LfvxbDrBubBKqljQ3ecJV4RnT.png"
+                 alt="fig. 2">
+            <figcaption>Fig. 2. A thematically clustered document: entries
+                categorized as “casting” in Ms. Fr. 640 and displayed as blue
+                triangles. Whether the entry is categorized as “casting” or not
+                is expressed in the dataset with boolean values: “true” meaning
+                yes, and “false” meaning no. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p><span class="pull-left"></span>The same can be observed for categories
+        such as “Painting” (<i><u>Fig. 3</u></i>), which concentrates around one
+        main cluster (fols. <a
+           href="https://edition640.makingandknowing.org/#/folios/56v/f/56v/tl"><u>56v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/66r/f/66r/tl"><u>66r</u></a>)
+        and three more smaller groups (fols.&nbsp;<a
+           href="https://edition640.makingandknowing.org/#/folios/6r/f/6r/tl"><u>6r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/13v/f/13v/tl"><u>13v</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/29v/f/29v/tl"><u>29v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/32r/f/32r/tl"><u>32r</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/39v/f/39v/tl"><u>39v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/43r/f/43r/tl"><u>43r</u></a>),
+        and “Arms and Armor” (<i><u>Fig. 4</u></i>), which also gathers in three
+        major groups (fols.&nbsp;<a
+           href="https://edition640.makingandknowing.org/#/folios/8r/f/8r/tl"><u>8r</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/17r/f/17r/tl"><u>17r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/28r/f/28r/tl"><u>28r</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/43v/f/43v/tl"><u>43v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/45v/f/45v/tl"><u>45v</u></a>).
+    </p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1FMuzQcAXmEAolUse6uw1BPG9TdsVzQnl.png"
+                 alt="fig. 3">
+            <figcaption>Fig. 3. A thematically clustered document: entries
+                categorized as “painting” (blue triangles) in Ms. Fr. 640. ©
+                Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/11ctOxA124BERnE21e56SmruQ-n4nwEYt.png"
+                 alt="fig. 4">
+            <figcaption>Fig. 4. A thematically clustered document: entries
+                categorized as “arms and armor” (blue triangles) in Ms. Fr. 640.
+                © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p><span class="pull-left"></span>Smaller and more dispersed categories such
+        as “Varnish” are more difficult to visualize with the same type of
+        scatterplots. A logarithmic scale on the <em>y</em>-axis, however,
+        enables us, here again, to identify smaller groups (fols.&nbsp;<a
+           href="https://edition640.makingandknowing.org/#/folios/3r/f/3r/tl"><u>3r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/4v/f/4v/tl"><u>4v</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/73v/f/73v/tl"><u>73v</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/74v/f/74v/tl"><u>74v</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/77r/f/77r/tl"><u>77r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/78v/f/78v/tl"><u>78v</u></a>)
+        (<i><u>Fig. 5</u></i>).</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1mkvdC14cslzQsoO_H-YjVmgY1nt5SJjf.png"
+                 alt="fig. 5">
+            <figcaption>Fig. 5. A thematically clustered document: entries
+                categorized as “varnish” (blue triangles) in Ms. Fr. 640. ©
+                Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>The clusters mentioned above, which represent together about 75% of the
+        manuscript’s word length, disprove that Ms.&nbsp;Fr.&nbsp;640 is
+        entirely devoid of structure. The author-practitioner, in fact, disposed
+        most of these entries around specific themes.<a href="#fn23"
+           class="footnote-ref"
+           id="fnref23"
+           role="doc-noteref"><sup>23</sup></a> Admittedly, several entries are
+        scattered for no apparent reason. Part of this fuzziness is due,
+        perhaps, to the inherent difficulty for modern readers to categorize
+        these entries according to criteria that would entirely match those of
+        the author-practitioner.<a href="#fn24"
+           class="footnote-ref"
+           id="fnref24"
+           role="doc-noteref"><sup>24</sup></a> Another reason is that the
+        author-practitioner’s concern for thematic coherence is likely to have
+        been counterbalanced by more practical matters during the different
+        stages of composition of the manuscript, such as the changing
+        availability of his sources or, even more prosaically, the lack of space
+        on a given folio. These scatterplots, in fact, further highlight the
+        dual nature of Ms.&nbsp;Fr.&nbsp;640, both a commonplace book recording
+        different techniques from different sources, and a publication in the
+        making.</p>
+    <p>This leads us to another important third variable one can visualize, this
+        time with a bubble chart (<i><u>Fig. 6</u></i>). This variant of the
+        scatterplot displays, in addition to the size of each entry, the
+        proportion of marginal annotations for each entry. Marginal annotations
+        concern a relatively small part of the manuscript (27% of entries). In
+        some cases, entire entries (&gt;90%) are on the margin (on fols.&nbsp;<a
+           href="https://edition640.makingandknowing.org/#/folios/24v/f/24v/tl"><u>24v</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/64r/f/64r/tl"><u>64r</u></a>,
+        <a
+           href="https://edition640.makingandknowing.org/#/folios/83v/f/83v/tl"><u>83v</u></a>,
+        and <a
+           href="https://edition640.makingandknowing.org/#/folios/106v/f/106v/tl"><u>106v</u></a>,
+        for example). These have been added subsequently, often because of their
+        thematic proximity with neighboring entries. But in most cases, bubbles
+        between 25% and 80% signal the inclusion of additional instructions and
+        information; details about specific procedures, instruments, methods and
+        ingredients, but also feedback from previous experimentation.
+        Interestingly, these mid-sized bubbles are, once again, situated for the
+        most part in the last third of the manuscript. “Casting,” in fact, is
+        not only the dominating topic in Ms.&nbsp;Fr.&nbsp;640, but also the one
+        that attracts the greatest number of annotations, as 42% of entries
+        related to this topic include marginal notes, with an average proportion
+        of 25%—more than any other category. Therefore, the reason that
+        “Casting” entries tend to be lengthier than other entries is, in all
+        likelihood, that the author-practitioner subjected them to a more
+        elaborate process of composition.</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1ZZVM8G83hxqA-mC4uVbvpDqK7AOGM-Gj.png"
+                 alt="fig. 6">
+            <figcaption>Fig. 6. Proportion of marginal annotations for each
+                entry. Note the concentration of annotations between 25% and 50%
+                from fol. 105r to 170v. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Word count, position in the manuscript, frequency and proportion of
+        annotations, all these variables concur in highlighting the particular
+        status of casting techniques. Yet, how does “Casting” exactly compare
+        with other categories?</p>
+    <h2 id="seeing-voices">Seeing Voices</h2>
+    <p>While scatterplots are effective in isolating specific categories, they
+        do not perform as well in more comparative perspectives. Treemapping, on
+        the other hand, excels at visualizing the whole text with its
+        constitutive parts (<i><u>Fig. 7</u></i>). In this diagram, each
+        category is represented as a rectangular surface sized proportionally to
+        its respective word count. In addition to displaying the relative size
+        of each category, this particular treemap also indicates their average
+        length with scaled colors. In doing so, the figure gives an immediate
+        glimpse of the manuscript’s themes, their proportion, and their
+        respective degree of fragmentation. It reveals the important contrasts
+        that separate some of these categories in one quick glance. “Printing”
+        and “Arms and Armor,” for example, distinguish themselves for their
+        particularly lengthy entries, which respectively average 299 and 226
+        words, whereas entries related to “Medicine,” average a mere 45 words.
+    </p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1TdvTrmsI9Rl3CRrcBwfiddMwBkaQ1d4f.png"
+                 alt="fig. 7">
+            <figcaption>Fig. 7. A manuscript with marked contrasts between
+                categories: word length (surface) of each category in the
+                manuscript. The colors are scaled according to the average
+                length of entries. Note the contrast between “medicine” and
+                “arms and armor.” © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Correlation matrices shed a more comprehensive light on the formal and
+        semantic contrasts between categories (Fig. 8, Fig. 9).<a href="#fn25"
+           class="footnote-ref"
+           id="fnref25"
+           role="doc-noteref"><sup>25</sup></a> Represented as a heatmap, the
+        matrix shows the correlation coefficients between two families of
+        variables: the tags that the editorial team included in order to signal
+        the most important semantic, material, and linguistic features of the
+        text; and the categories to which entries were assigned. The heatmap
+        indicates, for example, a strong correlation between the lexical fields
+        of weaponry and measurements (<i><u>Fig. 8</u></i>). This lexical
+        interdependence is of course to be expected, since entries devoted to
+        warfare consist in detailed descriptions of a wide variety of guns and
+        cannons, of their caliber, range, and weight.</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1cQ_sJdKTnLPcfLKAp9OlWfcHBQB2SVcT.png"
+                 alt="fig. 8">
+            <figcaption>Fig. 8. Seeing voices: heatmap showing the 𝜙𝐾
+                correlation coefficients between each manuscript tag (top left).
+                © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>Yet, besides stating the obvious, the matrix also makes clear that
+        entries categorized as “Arms and Armor” are likely to include more
+        “author definitions” and more references to professions than any other
+        category (<i><u>Fig. 9</u></i>).<a href="#fn26"
+           class="footnote-ref"
+           id="fnref26"
+           role="doc-noteref"><sup>26</sup></a> Therefore, entries about “Arms
+        and Armor” not only tend to be grouped in specific sections of the
+        manuscript, as I have shown above with Fig. 4, but they also display a
+        unique combination of formal and semantic characteristics, as if they
+        constituted a voice of their own. Scholars have in fact noted that,
+        while such entries provide a precise characterization of the weapons
+        that arsenals of the time could produce, they seldom dwell on the
+        details of their manufacturing process. According to Pascal Brioist,
+        this probably suggests that access to the arsenal of Toulouse was denied
+        to the author-practitioner.<a href="#fn27"
+           class="footnote-ref"
+           id="fnref27"
+           role="doc-noteref"><sup>27</sup></a> Yet, that these entries are more
+        descriptive than prescriptive also provides some clues as to what
+        audience the author-practitioner may have been targeting. Indeed, Colin
+        Debuiche and Sarah Muñoz argue that such descriptive entries would
+        likely be addressed to notables from the city of Toulouse, or to
+        political advisers working for the King. Quoting Philippe de Béthune,
+        the first known owner of Ms.&nbsp;Fr.&nbsp;640, Debuiche suggests that
+        these entries met the requirements of an audience concerned with
+        developing “political prudence” with a better understanding of the
+        technical and productive aspects of war and, more generally, of the
+        kingdom’s economy.<a href="#fn28"
+           class="footnote-ref"
+           id="fnref28"
+           role="doc-noteref"><sup>28</sup></a></p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1EvU2qWopHfqJUpYzv8o_KIoGRhkFGwtI.png"
+                 alt="fig. 9">
+            <figcaption>Fig. 9. Seeing voices: heatmap showing the
+                point-biserial correlation coefficients between manuscript tags
+                and categories (bottom left and top right). © Making and Knowing
+                Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>While “Arms and Armor” is characterized by an extensive nomenclature and
+        a descriptive tone that fulfills the expectations of a particular
+        audience, other categories imitate long established genres of technical
+        writing.<a href="#fn29"
+           class="footnote-ref"
+           id="fnref29"
+           role="doc-noteref"><sup>29</sup></a> This is the case of “Medicine”
+        which, in addition to its concision, greatly contrasts with the
+        categories mentioned above. In the matrix, “Medicine” appears as a neat
+        category that predictably develops the semantic fields of body parts,
+        plants, and to a lesser extent, of time. More interestingly, the
+        semantic field of medicine is not correlated with deletions, while its
+        corresponding entries are completely devoid of marginal annotations
+        (Fig. 8).<a href="#fn30"
+           class="footnote-ref"
+           id="fnref30"
+           role="doc-noteref"><sup>30</sup></a> These peculiar characteristics
+        are owing to the fact that many of these recipes had already been
+        employed by the author-practitioner himself, or sourced from some
+        authoritative acquaintance.<a href="#fn31"
+           class="footnote-ref"
+           id="fnref31"
+           role="doc-noteref"><sup>31</sup></a> Medical recipes circulated from
+        person to person in a wide variety of social contexts, their form was
+        expected to be short enough to remain portable. The concision and
+        relative spotlessness of these entries suggests that the
+        author-practitioner did not depart from this rule, preserving their
+        transactional quality, sometimes even at the expense of
+        comprehensiveness.</p>
+    <p>In contrast, entries about “Casting,” as the treemap attests (Fig. 7),
+        stand out for their expansiveness. The matrix indicates, moreover, that
+        this category has the greatest propensity to include deletions (Fig. 9).
+        Such correlation is consistent with my observations regarding
+        annotations in the previous section of this essay (Fig. 6). It provides
+        visual evidence that entries about casting are the result of a
+        particularly wrought writing process, one that implied back and forth
+        movements from the manuscript to manual activity in the workshop.
+        “Casting,” in other words, may be regarded as the author-practitioner’s
+        core contribution to that “commerce of letters” he evoked in his
+        tentative preface; not only because of the preponderant place of the
+        entries in the manuscript but also because their redaction implied a
+        greater investment in the subject matter and its verbal expression.</p>
+    <p>Also worthy of attention is “Varnish” which, contrary to the examples
+        mentioned above, does not denote any significant correlation with other
+        annotated features of the manuscript (Fig. 9). This does not mean that,
+        as a category, “Varnish” is unremarkable, but rather that the selection
+        of variables used for this research may not suffice to reveal—both
+        quantitatively and qualitatively—its particular features, and how it
+        connects with the rest of the manuscript.</p>
+    <h2 id="toward-a-fusion-of-digital-horizons">Toward a Fusion of Digital
+        Horizons</h2>
+    <p>As I have shown in the treemap (Fig. 7) and in the logarithmic
+        scatterplot (Fig. 5), “Varnish” represents a relatively small and
+        dispersed category in the manuscript. As a consequence, its salient
+        traits are difficult to delineate. Categories like “Varnish,” in fact,
+        may very well show the limits of an approach exclusively based on the
+        edition’s own curated metadata.</p>
+    <p>If, as I explained in the introduction, the editorial annotation of
+        digital texts presents indisputable advantages over the automated
+        approach privileged by distant readers, the former still benefits from
+        the latter. According to this complementary approach, the edition’s
+        metadata is temporarily foregone in order to resort to a different
+        dataset produced this time by Natural Language Processing algorithms.
+        Although imperfect, these algorithms have the potential to annotate
+        every single word in the text.<a href="#fn32"
+           class="footnote-ref"
+           id="fnref32"
+           role="doc-noteref"><sup>32</sup></a> As a result, one can focus on a
+        wider range of linguistic patterns: trends regarding specific uses of a
+        word, or of any kind of lexical fields, spellings, and parts of speech.
+        <br>
+        Such trends are easy to visualize on a cumulative frequency plot, as
+        they are based on the same Cartesian coordinate system used in the
+        scatterplots shown above. The main difference is that the
+        <em>x</em>-axis does not represent the manuscript’s folios but its
+        cumulative word count. The <em>y</em>-axis, on the other hand, records
+        the cumulative number of occurrences in the manuscript. Cumulative
+        frequency plots reflect consistent uses of words with smooth positive
+        slopes—comparable to linear functions. Conversely, they can signal
+        irregularities with sharp rises or sudden plateaux. Through this method,
+        one can detect subtle evolutions in the way authors express themselves.
+        For example, the cumulative frequencies of singular masculine and
+        feminine determinate articles, <em>le</em> and <em>la</em>, signal
+        diverging patterns that would have been otherwise imperceptible without
+        the aid of a computer (<i><u>Fig. 10</u></i>).<a href="#fn33"
+           class="footnote-ref"
+           id="fnref33"
+           role="doc-noteref"><sup>33</sup></a>
+    </p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1OAr4DvHrngijjwxir9cFKvbMf1PBmL3b.png"
+                 alt="fig. 10">
+            <figcaption>Fig. 10. Detecting subtle changes: cumulative
+                frequencies (<em>y</em>) of definite articles “le” and “la” in
+                Ms. Fr. 640, represented here from word 1 to 152177
+                (<em>x</em>). © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p><span class="pull-left"></span>The same method can also reveal abrupt and
+        unexpected changes such as the irruption of alternative spellings (<i><u>Fig. 11</u></i>). The pronoun <em>ung</em> (84 occurrences), for
+        example, a variant of the much more frequent <em>un</em> (1,329
+        occurrences), appears sporadically in the manuscript (notably with the
+        hands C and D, on fols.&nbsp;20r and <a
+           href="https://edition640.makingandknowing.org/#/folios/73r/f/73r/tl"><u>73r</u></a>–<a
+           href="https://edition640.makingandknowing.org/#/folios/79v/f/79v/tl"><u>79v</u></a>).
+        This is also the case of <em>aveq</em> (37 occurrences), an alternative
+        spelling of <em>avecq</em> (1,059 occurrences). Fig. 11 shows that
+        significant changes in orthography often correspond to a change of hands
+        in the manuscript.</p>
+    <div class="figure-container">
+        <figure>
+            <img src="https://edition-assets.makingandknowing.org/ann_301_ie_19/1wO_7Xwqv4jhsEF6-xQcdekv65nf_F0Gt.png"
+                 alt="fig. 11">
+            <figcaption>Fig. 11. Detecting hidden voices: cumulative frequencies
+                (<em>y</em>) of abnormal spellings (“ung” and “aveq”) and of the
+                uncommon personal deixis “vous” in Ms. Fr. 640. The grey areas
+                correspond to a change of handwriting. Note the convergence of
+                all the variables in 73r–79v. © Making and Knowing Project (<a
+                   href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><u>CC
+                        BY-NC-SA</u></a>).</figcaption>
+        </figure>
+    </div>
+    <p>This would make sense, after all, as scribes presumably wrote what was
+        being orally dictated to them using their own orthography, like
+        <em>verny</em> instead of the prevalent <em>vernis</em>, or like the
+        phonetic spelling of the Latin <em>terra merita</em> into <em>terroy
+            merita</em> (hand E on fol.&nbsp;<a
+           href="https://edition640.makingandknowing.org/#/folios/73r/f/73r/tl"><u>73r</u></a>).<a
+           href="#fn34"
+           class="footnote-ref"
+           id="fnref34"
+           role="doc-noteref"><sup>34</sup></a> Yet these scribes not only used
+        different orthographies and calligraphies, but sometimes also addressed
+        the reader as <em>vous</em>, instead of the second-person singular
+        <em>tu</em> (the dominating personal deixis with 1,250 occurrences) and
+        it is unclear why, if they were merely writing down what was dictated to
+        them, they would also change personal deixis.<a href="#fn35"
+           class="footnote-ref"
+           id="fnref35"
+           role="doc-noteref"><sup>35</sup></a></p>
+    <p>Perhaps more importantly, all the aforementioned anomalies intersect in a
+        way that is clear and statistically significant on fols.&nbsp;73r–79v,
+        and, while the entries from this particular passage belong to a wide
+        variety of smaller categories, all of them seem to converge under a
+        broader theme, as many <em>species</em> of the same <em>genus</em>.
+        Indeed, be they categorized as “Varnish,” “Wood and its Coloring,”
+        “Metal Process,” “Wax Process,” “Corrosives,” or “Painting,” these
+        entries ultimately are related to the application of color to surfaces.
+        They constitute a thematic cluster in its own right that my initial
+        approach had not detected.</p>
+    <p>In that respect, besides corroborating the idea of a thematically
+        structured manuscript, this method sheds light on another factor of
+        thematic coherence that may explain in part some of the stylistic and
+        formal divergences between categories, namely the intervention of
+        specialized contributors in the manuscript: in this case, perhaps a
+        collaborator from the author-practitioner’s workshop who addressed the
+        latter as <em>vous</em>, an acquaintance in the city of Toulouse who
+        specialized in painting and who was invited to share some of his
+        techniques for the occasion, or a particular written source read aloud
+        by the author-practitioner to his amanuensis.</p>
+    <p>Crucially, when used in combination, the two methods enable us to make
+        the most of data-rich editions, while remaining aware of the hermeneutic
+        nature of the enterprise. Indeed, like any other human endeavor, the
+        digital annotations provided by the editorial team fall into an
+        interpretive horizon. The automated approach I used in this part of the
+        essay actually helps to refine this horizon, adapting it to specific
+        research questions.</p>
+    <h2 id="conclusion">Conclusion</h2>
+    <p>Ms.&nbsp;Fr.&nbsp;640 may look like a chaotic and fragmented
+        <em>zibaldone</em>. However, by cross-referencing the edition’s
+        semantic, structural, and formal tags, my essay shows that this
+        fragmentary feel to the manuscript can be misleading. The different
+        themes and styles, the diversity of spellings and personal deixes, the
+        particular distribution of deletions, annotations and handwritings, all
+        denote a polyphony in the text, based on a plurality of sources, be they
+        written or oral. Yet the manuscript is not exactly a <em>zibaldone</em>,
+        but rather a compilation of entries that gather first- and second-hand
+        information, for the most part around some clear thematic clusters. This
+        first attempt at organizing entries may indicate, along with the
+        prologue draft, that the manuscript ultimately constitutes the basis on
+        which a printed book might have emerged. Admittedly, some parts of the
+        manuscript are less polished than others, sometimes to such a degree
+        that one may wonder whether this compilation did not itself suffer, at
+        some point, from a process of “zibaldonization,” so to speak. The fact
+        that most deletions and annotations appear in the last part of the
+        manuscript may reinforce this impression; as if the author-practitioner,
+        caught up in the difficulties, not only of the matter at hand but also
+        of its verbal expression, was progressively bogged down by it and
+        eventually stumbled at the finish line. Hypotheses of that nature are
+        facilitated by the holistic perspective that data visualization makes
+        possible. This type of perspective, which I named here “literary
+        synthesis,” is particularly useful in the study of complex manuscript
+        sources like Ms.&nbsp;Fr.&nbsp;640. Contrary to literary analysis, which
+        tends to rely on a patchy and fragmented approach to the text, literary
+        synthesis ponders the relations that such fragments maintain with each
+        other and with the document as a whole. Conventional literary analyses
+        tend to overlook synthetic questions, since the global trends and
+        patterns that data-driven approaches to the text reveal are often
+        invisible to the naked eye. They can, admittedly, be intuited, and a
+        scholar may use his or her authority to communicate this impression. Yet
+        data visualization lets us engage critically with this intuition, and
+        confront it with empirical evidence. It also enables us to communicate
+        this perspective easily and to convey difficult notions to a wider
+        audience. Such visualizations remain an interpretation of the text,
+        however, as the data provided by the editors of Ms.&nbsp;Fr.&nbsp;640
+        originate from a specific horizon. It is therefore important to keep
+        framing such data-driven approaches as a form of computer-assisted
+        hermeneutics, and not as an objective science. The dual technique I
+        exposed in the final part of the essay allows us, in this sense, to
+        establish a dialogue with this particular horizon in order to refine it
+        according to our specific, but evolving, research questions.</p>
+    <section class="footnotes footnotes-end-of-document"
+             role="doc-endnotes">
+        <hr>
+        <ol>
+            <li id="fn1"
+                role="doc-endnote">
+                <p>On digital scholarly editions, see Hans Walter Gabler,
+                    “Theorizing the Digital Scholarly Edition,” <em>Literature
+                        Compass</em> 7, no. 2 (2010): 43–56, <a
+                       href="https://doi.org/10.1111/j.1741-4113.2009.00675.x">https://doi.org/10.1111/j.1741-4113.2009.00675.x</a>;
+                    Stephen Ramsay, <em>Reading Machines: Toward an Algorithmic
+                        Criticism</em> (Urbana: Illinois University Press,
+                    2011); S. Jänicke et al., “Visual Text Analysis in Digital
+                    Humanities,” <em>Comput. Graph. Forum</em> 36.6 (September
+                    2017): 226–50, <a
+                       href="https://doi.org/10.1111/cgf.12873">https://doi.org/10.1111/cgf.12873</a>;
+                    Anne Baillot and Anna Busch, “Editing for Man and Machine,”
+                    in <em>Users of Scholarly Editions: Editorial Anticipations
+                        of Reading, Studying and Consulting</em>, vol. 13,
+                    <em>Variants</em> (Journal of the European Society for
+                    Textual Scholarship) (Leicester, 2015); Matthew Driscoll and
+                    Elena Pierazzo, eds., <em>Digital Scholarly Editing:
+                        Theories and Practices</em>, vol. 4 (Open Book
+                    Publishers, 2016); and Peter Robinson, “The Digital
+                    Revolution in Scholarly Editing,” in <em>Ars Edendi Lecture
+                        Series</em>, ed. B. Crostini, G. Iversen, and B. M.
+                    Jensen, vol. IV (Stockholm: Stockholm University Press,
+                    2016), 181–207, <a
+                       href="https://doi.org/10.16993/baj.h">https://doi.org/10.16993/baj.h</a>.<a
+                       href="#fnref1"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn2"
+                role="doc-endnote">
+                <p>Franco Moretti, <em>Distant Reading</em> (London: Verso,
+                    2013); Matthew L. Jockers, <em>Macroanalysis: Digital
+                        Methods and Literary History</em> (Champaign: University
+                    of Illinois Press, 2013). Whether distant reading is
+                    representative of the Digital Humanities as a whole is
+                    admittedly questionable. Indeed, quantitative methods in
+                    literary history predate the invention of the computer, and
+                    some quantitative approaches to literature do not share the
+                    same premises as Distant Reading. According to Ted
+                    Underwood, for example, distant reading is characterized,
+                    first and foremost, by the experimental approach it
+                    allegedly borrowed from the social sciences: Ted Underwood,
+                    “A Genealogy of Distant Reading,” <em>Digital Humanities
+                        Quarterly</em> 11, no. 2 (2017)<a href="#fnref2"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn3"
+                role="doc-endnote">
+                <p>Jockers, <em>Macroanalysis</em>, 24–32.<a href="#fnref3"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn4"
+                role="doc-endnote">
+                <p>Arguably, the scope of nineteenth-century literary history
+                    tended to be more ambitious, and usually covered longer
+                    literary periods. Yet, as bold and erudite as these scholars
+                    may have been, the number of texts they could cover was
+                    limited by physical constraints. These perspectives remain
+                    characterized by what Moretti likes to call an
+                    “anthropocentric” perspective, and, to him, this is
+                    precisely what digital approaches enable us to transcend.
+                    Franco Moretti, “Micromégas: The Very Small, the Very Large,
+                    and the Space of Digital Humanities” (2015), <a
+                       href="https://tube.switch.ch/videos/1c6d6f84">https://tube.switch.ch/videos/1c6d6f84</a>.
+                    See also Martin Grandjean, <em>Franco Moretti: L’objet des
+                        humanités numériques, entre perspectives micro et macro:
+                        compte rendu de la conférence “Micromégas: the very
+                        small, the very large and the object of digital
+                        humanities</em>,<em>”</em> Université de Lausanne, 2014.
+                    <a
+                       href="https://hal.archives-ouvertes.fr/hal-01526725/document"><u>https://hal.archives-ouvertes.fr/hal-01526725/document</u></a>.<a
+                       href="#fnref4"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn5"
+                role="doc-endnote">
+                <p>There is no standard approach to calculate density in a
+                    digital edition. The simplest way would be to use:
+                    [<em>ρ</em> = <em>m</em> / <em>v</em>], where <em>ρ</em> is
+                    density, <em>m</em> the number of characters in the
+                    edition’s encoded text, and <em>v</em> the number of words
+                    in the text itself. This would represent the character to
+                    word ratio of the manuscript and, in the case of
+                    Ms.&nbsp;Fr.&nbsp;640, it would be around 1.52. Admittedly,
+                    even a plain-text file can be annotated with code <em>a
+                        posteriori</em> by means of algorithms, and therefore
+                    acquire additional density, but the process does not always
+                    yield viable results, especially when applied to languages,
+                    like middle French, that are not fully standardized.<a
+                       href="#fnref5"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn6"
+                role="doc-endnote">
+                <p>A quick look at the corpora used in distant readings seems to
+                    corroborate the idea according to which, the bigger the
+                    corpora, the lower is their data density. This correlation
+                    is not only the result of limited resources (annotating
+                    manually thousands of texts comes with a steep price), but
+                    also that of an enduring idealistic bias in the digital
+                    humanities that perceives digitization as a sort of
+                    “extraction,” a liberation of the text from its material
+                    limitations. In countries like France, for example, the term
+                    “digitization” is still often conflated with that of
+                    “dematerialization.” In other cases, digitization is seen as
+                    a form of “transmedialization,” that is to say an
+                    abstraction not only from the material medium but also from
+                    mediality itself, see Patrick Sahle, <em>Digitale
+                        Editionsformen: zum Umgang mit der Überlieferung unter
+                        den Bedingungen des Medienwandels</em> (Norderstedt:
+                    Books on Demand, 2013), 157–65.<a href="#fnref6"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn7"
+                role="doc-endnote">
+                <p>“la quale discrezione certamente non si puo’ insegnare con le
+                    parole, ma con le parole parte e con la sperienza quella
+                    s’impara…” Benvenuto Cellini, <em>I trattati dell’oreficeria
+                        e della Sculptura, di Benvenuto Cellini: novamente messi
+                        alle stampe secondo la originale Dettatura del Codice
+                        Marciano</em> (Florence: Le Monnier, 1857), 33–35. “E tu
+                    che vogli con parole dimosstrare la fighura dell’omo con
+                    tutti li aspetti della sua membrificatione, removi da te
+                    tale oppenione, perché quanto più minutamente descriverrai,
+                    tanto più confonderai la mente del lettore e più lo
+                    removirai dalla cognitione della cosa descritta. Adunque è
+                    necessario figurare e descrivere.” Leonardo da Vinci,
+                    Anatomical Manuscript B, fol. 19013v, (Windsor: Royal
+                    Collection).<a href="#fnref7"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn8"
+                role="doc-endnote">
+                <p>The <em>Journal of Visualized Experiment</em> (JoVE) is an
+                    example of how contemporary scientists grapple with the same
+                    issue: <a
+                       href="https://www.jove.com"><u>https://www.jove.com</u></a>.<a
+                       href="#fnref8"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn9"
+                role="doc-endnote">
+                <p>On the editorial success of books of secrets, see William
+                    Eamon, <em>Science and the Secrets of Nature: Books of
+                        Secrets in Medieval and Early Modern Culture</em>
+                    (Princeton: Princeton University Press, 1994); Alisha Rankin
+                    and Elaine Leong, eds., <em>Secrets and Knowledge in
+                        Medicine and Science, 1500–1800</em> (Abingdon:
+                    Routledge, 2011); and Massimiliano Celaschi and Antonella
+                    Gregori, <em>Da Girolamo Ruscelli a Alessio Piemontese: I
+                        Secreti in Italia e in Europa dal cinque al
+                        settecento</em> (Rome: Vecchiarelli Editore, 2014).<a
+                       href="#fnref9"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn10"
+                role="doc-endnote">
+                <p>“pour le desir daprendre jexpose ce peu qui est de ma
+                    boutique pour avoyr en recepvoir en commu{n} commerce des
+                    l{ett}res beaucoup plus rares secrets des benevoles
+                    lecteurs.” fol.&nbsp;<a
+                       href="https://edition640.makingandknowing.org/#/folios/162r/f/162r/tl"><u>162r</u></a>.
+                    Note here the notion of “benevoles lecteurs,” which alludes
+                    to the standard rhetorical function of a preface, namely, to
+                    win the reader’s goodwill (<em>captatio
+                        benevolentiae</em>).<a href="#fnref10"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn11"
+                role="doc-endnote">
+                <p>I examined in particular the following examples: Timoteo
+                    Rossello, <em>Della summa dei secreti universali</em>
+                    (Venice: Paolo Ugolino, 1601); Isabella Cortese, <em>I
+                        secreti della signora Isabella Cortese</em> (Venice:
+                    Giovanni Bariletti, 1565); Leonardo Fioravanti, <em>Dello
+                        specchio di scientia universale</em> (Venice: Melchiorre
+                    Sessa, 1600); Alessio Piemontese, <em>De’ secreti del
+                        reverendo donno Alessio Piemontese parte prima</em>
+                    (Venice: Giacomo Leoncini, 1580); Girolamo Ruscelli,
+                    <em>Secreti nuovi di maravigliosa virtu’ del signor Ieronimo
+                        Ruscelli</em> (Melchiore Sessa: 1567, 1567); Jerónimo
+                    Cortés, <em>Libro de phisonomia natural y varios secretos de
+                        naturaleza</em> (Valencia: Juan Crisóstomo Garriz,
+                    1598); and Conrad Gessner, <em>Quatre livres des secrets de
+                        medecine et de la philosophie chymique</em>, trans. Jean
+                    Liébault (Paris: Jacques du Puys, 1573).<a href="#fnref11"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn12"
+                role="doc-endnote">
+                <p>“je ne suis ne Grec, ne Hebrieu, ne Poete, ne Rhetoricien,
+                    ains un simple artisan bien pauvrement instruit aux lettres:
+                    ce neantmoint, pour ces causes, la chose de soy n’a pas
+                    moins de vertu que si elle estoit tirée d’un homme plus
+                    éloquent. J’ayme mieux dire vérité en mon langage rustique,
+                    que mensonge en un langage rhetorique.” Unless indicated
+                    otherwise, translations are mine. Bernard Palissy,
+                    <em>Œuvres de Bernard Palissy: Recepte Véritable</em>, ed.
+                    Charles Corbière (Strasbourg: Heitz, 1921).<a
+                       href="#fnref12"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn13"
+                role="doc-endnote">
+                <p>Peter Mack, <em>A History of Renaissance Rhetoric
+                        1380–1620</em> (Oxford: Oxford University Press, 2011),
+                    282.<a href="#fnref13"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn14"
+                role="doc-endnote">
+                <p>See Colin Debuiche and Sarah Muñoz, “Le Ms.&nbsp;Fr.&nbsp;640
+                    et le contexte toulousain,” in <em>Secrets of Craft and
+                        Nature in Renaissance France. A Digital Critical Edition
+                        and English Translation of BnF
+                        Ms.&nbsp;Fr.&nbsp;640</em>, ed.&nbsp;Making and Knowing
+                    Project, et al.&nbsp;(New York: Making and Knowing Project,
+                    2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_312_ie_19">https://edition640.makingandknowing.org/#/essays/ann_312_ie_19</a>;
+                    Isabelle Luciani, “Les Jeux Floraux,” in <em>Toulouse
+                        Renaissance</em>, ed. Pascal Julien (Paris: Somogy,
+                    2018), 206–10.<a href="#fnref14"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn15"
+                role="doc-endnote">
+                <p>On Ruscelli’s interests for vernacular literature, see also
+                    Celaschi and Gregori, <em>Da Girolamo Ruscelli a Alessio
+                        Piemontese</em>; Maria Serena Sapegno, Abigail Brundin,
+                    and T. Crivelli, eds., <em>A Companion to Vittoria
+                        Colonna</em> (Leiden: Brill, 2016), <a
+                       href="https://doi.org/10.1163/9789004322332">https://doi.org/10.1163/9789004322332</a>.<a
+                       href="#fnref15"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn16"
+                role="doc-endnote">
+                <p>Vittoria Colonna, <em>Tutte le rime della illustrissima et
+                        eccellentissima signora Vittoria Colonna</em>, ed.
+                    Girolamo Ruscelli (Venice: Giovanni Battista; Melchiorre
+                    Sessa, 1558).<a href="#fnref16"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn17"
+                role="doc-endnote">
+                <p>Girolamo Ruscelli, <em>Del modo di comporre in versi nella
+                        lingua italiana, trattato di Girolamo Ruscelli, Nel
+                        quale va compreso un pieno &amp; ordinatissimo Rimario.
+                        Nuovamente mandato in luce</em>, ed. Girolamo Ruscelli
+                    (Venice: Giovanni Battista; Melchiorre Sessa, 1558),
+                    Girolamo Ruscelli, <em>I fiori delle rime de’ poeti
+                        illustri, nuovamente raccolti &amp; ordinati da m.
+                        Girolamo Ruscelli. Con alcune annotationi del medesimo,
+                        sopra i luoghi che le ricercano per l’intendimento delle
+                        sentenze, o per le regole et precetti della lingua, et
+                        dell’ornamento</em>, ed. Girolamo Ruscelli (Venice:
+                    Melchiorre Sessa; Pietro Deuchino, 1579), Girolamo Ruscelli
+                    and Alessandro Citolini, <em>La lettera d’Alessandro
+                        Citolini in difesa della lingua volgare; e i luoghi del
+                        medesimo. Con una lettera di Girolamo Ruscelli al Mutio,
+                        in difesa dell’uso delle signorie</em>, ed. Girolamo
+                    Ruscelli (Venice: Andrea Arrivabene, 1551).<a
+                       href="#fnref17"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn18"
+                role="doc-endnote">
+                <p>For more on Fioravanti’s approach to medicine, see William
+                    Eamon, “Alchemy in Popular Culture: Leonardo Fioravanti and
+                    the Search for the Philosopher's Stone,” <em>Early Science
+                        and Medicine</em> 5, no. 2 (2000): 196–213. <a
+                       href="http://www.jstor.org/stable/4130476"><u>http://www.jstor.org/stable/4130476</u></a>.<a
+                       href="#fnref18"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn19"
+                role="doc-endnote">
+                <p>“seguirò un nuovo modo di scriuere quasi estratto da tutti
+                    gli altri scritori, o mi sforzarò di dire la verità, et
+                    prouarla con molte belle ragioni, o quelle cose, ch’io non
+                    sarò soficiente prouarle con ragione, le prouarò al meno con
+                    l’esperienza in mano, che niuno mi potrà arguire in
+                    contrario.” Leonardo Fioravanti, <em>De capricci medicinali
+                        dell’eccellente medico &amp; cirugico m. Leonardo
+                        Fioravanti bolognese, libri quattro</em> (Ludovico
+                    Avanzi, 1573), 42. On Fioravanti’s literary prowess, see
+                    also Ariane Bayle, “Patients exemplaires: la correspondance
+                    médicale de Fioravanti,” in <em>Vulgariser la médecine. Du
+                        style médical en France et en Italie</em>, ed. Andrea
+                    Carlino and Michel Jeanneret (Geneva: Droz, 2009). Over the
+                    past three decades, research has shed more light into how
+                    textual scholarship, rhetoric, and empirical investigation
+                    overlapped in the early modern period. See in particular
+                    Paula Findlen, <em>Possessing Nature: Museums, Collecting,
+                        and Scientific Culture in Early Modern Italy</em>
+                    (Berkeley: University of California Press, 1994); Douglas
+                    Biow, <em>Doctors, Ambassadors, and Secretaries: Humanism
+                        and Professions in Renaissance Italy</em> (Chicago:
+                    University of Chicago Press, 2002); Lorraine Daston,
+                    “Curiosity in Early Modern Science,” <em>Word &amp;
+                        Image</em> 11 (1995): 391–404; Alexander Marr, “Gentille
+                    Curiosité: Wonder-Working in the Culture of Automata in the
+                    Late Renaissance,” in <em>Curiosity and Wonder from the
+                        Renaissance to the Enlightenment,</em> ed. Alexander
+                    Marr and R. J. W. Evans (Aldershot: Ashgate, 2006), 149–170;
+                    Andrea Carlino and Alexandre Wenger, eds., <em>Littérature
+                        et médecine: approches et perspectives (XVIe-XIXe
+                        siècle)</em> (Geneva: Droz, 2007); Andrea Carlino and
+                    Michel Jeanneret, eds., <em>Vulgariser la médecine: du style
+                        médical en France et en Italie (XVIe et XVIIe
+                        siècles)</em> (Geneva: Droz, 2009); Bruce T. Moran,
+                    “Eloquence in the Marketplace: Erudition and Pragmatic
+                    Humanism in the Restauration of Chymia,” <em>Osiris</em> 29,
+                    no. 1 (2014): 49–62; Andrew D. Berns, <em>The Bible and
+                        Natural Philosophy in Renaissance Italy: Jewish and
+                        Christian Physicians in Search of Truth</em> (Cambridge:
+                    Cambridge University Press, 2015).<a href="#fnref19"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn20"
+                role="doc-endnote">
+                <p>“Diranno che, per non avere io lettere, non potere ben dire
+                    quello di che volgio trattare. Or non sanno questi che le
+                    mie cose son più da esser tratte dalla sperienzia, che
+                    d’altrui parola; la quale fu maestra di chi bene scrisse, e
+                    così per maestra la piglio e quella in tutt’ i casi
+                    allegherò.” Leonardo da Vinci, <em>Scritti</em>, ed. Carlo
+                    Vecce (Milan: Mursia, 1992), 191.<a href="#fnref20"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn21"
+                role="doc-endnote">
+                <p>According to Carlo Vecce, Leonardo’s manuscripts denote a
+                    keen interest in the poetry of Dante and Petrarch, in the
+                    novels of Masuccio Salernitano, Luigi Pulci, and Boccaccio,
+                    and perhaps more importantly in the vernacular works of
+                    humanist Cristoforo Landino, who translated among other
+                    books, Pliny the Elder in Florentine. See Carlo Vecce,
+                    <em>La biblioteca perduta: i libri di Leonardo</em> (Rome:
+                    Salerno Editrice, 2017), and Carlo Vecce, ed., <em>Leonardo
+                        e i suoi libri</em> (Rome: Bardi edizioni, 2019).<a
+                       href="#fnref21"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn22"
+                role="doc-endnote">
+                <p>The scatterplots have been created using the plotnine library
+                    for Python. The Datasets have been created thanks to Matthew
+                    Kumar’s excellent manuscript-object script available on <a
+                       href="https://github.com/cu-mkp/manuscript-object">GitHub</a>:
+                    <a
+                       href="https://github.com/cu-mkp/manuscript-object"><u>https://github.com/cu-mkp/manuscript-object</u></a>.<a
+                       href="#fnref22"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn23"
+                role="doc-endnote">
+                <p>These clusters represent about 53% of total entries.<a
+                       href="#fnref23"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn24"
+                role="doc-endnote">
+                <p>For the sake of this research, I have simplified the Making
+                    and Knowing Project’s categorization. The latter uses, in
+                    many cases, several categories simultaneously. For this kind
+                    of visualization to work, however, it is recommended to rank
+                    classifications in categories and sub-categories.<a
+                       href="#fnref24"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn25"
+                role="doc-endnote">
+                <p>Coefficients have been calculated using both the 𝜙𝐾 (Fig.
+                    8) and the point-biserial methods (Fig. 9). The latter is
+                    more accurate with correlations between Categories and
+                    Markup (bottom-left and top right squares). Correlations
+                    need to be carefully interpreted and should be used for
+                    exploratory purposes only. Correlations between tags and
+                    categories, moreover, are based on absolute values. For
+                    maximal accuracy, it is recommended to calculate relative
+                    frequencies instead. For more on 𝜙𝐾, see M. Baak et al.,
+                    “A New Correlation Coefficient Between Categorical, Ordinal
+                    and Interval Variables with Pearson Characteristics,”
+                    <em>Computational Statistics &amp; Data Analysis</em> 152
+                    (2020): 107043.<a href="#fnref25"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn26"
+                role="doc-endnote">
+                <p>Author definitions are passages of the manuscript that the
+                    editorial team has encoded with the tag &lt;df&gt; whenever
+                    the author-practitioner defined or explained a particular
+                    term. For more on encoding, see Celine Camps and Margot
+                    Lyautey, “Ma&lt;r&gt;king and Knowing: Encoding BnF Ms. Fr.
+                    640,” in <em>Secrets of Craft and Nature in Renaissance
+                        France. A Digital Critical Edition and English
+                        Translation of BnF Ms. Fr. 640</em>, ed. Making and
+                    Knowing Project, et al. (New York: Making and Knowing
+                    Project, 2020). <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19">https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</a>.<a
+                       href="#fnref26"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn27"
+                role="doc-endnote">
+                <p>Pascal Brioist, “Artillery in 1590s France,” in <em>Secrets
+                        of Craft and Nature in Renaissance France. A Digital
+                        Critical Edition and English Translation of BnF
+                        Ms.&nbsp;Fr.&nbsp;640</em>, ed.&nbsp;Making and Knowing
+                    Project, et al.&nbsp;(New York: Making and Knowing Project,
+                    2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_309_ie_19">https://edition640.makingandknowing.org/#/essays/ann_309_ie_19</a>.<a
+                       href="#fnref27"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn28"
+                role="doc-endnote">
+                <p>Colin Debuiche and Sarah Muñoz, “Le Ms.&nbsp;Fr.&nbsp;640 et
+                    le contexte toulousain,” <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_312_ie_19">https://edition640.makingandknowing.org/#/essays/ann_312_ie_19</a>,
+                    and Colin Debuiche, “Le Ms. Fr. 640 et la collection
+                    Béthune,” in <em>Secrets of Craft and Nature in Renaissance
+                        France. A Digital Critical Edition and English
+                        Translation of BnF Ms. Fr. 640</em>, edited by Making
+                    and Knowing Project, et al. (New York: Making and Knowing
+                    Project, 2020),
+                    https://edition640.makingandknowing.org/#/essays/ann_316_ie_19.
+                    See also Pamela H. Smith, “An Introduction to
+                    Ms.&nbsp;Fr.&nbsp;640 and its Author-Practitioner,” in
+                    <em>Secrets of Craft and Nature in Renaissance France. A
+                        Digital Critical Edition and English Translation of BnF
+                        Ms.&nbsp;Fr.&nbsp;640</em>, ed.&nbsp;Making and Knowing
+                    Project, et al.&nbsp;(New York: Making and Knowing Project,
+                    2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_300_ie_19">https://edition640.makingandknowing.org/#/essays/ann_300_ie_19</a>.<a
+                       href="#fnref28"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn29"
+                role="doc-endnote">
+                <p>I use the term genre, here, in its broader sense, that is to
+                    say, not only as a literary convention, but also as a
+                    cognitive schema that arises from a given communicative
+                    situation and social context. For more on the medical recipe
+                    as a cognitive genre, see Ágnes Kuna, “Genre in a Functional
+                    Cognitive Framework: Medical Recipe as a Genre in 16th- and
+                    17th-century Hungarian,” in <em>Genre in Language, Discourse
+                        and Cognition</em>, ed. Ninke Stukker Wilbert Spooren
+                    and Gerard Steen, vol. 33, Applications of Cognitive
+                    Linguistics [ACL] (Berlin: De Gruyter, 2016), 193–224.<a
+                       href="#fnref29"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn30"
+                role="doc-endnote">
+                <p>Arguably, one author-deletion appears in a medical entry on
+                    fol. 20, but it is ambiguous, and the editorial team also
+                    classified it as “illegible.”<a href="#fnref30"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn31"
+                role="doc-endnote">
+                <p>Xiaomeng Liu, “Collecting Cures in an Artisanal Manuscript:
+                    Practical Therapeutics and Disease,” in <em>Secrets of Craft
+                        and Nature in Renaissance France. A Digital Critical
+                        Edition and English Translation of BnF Ms. Fr. 640</em>,
+                    ed. Making and Knowing Project, et al. (New York: Making and
+                    Knowing Project, 2020), <a
+                       href="https://edition640.makingandknowing.org/#/essays/ann_057_sp_17"><u>https://edition640.makingandknowing.org/#/essays/ann_057_sp_17</u></a>.<a
+                       href="#fnref31"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn32"
+                role="doc-endnote">
+                <p>There are many different methods available to tokenize and
+                    annotate texts. For this essay, I used <a
+                       href="http://textometrie.ens-lyon.fr">TextoMétrie</a>, an
+                    implementation of the <a
+                       href="https://cran.r-project.org/package=textometry">textometry</a>
+                    package for R, the part-of-speech tagger <a
+                       href="https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/">TreeTagger</a>,
+                    in combination with the old French dictionary trained on the
+                    <a href="http://txm.ish-lyon.cnrs.fr/bfm/">Base de Français
+                        Médiéval</a>. See Serge Heiden, “The TXM Platform:
+                    Building Open-Source Textual Analysis Software Compatible
+                    with the TEI Encoding Scheme,” in <em>Proceedings of the
+                        24th Pacific Asia Conference on Language, Information
+                        and Computation</em> (Waseda: Institute for Digital
+                    Enhancement of Cognitive Development, 2010), 389–398. <a
+                       href="http://hdl.handle.net/2065/34369"><u>http://hdl.handle.net/2065/34369</u></a>.<a
+                       href="#fnref32"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn33"
+                role="doc-endnote">
+                <p>That <em>le</em> overtakes <em>la</em> in the second part of
+                    the manuscript makes sense, as the semantic field of casting
+                    is predominantly masculine. The five most prevalent
+                    co-occurring substantives of <em>le</em> are <em>gect</em>,
+                    <em>moule</em>, <em>sable</em>, and <em>doigt</em>. The five
+                    most prevalent co-occurrent substantives of <em>la</em> are
+                    <em>queue</em>, <em>teste</em>, <em>culasse</em>,
+                    <em>medaille</em>, <em>gueule</em>.<a href="#fnref33"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn34"
+                role="doc-endnote">
+                <p>Admittedly, sixteenth-century grammars and orthographies were
+                    not yet stabilized, and it is not uncommon to find authors
+                    from this period who spelled words inconsistently. However,
+                    as this method reveals, these apparent inconsistencies may
+                    betray, sometimes, a number of converging patterns.<a
+                       href="#fnref34"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+            <li id="fn35"
+                role="doc-endnote">
+                <p>On fols. 57v–58r, the <em>vous</em> does not appear since the
+                    entries describe what professionals do using the third
+                    person plural <em>ilz</em>.<a href="#fnref35"
+                       class="footnote-back"
+                       role="doc-backlink">↩︎</a></p>
+            </li>
+        </ol>
+    </section>
+    <div class="bibliography">
+        <h2 id="bibliography">Bibliography</h2>
+        <h3 id="primary-sources">Primary Sources</h3>
+        <p>Cellini, Benvenuto. <em>I trattati dell’oreficeria e della Sculptura,
+                di Benvenuto Cellini: novamente messi alle stampe secondo la
+                originale Dettatura del Codice Marciano</em>. Florence: Le
+            Monnier, 1857.</p>
+        <p>Colonna, Vittoria. <em>Tutte le rime della illustrissima et
+                eccellentissima signora Vittoria Colonna</em>. Edited by
+            Girolamo Ruscelli. Venice: Giovanni Battista; Melchiorre Sessa,
+            1558.</p>
+        <p>Cortese, Isabella. <em>I secreti della signora Isabella Cortese</em>.
+            Venice: Giovanni Bariletti, 1565.</p>
+        <p>Cortés, Jerónimo. <em>Libro de phisonomia natural y varios secretos
+                de naturaleza</em>. Valencia: Juan Crisóstomo Garriz, 1598.</p>
+        <p>Fioravanti, Leonardo. <em>De capricci medicinali dell’eccellente
+                medico &amp; cirugico m. Leonardo Fioravanti bolognese, libri
+                quattro</em>. Ludovico Avanzi, 1573.</p>
+        <p>Fioravanti, Leonardo. <em>Dello specchio di scientia universale</em>.
+            Venice: Melchiorre Sessa, 1600.</p>
+        <p>Gessner, Conrad. <em>Quatre livres des secrets de medecine et de la
+                philosophie chymique</em>. Translated by Jean Liébault. Paris:
+            Jacques du Puys, 1573.</p>
+        <p>Palissy, Bernard. <em>Œuvres de Bernard Palissy: Recepte
+                Véritable</em>. Edited by Charles Corbière. Strasbourg: Heitz,
+            1921.</p>
+        <p>Rossello, Timoteo. <em>Della summa dei secreti universali</em>.
+            Venice: Paolo Ugolino, 1601.</p>
+        <p>Ruscelli, Girolamo. <em>De’ secreti del reverendo donno Alessio
+                Piemontese parte prima</em>. Venice: Giacomo Leoncini, 1580.</p>
+        <p>Ruscelli, Girolamo. <em>Del modo di comporre in versi nella lingua
+                italiana, trattato di Girolamo Ruscelli, Nel quale va compreso
+                un pieno &amp; ordinatissimo Rimario. Nuovamente mandato in
+                luce</em>. Edited by Girolamo Ruscelli. Venice: Giovanni
+            Battista; Melchiorre Sessa, 1558.</p>
+        <p>Ruscelli, Girolamo. <em>I fiori delle rime de’ poeti illustri,
+                nuovamente raccolti &amp; ordinati da m. Girolamo Ruscelli. Con
+                alcune annotationi del medesimo, sopra i luoghi che le ricercano
+                per l’intendimento delle sentenze, o per le regole et precetti
+                della lingua, et dell’ornamento</em>. Edited by Girolamo
+            Ruscelli. Venice: Melchiorre Sessa; Pietro Deuchino, 1579.</p>
+        <p>Ruscelli, Girolamo. <em>Secreti nuovi di maravigliosa virtu’ del
+                signor Ieronimo Ruscelli</em>. Melchiore Sessa: 1567, 1567.</p>
+        <p>Ruscelli, Girolamo, and Alessandro Citolini. <em>La lettera
+                d’Alessandro Citolini in difesa della lingua volgare; e i luoghi
+                del medesimo. Con una lettera di Girolamo Ruscelli al Mutio, in
+                difesa dell’uso delle signorie</em>. Edited by Girolamo
+            Ruscelli. Venice: Andrea Arrivabene, 1551.</p>
+        <p>Vinci, Leonardo da. <em>Scritti</em>. Edited by Carlo Vecce. Milan:
+            Mursia, 1992.</p>
+        <p>Vinci, Leonardo da. Fol. 19013v. Anatomical Manuscript B, Windsor:
+            Royal Collection, n.d.</p>
+        <h3 id="secondary-sources">Secondary Sources</h3>
+        <p>Baak, M, R Koopman, H Snoek, and S Klous. “A New Correlation
+            Coefficient Between Categorical, Ordinal and Interval Variables with
+            Pearson Characteristics.” <em>Computational Statistics &amp; Data
+                Analysis</em> 152 (2020): 107043.</p>
+        <p>Baillot, Anne, and Anna Busch. “Editing for Man and Machine.” In
+            <em>Users of Scholarly Editions: Editorial Anticipations of Reading,
+                Studying and Consulting</em>, Vol. 13. Variants (Journal of the
+            European Society for Textual Scholarship). Leicester, 2015, <a
+               href="https://halshs.archives-ouvertes.fr/halshs-01233380"><u>⟨halshs-01233380⟩</u></a>.
+        </p>
+        <p>Bayle, Ariane. “Patients exemplaires: la correspondance médicale de
+            Fioravanti.” In <em>Vulgariser la médecine. Du style médical en
+                France et en Italie</em>, edited by Andrea Carlino and Michel
+            Jeanneret, 181–212. Geneva: Droz, 2009.</p>
+        <p>Berns, Andrew D. <em>The Bible and Natural Philosophy in Renaissance
+                Italy: Jewish and Christian Physicians in Search of Truth</em>.
+            Cambridge: Cambridge University Press, 2015.</p>
+        <p>Biow, Douglas. <em>Doctors, Ambassadors, and Secretaries: Humanism
+                and Professions in Renaissance Italy</em>. Chicago: University
+            of Chicago Press, 2002.</p>
+        <p>Brioist, Pascal. “Artillery in 1590s France.” In <em>Secrets of Craft
+                and Nature in Renaissance France. A Digital Critical Edition and
+                English Translation of BnF Ms. Fr. 640</em>, edited by Making
+            and Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna
+            Helena Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman,
+            Jenny Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry
+            Catapano. New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_309_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_309_ie_19</u></a>.
+        </p>
+        <p>Camps, Celine and Margot Lyautey. “Ma&lt;r&gt;king and Knowing:
+            Encoding BnF Ms. Fr. 640.” In <em>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</em>, edited by Making and
+            Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+            Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+            Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano.
+            New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_335_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_335_ie_19</u></a>.
+        </p>
+        <p>Carlino, Andrea, and Michel Jeanneret, eds. <em>Vulgariser la
+                médecine: du style médical en France et en Italie (XVIe et XVIIe
+                siècles)</em>. Geneva: Droz, 2009.</p>
+        <p>Carlino, Andrea, and Alexandre Wenger, eds. <em>Littérature et
+                médecine: approches et perspectives (XVIe-XIXe siècle)</em>.
+            Geneva: Droz, 2007.</p>
+        <p>Celaschi, Massimiliano, and Antonella Gregori. <em>Da Girolamo
+                Ruscelli a Alessio Piemontese: i Secreti in Italia e in Europa
+                dal cinque al settecento</em>. Rome: Vecchiarelli Editore, 2014.
+        </p>
+        <p>Daston, Lorraine. “Curiosity in Early Modern Science.” <em>Word &amp;
+                Image</em> 11 (1995): 391–404.</p>
+        <p>Debuiche, Colin. “Le Ms. Fr. 640 et la collection Béthune.” In
+            <em>Secrets of Craft and Nature in Renaissance France. A Digital
+                Critical Edition and English Translation of BnF Ms. Fr.
+                640</em>, edited by Making and Knowing Project, Pamela H. Smith,
+            Naomi Rosenkranz, Tianna Helena Uchacz, Tillmann Taape, Clément
+            Godbarge, Sophie Pitman, Jenny Boulboullé, Joel Klein, Donna Bilak,
+            Marc Smith, and Terry Catapano. New York: Making and Knowing
+            Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_316_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_316_ie_19</u></a>.
+        </p>
+        <p>Debuiche, Colin and Sarah Muñoz. “Le Ms. Fr. 640 et le contexte
+            toulousain.” In <em>Secrets of Craft and Nature in Renaissance
+                France. A Digital Critical Edition and English Translation of
+                BnF Ms. Fr. 640</em>, edited by Making and Knowing Project,
+            Pamela H. Smith, Naomi Rosenkranz, Tianna Helena Uchacz, Tillmann
+            Taape, Clément Godbarge, Sophie Pitman, Jenny Boulboullé, Joel
+            Klein, Donna Bilak, Marc Smith, and Terry Catapano. New York: Making
+            and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_312_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_312_ie_19</u></a>.
+        </p>
+        <p>Driscoll, Matthew, and Elena Pierazzo, eds. <em>Digital Scholarly
+                Editing: Theories and Practices</em>. Vol. 4. Open Book
+            Publishers, 2016.</p>
+        <p>Eamon, William. <em>Science and the Secrets of Nature: Books of
+                Secrets in Medieval and Early Modern Culture</em>. Princeton:
+            Princeton University Press, 1994.</p>
+        <p>Eamon, William. “Alchemy in Popular Culture: Leonardo Fioravanti and
+            the Search for the Philosopher's Stone.” <em>Early Science and
+                Medicine</em> 5, no. 2 (2000): 196–213. <a
+               href="http://www.jstor.org/stable/4130476"><u>http://www.jstor.org/stable/4130476</u></a>.
+        </p>
+        <p>Eamon, William. <em>The Professor of Secrets: Mystery, Medicine and
+                Alchemy in Renaissance Italy</em>. Washington, DC: National
+            Geographic Society, 2010.</p>
+        <p>Findlen, Paula. <em>Possessing Nature: Museums, Collecting, and
+                Scientific Culture in Early Modern Italy</em>. Berkeley:
+            Berkeley: University of California Press, 1994.</p>
+        <p>Gabler, Hans Walter. “Theorizing the Digital Scholarly Edition.”
+            <em>Literature Compass</em> 7, no. 2 (2010): 43–56. <a
+               href="https://doi.org/10.1111/j.1741-4113.2009.00675.x">https://doi.org/10.1111/j.1741-4113.2009.00675.x</a>.
+        </p>
+        <p>Grandjean, Martin. <em>Franco Moretti: L’objet des humanités
+                numériques, entre perspectives micro et macro:</em> <em>compte
+                rendu de la conférence “Micromégas: the very small, the very
+                large and the object of digital humanities”</em>. Université de
+            Lausanne, 2014. <a
+               href="https://hal.archives-ouvertes.fr/hal-01526725/document"><u>https://hal.archives-ouvertes.fr/hal-01526725/document</u></a>.
+        </p>
+        <p>Heiden, Serge. “The TXM Platform: Building Open-Source Textual
+            Analysis Software Compatible with the TEI Encoding Scheme.” In
+            <em>Proceedings of the 24th Pacific Asia Conference on Language,
+                Information and Computation,</em> 389–398. Waseda: Institute for
+            Digital Enhancement of Cognitive Development, 2010. <a
+               href="http://hdl.handle.net/2065/34369"><u>http://hdl.handle.net/2065/34369</u></a>.
+        </p>
+        <p>Jänicke, S., G. Franzini, M. F. Cheema, and G. Scheuermann. “Visual
+            Text Analysis in Digital Humanities.” <em>Comput. Graph. Forum</em>
+            36, no. 6 (September 2017): 226–50. <a
+               href="https://doi.org/10.1111/cgf.12873">https://doi.org/10.1111/cgf.12873</a>.
+        </p>
+        <p>Jockers, Matthew L. <em>Macroanalysis: Digital Methods and Literary
+                History</em>. Champaign: University of Illinois Press, 2013.</p>
+        <p>Kuna, Ágnes. “Genre in a Functional Cognitive Framework: Medical
+            Recipe as a Genre in 16th and 17th Century Hungarian.” In <em>Genre
+                in Language, Discourse and Cognition</em>, edited by Ninke
+            Stukker Wilbert Spooren and Gerard Steen, 33:193–224. Applications
+            of Cognitive Linguistics [ACL]. Berlin: De Gruyter, 2016.</p>
+        <p>Liu, Xiaomeng. “Collecting Cures in an Artisanal Manuscript:
+            Practical Therapeutics and Disease in Ms. Fr. 640.” In <em>Secrets
+                of Craft and Nature in Renaissance France. A Digital Critical
+                Edition and English Translation of BnF Ms. Fr. 640</em>, edited
+            by Making and Knowing Project, Pamela H. Smith, Naomi Rosenkranz,
+            Tianna Helena Uchacz, Tillmann Taape, Clément Godbarge, Sophie
+            Pitman, Jenny Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and
+            Terry Catapano. New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_057_sp_17"><u>https://edition640.makingandknowing.org/#/essays/ann_057_sp_17</u></a>.
+        </p>
+        <p>Luciani, Isabelle. “Les Jeux Floraux.” In <em>Toulouse
+                Renaissance</em>, edited by Pascal Julien, 206–10. Paris:
+            Somogy, 2018.</p>
+        <p>Mack, Peter. <em>A History of Renaissance Rhetoric 1380–1620</em>.
+            Oxford: Oxford University Press, 2011.</p>
+        <p>Marr, Alexander. “Gentille Curiosité: Wonder-Working in the Culture
+            of Automata in the Late Renaissance.” In <em>Curiosity and Wonder
+                from the Renaissance to the Enlightenment</em>. Edited by
+            Alexander Marr and R. J. W. Evans, 149–170. Aldershot: Ashgate,
+            2006.</p>
+        <p>Moran, Bruce T. “Eloquence in the Marketplace: Erudition and
+            Pragmatic Humanism in the Restauration of Chymia.” <em>Osiris</em>
+            29, no. 1 (2014): 49–62.</p>
+        <p>Moretti, Franco. <em>Distant Reading</em>. London: Verso, 2013.</p>
+        <p>Moretti, Franco. “Micromégas: The Very Small, the Very Large, and the
+            Space of Digital Humanities,” 2015. <a
+               href="https://tube.switch.ch/videos/1c6d6f84">https://tube.switch.ch/videos/1c6d6f84</a>.
+        </p>
+        <p>Ramsay, Stephen. <em>Reading Machines: Toward an Algorithmic
+                Criticism</em>. Urbana: Illinois University Press, 2011.</p>
+        <p>Rankin, Alisha, and Elaine Leong, eds. <em>Secrets and Knowledge in
+                Medicine and Science, 1500–1800</em>. Abingdon: Routledge, 2011.
+        </p>
+        <p>Robinson, Peter. “The Digital Revolution in Scholarly Editing.” In
+            <em>Ars Edendi Lecture Series</em>, edited by B. Crostini, G.
+            Iversen, and B. M. Jensen. Stockholm: Stockholm University Press,
+            2016. IV:181–207. <a
+               href="https://doi.org/10.16993/baj.h">https://doi.org/10.16993/baj.h</a>.
+        </p>
+        <p>Sahle, Patrick. <em>Digitale Editionsformen: zum Umgang mit der
+                Überlieferung unter den Bedingungen des Medienwandels</em>.
+            Norderstedt: Books on Demand, 2013.</p>
+        <p>Sapegno, Maria Serena, Abigail Brundin, and T. Crivelli. <em>A
+                Companion to Vittoria Colonna</em>. Leiden: Brill, 2016. <a
+               href="https://doi.org/10.1163/9789004322332">https://doi.org/10.1163/9789004322332</a>.
+        </p>
+        <p>Serge, Heiden. “The TXM Platform: Building Open-Source Textual
+            Analysis Software Compatible with the TEI Encoding Scheme.”
+            Institute for Digital Enhancement of Cognitive Development, Waseda
+            University, 2010.</p>
+        <p>Smith, Pamela H. “An Introduction to Ms. Fr. 640 and its
+            Author-Practitioner.” In <em>Secrets of Craft and Nature in
+                Renaissance France. A Digital Critical Edition and English
+                Translation of BnF Ms. Fr. 640</em>, edited by Making and
+            Knowing Project, Pamela H. Smith, Naomi Rosenkranz, Tianna Helena
+            Uchacz, Tillmann Taape, Clément Godbarge, Sophie Pitman, Jenny
+            Boulboullé, Joel Klein, Donna Bilak, Marc Smith, and Terry Catapano.
+            New York: Making and Knowing Project, 2020. <a
+               href="https://edition640.makingandknowing.org/#/essays/ann_300_ie_19"><u>https://edition640.makingandknowing.org/#/essays/ann_300_ie_19</u></a>.
+        </p>
+        <p>Underwood, Ted. “A Genealogy of Distant Reading.” <em>Digital
+                Humanities Quarterly</em> 11, no. 2 (2017). <a
+               href="http://www.digitalhumanities.org/dhq/vol/11/2/000317/000317.html"><u>http://www.digitalhumanities.org/dhq/vol/11/2/000317/000317.html</u></a>
+        </p>
+        <p>Vecce, Carlo. <em>La biblioteca perduta: i libri di Leonardo</em>.
+            Rome: Salerno Editrice, 2017.</p>
+        <p>Vecce, Carlo. <em>Leonardo e i suoi libri</em>. ed. Rome: Bardi
+            edizioni, 2019.</p>
+    </div>
+</body>
+
+</html>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* Essay-specific image styling to match React version */
+        #annotation-view figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #DDDDDD;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 601px) and (max-width: 960px) {
+            #annotation-view figure img {
+                max-width: 500px;
+            }
+        }
+        
+        @media (min-width: 961px) {
+            #annotation-view figure img {
+                max-width: 600px;
+            }
+        }
+        
+        #annotation-view figure {
+            margin: 20px 0;
+            max-width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        #annotation-view figure .figure-image-container {
+            padding: 0;
+            margin: 0 auto;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        #annotation-view figure figcaption {
+            line-height: 1.4;
+            font-size: 11pt;
+            text-align: left;
+            max-width: 100%;
+            margin-top: 8px;
+            padding: 0 10px;
+            color: #666;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Essay loaded: ann_301_ie_19');
+            
+            // Handle internal links  
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

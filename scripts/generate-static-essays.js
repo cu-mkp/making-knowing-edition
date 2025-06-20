@@ -8,9 +8,9 @@
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
+// Configuration  
 const CONFIG = {
-  dataDir: path.join(__dirname, '../public/bnf-ms-fr-640/staging031824-0'),
+  dataDir: path.join(__dirname, '../public/bnf-ms-fr-640/staging061825-0'),
   outputDir: path.join(__dirname, '../static-essays'),
   baseUrl: 'https://edition-staging.makingandknowing.org',
   cssPath: '/css/index.css'
@@ -47,12 +47,13 @@ class StaticEssaysGenerator {
   async loadData() {
     console.log('📊 Loading essays data...');
     
-    // Load annotations (essays metadata)
-    const annotationsPath = path.join(CONFIG.dataDir, 'annotations.json');
-    this.annotations = JSON.parse(fs.readFileSync(annotationsPath, 'utf8'));
+    // Load annotations (essays metadata) - it's in the annotations subdirectory
+    const annotationsPath = path.join(CONFIG.dataDir, 'annotations', 'annotations.json');
+    const annotationsData = JSON.parse(fs.readFileSync(annotationsPath, 'utf8'));
+    this.annotations = annotationsData.content; // The essays are in the 'content' array
     
-    // Load authors data
-    const authorsPath = path.join(CONFIG.dataDir, 'authors.json');
+    // Load authors data - also in annotations subdirectory
+    const authorsPath = path.join(CONFIG.dataDir, 'annotations', 'authors.json');
     this.authors = JSON.parse(fs.readFileSync(authorsPath, 'utf8'));
     
     console.log(`   Loaded ${this.annotations.length} essays`);
@@ -74,7 +75,8 @@ class StaticEssaysGenerator {
   async generateEssaysIndex() {
     console.log('📝 Generating essays index page...');
     
-    const essays = this.annotations.filter(ann => ann.type === 'essay');
+    // All items in annotations are essays, no need to filter by type
+    const essays = this.annotations;
     
     const html = this.generateIndexHTML(essays);
     
@@ -94,122 +96,24 @@ class StaticEssaysGenerator {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Essays - Making and Knowing</title>
     <link href="${CONFIG.cssPath}" rel="stylesheet">
-    <style>
-        /* Essays-specific styles */
-        .essays-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .essays-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .essay-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: box-shadow 0.2s;
-        }
-        .essay-card:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .essay-thumbnail {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-color: #f5f5f5;
-            border: 1px solid #eee;
-        }
-        .essay-content {
-            padding: 16px;
-        }
-        .essay-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0 0 8px 0;
-            line-height: 1.3;
-        }
-        .essay-author {
-            color: #666;
-            font-size: 14px;
-            margin: 0 0 8px 0;
-        }
-        .essay-abstract {
-            color: #777;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 0;
-        }
-        .essays-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .essays-title {
-            font-size: 36px;
-            margin: 0 0 16px 0;
-            color: #333;
-        }
-        .essays-subtitle {
-            font-size: 18px;
-            color: #666;
-            margin: 0;
-        }
-        
-        /* Search functionality */
-        .search-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-        .search-input {
-            padding: 12px 16px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            width: 100%;
-            max-width: 400px;
-        }
-        .search-input:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-    </style>
 </head>
 <body>
-    <div class="essays-container">
-        <header class="essays-header">
-            <h1 class="essays-title">Essays</h1>
-            <p class="essays-subtitle">Research articles and commentary from the Making and Knowing Project</p>
-        </header>
-        
-        <div class="search-container">
-            <input type="text" id="search-input" class="search-input" 
-                   placeholder="Search essays..." 
-                   onkeyup="searchEssays()">
+    <div id="content-page">
+        <div class="bg-maroon-gradient accent-bar"></div>
+        <div class="MuiPaper-root MuiPaper-elevation2 MuiPaper-rounded flex-parent jc-space-btw page-header text-bg-gradient-light-tb">
+            <h1 class="page-title">Essays</h1>
         </div>
-        
-        <div class="essays-grid" id="essays-grid">
-            ${essayCards}
+        <div id="content">
+            <div id="annotation-list-view">
+                <div class="flex-parent wrap jc-space-around">
+                    ${essayCards}
+                </div>
+            </div>
         </div>
     </div>
     
     <script>
-        // Simple client-side search
-        function searchEssays() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const cards = document.querySelectorAll('.essay-card');
-            
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                const matches = text.includes(query);
-                card.style.display = matches ? 'block' : 'none';
-            });
-        }
-        
-        // Initialize search on page load
+        // Initialize page
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Essays page loaded with ${essays.length} essays');
         });
@@ -219,57 +123,77 @@ class StaticEssaysGenerator {
   }
 
   generateEssayCard(essay) {
-    const author = this.getAuthorName(essay.author);
-    const thumbnailStyle = this.getThumbnailStyle(essay);
-    const abstract = essay.abstract ? essay.abstract.substring(0, 200) + '...' : '';
+    const author = this.getAuthorName(essay.authorIDs);
+    const thumbnailUrl = essay.s3ThumbUrl || '';
+    const abstract = essay.abstract ? essay.abstract.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : '';
+    const title = essay.fullTitle || essay.name || essay.id;
+    const theme = essay.theme || '';
     
     return `
-        <article class="essay-card">
-            <a href="${essay.id}.html" style="text-decoration: none; color: inherit;">
-                <div class="essay-thumbnail" style="${thumbnailStyle}"></div>
-                <div class="essay-content">
-                    <h2 class="essay-title">${essay.title || essay.id}</h2>
-                    <p class="essay-author">${author}</p>
-                    <p class="essay-abstract">${abstract}</p>
+        <div class="MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded annotation-card">
+            <div class="bg-maroon-gradient accent-bar"></div>
+            <div class="MuiButtonBase-root MuiCardActionArea-root" onclick="window.location='${essay.id}.html'">
+                <div class="MuiCardMedia-root" style="height: 200px; background-image: url('${thumbnailUrl}'); background-size: cover; background-position: center;"></div>
+                <div class="card-lr-padding theme-title-container">
+                    <p class="anno-theme">${theme}</p>
+                    <p class="anno-title line-clamp">${title}</p>
+                    <p class="anno-byline">${author}</p>
                 </div>
-            </a>
-        </article>`;
+            </div>
+            <div class="card-lr-padding abstract-container">
+                <span class="anno-abstract line-clamp three-lines">${abstract}</span>
+                <div class="read-essay-link">
+                    <a href="${essay.id}.html" class="cta-link with-icon light">Read Essay</a>
+                </div>
+            </div>
+        </div>`;
   }
 
   getThumbnailStyle(essay) {
-    // Try to determine thumbnail URL based on existing patterns
-    const possibleThumbnails = [
-      `https://edition-assets.makingandknowing.org/thumbnails/${essay.id}_thumbnail.jpg`,
-      `https://edition-assets.makingandknowing.org/thumbnails/${essay.id}_Thumbnail.jpg`,
-      `https://edition-staging.makingandknowing.org/bnf-ms-fr-640/staging061825-6/annotations-thumbnails/${essay.id}_thumbnail.jpg`,
-    ];
+    // Use the s3ThumbUrl if available, otherwise try common patterns
+    let thumbnailUrl = essay.s3ThumbUrl;
     
-    // For demo purposes, use the first URL pattern
-    // In production, you'd want to check which URLs actually exist
-    const thumbnailUrl = possibleThumbnails[0];
+    if (!thumbnailUrl) {
+      // Fallback to common patterns
+      const possibleThumbnails = [
+        `https://edition-assets.makingandknowing.org/thumbnails/${essay.id}_thumbnail.jpg`,
+        `https://edition-assets.makingandknowing.org/thumbnails/${essay.id}_Thumbnail.jpg`,
+        `https://edition-staging.makingandknowing.org/bnf-ms-fr-640/staging061825-0/annotations-thumbnails/${essay.id}_thumbnail.jpg`,
+      ];
+      thumbnailUrl = possibleThumbnails[0];
+    }
     
     return `background-image: url('${thumbnailUrl}');`;
   }
 
-  getAuthorName(authorId) {
-    if (!authorId || !this.authors[authorId]) {
+  getAuthorName(authorIDs) {
+    if (!authorIDs || !Array.isArray(authorIDs) || authorIDs.length === 0) {
       return 'Unknown Author';
     }
     
-    const author = this.authors[authorId];
-    return `${author.first_name || ''} ${author.last_name || ''}`.trim();
+    // Get the names of all authors
+    const authorNames = authorIDs.map(authorId => {
+      if (!this.authors[authorId]) {
+        return 'Unknown';
+      }
+      const author = this.authors[authorId];
+      return `${author.first_name || ''} ${author.last_name || ''}`.trim();
+    }).filter(name => name !== 'Unknown');
+    
+    return authorNames.length > 0 ? authorNames.join(', ') : 'Unknown Author';
   }
 
   async generateIndividualEssays() {
     console.log('📄 Generating individual essay pages...');
     
-    const essays = this.annotations.filter(ann => ann.type === 'essay');
+    // All annotations are essays
+    const essays = this.annotations;
     
-    for (const essay of essays.slice(0, 5)) { // Generate first 5 for demo
+    for (const essay of essays) { // Generate ALL essays
       await this.generateIndividualEssay(essay);
     }
     
-    console.log(`   Generated ${Math.min(5, essays.length)} individual essay pages`);
+    console.log(`   Generated ${essays.length} individual essay pages`);
   }
 
   async generateIndividualEssay(essay) {
@@ -287,79 +211,91 @@ class StaticEssaysGenerator {
   }
 
   generateEssayHTML(essay, content) {
-    const author = this.getAuthorName(essay.author);
+    const author = this.getAuthorName(essay.authorIDs);
+    const title = essay.fullTitle || essay.name || essay.id;
     
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>${essay.title || essay.id} - Making and Knowing</title>
+    <title>${title} - Making and Knowing</title>
     <link href="${CONFIG.cssPath}" rel="stylesheet">
-    <style>
-        .essay-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .essay-header {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        .essay-title {
-            font-size: 32px;
-            margin: 0 0 16px 0;
-            line-height: 1.2;
-        }
-        .essay-author {
-            font-size: 18px;
-            color: #666;
-            margin: 0 0 8px 0;
-        }
-        .essay-meta {
-            font-size: 14px;
-            color: #999;
-        }
-        .essay-content {
-            line-height: 1.6;
-            font-size: 16px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #007bff;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <div class="essay-container">
-        <a href="index.html" class="back-link">← Back to Essays</a>
-        
-        <header class="essay-header">
-            <h1 class="essay-title">${essay.title || essay.id}</h1>
-            <p class="essay-author">By ${author}</p>
-            <div class="essay-meta">
-                <span>Essay ID: ${essay.id}</span>
-                ${essay.doi ? ` • DOI: ${essay.doi}` : ''}
+    <div id="content-page">
+        <div class="bg-maroon-gradient accent-bar"></div>
+        <div class="MuiPaper-root MuiPaper-elevation2 MuiPaper-rounded flex-parent jc-space-btw page-header text-bg-gradient-light-tb">
+            <h1 class="page-title">${title}</h1>
+            <div class="page-meta">
+                <span class="page-author">By ${author}</span>
+                ${essay.doi ? `<span class="page-doi">DOI: ${essay.doi}</span>` : ''}
             </div>
-        </header>
-        
-        <main class="essay-content">
-            ${content}
-        </main>
+        </div>
+        <div id="content">
+            <div id="annotation-view">
+                <div class="annotation-view-container">
+                    <a href="index.html" class="back-link">← Back to Essays</a>
+                    <div class="annotation-content">
+                        ${content}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
+    <style>
+        /* Essay-specific image styling to match React version */
+        #annotation-view figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #DDDDDD;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 601px) and (max-width: 960px) {
+            #annotation-view figure img {
+                max-width: 500px;
+            }
+        }
+        
+        @media (min-width: 961px) {
+            #annotation-view figure img {
+                max-width: 600px;
+            }
+        }
+        
+        #annotation-view figure {
+            margin: 20px 0;
+            max-width: 100%;
+            display: block;
+            text-align: center;
+        }
+        
+        #annotation-view figure .figure-image-container {
+            padding: 0;
+            margin: 0 auto;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        #annotation-view figure figcaption {
+            line-height: 1.4;
+            font-size: 11pt;
+            text-align: left;
+            max-width: 100%;
+            margin-top: 8px;
+            padding: 0 10px;
+            color: #666;
+        }
+    </style>
+    
     <script>
-        // Add any essay-specific JavaScript here
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Essay loaded: ${essay.id}');
             
-            // Handle internal links
+            // Handle internal links  
             const links = document.querySelectorAll('a[href^="#"]');
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
