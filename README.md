@@ -1,4 +1,5 @@
 # Making and Knowing Edition
+[![DOI](https://zenodo.org/badge/113498585.svg)](https://doi.org/10.5281/zenodo.16747498)
 
 The Making and Knowing Project is a research and pedagogical initiative in the Center for Science and Society at Columbia University that explores the intersections between artistic making and scientific knowing. From 2014 through 2019, the Project’s focus is the creation of a digital critical edition of an intriguing anonymous sixteenth-century French artisanal and technical manuscript, BnF Ms. Fr. 640.
 
