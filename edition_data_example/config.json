@@ -12,6 +12,12 @@
             "folderName": "Annotations",
             "sharedDrive": true
         },
+        "website": {
+            "contentEnabled": true,
+            "essaysEnabled": true,
+            "manuscriptEnabled": true,
+            "searchEnabled": true
+        },
         "releaseMode": "staging"
     },
     "staging": {
@@ -27,6 +33,12 @@
             "folderName": "Annotations",
             "sharedDrive": true
         },
+        "website": {
+            "contentEnabled": true,
+            "essaysEnabled": true,
+            "manuscriptEnabled": true,
+            "searchEnabled": true
+        },
         "releaseMode": "staging"
     },
     "production": {
@@ -41,6 +53,12 @@
             "serviceName": "mk-annotations",
             "folderName": "Annotations",
             "sharedDrive": true
+        },
+        "website": {
+            "contentEnabled": true,
+            "essaysEnabled": true,
+            "manuscriptEnabled": true,
+            "searchEnabled": true
         },
         "googleTrackingID": "MY ANALYTICS ID",
         "releaseMode": "production"

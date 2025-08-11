@@ -164,36 +164,33 @@ const generate = async function generate(configData) {
   const now = new Date();
   console.log( `Asset Pipeline started at: ${now.toString()}`);
 
-  console.log('Download files from Github...');
-  if( configData.pullSource ) {
-    downloadFiles(inputDir);  
-    downloadFiles(configData.contentDir);  
+  if (!configData?.website || configData.website.manuscriptEnabled) {
+    console.log('Reorganize files...');
+    reorganizeFiles(inputDir, correctFormatDir);
+
+    console.log('Copy all the folios to the web directory...');
+    copyFolioXMLs( correctFormatDir, folioPath );
+
+    console.log('Convert folios to HTML...');
+    convert.convertFolios(folioPath,figureBaseURL);
+
+    console.log('Convert entries to JSON...');
+    await convertEntries.convert(entriesCSV, targetEntriesFile);
+
+    console.log('Generate Search Index...');
+    searchIndex.generate(folioPath, searchIndexPath);
+
+    console.log('Generate Glossary...');
+    await glossary.generate(glossaryCSV, targetGlossaryFile);
   }
-
-  console.log('Reorganize files...');
-  reorganizeFiles(inputDir, correctFormatDir);
-
-  console.log('Copy all the folios to the web directory...');
-  copyFolioXMLs( correctFormatDir, folioPath );
-
-  console.log('Convert folios to HTML...');
-  convert.convertFolios(folioPath,figureBaseURL);
-
-  console.log('Convert entries to JSON...');
-  await convertEntries.convert(entriesCSV, targetEntriesFile);
-
-  console.log('Generate Search Index...');
-  searchIndex.generate(folioPath, searchIndexPath);
-
-  console.log('Generate Glossary...');
-  await glossary.generate(glossaryCSV, targetGlossaryFile);
 
   console.log('Process Static Content...');
   await staticContent.process(configData.contentDir, contentTargetPath);
 
-  console.log('Generate Comments...');
-  await comments.generate(commentsCSV, targetCommentsFile);
-
+  if (!configData?.website || configData.website.manuscriptEnabled) {
+    console.log('Generate Comments...');
+    await comments.generate(commentsCSV, targetCommentsFile);
+  }
   // if( mode === 'local' ) {
   //   console.log('Done.');
   //   return

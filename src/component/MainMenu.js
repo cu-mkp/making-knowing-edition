@@ -19,12 +19,21 @@ class MainMenu extends React.Component {
     }
 
     renderProduction() {
+        const { essaysEnabled, manuscriptEnabled, contentEnabled } = this.props.diplomatic;
         return (
             <div className="expandedViewOnly">
-                <span>Research Essays</span>
-                <Link to='/entries'>Entries</Link>
-                <Link to='/folios'>Folios</Link>
-                <span>About</span>
+                {essaysEnabled && (
+                    <span>Research Essays</span>
+                )}
+                {manuscriptEnabled && (
+                    <>
+                        <Link to='/entries'>Entries</Link>
+                        <Link to='/folios'>Folios</Link>
+                    </>
+                )}
+                {contentEnabled && (
+                    <span>About</span>
+                )}
             </div>
         );
     }
@@ -34,7 +43,8 @@ class MainMenu extends React.Component {
     }
 
     renderTopNav() {
-        const {menuStructure} = this.props.contents
+        const { menuStructure } = this.props.contents;
+        const { searchEnabled } = this.props.diplomatic;
         const topNavItems = [], subMenus = []
         const currentRoute = window.location.hash.replace('#', '');
         let i = 0
@@ -62,20 +72,20 @@ class MainMenu extends React.Component {
         }
         if (isWidthUp('md', this.props.width)){
             const searchNavItem = <Button
-            variant='contained' 
-            color='primary' 
-            className='cta-button search-btn'
-            onClick={this.props.onToggleSearch}
-        >
-           <span style={{fontFamily: 'Lato, sans-serif', textTransform: 'none'}}>
-               Search
-            </span>
-            <SearchIcon fontSize='small' />
-        </Button>        
+                    variant='contained' 
+                    color='primary' 
+                    className='cta-button search-btn'
+                    onClick={this.props.onToggleSearch}
+                >
+                    <span style={{fontFamily: 'Lato, sans-serif', textTransform: 'none'}}>
+                        Search
+                    </span>
+                    <SearchIcon fontSize='small' />
+                </Button>;
 
             return (
                 <div className="expandedViewOnly flex-parent jc-space-btw ai-end row-reverse">
-                    {[...topNavItems, searchNavItem].reverse()}
+                    {searchEnabled ? [...topNavItems, searchNavItem].reverse() : topNavItems.reverse()}
                     {subMenus}
                     <Link to='/' className='home-link' >
                         <img className="" alt="Project Logo" src="/img/mk-banner-logo.png"></img>
@@ -95,12 +105,14 @@ class MainMenu extends React.Component {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <IconButton 
-                            style={{width: 54, height: 54, color: 'black'}}
-                            onClick={this.props.onToggleSearch}
-                        >
-                            <SearchIcon />
-                        </IconButton>
+                        {searchEnabled && (
+                            <IconButton 
+                                style={{width: 54, height: 54, color: 'black'}}
+                                onClick={this.props.onToggleSearch}
+                            >
+                                <SearchIcon />
+                            </IconButton>
+                        )}
                     </div>
                 </>
             )
@@ -169,14 +181,15 @@ class MainMenu extends React.Component {
 		} else {
             if( !this.props.contents.menuStructure ) return null;
 			return this.renderTopNav()
-        }        
+        }
     }
 
 }
 
 function mapStateToProps(state) {
     return {
-        contents: state.contents
+        contents: state.contents,
+        diplomatic: state.diplomatic
     };
 }
 
