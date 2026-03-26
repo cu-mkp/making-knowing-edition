@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edition640.makingandknowing.org/sitemap.txt
+Sitemap: https://edition640.makingandknowing.org/essays-sitemap.xml
