@@ -12,6 +12,7 @@ const searchIndex = require('./search_index');
 const configLoader = require('./config_loader');
 const iiifManifest = require('./iiif_manifest');
 const assetServer = require('./asset_server');
+const staticSite = require('./static_site/generate');
 
 // config data
 let configData;
@@ -1168,7 +1169,10 @@ async function run(mode) {
             migrateAnnotations(annotationMetadata)
             await run('index')
             break;
-        case 'run': 
+        case 'static':
+            await staticSite.generate(configData);
+            break;
+        case 'run':
             await run('manifest')
             await run('assets')
             await run('process')
@@ -1269,6 +1273,7 @@ function main() {
         console.log("\tindex: Create a search index of the essays.");
         console.log("\trun: Download, process, manifest, assets, figures, env, and index.")
         console.log("\tmigrate: Migrates annotations to/from github and preps images for upload to s3 (see README).")
+        console.log("\tstatic: Generate the static HTML mirror of the edition (see BUILD_AND_DEPLOY.md).")
         console.log("\tsync: Download all, download thumbs, run, and migrate.")
         console.log("\thelp: Displays this help. ");
         console.log("<target> is the target key from the edition_data/config.json file. Defaults to 'local'.");

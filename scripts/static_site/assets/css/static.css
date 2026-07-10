@@ -1,0 +1,616 @@
+/* Chrome styles for the static mirror. Replaces what Material-UI's CSS-in-JS
+   provided at runtime in the React app; everything else comes from index.css. */
+
+:root {
+    --maroon: #792421;
+    --dark-maroon: #4f1710;
+    --dark-cream: #d5c1ab;
+    --paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),
+                    0px 1px 1px 0px rgba(0,0,0,0.14),
+                    0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* smooth-scroll targets clear the sticky header */
+[id] {
+    scroll-margin-top: 130px;
+}
+
+.paper {
+    background-color: white;
+    box-shadow: var(--paper-shadow);
+}
+
+/* ---------- header / nav ---------- */
+
+#header {
+    box-sizing: border-box;
+    min-height: 72px;
+}
+
+#header .home-link {
+    line-height: 0;
+    flex-shrink: 0;
+}
+
+#main-nav {
+    gap: 20px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 10px 0;
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: var(--maroon);
+    color: white !important;
+    border: none;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--paper-shadow);
+}
+
+.cta-button:hover {
+    background-color: var(--dark-maroon);
+}
+
+#content-view .cta-button,
+#featured-essays-panel .cta-button {
+    padding: 10px 70px;
+    font-size: 20px;
+}
+
+/* Font Awesome isn't shipped in the static build: replace glyph :after rules */
+#diplomatic a.cta-link.with-icon:after {
+    font-family: inherit !important;
+    content: "\276F" !important;   /* ❯ */
+}
+
+#diplomatic a.cta-link.video-link:after {
+    content: "\25B6" !important;   /* ▶ */
+}
+
+/* mobile nav */
+@media (max-width: 900px) {
+    #menu-toggle {
+        display: block;
+    }
+    #main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--dark-maroon);
+        padding: 30px 0;
+        gap: 16px;
+        z-index: 3;
+        box-shadow: inset 0 5px 5px -5px rgba(0,0,0,0.8), 0 5px 5px -5px rgba(0,0,0,0.8);
+    }
+    #main-nav.open {
+        display: flex;
+    }
+    #diplomatic #main-nav a.cta-link.nav-item {
+        color: white;
+    }
+    .header-wrapper {
+        position: relative;
+    }
+}
+
+/* ---------- static edition notice ---------- */
+
+#static-notice {
+    background-color: var(--dark-cream);
+    color: black;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    padding: 4px 10px;
+}
+
+#static-notice a {
+    color: var(--maroon);
+    font-weight: 700;
+}
+
+/* ---------- essay cards (MUI Card replacement) ---------- */
+
+.annotation-card {
+    width: 320px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.annotation-card .card-action-area {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.annotation-card a.card-action-area:hover {
+    background-color: rgba(0,0,0,0.04);
+}
+
+.annotation-card .card-media {
+    background-size: cover;
+    background-position: center;
+}
+
+.annotation-card .card-lr-padding {
+    padding: 0 16px;
+}
+
+.annotation-card .abstract-container {
+    padding-bottom: 16px;
+}
+
+/* multiline truncation used by card titles/abstracts */
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp.three-lines {
+    -webkit-line-clamp: 3;
+}
+
+/* ---------- content pages ---------- */
+
+/* home page hero right-half image (was an inline conditional in React) */
+#hero .hero-left {
+    width: 50%;
+}
+
+#hero .hero-right {
+    width: 50%;
+}
+
+@media (max-width: 600px) {
+    #hero .hero-left {
+        width: 100%;
+        background: linear-gradient(0deg, rgba(255,255,255,0.6), rgba(255,255,255,0.6));
+        background-size: cover;
+    }
+    #hero .hero-right {
+        display: none;
+    }
+}
+
+/* side nav + content columns (widths were inline styles in React) */
+#content-page .content-page-body > div:nth-child(2) {
+    flex-shrink: 0;
+}
+
+#content-page #content.content-page-content {
+    width: calc(100% - 300px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    #content-page #navbar,
+    #content-page .nav-bg {
+        display: none;
+    }
+    #content-page #content.content-page-content {
+        width: 100%;
+    }
+}
+
+#content-page #navbar {
+    position: sticky;
+}
+
+/* ---------- folio viewer ---------- */
+
+.folio-page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px;
+    gap: 10px;
+}
+
+.folio-pagination {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.folio-pagination .folio-name {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.folio-nav-arrow {
+    color: var(--maroon);
+    line-height: 0;
+}
+
+.folio-nav-arrow.disabled {
+    color: #ccc;
+}
+
+.folio-tools {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 15px;
+}
+
+.folio-tools .grid-link {
+    color: var(--maroon);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.jump-to-folio label {
+    margin-right: 6px;
+}
+
+.jump-to-folio input {
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+}
+
+.jump-to-folio button {
+    background-color: var(--maroon);
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+/* stacked (no-JS / crawler) view */
+.folio-stacked .folio-version {
+    border-top: 1px solid #d1d1d1;
+    margin: 0 0 20px;
+}
+
+.folio-stacked .version-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+    padding: 10px 16px 0;
+}
+
+.folio-stacked .version-heading h2 {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+.xml-link {
+    font-size: 13px;
+    color: var(--maroon);
+    font-family: 'Lato', sans-serif;
+}
+
+.folio-stacked .transcriptionViewComponent {
+    overflow: visible;
+    height: auto;
+}
+
+/* split-pane (JS) view; grid columns are set inline by panes.js */
+.static-folio-view .split-pane-view {
+    height: calc(100vh - 220px);
+    min-height: 400px;
+}
+
+.static-folio-view .pane {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.pane-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 6px 10px;
+    background-color: #f2ede7;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.pane-toolbar select {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    padding: 3px 6px;
+}
+
+.pane-body {
+    flex: 1;
+    overflow: auto;
+    min-height: 0;
+}
+
+.pane-body .transcriptionViewComponent {
+    overflow: visible;
+    height: auto;
+}
+
+.pane-body.facsimile-pane {
+    background-color: black;
+    overflow: hidden;
+}
+
+.facsimile-viewer {
+    width: 100%;
+    height: 100%;
+}
+
+/* editorial comments */
+.editor-comment {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0 2px;
+    color: red;
+    font-size: 18pt;
+    font-weight: bold;
+    line-height: 0.5;
+    height: 0.75em;
+    cursor: pointer;
+    vertical-align: baseline;
+}
+
+.editor-comment-content {
+    position: absolute;
+    z-index: 10;
+    max-width: 260px;
+    padding: 10px 15px 15px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.editor-comment-content .editor-comment-close {
+    float: right;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+}
+
+/* related-essay links under entry headings */
+.entry-essays {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    margin: 4px 0 10px;
+}
+
+/* folio grid page */
+.static-folio-grid {
+    height: auto;
+    overflow: visible;
+    padding-bottom: 40px;
+}
+
+.static-folio-grid .imageGridToolbar h1 {
+    font-family: 'Taviraj', serif;
+    font-weight: 400;
+}
+
+.static-folio-grid .imageGridToolbar p a {
+    color: var(--dark-cream);
+}
+
+.static-folio-grid ul a {
+    text-decoration: none;
+}
+
+/* entries page */
+#entry-list-view .entry {
+    margin: 10px 0;
+    padding: 12px 20px;
+}
+
+#entry-list-view .entry a {
+    text-decoration: none;
+}
+
+#entry-list-view .entry .entry-heading {
+    font-size: 18px;
+    margin: 0 0 6px;
+}
+
+#entry-list-view .entry p {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    /* single column on small screens: panes stack */
+    .static-folio-view .split-pane-view {
+        display: block;
+        height: auto;
+    }
+    .static-folio-view .split-pane-view .divider {
+        display: none;
+    }
+    .static-folio-view .pane-body.facsimile-pane {
+        height: 60vh;
+    }
+}
+
+/* ---------- glossary page ---------- */
+
+.static-glossary {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.static-glossary .title {
+    font-family: 'Taviraj', serif;
+    font-weight: 400;
+}
+
+.static-glossary .cite-instructions {
+    background-color: #f2ede7;
+    padding: 12px 16px;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.static-glossary .cite-instructions .cite-header {
+    font-weight: 700;
+}
+
+.static-glossary .glossary-controls {
+    position: sticky;
+    top: 105px;
+    background: white;
+    padding: 10px 0;
+    z-index: 1;
+}
+
+.static-glossary #glossary-filter {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    margin-right: 15px;
+    font-size: 15px;
+}
+
+.static-glossary .alphaNav {
+    display: inline;
+    font-family: 'Lato', sans-serif;
+}
+
+.static-glossary .alphaNav a {
+    margin-right: 4px;
+    color: var(--maroon);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.static-glossary .glossary-entry {
+    font-family: 'Martel', serif;
+    font-size: 15px;
+    margin: 0 0 10px;
+}
+
+.static-glossary .alpha-heading {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    margin: 25px 0 15px;
+}
+
+/* ---------- search page ---------- */
+
+.static-search {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+
+.static-search h1 {
+    font-family: 'Taviraj', serif;
+    font-weight: 400;
+}
+
+.static-search .search-tips {
+    font-size: 14px;
+    color: #555;
+}
+
+.static-search .searchField {
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.static-search .textField {
+    flex: 1;
+    max-width: 420px;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+.static-search .searchResultControls {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin: 10px 0 20px;
+}
+
+.static-search #search-status {
+    font-family: 'Lato', sans-serif;
+    color: var(--maroon);
+    min-height: 20px;
+}
+
+.static-search .resultSectionHeader {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: 1px solid #d1d1d1;
+    margin: 25px 0 10px;
+    padding-bottom: 4px;
+}
+
+.static-search .searchResult {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.static-search a.searchResult:hover {
+    background-color: #f2ede7;
+}
+
+.static-search .searchResult .name {
+    font-weight: 700;
+    color: var(--maroon);
+}
+
+.static-search .contextFragments {
+    font-size: 14px;
+    font-family: 'Martel', serif;
+    color: #333;
+}
+
+.static-search .highlight,
+.transcriptContent .highlight {
+    background-color: #f5e642;
+}

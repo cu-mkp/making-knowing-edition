@@ -11,6 +11,9 @@
 # production
 /build
 
+# static mirror output
+/static-build
+
 # don't track built assets in edition dir
 /public/bnf-ms-fr-640
 /public/google*
