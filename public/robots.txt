@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://edition640.makingandknowing.org/sitemap.txt
 Sitemap: https://edition640.makingandknowing.org/essays-sitemap.xml
+Sitemap: https://edition640.makingandknowing.org/static/sitemap.xml
