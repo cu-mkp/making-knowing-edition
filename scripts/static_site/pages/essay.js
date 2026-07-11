@@ -3,6 +3,7 @@
 const fs = require('fs');
 const { JSDOM } = require('jsdom');
 const layout = require('../layout');
+const scholarly = require('../scholarly');
 
 // port of AnnotationView.renderByLine
 function renderByLine( ctx, annotation ) {
@@ -81,6 +82,7 @@ function generate( ctx ) {
     ${processEssayHTML(ctx, essayHTML)}
 </div>`;
 
+        const canonicalURL = `${ctx.siteURL}${ctx.basePath}${path}`;
         pages.push({
             path,
             html: layout.renderPage( ctx, {
@@ -89,6 +91,8 @@ function generate( ctx ) {
                 spaPath: `/essays/${annotation.id}`,
                 bodyClass: 'essay',
                 description: ctx.removeTags(annotation.abstract).substring(0,300),
+                extraHead: scholarly.essayCitationMeta( ctx, annotation, canonicalURL ) +
+                    '\n    ' + scholarly.essayJsonLD( ctx, annotation, canonicalURL ),
                 content
             })
         });

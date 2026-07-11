@@ -6,6 +6,7 @@
 const fs = require('fs');
 const layout = require('../layout');
 const transcription = require('../transcription');
+const scholarly = require('../scholarly');
 
 const VERSIONS = [ 'tc', 'tcn', 'tl' ];
 
@@ -117,7 +118,8 @@ function generate( ctx ) {
                 description: `Facsimile, French transcriptions, and English translation of folio ${folio.name} of BnF Ms. Fr. 640.`,
                 content,
                 scripts: [ 'js/panes.js', 'js/facsimile.js', 'js/comments.js' ],
-                extraHead: `<script src="${ctx.assetURL('vendor/openseadragon/openseadragon.min.js')}" defer></script>`
+                extraHead: `<script src="${ctx.assetURL('vendor/openseadragon/openseadragon.min.js')}" defer></script>` +
+                    '\n    ' + scholarly.folioJsonLD( ctx, folio, `${ctx.siteURL}${ctx.basePath}${path}` )
             })
         });
     }

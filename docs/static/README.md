@@ -37,6 +37,7 @@ crawling, no new dependencies (it uses the jsdom and lunr already in
 | `folio_layout.js` | Build-time port of the margin-layout grid engine from `src/model/folioLayout.js` (bug-compatible, with the `className`→`class` fix) |
 | `essay_card.js` | Essay card markup shared by home page and essay index |
 | `pages/*.js` | One generator per page type: home, content, essay_index, essay, entries, folio_index, folio, glossary, search |
+| `scholarly.js` | Google Scholar (Highwire) citation meta tags and schema.org JSON-LD: `ScholarlyArticle` per essay, `Manuscript` per folio, edition-level `Book`/`WebSite` on the home page — for scholarly indexing and AI/retrieval tools |
 | `sitemap.js`, `assets.js`, `check.js` | Sitemap emission; CSS/JS/img/vendor copying; post-build verification |
 | `assets/js/*.js` | Shipped vanilla JS: `panes.js` (two-pane folio viewer), `facsimile.js` (OpenSeadragon), `comments.js` (editorial-comment popups), `search.js` (lunr port), `glossary.js` (filter), `menu.js` (mobile nav) |
 | `assets/css/static.css` | Hand-written chrome CSS replacing what Material-UI injected at runtime (everything else reuses the compiled `public/css/index.css` verbatim) |

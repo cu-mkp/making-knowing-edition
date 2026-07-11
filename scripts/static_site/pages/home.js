@@ -2,6 +2,7 @@
 
 const layout = require('../layout');
 const essayCard = require('../essay_card');
+const scholarly = require('../scholarly');
 
 const featuredEssayIds = [
     'ann_300_ie_19',
@@ -73,6 +74,7 @@ ${featuredCards}
         spaPath: '/',
         bodyClass: 'home',
         description: 'A Digital Critical Edition and English Translation of BnF Ms. Fr. 640, a sixteenth-century manuscript of recipes, techniques, and observations on craft and nature.',
+        extraHead: scholarly.homeJsonLD( ctx ),
         content
     });
 
