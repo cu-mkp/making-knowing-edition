@@ -13,6 +13,7 @@ durability; the SPA remains the primary interface.
 |---|---|
 | [BUILD_AND_DEPLOY.md](BUILD_AND_DEPLOY.md) | How to build, preview locally, and deploy the mirror |
 | [REPORT.md](REPORT.md) | How the project was planned, implemented, and tested; known issues |
+| [INDEXING.md](INDEXING.md) | Investigation of search-engine indexing of the research essays, and how the mirror makes them discoverable |
 | [`.claude/skills/verify/SKILL.md`](../../.claude/skills/verify/SKILL.md) | Recipe for driving the mirror in a browser for verification |
 
 ## How it works
