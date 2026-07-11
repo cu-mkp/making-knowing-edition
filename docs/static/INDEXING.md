@@ -74,6 +74,29 @@ Searching `"Wax and Tallow: Material Explorations"` (with the author's name)
 surfaces the author's personal CV site — not the edition. An essay that
 cannot rank for its own exact title is, for practical purposes, unindexed.
 
+### 4a. Sample study: only ~20% of essays are findable by their own title
+
+Exact-title searches for a 15-essay sample spanning every cohort (2014–2020)
+found **3 of 15** essays (An Introduction to Ms. Fr. 640, Making and Using
+Fish Glue, Lifecast Snakes Modeled in Black Wax). The other 12 lose their own
+title searches to: authors' personal CV sites, the **retired 2015 prototype**
+(makingandknowing-prototype.cul.columbia.edu), **draft student field notes**
+(fieldnotes.makingandknowing.org), Amazon listings of unrelated historical
+books, medical literature, and in one case Cambridge Audio "Azur 640" hi-fi
+equipment.
+
+Two patterns in the data:
+
+- The three findable essays are indexed as JS-rendered SPA routes — Googlebot
+  spends its limited rendering budget on the most externally-linked pages and
+  never reaches the rest. Discoverability is prominence-dependent: the
+  flagship introduction is findable; a typical essay is not.
+- The project properties that outrank the edition (the retired prototype, the
+  field-notes site) are **plain static HTML** — a natural experiment inside
+  the project's own domain family demonstrating that its static sites get
+  indexed while the SPA does not. The mirror gives the canonical edition the
+  same property.
+
 ### 5. The DOI chain is broken for machines
 
 `https://doi.org/10.7916/0cp6-7h54` resolves via 302 to
