@@ -4,7 +4,7 @@ A fully static, React-free mirror of *Secrets of Craft and Nature in
 Renaissance France* — every page serialized as plain HTML, styled by the
 edition's existing CSS, with small vanilla-JS modules only where functionality
 requires them (facsimile deep-zoom, pane switching, search, popups). It is
-published **alongside** the React SPA (under `/static/`) for crawlability and
+published **alongside** the React SPA (under `/mirror/`) for crawlability and
 durability; the SPA remains the primary interface.
 
 ## Documents
@@ -58,7 +58,7 @@ crawling, no new dependencies (it uses the jsdom and lunr already in
 ### URL scheme
 
 All internal links go through `urlFor()`/`assetURL()` in `context.js` with a
-per-target `staticBasePath` (`""` locally, `"/static"` deployed). Edition data
+per-target `staticBasePath` (`""` locally, `"/mirror"` deployed). Edition data
 (search indexes, figures, thumbnails) is referenced at its existing
 root-relative `/bnf-ms-fr-640/<buildID>/...` paths — the mirror does not
 duplicate the 1.6 GB data tree. Facsimile tiles come from Gallica IIIF, as in

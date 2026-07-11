@@ -15,7 +15,7 @@ The load-bearing discovery came out of that: **the content layer was already ful
 - *Build method*: a new generator inside the existing lizard.js pipeline, rendering from the data artifacts — rather than crawling the running React app with a headless browser (snapshots are brittle: MUI class-name churn, leftover React attributes, and the interactivity would still need rewriting anyway)
 - *Search*: keep client-side lunr with the existing indexes
 
-**Design and verification.** The decisions were then turned into a concrete design: output layout, URL scheme (`staticBasePath` per target, so `""` locally and `/static` in production), a module map, a page inventory with per-type generation logic, and the deploy path. Before committing to the plan, its riskiest assumptions were verified directly in the code: that lizard.js's command dispatch was easy to extend, that jsdom and lunr were already dependencies (they were — the generator added **zero** new dependencies), and that the layout engine really did emit React-specific `className=` attributes that a port would need to fix.
+**Design and verification.** The decisions were then turned into a concrete design: output layout, URL scheme (`staticBasePath` per target, so `""` locally and `/mirror` in production), a module map, a page inventory with per-type generation logic, and the deploy path. Before committing to the plan, its riskiest assumptions were verified directly in the code: that lizard.js's command dispatch was easy to extend, that jsdom and lunr were already dependencies (they were — the generator added **zero** new dependencies), and that the layout engine really did emit React-specific `className=` attributes that a port would need to fix.
 
 ## 2. Implementation
 
